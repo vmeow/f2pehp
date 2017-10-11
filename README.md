@@ -6,7 +6,7 @@
 
 
 ### Travis CI badge showing build status for master branch (should be "passing")
-
+https://travis-ci.org/lstrgar/chinese-newcomers-service-center.svg?branch=master
 
 
 #### Link to deployed app on Heroku
