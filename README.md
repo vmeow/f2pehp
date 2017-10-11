@@ -1,12 +1,11 @@
-CodeClimate badge showing project's current GPA
+### CodeClimate badge showing project's current GPA
+[![Maintainability](https://api.codeclimate.com/v1/badges/1552fef7c8eaf2e4bf40/maintainability)](https://codeclimate.com/github/lstrgar/chinese-newcomers-service-center/maintainability)
+
+### Code Climate badge showing percent code coverage
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1552fef7c8eaf2e4bf40/test_coverage)](https://codeclimate.com/github/lstrgar/chinese-newcomers-service-center/test_coverage)
 
 
-
-Code Climate badge showing percent code coverage
-
-
-
-Travis CI badge showing build status for master branch (should be "passing")
+### Travis CI badge showing build status for master branch (should be "passing")
 
 
 
