@@ -1,9 +1,8 @@
 ### CodeClimate badge showing project's current GPA
-[![Maintainability](https://api.codeclimate.com/v1/badges/1552fef7c8eaf2e4bf40/maintainability)](https://codeclimate.com/github/lstrgar/chinese-newcomers-service-center/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f041ba7220dc865f0ff1/maintainability)](https://codeclimate.com/github/dsproch/chinese-newcomers-service-center/maintainability)
 
 ### Code Climate badge showing percent code coverage
-[![Test Coverage](https://api.codeclimate.com/v1/badges/1552fef7c8eaf2e4bf40/test_coverage)](https://codeclimate.com/github/lstrgar/chinese-newcomers-service-center/test_coverage)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f041ba7220dc865f0ff1/test_coverage)](https://codeclimate.com/github/dsproch/chinese-newcomers-service-center/test_coverage)
 
 ### Travis CI badge showing build status for master branch (should be "passing")
 [![Build Status](https://travis-ci.org/dsproch/chinese-newcomers-service-center.svg?branch=master)](https://travis-ci.org/dsproch/chinese-newcomers-service-center)
