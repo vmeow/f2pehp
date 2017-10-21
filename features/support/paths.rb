@@ -23,6 +23,8 @@ module NavigationHelpers
       #     user_profile_path(User.find_by_login($1)) \
     when /^the items index page$/
       '/items'
+    when /^the the edit page for "([^"]*)"$/
+      edit_item_path(Item.where(:client_ssn => $1))
 
     else
       begin
