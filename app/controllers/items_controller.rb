@@ -44,6 +44,7 @@ end
 
   # GET /items/1/edit
   def edit
+    @item = Item.find params[:id]
   end
 
   # POST /items
@@ -85,6 +86,6 @@ end
     end
 
     def item_params
-      params.require(:item).permit(:client_ssn, :client_name, :date_opened)
+      params.require(:item).permit(:client_ssn, :client_name, :date_opened, :date_closed)
    end
 end

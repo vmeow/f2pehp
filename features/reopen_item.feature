@@ -14,10 +14,10 @@ Feature: Reopen an existing item
       | 000000000  | Ender Wiggin | 11-Nov-9999 |             | open   |
  
     Scenario: reopen an existing item
-      Given I am on the edit page for "111111111"
-      And I fill in "Date Closed" with ""
+      Given I am on the edit item page for "111111111"
+      And I select "2000/January/4" as the date for "date_closed"
       And I press "Update Case"
       Then I should be on the items index page
-      And the "date_closed" for "111111111" should be empty
+      And I should not see "2-Jan-2000"
      
   

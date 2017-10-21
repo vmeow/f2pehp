@@ -1,6 +1,6 @@
 %h1 Edit Case
 
-= form_tag items_path do
+= form_tag item_path(@item), :method => :put do
 
   = label :item, :client_name, 'Client Name'
   = text_field :item, 'client_name'
@@ -9,10 +9,10 @@
   = text_field :item, 'client_ssn'
 
   = label :item, :date_opened, 'Date Opened'
-  = date_select :item, :date_opened
+  = date_select :item, :date_opened, {:include_blank => true}
   
-  = label :item, :date_opened, 'Date Opened'
-  = date_select :item, :date_opened
+  = label :item, :date_closed, 'Date Closed'
+  = date_select :item, :date_closed, {:include_blank => true}
   
   = submit_tag 'Update Case'
 

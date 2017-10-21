@@ -1,3 +1,7 @@
+When /^I select "([^"]*)" as the date for "([^"]*)"$/ do |date, field|
+  select_date(date, :from => field)
+end
+
 Given /the following items exist/ do |items_table|
   items_table.hashes.each do |item|
     Item.create!(item)
