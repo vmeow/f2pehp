@@ -1,7 +1,17 @@
-%h1 Editing item
+%h1 Edit Case
 
-= render 'form'
+= form_tag edit_item_path(@item), :method => :put do
 
-= link_to 'Show', @item
-\|
-= link_to 'Back', items_path
+  = label :item, :client_name, 'Client Name'
+  = text_field :item, 'title'
+
+  = label :item, :client_ssn, 'Rating'
+  = select :item, :status, []
+
+  = label :item, :, 'Released On'
+  = date_select :movie, :release_date
+  
+  = label :item, :director, 'Director'
+  = text_field :movie, 'director'
+
+  = submit_tag 'Update Movie Info'
