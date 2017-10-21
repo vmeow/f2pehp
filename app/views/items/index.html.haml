@@ -1,6 +1,6 @@
 %h1 Listing items
 
-%table
+%table#item
   %thead
     %tr
       %th{:class => @client_ssn_header}= link_to 'SSN', items_path(:sort_by => 'client_ssn'), :id => 'client_ssn_header'

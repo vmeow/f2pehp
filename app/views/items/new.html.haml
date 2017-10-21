@@ -1,5 +1,16 @@
 %h1 New item
 
-= render 'form'
+= form_tag items_path do
 
-= link_to 'Back', items_path
+  = label :item, :client_name, 'Client Name'
+  = text_field :item, 'client_name'
+  
+  = label :item, :client_ssn, 'Client SSN'
+  = text_field :item, 'client_ssn'
+
+  = label :item, :date_opened, 'Date Opened'
+  = date_select :item, :date_opened
+  
+  = submit_tag 'Create Item'
+
+  = link_to 'Back', items_path
