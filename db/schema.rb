@@ -14,8 +14,14 @@
 ActiveRecord::Schema.define(version: 20171020230149) do
 
   create_table "items", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "client_ssn"
+    t.string   "client_name"
+    t.string   "case_type"
+    t.string   "status"
+    t.datetime "date_opened"
+    t.datetime "date_closed"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
