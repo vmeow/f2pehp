@@ -8,7 +8,8 @@
     %tr
       %th{:class => @client_ssn_header}= link_to 'SSN', items_path(:sort_by => 'client_ssn'), :id => 'client_ssn_header'
       %th{:class => @client_name_header}= link_to 'Client Name', items_path(:sort_by => 'client_name'), :id => 'client_name_header'
-      %th
+      %th Date Opened
+      %th Date Closed
 
   %tbody
     - @items.each do |item|
@@ -16,6 +17,7 @@
         %td= item.client_ssn
         %td= item.client_name
         %td= item.date_opened
+        %td= item.date_closed
         %td= link_to 'Show', item
         %td= link_to 'Edit', edit_item_path(item)
         %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
