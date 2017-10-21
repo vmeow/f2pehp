@@ -7,10 +7,10 @@ Feature: Sort Items
 
     Given the following items exist:
       | client_ssn | client_name  | date_opened |
-      | 111111111  | John Doe     | 25-Nov-1992 |
-      | 222222222  | Sally Sue    | 30-Nov-1992 |
-      | 333333333  | Billy Bob    | 11-Nov-1992 |
-      | 000000000  | Ender Wiggin | 11-Nov-1992 |
+      | 111111111  | John Doe     | 25-Nov-9999 |
+      | 222222222  | Sally Sue    | 30-Nov-9999 |
+      | 333333333  | Billy Bob    | 11-Nov-9999 |
+      | 000000000  | Ender Wiggin | 11-Nov-9999 |
 
   Scenario: Sort by SSN
     Given I am on the items index page

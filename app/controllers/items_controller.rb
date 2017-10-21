@@ -18,7 +18,19 @@ class ItemsController < ApplicationController
     end
 
     @items = Item.all.order(ordering)
-  end
+
+
+    @old_items = Item.where("date_opened < ?", 90.days.ago)
+
+    @items_alert_message = ""
+
+    if @old_items.length > 0
+      @items_alert_message = "Case has been open for 90 days: "
+      @old_items.each do |item|
+        @items_alert_message += item[:client_ssn] + ", "
+      end
+    end
+end
 
   # GET /items/1
   # GET /items/1.json
