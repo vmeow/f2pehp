@@ -18,6 +18,6 @@ Feature: Reopen an existing item
       And I select "//" as the date for "date_closed"
       And I press "Update Case"
       Then I should be on the items index page
-      And I should not see "2-Jan-2000"
+      And I should not see "2000-01-02"
      
   
