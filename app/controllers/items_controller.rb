@@ -4,7 +4,20 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    sort_by = params[:sort_by] || session[:sort_by]
+    case sort_by
+    when 'client_ssn'
+      ordering = 'client_ssn'
+    when 'client_name'
+      ordering = 'client_name'
+    end
+    
+    if params[:sort_by] != session[:sort_by]
+      session[:sort_by] = sort_by
+      redirect_to :sort_by => sort_by and return
+    end
+
+    @items = Item.all.order(ordering)
   end
 
   # GET /items/1
