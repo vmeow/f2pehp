@@ -1,5 +1,7 @@
-When /^I select "([^"]*)" as the date for "([^"]*)"$/ do |date, field|
-  select_date(date, :from => field)
+When /^I select "([^"\/]*)\/([^"\/]*)\/([^"\/]*)" as the date for "([^"]*)"$/ do |year,month,day,field|
+  select(year, :from => "item_"+field+"_1i")
+  select(month, :from => "item_"+field+"_2i")
+  select(day, :from => "item_"+field+"_3i")
 end
 
 Given /the following items exist/ do |items_table|
