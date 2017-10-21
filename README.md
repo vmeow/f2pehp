@@ -6,7 +6,8 @@
 
 
 ### Travis CI badge showing build status for master branch (should be "passing")
-[![Build Status](https://travis-ci.org/lstrgar/chinese-newcomers-service-center.svg?branch=master)](https://travis-ci.org/lstrgar/chinese-newcomers-service-center)
+[![Build Status](https://travis-ci.org/dsproch/chinese-newcomers-service-center.svg?branch=master)](https://travis-ci.org/dsproch/chinese-newcomers-service-center)
+
 
 #### Link to deployed app on Heroku
 https://cnsc-database.herokuapp.com/
