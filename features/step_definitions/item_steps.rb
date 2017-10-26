@@ -22,3 +22,8 @@ Then /^The client_ssn of item "(.*)" should be "(.*)"$/ do |item_id, val|
   item_attr = Item.find_by(item_id).client_ssn
   expect(item_attr.to eq(val))
 end
+
+
+Then("I should match {string}") do |string|
+  pending # Write code here that turns the phrase above into concrete actions
+end
