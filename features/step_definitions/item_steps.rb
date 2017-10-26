@@ -27,3 +27,7 @@ end
 Then("I should match {string}") do |string|
   pending # Write code here that turns the phrase above into concrete actions
 end
+
+Given /^PENDING/ do
+  pending
+end
