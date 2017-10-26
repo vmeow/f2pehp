@@ -15,6 +15,7 @@ Feature: Delete Item
     
 Scenario: Delete an item
       Given I am on the edit item page for "222222222"
+      Given PENDING
       And I press "Delete Case"
       Then I should be on the items index page
       And I should not see "222222222"
