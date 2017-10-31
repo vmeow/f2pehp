@@ -16,6 +16,7 @@ Scenario: Generate Case ID upon Case Creation
       Then  I should match "[0-9]* *101010101"
       And   I should see "2012121001"
       
+      Given I am on the new item page
       When  I fill in "Client SSN" with "202020202"
       When  I fill in "Client Name" with "Jilly Job Boe Jr"
       And   I select "2012/December/1" as the date for "date_opened"
