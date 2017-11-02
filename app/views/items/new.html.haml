@@ -2,6 +2,10 @@
 
 = form_tag items_path do
 
+  = label :item, 'Reporting Period'
+  = check_box_tag "Interim Report - January 1 through June 30", 1, :id => "interim_report"
+  = check_box_tag "Year-End Report - January 1 through December 31", 1, :id => "year_end_report"
+
   = label :item, :client_name, 'Client Name'
   = text_field :item, 'client_name'
   
@@ -11,6 +15,203 @@
   = label :item, :date_opened, 'Date Opened'
   = date_select :item, :date_opened
   
-  = submit_tag 'Create Item'
+  = label :item, :name_of_clinic, 'Name of clinic'
+  = text_field :item, :name_of_clinic
+  
+  = label :item, :grant_year, 'Grant year'
+  = text_field :item, :grant_year
+  
+  
+  
+  
+  
+  
+  = label :item, :income_issues_wages, 'Wages' 
+  = text_field :item, :income_issues_wages
+
+  = label :item, :income_issues_interest_dividends_schedule_b, 'Interest / Dividends (Schedule B)' 
+  = text_field :item, :income_issues_interest_dividends_schedule_b
+
+  = label :item, :income_issues_business_income_schedule_c, 'Business Income, (Schedule C)' 
+  = text_field :item, :income_issues_business_income_schedule_c
+
+  = label :item, :income_issues_capital_gain_loss_schedule_d, 'Capital Gain / Loss, (Schedule D)' 
+  = text_field :item, :income_issues_capital_gain_loss_schedule_d
+
+  = label :item, :income_issues_ira_pension, 'IRA / Pension' 
+  = text_field :item, :income_issues_ira_pension
+
+  = label :item, :income_issues_social_security_benefits, 'Social Security Benefits' 
+  = text_field :item, :income_issues_social_security_benefits
+
+  = label :item, :income_issues_alimony, 'Alimony' 
+  = text_field :item, :income_issues_alimony
+
+  = label :item, :income_issues_rental_royalty_partnership_s_corp_schedule_e, 'Rental, Royalty, Partnership, S Corp (Schedule E)' 
+  = text_field :item, :income_issues_rental_royalty_partnership_s_corp_schedule_e
+
+  = label :item, :income_issues_farming_income_schedule_f, 'Farming Income (Schedule F)' 
+  = text_field :item, :income_issues_farming_income_schedule_f
+
+  = label :item, :income_issues_unemployment, 'Unemployment' 
+  = text_field :item, :income_issues_unemployment
+
+  = label :item, :income_issues_gambling_winnings, 'Gambling Winnings' 
+  = text_field :item, :income_issues_gambling_winnings
+
+  = label :item, :income_issues_cancellation_of_debt, 'Cancellation of Debt' 
+  = text_field :item, :income_issues_cancellation_of_debt
+
+  = label :item, :income_issues_settlement_proceeds, 'Settlement Proceeds' 
+  = text_field :item, :income_issues_settlement_proceeds
+
+  = label :item, :income_issues_other_income_issues, 'Other Income Issues' 
+  = text_field :item, :income_issues_other_income_issues
+
+  = label :item, :deduction_issues_alimony, 'Alimony' 
+  = text_field :item, :deduction_issues_alimony
+
+  = label :item, :deduction_issues_education_expenses_including_student_loan_interest, 'Education Expenses (Including student loan interest)' 
+  = text_field :item, :deduction_issues_education_expenses_including_student_loan_interest
+
+  = label :item, :deduction_issues_moving_expenses, 'Moving Expenses' 
+  = text_field :item, :deduction_issues_moving_expenses
+
+  = label :item, :deduction_issues_ira_deduction, 'IRA Deduction' 
+  = text_field :item, :deduction_issues_ira_deduction
+
+  = label :item, :deduction_issues_medical_and_dental_expenses, 'Medical and Dental Expenses' 
+  = text_field :item, :deduction_issues_medical_and_dental_expenses
+
+  = label :item, :deduction_issues_state_and_local_taxes, 'State and Local Taxes' 
+  = text_field :item, :deduction_issues_state_and_local_taxes
+
+  = label :item, :deduction_issues_home_mortgage_interest, 'Home Mortgage Interest' 
+  = text_field :item, :deduction_issues_home_mortgage_interest
+
+  = label :item, :deduction_issues_other_interest_expenses, 'Other Interest Expenses' 
+  = text_field :item, :deduction_issues_other_interest_expenses
+
+  = label :item, :deduction_issues_charitable_contributions, 'Charitable Contributions' 
+  = text_field :item, :deduction_issues_charitable_contributions
+
+  = label :item, :deduction_issues_casualty_and_theft_losses, 'Casualty and Theft Losses' 
+  = text_field :item, :deduction_issues_casualty_and_theft_losses
+
+  = label :item, :deduction_issues_unreimbursed_employee_business_expenses, 'Unreimbursed Employee Business Expenses' 
+  = text_field :item, :deduction_issues_unreimbursed_employee_business_expenses
+
+  = label :item, :deduction_issues_other_itemized_deductions, 'Other Itemized Deductions' 
+  = text_field :item, :deduction_issues_other_itemized_deductions
+
+  = label :item, :deduction_issues_business_expenses_schedule_c, 'Business Expenses (Schedule C)' 
+  = text_field :item, :deduction_issues_business_expenses_schedule_c
+
+  = label :item, :credit_issues_child_and_dependent_care_credit, 'Child and Dependent Care Credit' 
+  = text_field :item, :credit_issues_child_and_dependent_care_credit
+
+  = label :item, :credit_issues_education_credits, 'Education Credits' 
+  = text_field :item, :credit_issues_education_credits
+
+  = label :item, :credit_issues_child_tax_credit_additional_child_tax_credit, 'Child Tax Credit / Additional Child Tax Credit' 
+  = text_field :item, :credit_issues_child_tax_credit_additional_child_tax_credit
+
+  = label :item, :credit_issues_earned_income_tax_credit, 'Earned Income Tax Credit' 
+  = text_field :item, :credit_issues_earned_income_tax_credit
+
+  = label :item, :credit_issues_first_time_homebuyer_credit, 'First Time Homebuyer Credit' 
+  = text_field :item, :credit_issues_first_time_homebuyer_credit
+
+  = label :item, :credit_issues_premium_tax_credit, 'Premium Tax Credit' 
+  = text_field :item, :credit_issues_premium_tax_credit
+
+  = label :item, :credit_issues_other_credits, 'Other Credits' 
+  = text_field :item, :credit_issues_other_credits
+
+  = label :item, :status_issues_ssn_tin, 'SSN / TIN' 
+  = text_field :item, :status_issues_ssn_tin
+
+  = label :item, :status_issues_itin, 'ITIN' 
+  = text_field :item, :status_issues_itin
+
+  = label :item, :status_issues_filing_status, 'Filing Status' 
+  = text_field :item, :status_issues_filing_status
+
+  = label :item, :status_issues_personal_dependency_exemptions, 'Personal / Dependency Exemptions' 
+  = text_field :item, :status_issues_personal_dependency_exemptions
+
+  = label :item, :status_issues_injured_spouseemployment_related_identity_theft, 'Injured SpouseEmployment Related Identity Theft' 
+  = text_field :item, :status_issues_injured_spouseemployment_related_identity_theft
+
+  = label :item, :status_issues_refund_related_identity_theft, 'Refund Related Identity Theft' 
+  = text_field :item, :status_issues_refund_related_identity_theft
+
+  = label :item, :status_issues_nonfiler, 'Nonfiler' 
+  = text_field :item, :status_issues_nonfiler
+
+  = label :item, :status_issues_worker_classification, 'Worker Classification' 
+  = text_field :item, :status_issues_worker_classification
+
+  = label :item, :tax_issues_self_employment_tax, 'Self Employment Tax' 
+  = text_field :item, :tax_issues_self_employment_tax
+
+  = label :item, :tax_issues_suspected_return_preparer_fraud, 'Suspected Return Preparer Fraud' 
+  = text_field :item, :tax_issues_suspected_return_preparer_fraud
+
+  = label :item, :tax_issues_estimated_tax_payments, 'Estimated Tax Payments' 
+  = text_field :item, :tax_issues_estimated_tax_payments
+
+  = label :item, :tax_issues_withholdings, 'Withholdings' 
+  = text_field :item, :tax_issues_withholdings
+
+  = label :item, :tax_issues_refund, 'Refund' 
+  = text_field :item, :tax_issues_refund
+
+  = label :item, :tax_issues_assessment_statute_of_limitations, 'Assessment Statute of Limitations' 
+  = text_field :item, :tax_issues_assessment_statute_of_limitations
+
+  = label :item, :tax_issues_collection_statute_of_limitations, 'Collection Statute of Limitations' 
+  = text_field :item, :tax_issues_collection_statute_of_limitations
+
+  = label :item, :tax_issues_refund_statute_of_limitations, 'Refund Statute of Limitations' 
+  = text_field :item, :tax_issues_refund_statute_of_limitations
+
+  = label :item, :penalty_issues_trust_fund_recovery_penalty, 'Trust Fund Recovery Penalty' 
+  = text_field :item, :penalty_issues_trust_fund_recovery_penalty
+
+  = label :item, :penalty_issues_other_civil_penalties, 'Other Civil Penalties' 
+  = text_field :item, :penalty_issues_other_civil_penalties
+
+  = label :item, :penalty_issues_additional_tax_on_distributions_from_qualified_retirement_plans, 'Additional Tax on Distributions from Qualified Retirement Plans' 
+  = text_field :item, :penalty_issues_additional_tax_on_distributions_from_qualified_retirement_plans
+
+  = label :item, :penalty_issues_individual_shared_responsibility_payment, 'Individual Shared Responsibility Payment' 
+  = text_field :item, :penalty_issues_individual_shared_responsibility_payment
+
+  = label :item, :collection_issues_payments, 'Payments' 
+  = text_field :item, :collection_issues_payments
+
+  = label :item, :collection_issues_installment_payment_agreement_ipa, 'Installment Payment Agreement (IPA)' 
+  = text_field :item, :collection_issues_installment_payment_agreement_ipa
+
+  = label :item, :collection_issues_offer_in_compromise_oic, 'Offer In Compromise (OIC)' 
+  = text_field :item, :collection_issues_offer_in_compromise_oic
+
+  = label :item, :collection_issues_currently_not_collectible_cnc, 'Currently Not Collectible (CNC)' 
+  = text_field :item, :collection_issues_currently_not_collectible_cnc
+
+  = label :item, :collection_issues_liens, 'Liens' 
+  = text_field :item, :collection_issues_liens
+
+  = label :item, :collection_issues_levies_including_federal_payment_levy_program, 'Levies (Including Federal Payment Levy Program)' 
+  = text_field :item, :collection_issues_levies_including_federal_payment_levy_program
+
+
+
+
+
+
+  
+  = submit_tag 'Create Item', :id => 'reporting_period'
 
   = link_to 'Back', items_path
