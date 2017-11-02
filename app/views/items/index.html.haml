@@ -6,6 +6,7 @@
 %table
   %thead
     %tr
+      %th Case ID
       %th{:class => @client_ssn_header}= link_to 'SSN', items_path(:sort_by => 'client_ssn'), :id => 'client_ssn_header'
       %th{:class => @client_name_header}= link_to 'Client Name', items_path(:sort_by => 'client_name'), :id => 'client_name_header'
       %th Date Opened
@@ -14,6 +15,7 @@
   %tbody
     - @items.each do |item|
       %tr
+        %td= item.case_id
         %td= item.client_ssn
         %td= item.client_name
         %td= item.date_opened

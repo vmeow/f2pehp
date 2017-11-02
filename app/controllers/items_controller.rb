@@ -51,7 +51,17 @@ end
   # POST /items.json
   def create
     @item = Item.create!(item_params)
-    flash[:notice] = 'Item was successfully created.' 
+    tempCaseIdBase = ("%04d" % @item[:date_opened].year) + ("%02d" % @item[:date_opened].month) + ("%02d" % @item[:date_opened].day)
+    if Setting.get_all.key?(tempCaseIdBase)
+      idNum = Setting[tempCaseIdBase] + 1
+    else
+      idNum = 0
+    end
+    Setting[tempCaseIdBase] = idNum
+
+    tempCaseId = tempCaseIdBase + ("%03d" % idNum)
+    @item.update_attributes(case_id: tempCaseId)
+    flash[:notice] = 'Item was successfully created.' + @item[:date_opened].year.to_s
     redirect_to items_path
   end
 

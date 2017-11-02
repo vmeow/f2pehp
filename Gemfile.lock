@@ -271,6 +271,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.6)
+      rails (>= 4.2.0)
     rails_best_practices (1.19.0)
       activesupport
       code_analyzer (>= 0.4.8)
@@ -409,6 +411,7 @@ DEPENDENCIES
   metric_fu
   pg
   rails (= 4.2.9)
+  rails-settings-cached
   rake (< 11.0)
   rspec-rails (= 3.5)
   sass-rails (~> 5.0)
