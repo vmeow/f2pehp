@@ -1,5 +1,7 @@
-class AddColumnsToItem < ActiveRecord::Migration
+class AddFormColumnsToItem < ActiveRecord::Migration
   def change
+    add_column :items, :name_of_clinic, :string
+    add_column :items, :grant_year, :string
     add_column :items, :income_issues_wages, :string
     add_column :items, :income_issues_interest_dividends_schedule_b, :string
     add_column :items, :income_issues_business_income_schedule_c, :string
@@ -38,7 +40,9 @@ class AddColumnsToItem < ActiveRecord::Migration
     add_column :items, :status_issues_itin, :string
     add_column :items, :status_issues_filing_status, :string
     add_column :items, :status_issues_personal_dependency_exemptions, :string
-    #add_column :items, :status_issues_injured_spouseemployment_related_identity_theft, :string
+    add_column :items, :status_issues_injured_spouse, :string
+    add_column :items, :status_issues_innocent_spouse, :string
+    add_column :items, :status_issues_employment_related_identity_theft, :string
     add_column :items, :status_issues_refund_related_identity_theft, :string
     add_column :items, :status_issues_nonfiler, :string
     add_column :items, :status_issues_worker_classification, :string
@@ -60,5 +64,55 @@ class AddColumnsToItem < ActiveRecord::Migration
     add_column :items, :collection_issues_currently_not_collectible_cnc, :string
     add_column :items, :collection_issues_liens, :string
     add_column :items, :collection_issues_levies_including_federal_payment_levy_program, :string
+    add_column :items, :inventory_beginning_case_inventory, :string
+    add_column :items, :inventory_new_cases_opened_during_the_reporting_period, :string
+    add_column :items, :inventory_total_number_of_cases_worked_during_the_reporting_period, :string
+    add_column :items, :inventory_cases_closed_during_the_reporting_period, :string
+    add_column :items, :inventory_ending_case_inventory, :string
+    add_column :items, :accounts_return_processing, :string
+    add_column :items, :accounts_penalty_abatement, :string
+    add_column :items, :accounts_injured_spouse, :string
+    add_column :items, :accounts_backup_withholding, :string
+    add_column :items, :exams_correspondence_exam, :string
+    add_column :items, :exams_office_or_field_exam, :string
+    add_column :items, :exams_automated_underreporter, :string
+    add_column :items, :exams_automated_substitute_for_return, :string
+    add_column :items, :exams_audit_reconsideration, :string
+    add_column :items, :collection_automated_collection_system, :string
+    add_column :items, :collection_field_collection, :string
+    add_column :items, :collection_offer_in_compromise, :string
+    add_column :items, :collection_lien_unit, :string
+    add_column :items, :collection_bankruptcy, :string
+    add_column :items, :appeals_exam_appeals, :string
+    add_column :items, :appeals_collection_due_process, :string
+    add_column :items, :appeals_collection_appeals_process, :string
+    add_column :items, :appeals_oic_appeals, :string
+    add_column :items, :appeals_penalty_abatement_appeals, :string
+    add_column :items, :appeals_other_appeals, :string
+    add_column :items, :litigation_us_tax_court, :string
+    add_column :items, :litigation_other_federal_courts, :string
+    add_column :items, :miscellaneous_identity_protection_specialized_unit, :string
+    add_column :items, :miscellaneous_innocent_spouse_unit, :string
+    add_column :items, :miscellaneous_ss_8_unit, :string
+    add_column :items, :miscellaneous_itin_unit, :string
+    add_column :items, :miscellaneous_trust_fund_recovery_penalty, :string
+    add_column :items, :total, :string
+    add_column :items, :additional_the_amount_in_controversy_exceeds_50000_per_tax_period_for_cases_reported_on_line_3_include_an_explanation_for_each_in_the_program_narrative_item_3vii, :string
+    add_column :items, :additional_the_taxpayers_income_exceeds_250_of_the_federal_poverty_guidelines, :string
+    add_column :items, :additional_matters_worked_in_more_than_on_irs_function_or_us_court, :string
+    add_column :items, :additional_more_than_one_tax_year, :string
+    add_column :items, :additional_representation_of_esl_taxpayers, :string
+    add_column :items, :additional_joint_representation_of_taxpayers, :string
+    add_column :items, :additional_representation_by_volunteers, :string
+    add_column :items, :additional_state_tax_matters, :string
+    add_column :items, :tax_court_does_the_clinic_participate_in_the_us_tax_court_clinical_program, :string
+    add_column :items, :tax_court_list_the_places_of_trial_location_served, :string
+    add_column :items, :tax_court_appearances, :string
+    add_column :items, :tax_court_no_appearance, :string
+    add_column :items, :tax_court_number_of_informal_consultations_in_the_us_tax_court_during_the_reporting_period_in_which_the_clinic_provided_advice_to_a_taxpayer_but_not_representation, :string
+    add_column :items, :closed_case_a_number_of_cases_in_which_the_taxpayer_was_brought_into_filing_compliance, :string
+    add_column :items, :closed_case_b_number_of_cases_in_which_the_taxpayer_was_brought_into_collection_compliance, :string
+    add_column :items, :closed_case_c_total_amount_of_dollars_refunded_in_cash_to_taxpayers, :string
+    add_column :items, :closed_case_d_total_decrease_in_corrected_tax_liabilities_penalties_and_interest_but_not_below_zero_for_any_taxpayer, :string
   end
 end
