@@ -29,7 +29,7 @@ Feature: search for items in database
   Scenario: search for items by case number
     When I fill in "Search Cases" with "2017-06-0000"
     And I press "Search"
-    Then I should see "Ender Wiggin"
+    Then I should see "John Doe"
 
     # search gem: https://github.com/activerecord-hackery/ransack
 

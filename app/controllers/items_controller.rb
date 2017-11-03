@@ -22,10 +22,6 @@ class ItemsController < ApplicationController
     
     
     if search_term != nil
-      if search_term.count("0-9") > 0
-        search_term = search_term.tr('-', '')
-        search_term = search_term.tr(' ', '')
-      end
       @items = Item.where("client_name like ? OR client_ssn like ? OR case_id like ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
       @old_items = Item.where("(client_name like ? OR client_ssn like ? OR case_id like ?) AND date_opened < ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", 90.days.ago)
     else
