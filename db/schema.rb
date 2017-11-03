@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103001620) do
+ActiveRecord::Schema.define(version: 20171103034856) do
 
   create_table "items", force: :cascade do |t|
     t.string   "client_ssn"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20171103001620) do
     t.string   "status"
     t.datetime "date_opened"
     t.datetime "date_closed"
-    t.datetime "created_at",                                                                     null: false
-    t.datetime "updated_at",                                                                     null: false
+    t.datetime "created_at",                                                                                                                                                          null: false
+    t.datetime "updated_at",                                                                                                                                                          null: false
     t.string   "case_id"
     t.string   "income_issues_wages"
     t.string   "income_issues_interest_dividends_schedule_b"
@@ -85,6 +85,56 @@ ActiveRecord::Schema.define(version: 20171103001620) do
     t.string   "collection_issues_levies_including_federal_payment_levy_program"
     t.string   "name_of_clinic"
     t.string   "grant_year"
+    t.string   "inventory_beginning_case_inventory"
+    t.string   "inventory_new_cases_opened_during_the_reporting_period"
+    t.string   "inventory_total_number_of_cases_worked_during_the_reporting_period"
+    t.string   "inventory_cases_closed_during_the_reporting_period"
+    t.string   "inventory_ending_case_inventory"
+    t.string   "accounts_return_processing"
+    t.string   "accounts_penalty_abatement"
+    t.string   "accounts_injured_spouse"
+    t.string   "accounts_backup_withholding"
+    t.string   "exams_correspondence_exam"
+    t.string   "exams_office_or_field_exam"
+    t.string   "exams_automated_underreporter"
+    t.string   "exams_automated_substitute_for_return"
+    t.string   "exams_audit_reconsideration"
+    t.string   "collection_automated_collection_system"
+    t.string   "collection_field_collection"
+    t.string   "collection_offer_in_compromise"
+    t.string   "collection_lien_unit"
+    t.string   "collection_bankruptcy"
+    t.string   "appeals_exam_appeals"
+    t.string   "appeals_collection_due_process"
+    t.string   "appeals_collection_appeals_process"
+    t.string   "appeals_oic_appeals"
+    t.string   "appeals_penalty_abatement_appeals"
+    t.string   "appeals_other_appeals"
+    t.string   "litigation_us_tax_court"
+    t.string   "litigation_other_federal_courts"
+    t.string   "miscellaneous_identity_protection_specialized_unit"
+    t.string   "miscellaneous_innocent_spouse_unit"
+    t.string   "miscellaneous_ss_8_unit"
+    t.string   "miscellaneous_itin_unit"
+    t.string   "miscellaneous_trust_fund_recovery_penalty"
+    t.string   "total"
+    t.string   "additional_the_amount_in_controversy_exceeds_50000_per_tax_period_for_cases_reported_on_line_3_include_an_explanation_for_each_in_the_program_narrative_item_3vii"
+    t.string   "additional_the_taxpayers_income_exceeds_250_of_the_federal_poverty_guidelines"
+    t.string   "additional_matters_worked_in_more_than_on_irs_function_or_us_court"
+    t.string   "additional_more_than_one_tax_year"
+    t.string   "additional_representation_of_esl_taxpayers"
+    t.string   "additional_joint_representation_of_taxpayers"
+    t.string   "additional_representation_by_volunteers"
+    t.string   "additional_state_tax_matters"
+    t.string   "tax_court_does_the_clinic_participate_in_the_us_tax_court_clinical_program"
+    t.string   "tax_court_list_the_places_of_trial_location_served"
+    t.string   "tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_an_appearance_was_entered_pursuant_to_tax_court_rule_24"
+    t.string   "tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_the_clinic_represented_the_taxpayer_but_no_appearance_was_entered"
+    t.string   "tax_court_number_of_informal_consultations_in_the_us_tax_court_during_the_reporting_period_in_which_the_clinic_provided_advice_to_a_taxpayer_but_not_representation"
+    t.string   "closed_case_a_number_of_cases_in_which_the_taxpayer_was_brought_into_filing_compliance"
+    t.string   "closed_case_b_number_of_cases_in_which_the_taxpayer_was_brought_into_collection_compliance"
+    t.string   "closed_case_c_total_amount_of_dollars_refunded_in_cash_to_taxpayers"
+    t.string   "closed_case_d_total_decrease_in_corrected_tax_liabilities_penalties_and_interest_but_not_below_zero_for_any_taxpayer"
   end
 
   create_table "settings", force: :cascade do |t|
