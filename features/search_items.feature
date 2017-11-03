@@ -7,7 +7,6 @@ Feature: search for items in database
 
   Background: items have been added to the database
 
-    When PENDING
     Given the following items exist:
       | client_ssn | client_name  | date_opened | date_closed | status | case_id      |
       | 111111111  | John Doe     | 25-Nov-9999 | 2-Jan-2000  | closed | 2017-06-0000 |
@@ -18,18 +17,18 @@ Feature: search for items in database
     And I am on the items index page
 
   Scenario: search for items by SSN
-    When I fill in "search_bar" with "000000000"
-    And I press "search"
+    When I fill in "Search Cases" with "000000000"
+    And I press "Search"
     Then I should see "Ender Wiggin"
 
   Scenario: search for items by client name
-    When I fill in "search_bar" with "Ender Wiggin"
-    And I press "search"
+    When I fill in "Search Cases" with "Ender Wiggin"
+    And I press "Search"
     Then I should see "000000000"
 
   Scenario: search for items by case number
-    When I fill in "search_bar" with "2017-06-0000"
-    And I press "search"
+    When I fill in "Search Cases" with "2017-06-0000"
+    And I press "Search"
     Then I should see "Ender Wiggin"
 
     # search gem: https://github.com/activerecord-hackery/ransack
