@@ -128,8 +128,6 @@ ActiveRecord::Schema.define(version: 20171103224242) do
     t.string   "additional_state_tax_matters"
     t.string   "tax_court_does_the_clinic_participate_in_the_us_tax_court_clinical_program"
     t.string   "tax_court_list_the_places_of_trial_location_served"
-    t.string   "tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_an_appearance_was_entered_pursuant_to_tax_court_rule_24"
-    t.string   "tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_the_clinic_represented_the_taxpayer_but_no_appearance_was_entered"
     t.string   "tax_court_number_of_informal_consultations_in_the_us_tax_court_during_the_reporting_period_in_which_the_clinic_provided_advice_to_a_taxpayer_but_not_representation"
     t.string   "closed_case_a_number_of_cases_in_which_the_taxpayer_was_brought_into_filing_compliance"
     t.string   "closed_case_b_number_of_cases_in_which_the_taxpayer_was_brought_into_collection_compliance"

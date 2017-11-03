@@ -38,7 +38,7 @@ class AddColumnsToItem < ActiveRecord::Migration
     add_column :items, :status_issues_itin, :string
     add_column :items, :status_issues_filing_status, :string
     add_column :items, :status_issues_personal_dependency_exemptions, :string
-    add_column :items, :status_issues_injured_spouseemployment_related_identity_theft, :string
+    #add_column :items, :status_issues_injured_spouseemployment_related_identity_theft, :string
     add_column :items, :status_issues_refund_related_identity_theft, :string
     add_column :items, :status_issues_nonfiler, :string
     add_column :items, :status_issues_worker_classification, :string
