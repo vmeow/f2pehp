@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration
   # end
 
 
-  def up
+  def change
     create_table :items do |t|
       t.string :client_ssn
       t.string :client_name
