@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103233111) do
+ActiveRecord::Schema.define(version: 20171103231811) do
 
   create_table "items", force: :cascade do |t|
     t.string   "client_ssn"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20171103233111) do
     t.string   "status"
     t.datetime "date_opened"
     t.datetime "date_closed"
+    t.datetime "created_at",                                                                                                                                                          null: false
+    t.datetime "updated_at",                                                                                                                                                          null: false
+    t.string   "case_id"
     t.string   "name_of_clinic"
     t.string   "grant_year"
     t.string   "income_issues_wages"
@@ -135,16 +138,5 @@ ActiveRecord::Schema.define(version: 20171103233111) do
     t.string   "closed_case_c_total_amount_of_dollars_refunded_in_cash_to_taxpayers"
     t.string   "closed_case_d_total_decrease_in_corrected_tax_liabilities_penalties_and_interest_but_not_below_zero_for_any_taxpayer"
   end
-
-  create_table "settings", force: :cascade do |t|
-    t.string   "var",                   null: false
-    t.text     "value"
-    t.integer  "thing_id"
-    t.string   "thing_type", limit: 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
 
 end
