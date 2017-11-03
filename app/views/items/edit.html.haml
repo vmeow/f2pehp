@@ -15,5 +15,7 @@
   = date_select :item, :date_closed, {:include_blank => true}
   
   = submit_tag 'Update Case'
-
+  
+  = link_to 'Delete Case', @item, method: :delete, data: { confirm: 'Are you sure?' }  
+  
   = link_to 'Back', items_path
