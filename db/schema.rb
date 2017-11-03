@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103034856) do
+ActiveRecord::Schema.define(version: 20171103210526) do
 
   create_table "items", force: :cascade do |t|
     t.string   "client_ssn"
@@ -135,6 +135,9 @@ ActiveRecord::Schema.define(version: 20171103034856) do
     t.string   "closed_case_b_number_of_cases_in_which_the_taxpayer_was_brought_into_collection_compliance"
     t.string   "closed_case_c_total_amount_of_dollars_refunded_in_cash_to_taxpayers"
     t.string   "closed_case_d_total_decrease_in_corrected_tax_liabilities_penalties_and_interest_but_not_below_zero_for_any_taxpayer"
+    t.string   "status_issues_injured_spouse"
+    t.string   "status_issues_innocent_spouse"
+    t.string   "status_issues_employment_related_identity_theft"
   end
 
   create_table "settings", force: :cascade do |t|
