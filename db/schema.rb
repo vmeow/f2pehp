@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103210526) do
+ActiveRecord::Schema.define(version: 20171103224242) do
 
   create_table "items", force: :cascade do |t|
     t.string   "client_ssn"
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(version: 20171103210526) do
     t.string   "status_issues_injured_spouse"
     t.string   "status_issues_innocent_spouse"
     t.string   "status_issues_employment_related_identity_theft"
+    t.string   "tax_court_appearances"
+    t.string   "tax_court_no_appearance"
   end
 
   create_table "settings", force: :cascade do |t|
