@@ -1,6 +1,11 @@
 %h1 Listing items
 
 
+= form_tag items_path, :method => "get", id: "search-cases-form" do
+  = text_field_tag :search, params[:search], placeholder: "Search Cases"
+  = submit_tag "Search" 
+
+
 #{@items_alert_message}
 
 %table

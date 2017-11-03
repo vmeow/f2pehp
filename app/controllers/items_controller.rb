@@ -4,7 +4,15 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+    
     sort_by = params[:sort_by] || session[:sort_by]
+    search_term = params[:search] || session[:search]
+    if params[:sort_by] != session[:sort_by] || params[:search] != session[:search]
+      session[:sort_by] = sort_by
+      session[:search] = search_term
+      redirect_to items_path(:sort_by => sort_by, :search => search_term) and return
+    end
+    
     case sort_by
     when 'client_ssn'
       ordering = 'client_ssn'
@@ -12,24 +20,29 @@ class ItemsController < ApplicationController
       ordering = 'client_name'
     end
     
-    if params[:sort_by] != session[:sort_by]
-      session[:sort_by] = sort_by
-      redirect_to :sort_by => sort_by and return
-    end
-
-    @items = Item.all.order(ordering)
-
-
-    @old_items = Item.where("date_opened < ?", 90.days.ago)
-
+    
+    if search_term != nil
+      if search_term.count("0-9") > 0
+        search_term = search_term.tr('-', '')
+        search_term = search_term.tr(' ', '')
+      end
+      @items = Item.where("client_name like ? OR client_ssn like ?", "%#{search_term}%", "%#{search_term}%")
+      @old_items = Item.where("(client_name like ? OR client_ssn like ?) AND date_opened < ?", "%#{search_term}%", "%#{search_term}%", 90.days.ago)
+    else
+      @items = Item.order(ordering)
+      @old_items = Item.where("date_opened < ?", 90.days.ago)
+    end  
+    
     @items_alert_message = ""
-
     if @old_items.length > 0
       @items_alert_message = "Case has been open for 90 days: "
       @old_items.each do |item|
         @items_alert_message += item[:client_ssn] + ", "
       end
     end
+    
+    
+    
 end
 
   # GET /items/1
