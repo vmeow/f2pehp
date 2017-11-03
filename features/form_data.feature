@@ -5,18 +5,19 @@ Feature:
     I want to be able to enter all data from the 13424-B and 13424-K forms
     
 Scenario: Check that the appropriate fields exist when creating a new case
-  When PENDING
   Given I am on the new item page
   
   # Form 13424-B
   Then  I should see "Name of Clinic"
   And  I should see "Grant Year"
-  And  I should see "Reporting Period"
+  And  I should see "Reporting period"
+
+  
   # Income Issues
   And  I should see "Wages"
-  And  I should see "Interest/Dividends (Schedule B)"
+  And  I should see "Interest / Dividends (Schedule B)"
   And  I should see "Business Income (Schedule C)"
-  And  I should see "Capital Gain or Loss (Schedule D)"
+  And  I should see "Capital Gain / Loss (Schedule D)"
   And  I should see "IRA / Pension"
   And  I should see "Social Security Benefits"
   And  I should see "Alimony"
@@ -26,7 +27,7 @@ Scenario: Check that the appropriate fields exist when creating a new case
   And  I should see "Gambling Winnings"
   And  I should see "Cancellation of Debt"
   And  I should see "Settlement Proceeds"
-  And  I should see "Other"
+  And  I should see "Other Income Issues"
   # Deduction Issues
   And  I should see "Alimony"
   And  I should see "Education Expenses (Including student loan interest)"
@@ -46,22 +47,20 @@ Scenario: Check that the appropriate fields exist when creating a new case
   And  I should see "Education Credits"
   And  I should see "Child Tax Credit / Additional Child Tax Credit"
   And  I should see "Earned Income Tax Credit"
-  And  I should see "First-Time Homebuyer Credit"
+  And  I should see "First Time Homebuyer Credit"
   And  I should see "Premium Tax Credit"
   And  I should see "Other Credits"
   # Status Issues
   And  I should see "SSN / TIN"
   And  I should see "ITIN"
   And  I should see "Filing Status"
-  And  I should see "Personal/Dependency Exemptions"
-  And  I should see "Injured Spouse"
-  And  I should see "Innocent Spouse"
-  And  I should see "Employment-Related Identity Theft"
-  And  I should see "Refund-Related Identity Theft"
+  And  I should see "Personal / Dependency Exemptions"
+  And  I should see "Injured Spouse Employment Related Identity Theft"
+  And  I should see "Refund Related Identity Theft"
   And  I should see "Nonfiler"
   And  I should see "Worker Classification"
   #Tax / Refund / Return / Statute of Limitations Issues
-  And  I should see "Self-Employment Tax"
+  And  I should see "Self Employment Tax"
   And  I should see "Suspected Return Preparer Fraud"
   And  I should see "Estimated Tax Payments"
   And  I should see "Withholdings"
@@ -77,10 +76,13 @@ Scenario: Check that the appropriate fields exist when creating a new case
   # Collection Issues
   And  I should see "Payments"
   And  I should see "Installment Payment Agreement (IPA)"
-  And  I should see "Offer-In-Compromise (OIC)"
+  And  I should see "Offer In Compromise (OIC)"
   And  I should see "Currently Not Collectible (CNC)"
   And  I should see "Liens"
   And  I should see "Levies (Including Federal Payment Levy Program)"
+
+  
+  
   
   # Form 13424-K
   Then I should see "Name of clinic"
