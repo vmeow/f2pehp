@@ -11,135 +11,137 @@
   = label :item, :date_opened, 'Date Opened'
   = date_select :item, :date_opened
 
+
+  %br
+  -# Form B
   = label :item, :name_of_clinic, 'Name of Clinic'
   = text_field :item, :name_of_clinic
-
+  %br
   = label :item, :grant_year, 'Grant Year'
   = text_field :item, :grant_year
-
+  %br
   = label :item, "Reporting Period"
-
+  %br
   = label :item, 'Interim Report - January 1 through June 30'
-  = check_box_tag "Interim Report - January 1 through June 30", 0, :id => "interim_report"
+  = radio_button "Reporting Period", 0, :id => "interim_report"
+  %br
   = label :item, 'Year-End Report - January 1 through December 31'
-  = check_box_tag "Year-End Report - January 1 through December 31", 0, :id => "year_end_report"
-  
-  
-  
-
+  = radio_button "Reporting Period", 0, :id => "year_end_report"
+  %br
   = label :item, :income_issues_wages, 'Wages' 
   = text_field :item, :income_issues_wages
-
+  %br
   = label :item, :income_issues_interest_dividends_schedule_b, 'Interest / Dividends (Schedule B)' 
   = text_field :item, :income_issues_interest_dividends_schedule_b
-
+  %br
   = label :item, :income_issues_business_income_schedule_c, 'Business Income (Schedule C)' 
   = text_field :item, :income_issues_business_income_schedule_c
-
+  %br
   = label :item, :income_issues_capital_gain_loss_schedule_d, 'Capital Gain / Loss (Schedule D)' 
   = text_field :item, :income_issues_capital_gain_loss_schedule_d
-
+  %br
   = label :item, :income_issues_ira_pension, 'IRA / Pension' 
   = text_field :item, :income_issues_ira_pension
-
+  %br
   = label :item, :income_issues_social_security_benefits, 'Social Security Benefits' 
   = text_field :item, :income_issues_social_security_benefits
-
+  %br
   = label :item, :income_issues_alimony, 'Alimony' 
   = text_field :item, :income_issues_alimony
-
+  %br
   = label :item, :income_issues_rental_royalty_partnership_s_corp_schedule_e, 'Rental, Royalty, Partnership, S Corp (Schedule E)' 
   = text_field :item, :income_issues_rental_royalty_partnership_s_corp_schedule_e
-
+  %br
   = label :item, :income_issues_farming_income_schedule_f, 'Farming Income (Schedule F)' 
   = text_field :item, :income_issues_farming_income_schedule_f
-
+  %br
   = label :item, :income_issues_unemployment, 'Unemployment' 
   = text_field :item, :income_issues_unemployment
-
+  %br
   = label :item, :income_issues_gambling_winnings, 'Gambling Winnings' 
   = text_field :item, :income_issues_gambling_winnings
-
+  %br
   = label :item, :income_issues_cancellation_of_debt, 'Cancellation of Debt' 
   = text_field :item, :income_issues_cancellation_of_debt
-
+  %br
   = label :item, :income_issues_settlement_proceeds, 'Settlement Proceeds' 
   = text_field :item, :income_issues_settlement_proceeds
-
+  %br
   = label :item, :income_issues_other_income_issues, 'Other Income Issues' 
   = text_field :item, :income_issues_other_income_issues
-
+  %br
   = label :item, :deduction_issues_alimony, 'Alimony' 
   = text_field :item, :deduction_issues_alimony
-
+  %br
   = label :item, :deduction_issues_education_expenses_including_student_loan_interest, 'Education Expenses (Including student loan interest)' 
   = text_field :item, :deduction_issues_education_expenses_including_student_loan_interest
-
+  %br
   = label :item, :deduction_issues_moving_expenses, 'Moving Expenses' 
   = text_field :item, :deduction_issues_moving_expenses
-
+  %br
   = label :item, :deduction_issues_ira_deduction, 'IRA Deduction' 
   = text_field :item, :deduction_issues_ira_deduction
-
+  %br
   = label :item, :deduction_issues_medical_and_dental_expenses, 'Medical and Dental Expenses' 
   = text_field :item, :deduction_issues_medical_and_dental_expenses
-
+  %br
   = label :item, :deduction_issues_state_and_local_taxes, 'State and Local Taxes' 
   = text_field :item, :deduction_issues_state_and_local_taxes
-
+  %br
   = label :item, :deduction_issues_home_mortgage_interest, 'Home Mortgage Interest' 
   = text_field :item, :deduction_issues_home_mortgage_interest
-
+  %br
   = label :item, :deduction_issues_other_interest_expenses, 'Other Interest Expenses' 
   = text_field :item, :deduction_issues_other_interest_expenses
-
+  %br
   = label :item, :deduction_issues_charitable_contributions, 'Charitable Contributions' 
   = text_field :item, :deduction_issues_charitable_contributions
-
+  %br
   = label :item, :deduction_issues_casualty_and_theft_losses, 'Casualty and Theft Losses' 
   = text_field :item, :deduction_issues_casualty_and_theft_losses
-
+  %br
   = label :item, :deduction_issues_unreimbursed_employee_business_expenses, 'Unreimbursed Employee Business Expenses' 
   = text_field :item, :deduction_issues_unreimbursed_employee_business_expenses
-
+  %br
   = label :item, :deduction_issues_other_itemized_deductions, 'Other Itemized Deductions' 
   = text_field :item, :deduction_issues_other_itemized_deductions
-
+  %br
   = label :item, :deduction_issues_business_expenses_schedule_c, 'Business Expenses (Schedule C)' 
   = text_field :item, :deduction_issues_business_expenses_schedule_c
-
+  %br
   = label :item, :credit_issues_child_and_dependent_care_credit, 'Child and Dependent Care Credit' 
   = text_field :item, :credit_issues_child_and_dependent_care_credit
-
+  %br
   = label :item, :credit_issues_education_credits, 'Education Credits' 
   = text_field :item, :credit_issues_education_credits
-
+  %br
   = label :item, :credit_issues_child_tax_credit_additional_child_tax_credit, 'Child Tax Credit / Additional Child Tax Credit' 
   = text_field :item, :credit_issues_child_tax_credit_additional_child_tax_credit
-
+  %br
   = label :item, :credit_issues_earned_income_tax_credit, 'Earned Income Tax Credit' 
   = text_field :item, :credit_issues_earned_income_tax_credit
-
+  %br
   = label :item, :credit_issues_first_time_homebuyer_credit, 'First Time Homebuyer Credit' 
   = text_field :item, :credit_issues_first_time_homebuyer_credit
-
+  %br
   = label :item, :credit_issues_premium_tax_credit, 'Premium Tax Credit' 
   = text_field :item, :credit_issues_premium_tax_credit
-
+  %br
   = label :item, :credit_issues_other_credits, 'Other Credits' 
   = text_field :item, :credit_issues_other_credits
-
+  %br
   = label :item, :status_issues_ssn_tin, 'SSN / TIN' 
   = text_field :item, :status_issues_ssn_tin
-
+  %br
   = label :item, :status_issues_itin, 'ITIN' 
   = text_field :item, :status_issues_itin
-
+  %br
   = label :item, :status_issues_filing_status, 'Filing Status' 
   = text_field :item, :status_issues_filing_status
-
+  %br
   = label :item, :status_issues_personal_dependency_exemptions, 'Personal / Dependency Exemptions' 
   = text_field :item, :status_issues_personal_dependency_exemptions
+<<<<<<< HEAD
 
   = label :item, :status_issues_injured_spouse, 'Injured Spouse' 
   = text_field :item, :status_issues_injured_spouse
@@ -151,75 +153,241 @@
   = text_field :item, :status_issues_employment_related_identity_theft
 
   = label :item, :status_issues_refund_related_identity_theft, 'Refund-Related Identity Theft' 
+=======
+  %br
+  = label :item, :status_issues_injured_spouseemployment_related_identity_theft, 'Injured Spouse Employment Related Identity Theft' 
+  = text_field :item, :status_issues_injured_spouseemployment_related_identity_theft
+  %br
+  = label :item, :status_issues_refund_related_identity_theft, 'Refund Related Identity Theft' 
+>>>>>>> 13973ce17c42ecc167ea16d643588cbe08cdf0e2
   = text_field :item, :status_issues_refund_related_identity_theft
-
+  %br
   = label :item, :status_issues_nonfiler, 'Nonfiler' 
   = text_field :item, :status_issues_nonfiler
-
+  %br
   = label :item, :status_issues_worker_classification, 'Worker Classification' 
   = text_field :item, :status_issues_worker_classification
+<<<<<<< HEAD
 
   = label :item, :tax_issues_self_employment_tax, 'Self-Employment Tax' 
+=======
+  %br
+  = label :item, :tax_issues_self_employment_tax, 'Self Employment Tax' 
+>>>>>>> 13973ce17c42ecc167ea16d643588cbe08cdf0e2
   = text_field :item, :tax_issues_self_employment_tax
-
+  %br
   = label :item, :tax_issues_suspected_return_preparer_fraud, 'Suspected Return Preparer Fraud' 
   = text_field :item, :tax_issues_suspected_return_preparer_fraud
-
+  %br
   = label :item, :tax_issues_estimated_tax_payments, 'Estimated Tax Payments' 
   = text_field :item, :tax_issues_estimated_tax_payments
-
+  %br
   = label :item, :tax_issues_withholdings, 'Withholdings' 
   = text_field :item, :tax_issues_withholdings
-
+  %br
   = label :item, :tax_issues_refund, 'Refund' 
   = text_field :item, :tax_issues_refund
-
+  %br
   = label :item, :tax_issues_assessment_statute_of_limitations, 'Assessment Statute of Limitations' 
   = text_field :item, :tax_issues_assessment_statute_of_limitations
-
+  %br
   = label :item, :tax_issues_collection_statute_of_limitations, 'Collection Statute of Limitations' 
   = text_field :item, :tax_issues_collection_statute_of_limitations
-
+  %br
   = label :item, :tax_issues_refund_statute_of_limitations, 'Refund Statute of Limitations' 
   = text_field :item, :tax_issues_refund_statute_of_limitations
-
+  %br
   = label :item, :penalty_issues_trust_fund_recovery_penalty, 'Trust Fund Recovery Penalty' 
   = text_field :item, :penalty_issues_trust_fund_recovery_penalty
-
+  %br
   = label :item, :penalty_issues_other_civil_penalties, 'Other Civil Penalties' 
   = text_field :item, :penalty_issues_other_civil_penalties
-
+  %br
   = label :item, :penalty_issues_additional_tax_on_distributions_from_qualified_retirement_plans, 'Additional Tax on Distributions from Qualified Retirement Plans' 
   = text_field :item, :penalty_issues_additional_tax_on_distributions_from_qualified_retirement_plans
-
+  %br
   = label :item, :penalty_issues_individual_shared_responsibility_payment, 'Individual Shared Responsibility Payment' 
   = text_field :item, :penalty_issues_individual_shared_responsibility_payment
-
+  %br
   = label :item, :collection_issues_payments, 'Payments' 
   = text_field :item, :collection_issues_payments
-
+  %br
   = label :item, :collection_issues_installment_payment_agreement_ipa, 'Installment Payment Agreement (IPA)' 
   = text_field :item, :collection_issues_installment_payment_agreement_ipa
-
+  %br
   = label :item, :collection_issues_offer_in_compromise_oic, 'Offer In Compromise (OIC)' 
   = text_field :item, :collection_issues_offer_in_compromise_oic
-
+  %br
   = label :item, :collection_issues_currently_not_collectible_cnc, 'Currently Not Collectible (CNC)' 
   = text_field :item, :collection_issues_currently_not_collectible_cnc
-
+  %br
   = label :item, :collection_issues_liens, 'Liens' 
   = text_field :item, :collection_issues_liens
-
+  %br
   = label :item, :collection_issues_levies_including_federal_payment_levy_program, 'Levies (Including Federal Payment Levy Program)' 
   = text_field :item, :collection_issues_levies_including_federal_payment_levy_program
 
 
 
+  %br
+  %br
+  %br
+  %br
+  %br
+  -# Form K
 
-
-
-
-  
+  = label :item, 'FORM K' 
+  %br
+  = label :item, :inventory_beginning_case_inventory, 'Beginning case inventory' 
+  = text_field :item, :inventory_beginning_case_inventory
+  %br
+  = label :item, :inventory_new_cases_opened_during_the_reporting_period, 'New cases opened during the reporting period' 
+  = text_field :item, :inventory_new_cases_opened_during_the_reporting_period
+  %br
+  = label :item, :inventory_total_number_of_cases_worked_during_the_reporting_period, 'Total number of cases worked during the reporting period' 
+  = text_field :item, :inventory_total_number_of_cases_worked_during_the_reporting_period
+  %br
+  = label :item, :inventory_cases_closed_during_the_reporting_period, 'Cases closed during the reporting period' 
+  = text_field :item, :inventory_cases_closed_during_the_reporting_period
+  %br
+  = label :item, :inventory_ending_case_inventory, 'Ending case inventory' 
+  = text_field :item, :inventory_ending_case_inventory
+  %br
+  = label :item, :accounts_return_processing, 'Return Processing' 
+  = text_field :item, :accounts_return_processing
+  %br
+  = label :item, :accounts_penalty_abatement, 'Penalty Abatement' 
+  = text_field :item, :accounts_penalty_abatement
+  %br
+  = label :item, :accounts_injured_spouse, 'Injured Spouse' 
+  = text_field :item, :accounts_injured_spouse
+  %br
+  = label :item, :accounts_backup_withholding, 'Backup Withholding' 
+  = text_field :item, :accounts_backup_withholding
+  %br
+  = label :item, :exams_correspondence_exam, 'Correspondence Exam' 
+  = text_field :item, :exams_correspondence_exam
+  %br
+  = label :item, :exams_office_or_field_exam, 'Office or Field Exam' 
+  = text_field :item, :exams_office_or_field_exam
+  %br
+  = label :item, :exams_automated_underreporter, 'Automated Underreporter' 
+  = text_field :item, :exams_automated_underreporter
+  %br
+  = label :item, :exams_automated_substitute_for_return, 'Automated Substitute-for-Return' 
+  = text_field :item, :exams_automated_substitute_for_return
+  %br
+  = label :item, :exams_audit_reconsideration, 'Audit Reconsideration' 
+  = text_field :item, :exams_audit_reconsideration
+  %br
+  = label :item, :collection_automated_collection_system, 'Automated Collection System' 
+  = text_field :item, :collection_automated_collection_system
+  %br
+  = label :item, :collection_field_collection, 'Field Collection' 
+  = text_field :item, :collection_field_collection
+  %br
+  = label :item, :collection_offer_in_compromise, 'Offer-In-Compromise' 
+  = text_field :item, :collection_offer_in_compromise
+  %br
+  = label :item, :collection_lien_unit, 'Lien Unit' 
+  = text_field :item, :collection_lien_unit
+  %br
+  = label :item, :collection_bankruptcy, 'Bankruptcy' 
+  = text_field :item, :collection_bankruptcy
+  %br
+  = label :item, :appeals_exam_appeals, 'Exam Appeals' 
+  = text_field :item, :appeals_exam_appeals
+  %br
+  = label :item, :appeals_collection_due_process, 'Collection Due Process' 
+  = text_field :item, :appeals_collection_due_process
+  %br
+  = label :item, :appeals_collection_appeals_process, 'Collection Appeals Process' 
+  = text_field :item, :appeals_collection_appeals_process
+  %br
+  = label :item, :appeals_oic_appeals, 'OIC Appeals' 
+  = text_field :item, :appeals_oic_appeals
+  %br
+  = label :item, :appeals_penalty_abatement_appeals, 'Penalty Abatement Appeals' 
+  = text_field :item, :appeals_penalty_abatement_appeals
+  %br
+  = label :item, :appeals_other_appeals, 'Other Appeals' 
+  = text_field :item, :appeals_other_appeals
+  %br
+  = label :item, :litigation_us_tax_court, 'U.S. Tax Court' 
+  = text_field :item, :litigation_us_tax_court
+  %br
+  = label :item, :litigation_other_federal_courts, 'Other Federal Courts' 
+  = text_field :item, :litigation_other_federal_courts
+  %br
+  = label :item, :miscellaneous_identity_protection_specialized_unit, 'Identity Protection Specialized Unit' 
+  = text_field :item, :miscellaneous_identity_protection_specialized_unit
+  %br
+  = label :item, :miscellaneous_innocent_spouse_unit, 'Innocent Spouse Unit' 
+  = text_field :item, :miscellaneous_innocent_spouse_unit
+  %br
+  = label :item, :miscellaneous_ss_8_unit, 'SS-8 Unit' 
+  = text_field :item, :miscellaneous_ss_8_unit
+  %br
+  = label :item, :miscellaneous_itin_unit, 'ITIN Unit' 
+  = text_field :item, :miscellaneous_itin_unit
+  %br
+  = label :item, :miscellaneous_trust_fund_recovery_penalty, 'Trust Fund Recovery Penalty' 
+  = text_field :item, :miscellaneous_trust_fund_recovery_penalty
+  %br
+  = label :item, :total, 'TOTAL' 
+  = text_field :item, :total
+  %br
+  = label :item, :additional_the_amount_in_controversy_exceeds_50000_per_tax_period_for_cases_reported_on_line_3_include_an_explanation_for_each_in_the_program_narrative_item_3vii, 'The amount in controversy exceeds $50,000 per tax period. (for cases reported on line 3, include an explanation for each in the Program Narrative, Item 3.vii)' 
+  = text_field :item, :additional_the_amount_in_controversy_exceeds_50000_per_tax_period_for_cases_reported_on_line_3_include_an_explanation_for_each_in_the_program_narrative_item_3vii
+  %br
+  = label :item, :additional_the_taxpayers_income_exceeds_250_of_the_federal_poverty_guidelines, 'The taxpayer\'s income exceeds 250% of the federal poverty guidelines' 
+  = text_field :item, :additional_the_taxpayers_income_exceeds_250_of_the_federal_poverty_guidelines
+  %br
+  = label :item, :additional_matters_worked_in_more_than_on_irs_function_or_us_court, 'Matters worked in more than on IRS function or U.S. court' 
+  = text_field :item, :additional_matters_worked_in_more_than_on_irs_function_or_us_court
+  %br
+  = label :item, :additional_more_than_one_tax_year, 'More than one tax year' 
+  = text_field :item, :additional_more_than_one_tax_year
+  %br
+  = label :item, :additional_representation_of_esl_taxpayers, 'Representation of ESL taxpayers' 
+  = text_field :item, :additional_representation_of_esl_taxpayers
+  %br
+  = label :item, :additional_joint_representation_of_taxpayers, 'Joint representation of taxpayers' 
+  = text_field :item, :additional_joint_representation_of_taxpayers
+  %br
+  = label :item, :additional_representation_by_volunteers, 'Representation by volunteers' 
+  = text_field :item, :additional_representation_by_volunteers
+  %br
+  = label :item, :additional_state_tax_matters, 'State tax matters' 
+  = text_field :item, :additional_state_tax_matters
+  %br
+  = label :item, :tax_court_does_the_clinic_participate_in_the_us_tax_court_clinical_program, 'Does the clinic participate in the U.S. Tax Court Clinical Program' 
+  = text_field :item, :tax_court_does_the_clinic_participate_in_the_us_tax_court_clinical_program
+  %br
+  = label :item, :tax_court_list_the_places_of_trial_location_served, 'List the place(s) of trial location served:' 
+  = text_field :item, :tax_court_list_the_places_of_trial_location_served
+  %br
+  = label :item, :tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_an_appearance_was_entered_pursuant_to_tax_court_rule_24, 'Number of U.S. Tax Court cases worked during the reporting period in which an appearance was entered pursuant to Tax Court Rule 24' 
+  = text_field :item, :tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_an_appearance_was_entered_pursuant_to_tax_court_rule_24
+  %br
+  = label :item, :tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_the_clinic_represented_the_taxpayer_but_no_appearance_was_entered, 'Number of U.S. Tax Court cases worked during the reporting period in which the clinic represented the taxpayer, but no appearance was entered' 
+  = text_field :item, :tax_court_number_of_us_tax_court_cases_worked_during_the_reporting_period_in_which_the_clinic_represented_the_taxpayer_but_no_appearance_was_entered
+  %br
+  = label :item, :tax_court_number_of_informal_consultations_in_the_us_tax_court_during_the_reporting_period_in_which_the_clinic_provided_advice_to_a_taxpayer_but_not_representation, 'Number of informal consultations in the U.S. Tax Court during the reporting period in which the clinic provided advice to a taxpayer, but not representation' 
+  = text_field :item, :tax_court_number_of_informal_consultations_in_the_us_tax_court_during_the_reporting_period_in_which_the_clinic_provided_advice_to_a_taxpayer_but_not_representation
+  %br
+  = label :item, :closed_case_a_number_of_cases_in_which_the_taxpayer_was_brought_into_filing_compliance, 'A. Number of cases in which the taxpayer was brought into filing compliance' 
+  = text_field :item, :closed_case_a_number_of_cases_in_which_the_taxpayer_was_brought_into_filing_compliance
+  %br
+  = label :item, :closed_case_b_number_of_cases_in_which_the_taxpayer_was_brought_into_collection_compliance, 'B. Number of cases in which the taxpayer was brought into collection compliance' 
+  = text_field :item, :closed_case_b_number_of_cases_in_which_the_taxpayer_was_brought_into_collection_compliance
+  %br
+  = label :item, :closed_case_c_total_amount_of_dollars_refunded_in_cash_to_taxpayers, 'C. Total amount of dollars refunded in cash to taxpayers' 
+  = text_field :item, :closed_case_c_total_amount_of_dollars_refunded_in_cash_to_taxpayers
+  %br
+  = label :item, :closed_case_d_total_decrease_in_corrected_tax_liabilities_penalties_and_interest_but_not_below_zero_for_any_taxpayer, 'D. Total decrease in corrected tax liabilities, penalties, and interest (but not below zero for any taxpayer)' 
+  = text_field :item, :closed_case_d_total_decrease_in_corrected_tax_liabilities_penalties_and_interest_but_not_below_zero_for_any_taxpayer
+  %br
   = submit_tag 'Create Item', :id => 'reporting_period'
 
   = link_to 'Back', items_path

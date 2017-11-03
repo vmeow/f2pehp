@@ -85,10 +85,10 @@ Scenario: Check that the appropriate fields exist when creating a new case
   
   
   # Form 13424-K
-  Then I should see "Name of clinic"
-  Then I should see "Grant year"
-  Then I should see "Interim Report"
-  Then I should see "Year-End Report"
+  #Then I should see "Name of clinic"
+  #Then I should see "Grant year"
+  #Then I should see "Interim Report"
+  #Then I should see "Year-End Report"
   # Case Inventory
   Then I should see "Beginning case inventory"
   Then I should see "New cases opened during the reporting period"
