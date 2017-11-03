@@ -1,5 +1,301 @@
 %p#notice= notice
 
+%h1 Form 13424-B LITC Case Issues Report
+
+%table
+  %tbody
+    %tr
+      %th{:align => "right"} Name of Clinic
+      %td= @item.name_of_clinic
+    %tr
+      %th{:align => "right"} Grant Year
+      %td= @item.grant_year
+    %tr
+      %th{:align => "right"} Reporting Period
+      %td xxxxxx
+
+%h2 Income Issues
+
+%table
+  %tbody
+    %tr
+      %th 1
+      %th{:align => "right"} Wages
+      %td= @item.income_issues_wages
+    %tr
+      %th 2
+      %th{:align => "right"} Interest / Dividends (Schedule B)
+      %td= @item.income_issues_interest_dividends_schedule_b
+    %tr
+      %th 3
+      %th{:align => "right"} Business Income (Schedule C)
+      %td= @item.income_issues_business_income_schedule_c
+    %tr
+      %th 4
+      %th{:align => "right"} Capital Gain / Loss (Schedule D)
+      %td= @item.income_issues_capital_gain_loss_schedule_d
+    %tr
+      %th 5
+      %th{:align => "right"} IRA / Pension
+      %td= @item.income_issues_ira_pension
+    %tr
+      %th 6
+      %th{:align => "right"} Social Security Benefits
+      %td= @item.income_issues_social_security_benefits
+    %tr
+      %th 7
+      %th{:align => "right"} Alimony
+      %td= @item.income_issues_alimony
+    %tr
+      %th 8
+      %th{:align => "right"} Rental, Royalty, Partnership, S Corp (Schedule E)
+      %td= @item.income_issues_rental_royalty_partnership_s_corp_schedule_e
+    %tr
+      %th 9
+      %th{:align => "right"} Farming Income (Schedule F)
+      %td= @item.income_issues_farming_income_schedule_f
+    %tr
+      %th 10
+      %th{:align => "right"} Unemployment
+      %td= @item.income_issues_unemployment
+    %tr
+      %th 11
+      %th{:align => "right"} Gambling Winnings
+      %td= @item.income_issues_gambling_winnings
+    %tr
+      %th 12
+      %th{:align => "right"} Cancellation of Debt
+      %td= @item.income_issues_cancellation_of_debt
+    %tr
+      %th 13
+      %th{:align => "right"} Settlement Proceeds
+      %td= @item.income_issues_settlement_proceeds
+    %tr
+      %th 14
+      %th{:align => "right"} Other Income Issues
+      %td= @item.income_issues_other_income_issues
+      
+%h2 Deduction Issues
+
+%table
+  %tbody
+    %tr
+      %th 15
+      %th{:align => "right"} Alimony
+      %td= @item.deduction_issues_alimony
+    %tr
+      %th 16
+      %th{:align => "right"} Education Expenses (Including student loan interest)
+      %td= @item.deduction_issues_education_expenses_including_student_loan_interest
+    %tr
+      %th 17
+      %th{:align => "right"} Moving Expenses
+      %td= @item.deduction_issues_moving_expenses
+    %tr
+      %th 18
+      %th{:align => "right"} IRA Deduction
+      %td= @item.deduction_issues_ira_deduction
+    %tr
+      %th 19
+      %th{:align => "right"} Medical and Dental Expenses
+      %td= @item.deduction_issues_medical_and_dental_expenses
+    %tr
+      %th 20
+      %th{:align => "right"} State and Local Taxes
+      %td= @item.deduction_issues_state_and_local_taxes
+    %tr
+      %th 21
+      %th{:align => "right"} Home Mortgage Interest
+      %td= @item.deduction_issues_home_mortgage_interest
+    %tr
+      %th 22
+      %th{:align => "right"} Other Interest Expenses
+      %td= @item.deduction_issues_other_interest_expenses
+    %tr
+      %th 23
+      %th{:align => "right"} Charitable Contributions
+      %td= @item.deduction_issues_charitable_contributions
+    %tr
+      %th 24
+      %th{:align => "right"} Casualty and Theft Losses
+      %td= @item.deduction_issues_casualty_and_theft_losses
+    %tr
+      %th 25
+      %th{:align => "right"} Unreimbursed Employee Business Expenses
+      %td= @item.deduction_issues_unreimbursed_employee_business_expenses
+    %tr
+      %th 26
+      %th{:align => "right"} Other Itemized Deductions
+      %td= @item.deduction_issues_other_itemized_deductions
+    %tr
+      %th 27
+      %th{:align => "right"} Business Expenses (Schedule C)
+      %td= @item.deduction_issues_business_expenses_schedule_c
+      
+%h2 Credit Issues
+
+%table
+  %tbody
+    %tr
+      %th 28
+      %th{:align => "right"} Child and Dependent Care Credit
+      %td= @item.credit_issues_child_and_dependent_care_credit
+    %tr
+      %th 29
+      %th{:align => "right"} Education Credits
+      %td= @item.credit_issues_education_credits
+    %tr
+      %th 30
+      %th{:align => "right"} Child Tax Credit / Additional Child Tax Credit
+      %td= @item.credit_issues_child_tax_credit_additional_child_tax_credit
+    %tr
+      %th 31
+      %th{:align => "right"} Earned Income Tax Credit
+      %td= @item.credit_issues_earned_income_tax_credit
+    %tr
+      %th 32
+      %th{:align => "right"} First Time Homebuyer Credit
+      %td= @item.credit_issues_first_time_homebuyer_credit
+    %tr
+      %th 33
+      %th{:align => "right"} Premium Tax Credit
+      %td= @item.credit_issues_premium_tax_credit
+    %tr
+      %th 34
+      %th{:align => "right"} Other Credits
+      %td= @item.credit_issues_other_credits
+    
+%h2 Status Issues  
+
+%table
+  %tbody    
+    %tr
+      %th 35
+      %th{:align => "right"} SSN / TIN
+      %td= @item.status_issues_ssn_tin
+    %tr
+      %th 36
+      %th{:align => "right"} ITIN
+      %td= @item.status_issues_itin
+    %tr
+      %th 37
+      %th{:align => "right"} Filing Status
+      %td= @item.status_issues_filing_status
+    %tr
+      %th 38
+      %th{:align => "right"} Personal / Dependency Exemptions
+      %td= @item.status_issues_personal_dependency_exemptions
+    %tr
+      %th 39
+      %th{:align => "right"} Injured Spouse 
+      %td= @item.status_issues_injured_spouse
+    %tr
+      %th 40
+      %th{:align => "right"} Innocent Spouse
+      %td= @item.status_issues_innocent_spouse
+    %tr
+      %th 41
+      %th{:align => "right"} Employment Related Identity Theft
+      %td= @item.status_issues_employment_related_identity_theft
+    %tr
+      %th 42
+      %th{:align => "right"} Refund Related Identity Theft
+      %td= @item.status_issues_refund_related_identity_theft
+    %tr
+      %th 43
+      %th{:align => "right"} Nonfiler
+      %td= @item.status_issues_nonfiler
+    %tr
+      %th 44
+      %th{:align => "right"} Worker Classification
+      %td= @item.status_issues_worker_classification
+      
+%h2 Tax / Refund / Return / Statute of Limitations Issues
+
+%table
+  %tbody
+    %tr
+      %th 45
+      %th{:align => "right"} Self-Employment Tax
+      %td= @item.tax_issues_self_employment_tax
+    %tr
+      %th 46
+      %th{:align => "right"} Suspected Return Preparer Fraud
+      %td= @item.tax_issues_suspected_return_preparer_fraud
+    %tr
+      %th 47
+      %th{:align => "right"} Estimated Tax Payments
+      %td= @item.tax_issues_estimated_tax_payments
+    %tr
+      %th 48
+      %th{:align => "right"} Withholdings
+      %td= @item.tax_issues_withholdings
+    %tr
+      %th 49
+      %th{:align => "right"} Refund
+      %td= @item.tax_issues_refund
+    %tr
+      %th 50
+      %th{:align => "right"} Assessment Statute of Limitations
+      %td= @item.tax_issues_assessment_statute_of_limitations
+    %tr
+      %th 51
+      %th{:align => "right"} Collection Statute of Limitations
+      %td= @item.tax_issues_collection_statute_of_limitations
+    %tr
+      %th 52
+      %th{:align => "right"} Refund Statute of Limitations
+      %td= @item.tax_issues_refund_statute_of_limitations
+
+%h2 Penalty and Addition to Tax Issues
+
+%table
+  %tbody
+    %tr
+      %th 53
+      %th{:align => "right"} Trust Fund Recovery Penalty
+      %td= @item.penalty_issues_trust_fund_recovery_penalty
+    %tr
+      %th 54
+      %th{:align => "right"} Other Civil Penalties
+      %td= @item.penalty_issues_other_civil_penalties
+    %tr
+      %th 55
+      %th{:align => "right"} Additional Tax on Distributions from Qualified Retirement Plans
+      %td= @item.penalty_issues_additional_tax_on_distributions_from_qualified_retirement_plans
+    %tr
+      %th 56
+      %th{:align => "right"} Individual Shared Responsibility Payment
+      %td= @item.penalty_issues_individual_shared_responsibility_payment
+      
+%h2 Collection Issues
+
+%table
+  %tbody
+    %tr
+      %th 57
+      %th{:align => "right"} Payments
+      %td= @item.collection_issues_payments
+    %tr
+      %th 58
+      %th{:align => "right"} Installment Payment Agreement (IPA)
+      %td= @item.collection_issues_installment_payment_agreement_ipa
+    %tr
+      %th 59
+      %th{:align => "right"} Offer In Compromise (OIC)
+      %td= @item.collection_issues_offer_in_compromise_oic
+    %tr
+      %th 60
+      %th{:align => "right"} Currently Not Collectible (CNC)
+      %td= @item.collection_issues_currently_not_collectible_cnc
+    %tr
+      %th 61
+      %th{:align => "right"} Liens
+      %td= @itemcollection_issues_liens
+    %tr
+      %th 62
+      %th{:align => "right"} Levies (Including Federal Payment Levy Program)
+      %td= @item.collection_issues_levies_including_federal_payment_levy_program
 
 = link_to 'Edit', edit_item_path(@item)
 \|
