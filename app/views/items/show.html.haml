@@ -49,7 +49,7 @@
     %tr
       %th 8
       %th{:align => "right"} Rental, Royalty, Partnership, S Corp (Schedule E)
-      %td= @item.income_issues_rental_royalty_partnership_s_corp_schedule_e
+      %td= @item.income_issues_rental_royalty_partnership_s_corp
     %tr
       %th 9
       %th{:align => "right"} Farming Income (Schedule F)
@@ -86,7 +86,7 @@
     %tr
       %th 16
       %th{:align => "right"} Education Expenses (Including student loan interest)
-      %td= @item.deduction_issues_education_expenses_including_student_loan_interest
+      %td= @item.deduction_issues_education_expenses_including_st
     %tr
       %th 17
       %th{:align => "right"} Moving Expenses
@@ -122,7 +122,7 @@
     %tr
       %th 25
       %th{:align => "right"} Unreimbursed Employee Business Expenses
-      %td= @item.deduction_issues_unreimbursed_employee_business_expenses
+      %td= @item.deduction_issues_unreimbursed_employee_business
     %tr
       %th 26
       %th{:align => "right"} Other Itemized Deductions
@@ -147,7 +147,7 @@
     %tr
       %th 30
       %th{:align => "right"} Child Tax Credit / Additional Child Tax Credit
-      %td= @item.credit_issues_child_tax_credit_additional_child_tax_credit
+      %td= @item.credit_issues_child_tax_credit_additional_child
     %tr
       %th 31
       %th{:align => "right"} Earned Income Tax Credit
@@ -262,11 +262,11 @@
     %tr
       %th 55
       %th{:align => "right"} Additional Tax on Distributions from Qualified Retirement Plans
-      %td= @item.penalty_issues_additional_tax_on_distributions_from_qualified_retirement_plans
+      %td= @item.penalty_issues_additional_tax_on_distributions_f
     %tr
       %th 56
       %th{:align => "right"} Individual Shared Responsibility Payment
-      %td= @item.penalty_issues_individual_shared_responsibility_payment
+      %td= @item.penalty_issues_individual_shared_responsibility
       
 %h2 Collection Issues
 
@@ -279,7 +279,7 @@
     %tr
       %th 58
       %th{:align => "right"} Installment Payment Agreement (IPA)
-      %td= @item.collection_issues_installment_payment_agreement_ipa
+      %td= @item.collection_issues_installment_payment_agreement
     %tr
       %th 59
       %th{:align => "right"} Offer In Compromise (OIC)
@@ -295,7 +295,7 @@
     %tr
       %th 62
       %th{:align => "right"} Levies (Including Federal Payment Levy Program)
-      %td= @item.collection_issues_levies_including_federal_payment_levy_program
+      %td= @item.collection_issues_levies_including_federal_payme
 
 = link_to 'Edit', edit_item_path(@item)
 \|
