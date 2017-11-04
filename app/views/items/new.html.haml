@@ -11,7 +11,6 @@
   = label :item, :date_opened, 'Date Opened'
   = date_select :item, :date_opened
 
-
   %br
   -# Form B
   = label :item, :name_of_clinic, 'Name of Clinic'
@@ -365,5 +364,4 @@
   = text_field :item, :closed_case_d_total_decrease_in_corrected_tax_li
   %br
   = submit_tag 'Create Item', :id => 'reporting_period'
-
   = link_to 'Back', items_path

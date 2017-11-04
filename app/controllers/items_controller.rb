@@ -104,6 +104,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
+      :client_name,
+      :client_ssn,
+      :date_opened,
       :name_of_clinic,
       :grant_year,
       :income_issues_wages, 
