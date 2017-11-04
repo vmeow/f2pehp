@@ -1,7 +1,5 @@
-class AddFormColumnsToItem < ActiveRecord::Migration
+class AddShortenedColumnsToItem < ActiveRecord::Migration
   def change
-    add_column :items, :name_of_clinic, :string
-    add_column :items, :grant_year, :string
     add_column :items, :income_issues_wages, :string
     add_column :items, :income_issues_interest_dividends_schedule_b, :string
     add_column :items, :income_issues_business_income_schedule_c, :string
@@ -9,7 +7,7 @@ class AddFormColumnsToItem < ActiveRecord::Migration
     add_column :items, :income_issues_ira_pension, :string
     add_column :items, :income_issues_social_security_benefits, :string
     add_column :items, :income_issues_alimony, :string
-    add_column :items, :income_issues_rental_royalty_partnership_s_corp_schedule_e, :string
+    add_column :items, :income_issues_rental_royalty_partnership_s_corp, :string
     add_column :items, :income_issues_farming_income_schedule_f, :string
     add_column :items, :income_issues_unemployment, :string
     add_column :items, :income_issues_gambling_winnings, :string
@@ -17,7 +15,7 @@ class AddFormColumnsToItem < ActiveRecord::Migration
     add_column :items, :income_issues_settlement_proceeds, :string
     add_column :items, :income_issues_other_income_issues, :string
     add_column :items, :deduction_issues_alimony, :string
-    add_column :items, :deduction_issues_education_expenses_including_student_loan_interest, :string
+    add_column :items, :deduction_issues_education_expenses_including_st, :string
     add_column :items, :deduction_issues_moving_expenses, :string
     add_column :items, :deduction_issues_ira_deduction, :string
     add_column :items, :deduction_issues_medical_and_dental_expenses, :string
@@ -26,12 +24,12 @@ class AddFormColumnsToItem < ActiveRecord::Migration
     add_column :items, :deduction_issues_other_interest_expenses, :string
     add_column :items, :deduction_issues_charitable_contributions, :string
     add_column :items, :deduction_issues_casualty_and_theft_losses, :string
-    add_column :items, :deduction_issues_unreimbursed_employee_business_expenses, :string
+    add_column :items, :deduction_issues_unreimbursed_employee_business, :string
     add_column :items, :deduction_issues_other_itemized_deductions, :string
     add_column :items, :deduction_issues_business_expenses_schedule_c, :string
     add_column :items, :credit_issues_child_and_dependent_care_credit, :string
     add_column :items, :credit_issues_education_credits, :string
-    add_column :items, :credit_issues_child_tax_credit_additional_child_tax_credit, :string
+    add_column :items, :credit_issues_child_tax_credit_additional_child, :string
     add_column :items, :credit_issues_earned_income_tax_credit, :string
     add_column :items, :credit_issues_first_time_homebuyer_credit, :string
     add_column :items, :credit_issues_premium_tax_credit, :string
@@ -56,18 +54,18 @@ class AddFormColumnsToItem < ActiveRecord::Migration
     add_column :items, :tax_issues_refund_statute_of_limitations, :string
     add_column :items, :penalty_issues_trust_fund_recovery_penalty, :string
     add_column :items, :penalty_issues_other_civil_penalties, :string
-    add_column :items, :penalty_issues_additional_tax_on_distributions_from_qualified_retirement_plans, :string
-    add_column :items, :penalty_issues_individual_shared_responsibility_payment, :string
+    add_column :items, :penalty_issues_additional_tax_on_distributions_f, :string
+    add_column :items, :penalty_issues_individual_shared_responsibility, :string
     add_column :items, :collection_issues_payments, :string
-    add_column :items, :collection_issues_installment_payment_agreement_ipa, :string
+    add_column :items, :collection_issues_installment_payment_agreement, :string
     add_column :items, :collection_issues_offer_in_compromise_oic, :string
     add_column :items, :collection_issues_currently_not_collectible_cnc, :string
     add_column :items, :collection_issues_liens, :string
-    add_column :items, :collection_issues_levies_including_federal_payment_levy_program, :string
+    add_column :items, :collection_issues_levies_including_federal_payme, :string
     add_column :items, :inventory_beginning_case_inventory, :string
-    add_column :items, :inventory_new_cases_opened_during_the_reporting_period, :string
-    add_column :items, :inventory_total_number_of_cases_worked_during_the_reporting_period, :string
-    add_column :items, :inventory_cases_closed_during_the_reporting_period, :string
+    add_column :items, :inventory_new_cases_opened_during_the_reporting, :string
+    add_column :items, :inventory_total_number_of_cases_worked_during_th, :string
+    add_column :items, :inventory_cases_closed_during_the_reporting_peri, :string
     add_column :items, :inventory_ending_case_inventory, :string
     add_column :items, :accounts_return_processing, :string
     add_column :items, :accounts_penalty_abatement, :string
@@ -91,28 +89,28 @@ class AddFormColumnsToItem < ActiveRecord::Migration
     add_column :items, :appeals_other_appeals, :string
     add_column :items, :litigation_us_tax_court, :string
     add_column :items, :litigation_other_federal_courts, :string
-    add_column :items, :miscellaneous_identity_protection_specialized_unit, :string
+    add_column :items, :miscellaneous_identity_protection_specialized_un, :string
     add_column :items, :miscellaneous_innocent_spouse_unit, :string
     add_column :items, :miscellaneous_ss_8_unit, :string
     add_column :items, :miscellaneous_itin_unit, :string
     add_column :items, :miscellaneous_trust_fund_recovery_penalty, :string
     add_column :items, :total, :string
-    add_column :items, :additional_the_amount_in_controversy_exceeds_50000_per_tax_period_for_cases_reported_on_line_3_include_an_explanation_for_each_in_the_program_narrative_item_3vii, :string
-    add_column :items, :additional_the_taxpayers_income_exceeds_250_of_the_federal_poverty_guidelines, :string
-    add_column :items, :additional_matters_worked_in_more_than_on_irs_function_or_us_court, :string
+    add_column :items, :additional_the_amount_in_controversy_exceeds_500, :string
+    add_column :items, :additional_the_taxpayers_income_exceeds_250_of, :string
+    add_column :items, :additional_matters_worked_in_more_than_on_irs_fu, :string
     add_column :items, :additional_more_than_one_tax_year, :string
     add_column :items, :additional_representation_of_esl_taxpayers, :string
     add_column :items, :additional_joint_representation_of_taxpayers, :string
     add_column :items, :additional_representation_by_volunteers, :string
     add_column :items, :additional_state_tax_matters, :string
-    add_column :items, :tax_court_does_the_clinic_participate_in_the_us_tax_court_clinical_program, :string
-    add_column :items, :tax_court_list_the_places_of_trial_location_served, :string
+    add_column :items, :tax_court_does_the_clinic_participate_in_the_us, :string
+    add_column :items, :tax_court_list_the_places_of_trial_location_serv, :string
     add_column :items, :tax_court_appearances, :string
-    add_column :items, :tax_court_no_appearance, :string
-    add_column :items, :tax_court_number_of_informal_consultations_in_the_us_tax_court_during_the_reporting_period_in_which_the_clinic_provided_advice_to_a_taxpayer_but_not_representation, :string
-    add_column :items, :closed_case_a_number_of_cases_in_which_the_taxpayer_was_brought_into_filing_compliance, :string
-    add_column :items, :closed_case_b_number_of_cases_in_which_the_taxpayer_was_brought_into_collection_compliance, :string
-    add_column :items, :closed_case_c_total_amount_of_dollars_refunded_in_cash_to_taxpayers, :string
-    add_column :items, :closed_case_d_total_decrease_in_corrected_tax_liabilities_penalties_and_interest_but_not_below_zero_for_any_taxpayer, :string
+    add_column :items, :tax_court_no_appearances, :string
+    add_column :items, :tax_court_number_of_informal_consultations_in_th, :string
+    add_column :items, :closed_case_a_number_of_cases_in_which_the_taxpa, :string
+    add_column :items, :closed_case_b_number_of_cases_in_which_the_taxpa, :string
+    add_column :items, :closed_case_c_total_amount_of_dollars_refunded_i, :string
+    add_column :items, :closed_case_d_total_decrease_in_corrected_tax_li, :string
   end
 end
