@@ -107,6 +107,7 @@ class ItemsController < ApplicationController
       :client_name,
       :client_ssn,
       :date_opened,
+      :date_closed,
       :name_of_clinic,
       :grant_year,
       :income_issues_wages, 
