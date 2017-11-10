@@ -12,7 +12,9 @@ Feature: Tally Items By Issue
       | 333333333  | young Money | 0                   | 1                         | 1                                        |
       | 444444444  | mike        | 1                   | 0                         | 1                                        |
     
+    @todo
     Scenario: Sort by Income Wages Issue
+      When PENDING
       Given I am on the diagnostics page
       When I check "income_issues_wages"
       And I uncheck "income_issues_ira_pension"
@@ -24,7 +26,9 @@ Feature: Tally Items By Issue
       And I should not see "young Money"
       And I should see "Total Cases: 2"
       
+    @todo
     Scenario: Sort by Income Wages Issue and Income IRA Pension Issue
+      When PENDING
       Given I am on the diagnostics page
       When I check "income_issues_wages"
       And I check "income_issues_ira_pension"
@@ -36,7 +40,9 @@ Feature: Tally Items By Issue
       And I should not see "John"
       And I should see "Total Cases: 3"
       
+    @todo
     Scenario: Uncheck all relevant issues
+      When PENDING
       Given I am on the diagnostics page
       When I uncheck "income_issues_ira_pension"
       And I uncheck "income_issues_wages"
