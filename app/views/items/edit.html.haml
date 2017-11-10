@@ -4,15 +4,558 @@
 
   = label :item, :client_name, 'Client Name'
   = text_field :item, 'client_name'
-  
+  %br
   = label :item, :client_ssn, 'Client SSN'
   = text_field :item, 'client_ssn'
-
+  %br
   = label :item, :date_opened, 'Date Opened'
-  = date_select :item, :date_opened, {:include_blank => true}
-  
+  = date_select :item, :date_opened
+  %br
   = label :item, :date_closed, 'Date Closed'
   = date_select :item, :date_closed, {:include_blank => true}
+  
+  %h1 Form 13424-B Case Issues Report
+  
+  %h2 Income Issues
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "income_issues_1_wages", 1, :income_issues_1_wages, :id => "income_issues_1_wages" 
+        = label :item, :income_issues_1_wages, '1. Wages' 
+      %br
+      %tr
+        = check_box_tag "income_issues_2_interest_divid", 1, :income_issues_2_interest_divid, :id => "income_issues_2_interest_divid" 
+        = label :item, :income_issues_2_interest_divid, '2. Interest / Dividends (Schedule B)' 
+      %br
+      %tr
+        = check_box_tag "income_issues_3_business_incom", 1, :income_issues_3_business_incom, :id => "income_issues_3_business_incom" 
+        = label :item, :income_issues_3_business_incom, '3. Business Income (Schedule C)' 
+      %br
+      %tr
+        = check_box_tag "income_issues_4_capital_gain_o", 1, :income_issues_4_capital_gain_o, :id => "income_issues_4_capital_gain_o" 
+        = label :item, :income_issues_4_capital_gain_o, '4. Capital Gain or Loss (Schedule D)' 
+      %br
+      %tr
+        = check_box_tag "income_issues_5_ira_pension", 1, :income_issues_5_ira_pension, :id => "income_issues_5_ira_pension" 
+        = label :item, :income_issues_5_ira_pension, '5. IRA / Pension' 
+      %br
+      %tr
+        = check_box_tag "income_issues_6_social_securit", 1, :income_issues_6_social_securit, :id => "income_issues_6_social_securit" 
+        = label :item, :income_issues_6_social_securit, '6. Social Security Benefits' 
+      %br
+      %tr
+        = check_box_tag "income_issues_7_alimony", 1, :income_issues_7_alimony, :id => "income_issues_7_alimony" 
+        = label :item, :income_issues_7_alimony, '7. Alimony' 
+      %br
+      %tr
+        = check_box_tag "income_issues_8_rental_royalty", 1, :income_issues_8_rental_royalty, :id => "income_issues_8_rental_royalty" 
+        = label :item, :income_issues_8_rental_royalty, '8. Rental, Royalty, Partnership, S Corp (Schedule E)' 
+      %br
+      %tr
+        = check_box_tag "income_issues_9_farming_income", 1, :income_issues_9_farming_income, :id => "income_issues_9_farming_income" 
+        = label :item, :income_issues_9_farming_income, '9. Farming Income (Schedule F)' 
+      %br
+      %tr
+        = check_box_tag "income_issues_10_unemployment", 1, :income_issues_10_unemployment, :id => "income_issues_10_unemployment" 
+        = label :item, :income_issues_10_unemployment, '10. Unemployment' 
+      %br
+      %tr
+        = check_box_tag "income_issues_11_gambling_winn", 1, :income_issues_11_gambling_winn, :id => "income_issues_11_gambling_winn" 
+        = label :item, :income_issues_11_gambling_winn, '11. Gambling Winnings' 
+      %br
+      %tr
+        = check_box_tag "income_issues_12_cancellation", 1, :income_issues_12_cancellation, :id => "income_issues_12_cancellation" 
+        = label :item, :income_issues_12_cancellation, '12. Cancellation of Debt' 
+      %br
+      %tr
+        = check_box_tag "income_issues_13_settlement_pr", 1, :income_issues_13_settlement_pr, :id => "income_issues_13_settlement_pr" 
+        = label :item, :income_issues_13_settlement_pr, '13. Settlement Proceeds' 
+      %br
+      %tr
+        = check_box_tag "income_issues_14_other", 1, :income_issues_14_other, :id => "income_issues_14_other" 
+        = label :item, :income_issues_14_other, '14. Other' 
+      %br
+
+  %h2 Deduction Issues
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "deduction_issues_15_alimony", 1, :deduction_issues_15_alimony, :id => "deduction_issues_15_alimony" 
+        = label :item, :deduction_issues_15_alimony, '15. Alimony' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_16_education", 1, :deduction_issues_16_education, :id => "deduction_issues_16_education" 
+        = label :item, :deduction_issues_16_education, '16. Education Expenses (Including student loan interest)' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_17_moving_exp", 1, :deduction_issues_17_moving_exp, :id => "deduction_issues_17_moving_exp" 
+        = label :item, :deduction_issues_17_moving_exp, '17. Moving Expenses' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_18_ira_deduct", 1, :deduction_issues_18_ira_deduct, :id => "deduction_issues_18_ira_deduct" 
+        = label :item, :deduction_issues_18_ira_deduct, '18. IRA Deduction' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_19_medical_an", 1, :deduction_issues_19_medical_an, :id => "deduction_issues_19_medical_an" 
+        = label :item, :deduction_issues_19_medical_an, '19. Medical and Dental Expenses' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_20_state_and", 1, :deduction_issues_20_state_and, :id => "deduction_issues_20_state_and" 
+        = label :item, :deduction_issues_20_state_and, '20. State and Local Taxes' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_21_home_mortg", 1, :deduction_issues_21_home_mortg, :id => "deduction_issues_21_home_mortg" 
+        = label :item, :deduction_issues_21_home_mortg, '21. Home Mortgage Interest' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_22_other_inte", 1, :deduction_issues_22_other_inte, :id => "deduction_issues_22_other_inte" 
+        = label :item, :deduction_issues_22_other_inte, '22. Other Interest Expenses' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_23_charitable", 1, :deduction_issues_23_charitable, :id => "deduction_issues_23_charitable" 
+        = label :item, :deduction_issues_23_charitable, '23. Charitable Contributions' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_24_casualty_a", 1, :deduction_issues_24_casualty_a, :id => "deduction_issues_24_casualty_a" 
+        = label :item, :deduction_issues_24_casualty_a, '24. Casualty and Theft Losses' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_25_unreimburs", 1, :deduction_issues_25_unreimburs, :id => "deduction_issues_25_unreimburs" 
+        = label :item, :deduction_issues_25_unreimburs, '25. Unreimbursed Employee Business Expenses' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_26_other_item", 1, :deduction_issues_26_other_item, :id => "deduction_issues_26_other_item" 
+        = label :item, :deduction_issues_26_other_item, '26. Other Itemized Deductions' 
+      %br
+      %tr
+        = check_box_tag "deduction_issues_27_business_e", 1, :deduction_issues_27_business_e, :id => "deduction_issues_27_business_e" 
+        = label :item, :deduction_issues_27_business_e, '27. Business Expenses (Schedule C)' 
+      %br
+
+  %h2 Credit Issues
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "credit_issues_28_child_and_dep", 1, :credit_issues_28_child_and_dep, :id => "credit_issues_28_child_and_dep" 
+        = label :item, :credit_issues_28_child_and_dep, '28. Child and Dependent Care Credit' 
+      %br
+      %tr
+        = check_box_tag "credit_issues_29_education_cre", 1, :credit_issues_29_education_cre, :id => "credit_issues_29_education_cre" 
+        = label :item, :credit_issues_29_education_cre, '29. Education Credits' 
+      %br
+      %tr
+        = check_box_tag "credit_issues_30_child_tax_cre", 1, :credit_issues_30_child_tax_cre, :id => "credit_issues_30_child_tax_cre" 
+        = label :item, :credit_issues_30_child_tax_cre, '30. Child Tax Credit / Additional Child Tax Credit' 
+      %br
+      %tr
+        = check_box_tag "credit_issues_31_earned_income", 1, :credit_issues_31_earned_income, :id => "credit_issues_31_earned_income" 
+        = label :item, :credit_issues_31_earned_income, '31. Earned Income Tax Credit' 
+      %br
+      %tr
+        = check_box_tag "credit_issues_32_first_time_ho", 1, :credit_issues_32_first_time_ho, :id => "credit_issues_32_first_time_ho" 
+        = label :item, :credit_issues_32_first_time_ho, '32. First-Time Homebuyer Credit' 
+      %br
+      %tr
+        = check_box_tag "credit_issues_33_premium_tax_c", 1, :credit_issues_33_premium_tax_c, :id => "credit_issues_33_premium_tax_c" 
+        = label :item, :credit_issues_33_premium_tax_c, '33. Premium Tax Credit' 
+      %br
+      %tr
+        = check_box_tag "credit_issues_34_other_credits", 1, :credit_issues_34_other_credits, :id => "credit_issues_34_other_credits" 
+        = label :item, :credit_issues_34_other_credits, '34. Other Credits' 
+      %br
+
+  %h2 Status Issues
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "status_issues_35_ssn_tin", 1, :status_issues_35_ssn_tin, :id => "status_issues_35_ssn_tin" 
+        = label :item, :status_issues_35_ssn_tin, '35. SSN / TIN' 
+      %br
+      %tr
+        = check_box_tag "status_issues_36_itin", 1, :status_issues_36_itin, :id => "status_issues_36_itin" 
+        = label :item, :status_issues_36_itin, '36. ITIN' 
+      %br
+      %tr
+        = check_box_tag "status_issues_37_filing_status", 1, :status_issues_37_filing_status, :id => "status_issues_37_filing_status" 
+        = label :item, :status_issues_37_filing_status, '37. Filing Status' 
+      %br
+      %tr
+        = check_box_tag "status_issues_38_personal_depe", 1, :status_issues_38_personal_depe, :id => "status_issues_38_personal_depe" 
+        = label :item, :status_issues_38_personal_depe, '38. Personal / Dependency Exemptions' 
+      %br
+      %tr
+        = check_box_tag "status_issues_39_injured_spous", 1, :status_issues_39_injured_spous, :id => "status_issues_39_injured_spous" 
+        = label :item, :status_issues_39_injured_spous, '39. Injured Spouse' 
+      %br
+      %tr
+        = check_box_tag "status_issues_40_innocent_spou", 1, :status_issues_40_innocent_spou, :id => "status_issues_40_innocent_spou" 
+        = label :item, :status_issues_40_innocent_spou, '40. Innocent Spouse' 
+      %br
+      %tr
+        = check_box_tag "status_issues_41_employment_re", 1, :status_issues_41_employment_re, :id => "status_issues_41_employment_re" 
+        = label :item, :status_issues_41_employment_re, '41. Employment-Related Identity Theft' 
+      %br
+      %tr
+        = check_box_tag "status_issues_42_refund_relate", 1, :status_issues_42_refund_relate, :id => "status_issues_42_refund_relate" 
+        = label :item, :status_issues_42_refund_relate, '42. Refund-Related Identity Theft' 
+      %br
+      %tr
+        = check_box_tag "status_issues_43_nonfiler", 1, :status_issues_43_nonfiler, :id => "status_issues_43_nonfiler" 
+        = label :item, :status_issues_43_nonfiler, '43. Nonfiler' 
+      %br
+      %tr
+        = check_box_tag "status_issues_44_worker_classi", 1, :status_issues_44_worker_classi, :id => "status_issues_44_worker_classi" 
+        = label :item, :status_issues_44_worker_classi, '44. Worker Classification' 
+      %br
+
+  %h2 Tax Issues
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "tax_issues_45_self_employment", 1, :tax_issues_45_self_employment, :id => "tax_issues_45_self_employment" 
+        = label :item, :tax_issues_45_self_employment, '45. Self-Employment Tax' 
+      %br
+      %tr
+        = check_box_tag "tax_issues_46_suspected_return", 1, :tax_issues_46_suspected_return, :id => "tax_issues_46_suspected_return" 
+        = label :item, :tax_issues_46_suspected_return, '46. Suspected Return Preparer Fraud' 
+      %br
+      %tr
+        = check_box_tag "tax_issues_47_estimated_tax_pa", 1, :tax_issues_47_estimated_tax_pa, :id => "tax_issues_47_estimated_tax_pa" 
+        = label :item, :tax_issues_47_estimated_tax_pa, '47. Estimated Tax Payments' 
+      %br
+      %tr
+        = check_box_tag "tax_issues_48_withholdings", 1, :tax_issues_48_withholdings, :id => "tax_issues_48_withholdings" 
+        = label :item, :tax_issues_48_withholdings, '48. Withholdings' 
+      %br
+      %tr
+        = check_box_tag "tax_issues_49_refund", 1, :tax_issues_49_refund, :id => "tax_issues_49_refund" 
+        = label :item, :tax_issues_49_refund, '49. Refund' 
+      %br
+      %tr
+        = check_box_tag "tax_issues_50_assessment_statu", 1, :tax_issues_50_assessment_statu, :id => "tax_issues_50_assessment_statu" 
+        = label :item, :tax_issues_50_assessment_statu, '50. Assessment Statute of Limitations' 
+      %br
+      %tr
+        = check_box_tag "tax_issues_51_collection_statu", 1, :tax_issues_51_collection_statu, :id => "tax_issues_51_collection_statu" 
+        = label :item, :tax_issues_51_collection_statu, '51. Collection Statute of Limitations' 
+      %br
+      %tr
+        = check_box_tag "tax_issues_52_refund_statute_o", 1, :tax_issues_52_refund_statute_o, :id => "tax_issues_52_refund_statute_o" 
+        = label :item, :tax_issues_52_refund_statute_o, '52. Refund Statute of Limitations' 
+      %br
+
+  %h2 Penalty Issues
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "penalty_issues_53_trust_fund_r", 1, :penalty_issues_53_trust_fund_r, :id => "penalty_issues_53_trust_fund_r" 
+        = label :item, :penalty_issues_53_trust_fund_r, '53. Trust Fund Recovery Penalty' 
+      %br
+      %tr
+        = check_box_tag "penalty_issues_54_other_civil", 1, :penalty_issues_54_other_civil, :id => "penalty_issues_54_other_civil" 
+        = label :item, :penalty_issues_54_other_civil, '54. Other Civil Penalties' 
+      %br
+      %tr
+        = check_box_tag "penalty_issues_55_additional_t", 1, :penalty_issues_55_additional_t, :id => "penalty_issues_55_additional_t" 
+        = label :item, :penalty_issues_55_additional_t, '55. Additional Tax on Distributions from Qualified Retirement Plans' 
+      %br
+      %tr
+        = check_box_tag "penalty_issues_56_individual_s", 1, :penalty_issues_56_individual_s, :id => "penalty_issues_56_individual_s" 
+        = label :item, :penalty_issues_56_individual_s, '56. Individual Shared Responsibility Payment' 
+      %br
+
+  %h2 Collection Issues
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "collection_issues_57_payments", 1, :collection_issues_57_payments, :id => "collection_issues_57_payments" 
+        = label :item, :collection_issues_57_payments, '57. Payments' 
+      %br
+      %tr
+        = check_box_tag "collection_issues_58_installme", 1, :collection_issues_58_installme, :id => "collection_issues_58_installme" 
+        = label :item, :collection_issues_58_installme, '58. Installment Payment Agreement (IPA)' 
+      %br
+      %tr
+        = check_box_tag "collection_issues_59_offer_in", 1, :collection_issues_59_offer_in, :id => "collection_issues_59_offer_in" 
+        = label :item, :collection_issues_59_offer_in, '59. Offer In Compromise (OIC)' 
+      %br
+      %tr
+        = check_box_tag "collection_issues_60_currently", 1, :collection_issues_60_currently, :id => "collection_issues_60_currently" 
+        = label :item, :collection_issues_60_currently, '60. Currently Not Collectible (CNC)' 
+      %br
+      %tr
+        = check_box_tag "collection_issues_61_liens", 1, :collection_issues_61_liens, :id => "collection_issues_61_liens" 
+        = label :item, :collection_issues_61_liens, '61. Liens' 
+      %br
+      %tr
+        = check_box_tag "collection_issues_62_levies_in", 1, :collection_issues_62_levies_in, :id => "collection_issues_62_levies_in" 
+        = label :item, :collection_issues_62_levies_in, '62. Levies (Including Federal Payment Levy Program)' 
+      %br
+
+  %h2 
+
+  %table
+    %tbody
+      %tr
+        = text_field :item, :total_case_issues_worked_add_l
+        = label :item, :total_case_issues_worked_add_l, 'Total Case Issues Worked (add lines 1 through 62)' 
+      %br
+      
+  %h1 Form 13424-K Case Information Report
+
+  %h2 Case Inventory
+
+  %table
+    %tbody
+      %tr
+        = text_field :item, :case_inventory_1a_beginning_ca
+        = label :item, :case_inventory_1a_beginning_ca, '1A. Beginning case inventory(the number of cases that were worked in the previous year that remained open as of the first day of the reporting period)' 
+      %br
+      %tr
+        = text_field :item, :case_inventory_1b_new_cases_op
+        = label :item, :case_inventory_1b_new_cases_op, '1B. New cases opened during the reporting period' 
+      %br
+      %tr
+        = text_field :item, :case_inventory_1c_total_number
+        = label :item, :case_inventory_1c_total_number, '1C. Total number of cases worked during the reporting period (add lines 1A and 1B)' 
+      %br
+      %tr
+        = text_field :item, :case_inventory_1d_cases_closed
+        = label :item, :case_inventory_1d_cases_closed, '1D. Cases closed during the reporting period' 
+      %br
+      %tr
+        = text_field :item, :case_inventory_1e_ending_case
+        = label :item, :case_inventory_1e_ending_case, '1E. Ending case inventory (the number of cases that remained open as of the last day of the reporting period (subtract line 1D from line 1C))' 
+      %br
+
+  %h2 Accounts Management
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "accounts_management_2a_return", 1, :accounts_management_2a_return, :id => "accounts_management_2a_return" 
+        = label :item, :accounts_management_2a_return, '2A. Return Processing' 
+      %br
+      %tr
+        = check_box_tag "accounts_management_2b_penalty", 1, :accounts_management_2b_penalty, :id => "accounts_management_2b_penalty" 
+        = label :item, :accounts_management_2b_penalty, '2B. Penalty Abatement' 
+      %br
+      %tr
+        = check_box_tag "accounts_management_2c_injured", 1, :accounts_management_2c_injured, :id => "accounts_management_2c_injured" 
+        = label :item, :accounts_management_2c_injured, '2C. Injured Spouse' 
+      %br
+      %tr
+        = check_box_tag "accounts_management_2d_backup", 1, :accounts_management_2d_backup, :id => "accounts_management_2d_backup" 
+        = label :item, :accounts_management_2d_backup, '2D. Backup Withholding' 
+      %br
+
+  %h2 Exams
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "exams_2e_correspondence_exam", 1, :exams_2e_correspondence_exam, :id => "exams_2e_correspondence_exam" 
+        = label :item, :exams_2e_correspondence_exam, '2E. Correspondence Exam' 
+      %br
+      %tr
+        = check_box_tag "exams_2f_office_or_field_exam", 1, :exams_2f_office_or_field_exam, :id => "exams_2f_office_or_field_exam" 
+        = label :item, :exams_2f_office_or_field_exam, '2F. Office or Field Exam' 
+      %br
+      %tr
+        = check_box_tag "exams_2g_automated_underreport", 1, :exams_2g_automated_underreport, :id => "exams_2g_automated_underreport" 
+        = label :item, :exams_2g_automated_underreport, '2G. Automated Underreporter (AUR)' 
+      %br
+      %tr
+        = check_box_tag "exams_2h_automated_substitute", 1, :exams_2h_automated_substitute, :id => "exams_2h_automated_substitute" 
+        = label :item, :exams_2h_automated_substitute, '2H. Automated Substitute-for-Return (ASFR)' 
+      %br
+      %tr
+        = check_box_tag "exams_2i_audit_reconsideration", 1, :exams_2i_audit_reconsideration, :id => "exams_2i_audit_reconsideration" 
+        = label :item, :exams_2i_audit_reconsideration, '2I. Audit Reconsideration' 
+      %br
+
+  %h2 Collection
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "collection_2j_automated_collec", 1, :collection_2j_automated_collec, :id => "collection_2j_automated_collec" 
+        = label :item, :collection_2j_automated_collec, '2J. Automated Collection System (ACS)' 
+      %br
+      %tr
+        = check_box_tag "collection_2k_field_collection", 1, :collection_2k_field_collection, :id => "collection_2k_field_collection" 
+        = label :item, :collection_2k_field_collection, '2K. Field Collection (RO)' 
+      %br
+      %tr
+        = check_box_tag "collection_2l_offer_in_comprom", 1, :collection_2l_offer_in_comprom, :id => "collection_2l_offer_in_comprom" 
+        = label :item, :collection_2l_offer_in_comprom, '2L. Offer-In-Compromise (OIC)' 
+      %br
+      %tr
+        = check_box_tag "collection_2m_lien_unit", 1, :collection_2m_lien_unit, :id => "collection_2m_lien_unit" 
+        = label :item, :collection_2m_lien_unit, '2M. Lien Unit' 
+      %br
+      %tr
+        = check_box_tag "collection_2n_bankruptcy", 1, :collection_2n_bankruptcy, :id => "collection_2n_bankruptcy" 
+        = label :item, :collection_2n_bankruptcy, '2N. Bankruptcy' 
+      %br
+
+  %h2 Appeals
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "appeals_2o_exam_appeals", 1, :appeals_2o_exam_appeals, :id => "appeals_2o_exam_appeals" 
+        = label :item, :appeals_2o_exam_appeals, '2O. Exam Appeals' 
+      %br
+      %tr
+        = check_box_tag "appeals_2p_collection_due_proc", 1, :appeals_2p_collection_due_proc, :id => "appeals_2p_collection_due_proc" 
+        = label :item, :appeals_2p_collection_due_proc, '2P. Collection Due Process (CDP)' 
+      %br
+      %tr
+        = check_box_tag "appeals_2q_collection_appeals", 1, :appeals_2q_collection_appeals, :id => "appeals_2q_collection_appeals" 
+        = label :item, :appeals_2q_collection_appeals, '2Q. Collection Appeals Process (CAP)' 
+      %br
+      %tr
+        = check_box_tag "appeals_2r_oic_appeals", 1, :appeals_2r_oic_appeals, :id => "appeals_2r_oic_appeals" 
+        = label :item, :appeals_2r_oic_appeals, '2R. OIC Appeals' 
+      %br
+      %tr
+        = check_box_tag "appeals_2s_penalty_abatement_a", 1, :appeals_2s_penalty_abatement_a, :id => "appeals_2s_penalty_abatement_a" 
+        = label :item, :appeals_2s_penalty_abatement_a, '2S. Penalty Abatement Appeals' 
+      %br
+      %tr
+        = check_box_tag "appeals_2t_other_appeals", 1, :appeals_2t_other_appeals, :id => "appeals_2t_other_appeals" 
+        = label :item, :appeals_2t_other_appeals, '2T. Other Appeals' 
+      %br
+
+  %h2 Litigation
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "litigation_2u_us_tax_court", 1, :litigation_2u_us_tax_court, :id => "litigation_2u_us_tax_court" 
+        = label :item, :litigation_2u_us_tax_court, '2U. U.S. Tax Court' 
+      %br
+      %tr
+        = check_box_tag "litigation_2v_other_federal_co", 1, :litigation_2v_other_federal_co, :id => "litigation_2v_other_federal_co" 
+        = label :item, :litigation_2v_other_federal_co, '2V. Other Federal Courts' 
+      %br
+
+  %h2 Miscellaneous
+
+  %table
+    %tbody
+      %tr
+        = check_box_tag "miscellaneous_2w_identity_prot", 1, :miscellaneous_2w_identity_prot, :id => "miscellaneous_2w_identity_prot" 
+        = label :item, :miscellaneous_2w_identity_prot, '2W. Identity Protection Specialized Unit (IPSU)' 
+      %br
+      %tr
+        = check_box_tag "miscellaneous_2x_innocent_spou", 1, :miscellaneous_2x_innocent_spou, :id => "miscellaneous_2x_innocent_spou" 
+        = label :item, :miscellaneous_2x_innocent_spou, '2X. Innocent Spouse Unit' 
+      %br
+      %tr
+        = check_box_tag "miscellaneous_2y_ss_8_unit", 1, :miscellaneous_2y_ss_8_unit, :id => "miscellaneous_2y_ss_8_unit" 
+        = label :item, :miscellaneous_2y_ss_8_unit, '2Y. SS-8 Unit' 
+      %br
+      %tr
+        = check_box_tag "miscellaneous_2z_itin_unit", 1, :miscellaneous_2z_itin_unit, :id => "miscellaneous_2z_itin_unit" 
+        = label :item, :miscellaneous_2z_itin_unit, '2Z. ITIN Unit' 
+      %br
+      %tr
+        = check_box_tag "miscellaneous_2aa_trust_fund_r", 1, :miscellaneous_2aa_trust_fund_r, :id => "miscellaneous_2aa_trust_fund_r" 
+        = label :item, :miscellaneous_2aa_trust_fund_r, '2AA. Trust Fund Recovery Penalty' 
+      %br
+
+  %h2 
+
+  %table
+    %tbody
+      %tr
+        = text_field :item, :total_add_items_2a_through_2aa
+        = label :item, :total_add_items_2a_through_2aa, 'TOTAL (add items 2A through 2AA) (Must equal value in line 1C)' 
+      %br
+
+  %h2 Additional Case Information
+
+  %table
+    %tbody
+      %tr
+        = text_field :item, :additional_case_information_3
+        = label :item, :additional_case_information_3, '3. The amount in controversy exceeds $50,000 per tax period. (for cases reported on line 3, include an explanation for each in the Program Narrative, Item 2.vii)' 
+      %br
+      %tr
+        = check_box_tag "additional_case_information_4", 1, :additional_case_information_4, :id => "additional_case_information_4" 
+        = label :item, :additional_case_information_4, '4. The taxpayer\'s income exceeds 250% of the federal poverty guidelines' 
+      %br
+      %tr
+        = text_field :item, :additional_case_information_5
+        = label :item, :additional_case_information_5, '5. Matters worked in more than on IRS function or U.S. court' 
+      %br
+      %tr
+        = text_field :item, :additional_case_information_6
+        = label :item, :additional_case_information_6, '6. More than one tax year' 
+      %br
+      %tr
+        = text_field :item, :additional_case_information_7
+        = label :item, :additional_case_information_7, '7. Representation of ESL taxpayers' 
+      %br
+      %tr
+        = text_field :item, :additional_case_information_8
+        = label :item, :additional_case_information_8, '8. Joint representation of taxpayers' 
+      %br
+      %tr
+        = text_field :item, :additional_case_information_9
+        = label :item, :additional_case_information_9, '9. Representation by volunteers' 
+      %br
+      %tr
+        = text_field :item, :additional_case_information_10
+        = label :item, :additional_case_information_10, '10. State tax matters' 
+      %br
+
+  %h2 U.S. Tax Court Activities
+
+  %table
+    %tbody
+      %tr
+        = text_field :item, :us_tax_court_activities_12_num
+        = label :item, :us_tax_court_activities_12_num, '12. Number of U.S. Tax Court cases worked during the reporting period in which an appearance was entered pursuant to Tax Court Rule 24' 
+      %br
+      %tr
+        = text_field :item, :us_tax_court_activities_13_num
+        = label :item, :us_tax_court_activities_13_num, '13. Number of U.S. Tax Court cases worked during the reporting period in which the clinic represented the taxpayer, but no appearance was entered' 
+      %br
+      %tr
+        = text_field :item, :us_tax_court_activities_14_num
+        = label :item, :us_tax_court_activities_14_num, '14. Number of informal consultations in the U.S. Tax Court during the reporting period in which the clinic provided advice to a taxpayer, but not representation' 
+      %br
+
+  %h2 Closed Case Outcomes
+
+  %table
+    %tbody
+      %tr
+        = text_field :item, :closed_case_outcomes_15a_numbe
+        = label :item, :closed_case_outcomes_15a_numbe, '15A. Number of cases in which the taxpayer was brought into filing compliance' 
+      %br
+      %tr
+        = text_field :item, :closed_case_outcomes_15b_numbe
+        = label :item, :closed_case_outcomes_15b_numbe, '15B. Number of cases in which the taxpayer was brought into collection compliance' 
+      %br
+      %tr
+        = text_field :item, :closed_case_outcomes_15c_total
+        = label :item, :closed_case_outcomes_15c_total, '15C. Total amount of dollars refunded in cash to taxpayers' 
+      %br
+      %tr
+        = text_field :item, :closed_case_outcomes_15d_total
+        = label :item, :closed_case_outcomes_15d_total, '15D. Total decrease in corrected tax liabilities, penalties, and interest (but not below zero for any taxpayer)' 
+      %br
   
   = submit_tag 'Update Case'
   
