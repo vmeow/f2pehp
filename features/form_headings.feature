@@ -18,21 +18,25 @@ Background: items have been added to database
  
 @todo
 Scenario: Opening new case
-      When PENDING
       Given I am on the new item page
       Then I should see "Form 13424-B"
       And I should see "Form 13424-K"
+      Then I should see "Income Issues" after "Form 13424-B"
+      And I should see "Collection Issues" before "Form 13424-K"
+      And I should see "Case Inventory" after "Form 13424-K"
+      And I should not see "Form 13424-K" before "Form 13424-B"
 
-@todo
 Scenario: On index page (no headers visible)
-      When PENDING
       Given I am on the items index page
       Then I should not see "Form 13424-B"
       And I should not see "Form 13424-K"
 
 @todo
 Scenario: Editing case
-      When PENDING
-      Given I am on the edit page for "222222222" 
+      Given I am on the edit item page for "222222222" 
       Then I should see "Form 13424-B"
       And I should see "Form 13424-K"
+      And I should see "Income Issues" after "Form 13424-B"
+      And I should see "Collection Issues" before "Form 13424-K"
+      And I should see "Case Inventory" after "Form 13424-K"
+      And I should not see "Form 13424-K" before "Form 13424-B"
