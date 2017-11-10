@@ -25,7 +25,8 @@ module NavigationHelpers
       '/items'
     when /^the edit item page for "([^"]*)"$/
       edit_item_path(Item.where(:client_ssn => $1).pluck(:id))
-
+    when /^the show item page for "([^"]*)"$/
+      item_path(Item.where(:client_ssn => $1).pluck(:id))
     else
       begin
         page_name =~ /^the (.*) page$/
