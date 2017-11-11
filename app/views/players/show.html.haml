@@ -1,0 +1,164 @@
+%h1 View Player Stats
+  
+= form_tag players_path(@player), :method => :put do
+    
+  %h2 Player Stats
+
+  %table
+    %tbody
+      %tr
+        %th{:align => "left"} Player Name 
+        %td= @player.player_name
+      %tr
+        %th{:align => "left"} Account Type 
+        %td= @player.player_acc_type
+      %tr
+        %th{:align => "left"} Overall XP
+        %td= @player.overall_xp
+      %tr
+        %th{:align => "left"} Overall Lvl
+        %td= @player.overall_lvl
+      %tr
+        %th{:align => "left"} Overall EHP
+        %td= @player.overall_ehp
+      %tr
+        %th{:align => "left"} Attack XP
+        %td= @player.attack_xp
+      %tr
+        %th{:align => "left"} Attack Lvl
+        %td= @player.attack_lvl
+      %tr
+        %th{:align => "left"} Attack EHP
+        %td= @player.attack_ehp
+      %tr
+        %th{:align => "left"} Defence XP
+        %td= @player.defence_xp
+      %tr
+        %th{:align => "left"} Defence Lvl
+        %td= @player.defence_lvl
+      %tr
+        %th{:align => "left"} Defence EHP
+        %td= @player.defence_ehp
+      %tr
+        %th{:align => "left"} Strength XP
+        %td= @player.strength_xp
+      %tr
+        %th{:align => "left"} Strength Lvl
+        %td= @player.strength_lvl
+      %tr
+        %th{:align => "left"} Strength EHP
+        %td= @player.strength_ehp
+      %tr
+        %th{:align => "left"} Hitpoints XP
+        %td= @player.hitpoints_xp
+      %tr
+        %th{:align => "left"} Hitpoints Lvl
+        %td= @player.hitpoints_lvl
+      %tr
+        %th{:align => "left"} Hitpoints EHP
+        %td= @player.hitpoints_ehp
+      %tr
+        %th{:align => "left"} Ranged XP
+        %td= @player.ranged_xp
+      %tr
+        %th{:align => "left"} Ranged Lvl
+        %td= @player.ranged_lvl
+      %tr
+        %th{:align => "left"} Ranged EHP
+        %td= @player.ranged_ehp
+      %tr
+        %th{:align => "left"} Prayer XP
+        %td= @player.prayer_xp
+      %tr
+        %th{:align => "left"} Prayer Lvl
+        %td= @player.prayer_lvl
+      %tr
+        %th{:align => "left"} Prayer EHP
+        %td= @player.prayer_ehp
+      %tr
+        %th{:align => "left"} Magic XP
+        %td= @player.magic_xp
+      %tr
+        %th{:align => "left"} Magic Lvl
+        %td= @player.magic_lvl
+      %tr
+        %th{:align => "left"} Magic EHP
+        %td= @player.magic_ehp
+      %tr
+        %th{:align => "left"} Cooking XP
+        %td= @player.cooking_xp
+      %tr
+        %th{:align => "left"} Cooking Lvl
+        %td= @player.cooking_lvl
+      %tr
+        %th{:align => "left"} Cooking EHP
+        %td= @player.cooking_ehp
+      %tr
+        %th{:align => "left"} Woodcutting XP
+        %td= @player.woodcutting_xp
+      %tr
+        %th{:align => "left"} Woodcutting Lvl
+        %td= @player.woodcutting_lvl
+      %tr
+        %th{:align => "left"} Woodcutting EHP
+        %td= @player.woodcutting_ehp
+      %tr
+        %th{:align => "left"} Fishing XP
+        %td= @player.fishing_xp
+      %tr
+        %th{:align => "left"} Fishing Lvl
+        %td= @player.fishing_lvl
+      %tr
+        %th{:align => "left"} Fishing EHP
+        %td= @player.fishing_ehp
+      %tr
+        %th{:align => "left"} Firemaking XP
+        %td= @player.firemaking_xp
+      %tr
+        %th{:align => "left"} Firemaking Lvl
+        %td= @player.firemaking_lvl
+      %tr
+        %th{:align => "left"} Firemaking EHP
+        %td= @player.firemaking_ehp
+      %tr
+        %th{:align => "left"} Crafting XP
+        %td= @player.crafting_xp
+      %tr
+        %th{:align => "left"} Crafting Lvl
+        %td= @player.crafting_lvl
+      %tr
+        %th{:align => "left"} Crafting EHP
+        %td= @player.crafting_ehp
+      %tr
+        %th{:align => "left"} Smithing XP
+        %td= @player.smithing_xp
+      %tr
+        %th{:align => "left"} Smithing Lvl
+        %td= @player.smithing_lvl
+      %tr
+        %th{:align => "left"} Smithing EHP
+        %td= @player.smithing_ehp
+      %tr
+        %th{:align => "left"} Mining XP
+        %td= @player.mining_xp
+      %tr
+        %th{:align => "left"} Mining Lvl
+        %td= @player.mining_lvl
+      %tr
+        %th{:align => "left"} Mining EHP
+        %td= @player.mining_ehp
+      %tr
+        %th{:align => "left"} Runecraft XP
+        %td= @player.runecraft_xp
+      %tr
+        %th{:align => "left"} Runecraft Lvl
+        %td= @player.runecraft_lvl
+      %tr
+        %th{:align => "left"} Runecraft EHP
+        %td= @player.runecraft_ehp
+
+
+
+  = link_to 'Update Player Stats', @player, method: :update 
+
+  = link_to 'Back', players_path 

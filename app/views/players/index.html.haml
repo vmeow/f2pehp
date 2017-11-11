@@ -1,0 +1,81 @@
+%h1 List All Players
+
+= form_tag players_path, :method => "get", id: "search-players-form" do
+  = text_field_tag :search, params[:search], placeholder: "Search Players"
+  = submit_tag "Search" 
+  %br
+  %br
+  = "Filter Account Type: Reg"
+  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_reg"
+  
+  = "IM"
+  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_im"
+  
+  = "UIM"
+  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_uim"
+  
+  = "HCIM"
+  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_hcim"
+  = submit_tag 'Filter', :id => "filter_acc"
+
+  %br
+  = 'Sort Skill By: EHP'
+  = radio_button_tag "sort_skill", 1, true, :id => "sort_ehp"
+  
+  = 'Level'
+  = radio_button_tag "sort_skill", 1, false, :id => "sort_level"
+  
+  = 'XP'
+  = radio_button_tag "sort_skill", 1, false, :id => "sort_xp"
+  = submit_tag 'Sort', :id => 'sort_skill'
+%table
+  %thead
+    %tr
+      %th Rank
+      %th Name
+      %th Account Type
+      %th{:class => @player_lvl_header}= link_to 'Total Level', players_path(:sort_by => 'total_lvl'), :id => 'player_lvl_header'
+      %th{:class => @player_xp_header}= link_to 'Total XP', players_path(:sort_by => 'total_xp'), :id => 'player_xp_header'
+      %th{:class => @player_ehp_header}= link_to 'Overall EHP', players_path(:sort_by => 'overall_ehp'), :id => 'player_ehp_header'
+      %th{:class => @player_attack_header}= link_to 'Attack', players_path(:sort_by => 'attack_ehp'), :id => 'player_attack_header'
+      %th{:class => @player_defence_header}= link_to 'Defence', players_path(:sort_by => 'defence_ehp'), :id => 'player_defence_header'
+      %th{:class => @player_strength_header}= link_to 'Strength', players_path(:sort_by => 'strength_ehp'), :id => 'player_strength_header'
+      %th{:class => @player_hitpoints_header}= link_to 'Hitpoints', players_path(:sort_by => 'hitpoints_ehp'), :id => 'player_hitpoints_header'
+      %th{:class => @player_ranged_header}= link_to 'Ranged', players_path(:sort_by => 'ranged_ehp'), :id => 'player_ranged_header'
+      %th{:class => @player_prayer_header}= link_to 'Prayer', players_path(:sort_by => 'prayer_ehp'), :id => 'player_prayer_header'
+      %th{:class => @player_magic_header}= link_to 'Magic', players_path(:sort_by => 'magic_ehp'), :id => 'player_magic_header'
+      %th{:class => @player_cooking_header}= link_to 'Cooking', players_path(:sort_by => 'cooking_ehp'), :id => 'player_cooking_header'
+      %th{:class => @player_woodcutting_header}= link_to 'Woodcutting', players_path(:sort_by => 'woodcutting_ehp'), :id => 'player_woodcutting_header'
+      %th{:class => @player_fishing_header}= link_to 'Fishing', players_path(:sort_by => 'fishing_ehp'), :id => 'player_fishing_header'
+      %th{:class => @player_firemaking_header}= link_to 'Firemaking', players_path(:sort_by => 'firemaking_ehp'), :id => 'player_firemaking_header'
+      %th{:class => @player_crafting_header}= link_to 'Crafting', players_path(:sort_by => 'crafting_ehp'), :id => 'player_crafting_header'
+      %th{:class => @player_smithing_header}= link_to 'Smithing', players_path(:sort_by => 'smithing_ehp'), :id => 'player_smithing_header'
+      %th{:class => @player_mining_header}= link_to 'Mining', players_path(:sort_by => 'mining_ehp'), :id => 'player_mining_header'
+      %th{:class => @player_runecraft_header}= link_to 'Runecraft', players_path(:sort_by => 'runecraft_ehp'), :id => 'player_runecraft_header'
+
+
+  %tbody
+    - @players.each.with_index 1 do |player, index|
+      %tr
+        %td= index
+        %td= link_to player.player_name, player
+        %td= player.player_acc_type
+        %td= player.overall_lvl
+        %td= player.overall_xp
+        %td= player.overall_ehp
+        %td= player.attack_ehp
+        %td= player.defence_ehp
+        %td= player.strength_ehp
+        %td= player.hitpoints_ehp
+        %td= player.ranged_ehp
+        %td= player.prayer_ehp
+        %td= player.magic_ehp
+        %td= player.cooking_ehp
+        %td= player.woodcutting_ehp
+        %td= player.fishing_ehp
+        %td= player.firemaking_ehp
+        %td= player.crafting_ehp
+        %td= player.smithing_ehp
+        %td= player.mining_ehp
+        %td= player.runecraft_ehp
+        %td= link_to 'Show', player
