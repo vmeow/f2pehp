@@ -1,4 +1,4 @@
-%h1 List All Players
+%h1 F2P OSRS Ranks v0.1a
 
 = form_tag players_path, :method => "get", id: "search-players-form" do
   = text_field_tag :search, params[:search], placeholder: "Search Players"
@@ -6,16 +6,16 @@
   %br
   %br
   = "Filter Account Type: Reg"
-  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_reg"
+  = check_box_tag "filter_acc", 1, @filters.include?("filter_reg"), :id => "filter_reg"
   
   = "IM"
-  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_im"
+  = check_box_tag "filter_acc", 1, @filters.include?("filter_im"), :id => "filter_im"
   
   = "UIM"
-  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_uim"
+  = check_box_tag "filter_acc", 1, @filters.include?("filter_uim"), :id => "filter_uim"
   
   = "HCIM"
-  = check_box_tag "filter_acc", 1, :filter_acc, :id => "sort_hcim"
+  = check_box_tag "filter_acc", 1, @filters.include?("filter_hcim"), :id => "filter_hcim"
   = submit_tag 'Filter', :id => "filter_acc"
 
   %br
@@ -57,9 +57,9 @@
   %tbody
     - @players.each.with_index 1 do |player, index|
       %tr
-        %td= index
+        %td{:align => "right"}= index
         %td= link_to player.player_name, player
-        %td= player.player_acc_type
+        %td{:align => "center"}= player.player_acc_type
         %td= player.overall_lvl
         %td= player.overall_xp
         %td= player.overall_ehp

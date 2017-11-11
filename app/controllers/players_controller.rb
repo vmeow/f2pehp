@@ -6,9 +6,15 @@ class PlayersController < ApplicationController
   def index
     sort_by = params[:sort_by] || session[:sort_by]
     search_term = params[:search] || session[:search]
+    @filters = params[:filter_acc] || session[:filter_acc] || {}
+    if @filters == {}
+      @filters = ["filter_reg", "filter_im", "filter_uim", "filter_hcim"]
+    end
+
     if params[:sort_by] != session[:sort_by] || params[:search] != session[:search]
       session[:sort_by] = sort_by
       session[:search] = search_term
+      session[:filter_acc] = @filters
       redirect_to(players_path(sort_by: sort_by, search: search_term)) && return
     end
 
@@ -17,7 +23,7 @@ class PlayersController < ApplicationController
     if !search_term.nil?
       @players = Player.where('player_name like ?', "%#{search_term}%").order(ordering)
     else
-      @players = Player.order(ordering)
+      @players = Player.where(filter_acc: @filters).order(ordering)
     end
     @players = @players.reverse
   end

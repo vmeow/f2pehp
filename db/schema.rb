@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111025805) do
+ActiveRecord::Schema.define(version: 20171111113953) do
 
   create_table "players", force: :cascade do |t|
     t.string  "player_name"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20171111025805) do
     t.integer "runecraft_xp"
     t.integer "runecraft_lvl"
     t.float   "runecraft_ehp"
+    t.string  "filter_acc"
+    t.string  "sort_skill"
   end
 
   create_table "settings", force: :cascade do |t|
