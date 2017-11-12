@@ -1,7 +1,13 @@
-%h1 View Player Stats
+%h1 F2P OSRS Ranks v0.2a
+= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
+%br
   
 = form_tag players_path(@player), :method => :put do
-    
+  %br
+  = link_to 'Update Player Stats', @player, method: :update 
+
+  = link_to 'Back', players_path 
+  
   %h2 Player Stats
 
   %table
@@ -159,6 +165,3 @@
 
 
 
-  = link_to 'Update Player Stats', @player, method: :update 
-
-  = link_to 'Back', players_path 
