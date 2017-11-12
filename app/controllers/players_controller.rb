@@ -1,3 +1,6 @@
+require 'net/http'
+require 'uri'
+
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[show edit update destroy]
 
@@ -38,11 +41,19 @@ class PlayersController < ApplicationController
   def new
     @player = Player.new
   end
+  
+  # GET /changelog
+  def changelog
+    @player = Player.new
+  end
 
   # GET /players/1/update
   def update
     @player = Player.find params[:id]
-    text = open("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=" + @player.player_name.to_s).read()
+
+    page_content = Net::HTTP.get(URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=" + @player.player_name.to_s))
+    puts page_content
+
     redirect_to players_path, notice: 'Player was successfully updated.'
   end
 
@@ -58,9 +69,12 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update
-    @player = Player.find params[:id]
-    text = open("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=" + @player.player_name.to_s).read()
-    redirect_to players_path, notice: 'Player was successfully updated.'
+   @player = Player.find params[:id]
+
+    page_content = Net::HTTP.get(URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=" + @player.player_name.to_s))
+    puts page_content
+
+    redirect_to @player, notice: 'Player was successfully updated.'
     #respond_to do |format|
     #  if @player.update(player_params)
     #    format.html {redirect_to players_path, notice: 'Player was successfully updated.'}

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'players#index'
-
+  get 'changelog' => 'players#changelog'
+  post 'players/:id' => 'players#update'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

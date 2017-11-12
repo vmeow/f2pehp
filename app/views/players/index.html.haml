@@ -1,5 +1,9 @@
-%h1 F2P OSRS Ranks v0.1a
-
+%h1 F2P OSRS Ranks v0.2a
+= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
+%br
+= link_to "View Changelog", changelog_path
+%br
+%br
 = form_tag players_path, :method => "get", id: "search-players-form" do
   = text_field_tag :search, params[:search], placeholder: "Search Players"
   = submit_tag "Search" 
@@ -34,8 +38,8 @@
       %th Rank
       %th Name
       %th Account Type
-      %th{:class => @player_lvl_header}= link_to 'Total Level', players_path(:sort_by => 'total_lvl'), :id => 'player_lvl_header'
-      %th{:class => @player_xp_header}= link_to 'Total XP', players_path(:sort_by => 'total_xp'), :id => 'player_xp_header'
+      %th{:class => @player_lvl_header}= link_to 'Total Level', players_path(:sort_by => 'overall_lvl'), :id => 'player_lvl_header'
+      %th{:class => @player_xp_header}= link_to 'Total XP', players_path(:sort_by => 'overall_xp'), :id => 'player_xp_header'
       %th{:class => @player_ehp_header}= link_to 'Overall EHP', players_path(:sort_by => 'overall_ehp'), :id => 'player_ehp_header'
       %th{:class => @player_attack_header}= link_to 'Attack', players_path(:sort_by => 'attack_ehp'), :id => 'player_attack_header'
       %th{:class => @player_defence_header}= link_to 'Defence', players_path(:sort_by => 'defence_ehp'), :id => 'player_defence_header'
