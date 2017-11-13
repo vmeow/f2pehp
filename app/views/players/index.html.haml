@@ -1,4 +1,4 @@
-%h1 F2P OSRS Ranks v0.2.2a
+%h1 F2P OSRS Ranks v0.2.3a
 = "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
 %br
 = link_to "View Changelog", changelog_path
@@ -7,33 +7,45 @@
 %br
 %br
 = form_tag players_path, :method => "get", id: "search-players-form" do
-  = text_field_tag :search, params[:search], placeholder: "Search Players"
-  = submit_tag "Search" 
-  %br
-  %br
-  = "Filter Account Type: Reg"
-  = check_box_tag "filter_acc", 1, @filters.include?("filter_reg"), :id => "filter_reg"
+  = "Find Player (Highlight and scroll down to player): COMING SOON"
+  /= text_field_tag :search, params[:search], placeholder: "Search Players"
+  /= submit_tag "Search" 
+  /%br
+  /%br
+= form_tag players_path, :method => :get, :id => 'filters_form' do
+
+  = "Filter Account Type: "
+  = "COMING SOON"
+  /= "Reg"
+  /= check_box_tag "filters", 1, @filters.include?("Reg"), :id => "filters_reg"
   
-  = "IM"
-  = check_box_tag "filter_acc", 1, @filters.include?("filter_im"), :id => "filter_im"
+  /= "IM"
+  /= check_box_tag "filters", 1, @filters.include?("IM"), :id => "filters_im"
   
-  = "UIM"
-  = check_box_tag "filter_acc", 1, @filters.include?("filter_uim"), :id => "filter_uim"
+  /= "UIM"
+  /= check_box_tag "filters", 1, @filters.include?("UIM"), :id => "filters_uim"
   
-  = "HCIM"
-  = check_box_tag "filter_acc", 1, @filters.include?("filter_hcim"), :id => "filter_hcim"
-  = submit_tag 'Filter', :id => "filter_acc"
+  /= "HCIM"
+  /= check_box_tag "filters", 1, @filters.include?("HCIM"), :id => "filters_hcim"
+  /= submit_tag 'Filter', :id => "filters_submit"
 
   %br
-  = 'Sort Skill By: EHP'
-  = radio_button_tag "sort_skill", 1, true, :id => "sort_ehp"
+  = "Display Skill as: "
+  = "COMING SOON"
+  /= "EHP"
+  /= radio_button_tag "skill_display", 1, true, :id => "display_ehp"
   
-  = 'Level'
-  = radio_button_tag "sort_skill", 1, false, :id => "sort_level"
+  /= "Level"
+  /= radio_button_tag "skill_display", 1, false, :id => "display_level"
   
-  = 'XP'
-  = radio_button_tag "sort_skill", 1, false, :id => "sort_xp"
-  = submit_tag 'Sort', :id => 'sort_skill'
+  /= "XP"
+  /= radio_button_tag "skill_display", 1, false, :id => "display_xp"
+  /= submit_tag 'Refresh', :id => 'display_submit'
+  %br
+  %br
+= form_tag players_path, :method => "get", id: "clear" do
+  = submit_tag "Clear all filters, sorts, and search" 
+
 %table
   %thead
     %tr

@@ -7,30 +7,53 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    sort_by = params[:sort_by] || session[:sort_by]
-    search_term = params[:search] || session[:search]
+    @players = Player.all
+    sort_by = params[:sort_by] || session[:sort_by] || {}
+    search_term = params[:search] || session[:search] || {}
     @filters = params[:filter_acc] || session[:filter_acc] || {}
     if @filters == {}
-      @filters = ["filter_reg", "filter_im", "filter_uim", "filter_hcim"]
+      @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
+      #@filters = ["Reg", "IM", "UIM", "HCIM"]
     end
-
-    if params[:sort_by] != session[:sort_by] || params[:search] != session[:search]
-      session[:sort_by] = sort_by
-      session[:search] = search_term
-      session[:filter_acc] = @filters
-      redirect_to(players_path(sort_by: sort_by, search: search_term)) && return
+    
+    if sort_by == {}
+      sort_by = "overall_ehp"
     end
+    
+    if search_term == {}
+      search_term = ""
+    end
+    
+    #if params[:sort_by] != session[:sort_by] || params[:search] != session[:search]
+    #  session[:sort_by] = sort_by
+    #  session[:search] = search_term
+    #  session[:filter_acc] = @filters
+    #  redirect_to(players_path(sort_by: sort_by, search: search_term)) && return
+    #end
 
     ordering = sort_by
 
-    if !search_term.nil?
-      @players = Player.where('player_name like ?', "%#{search_term}%").order(ordering)
-    else
-      @players = Player.where(filter_acc: @filters).order(ordering)
-    end
+    #if !search_term.nil? or search_term != ""
+    #  @players = Player.where('player_name like ?', "%#{search_term}%").order(ordering)
+    #else
+    #  @players = Player.all.order(ordering)
+    #end
+    @players = Player.all.order(ordering)
     @players = @players.reverse
   end
-
+  
+  def clear
+    @filters = {}
+    params[:search] = {}
+    params[:sort_by] = {}
+    session[:sort_by] = {}
+    session[:search] = {}
+    reset_session
+    session.clear
+    index
+    #redirect_to(players_path) && return
+  end
+  
   # GET /players/1
   # GET /players/1.json
   def show

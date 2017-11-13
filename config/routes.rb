@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'changelog' => 'players#changelog'
   get 'ehp' => 'players#ehp'
   post 'players/:id' => 'players#update'
-  # Example of regular route:
+  get 'clear' => 'players#index', as: :clear
+    # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
