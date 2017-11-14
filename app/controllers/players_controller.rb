@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    #@players = Player.all
     sort_by = params[:sort_by] || session[:sort_by] || {}
     search_term = params[:search] || session[:search] || {}
     @filters = params[:filter_acc] || session[:filter_acc] || {}
@@ -67,17 +67,6 @@ class PlayersController < ApplicationController
   
   # GET /changelog
   def changelog
-    @player = Player.new
-  end
-
-  # GET /players/1/update
-  def update
-    @player = Player.find params[:id]
-
-    page_content = Net::HTTP.get(URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=" + @player.player_name.to_s))
-    puts page_content
-
-    redirect_to players_path, notice: 'Player was successfully updated.'
   end
 
   # POST /players
@@ -97,6 +86,22 @@ class PlayersController < ApplicationController
     page_content = Net::HTTP.get(URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=" + @player.player_name.to_s))
     puts page_content
 
+    case @player.player_acc_type
+    when "Reg"
+      ehp = F2POSRSRanks::Application.config.ehp_reg
+    when "HCIM", "IM"
+      ehp = F2POSRSRanks::Application.config.ehp_im
+    when "UIM"
+      ehp = F2POSRSRanks::Application.config.ehp_uim
+    end
+    
+    F2POSRSRanks::Application.config.skills.each.with_index do |skill, idx|
+      if !skill.equal?("p2p")
+        ehp[skill + "_tiers"].each.with_index do |skill_tiers, xp_idx|
+          skill_xphrs = ehp[skill + "_xphrs"][xp_idx]
+        end
+      end
+    end
     redirect_to @player, notice: 'Player was successfully updated.'
     #respond_to do |format|
     #  if @player.update(player_params)
