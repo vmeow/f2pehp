@@ -6,7 +6,7 @@ Rails.application.config.assets.version = '1.0'
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 F2POSRSRanks::Application.configure do
-   config.version = "F2P OSRS Ranks v0.2.4a"
+   config.version = "F2P OSRS Ranks v0.3a"
    
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
                      "magic", "cooking", "woodcutting", "p2p", "fishing", "firemaking", "crafting",
