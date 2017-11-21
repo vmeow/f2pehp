@@ -1,18 +1,22 @@
 %h1 
   = F2POSRSRanks::Application.config.version
 %h4 
-  = "("
-  = F2POSRSRanks::Application.config.version
-  = "<-- a means alpha, meaning this early access is a privilege vengas u pingas)"
 = "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
 %br
 = link_to "View Changelog", changelog_path
 %br
 = link_to "View EHP Rates", ehp_path
 %br
-= 'Update All Player Stats: COMING SOON'
-/= link_to 'Update All Players\' Stats', players_path, method: :update_all
+= '|Update All Player Stats| COMING SOON'
+/= link_to 'Update All Players\' Stats', method: :update_all_players
+/= form_tag players_path, :method => "get", id: "update_all" do
+/  - @players.each do |player|
+/    - player.update(player)
+
 %br
+= form_tag players_path, :method => "get", id: "clear" do
+  = "|Clear all filters, sorts, and search| COMING SOON" 
+  /= submit_tag "Clear all filters, sorts, and search" 
 %br
 = form_tag players_path, :method => "get", id: "search-players-form" do
   = "Find Player (Highlight and scroll down to player): COMING SOON"
@@ -20,23 +24,6 @@
   /= submit_tag "Search" 
   /%br
   /%br
-= form_tag players_path, :method => :get, :id => 'filters_form' do
-
-  = "Filter Account Type: "
-  = "COMING SOON"
-  /= "Reg"
-  /= check_box_tag "filters", 1, @filters.include?("Reg"), :id => "filters_reg"
-  
-  /= "IM"
-  /= check_box_tag "filters", 1, @filters.include?("IM"), :id => "filters_im"
-  
-  /= "UIM"
-  /= check_box_tag "filters", 1, @filters.include?("UIM"), :id => "filters_uim"
-  
-  /= "HCIM"
-  /= check_box_tag "filters", 1, @filters.include?("HCIM"), :id => "filters_hcim"
-  /= submit_tag 'Filter', :id => "filters_submit"
-
   %br
   = "Display Skill as: "
   = "COMING SOON"
@@ -50,16 +37,30 @@
   /= radio_button_tag "skill_display", 1, false, :id => "display_xp"
   /= submit_tag 'Refresh', :id => 'display_submit'
   %br
-  %br
-= form_tag players_path, :method => "get", id: "clear" do
-  = "|Clear all filters, sorts, and search| COMING SOON" 
-  /= submit_tag "Clear all filters, sorts, and search" 
 
+= form_tag players_path, :method => :get, :id => 'filters_form' do
+
+  = "Filter Account Type: "
+  = "Reg"
+  = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
+  
+  = "IM"
+  = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
+  
+  = "UIM"
+  = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
+  
+  = "HCIM"
+  = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
+  = submit_tag 'Filter', :id => "filters_submit"
+
+%br
 %table
   %thead
     %tr
       %th Rank
       %th Name
+      %th Update Stats
       %th Account Type
       %th{:class => @player_lvl_header}= link_to 'Total Level', players_path(:sort_by => 'overall_lvl'), :id => 'player_lvl_header'
       %th{:class => @player_xp_header}= link_to 'Total XP', players_path(:sort_by => 'overall_xp'), :id => 'player_xp_header'
@@ -87,6 +88,7 @@
       %tr
         %td{:align => "right"}= index
         %td= link_to player.player_name, player
+        %td= link_to 'Update', player, method: :update
         %td{:align => "center"}= player.player_acc_type
         %td= player.overall_lvl
         %td= player.overall_xp
@@ -108,6 +110,4 @@
         %td= player.runecraft_ehp
         %td= player.potential_p2p
         %td= link_to 'Show', player
-        %td= link_to 'Update', player, method: :update
-
-        
+       

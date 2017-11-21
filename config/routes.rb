@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'changelog' => 'players#changelog'
   get 'ehp' => 'players#ehp'
   post 'players/:id' => 'players#update'
+  post 'players#index' => 'players#update_all_players', as: :update_all_players
   get 'clear' => 'players#index', as: :clear
     # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

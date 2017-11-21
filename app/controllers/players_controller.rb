@@ -8,14 +8,15 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    #@players = Player.all
     sort_by = params[:sort_by] || session[:sort_by] || {}
     search_term = params[:search] || session[:search] || {}
-    @filters = params[:filter_acc] || session[:filter_acc] || {}
+    @filters = params[:filters_] || session[:filters_] || {}
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
-      #@filters = ["Reg", "IM", "UIM", "HCIM"]
     end
+    
+    #x = Player.first
+    #x.update_attribute(:potential_p2p, @filters)
     
     if sort_by == {}
       sort_by = "overall_ehp"
@@ -25,12 +26,13 @@ class PlayersController < ApplicationController
       search_term = ""
     end
     
-    #if params[:sort_by] != session[:sort_by] || params[:search] != session[:search]
-    #  session[:sort_by] = sort_by
-    #  session[:search] = search_term
-    #  session[:filter_acc] = @filters
-    #  redirect_to(players_path(sort_by: sort_by, search: search_term)) && return
-    #end
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] # || params[:search] != session[:search]
+      session[:filters_] = @filters
+      session[:sort_by] = sort_by
+      #session[:search] = search_term
+      redirect_to(players_path(sort_by: sort_by, filters_: @filters)) && return
+      #redirect_to(players_path(sort_by: sort_by, search: search_term, filters_: @filters)) && return
+    end
 
     ordering = sort_by
 
@@ -39,7 +41,8 @@ class PlayersController < ApplicationController
     #else
     #  @players = Player.all.order(ordering)
     #end
-    @players = Player.all.order(ordering)
+    
+    @players = Player.where(player_acc_type: @filters.keys).order(ordering)
     @players = @players.reverse
   end
   
@@ -47,12 +50,14 @@ class PlayersController < ApplicationController
     @filters = {}
     params[:search] = {}
     params[:sort_by] = {}
+    params[:filters_] = {}
+    session[:filters_] = {}
     session[:sort_by] = {}
     session[:search] = {}
     reset_session
     session.clear
-    index
-    #redirect_to(players_path) && return
+    @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
+    redirect_to(players_path(filters_: @filters, sort_by: "overall_ehp"))
   end
   
   # GET /players/1
@@ -129,7 +134,7 @@ class PlayersController < ApplicationController
      redirect_to players_url, notice: 'Player was successfully updated.'
   end
   
-  def update_all
+  def update_all_players
     Player.all.each do |player|
       player.update_attribute(:potential_p2p, "0")
       case player.player_acc_type
@@ -140,7 +145,7 @@ class PlayersController < ApplicationController
       when "UIM"
         ehp = F2POSRSRanks::Application.config.ehp_uim
       end
-    
+      player.update_attribute(:aaaa, "0")
       uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player.player_name}")
       all_stats = uri.read.split(" ")
       total_ehp = 0.0
@@ -175,6 +180,27 @@ class PlayersController < ApplicationController
       player.update_attribute(:overall_ehp, total_ehp.round(2))
     end
     redirect_to players_url, notice: 'All players were successfully updated.'
+  end
+  
+  def find_new
+    hc_start = "59"
+    hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
+    
+    uim_start = "21"
+    uim_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ultimate/a=13/overall.ws?table=0&page=#{uim_start}")
+    
+    iron_start = "773"
+    iron_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/a=13/overall.ws?table=0&page=#{iron_start}")
+
+    case acc_type
+    when "Reg"
+      ehp = F2POSRSRanks::Application.config.ehp_reg
+    when "HCIM", "IM"
+      ehp = F2POSRSRanks::Application.config.ehp_iron
+    when "UIM"
+      ehp = F2POSRSRanks::Application.config.ehp_uim
+    end
+     redirect_to players_url, notice: 'New players were found.'
   end
 
   # DELETE /players/1
