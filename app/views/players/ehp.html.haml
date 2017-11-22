@@ -4,221 +4,51 @@
 %br
 %br
 = link_to 'Back', players_path
-
-%h4 Reg EHP Rates
-= "Attack:"
 %br
-= "0 xp: 7,200 xp/h"
 %br
-= "37,224 xp: 14,400 xp/h"
+= "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
 %br
-= "100,000 xp: 28,900 xp/h"
+= "smithing ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
 %br
-= "1,000,000 xp: 43,000 xp/h"
-%br
-= "1,986,068 xp: 51,000 xp/h"
-%br
-= "3,000,000 xp: 57,800 xp/h"
-%br
-= "5,346,332 xp: 63,000 xp/h"
-%br
-= "13,034,431 xp: 68,000 xp/h"
+= "This calculation ensures that crafting silver does not count double towards EHP."
 %br
 %br
 
-= "Defence:"
-%br
-= "0 xp: 7,200 xp/h"
-%br
-= "37,224 xp: 14,400 xp/h"
-%br
-= "100,000 xp: 28,900 xp/h"
-%br
-= "1,000,000 xp: 43,000 xp/h"
-%br
-= "1,986,068 xp: 51,000 xp/h"
-%br
-= "3,000,000 xp: 57,800 xp/h"
-%br
-= "5,346,332 xp: 63,000 xp/h"
-%br
-= "13,034,431 xp: 68,000 xp/h"
-%br
-%br
+- f2p_skills = F2POSRSRanks::Application.config.f2p_skills
+- ehp_reg = F2POSRSRanks::Application.config.ehp_reg
+- ehp_iron = F2POSRSRanks::Application.config.ehp_iron
+- ehp_uim = F2POSRSRanks::Application.config.ehp_uim
 
-= "Strength:"
-%br
-= "0 xp: 7,200 xp/h"
-%br
-= "37,224 xp: 14,400 xp/h"
-%br
-= "100,000 xp: 28,900 xp/h"
-%br
-= "1,000,000 xp: 43,000 xp/h"
-%br
-= "1,986,068 xp: 51,000 xp/h"
-%br
-= "3,000,000 xp: 57,800 xp/h"
-%br
-= "5,346,332 xp: 63,000 xp/h"
-%br
-= "13,034,431 xp: 68,000 xp/h"
-%br
-%br
+%table
+  %thead
+    %tr
+      %th Skill
+      %th Reg EHP
+      %th IM/HCIM EHP
+      %th UIM EHP
+  %tbody
+    - f2p_skills.each do |skill|
+      %tr
+        %td= skill
+        %td{:align => "center"}
+          - ehp_reg["#{skill}_tiers"].each.with_index do |tier, idx|
+            = "#{tier} xp: #{ehp_reg["#{skill}_xphrs"][idx]} xp/hr"
+            %br
+        %td{:align => "center"}
+          - ehp_iron["#{skill}_tiers"].each.with_index do |tier, idx|
+            = "#{tier} xp: #{ehp_iron["#{skill}_xphrs"][idx]} xp/hr"
+            %br
+        %td{:align => "center"}
+          - ehp_uim["#{skill}_tiers"].each.with_index do |tier, idx|
+            = "#{tier} xp: #{ehp_uim["#{skill}_xphrs"][idx]} xp/hr"
+            %br
 
-= "Hitpoints:"
 %br
-= "0 xp : 0 xp/h"
+= "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
 %br
+= "smithing ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
 %br
-
-= "Ranged:"
-%br
-= "0 xp: 7,000 xp/h"
-%br
-= "37,224 xp: 14,000 xp/h"
-%br
-= "100,000 xp: 28,000 xp/h"
-%br
-= "1,000,000 xp: 42,500 xp/h"
-%br
-= "1,986,068 xp: 49,000 xp/h"
-%br
-= "3,000,000 xp: 56,500 xp/h"
-%br
-= "5,346,332 xp: 61,200 xp/h"
-%br
-= "13,034,431 xp: 66,000 xp/h"
-%br
-%br
-
-= "Prayer:"
-%br
-= "0 xp: 43,000 xp/h"
-%br
-= "160,000,000 xp: 267,000 xp/h"
-%br
-%br
-
-= "Magic:"
-%br
-= "0 xp: 5,000 xp/h"
-%br
-= "174 xp: 15,600 xp/h"
-%br
-= "1,358 xp: 25,200 xp/h"
-%br
-= "3,973 xp: 72,000 xp/h"
-%br
-= "166,636 xp: 199,822,941 xp/h"
-%br
-%br
-
-= "Cooking:"
-%br
-= "0 xp: 40,000 xp/h"
-%br
-= "7,842 xp: 130,000 xp/h"
-%br
-= "37,224 xp: 175,000 xp/h"
-%br
-= "737,627 xp: 480,000 xp/h"
-%br
-%br
-
-= "Woodcutting:"
-%br
-= "0 xp: 7,000 xp/h"
-%br
-= "2,411 xp: 15,000 xp/h"
-%br
-= "13,363 xp: 28,000 xp/h"
-%br
-= "41,171 xp: 40,000 xp/h"
-%br
-= "302,288 xp: 50,000 xp/h"
-%br
-= "1,986,068 xp: 60,000 xp/h"
-%br
-= "5,346,332 xp: 70,000 xp/h"
-%br
-= "13,034,431 xp: 78,500 xp/h"
-%br
-%br
-
-= "Fishing:"
-%br
-= "0 xp: 14,000 xp/h"
-%br
-= "4,470 xp: 28,000 xp/h"
-%br
-= "13,363 xp: 35,000 xp/h"
-%br
-= "273,742 xp: 45,000 xp/h"
-%br
-= "737,627 xp: 55,000 xp/h"
-%br
-= "2,500,000 xp: 65,000 xp/h"
-%br
-= "6,000,000 xp: 70,000 xp/h"
-%br
-= "13,034,431 xp: 78,500 xp/h"
-%br
-%br
-
-= "Firemaking:"
-%br
-= "0 xp: 45,000 xp/h"
-%br
-= "13,363 xp: 130,500 xp/h"
-%br
-= "61,512 xp: 195,750 xp/h"
-%br
-= "273,742 xp: 293,625 xp/h"
-%br
-%br
-
-= "Crafting:"
-%br
-= "0 xp: 57,000 xp/h"
-%br
-= "4,470 xp: 135,000 xp/h"
-%br
-= "50,339 xp: 290,000 xp/h"
-%br
-%br
-
-= "Smithing:"
-%br
-= "0 xp: 40,000 xp/h"
-%br
-= "37,224 xp: 103,000 xp/h"
-%br
-= "605,032 xp: 220,000 xp/h"
-%br
-= "4,385,776 xp: 275,000 xp/h"
-%br
-= "170,000,000 xp: 30,000,000 xp/h"
-%br
-%br
-
-= "Mining:"
-%br
-= "0 xp: 4,000 xp/h"
-%br
-= "14,833 xp: 12,000 xp/h"
-%br
-= "41,171 xp: 25,000 xp/h"
-%br
-= "111,945 xp: 57,000 xp/h"
-%br
-= "737,627 xp: 65,000 xp/h"
-%br
-%br
-
-= "Runecrafting:"
-%br
-= "0 xp: 40,000 xp/h"
+= "This calculation ensures that crafting silver does not count double towards EHP."
 %br
 %br
 = link_to 'Back', players_path
