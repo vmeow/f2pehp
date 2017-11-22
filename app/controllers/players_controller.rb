@@ -35,13 +35,51 @@ class PlayersController < ApplicationController
     end
 
     ordering = sort_by
-
+    case sort_by
+    when "overall_ehp"
+      @player_ehp_header = 'hilite'
+    when "overall_lvl"
+      @player_lvl_header = 'hilite'
+    when "overall_xp"
+      @player_xp_header = 'hilite'
+    when "attack_ehp"
+      @player_attack_header = 'hilite'
+    when "strength_ehp"
+      @player_strength_header = 'hilite'
+    when "defence_ehp"
+      @player_defence_header = 'hilite'
+    when "hitpoints_ehp"
+      @player_hitpoints_header = 'hilite'
+    when "ranged_ehp"
+      @player_ranged_header = 'hilite'
+    when "prayer_ehp"
+      @player_prayer_header = 'hilite'
+    when "magic_ehp"
+      @player_magic_header = 'hilite'
+    when "cooking_ehp"
+      @player_cooking_header = 'hilite'
+    when "woodcutting_ehp"
+      @player_woodcutting_header = 'hilite'
+    when "fishing_ehp"
+      @player_fishing_header = 'hilite'
+    when "firemaking_ehp"
+      @player_firemaking_header = 'hilite'
+    when "crafting_ehp"
+      @player_crafting_header = 'hilite'
+    when "smithing_ehp"
+      @player_smithing_header = 'hilite'
+    when "mining_ehp"
+      @player_mining_header = 'hilite'
+    when "runecraft_ehp"
+      @player_runecraft_header = 'hilite'
+    when "potential_p2p"
+      @player_p2p_header = 'hilite'
+    end
     #if !search_term.nil? or search_term != ""
     #  @players = Player.where('player_name like ?', "%#{search_term}%").order(ordering)
     #else
     #  @players = Player.all.order(ordering)
     #end
-    
     @players = Player.where(player_acc_type: @filters.keys).order(ordering)
     @players = @players.reverse
   end
