@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   root 'players#index'
   get 'changelog' => 'players#changelog'
   get 'ehp' => 'players#ehp'
-  post 'players/:id' => 'players#update'
-  post 'players#index' => 'players#update_all_players', as: :update_all_players
+  get 'secretpage' => 'players#secretpage'
+  post 'players/:id' => 'players#update_player'
+  post "players#index" => "players#refresh_players"
+  #post 'refresh_players' => 'players#index', as: :refresh_players
+  #post 'players#index' => 'players#find_new', as: :find_new
+
   get 'clear' => 'players#index', as: :clear
     # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

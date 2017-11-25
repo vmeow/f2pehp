@@ -3,15 +3,18 @@
 %h4 
 = "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
 %br
+%p#notice= notice
 = link_to "View Changelog", changelog_path
 %br
 = link_to "View EHP Rates", ehp_path
 %br
-= '|Update All Player Stats| COMING SOON'
-/= link_to 'Update All Players\' Stats', method: :update_all_players
-/= form_tag players_path, :method => "get", id: "update_all" do
-/  - @players.each do |player|
-/    - player.update(player)
+= '|Update All Players\' Stats| ADMIN ACCESS ONLY'
+/= button_to "Update All Players\' Stats", {:method => "put", :controller => "players", :action => "refresh_players"} 
+
+%br
+/= '|Find New F2P Players| COMING SOON'
+/= link_to 'Find New F2P Players', method: :find_new
+
 
 %br
 = form_tag players_path, :method => "get", id: "clear" do
@@ -88,7 +91,7 @@
       %tr
         %td{:align => "right"}= index
         %td= link_to player.player_name, player
-        %td= link_to 'Update', player, method: :update
+        %td= link_to 'Update', player, method: :update_player
         %td{:align => "center"}= player.player_acc_type
         %td= player.overall_lvl
         %td= player.overall_xp

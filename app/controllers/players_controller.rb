@@ -124,7 +124,7 @@ class PlayersController < ApplicationController
 
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
-  def update
+  def update_player
     @player = Player.find params[:id]
     @player.update_attribute(:potential_p2p, "0")
     case @player.player_acc_type
@@ -172,7 +172,7 @@ class PlayersController < ApplicationController
      redirect_to players_url, notice: 'Player was successfully updated.'
   end
   
-  def update_all_players
+  def refresh_players
     Player.all.each do |player|
       player.update_attribute(:potential_p2p, "0")
       case player.player_acc_type
@@ -183,7 +183,6 @@ class PlayersController < ApplicationController
       when "UIM"
         ehp = F2POSRSRanks::Application.config.ehp_uim
       end
-      player.update_attribute(:aaaa, "0")
       uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player.player_name}")
       all_stats = uri.read.split(" ")
       total_ehp = 0.0
@@ -212,12 +211,12 @@ class PlayersController < ApplicationController
           player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
           total_ehp += skill_ehp.round(2)
         elsif skill == "p2p" and skill_xp != 0
-          player.update_attribute(:potential_p2p, player.potential_p2p + skill_xp)
+          player.update_attribute(:potential_p2p, player.potential_p2p.to_f + skill_xp.to_f)
         end
       end
       player.update_attribute(:overall_ehp, total_ehp.round(2))
     end
-    redirect_to players_url, notice: 'All players were successfully updated.'
+    redirect_to players_path, notice: 'All players were successfully updated.'
   end
   
   def find_new

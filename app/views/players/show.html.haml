@@ -2,10 +2,11 @@
   = F2POSRSRanks::Application.config.version
 = "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
 %br
-  
+%p#notice= notice
+
 = form_tag players_path(@player), :method => :put do
   %br
-  = link_to 'Update Player Stats', @player, method: :update
+  = link_to 'Update Player Stats', @player, method: :update_player
   %br
   = link_to 'Back', players_path 
   
@@ -109,7 +110,7 @@
         %td= @player.runecraft_ehp
 
   %br
-  = link_to 'Update Player Stats', @player, method: :update
+  = link_to 'Update Player Stats', @player, method: :update_player
   %br
   = link_to 'Back', players_path 
 
