@@ -118,7 +118,6 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.create!(player_params)
-    # @item.update_attributes(case_id: tempCaseId)
     flash[:notice] = 'Player was successfully created.'
     redirect_to players_path
   end
@@ -274,12 +273,12 @@ class PlayersController < ApplicationController
       :attack_xp, 
       :attack_lvl, 
       :attack_ehp, 
-      :defence_xp, 
-      :defence_lvl, 
-      :defence_ehp, 
       :strength_xp, 
       :strength_lvl, 
       :strength_ehp, 
+      :defence_xp, 
+      :defence_lvl, 
+      :defence_ehp, 
       :hitpoints_xp, 
       :hitpoints_lvl, 
       :hitpoints_ehp, 

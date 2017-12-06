@@ -8,7 +8,8 @@ Rails.application.config.assets.version = '1.0'
 F2POSRSRanks::Application.configure do
    config.version = "F2P OSRS Ranks v0.5.1a"
    
-    config.skills = ["overall", "attack", "strength", "defence", "hitpoints", "ranged", "prayer",
+    #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
+    config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
                      "magic", "cooking", "woodcutting", "p2p", "fishing", "firemaking", "crafting",
                      "smithing", "mining", "p2p", "p2p", "p2p", "p2p", "p2p", "runecraft", "p2p", 
                      "p2p", "p2p", "p2p", "p2p", "p2p", "p2p", "p2p", "lms", "p2p", "p2p"]
