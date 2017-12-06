@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   get 'ehp' => 'players#ehp'
   get 'secretpage' => 'players#secretpage'
   post 'players/:id' => 'players#update_player'
-  post "players#index" => "players#refresh_players"
-  #post 'refresh_players' => 'players#index', as: :refresh_players
-  #post 'players#index' => 'players#find_new', as: :find_new
+  post 'players#index' => 'players#refresh_players', as: :refresh_players
+  post 'players#names' => 'players#find_new', as: :find_new
 
   get 'clear' => 'players#index', as: :clear
     # Example of regular route:

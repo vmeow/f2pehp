@@ -1,6 +1,7 @@
 require 'net/http'
 require 'uri'
 require "open-uri"
+require 'nokogiri'
 
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[show edit update destroy]
@@ -223,21 +224,27 @@ class PlayersController < ApplicationController
     hc_start = "59"
     hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
     
-    uim_start = "21"
-    uim_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ultimate/a=13/overall.ws?table=0&page=#{uim_start}")
+    #uim_start = "21"
+    #uim_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ultimate/a=13/overall.ws?table=0&page=#{uim_start}")
     
-    iron_start = "773"
-    iron_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/a=13/overall.ws?table=0&page=#{iron_start}")
+    #iron_start = "773"
+    #iron_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/a=13/overall.ws?table=0&page=#{iron_start}")
+    
+    #reg_start = "8976"
+    #reg_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/a=13/overall.ws?table=0&page=#{reg_start}")
 
-    case acc_type
-    when "Reg"
-      ehp = F2POSRSRanks::Application.config.ehp_reg
-    when "HCIM", "IM"
-      ehp = F2POSRSRanks::Application.config.ehp_iron
-    when "UIM"
-      ehp = F2POSRSRanks::Application.config.ehp_uim
-    end
-     redirect_to players_url, notice: 'New players were found.'
+    ehp_reg = F2POSRSRanks::Application.config.ehp_reg
+    ehp_iron = F2POSRSRanks::Application.config.ehp_iron
+    ehp_uim = F2POSRSRanks::Application.config.ehp_uim
+    
+    xp_table = F2POSRSRanks::Application.config.xp_table
+    lvl_tiers = F2POSRSRanks::Application.config.lvl_tiers
+    lvl_xps = F2POSRSRanks::Application.config.lvl_xps
+    
+    contents = hc_uri.read
+
+    flash[:notice] = open("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}").read.truncate(1250)
+    redirect_to players_path#, notice: 'New players were found.'
   end
 
   # DELETE /players/1

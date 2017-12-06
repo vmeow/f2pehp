@@ -12,14 +12,14 @@
 /= button_to "Update All Players\' Stats", {:method => "put", :controller => "players", :action => "refresh_players"} 
 
 %br
-/= '|Find New F2P Players| COMING SOON'
+= '|Find New F2P Players| ADMIN ACCESS ONLY'
 /= link_to 'Find New F2P Players', method: :find_new
 
 
 %br
-= form_tag players_path, :method => "get", id: "clear" do
-  = "|Clear all filters, sorts, and search| COMING SOON" 
-  /= submit_tag "Clear all filters, sorts, and search" 
+/= form_tag players_path, :method => "get", id: "clear" do
+/  = "|Clear all filters, sorts, and search| COMING SOON" 
+/  = submit_tag "Clear all filters, sorts, and search" 
 %br
 = form_tag players_path, :method => "get", id: "search-players-form" do
   = "Find Player (Highlight and scroll down to player): COMING SOON"
@@ -69,8 +69,8 @@
       %th{:class => @player_xp_header}= link_to 'Total XP', players_path(:sort_by => 'overall_xp'), :id => 'player_xp_header'
       %th{:class => @player_ehp_header}= link_to 'Overall EHP', players_path(:sort_by => 'overall_ehp'), :id => 'player_ehp_header'
       %th{:class => @player_attack_header}= link_to 'Attack', players_path(:sort_by => 'attack_ehp'), :id => 'player_attack_header'
-      %th{:class => @player_defence_header}= link_to 'Defence', players_path(:sort_by => 'defence_ehp'), :id => 'player_defence_header'
       %th{:class => @player_strength_header}= link_to 'Strength', players_path(:sort_by => 'strength_ehp'), :id => 'player_strength_header'
+      %th{:class => @player_defence_header}= link_to 'Defence', players_path(:sort_by => 'defence_ehp'), :id => 'player_defence_header'
       %th{:class => @player_hitpoints_header}= link_to 'Hitpoints', players_path(:sort_by => 'hitpoints_ehp'), :id => 'player_hitpoints_header'
       %th{:class => @player_ranged_header}= link_to 'Ranged', players_path(:sort_by => 'ranged_ehp'), :id => 'player_ranged_header'
       %th{:class => @player_prayer_header}= link_to 'Prayer', players_path(:sort_by => 'prayer_ehp'), :id => 'player_prayer_header'
@@ -97,8 +97,8 @@
         %td= player.overall_xp
         %td= player.overall_ehp
         %td= player.attack_ehp
-        %td= player.defence_ehp
         %td= player.strength_ehp
+        %td= player.defence_ehp
         %td= player.hitpoints_ehp
         %td= player.ranged_ehp
         %td= player.prayer_ehp

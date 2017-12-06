@@ -2,8 +2,12 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-every 1.day, :at => '12:00 am' do
-  runner "Players.refresh_players"
+every :day, at: '12am' do
+  runner "PlayersController.refresh_players"
+end
+
+every 1.minute do
+  runner "PlayerRefresher.refresh_players"
 end
 # Example:
 #
