@@ -6,7 +6,7 @@ Rails.application.config.assets.version = '1.0'
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 F2POSRSRanks::Application.configure do
-   config.version = "F2P OSRS Ranks v0.5.1a"
+   config.version = "F2P OSRS Ranks v0.5.2a"
    
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
@@ -17,7 +17,7 @@ F2POSRSRanks::Application.configure do
     config.f2p_skills = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
                          "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
                          "smithing", "mining", "runecraft"]
-
+                         
     config.xp_table = [0, 83, 174, 276, 388, 512, 650, 801, 969, 
         1154, 1358, 1584, 1833, 2107, 2411, 2746, 3115, 3523, 3973, 
         4470, 5018, 5624, 6291, 7028, 7842, 8740, 9730, 10824, 12031, 

@@ -12,10 +12,11 @@ class PlayersController < ApplicationController
     sort_by = params[:sort_by] || session[:sort_by] || {}
     search_term = params[:search] || session[:search] || {}
     @filters = params[:filters_] || session[:filters_] || {}
+    @skills = params[:skills_] || session[:skills_] || {}
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
     end
-    
+
     #x = Player.first
     #x.update_attribute(:potential_p2p, @filters)
     
@@ -27,11 +28,12 @@ class PlayersController < ApplicationController
       search_term = ""
     end
     
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] # || params[:search] != session[:search]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skills_] != session[:skills_] # || params[:search] != session[:search]
       session[:filters_] = @filters
+      session[:skills_] = @skills
       session[:sort_by] = sort_by
       #session[:search] = search_term
-      redirect_to(players_path(sort_by: sort_by, filters_: @filters)) && return
+      redirect_to(players_path(sort_by: sort_by, filters_: @filters, skills_: @skills)) && return
       #redirect_to(players_path(sort_by: sort_by, search: search_term, filters_: @filters)) && return
     end
 
@@ -56,6 +58,7 @@ class PlayersController < ApplicationController
     when "prayer_ehp"
       @player_prayer_header = 'hilite'
     when "magic_ehp"
+      player_magic_header = 'hilite'
       @player_magic_header = 'hilite'
     when "cooking_ehp"
       @player_cooking_header = 'hilite'
@@ -165,6 +168,9 @@ class PlayersController < ApplicationController
         total_ehp += skill_ehp.round(2)
       elsif skill == "p2p" and skill_xp != 0
         @player.update_attribute(:potential_p2p, skill_xp)
+      elsif skill == "overall"
+        @player.update_attribute(:"#{skill}_lvl", skill_lvl)
+        @player.update_attribute(:"#{skill}_xp", skill_xp)
       end
     end
     @player.update_attribute(:overall_ehp, total_ehp.round(2))
@@ -212,6 +218,9 @@ class PlayersController < ApplicationController
           total_ehp += skill_ehp.round(2)
         elsif skill == "p2p" and skill_xp != 0
           player.update_attribute(:potential_p2p, player.potential_p2p.to_f + skill_xp.to_f)
+        elsif skill == "overall"
+          player.update_attribute(:"#{skill}_lvl", skill_lvl)
+          player.update_attribute(:"#{skill}_xp", skill_xp)
         end
       end
       player.update_attribute(:overall_ehp, total_ehp.round(2))
