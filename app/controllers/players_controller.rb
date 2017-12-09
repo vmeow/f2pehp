@@ -33,7 +33,7 @@ class PlayersController < ApplicationController
       session[:skills_] = @skills
       session[:sort_by] = sort_by
       #session[:search] = search_term
-      redirect_to(players_path(sort_by: sort_by, filters_: @filters, skills_: @skills)) && return
+      #redirect_to(players_path(sort_by: sort_by, filters_: @filters, skills_: @skills)) && return
       #redirect_to(players_path(sort_by: sort_by, search: search_term, filters_: @filters)) && return
     end
 
@@ -58,7 +58,6 @@ class PlayersController < ApplicationController
     when "prayer_ehp"
       @player_prayer_header = 'hilite'
     when "magic_ehp"
-      player_magic_header = 'hilite'
       @player_magic_header = 'hilite'
     when "cooking_ehp"
       @player_cooking_header = 'hilite'
