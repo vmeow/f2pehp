@@ -188,6 +188,16 @@ class PlayersController < ApplicationController
       when "UIM"
         ehp = F2POSRSRanks::Application.config.ehp_uim
       end
+      name = player.player_name.gsub(" ", "_")
+      #name = name.gsub!(" ", "_")
+      puts name
+      begin
+        uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+      rescue
+        Player.remove(player)
+        next
+      end
+      
       uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player.player_name}")
       all_stats = uri.read.split(" ")
       total_ehp = 0.0
@@ -250,6 +260,9 @@ class PlayersController < ApplicationController
     
     contents = hc_uri.read
 
+    open(url) do |f|
+      page_string = f.read
+    end
     flash[:notice] = open("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}").read.truncate(1250)
     redirect_to players_path#, notice: 'New players were found.'
   end
