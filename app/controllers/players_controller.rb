@@ -272,7 +272,15 @@ class PlayersController < ApplicationController
           lvl = "#{skill}_lvl"
           xp = "#{skill}_xp"
           ehp = "#{skill}_ehp"
-          str += ", #{skill}_lvl: #{player[lvl]}, #{skill}_xp: #{player[xp]}, #{skill}_ehp: #{player[ehp]}"
+          if not player["#{lvl}"].nil?
+            str += ", #{skill}_lvl: #{player[lvl]}"
+          end
+          if not player["#{xp}"].nil?
+            str += ", #{skill}_xp: #{player[xp]}"
+          end
+          if not player["#{ehp}"].nil?
+            str += ", #{skill}_ehp: #{player[ehp]}"
+          end
         end
         str += "},\n"
         f.write(str)
