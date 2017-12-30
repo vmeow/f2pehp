@@ -264,6 +264,22 @@ class PlayersController < ApplicationController
     redirect_to players_path, notice: 'All players were successfully updated.'
   end
   
+  def export_players
+    File.open("players.txt", "w+") do |f|
+      Player.all.each do |player|
+        str = "              { player_name: #{player.player_name}, 'player_acc_type': #{player.player_acc_type}, 'potential_p2p': #{player.potential_p2p},"
+        F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+          lvl = "#{skill}_lvl"
+          xp = "#{skill}_xp"
+          ehp = "#{skill}_ehp"
+          str += ", #{skill}_lvl: #{player[lvl]}, #{skill}_xp: #{player[xp]}, #{skill}_ehp: #{player[ehp]}"
+        end
+        str += "},\n"
+        f.write(str)
+      end
+    end
+  end
+  
   def find_new
     hc_start = "59"
     hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
