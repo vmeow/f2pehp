@@ -265,10 +265,13 @@ class PlayersController < ApplicationController
   end
   
   def export_players
+    skill_list = F2POSRSRanks::Application.config.f2p_skills
+    skill_list << "overall"
     File.open("players.txt", "w+") do |f|
+      
       Player.all.each do |player|
         str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}'"
-        F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+        skill_list.each do |skill|
           lvl = "#{skill}_lvl"
           xp = "#{skill}_xp"
           ehp = "#{skill}_ehp"
