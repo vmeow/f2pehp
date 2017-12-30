@@ -252,7 +252,7 @@ class PlayersController < ApplicationController
         end
       rescue Exception => e  
         puts e.message 
-        player.update_attribute(:potential_p2p, "NAME CHANGE")
+        player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
         player.update_attribute(:overall_ehp, "0")
         player.update_attribute(:overall_lvl, "0")
         player.update_attribute(:overall_xp, "0")
@@ -275,17 +275,17 @@ class PlayersController < ApplicationController
           lvl = "#{skill}_lvl"
           xp = "#{skill}_xp"
           ehp = "#{skill}_ehp"
-          if not player["#{lvl}"].nil?
+          if (not player["#{lvl}"].nil?) and player['potential_p2p'] == '0'
             str += ", #{skill}_lvl: #{player[lvl]}"
           else
             str += ", #{skill}_lvl: 0"
           end
-          if not player["#{xp}"].nil?
+          if (not player["#{xp}"].nil?) and player['potential_p2p'] == '0'
             str += ", #{skill}_xp: #{player[xp]}"
           else
             str += ", #{skill}_xp: 0"
           end
-          if not player["#{ehp}"].nil?
+          if (not player["#{ehp}"].nil?) and player['potential_p2p'] == '0'
             str += ", #{skill}_ehp: #{player[ehp]}"
           else
             str += ", #{skill}_ehp: 0"
