@@ -267,7 +267,7 @@ class PlayersController < ApplicationController
   def export_players
     File.open("players.txt", "w+") do |f|
       Player.all.each do |player|
-        str = "              { player_name: #{player.player_name}, 'player_acc_type': #{player.player_acc_type}, 'potential_p2p': #{player.potential_p2p},"
+        str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}',"
         F2POSRSRanks::Application.config.f2p_skills.each do |skill|
           lvl = "#{skill}_lvl"
           xp = "#{skill}_xp"
