@@ -274,12 +274,18 @@ class PlayersController < ApplicationController
           ehp = "#{skill}_ehp"
           if not player["#{lvl}"].nil?
             str += ", #{skill}_lvl: #{player[lvl]}"
+          else
+            str += ", #{skill}_lvl: 0"
           end
           if not player["#{xp}"].nil?
             str += ", #{skill}_xp: #{player[xp]}"
+          else
+            str += ", #{skill}_xp: 0"
           end
           if not player["#{ehp}"].nil?
             str += ", #{skill}_ehp: #{player[ehp]}"
+          else
+            str += ", #{skill}_ehp: 0"
           end
         end
         str += "},\n"
