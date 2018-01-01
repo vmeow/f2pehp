@@ -139,7 +139,7 @@ class PlayersController < ApplicationController
     end
     
     begin
-      name = player.player_name.gsub(" ", "_")
+      name = @player.player_name.gsub(" ", "_")
       puts name
       uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
       all_stats = uri.read.split(" ")
