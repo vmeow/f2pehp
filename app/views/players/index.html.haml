@@ -21,13 +21,13 @@
 /  = "|Clear all filters, sorts, and search| COMING SOON" 
 /  = submit_tag "Clear all filters, sorts, and search" 
 %br
-= form_tag players_path, :method => "get", id: "search-players-form" do
-  = "Find Player (Highlight and scroll down to player): COMING SOON"
-  /= text_field_tag :search, params[:search], placeholder: "Search Players"
-  /= submit_tag "Search" 
-  /%br
-  /%br
-  %br
+/= form_tag players_path, :method => "get", id: "search-players-form" do
+/  = "Find Player (Highlight and scroll down to player): COMING SOON"
+/  = text_field_tag :search, params[:search], placeholder: "Search Players"
+/  = submit_tag "Search" 
+/  %br
+/  %br
+%br
   = "Display Skill as: "
   = "COMING SOON"
   /= "EHP"
@@ -67,13 +67,29 @@
   
   = submit_tag 'Refresh', :id => "skills_submit"
 
-/= form_tag players_path, :method => :get, :id => 'hide_accs_form' do
-/
-/  = "Show Top 1000 Accounts: "
-/  = radio_button "hide_accs", 1, @hide_accs.include?("")
-/  = "Show All Accounts: "
-/  = radio_button "hide_accs", 1, @hide_accs.include?("")
-  
+%br
+= form_tag players_path, :method => :get, :id => 'show_limits_form' do
+
+  = "Limit Results?"
+  %br
+
+  = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
+  = "Top 250"
+  %br
+  = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
+  = "Top 500"
+  %br
+  = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
+  = "Top 1000"
+  %br
+  = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
+  = "Top 2000"
+  %br
+  = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
+  = "All Accounts"
+  %br
+  = submit_tag 'Refresh', :id => "show_limit_submit"
+
 %br
 %table
   %thead

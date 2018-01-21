@@ -25,7 +25,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'whenever', '~> 0.10.0', :require => false
 
-
 gem "rails-settings-cached"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
