@@ -173,6 +173,14 @@ class PlayersController < ApplicationController
         elsif skill == "p2p" and skill_xp != 0
           @player.update_attribute(:potential_p2p, skill_xp)
         elsif skill == "overall"
+          if @player.player_acc_type == "HCIM"
+            hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+            hc_stats = hc_uri.read.split(" ")
+            hc_xp = hc_stats[skill_idx].split(",")[2].to_f
+            if hc_xp < skill_xp
+              @player.update_attribute(:player_acc_type, "IM")
+            end
+          end
           @player.update_attribute(:"#{skill}_lvl", skill_lvl)
           @player.update_attribute(:"#{skill}_xp", skill_xp)
         end
@@ -240,6 +248,14 @@ class PlayersController < ApplicationController
           elsif skill == "p2p" and skill_xp != 0
             player.update_attribute(:potential_p2p, player.potential_p2p.to_f + skill_xp.to_f)
           elsif skill == "overall"
+            if player.player_acc_type == "HCIM"
+              hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+              hc_stats = hc_uri.read.split(" ")
+              hc_xp = hc_stats[skill_idx].split(",")[2].to_f
+              if hc_xp < skill_xp
+                player.update_attribute(:player_acc_type, "IM")
+              end
+            end
             player.update_attribute(:"#{skill}_lvl", skill_lvl)
             player.update_attribute(:"#{skill}_xp", skill_xp)
           end
