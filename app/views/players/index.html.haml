@@ -67,7 +67,13 @@
   
   = submit_tag 'Refresh', :id => "skills_submit"
 
-
+/= form_tag players_path, :method => :get, :id => 'hide_accs_form' do
+/
+/  = "Show Top 1000 Accounts: "
+/  = radio_button "hide_accs", 1, @hide_accs.include?("")
+/  = "Show All Accounts: "
+/  = radio_button "hide_accs", 1, @hide_accs.include?("")
+  
 %br
 %table
   %thead
