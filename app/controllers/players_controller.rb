@@ -36,10 +36,11 @@ class PlayersController < ApplicationController
       search_term = ""
     end
     
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skills_] != session[:skills_] # || params[:search] != session[:search]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skills_] != session[:skills_] || params[:show_limit] != session[:show_limit]# || params[:search] != session[:search]
       session[:filters_] = @filters
       session[:skills_] = @skills
       session[:sort_by] = sort_by
+      session[:show_limit] = @show_limit
       #session[:search] = search_term
       #redirect_to(players_path(sort_by: sort_by, filters_: @filters, skills_: @skills)) && return
       #redirect_to(players_path(sort_by: sort_by, search: search_term, filters_: @filters)) && return
