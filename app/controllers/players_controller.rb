@@ -13,7 +13,7 @@ class PlayersController < ApplicationController
     search_term = params[:search] || session[:search] || {}
     @filters = params[:filters_] || session[:filters_] || {}
     @skills = params[:skills_] || session[:skills_] || {}
-    @show_limit = params[:show_limit] || session[:show_limit] || 1000
+    @show_limit = params[:show_limit] || session[:show_limit] || 10000
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
     end
