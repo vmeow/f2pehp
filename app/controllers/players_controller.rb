@@ -17,7 +17,14 @@ class PlayersController < ApplicationController
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
     end
-
+    
+    if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
+      Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc]})
+      params[:player_to_add_name] = nil
+      params[:player_to_add_acc] = nil
+      session[:player_to_add_name] = nil
+      session[:player_to_add_acc] = nil
+    end
     #x = Player.first
     #x.update_attribute(:potential_p2p, @filters)
     
