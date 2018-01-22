@@ -8,25 +8,15 @@
 %br
 = link_to "View EHP Rates", ehp_path
 %br
-= '|Update All Players\' Stats| ADMIN ACCESS ONLY'
-/= button_to "Update All Players\' Stats", {:method => "put", :controller => "players", :action => "refresh_players"} 
+= link_to "View Fake F2P", fake_path
 
-%br
-= '|Find New F2P Players| ADMIN ACCESS ONLY'
-/= link_to 'Find New F2P Players', method: :find_new
-
-
-%br
-/= form_tag players_path, :method => "get", id: "clear" do
-/  = "|Clear all filters, sorts, and search| COMING SOON" 
-/  = submit_tag "Clear all filters, sorts, and search" 
-%br
 /= form_tag players_path, :method => "get", id: "search-players-form" do
 /  = "Find Player (Highlight and scroll down to player): COMING SOON"
 /  = text_field_tag :search, params[:search], placeholder: "Search Players"
 /  = submit_tag "Search" 
 /  %br
 /  %br
+%br
 %br
   = "Display Skill as: "
   = "COMING SOON"

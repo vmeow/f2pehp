@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'players#index'
   get 'changelog' => 'players#changelog'
   get 'ehp' => 'players#ehp'
+  get 'fake' => 'players#fake'
   get 'secretpage' => 'players#secretpage'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_players', as: :refresh_players
