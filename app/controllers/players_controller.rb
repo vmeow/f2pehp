@@ -25,6 +25,12 @@ class PlayersController < ApplicationController
       session[:player_to_add_name] = nil
       session[:player_to_add_acc] = nil
     end
+    
+    if !params[:player_to_del_name].nil?
+      Player.where(player_name: params[:player_to_del_name]).destroy_all
+      params[:player_to_del_name] = nil
+      session[:player_to_del_name] = nil
+    end
     #x = Player.first
     #x.update_attribute(:potential_p2p, @filters)
     
