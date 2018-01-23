@@ -1,0 +1,31 @@
+%h1 
+  = F2POSRSRanks::Application.config.version
+%h4 
+= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
+%br
+%p#notice= notice
+
+- skill_list = F2POSRSRanks::Application.config.f2p_skills.clone
+- skill_list << "overall"
+= skill_list
+- Player.all.each do |player|
+  - str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}'"
+  - skill_list.each do |skill|
+    - lvl = "#{skill}_lvl"
+    - xp = "#{skill}_xp"
+    - ehp = "#{skill}_ehp"
+    - if (not player["#{lvl}"].nil?) and player['potential_p2p'] == '0'
+      - str = str + ", #{skill}_lvl: #{player[lvl]}"
+    - else
+      - str = str +  ", #{skill}_lvl: 0"
+    - if (not player["#{xp}"].nil?) and player['potential_p2p'] == '0'
+      - str = str +  ", #{skill}_xp: #{player[xp]}"
+    - else
+      - str = str +  ", #{skill}_xp: 0"
+    - if (not player["#{ehp}"].nil?) and player['potential_p2p'] == '0'
+      - str = str +  ", #{skill}_ehp: #{player[ehp]}"
+    - else
+      - str = str +  ", #{skill}_ehp: 0"
+  - str = str +  "},\n"
+  = str
+  %br

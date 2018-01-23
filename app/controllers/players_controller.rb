@@ -271,23 +271,29 @@ class PlayersController < ApplicationController
               end
             end
             player.update_attribute(:"#{skill}_lvl", skill_lvl)
-            player.update_attribute(:"#{skill}_xp", skill_xp)
+            if skill_xp == "-1"
+              player.update_attribute(:"#{skill}_xp", 0)
+            else
+              player.update_attribute(:"#{skill}_xp", skill_xp)
+            end
           end
         end
         player.update_attribute(:overall_ehp, total_ehp.round(2))
         if player.potential_p2p.to_f <= 0
           player.update_attribute(:potential_p2p, "0")
         else
-          player.update_attribute(:overall_ehp, "0")
-          player.update_attribute(:overall_lvl, "0")
-          player.update_attribute(:overall_xp, "0")
+          Player.where(player_name: name).destroy_all
+          #player.update_attribute(:overall_ehp, "0")
+          #player.update_attribute(:overall_lvl, "0")
+          #player.update_attribute(:overall_xp, "0")
         end
       rescue Exception => e  
-        puts e.message 
-        player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
-        player.update_attribute(:overall_ehp, "0")
-        player.update_attribute(:overall_lvl, "0")
-        player.update_attribute(:overall_xp, "0")
+        #puts e.message 
+        #player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
+        #player.update_attribute(:overall_ehp, "0")
+        #player.update_attribute(:overall_lvl, "0")
+        #player.update_attribute(:overall_xp, "0")
+        Player.where(player_name: name).destroy_all
         next
       end
       

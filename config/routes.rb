@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'ehp' => 'players#ehp'
   get 'fake' => 'players#fake'
   get 'secretpage' => 'players#secretpage'
+  get 'plaintext' => 'players#plaintext'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players
