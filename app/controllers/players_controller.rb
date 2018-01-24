@@ -147,6 +147,7 @@ class PlayersController < ApplicationController
     if F2POSRSRanks::Application.config.fakes.include?(@player.player_name)
       Player.where(player_name: @player.player_name).destroy_all
     end
+    return
     @player.update_attribute(:potential_p2p, "0")
     case @player.player_acc_type
     when "Reg"
