@@ -144,6 +144,9 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update_player
     @player = Player.find params[:id]
+    if F2POSRSRanks::Application.config.fakes.include?(@player.player_name)
+      Player.where(player_name: @player.player_name).destroy_all
+    end
     @player.update_attribute(:potential_p2p, "0")
     case @player.player_acc_type
     when "Reg"
@@ -155,10 +158,6 @@ class PlayersController < ApplicationController
     end
     
     begin
-      if player.player_name in F2POSRSRanks::Application.config.fakes
-        Player.where(player_name: player.player_name).destroy_all
-        next
-      end
       name = @player.player_name.gsub(" ", "_")
       puts name
       uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
@@ -226,6 +225,10 @@ class PlayersController < ApplicationController
   
   def refresh_players
     Player.all.each do |player|
+      if F2POSRSRanks::Application.config.fakes.include?(player.player_name)
+        Player.where(player_name: player.player_name).destroy_all
+        next
+      end
       player.update_attribute(:potential_p2p, "0")
       case player.player_acc_type
       when "Reg"
@@ -234,10 +237,6 @@ class PlayersController < ApplicationController
         ehp = F2POSRSRanks::Application.config.ehp_iron
       when "UIM"
         ehp = F2POSRSRanks::Application.config.ehp_uim
-      end
-      if player.player_name in F2POSRSRanks::Application.config.fakes
-        Player.where(player_name: player.player_name).destroy_all
-        next
       end
       name = player.player_name.gsub(" ", "_")
       puts name
