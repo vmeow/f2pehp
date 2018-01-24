@@ -113,7 +113,7 @@
       /%th{:class => @player_smithing_header}= link_to 'Smithing', players_path(:sort_by => 'smithing_ehp'), :id => 'player_smithing_header'
       /%th{:class => @player_mining_header}= link_to 'Mining', players_path(:sort_by => 'mining_ehp'), :id => 'player_mining_header'
       /%th{:class => @player_runecraft_header}= link_to 'Runecraft', players_path(:sort_by => 'runecraft_ehp'), :id => 'player_runecraft_header'
-      /%th{:class => @player_p2p_header}= link_to 'P2P XP', players_path(:sort_by => 'potential_p2p'), :id => 'player_p2p_header'
+      %th{:class => @player_p2p_header}= link_to 'P2P XP', players_path(:sort_by => 'potential_p2p'), :id => 'player_p2p_header'
 
 
   %tbody
@@ -144,4 +144,4 @@
         /%td= player.smithing_ehp
         /%td= player.mining_ehp
         /%td= player.runecraft_ehp
-        /%td= player.potential_p2p
+        %td= player.potential_p2p
