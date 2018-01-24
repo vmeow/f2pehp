@@ -155,6 +155,10 @@ class PlayersController < ApplicationController
     end
     
     begin
+      if player.player_name in F2POSRSRanks::Application.config.fakes
+        Player.where(player_name: player.player_name).destroy_all
+        next
+      end
       name = @player.player_name.gsub(" ", "_")
       puts name
       uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
@@ -206,13 +210,15 @@ class PlayersController < ApplicationController
         @player.update_attribute(:overall_ehp, "0")
         @player.update_attribute(:overall_lvl, "0")
         @player.update_attribute(:overall_xp, "0")
+        Player.where(player_name: @player.player_name).destroy_all
       end
     rescue Exception => e  
       puts e.message 
-      @player.update_attribute(:potential_p2p, "NAME CHANGE")
+      @player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
       @player.update_attribute(:overall_ehp, "0")
       @player.update_attribute(:overall_lvl, "0")
       @player.update_attribute(:overall_xp, "0")
+      Player.where(player_name: @player.player_name).destroy_all
     end
     #redirect_to @player, notice: 'Player was successfully updated.'
     redirect_to players_url, notice: 'Player was successfully updated.'
@@ -228,6 +234,10 @@ class PlayersController < ApplicationController
         ehp = F2POSRSRanks::Application.config.ehp_iron
       when "UIM"
         ehp = F2POSRSRanks::Application.config.ehp_uim
+      end
+      if player.player_name in F2POSRSRanks::Application.config.fakes
+        Player.where(player_name: player.player_name).destroy_all
+        next
       end
       name = player.player_name.gsub(" ", "_")
       puts name
@@ -282,18 +292,18 @@ class PlayersController < ApplicationController
         if player.potential_p2p.to_f <= 0
           player.update_attribute(:potential_p2p, "0")
         else
-          Player.where(player_name: name).destroy_all
-          #player.update_attribute(:overall_ehp, "0")
-          #player.update_attribute(:overall_lvl, "0")
-          #player.update_attribute(:overall_xp, "0")
+          player.update_attribute(:overall_ehp, "0")
+          player.update_attribute(:overall_lvl, "0")
+          player.update_attribute(:overall_xp, "0")
+          Player.where(player_name: player.player_name).destroy_all
         end
       rescue Exception => e  
         #puts e.message 
-        #player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
-        #player.update_attribute(:overall_ehp, "0")
-        #player.update_attribute(:overall_lvl, "0")
-        #player.update_attribute(:overall_xp, "0")
-        Player.where(player_name: name).destroy_all
+        player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
+        player.update_attribute(:overall_ehp, "0")
+        player.update_attribute(:overall_lvl, "0")
+        player.update_attribute(:overall_xp, "0")
+        Player.where(player_name: player.player_name).destroy_all
         next
       end
       
