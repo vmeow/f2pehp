@@ -10007,9 +10007,5 @@ Player.create([
               { player_name: 'Nostalgia87', 'player_acc_type': 'Reg'},
               { player_name: 'watdouwant52', 'player_acc_type': 'Reg'},
               { player_name: 'MicksterLUL', 'player_acc_type': 'Reg'},
-              { player_name: 'Xambryn', 'player_acc_type': 'Reg'},
-              { player_name: 'JOYS1234', 'player_acc_type': 'Reg'},
-              { player_name: 'Lancedslayer', 'player_acc_type': 'Reg'},
-              { player_name: 'HARD T0 CORE', 'player_acc_type': 'Reg'},
-              { player_name: 'Snoepemanz', 'player_acc_type': 'Reg'}
+              { player_name: 'Xambryn', 'player_acc_type': 'Reg'}
             ])
