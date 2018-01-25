@@ -146,8 +146,8 @@ class PlayersController < ApplicationController
     @player = Player.find params[:id]
     if F2POSRSRanks::Application.config.fakes.include?(@player.player_name)
       Player.where(player_name: @player.player_name).destroy_all
+      redirect_to players_url, notice: 'Fake F2P player was successfully removed.'
     end
-    return
     @player.update_attribute(:potential_p2p, "0")
     case @player.player_acc_type
     when "Reg"
