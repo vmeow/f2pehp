@@ -1,88 +1,89 @@
-%h1 
-  = F2POSRSRanks::Application.config.version
-%h4 
-= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
-%br
-%p#notice= notice
-= link_to "View Changelog", changelog_path
-%br
-= link_to "View EHP Rates", ehp_path
-%br
-= link_to "View Hall of Shame", fake_path
-
-/= form_tag players_path, :method => "get", id: "search-players-form" do
-/  = "Find Player (Highlight and scroll down to player): COMING SOON"
-/  = text_field_tag :search, params[:search], placeholder: "Search Players"
-/  = submit_tag "Search" 
-/  %br
-/  %br
-%br
-%br
-  = "Display Skill as: "
-  = "COMING SOON"
-  /= "EHP"
-  /= radio_button_tag "skill_display", 1, true, :id => "display_ehp"
+= content_tag :div do
+  %h1 
+    = F2POSRSRanks::Application.config.version
+  %h4 
+  = "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
+  %br
+  %p#notice= notice
+  = link_to "View Changelog", changelog_path
+  %br
+  = link_to "View EHP Rates", ehp_path
+  %br
+  = link_to "View Hall of Shame", fake_path
   
-  /= "Level"
-  /= radio_button_tag "skill_display", 1, false, :id => "display_level"
+  /= form_tag players_path, :method => "get", id: "search-players-form" do
+  /  = "Find Player (Highlight and scroll down to player): COMING SOON"
+  /  = text_field_tag :search, params[:search], placeholder: "Search Players"
+  /  = submit_tag "Search" 
+  /  %br
+  /  %br
+  %br
+  %br
+    = "Display Skill as: "
+    = "COMING SOON"
+    /= "EHP"
+    /= radio_button_tag "skill_display", 1, true, :id => "display_ehp"
+    
+    /= "Level"
+    /= radio_button_tag "skill_display", 1, false, :id => "display_level"
+    
+    /= "XP"
+    /= radio_button_tag "skill_display", 1, false, :id => "display_xp"
+    /= submit_tag 'Refresh', :id => 'display_submit'
+    %br
   
-  /= "XP"
-  /= radio_button_tag "skill_display", 1, false, :id => "display_xp"
-  /= submit_tag 'Refresh', :id => 'display_submit'
+  = form_tag players_path, :method => :get, :id => 'filters_form' do
+  
+    = "Filter Account Type?"
+    %br
+    = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
+    = "Reg"
+    %br
+    = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
+    = "IM"
+    %br
+    = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
+    = "UIM"
+    %br
+    = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
+    = "HCIM"
+    %br
+    = submit_tag 'Filter', :id => "filters_submit"
+  
   %br
-
-= form_tag players_path, :method => :get, :id => 'filters_form' do
-
-  = "Filter Account Type?"
+  = form_tag players_path, :method => :get, :id => 'skills_form' do
+    - all_skills = F2POSRSRanks::Application.config.f2p_skills
+    = "Show Skills? "
+    %br
+    - all_skills.each.with_index 1 do |skill, idx|
+      = check_box_tag "skills_[#{skill}]", 1, @skills.include?("#{skill}"), :id => "skills_#{skill}"
+      = skill
+      - if (idx % 5) == 0
+        %br
+    = submit_tag 'Refresh', :id => "skills_submit"
+  
   %br
-  = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
-  = "Reg"
-  %br
-  = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
-  = "IM"
-  %br
-  = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
-  = "UIM"
-  %br
-  = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
-  = "HCIM"
-  %br
-  = submit_tag 'Filter', :id => "filters_submit"
-
-%br
-= form_tag players_path, :method => :get, :id => 'skills_form' do
-  - all_skills = F2POSRSRanks::Application.config.f2p_skills
-  = "Show Skills? "
-  %br
-  - all_skills.each.with_index 1 do |skill, idx|
-    = check_box_tag "skills_[#{skill}]", 1, @skills.include?("#{skill}"), :id => "skills_#{skill}"
-    = skill
-    - if (idx % 5) == 0
-      %br
-  = submit_tag 'Refresh', :id => "skills_submit"
-
-%br
-= form_tag players_path, :method => :get, :id => 'show_limits_form' do
-
-  = "Limit Results?"
-  %br
-
-  = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
-  = "Top 250"
-  %br
-  = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
-  = "Top 500"
-  %br
-  = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
-  = "Top 1000"
-  %br
-  = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
-  = "Top 2000"
-  %br
-  = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
-  = "All Accounts"
-  %br
-  = submit_tag 'Refresh', :id => "show_limit_submit"
+  = form_tag players_path, :method => :get, :id => 'show_limits_form' do
+  
+    = "Limit Results?"
+    %br
+  
+    = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
+    = "Top 250"
+    %br
+    = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
+    = "Top 500"
+    %br
+    = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
+    = "Top 1000"
+    %br
+    = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
+    = "Top 2000"
+    %br
+    = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
+    = "All Accounts"
+    %br
+    = submit_tag 'Refresh', :id => "show_limit_submit"
 
 %br
 %table

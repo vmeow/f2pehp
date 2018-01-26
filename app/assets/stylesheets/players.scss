@@ -2,25 +2,61 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 html, body {
-  margin: 0;
-  padding: 0;
-  background: White;
-  color: black;
+  margin-left: 25px;
+  color: #727272; 
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
+  
+  background: url("longer_bg.jpg") fixed; 
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  max-width: 100% !important;
+  overflow-x: hidden;
 }
+
+div {
+  margin-left: 10px;
+  color: #727272;
+  
+  background-color: rgba(0,0,0,0.75) !important;
+  border: 3px #4D422E !important;
+  min-width: 500px;
+  
+}
+
 div#main {
-  margin: 0;
+  margin: 20px;
   padding: 0 20px 20px;
 }
+
+
 a {
-  background: transparent;
-  color: maroon;
-  text-decoration: underline;
-  font-weight: bold;
+  color: #90c040 !important;
+  text-decoration: none;
 }
+
+/*
+a:link {
+  color: #ffee00;
+  text-decoration: underline;
+  font-weight:bold;
+}
+
+a:visited {
+  color: #727272;
+  text-decoration: underline;
+  font-weight:bold;
+}
+
+a:hover {
+  color: white;
+  text-decoration: underline;
+  font-weight:bold;
+}
+*/
+
+
 h1 {
-  color: black;
+  color: white;
   font-family: 'Verdana';
   font-size: 150%;
   font-style: bold;
@@ -30,15 +66,42 @@ h1 {
 }
 
 table {
+  margin-left: 10px;
+  margin-top: 40px;
   border-collapse: collapse;
+  color: #727272;
+  
+  background-color: rgba(0,0,0,0.5) !important;
+  border-color: #333333 !important;
+  min-width: 560px !important;
+  
+  /*
+  background: url("original_backdrop_745.png");
+  background-size: 100% auto;
+  min-width: 960px;
+  overflow-y: scroll;
+  */
 }
+
+table a {
+  color: #90c040;
+}
+
+/*
+table:before { 
+  position: absolute;
+  top: 595px;
+  margin-left: -11px;
+  content: url("scrolltop.png");
+}
+*/
 
 table, th, td {
   border: 1px solid black;
   padding: 4px;
 }
 table th.hilite {
-  background-color: gold;
+  background-color: #242424;
 }
 
 /*SEARCH BAR STYLING*/
