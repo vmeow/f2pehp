@@ -31,8 +31,6 @@ class PlayersController < ApplicationController
       params[:player_to_del_name] = nil
       session[:player_to_del_name] = nil
     end
-    #x = Player.first
-    #x.update_attribute(:potential_p2p, @filters)
     
     if sort_by == {}
       sort_by = "overall_ehp"
@@ -51,7 +49,9 @@ class PlayersController < ApplicationController
       #redirect_to(players_path(sort_by: sort_by, filters_: @filters, skills_: @skills)) && return
       #redirect_to(players_path(sort_by: sort_by, search: search_term, filters_: @filters)) && return
     end
-
+    
+    flash[:notice] = sort_by
+    
     ordering = sort_by
     case sort_by
     when "overall_ehp"
@@ -98,7 +98,7 @@ class PlayersController < ApplicationController
     #else
     #  @players = Player.all.order(ordering)
     #end
-    @players = Player.where(player_acc_type: @filters.keys).order(ordering)
+    @players = Player.where(player_acc_type: @filters.keys, potential_p2p: 0).order(ordering)
     @players = @players.reverse
     @players = @players.first(@show_limit.to_i)
   end
