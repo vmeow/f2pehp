@@ -19,16 +19,18 @@
   /  %br
   %br
   %br
-    = "Display Skill as: "
-    = "COMING SOON"
-    /= "EHP"
-    /= radio_button_tag "skill_display", 1, true, :id => "display_ehp"
+    = "Display Skill as: COMING SOON"
+    %br
+    = radio_button_tag "display_[ehp]", 1, true, {:id => "display_ehp", :disabled => true}
+    = "EHP (default)"
     
-    /= "Level"
-    /= radio_button_tag "skill_display", 1, false, :id => "display_level"
+    %br
+    = radio_button_tag "display_[lvl]", 1, false, {:id => "display_level", :disabled => true}
+    = "Level"
     
-    /= "XP"
-    /= radio_button_tag "skill_display", 1, false, :id => "display_xp"
+    %br
+    = radio_button_tag "display_[xp]", 1, false, {:id => "display_xp", :disabled => true}
+    = "XP"
     /= submit_tag 'Refresh', :id => 'display_submit'
     %br
   
@@ -72,7 +74,7 @@
     = "Top 250"
     %br
     = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
-    = "Top 500"
+    = "Top 500 (default)"
     %br
     = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
     = "Top 1000"
