@@ -23,20 +23,20 @@
 
   = content_tag(:div, nil, style: "float:left; width: 115px; padding: 5px;") do 
     = form_tag players_path, :method => :get, :id => 'display_form' do
-      = "Display Skill as: COMING SOON"
+      = "Display Skill as:"
       %br
-      = radio_button_tag "display_[ehp]", 1, true, {:id => "display_ehp", :disabled => true}
+      = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
       = "EHP"
       
       %br
-      = radio_button_tag "display_[lvl]", 1, false, {:id => "display_level", :disabled => true}
+      = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
       = "Level"
       
       %br
-      = radio_button_tag "display_[xp]", 1, false, {:id => "display_xp", :disabled => true}
+      = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
       = "XP"
       %br
-      = submit_tag 'Refresh', {:id => 'display_submit', :disabled => true}
+      = submit_tag 'Refresh', {:id => 'display_submit'}
       
   = content_tag(:div, nil, style: "float:left; width: 95px; padding: 5px;") do 
     = form_tag players_path, :method => :get, :id => 'filters_form' do
@@ -93,8 +93,6 @@
           %br
       = submit_tag 'Refresh', :id => "skills_submit"
   
-= content_tag(:div, nil, style: "margin: 10px; color: #969696; overflow: hidden;background-color: none;border: none") do 
-  = ""
 %table
   %thead
     %tr
@@ -107,7 +105,9 @@
       %th{:class => @player_ehp_header}= link_to 'Overall EHP', players_path(:sort_by => 'overall_ehp'), :id => 'player_ehp_header'
       - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
         - if @skills.include?("#{skill}")
-          %th{:class => "@player_#{skill}_header"}= link_to "#{skill}", players_path(:sort_by => "#{skill}_ehp"), :id => "player_#{skill}_header"
+          - template = "%s_%s"
+          - t = template % [skill, @display]
+          %th{:class => "@player_#{skill}_header"}= link_to "#{skill}", players_path(:sort_by => t), :id => "player_#{skill}_header"
       /%th{:class => @player_attack_header}= link_to 'Attack', players_path(:sort_by => 'attack_ehp'), :id => 'player_attack_header'
       /%th{:class => @player_strength_header}= link_to 'Strength', players_path(:sort_by => 'strength_ehp'), :id => 'player_strength_header'
       /%th{:class => @player_defence_header}= link_to 'Defence', players_path(:sort_by => 'defence_ehp'), :id => 'player_defence_header'
@@ -138,7 +138,9 @@
         %td= player.overall_ehp
         - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
           - if @skills.include?("#{skill}")
-            %td= player["#{skill}_ehp"]
+            - template = "%s_%s"
+            - t = template % [skill, @display]
+            %td= player[t]
         /%td= player.attack_ehp
         /%td= player.strength_ehp
         /%td= player.defence_ehp
