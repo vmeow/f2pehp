@@ -8,19 +8,18 @@ html, body {
   font-size: 10pt;
   
   background: image-url("longer_bg.jpg") fixed; 
-  background-color: rgba(0, 0, 0, 0.5) !important;
-  max-width: 100% !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  max-width: 1200px !important;
   overflow-x: hidden;
 }
 
 div {
   margin-left: 10px;
+  margin-bottom: 5px;
   color: #969696;
-  
-  background-color: rgba(0,0,0,0.75) !important;
-  border: 3px solid #3E3B23 !important;
-  min-width: 500px;
-  
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.75);
+  border: 3px solid #3E3B23;
 }
 
 div#main {
@@ -32,6 +31,9 @@ div#main {
 a {
   color: #90c040 !important;
   text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 /*
@@ -66,7 +68,7 @@ h1 {
 
 table {
   margin-left: 10px;
-  margin-top: 40px;
+  margin-top: 5px;
   //border: 3px solid #3E3B23;
   border-collapse: collapse;
   color: #969696;
@@ -101,7 +103,8 @@ table, th, td {
   padding: 4px;
 }
 table th.hilite {
-  background-color: #242424;
+  //color: white;
+  background-color: #5B1D76; //#242424;
 }
 
 /*SEARCH BAR STYLING*/

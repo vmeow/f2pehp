@@ -1,18 +1,24 @@
-%h1 
-  = F2POSRSRanks::Application.config.version
-= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
-%br
-%br
-= link_to 'Back', players_path
-%br
-%br
-= "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
-%br
-= "smithing ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
-%br
-= "This calculation ensures that crafting silver does not count double towards EHP."
-%br
-%br
+= content_tag(:div, nil, style: "min-width: 300px; max-width:600px; padding: 5px;") do 
+  %h1 
+    = F2POSRSRanks::Application.config.version
+  = "please feel free to send any feedback to f2posrsranks@gmail.com"
+  %br
+  %p#notice= notice
+  = link_to 'Back', players_path
+  %br
+  = link_to "View Changelog", changelog_path
+  %br
+  = link_to "View Hall of Shame", fake_path
+  %br
+
+%br  
+= content_tag(:div, nil, style: "min-width: 300px; max-width:600px; padding: 5px;") do 
+  %h1 F2P EHP Rates
+  = "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
+  %br
+  = "smithing ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
+  %br
+  = "This calculation ensures that crafting silver does not count double towards EHP."
 
 - f2p_skills = F2POSRSRanks::Application.config.f2p_skills
 - ehp_reg = F2POSRSRanks::Application.config.ehp_reg
@@ -44,11 +50,13 @@
             %br
 
 %br
-= "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
-%br
-= "smithing ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
-%br
-= "This calculation ensures that crafting silver does not count double towards EHP."
-%br
-%br
-= link_to 'Back', players_path
+= content_tag(:div, nil, style: "min-width: 300px; max-width:600px; padding: 5px;") do 
+  
+  = "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
+  %br
+  = "smithing ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
+  %br
+  = "This calculation ensures that crafting silver does not count double towards EHP."
+  %br
+  %br
+  = link_to 'Back', players_path

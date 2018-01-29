@@ -1,8 +1,7 @@
-= content_tag :div do
+= content_tag(:div, nil, style: "width: 300px; padding: 5px;") do 
   %h1 
     = F2POSRSRanks::Application.config.version
-  %h4 
-  = "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
+  = "please feel free to send any feedback to f2posrsranks@gmail.com"
   %br
   %p#notice= notice
   = link_to "View Changelog", changelog_path
@@ -17,77 +16,85 @@
   /  = submit_tag "Search" 
   /  %br
   /  %br
-  %br
-  %br
-    = "Display Skill as: COMING SOON"
-    %br
-    = radio_button_tag "display_[ehp]", 1, true, {:id => "display_ehp", :disabled => true}
-    = "EHP (default)"
-    
-    %br
-    = radio_button_tag "display_[lvl]", 1, false, {:id => "display_level", :disabled => true}
-    = "Level"
-    
-    %br
-    = radio_button_tag "display_[xp]", 1, false, {:id => "display_xp", :disabled => true}
-    = "XP"
-    /= submit_tag 'Refresh', :id => 'display_submit'
-    %br
-  
-  = form_tag players_path, :method => :get, :id => 'filters_form' do
-  
-    = "Filter Account Type?"
-    %br
-    = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
-    = "Reg"
-    %br
-    = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
-    = "IM"
-    %br
-    = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
-    = "UIM"
-    %br
-    = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
-    = "HCIM"
-    %br
-    = submit_tag 'Filter', :id => "filters_submit"
-  
-  %br
-  = form_tag players_path, :method => :get, :id => 'skills_form' do
-    - all_skills = F2POSRSRanks::Application.config.f2p_skills
-    = "Show Skills? "
-    %br
-    - all_skills.each.with_index 1 do |skill, idx|
-      = check_box_tag "skills_[#{skill}]", 1, @skills.include?("#{skill}"), :id => "skills_#{skill}"
-      = skill
-      - if (idx % 5) == 0
-        %br
-    = submit_tag 'Refresh', :id => "skills_submit"
-  
-  %br
-  = form_tag players_path, :method => :get, :id => 'show_limits_form' do
-  
-    = "Limit Results?"
-    %br
-  
-    = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
-    = "Top 250"
-    %br
-    = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
-    = "Top 500 (default)"
-    %br
-    = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
-    = "Top 1000"
-    %br
-    = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
-    = "Top 2000"
-    %br
-    = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
-    = "All Accounts"
-    %br
-    = submit_tag 'Refresh', :id => "show_limit_submit"
 
-%br
+%br 
+/= content_tag(:container, nil, style: "max-width: 350px;") do
+= content_tag(:div, nil, style: "margin-left: 0px; margin-top: 5px; margin-bottom: 5px; color: none; background-color: transparent; border: none") do 
+
+  = content_tag(:div, nil, style: "float:left; width: 115px; padding: 5px;") do 
+    = form_tag players_path, :method => :get, :id => 'display_form' do
+      = "Display Skill as: COMING SOON"
+      %br
+      = radio_button_tag "display_[ehp]", 1, true, {:id => "display_ehp", :disabled => true}
+      = "EHP"
+      
+      %br
+      = radio_button_tag "display_[lvl]", 1, false, {:id => "display_level", :disabled => true}
+      = "Level"
+      
+      %br
+      = radio_button_tag "display_[xp]", 1, false, {:id => "display_xp", :disabled => true}
+      = "XP"
+      %br
+      = submit_tag 'Refresh', {:id => 'display_submit', :disabled => true}
+      
+  = content_tag(:div, nil, style: "float:left; width: 95px; padding: 5px;") do 
+    = form_tag players_path, :method => :get, :id => 'filters_form' do
+    
+      = "Filter Account Type?"
+      %br
+      = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
+      = "Reg"
+      %br
+      = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
+      = "IM"
+      %br
+      = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
+      = "UIM"
+      %br
+      = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
+      = "HCIM"
+      %br
+      = submit_tag 'Filter', :id => "filters_submit"
+    
+  = content_tag(:div, nil, style: "float:left; width: 115px; padding: 5px;") do 
+    = form_tag players_path, :method => :get, :id => 'show_limits_form' do
+    
+      = "Limit Results?"
+      %br
+    
+      = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
+      = "Top 250"
+      %br
+      = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
+      = "Top 500"
+      %br
+      = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
+      = "Top 1000"
+      %br
+      = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
+      = "Top 2000"
+      %br
+      = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
+      = "All Accounts"
+      %br
+      = submit_tag 'Refresh', :id => "show_limit_submit"
+      
+  = content_tag(:div, nil, style: "float:left; width: 165px; padding: 5px;") do 
+    = form_tag players_path, :method => :get, :id => 'skills_form' do
+      - all_skills = F2POSRSRanks::Application.config.f2p_skills
+      = "Show Skills?"
+      %br
+      - all_skills.each.with_index 1 do |skill, idx|
+        = check_box_tag "skills_[#{skill}]", 1, @skills.include?("#{skill}"), :id => "skills_#{skill}"
+        /= skill
+        = image_tag "#{skill}.png"
+        - if (idx % 3) == 0
+          %br
+      = submit_tag 'Refresh', :id => "skills_submit"
+  
+= content_tag(:div, nil, style: "margin: 10px; color: #969696; overflow: hidden;background-color: none;border: none") do 
+  = ""
 %table
   %thead
     %tr
@@ -116,7 +123,7 @@
       /%th{:class => @player_smithing_header}= link_to 'Smithing', players_path(:sort_by => 'smithing_ehp'), :id => 'player_smithing_header'
       /%th{:class => @player_mining_header}= link_to 'Mining', players_path(:sort_by => 'mining_ehp'), :id => 'player_mining_header'
       /%th{:class => @player_runecraft_header}= link_to 'Runecraft', players_path(:sort_by => 'runecraft_ehp'), :id => 'player_runecraft_header'
-      %th{:class => @player_p2p_header}= link_to 'P2P XP', players_path(:sort_by => 'potential_p2p'), :id => 'player_p2p_header'
+      /%th{:class => @player_p2p_header}= link_to 'P2P XP', players_path(:sort_by => 'potential_p2p'), :id => 'player_p2p_header'
 
 
   %tbody
@@ -147,4 +154,4 @@
         /%td= player.smithing_ehp
         /%td= player.mining_ehp
         /%td= player.runecraft_ehp
-        %td= player.potential_p2p
+        /%td= player.potential_p2p

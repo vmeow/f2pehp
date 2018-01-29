@@ -1,178 +1,195 @@
-%h1 
-  = F2POSRSRanks::Application.config.version
-= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
-%br
-%br
-= link_to 'Back', players_path
-%h4 Changelog
-= "v0.6.2a Jan 26, 2017"
-%br
-= "Feature-in-progress: css styling"
-%br
-= "Feature-in-progress: display skill as ehp, lvl, or xp"
-%br
-= "Feature complete: remove p2p automatically"
-%br
-= "Updated seeds to include ~3000+ regs, removed p2p"
-%br
-%br
 
-= "v0.6.1a Jan 21, 2017"
-%br
-= "Feature complete: F2P Hall of Shame including banned and fake F2P players"
-%br
-= "Feature complete: Add and delete players without resetting database (MOD ACCESS ONLY)"
-%br
-%br
-
-= "v0.6.0a Jan 21, 2017"
-%br
-= "Feature complete: Limit number of accounts shown"
-%br
-= "Feature complete: Detect dead HCIMs"
-%br
-= "Added all F2P regs with 1k+ total level and F2P IM/UIM/HC with ~400+ total level, found directly from OSRS hiscores, with some known skiller exceptions manually added"
-%br
-%br
-
-= "v0.5.5a Dec 29, 2017"
-%br
-= "Feature-in-progress: Find potential f2p players directly from OSRS hiscores"
-%br
-%br
-
-= "v0.5.2a Dec 9, 2017"
-%br
-= "Feature-in-progress: Show and hide specific skills (highlight is missing, formatting needs work)"
-%br
-= "Bug Fixes: total lvl and xp are updated correctly"
-%br
-= "Manual seed updates: added Finlay825 as requested"
-%br
-%br
-
-= "v0.5.1a Dec 5, 2017"
-%br
-= "Updated IM/HCIM/UIM EHP for WC/FM/Fishing/Cooking for accurate account progress for maxing at 200M XP and for differing playstyles"
-%br
-= "Manual seed updates: removed nanitronic, annebelle as fake f2p"
-%br
-= "Bug Fixes: strength and defence positions are no longer swapped"
-%br
-%br
-
-= "v0.5.0a Nov 24, 2017"
-%br
-= "Completed feature: Update all players' stats"
-%br
-= "Manual seed updates: removed j0llypong, solo_a_magic for p2p stats"
-%br
-%br
-
-= "v0.4.1a Nov 22, 2017"
-%br
-= "Added IM/UIM EHP to EHP rates page"
-%br
-= "Formatting changes: Added table borders, highlight selected sort"
-%br
-%br
-
-= "v0.4a Nov 21, 2017"
-%br
-= "Completed features: Filter by account type"
-%br
-= "Manually updated all player stats, dennarr removed for p2p stats"
-%br
-%br
-
-= "v0.3a Nov 15, 2017"
-%br
-= "Improved formatting on individual player page"
-%br
-= "Completed features: Update Player with OSRS hiscores stats, EHP calculation for all account types"
-%br
-= "Added table value: Total P2P XP + P2P Activities (keep it or hide it?)"
-%br
-= "Feature in progress: Update All Players"
-%br
-%br
-
-= "v0.2.4a Nov 14, 2017"
-%br
-= "Imported EHP rates into site"
-%br
-= "Feature in progress: Update Player"
-%br
-= "Manual EHP update for 11/14/2017"
-%br
-%br
-
-
-= "v0.2.3a Nov 12, 2017"
-%br
-= "Changed function of Search Player (Display only accounts with that name) to Find Player (Highlight and scroll down to player)"
-%br
-= "Changed ambiguity of 'Sort Skill By: EHP/Level/XP' to 'Display Skill as: EHP/Level/XP'"
-%br
-= "Temporarily removed incomplete features: find player, filter account type, display skill as"
-%br
-= "Fixed bug: Homepage will not be empty on first visit"
-%br
-= "Clear Filters/Session/Cookies prototype"
-%br
-%br
-
-= "v0.2.2a Nov 11, 2017"
-%br
-= "Updated Reg EHP (nerfed fish/wc/mining/pray/smith/magic)"
-%br
-= "Manual seed updates: removed jade_green, stylen, rajse_ur_att, amethyst_ait, ironcatt, lvl_3_btw, lazor, pure_shreds, rag_bot, ily_ely, 27s_br0, f2prod"
-%br
-%br
-
-= "v0.2a Nov 11, 2017"
-%br
-= "Updated Ironman smithing EHP: smith_ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
-%br
-= "Added Total Level/XP, changed all skill variables to skill_{xp, lvl, ehp}"
-%br
-= "Added Title, Author, Version Control, Changelog, Future Features notes"
-%br
-= "Manual seed updates: added wigj, removed 3 sad 5 u, sqeezer33"
-%br
-= "Updated Reg EHP rates"
-%br
-%br
-= "v0.1a Nov 10, 2017"
-%br
-= "First functional prototype version"
-%br
-= "Manually seeded account names, ~450 accounts from cml's top 200 xp and lvl of each: reg, im (including hc/uim), uim"
-%br
-= "Sorting by overall_ehp, skill_ehp"
-%br 
-= "Search for player by name"
-
-%h4 Future Features
-= "- Hide specific skills/headings on homepage"
-%br
-= "- Correct name formatting, improved search functionality"
-%br
-= "- Display Skill by EHP/Level/XP"
-%br
-= "- Find and add potential F2P accounts from osrs hiscores (weekly)"
-%br
-= "- CSS formatting: highlighting selected sort, table borders, text stylizing, general stylesheet changes"
-%br
-= "- RHP: realistic hours played, no skill except Hitpoints is 0 rhp"
-%br
-= "- RHP competitions: better micro-competitions than EHP because EHP is time to max"
-%br
-= "  For Ironman RHP competitions, algorithms will be set to disqualify hoarding"
-%br
-= "- Filtering accounts by specific xp in specific skills??? (def pure, 10hp, 80 fish pure, 9 pray pure, etc.)"
-%br
-= "- Daily tracking of xp???"
-%br
-%br
-= link_to 'Back', players_path
+= content_tag(:div, nil, style: "width: 300px; padding: 5px;") do 
+  %h1 
+    = F2POSRSRanks::Application.config.version
+  = "please feel free to send any feedback to f2posrsranks@gmail.com"
+  %br
+  %p#notice= notice
+  = link_to 'Back', players_path
+  %br
+  = link_to "View EHP Rates", ehp_path
+  %br
+  = link_to "View Hall of Shame", fake_path
+  
+%br
+= content_tag(:div, nil, style: "min-width: 600px; max-width:1200px; padding: 5px;") do 
+  %h1 Changelog
+  = "v0.6.3a Jan 29, 2017"
+  %br
+  = "Feature-in-progress: more css styling - skill images, better containers"
+  %br
+  = "Fix: EHP, Hall of Shame, Changelog pages styled"
+  %br
+  %br
+  
+  = "v0.6.2a Jan 26, 2017"
+  %br
+  = "Feature-in-progress: css styling"
+  %br
+  = "Feature-in-progress: display skill as ehp, lvl, or xp"
+  %br
+  = "Feature complete: remove p2p automatically"
+  %br
+  = "Updated seeds to include ~3000+ regs, removed p2p"
+  %br
+  %br
+  
+  = "v0.6.1a Jan 21, 2017"
+  %br
+  = "Feature complete: F2P Hall of Shame including banned and fake F2P players"
+  %br
+  = "Feature complete: Add and delete players without resetting database (MOD ACCESS ONLY)"
+  %br
+  %br
+  
+  = "v0.6.0a Jan 21, 2017"
+  %br
+  = "Feature complete: Limit number of accounts shown"
+  %br
+  = "Feature complete: Detect dead HCIMs"
+  %br
+  = "Added all F2P regs with 1k+ total level and F2P IM/UIM/HC with ~400+ total level, found directly from OSRS hiscores, with some known skiller exceptions manually added"
+  %br
+  %br
+  
+  = "v0.5.5a Dec 29, 2017"
+  %br
+  = "Feature-in-progress: Find potential f2p players directly from OSRS hiscores"
+  %br
+  %br
+  
+  = "v0.5.2a Dec 9, 2017"
+  %br
+  = "Feature-in-progress: Show and hide specific skills (highlight is missing, formatting needs work)"
+  %br
+  = "Bug Fixes: total lvl and xp are updated correctly"
+  %br
+  = "Manual seed updates: added Finlay825 as requested"
+  %br
+  %br
+  
+  = "v0.5.1a Dec 5, 2017"
+  %br
+  = "Updated IM/HCIM/UIM EHP for WC/FM/Fishing/Cooking for accurate account progress for maxing at 200M XP and for differing playstyles"
+  %br
+  = "Manual seed updates: removed nanitronic, annebelle as fake f2p"
+  %br
+  = "Bug Fixes: strength and defence positions are no longer swapped"
+  %br
+  %br
+  
+  = "v0.5.0a Nov 24, 2017"
+  %br
+  = "Completed feature: Update all players' stats"
+  %br
+  = "Manual seed updates: removed j0llypong, solo_a_magic for p2p stats"
+  %br
+  %br
+  
+  = "v0.4.1a Nov 22, 2017"
+  %br
+  = "Added IM/UIM EHP to EHP rates page"
+  %br
+  = "Formatting changes: Added table borders, highlight selected sort"
+  %br
+  %br
+  
+  = "v0.4a Nov 21, 2017"
+  %br
+  = "Completed features: Filter by account type"
+  %br
+  = "Manually updated all player stats, dennarr removed for p2p stats"
+  %br
+  %br
+  
+  = "v0.3a Nov 15, 2017"
+  %br
+  = "Improved formatting on individual player page"
+  %br
+  = "Completed features: Update Player with OSRS hiscores stats, EHP calculation for all account types"
+  %br
+  = "Added table value: Total P2P XP + P2P Activities (keep it or hide it?)"
+  %br
+  = "Feature in progress: Update All Players"
+  %br
+  %br
+  
+  = "v0.2.4a Nov 14, 2017"
+  %br
+  = "Imported EHP rates into site"
+  %br
+  = "Feature in progress: Update Player"
+  %br
+  = "Manual EHP update for 11/14/2017"
+  %br
+  %br
+  
+  
+  = "v0.2.3a Nov 12, 2017"
+  %br
+  = "Changed function of Search Player (Display only accounts with that name) to Find Player (Highlight and scroll down to player)"
+  %br
+  = "Changed ambiguity of 'Sort Skill By: EHP/Level/XP' to 'Display Skill as: EHP/Level/XP'"
+  %br
+  = "Temporarily removed incomplete features: find player, filter account type, display skill as"
+  %br
+  = "Fixed bug: Homepage will not be empty on first visit"
+  %br
+  = "Clear Filters/Session/Cookies prototype"
+  %br
+  %br
+  
+  = "v0.2.2a Nov 11, 2017"
+  %br
+  = "Updated Reg EHP (nerfed fish/wc/mining/pray/smith/magic)"
+  %br
+  = "Manual seed updates: removed jade_green, stylen, rajse_ur_att, amethyst_ait, ironcatt, lvl_3_btw, lazor, pure_shreds, rag_bot, ily_ely, 27s_br0, f2prod"
+  %br
+  %br
+  
+  = "v0.2a Nov 11, 2017"
+  %br
+  = "Updated Ironman smithing EHP: smith_ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
+  %br
+  = "Added Total Level/XP, changed all skill variables to skill_{xp, lvl, ehp}"
+  %br
+  = "Added Title, Author, Version Control, Changelog, Future Features notes"
+  %br
+  = "Manual seed updates: added wigj, removed 3 sad 5 u, sqeezer33"
+  %br
+  = "Updated Reg EHP rates"
+  %br
+  %br
+  = "v0.1a Nov 10, 2017"
+  %br
+  = "First functional prototype version"
+  %br
+  = "Manually seeded account names, ~450 accounts from cml's top 200 xp and lvl of each: reg, im (including hc/uim), uim"
+  %br
+  = "Sorting by overall_ehp, skill_ehp"
+  %br 
+  = "Search for player by name"
+  
+  %h4 Future Features
+  = "- Hide specific skills/headings on homepage"
+  %br
+  = "- Correct name formatting, improved search functionality"
+  %br
+  = "- Display Skill by EHP/Level/XP"
+  %br
+  = "- Find and add potential F2P accounts from osrs hiscores (weekly)"
+  %br
+  = "- CSS formatting: highlighting selected sort, table borders, text stylizing, general stylesheet changes"
+  %br
+  = "- RHP: realistic hours played, no skill except Hitpoints is 0 rhp"
+  %br
+  = "- RHP competitions: better micro-competitions than EHP because EHP is time to max"
+  %br
+  = "  For Ironman RHP competitions, algorithms will be set to disqualify hoarding"
+  %br
+  = "- Filtering accounts by specific xp in specific skills??? (def pure, 10hp, 80 fish pure, 9 pray pure, etc.)"
+  %br
+  = "- Daily tracking of xp???"
+  %br
+  %br
+  = link_to 'Back', players_path

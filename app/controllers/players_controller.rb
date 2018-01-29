@@ -16,6 +16,8 @@ class PlayersController < ApplicationController
     @show_limit = params[:show_limit] || session[:show_limit] || 500
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
+      params[:filters_] = @filters
+      session[:filters_] = @filters
     end
     
     if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
@@ -142,7 +144,7 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update_player
     @player = Player.find params[:id]
-    if F2POSRSRanks::Application.config.fakes.include?(@player.player_name)
+    if F2POSRSRanks::Application.config.downcase_fakes.include?(@player.player_name.downcase)
       Player.where(player_name: @player.player_name).destroy_all
       redirect_to players_url, notice: 'Fake F2P player was successfully removed.'
     end
@@ -224,7 +226,7 @@ class PlayersController < ApplicationController
   
   def refresh_players
     Player.all.each do |player|
-      if F2POSRSRanks::Application.config.fakes.include?(player.player_name)
+      if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
         Player.where(player_name: player.player_name).destroy_all
         next
       end
