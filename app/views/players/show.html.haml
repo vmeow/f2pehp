@@ -1,4 +1,4 @@
-= content_tag(:div, nil, style: "width: 300px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 300px; padding: 5px;") do 
   %h1 
     = F2POSRSRanks::Application.config.version
   = "please feel free to send any feedback to f2posrsranks@gmail.com"
@@ -11,12 +11,12 @@
   = link_to "View Hall of Shame", fake_path
     
 %br  
-= content_tag(:div, nil, style: "width: 185px; padding: 5px; margin-bottom: 10px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 185px; padding: 5px; margin-bottom: 10px;") do 
   %h1 Player Stats
   = form_tag players_path(@player), :method => :put do
     = link_to 'Update Player Stats', @player, method: :update_player
 
-= content_tag(:table, nil, style: "width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
+= content_tag(:table, nil, style: "text-align: center; margin: auto; width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
   %tbody
     %tr
       %th{:align => "left"} Player Name 
@@ -26,7 +26,7 @@
       %td= @player.player_acc_type
 
 %br
-= content_tag(:table, nil, style: "max-width: 600px; min-width: 300px; padding: 5px; margin-bottom: 10px;") do 
+= content_tag(:table, nil, style: "text-align: center; margin: auto; max-width: 600px; min-width: 300px; padding: 5px; margin-bottom: 10px;") do 
   %thead
     %th{:align => "center"}  
     %th{:align => "center"}  XP
@@ -114,7 +114,7 @@
       %td= @player.runecraft_lvl
       %td= @player.runecraft_ehp
 
-= content_tag(:div, nil, style: "width: 140px; padding: 5px; margin-top: 10px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 140px; padding: 5px; margin-top: 10px;") do 
   = link_to 'Update Player Stats', @player, method: :update_player
   %br
   = link_to 'Back', players_path 

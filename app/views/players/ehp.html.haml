@@ -1,4 +1,4 @@
-= content_tag(:div, nil, style: "min-width: 300px; max-width:600px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 300px; max-width:300px; padding: 5px;") do 
   %h1 
     = F2POSRSRanks::Application.config.version
   = "please feel free to send any feedback to f2posrsranks@gmail.com"
@@ -12,7 +12,7 @@
   %br
 
 %br  
-= content_tag(:div, nil, style: "min-width: 300px; max-width:600px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 300px; max-width:460px; padding: 5px;") do 
   %h1 F2P EHP Rates
   = "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
   %br
@@ -24,7 +24,7 @@
 - ehp_reg = F2POSRSRanks::Application.config.ehp_reg
 - ehp_iron = F2POSRSRanks::Application.config.ehp_iron
 - ehp_uim = F2POSRSRanks::Application.config.ehp_uim
-
+%br
 %table
   %thead
     %tr
@@ -50,7 +50,7 @@
             %br
 
 %br
-= content_tag(:div, nil, style: "min-width: 300px; max-width:600px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 300px; max-width:460px; padding: 5px;") do 
   
   = "NOTE: F2P IM/HCIM Smithing EHP is adjusted as follows:"
   %br

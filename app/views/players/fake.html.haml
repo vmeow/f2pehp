@@ -1,4 +1,4 @@
-= content_tag(:div, nil, style: "min-width: 300px; max-width:600px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align:center; margin: auto; min-width: 300px; max-width:300px; padding: 5px;") do 
   %h1 
     = F2POSRSRanks::Application.config.version 
   = "please feel free to send any feedback to f2posrsranks@gmail.com"
@@ -13,29 +13,25 @@
   = link_to "View EHP Rates", ehp_path
 
 %br
-= content_tag(:div, nil, style: "min-width: 205px; max-width: 205px; padding: 5px;") do 
+= content_tag(:div, nil, style: "margin: auto; min-width: 205px; max-width: 205px; padding: 5px;") do 
   %h1 F2P Hall of Shame
 
-- fakes = ["K4de", "Susen", "Turkish Bear", "Minijordan", "Gwyse", "Garof", "Spiderdreng4", "Ski Jump", "Rodaten", "Drequis", "Macho95", "Regretterd", "Dragons Lair", "Hai Yass", "Foolthiz", "Quincyx3", "Kortemark", "9 Dryad Cow", "Mmm Crabz", "Dailypoon25", "Smorc Champ", "Godlike", "Saap", "Ajshmayjay", "Dubstepn69", "Feeshone", "Orangemarmal", "Cfwx", "Luulul", "Tubracito", "Reclaimzed", "Xanthe Will", "Honesdale", "10hp Skill", "Xyujah1", "Vipc", "1212x", "Cybathug", "Afkallday", "Purcopyx", "Add1s0n", "Vulfepayne", "Airagan", "Cameronkuh", "Anne De Tank", "Psicowave", "Countstumpy2", "Mirnoi", "Riko661", "Gatormind", "Woodcutter7k", "Dopey Goat", "Uristmcdorf", "Boaswen", "Sirbloby123", "Del5thslave", "Minningguy14", "Del4thslave", "Aylaw", "0n Gp", "Venedi", "Yutram", "Whispah11", "Funkyjunk122", "Why You No", "Mrsshoarma", "Deathyy18", "Morthook", "Alexnolan", "Zem Fishies", "Bobfish66", "Hengen Mies", "Penguins 0", "Kingpin6999", "Minecat", "Greenholgart", "Ocigoniel", "Omgfreecake", "Vornollo", "Szzadi3", "Mistereremin", "Kawaiiniisan", "Thenthedr", "Redboyfrisco", "0t H", "Miner Timmie", "Nanitronic", "Takane", "Consortium", "Crisp Gains", "Mkbngg", "Mcgavin", "Orydel", "Porttieerik", "Mikeyman", "Azzazeell", "Zuls", "Purcopyxx", "Grand Danke", "Broembroemk", "Sir Kmilooxd", "Denise", "Puh3linmembu", "Salmonsmoker", "Recknded", "Justdontrush", "Hvvvppw", "Southernlady", "Onoesa", "Groovydroid", "Skiller0nlyy", "Mate Sauron", "Firem", "King Of Rr", "Kedaredan", "Umap", "Asku", "Aracion", "Ur Kiddin", "Muhpatriarky", "Bringing", "Amethyst Alt", "Gwilalian", "Minerio", "To Tank", "Etion Isces", "Flysandgold", "Adiput16", "Me Exp", "X O L337 O X", "Annebelle", "Like Fire", "K S", "Zomble Boy", "Sinister Ug", "Mivok", "Chessy 018", "Pot Of Bone", "Alt Amethyst", "Ckzlphc", "Tko1", "Eat Baby Boy", "Jerayred", "Zjs", "Bank Nothing", "Iron Farter", "Dying Sea", "Xcrushyx", "Acigosh", "Sionoft", "Igsuck", "9 Only Low", "Apex Tigrex", "Lordnetto", "Anshelm", "Glardoldan", "Jayden 1486", "K1ss K1lla", "Lost Forest", "Lilypadda", "2002 Tii", "Conelle", "Resolution", "Sphdinp", "Araliclya", "Chanpluru", "Skillerzzzse", "Trigobard", "Raerey", "Tom Clancy", "Lolislay3r", "Emx", "Seek God", "Hagain", "Whatttattata",  "Dressing", "Blye", "Notoskillhop", "Unililith", "Hirawiel", "021805", "Lil Deyoung", "Albertxyx", "Pressing", "Strokinglogs", "Shark Fishr", "Del3rdslave", "Bangbung32", "Negnelfi", "30 Bag", "Tianyumi", "Mrwoodcut", "Dominics 1st", "Al Alt2", "06account", "Atipatio", "Snail4sale", "Bmatic 15", "Bgjela", "Esh", "Vexens23", "W333seers Wc", "Isstoissr", "Goldwing100", "Steampress", "Flag1er", "Ezr3all", "Y3w5", "Whirlwind Ko"]
-- banned = ["Sharply Stab", "Wachbirne"]
-
-
-%table
-  %thead
-    %tr
-      %th Banned
-  %tbody
-    - banned.each do |player|
-      %tr
-        %td{:align => "center"}= player
-
 %br
-%br
-%table
-  %thead
-    %tr
-      %th Fake F2P
-  %tbody
-    - fakes.each do |player|
+= content_tag(:div, nil, style: "margin: auto; max-width: 220px; overflow-x: auto; margin-top: 5px; margin-bottom: 5px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:table, nil, style: "margin-right: auto; float: left; width: 100px; min-width: 100px; padding: 5px; margin-bottom: 10px;") do 
+    %thead
       %tr
-        %td{:align => "center"}= player
+        %th Banned
+    %tbody
+      - F2POSRSRanks::Application.config.banned.each do |player|
+        %tr
+          %td{:align => "center"}= player
+          
+  = content_tag(:table, nil, style: "margin-left: auto; float: right; width: 100px; min-width: 100px; padding: 5px; margin-bottom: 10px;") do 
+    %thead
+      %tr
+        %th Fake F2P
+    %tbody
+      - F2POSRSRanks::Application.config.fakes.each do |player|
+        %tr
+          %td{:align => "center"}= player

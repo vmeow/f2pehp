@@ -1,25 +1,30 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-html, body {
-  margin-left: 25px;
+body {
+  //margin-left: 25px;
   color: #969696; 
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
+  width: 100%;
+  height: 100%;
   
-  background: image-url("longer_bg.jpg") fixed; 
-  background-color: rgba(0, 0, 0, 0.5);
-  max-width: 1200px !important;
-  overflow-x: hidden;
+  text-align: center;
+  background: black;
+  background-image: image-url("original_bg2.jpg");
+  background-position: top center;
+  background-repeat: repeat-y;
+  overflow-x: auto;
 }
 
 div {
-  margin-left: 10px;
+  //margin-left: 10px;
   margin-bottom: 5px;
   color: #969696;
   overflow: hidden;
   background-color: rgba(0,0,0,0.75);
   border: 3px solid #3E3B23;
+  overflow-x: auto;
 }
 
 div#main {
@@ -67,8 +72,10 @@ h1 {
 }
 
 table {
-  margin-left: 10px;
-  margin-top: 5px;
+  //margin-left: 10px;
+  //margin-top: 5px;
+  margin: auto;
+  
   //border: 3px solid #3E3B23;
   border-collapse: collapse;
   color: #969696;
@@ -76,6 +83,8 @@ table {
   background-color: rgba(0,0,0,0.5);
   border-color: #333333;
   min-width: 560px;
+  max-width: 660px;
+  overflow-x: auto;
   
   /*
   background: url("original_backdrop_745.png");
@@ -107,9 +116,28 @@ table th.hilite {
   background-color: #5B1D76; //#242424;
 }
 
-/*SEARCH BAR STYLING*/
+/*SEARCH BAR STYLING
 #search input[type="text"]{
     color: black;
     background-color: white;
     font-family: 'Verdana';
+}
+*/
+
+
+
+.left {
+ text-align:left;
+ margin-right:auto;
+}
+
+.right {
+ text-align:right;
+ margin-left:auto;
+}
+
+.center {
+ text-align:center;
+ margin-left:auto;
+ margin-right:auto;
 }

@@ -1,5 +1,5 @@
 
-= content_tag(:div, nil, style: "width: 300px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 300px; padding: 5px;") do 
   %h1 
     = F2POSRSRanks::Application.config.version
   = "please feel free to send any feedback to f2posrsranks@gmail.com"
@@ -12,13 +12,13 @@
   = link_to "View Hall of Shame", fake_path
   
 %br
-= content_tag(:div, nil, style: "min-width: 600px; max-width:1200px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: left; margin: auto; min-width: 600px; max-width:780px; padding: 5px;") do 
   %h1 Changelog
   = "v0.6.4a Jan 30, 2017"
   %br
   = "Feature added: Message of the day"
   %br
-  = "Feature-in-progress: more css styling - skill images, better containers"
+  = "Feature-in-progress: more css styling - centering containers, tables, text"
   %br
   = "Fix: Show player page styled"
   %br
