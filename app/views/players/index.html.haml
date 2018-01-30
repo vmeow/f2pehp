@@ -1,4 +1,5 @@
-= content_tag(:div, nil, style: "width: 300px; padding: 5px;") do 
+/= content_tag(:div, nil, style: "width: 300px; padding: 5px; margin: auto; text-align: center;") do 
+= content_tag(:div, nil, style: "text-align: center; width: 300px; padding: 5px; margin: auto;") do 
   %h1 
     = F2POSRSRanks::Application.config.version
   = "please feel free to send any feedback to f2posrsranks@gmail.com"
@@ -9,18 +10,15 @@
   = link_to "View EHP Rates", ehp_path
   %br
   = link_to "View Hall of Shame", fake_path
-  
-  /= form_tag players_path, :method => "get", id: "search-players-form" do
-  /  = "Find Player (Highlight and scroll down to player): COMING SOON"
-  /  = text_field_tag :search, params[:search], placeholder: "Search Players"
-  /  = submit_tag "Search" 
-  /  %br
-  /  %br
+
+%br
+= content_tag(:div, nil, style: "text-align: center; width: 300px; padding: 5px; margin: auto;") do 
+  = "MOTD: remember to stay hydrated! may your health, happiness, and hydration be well"
 
 %br 
-/= content_tag(:container, nil, style: "max-width: 350px;") do
+/= content_tag(:div, nil, style: "width: 100% auto; padding: 30px; color: none; background-color: green; border: none") do 
 = content_tag(:div, nil, style: "margin-left: 0px; margin-top: 5px; margin-bottom: 5px; color: none; background-color: transparent; border: none") do 
-
+  /= content_tag(:div, nil, style: "display: inline-block; margin: auto; width: 115px; vertical-align: middle; padding: 5px;") do 
   = content_tag(:div, nil, style: "float:left; width: 115px; padding: 5px;") do 
     = form_tag players_path, :method => :get, :id => 'display_form' do
       = "Display Skill as:"
@@ -37,7 +35,8 @@
       = "XP"
       %br
       = submit_tag 'Refresh', {:id => 'display_submit'}
-      
+
+  /= content_tag(:div, nil, style: "display: inline-block; margin: auto; width: 95px; vertical-align: middle; padding: 5px;") do 
   = content_tag(:div, nil, style: "float:left; width: 95px; padding: 5px;") do 
     = form_tag players_path, :method => :get, :id => 'filters_form' do
     
@@ -57,6 +56,7 @@
       %br
       = submit_tag 'Filter', :id => "filters_submit"
     
+  /= content_tag(:div, nil, style: "display: inline-block; margin: auto; width: 115px; vertical-align: middle; padding: 5px;") do 
   = content_tag(:div, nil, style: "float:left; width: 115px; padding: 5px;") do 
     = form_tag players_path, :method => :get, :id => 'show_limits_form' do
     
@@ -80,6 +80,7 @@
       %br
       = submit_tag 'Refresh', :id => "show_limit_submit"
       
+  /= content_tag(:div, nil, style: "display: inline-block; margin: auto; width: 165px; vertical-align: middle; padding: 5px;") do 
   = content_tag(:div, nil, style: "float:left; width: 165px; padding: 5px;") do 
     = form_tag players_path, :method => :get, :id => 'skills_form' do
       - all_skills = F2POSRSRanks::Application.config.f2p_skills
@@ -100,14 +101,16 @@
       %th Name
       %th Update Stats
       %th Account Type
-      %th{:class => @player_lvl_header}= link_to 'Total Level', players_path(:sort_by => 'overall_lvl'), :id => 'player_lvl_header'
+      %th{:class => @player_lvl_header}= link_to 'Total LVL', players_path(:sort_by => 'overall_lvl'), :id => 'player_lvl_header'
       %th{:class => @player_xp_header}= link_to 'Total XP', players_path(:sort_by => 'overall_xp'), :id => 'player_xp_header'
       %th{:class => @player_ehp_header}= link_to 'Overall EHP', players_path(:sort_by => 'overall_ehp'), :id => 'player_ehp_header'
       - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
         - if @skills.include?("#{skill}")
           - template = "%s_%s"
-          - t = template % [skill, @display]
-          %th{:class => "@player_#{skill}_header"}= link_to "#{skill}", players_path(:sort_by => t), :id => "player_#{skill}_header"
+          - template2 = "%s %s"
+          - t = template % [skill, session[:display]]
+          - t2 = template2 % [skill.capitalize, session[:display].upcase]
+          %th{:class => "@player_#{skill}_header"}= link_to t2, players_path(:sort_by => t), :id => "player_#{skill}_header"
       /%th{:class => @player_attack_header}= link_to 'Attack', players_path(:sort_by => 'attack_ehp'), :id => 'player_attack_header'
       /%th{:class => @player_strength_header}= link_to 'Strength', players_path(:sort_by => 'strength_ehp'), :id => 'player_strength_header'
       /%th{:class => @player_defence_header}= link_to 'Defence', players_path(:sort_by => 'defence_ehp'), :id => 'player_defence_header'

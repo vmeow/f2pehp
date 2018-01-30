@@ -1,115 +1,120 @@
-%h1 
-  = F2POSRSRanks::Application.config.version
-= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
+= content_tag(:div, nil, style: "width: 300px; padding: 5px;") do 
+  %h1 
+    = F2POSRSRanks::Application.config.version
+  = "please feel free to send any feedback to f2posrsranks@gmail.com"
+  %br
+  %p#notice= notice
+  = link_to 'Back', players_path
+  %br
+  = link_to "View EHP Rates", ehp_path
+  %br
+  = link_to "View Hall of Shame", fake_path
+    
+%br  
+= content_tag(:div, nil, style: "width: 185px; padding: 5px; margin-bottom: 10px;") do 
+  %h1 Player Stats
+  = form_tag players_path(@player), :method => :put do
+    = link_to 'Update Player Stats', @player, method: :update_player
+
+= content_tag(:table, nil, style: "width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
+  %tbody
+    %tr
+      %th{:align => "left"} Player Name 
+      %td= @player.player_name
+    %tr
+      %th{:align => "left"} Account Type 
+      %td= @player.player_acc_type
+
 %br
-%p#notice= notice
+= content_tag(:table, nil, style: "max-width: 600px; min-width: 300px; padding: 5px; margin-bottom: 10px;") do 
+  %thead
+    %th{:align => "center"}  
+    %th{:align => "center"}  XP
+    %th{:align => "center"}  Level
+    %th{:align => "center"}  EHP
+  %tbody
+    %tr
+      %th{:align => "left"} Overall
+      %td= @player.overall_xp
+      %td= @player.overall_lvl
+      %td= @player.overall_ehp
+    %tr
+      %th{:align => "left"} Attack
+      %td= @player.attack_xp
+      %td= @player.attack_lvl
+      %td= @player.attack_ehp
+    %tr
+      %th{:align => "left"} Strength
+      %td= @player.strength_xp
+      %td= @player.strength_lvl
+      %td= @player.strength_ehp
+    %tr
+      %th{:align => "left"} Defence
+      %td= @player.defence_xp
+      %td= @player.defence_lvl
+      %td= @player.defence_ehp
+    %tr
+      %th{:align => "left"} Hitpoints
+      %td= @player.hitpoints_xp
+      %td= @player.hitpoints_lvl
+      %td= @player.hitpoints_ehp
+    %tr
+      %th{:align => "left"} Ranged
+      %td= @player.ranged_xp
+      %td= @player.ranged_lvl
+      %td= @player.ranged_ehp
+    %tr
+      %th{:align => "left"} Prayer
+      %td= @player.prayer_xp
+      %td= @player.prayer_lvl
+      %td= @player.prayer_ehp
+    %tr
+      %th{:align => "left"} Magic
+      %td= @player.magic_xp
+      %td= @player.magic_lvl
+      %td= @player.magic_ehp
+    %tr
+      %th{:align => "left"} Cooking
+      %td= @player.cooking_xp
+      %td= @player.cooking_lvl
+      %td= @player.cooking_ehp
+    %tr
+      %th{:align => "left"} Woodcutting
+      %td= @player.woodcutting_xp
+      %td= @player.woodcutting_lvl
+      %td= @player.woodcutting_ehp
+    %tr
+      %th{:align => "left"} Fishing
+      %td= @player.fishing_xp
+      %td= @player.fishing_lvl
+      %td= @player.fishing_ehp
+    %tr
+      %th{:align => "left"} Firemaking
+      %td= @player.firemaking_xp
+      %td= @player.firemaking_lvl
+      %td= @player.firemaking_ehp
+    %tr
+      %th{:align => "left"} Crafting
+      %td= @player.crafting_xp
+      %td= @player.crafting_lvl
+      %td= @player.crafting_ehp
+    %tr
+      %th{:align => "left"} Smithing
+      %td= @player.smithing_xp
+      %td= @player.smithing_lvl
+      %td= @player.smithing_ehp
+    %tr
+      %th{:align => "left"} Mining
+      %td= @player.mining_xp
+      %td= @player.mining_lvl
+      %td= @player.mining_ehp
+    %tr
+      %th{:align => "left"} Runecraft
+      %td= @player.runecraft_xp
+      %td= @player.runecraft_lvl
+      %td= @player.runecraft_ehp
 
-= form_tag players_path(@player), :method => :put do
-  %br
-  = link_to 'Update Player Stats', @player, method: :update_player
-  %br
-  = link_to 'Back', players_path 
-  
-  %h2 Player Stats
-
-  %table
-    %tbody
-      %tr
-        %th{:align => "left"} Player Name 
-        %td= @player.player_name
-      %tr
-        %th{:align => "left"} Account Type 
-        %td= @player.player_acc_type
-  %br
-  %table
-    %thead
-      %th{:align => "center"}  
-      %th{:align => "center"}  XP
-      %th{:align => "center"}  Level
-      %th{:align => "center"}  EHP
-    %tbody
-      %tr
-        %th{:align => "left"} Overall
-        %td= @player.overall_xp
-        %td= @player.overall_lvl
-        %td= @player.overall_ehp
-      %tr
-        %th{:align => "left"} Attack
-        %td= @player.attack_xp
-        %td= @player.attack_lvl
-        %td= @player.attack_ehp
-      %tr
-        %th{:align => "left"} Strength
-        %td= @player.strength_xp
-        %td= @player.strength_lvl
-        %td= @player.strength_ehp
-      %tr
-        %th{:align => "left"} Defence
-        %td= @player.defence_xp
-        %td= @player.defence_lvl
-        %td= @player.defence_ehp
-      %tr
-        %th{:align => "left"} Hitpoints
-        %td= @player.hitpoints_xp
-        %td= @player.hitpoints_lvl
-        %td= @player.hitpoints_ehp
-      %tr
-        %th{:align => "left"} Ranged
-        %td= @player.ranged_xp
-        %td= @player.ranged_lvl
-        %td= @player.ranged_ehp
-      %tr
-        %th{:align => "left"} Prayer
-        %td= @player.prayer_xp
-        %td= @player.prayer_lvl
-        %td= @player.prayer_ehp
-      %tr
-        %th{:align => "left"} Magic
-        %td= @player.magic_xp
-        %td= @player.magic_lvl
-        %td= @player.magic_ehp
-      %tr
-        %th{:align => "left"} Cooking
-        %td= @player.cooking_xp
-        %td= @player.cooking_lvl
-        %td= @player.cooking_ehp
-      %tr
-        %th{:align => "left"} Woodcutting
-        %td= @player.woodcutting_xp
-        %td= @player.woodcutting_lvl
-        %td= @player.woodcutting_ehp
-      %tr
-        %th{:align => "left"} Fishing
-        %td= @player.fishing_xp
-        %td= @player.fishing_lvl
-        %td= @player.fishing_ehp
-      %tr
-        %th{:align => "left"} Firemaking
-        %td= @player.firemaking_xp
-        %td= @player.firemaking_lvl
-        %td= @player.firemaking_ehp
-      %tr
-        %th{:align => "left"} Crafting
-        %td= @player.crafting_xp
-        %td= @player.crafting_lvl
-        %td= @player.crafting_ehp
-      %tr
-        %th{:align => "left"} Smithing
-        %td= @player.smithing_xp
-        %td= @player.smithing_lvl
-        %td= @player.smithing_ehp
-      %tr
-        %th{:align => "left"} Mining
-        %td= @player.mining_xp
-        %td= @player.mining_lvl
-        %td= @player.mining_ehp
-      %tr
-        %th{:align => "left"} Runecraft
-        %td= @player.runecraft_xp
-        %td= @player.runecraft_lvl
-        %td= @player.runecraft_ehp
-
-  %br
+= content_tag(:div, nil, style: "width: 140px; padding: 5px; margin-top: 10px;") do 
   = link_to 'Update Player Stats', @player, method: :update_player
   %br
   = link_to 'Back', players_path 
