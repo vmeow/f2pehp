@@ -6,6 +6,8 @@
   %p#notice= notice
   = link_to 'Back', players_path
   %br
+  //= link_to "Recommended Links", links_path
+  //%br
   = link_to "View Changelog", changelog_path
   %br
   = link_to "View EHP Rates", ehp_path
@@ -67,4 +69,8 @@
 
 = content_tag(:div, nil, style: "text-align:center; margin: auto; min-width: 300px; max-width:300px; padding: 5px; margin-top: 10px;") do 
   %h1 F2P Supporters
-  
+  = "Anonymous"
+  %br
+  = link_to "Obor", "players/461"
+  %br
+  = link_to "F2P Lukie", "players/1270"

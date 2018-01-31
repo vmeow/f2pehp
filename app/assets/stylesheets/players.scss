@@ -79,6 +79,26 @@ h3 {
   width: 100%;
 }
 
+h5 {
+  color: gold;
+  font-family: 'Verdana';
+  font-size: 18px;
+  font-style: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+a[href$="/461"]:before { /* For Obor*/
+  vertical-align: middle;
+  padding: 3px;
+  content: url("shamanmask.png");
+}
+
+a[href$="/461"]:after { /* For Obor*/
+  padding: 3px;
+  content: url("oborclub.png");
+}
+
 table {
   //margin-left: 10px;
   //margin-top: 5px;

@@ -6,6 +6,8 @@
   %p#notice= notice
   = link_to 'Back', players_path
   %br
+  //= link_to "Useful Links", links_path
+  //%br
   = link_to "View EHP Rates", ehp_path
   %br
   = link_to "View Hall of Shame", fake_path
@@ -117,7 +119,5 @@
       %td= @player.runecraft_ehp
 
 = content_tag(:div, nil, style: "text-align: center; margin: auto; width: 140px; padding: 5px; margin-top: 10px;") do 
-  = link_to 'Update Player Stats', @player, method: :update_player
-  %br
   = link_to 'Back', players_path 
 

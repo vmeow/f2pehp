@@ -1,0 +1,32 @@
+= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 300px; max-width:300px; padding: 5px;") do 
+  %h1 
+    = F2POSRSRanks::Application.config.version
+  = "please feel free to send any feedback to f2posrsranks@gmail.com"
+  %br
+  %p#notice= notice
+  = link_to 'Back', players_path
+  %br
+  = link_to "View Changelog", changelog_path
+  %br
+  = link_to "View EHP Rates", ehp_path
+  %br
+  = link_to "View Hall of Shame", fake_path
+  %br
+  = link_to "About Us/Donations", donate_path
+
+%br  
+= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 300px; max-width:460px; padding: 5px;") do 
+  %h1 Useful Links
+  %h4 F2P Clans
+  = link_to "W_385", "http://www.reddit.com/r/W385/"
+  %br
+  = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/forums.ws?320,321,76,65920787"
+  %h4 F2P Clans
+  = link_to "W_385", "http://www.reddit.com/r/W385/"
+  %br
+  = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/forums.ws?320,321,76,65920787"
+
+
+%br
+= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 60px; max-width:60px; padding: 5px;") do 
+  = link_to 'Back', players_path
