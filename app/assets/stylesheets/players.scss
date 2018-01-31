@@ -91,12 +91,12 @@ h5 {
 a[href$="/461"]:before { /* For Obor*/
   vertical-align: middle;
   padding: 3px;
-  content: url("shamanmask.png");
+  content: image-url("shamanmask.png");
 }
 
 a[href$="/461"]:after { /* For Obor*/
   padding: 3px;
-  content: url("oborclub.png");
+  content: image-url("oborclub.png");
 }
 
 table {
