@@ -88,16 +88,6 @@ h5 {
   margin-bottom: 5px;
 }
 
-a[href$="/461"]:before { /* For Obor*/
-  vertical-align: middle;
-  padding: 3px;
-  content: image-url("shamanmask.png");
-}
-
-a[href$="/461"]:after { /* For Obor*/
-  padding: 3px;
-  content: image-url("oborclub.png");
-}
 
 table {
   //margin-left: 10px;
@@ -168,4 +158,30 @@ table th.hilite {
  text-align:center;
  margin-left:auto;
  margin-right:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+a[href$="/461"]:before { /* For Obor*/
+  vertical-align: middle;
+  padding: 3px;
+  content: image-url("shamanmask.png");
+}
+
+a[href$="/461"]:after { /* For Obor*/
+  padding: 3px;
+  content: image-url("oborclub.png");
+}
+
+a[href$="/1267"]:after { /* For Derecor*/
+  padding: 3px;
+  content: image-url("skulled.png");
 }
