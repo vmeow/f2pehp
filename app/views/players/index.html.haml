@@ -24,17 +24,20 @@
     = form_tag players_path, :method => :get, :id => 'display_form' do
       = "Display Skill as:"
       %br
-      = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
-      = "EHP"
-      
-      %br
-      = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
-      = "Level"
-      
-      %br
-      = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
-      = "XP"
-      %br
+      = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
+        = "EHP"
+        
+        %br
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
+        = "Level"
+        
+        %br
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
+        = "XP"
       = submit_tag 'Refresh', {:id => 'display_submit'}
 
   = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 95px; padding: 5px;") do 
@@ -42,41 +45,48 @@
     
       = "Filter Account Type?"
       %br
-      = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
-      = "Reg"
-      %br
-      = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
-      = "IM"
-      %br
-      = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
-      = "UIM"
-      %br
-      = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
-      = "HCIM"
-      %br
+      = content_tag(:div, nil, style: "text-align: left;width: 95px; border: none; background: none;") do
+        &nbsp;&nbsp;&nbsp;
+        = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
+        = "Reg"
+        %br
+        &nbsp;&nbsp;&nbsp;
+        = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
+        = "IM"
+        %br
+        &nbsp;&nbsp;&nbsp;
+        = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
+        = "UIM"
+        %br
+        &nbsp;&nbsp;&nbsp;
+        = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
+        = "HCIM"
       = submit_tag 'Filter', :id => "filters_submit"
     
   = content_tag(:div, nil, style: "margin-left:auto; float: right; margin-right: 5px; width: 115px; padding: 5px;") do
     = form_tag players_path, :method => :get, :id => 'show_limits_form' do
-    
       = "Limit Results?"
       %br
-    
-      = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
-      = "Top 250"
-      %br
-      = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
-      = "Top 500"
-      %br
-      = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
-      = "Top 1000"
-      %br
-      = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
-      = "Top 2000"
-      %br
-      = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
-      = "All Accounts"
-      %br
+      = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
+        &nbsp;
+        = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
+        = "Top 250"
+        %br
+        &nbsp;
+        = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
+        = "Top 500"
+        %br
+        &nbsp;
+        = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
+        = "Top 1000"
+        %br
+        &nbsp;
+        = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
+        = "Top 2000"
+        %br
+        &nbsp;
+        = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
+        = "All Accounts"
       = submit_tag 'Refresh', :id => "show_limit_submit"
       
   = content_tag(:div, nil, style: "margin-left:auto; margin-right: 5px; float: right; width: 165px; padding: 5px;") do 
