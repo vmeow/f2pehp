@@ -9,10 +9,14 @@
   = link_to "View EHP Rates", ehp_path
   %br
   = link_to "View Hall of Shame", fake_path
+  %br
+  = link_to "About Us/Donations", donate_path
 
 %br
 = content_tag(:div, nil, style: "text-align: center; width: 300px; padding: 5px; margin: auto;") do 
-  = "MOTD: Remember to stay hydrated! May your health, happiness, and hydration be well."
+  %h3 Message Of The Day
+  %h4 We are very excited to announce the F2P OSRS Ranks v1.0 public release!
+  = "Remember to stay hydrated! May your health, happiness, and hydration be well."
 
 %br 
 = content_tag(:div, nil, style: "margin: auto; width: 575px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 

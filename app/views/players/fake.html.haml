@@ -3,18 +3,20 @@
     = F2POSRSRanks::Application.config.version 
   = "please feel free to send any feedback to f2posrsranks@gmail.com"
   %br
-  = "special thanks to Pawz for his confirmed fake f2p list"
-  %br
   %p#notice= notice
   = link_to 'Back', players_path
   %br
   = link_to "View Changelog", changelog_path
   %br
   = link_to "View EHP Rates", ehp_path
+  %br
+  = link_to "About Us/Donations", donate_path
 
 %br
 = content_tag(:div, nil, style: "margin: auto; min-width: 205px; max-width: 205px; padding: 5px;") do 
   %h1 F2P Hall of Shame
+  = "special thanks to Pawz for his confirmed fake f2p list"
+
 
 %br
 = content_tag(:div, nil, style: "margin: auto; max-width: 220px; overflow-x: auto; margin-top: 5px; margin-bottom: 5px; color: none; background-color: transparent; border: none") do 
