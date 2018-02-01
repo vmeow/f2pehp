@@ -173,15 +173,18 @@ table th.hilite {
 a[href$="/461"]:before { /* For Obor*/
   vertical-align: middle;
   padding: 3px;
+  vertical-align: -6px;
   content: image-url("shamanmask.png");
 }
 
 a[href$="/461"]:after { /* For Obor*/
   padding: 3px;
+  vertical-align: -6px;
   content: image-url("oborclub.png");
 }
 
 a[href$="/6128"]:after { /* For Pawz*/
   padding: 3px;
   content: image-url("rs3helm.png");
+  vertical-align: -6px;
 }
