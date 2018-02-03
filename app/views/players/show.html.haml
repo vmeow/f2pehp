@@ -18,7 +18,7 @@
 = content_tag(:div, nil, style: "text-align: center; margin: auto; width: 185px; padding: 5px; margin-bottom: 10px;") do 
   %h1 Player Stats
   = form_tag players_path(@player), :method => :put do
-    = link_to 'Update Player Stats', @player, method: :update_player
+    = link_to "Update Stats for #{@player.player_name}", @player, method: :update_player
 
 = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
   %tbody
