@@ -188,3 +188,10 @@ a[href$="/6128"]:after { /* For Pawz*/
   content: image-url("rs3helm.png");
   vertical-align: -6px;
 }
+
+/* For nagraB */
+a[href$="/6525"]:after { 
+  padding: 3px;
+  content: image-url("bargan.png");
+  vertical-align: -6px;
+}
