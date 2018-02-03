@@ -196,13 +196,8 @@ a[href$="/6525"]:after, a[href$="/9316"]:after {
   vertical-align: -6px;
 }
  
-a[href$="/458"]:after { 
+a[href$="/458"]:after {  /* For Mace Din */
   padding: 3px;
   content: image-url("maceblur.png");
-  vertical-align: -6px;
-}
-a[href$="/458"]:before { 
-  padding: 3px;
-  content: image-url("mace.png");
   vertical-align: -6px;
 }
