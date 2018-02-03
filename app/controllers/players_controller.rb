@@ -168,8 +168,12 @@ class PlayersController < ApplicationController
     begin
       name = @player.player_name.gsub(" ", "_")
       puts name
-      uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-      all_stats = uri.read.split(" ")
+      if name == "Bargan"
+        all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
+      else
+        uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+        all_stats = uri.read.split(" ")
+      end
       total_ehp = 0.0
       F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
         skill_lvl = all_stats[skill_idx].split(",")[1].to_f
@@ -249,8 +253,12 @@ class PlayersController < ApplicationController
       name = player.player_name.gsub(" ", "_")
       puts name
       begin
-        uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-        all_stats = uri.read.split(" ")
+        if name == "Bargan"
+          all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
+        else
+          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+          all_stats = uri.read.split(" ")
+        end
         total_ehp = 0.0
         F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
           skill_lvl = all_stats[skill_idx].split(",")[1].to_f
