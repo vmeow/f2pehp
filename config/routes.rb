@@ -5,13 +5,16 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'players#index'
-  get 'changelog' => 'players#changelog'
+  get 'index' => 'players#index'
+  get 'ranks' => 'players#ranks'
   get 'ehp' => 'players#ehp'
   get 'fake' => 'players#fake'
+  get 'links' => 'players#links'
+  get 'changelog' => 'players#changelog'
+  get 'oldchangelog' => 'players#oldchangelog'
+  get 'donate' => 'players#donate'
   get 'secretpage' => 'players#secretpage'
   get 'plaintext' => 'players#plaintext'
-  get 'donate' => 'players#donate'
-  get 'links' => 'players#links'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players

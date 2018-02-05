@@ -1,0 +1,192 @@
+= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
+  %h1 
+    = link_to "F2P.wiki", players_path
+  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "for all your F2P OSRS needs"
+  %p#notice= notice
+
+%br
+= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+    = link_to "F2P OSRS Ranks", ranks_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+    = link_to "Useful Links", links_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 70px; padding: 10px;") do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+    = link_to "About Us/Donations", donate_path
+  
+%br
+= content_tag(:div, nil, style: "text-align: left; margin: auto; min-width: 600px; max-width:780px; padding: 5px;") do 
+  %h1 Pre-v1.0 Changelog
+  = "v0.6.4a Jan 30, 2018"
+  %br
+  = "Feature added: Message of the day"
+  %br
+  = "Feature-in-progress: more css styling - centering containers, tables, text"
+  %br
+  = "Fix: Show player page styled"
+  %br
+  %br
+  
+  = "v0.6.3a Jan 29, 2018"
+  %br
+  = "Feature complete: Display skill by EHP, Level, or XP"
+  %br
+  = "Feature-in-progress: more css styling - skill images, better containers"
+  %br
+  = "Fix: EHP, Hall of Shame, Changelog pages styled"
+  %br
+  %br
+  
+  = "v0.6.2a Jan 26, 2018"
+  %br
+  = "Feature-in-progress: css styling"
+  %br
+  = "Feature-in-progress: display skill as ehp, lvl, or xp"
+  %br
+  = "Feature complete: remove p2p automatically"
+  %br
+  = "Updated seeds to include ~3000+ regs, removed p2p"
+  %br
+  %br
+  
+  = "v0.6.1a Jan 21, 2018"
+  %br
+  = "Feature complete: F2P Hall of Shame including banned and fake F2P players"
+  %br
+  = "Feature complete: Add and delete players without resetting database (MOD ACCESS ONLY)"
+  %br
+  %br
+  
+  = "v0.6.0a Jan 21, 2018"
+  %br
+  = "Feature complete: Limit number of accounts shown"
+  %br
+  = "Feature complete: Detect dead HCIMs"
+  %br
+  = "Added all F2P regs with 1k+ total level and F2P IM/UIM/HC with ~400+ total level, found directly from OSRS hiscores, with some known skiller exceptions manually added"
+  %br
+  %br
+  
+  = "v0.5.5a Dec 29, 2017"
+  %br
+  = "Feature-in-progress: Find potential f2p players directly from OSRS hiscores"
+  %br
+  %br
+  
+  = "v0.5.2a Dec 9, 2017"
+  %br
+  = "Feature-in-progress: Show and hide specific skills (highlight is missing, formatting needs work)"
+  %br
+  = "Bug Fixes: total lvl and xp are updated correctly"
+  %br
+  = "Manual seed updates: added Finlay825 as requested"
+  %br
+  %br
+  
+  = "v0.5.1a Dec 5, 2017"
+  %br
+  = "Updated IM/HCIM/UIM EHP for WC/FM/Fishing/Cooking for accurate account progress for maxing at 200M XP and for differing playstyles"
+  %br
+  = "Manual seed updates: removed nanitronic, annebelle as fake f2p"
+  %br
+  = "Bug Fixes: strength and defence positions are no longer swapped"
+  %br
+  %br
+  
+  = "v0.5.0a Nov 24, 2017"
+  %br
+  = "Completed feature: Update all players' stats"
+  %br
+  = "Manual seed updates: removed j0llypong, solo_a_magic for p2p stats"
+  %br
+  %br
+  
+  = "v0.4.1a Nov 22, 2017"
+  %br
+  = "Added IM/UIM EHP to EHP rates page"
+  %br
+  = "Formatting changes: Added table borders, highlight selected sort"
+  %br
+  %br
+  
+  = "v0.4a Nov 21, 2017"
+  %br
+  = "Completed features: Filter by account type"
+  %br
+  = "Manually updated all player stats, dennarr removed for p2p stats"
+  %br
+  %br
+  
+  = "v0.3a Nov 15, 2017"
+  %br
+  = "Improved formatting on individual player page"
+  %br
+  = "Completed features: Update Player with OSRS hiscores stats, EHP calculation for all account types"
+  %br
+  = "Added table value: Total P2P XP + P2P Activities (keep it or hide it?)"
+  %br
+  = "Feature in progress: Update All Players"
+  %br
+  %br
+  
+  = "v0.2.4a Nov 14, 2017"
+  %br
+  = "Imported EHP rates into site"
+  %br
+  = "Feature in progress: Update Player"
+  %br
+  = "Manual EHP update for 11/14/2017"
+  %br
+  %br
+  
+  
+  = "v0.2.3a Nov 12, 2017"
+  %br
+  = "Changed function of Search Player (Display only accounts with that name) to Find Player (Highlight and scroll down to player)"
+  %br
+  = "Changed ambiguity of 'Sort Skill By: EHP/Level/XP' to 'Display Skill as: EHP/Level/XP'"
+  %br
+  = "Temporarily removed incomplete features: find player, filter account type, display skill as"
+  %br
+  = "Fixed bug: Homepage will not be empty on first visit"
+  %br
+  = "Clear Filters/Session/Cookies prototype"
+  %br
+  %br
+  
+  = "v0.2.2a Nov 11, 2017"
+  %br
+  = "Updated Reg EHP (nerfed fish/wc/mining/pray/smith/magic)"
+  %br
+  = "Manual seed updates: removed jade_green, stylen, rajse_ur_att, amethyst_ait, ironcatt, lvl_3_btw, lazor, pure_shreds, rag_bot, ily_ely, 27s_br0, f2prod"
+  %br
+  %br
+  
+  = "v0.2a Nov 11, 2017"
+  %br
+  = "Updated Ironman smithing EHP: smith_ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
+  %br
+  = "Added Total Level/XP, changed all skill variables to skill_{xp, lvl, ehp}"
+  %br
+  = "Added Title, Author, Version Control, Changelog, Future Features notes"
+  %br
+  = "Manual seed updates: added wigj, removed 3 sad 5 u, sqeezer33"
+  %br
+  = "Updated Reg EHP rates"
+  %br
+  %br
+  = "v0.1a Nov 10, 2017"
+  %br
+  = "First functional prototype version"
+  %br
+  = "Manually seeded account names, ~450 accounts from cml's top 200 xp and lvl of each: reg, im (including hc/uim), uim"
+  %br
+  = "Sorting by overall_ehp, skill_ehp"
+  %br 
+  = "Search for player by name"

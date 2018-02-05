@@ -1,24 +1,30 @@
-= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 300px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
   %h1 
-    = F2POSRSRanks::Application.config.version
-  = "please feel free to send any feedback to f2posrsranks@gmail.com"
-  %br
+    = link_to "F2P.wiki", players_path
+  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "for all your F2P OSRS needs"
   %p#notice= notice
-  = link_to 'Back', players_path
-  %br
-  //= link_to "Useful Links", links_path
-  //%br
-  = link_to "View EHP Rates", ehp_path
-  %br
-  = link_to "View Hall of Shame", fake_path
-  %br
-  = link_to "About Us/Donations", donate_path
+
+%br
+= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+    = link_to "F2P OSRS Ranks", ranks_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+    = link_to "Useful Links", links_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 70px; padding: 10px;") do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+    = link_to "About Us/Donations", donate_path
   
 %br  
-= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 185px; padding: 5px; margin-bottom: 10px;") do 
-  %h1 Player Stats
+= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 140px; padding: 10px; margin-bottom: 20px;") do 
+  %h3 Update Stats
   = form_tag players_path(@player), :method => :put do
-    = link_to "Update Stats for #{@player.player_name}", @player, method: :update_player
+    = link_to "Update #{@player.player_name}", @player, method: :update_player
 
 = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
   %tbody
@@ -117,7 +123,3 @@
       %td= @player.runecraft_xp
       %td= @player.runecraft_lvl
       %td= @player.runecraft_ehp
-
-= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 140px; padding: 5px; margin-top: 10px;") do 
-  = link_to 'Back', players_path 
-

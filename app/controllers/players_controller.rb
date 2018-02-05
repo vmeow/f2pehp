@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
 
   # GET /players
   # GET /players.json
-  def index
+  def ranks
     sort_by = params[:sort_by] || session[:sort_by] || {}
     search_term = params[:search] || session[:search] || {}
     @filters = params[:filters_] || session[:filters_] || {}
@@ -67,7 +67,7 @@ class PlayersController < ApplicationController
       @player_lvl_header = 'hilite'
     when "overall_xp"
       @player_xp_header = 'hilite'
-    when "attack_ehp"
+    when "attack_ehp", "attack_lvl", "attack_xp"
       @player_attack_header = 'hilite'
     when "strength_ehp"
       @player_strength_header = 'hilite'
@@ -95,7 +95,7 @@ class PlayersController < ApplicationController
       @player_smithing_header = 'hilite'
     when "mining_ehp"
       @player_mining_header = 'hilite'
-    when "runecraft_ehp"
+    when "runecraft_ehp", "runecraft_lvl", "runecraft_xp"
       @player_runecraft_header = 'hilite'
     when "potential_p2p"
       @player_p2p_header = 'hilite'
@@ -231,8 +231,7 @@ class PlayersController < ApplicationController
       @player.update_attribute(:overall_xp, "0")
       Player.where(player_name: @player.player_name).destroy_all
     end
-    #redirect_to @player, notice: 'Player was successfully updated.'
-    redirect_to players_url, notice: 'Player was successfully updated.'
+    redirect_to @player, notice: 'Player was successfully updated.'
   end
   
   def refresh_players

@@ -1,197 +1,146 @@
-= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 300px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
   %h1 
-    = F2POSRSRanks::Application.config.version
-  = "please feel free to send any feedback to f2posrsranks@gmail.com"
-  %br
+    = link_to "F2P.wiki", players_path
+  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "for all your F2P OSRS needs"
   %p#notice= notice
-  = link_to 'Back', players_path
-  %br
-  //= link_to "Recommended Links", links_path
-  //%br
-  = link_to "View EHP Rates", ehp_path
-  %br
-  = link_to "View Hall of Shame", fake_path
-  %br
-  = link_to "About Us/Donations", donate_path
+
+%br
+= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+    = link_to "F2P OSRS Ranks", ranks_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+    = link_to "Useful Links", links_path
+  = content_tag(:div, nil, style: "color: white; font-weight: bold; float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 70px; padding: 10px;") do 
+    = "Changelog"
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+    = link_to "About Us/Donations", donate_path
   
 %br
-= content_tag(:div, nil, style: "text-align: left; margin: auto; min-width: 600px; max-width:780px; padding: 5px;") do 
-  %h1 Changelog
-  = "v1.0 Jan 30, 2017"
-  %br
-  = "Site publicly released"
-  %br
-  = "Feature added: About Us/Donations page, flairs for supporters"
-  %br
-  %br
-  
-  = "v0.6.4a Jan 30, 2017"
-  %br
-  = "Feature added: Message of the day"
-  %br
-  = "Feature-in-progress: more css styling - centering containers, tables, text"
-  %br
-  = "Fix: Show player page styled"
-  %br
-  %br
-  
-  = "v0.6.3a Jan 29, 2017"
-  %br
-  = "Feature complete: Display skill by EHP, Level, or XP"
-  %br
-  = "Feature-in-progress: more css styling - skill images, better containers"
-  %br
-  = "Fix: EHP, Hall of Shame, Changelog pages styled"
-  %br
-  %br
-  
-  = "v0.6.2a Jan 26, 2017"
-  %br
-  = "Feature-in-progress: css styling"
-  %br
-  = "Feature-in-progress: display skill as ehp, lvl, or xp"
-  %br
-  = "Feature complete: remove p2p automatically"
-  %br
-  = "Updated seeds to include ~3000+ regs, removed p2p"
-  %br
-  %br
-  
-  = "v0.6.1a Jan 21, 2017"
-  %br
-  = "Feature complete: F2P Hall of Shame including banned and fake F2P players"
-  %br
-  = "Feature complete: Add and delete players without resetting database (MOD ACCESS ONLY)"
-  %br
-  %br
-  
-  = "v0.6.0a Jan 21, 2017"
-  %br
-  = "Feature complete: Limit number of accounts shown"
-  %br
-  = "Feature complete: Detect dead HCIMs"
-  %br
-  = "Added all F2P regs with 1k+ total level and F2P IM/UIM/HC with ~400+ total level, found directly from OSRS hiscores, with some known skiller exceptions manually added"
-  %br
-  %br
-  
-  = "v0.5.5a Dec 29, 2017"
-  %br
-  = "Feature-in-progress: Find potential f2p players directly from OSRS hiscores"
-  %br
-  %br
-  
-  = "v0.5.2a Dec 9, 2017"
-  %br
-  = "Feature-in-progress: Show and hide specific skills (highlight is missing, formatting needs work)"
-  %br
-  = "Bug Fixes: total lvl and xp are updated correctly"
-  %br
-  = "Manual seed updates: added Finlay825 as requested"
-  %br
-  %br
-  
-  = "v0.5.1a Dec 5, 2017"
-  %br
-  = "Updated IM/HCIM/UIM EHP for WC/FM/Fishing/Cooking for accurate account progress for maxing at 200M XP and for differing playstyles"
-  %br
-  = "Manual seed updates: removed nanitronic, annebelle as fake f2p"
-  %br
-  = "Bug Fixes: strength and defence positions are no longer swapped"
-  %br
-  %br
-  
-  = "v0.5.0a Nov 24, 2017"
-  %br
-  = "Completed feature: Update all players' stats"
-  %br
-  = "Manual seed updates: removed j0llypong, solo_a_magic for p2p stats"
-  %br
-  %br
-  
-  = "v0.4.1a Nov 22, 2017"
-  %br
-  = "Added IM/UIM EHP to EHP rates page"
-  %br
-  = "Formatting changes: Added table borders, highlight selected sort"
-  %br
-  %br
-  
-  = "v0.4a Nov 21, 2017"
-  %br
-  = "Completed features: Filter by account type"
-  %br
-  = "Manually updated all player stats, dennarr removed for p2p stats"
-  %br
-  %br
-  
-  = "v0.3a Nov 15, 2017"
-  %br
-  = "Improved formatting on individual player page"
-  %br
-  = "Completed features: Update Player with OSRS hiscores stats, EHP calculation for all account types"
-  %br
-  = "Added table value: Total P2P XP + P2P Activities (keep it or hide it?)"
-  %br
-  = "Feature in progress: Update All Players"
-  %br
-  %br
-  
-  = "v0.2.4a Nov 14, 2017"
-  %br
-  = "Imported EHP rates into site"
-  %br
-  = "Feature in progress: Update Player"
-  %br
-  = "Manual EHP update for 11/14/2017"
-  %br
-  %br
-  
-  
-  = "v0.2.3a Nov 12, 2017"
-  %br
-  = "Changed function of Search Player (Display only accounts with that name) to Find Player (Highlight and scroll down to player)"
-  %br
-  = "Changed ambiguity of 'Sort Skill By: EHP/Level/XP' to 'Display Skill as: EHP/Level/XP'"
-  %br
-  = "Temporarily removed incomplete features: find player, filter account type, display skill as"
-  %br
-  = "Fixed bug: Homepage will not be empty on first visit"
-  %br
-  = "Clear Filters/Session/Cookies prototype"
-  %br
-  %br
-  
-  = "v0.2.2a Nov 11, 2017"
-  %br
-  = "Updated Reg EHP (nerfed fish/wc/mining/pray/smith/magic)"
-  %br
-  = "Manual seed updates: removed jade_green, stylen, rajse_ur_att, amethyst_ait, ironcatt, lvl_3_btw, lazor, pure_shreds, rag_bot, ily_ely, 27s_br0, f2prod"
-  %br
-  %br
-  
-  = "v0.2a Nov 11, 2017"
-  %br
-  = "Updated Ironman smithing EHP: smith_ehp = (smith_xp - craft_xp/(51.25*13.7))/smith_ehp_rate"
-  %br
-  = "Added Total Level/XP, changed all skill variables to skill_{xp, lvl, ehp}"
-  %br
-  = "Added Title, Author, Version Control, Changelog, Future Features notes"
-  %br
-  = "Manual seed updates: added wigj, removed 3 sad 5 u, sqeezer33"
-  %br
-  = "Updated Reg EHP rates"
-  %br
-  %br
-  = "v0.1a Nov 10, 2017"
-  %br
-  = "First functional prototype version"
-  %br
-  = "Manually seeded account names, ~450 accounts from cml's top 200 xp and lvl of each: reg, im (including hc/uim), uim"
-  %br
-  = "Sorting by overall_ehp, skill_ehp"
-  %br 
-  = "Search for player by name"
-  %br
-  %br
-  = link_to 'Back', players_path
+= content_tag(:div, nil, style: "margin: auto; width: 760px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: left; width: 340px; padding: 10px;") do 
+    %h3 F2P OSRS Changelog
+    = "Dec 7, 2017"
+    %br
+    = "New monsters in Corsair Cove: Ogress warrior and Ogress shaman"
+    %br
+    = "- Notable drops: Nature/law/death runes, Rune med/full helm, Rune battleaxe, Shaman mask"
+    %br
+    = "- Completely changed F2P IM/HC/UIM EHP due to drops and gp; decent combat gp for regs"
+    %br
+    %br
+    = "New area/quest: Corsair Cove, with resource areas (Yew, Maple, Adamantite, Coal, Swordfish, Lobster) and a bank"
+    %br
+    = "- Everything is obsolete for efficient skilling, but Maple trees are notably now F2P"
+    %br  
+    %br   
+    %br
+    
+    = "Nov 16, 2017"
+    %br
+    = "Buy-50: interface improvements for shops"
+    %br  
+    = "- Notably improves F2P IM/HC/UIM buying arrows"
+    %br
+    %br   
+    %br
+    
+    = "Oct 19, 2017"
+    %br
+    = "Make-All: interface improvements for smithing, cooking, and crafting"
+    %br  
+    = "- Notably changes IM/HC/UIM EHP cooking to 3.5 tick instead of 3 tick; Reg EHP and wines are unaffected"
+    %br
+    %br   
+    %br
+    
+    = "July 20, 2017"
+    %br
+    = "Castle Wars released to F2P"
+    %br  
+    = "- Dead 3 weeks after release"
+    %br
+    %br   
+    %br
+    
+    = "June 22, 2017"
+    %br
+    = "Mining Guild Expansion: 4 iron rocks and ore shop added to Mining Guild"
+    %br
+    = "- New F2P IM/HC smithing EHP due to proximity of iron ore"
+    %br  
+    %br   
+    %br
+    = "May 18, 2017"
+    %br
+    = "Imbue Skull Sceptre: sceptre will not break at 0 charges, sceptre pieces will recharge it"
+    %br
+    = "- Each skull sceptre piece is worth 3 charges: notably speeds up RC when combined with falador teleport for banking; not EHP but good alternative for those who AFK combats"
+    %br
+    = "- Must keep 2-factor Authentication on; imbued skull sceptre is lost on death"
+    %br
+    %br
+    %br
+    = "Mar 9, 2017"
+    %br
+    = "Energy potions released to F2P, made through Apothecary with 2 limpwurt roots and 1 chocolate dust"
+    %br
+    %br
+    %br
+    = "Mar 2, 2017"
+    %br
+    = "Wine of Zamorak spawn at level 35 wilderness Chaos Altar"
+    %br
+    = "- Notably increased deep wilderness activity"
+    %br
+    %br
+    %br
+    = "Nov 10, 2016"
+    %br
+    = "New Game Mode: Hardcore Ironman"
+    %br
+    = "- Account will turn into normal, grayhelm Ironman after non-safe-minigame death"
+    %br
+    %br
+    %br
+    = "Oct 6, 2016"
+    %br
+    = "New F2P boss: Obor, accessible with Giant key (Hill Giant droprate of 1/128 or 1/64 in wildy)"
+    %br
+    = "- Notable drops: Hill giant club, Rune kiteshield, Rune full helm for ironmen" 
+    %br
+    %br
+    %br
+    = "Aug 4, 2016"
+    %br
+    = "New safe minigame: Last man standing"
+    %br
+    = "- Battle royale with equalized stats (and no xp gain) and randomized loot"
+    %br
+    = "- Dead currently"
+    %br
+    = "- FOR PURES: REMEMBER TO CHECK ATTACK STYLE AFTERWARDS (rip Orbrun IV)"
+    %br
+    %br
+    %br
+    
+  = content_tag(:div, nil, style: "float: right; margin-left: auto; text-align: left; margin: auto; width: 340px; padding: 10px;") do 
+    %h3
+      = "F2P Wiki v1.01 Feb 4, 2018"
+    = "Layout changed: added Homepage, Useful Links, F2P Changelog, general styling"
+    %br
+    = "Feature added: About Us/Donations page, flairs for supporters"
+    %br
+    %br
+    = "F2P Wiki v1.0 Jan 30, 2018"
+    %br
+    = "Site publicly released"
+    %br
+    = "Feature added: About Us/Donations page, flairs for supporters"
+    %br
+    %br
+    = link_to "Old Changelog (before v1.0 public release)", oldchangelog_path

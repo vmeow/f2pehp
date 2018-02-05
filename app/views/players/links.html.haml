@@ -1,32 +1,43 @@
-= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 300px; max-width:300px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
   %h1 
-    = F2POSRSRanks::Application.config.version
-  = "please feel free to send any feedback to f2posrsranks@gmail.com"
-  %br
+    = link_to "F2P.wiki", players_path
+  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "for all your F2P OSRS needs"
   %p#notice= notice
-  = link_to 'Back', players_path
-  %br
-  = link_to "View Changelog", changelog_path
-  %br
-  = link_to "View EHP Rates", ehp_path
-  %br
-  = link_to "View Hall of Shame", fake_path
-  %br
-  = link_to "About Us/Donations", donate_path
-
-%br  
-= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 300px; max-width:460px; padding: 5px;") do 
-  %h1 Useful Links
-  %h4 F2P Clans
-  = link_to "W_385", "http://www.reddit.com/r/W385/"
-  %br
-  = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/forums.ws?320,321,76,65920787"
-  %h4 F2P Clans
-  = link_to "W_385", "http://www.reddit.com/r/W385/"
-  %br
-  = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/forums.ws?320,321,76,65920787"
-
 
 %br
-= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 60px; max-width:60px; padding: 5px;") do 
-  = link_to 'Back', players_path
+= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+    = link_to "F2P OSRS Ranks", ranks_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, style: "color: white; font-weight: bold; float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+    = "Useful Links"
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 70px; padding: 10px;") do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+    = link_to "About Us/Donations", donate_path
+
+%br  
+= content_tag(:div, nil, style: "text-align: center; margin: auto; width:300px; padding: 5px;") do 
+  %h3 F2P Clans
+  = link_to "W_385", "http://www.reddit.com/r/W385/"
+  %br
+  = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/forums.ws?320,321,76,65920787"
+  %h3 Guides
+  = link_to "Asura Zoma's F2P Ironman Guide", "http://pastebin.com/raw/FuTEC8eB"
+  %h3 Charts
+  = link_to "Best Arrows at Each Level", "https://i.redd.it/wbvbp88s4ycy.png"
+  %br
+  = link_to "Loot from 11k Ogresse Kills", "https://i.redd.it/hbfboi9ia0701.png"
+  %br
+  %br
+  = "more links will be added soon"
+  %br
+
+
+//%br
+//= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 60px; max-width:60px; padding: 5px;") do 
+//  = link_to 'Back', players_path

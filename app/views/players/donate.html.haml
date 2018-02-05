@@ -1,36 +1,48 @@
-= content_tag(:div, nil, style: "text-align:center; margin: auto; min-width: 300px; max-width:300px; padding: 5px;") do 
+= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
   %h1 
-    = F2POSRSRanks::Application.config.version 
-  = "please feel free to send any feedback to f2posrsranks@gmail.com"
-  %br
+    = link_to "F2P.wiki", players_path
+  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "for all your F2P OSRS needs"
   %p#notice= notice
-  = link_to 'Back', players_path
-  %br
-  //= link_to "Recommended Links", links_path
-  //%br
-  = link_to "View Changelog", changelog_path
-  %br
-  = link_to "View EHP Rates", ehp_path
-  %br
-  = link_to "View Hall of Shame", fake_path
+  
+%br
+= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+    = link_to "F2P OSRS Ranks", ranks_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+    = link_to "Useful Links", links_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 70px; padding: 10px;") do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, style: "color: white; font-weight: bold; float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+    = "About Us/Donations"
 
 %br
 = content_tag(:div, nil, style: "margin: auto; width: 720px;; padding: 0px; background: none; border: none;") do 
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; text-align:center; width:220px; padding: 5px; margin-top: 0px;") do 
-    %h1 F2P Supporters
-    = "Anonymous"
-    %br
-    = link_to "Obor", "players/461"
-    %br
-    = link_to "Bargan", "players/9316"
-    = " "
-    = link_to "nagraB", "players/6525"
-    %br
-    = link_to "F2P Lukie", "players/1270"
-    %br
-    = link_to "Pawz", "players/6128"
-    %br
-    = link_to "IronMace Din", "players/458"
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin: auto; width: 240px;; padding: 0px; background: none; border: none;") do 
+    = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-bottom: 30px; text-align:center; width:220px; padding: 5px; margin-top: 0px; padding-bottom: 20px;") do 
+      %h1 F2P Supporters
+      = "Anonymous"
+      %br
+      = link_to "Obor", "players/461"
+      %br
+      = link_to "Bargan", "players/9316"
+      = " "
+      = link_to "nagraB", "players/6525"
+      %br
+      = link_to "F2P Lukie", "players/1270"
+      %br
+      = link_to "Pawz", "players/6128"
+      %br
+      = link_to "IronMace Din", "players/458"
+
+    = content_tag(:div, nil, style: "text-align:center; width:220px; padding: 5px; margin-top: 0px; padding-bottom: 20px;") do 
+      %h1 Contact Us
+      = link_to "email us: f2posrsranks@gmail.com", "mailto:f2posrsranks@gmail.com"
+    
     
   = content_tag(:div, nil, style: "float: right; margin-left: auto; text-align: left; width: 430px; padding: 10px;") do 
     %h1{:align => "center"} About Us

@@ -1,22 +1,33 @@
-= content_tag(:div, nil, style: "text-align: center; width: 300px; padding: 5px; margin: auto;") do 
+= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
   %h1 
-    = F2POSRSRanks::Application.config.version
-  = "please feel free to send any feedback to f2posrsranks@gmail.com"
-  %br
+    = link_to "F2P.wiki", players_path
+  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "for all your F2P OSRS needs"
   %p#notice= notice
-  //= link_to "Useful Links", links_path
-  //%br
-  = link_to "View Changelog", changelog_path
-  %br
-  = link_to "View EHP Rates", ehp_path
-  %br
-  = link_to "View Hall of Shame", fake_path
-  %br
-  = link_to "About Us/Donations", donate_path
+
+%br
+= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+    = link_to "F2P OSRS Ranks", ranks_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+    = link_to "Useful Links", links_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 70px; padding: 10px;") do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+    = link_to "About Us/Donations", donate_path
 
 %br
 = content_tag(:div, nil, style: "text-align: center; width: 300px; padding: 5px; margin: auto;") do 
   %h3 Message Of The Day
+  %h4
+    = "F2P IM/HCIM/UIM EHP are currently under revisions: feel free to provide any feedback "
+    = link_to "here!", "https://www.reddit.com/r/W385/comments/7vaq1m/new_f2p_imhcuim_ehp/"
+  %h4
+    = "YamiOscuro has been outted with proof as Fake F2P. Shame!"
   %h4 
     = "We now have secured the domain "
     = link_to "f2p.wiki,", "http://www.f2p.wiki"
@@ -24,156 +35,3 @@
   %h4 
     = "We have upgraded our server for faster site response times, less down-time, and useful metrics/alerts. Thanks again to our "
     = link_to "supporters!", donate_path
-  %h4 We are very excited to announce the F2P OSRS Ranks v1.0 public release!
-
-%br 
-= content_tag(:div, nil, style: "margin: auto; width: 575px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 115px; padding: 5px;") do 
-    = form_tag players_path, :method => :get, :id => 'display_form' do
-      = "Display Skill as:"
-      %br
-      = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
-        = "EHP"
-        
-        %br
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
-        = "Level"
-        
-        %br
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
-        = "XP"
-      = submit_tag 'Refresh', {:id => 'display_submit'}
-
-  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 95px; padding: 5px;") do 
-    = form_tag players_path, :method => :get, :id => 'filters_form' do
-    
-      = "Filter Account Type?"
-      %br
-      = content_tag(:div, nil, style: "text-align: left;width: 95px; border: none; background: none;") do
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
-        = "Reg"
-        %br
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
-        = "IM"
-        %br
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
-        = "UIM"
-        %br
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
-        = "HCIM"
-      = submit_tag 'Filter', :id => "filters_submit"
-    
-  = content_tag(:div, nil, style: "margin-left:auto; float: right; margin-right: 5px; width: 115px; padding: 5px;") do
-    = form_tag players_path, :method => :get, :id => 'show_limits_form' do
-      = "Limit Results?"
-      %br
-      = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
-        &nbsp;
-        = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
-        = "Top 250"
-        %br
-        &nbsp;
-        = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
-        = "Top 500"
-        %br
-        &nbsp;
-        = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
-        = "Top 1000"
-        %br
-        &nbsp;
-        = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
-        = "Top 2000"
-        %br
-        &nbsp;
-        = radio_button_tag "show_limit", 10000, @show_limit.equal?(10000), :show_limit => 10000
-        = "All Accounts"
-      = submit_tag 'Refresh', :id => "show_limit_submit"
-      
-  = content_tag(:div, nil, style: "margin-left:auto; margin-right: 5px; float: right; width: 165px; padding: 5px;") do 
-    = form_tag players_path, :method => :get, :id => 'skills_form' do
-      - all_skills = F2POSRSRanks::Application.config.f2p_skills
-      = "Show Skills?"
-      %br
-      - all_skills.each.with_index 1 do |skill, idx|
-        = check_box_tag "skills_[#{skill}]", 1, @skills.include?("#{skill}"), :id => "skills_#{skill}"
-        /= skill
-        = image_tag "#{skill}.png"
-        - if (idx % 3) == 0
-          %br
-      = submit_tag 'Refresh', :id => "skills_submit"
-
-= content_tag(:div, nil, style: "margin: auto; max-width: 780px; overflow-x: auto; margin-top: 5px; margin-bottom: 5px; color: none; background-color: transparent; border: none") do 
-  %table
-    %thead
-      %tr
-        %th Rank
-        %th Name
-        //%th Update Stats
-        %th Account Type
-        %th{:class => @player_lvl_header}= link_to 'Total LVL', players_path(:sort_by => 'overall_lvl'), :id => 'player_lvl_header'
-        %th{:class => @player_xp_header}= link_to 'Total XP', players_path(:sort_by => 'overall_xp'), :id => 'player_xp_header'
-        %th{:class => @player_ehp_header}= link_to 'Overall EHP', players_path(:sort_by => 'overall_ehp'), :id => 'player_ehp_header'
-        - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
-          - if @skills.include?("#{skill}")
-            - template = "%s_%s"
-            - template2 = "%s %s"
-            - t = template % [skill, session[:display]]
-            - t2 = template2 % [skill.capitalize, session[:display].upcase]
-            %th{:class => "@player_#{skill}_header"}= link_to t2, players_path(:sort_by => t), :id => "player_#{skill}_header"
-        /%th{:class => @player_attack_header}= link_to 'Attack', players_path(:sort_by => 'attack_ehp'), :id => 'player_attack_header'
-        /%th{:class => @player_strength_header}= link_to 'Strength', players_path(:sort_by => 'strength_ehp'), :id => 'player_strength_header'
-        /%th{:class => @player_defence_header}= link_to 'Defence', players_path(:sort_by => 'defence_ehp'), :id => 'player_defence_header'
-        /%th{:class => @player_hitpoints_header}= link_to 'Hitpoints', players_path(:sort_by => 'hitpoints_ehp'), :id => 'player_hitpoints_header'
-        /%th{:class => @player_ranged_header}= link_to 'Ranged', players_path(:sort_by => 'ranged_ehp'), :id => 'player_ranged_header'
-        /%th{:class => @player_prayer_header}= link_to 'Prayer', players_path(:sort_by => 'prayer_ehp'), :id => 'player_prayer_header'
-        /%th{:class => @player_magic_header}= link_to 'Magic', players_path(:sort_by => 'magic_ehp'), :id => 'player_magic_header'
-        /%th{:class => @player_cooking_header}= link_to 'Cooking', players_path(:sort_by => 'cooking_ehp'), :id => 'player_cooking_header'
-        /%th{:class => @player_woodcutting_header}= link_to 'Woodcutting', players_path(:sort_by => 'woodcutting_ehp'), :id => 'player_woodcutting_header'
-        /%th{:class => @player_fishing_header}= link_to 'Fishing', players_path(:sort_by => 'fishing_ehp'), :id => 'player_fishing_header'
-        /%th{:class => @player_firemaking_header}= link_to 'Firemaking', players_path(:sort_by => 'firemaking_ehp'), :id => 'player_firemaking_header'
-        /%th{:class => @player_crafting_header}= link_to 'Crafting', players_path(:sort_by => 'crafting_ehp'), :id => 'player_crafting_header'
-        /%th{:class => @player_smithing_header}= link_to 'Smithing', players_path(:sort_by => 'smithing_ehp'), :id => 'player_smithing_header'
-        /%th{:class => @player_mining_header}= link_to 'Mining', players_path(:sort_by => 'mining_ehp'), :id => 'player_mining_header'
-        /%th{:class => @player_runecraft_header}= link_to 'Runecraft', players_path(:sort_by => 'runecraft_ehp'), :id => 'player_runecraft_header'
-        /%th{:class => @player_p2p_header}= link_to 'P2P XP', players_path(:sort_by => 'potential_p2p'), :id => 'player_p2p_header'
-  
-  
-    %tbody
-      - @players.each.with_index 1 do |player, index|
-        %tr
-          %td{:align => "right"}= index
-          %td= link_to player.player_name, player
-          //%td= link_to 'Update', player, method: :update_player
-          %td{:align => "center"}= player.player_acc_type
-          %td= player.overall_lvl
-          %td= player.overall_xp
-          %td= player.overall_ehp
-          - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
-            - if @skills.include?("#{skill}")
-              - template = "%s_%s"
-              - t = template % [skill, @display]
-              %td= player[t]
-          /%td= player.attack_ehp
-          /%td= player.strength_ehp
-          /%td= player.defence_ehp
-          /%td= player.hitpoints_ehp
-          /%td= player.ranged_ehp
-          /%td= player.prayer_ehp
-          /%td= player.magic_ehp
-          /%td= player.cooking_ehp
-          /%td= player.woodcutting_ehp
-          /%td= player.fishing_ehp
-          /%td= player.firemaking_ehp
-          /%td= player.crafting_ehp
-          /%td= player.smithing_ehp
-          /%td= player.mining_ehp
-          /%td= player.runecraft_ehp
-          /%td= player.potential_p2p
