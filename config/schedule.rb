@@ -2,13 +2,11 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-every :day, at: '12am' do
-  runner "PlayersController.refresh_players"
-end
 
-every 1.minute do
-  runner "PlayerRefresher.refresh_players"
-end
+#every :day, at: '12am' do
+  #runner "PlayersController.refresh_players"
+#end
+
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
