@@ -184,3 +184,9 @@ a[href$="/458"]:before {  /* For Mace Din */
   content: image-url("soda.png");
   vertical-align: -6px;
 }
+
+a[href$="/1294"]:after {  /* For HCIM btw fev */
+  padding: 3px;
+  content: image-url("kitten.png");
+  vertical-align: -6px;
+}
