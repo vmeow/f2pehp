@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
-  //margin-left: 25px;
   color: #969696; 
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
@@ -15,11 +14,14 @@ body {
   background-position: top center;
   background-repeat: repeat-y;
   overflow-x: hidden;
+}
 
+html {
+  margin: 0px;
+  padding: 0px;
 }
 
 div {
-  //margin-left: 10px;
   margin-bottom: 5px;
   color: #969696;
   overflow: hidden;
@@ -28,8 +30,8 @@ div {
 }
 
 div#main {
-  margin: 20px;
-  padding: 0 20px 20px;
+  //margin: 20px;
+  //padding: 0 20px 20px;
 }
 
 
@@ -188,5 +190,11 @@ a[href$="/458"]:before {  /* For Mace Din */
 a[href$="/1294"]:after {  /* For HCIM btw fev */
   padding: 3px;
   content: image-url("kitten.png");
+  vertical-align: -6px;
+}
+
+a[href$="/1270"]:after {  /* For F2P Lukie */
+  padding: 3px;
+  content: image-url("tea.png");
   vertical-align: -6px;
 }
