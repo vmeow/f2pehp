@@ -198,3 +198,10 @@ a[href$="/1270"]:after {  /* For F2P Lukie */
   content: image-url("tea.png");
   vertical-align: -6px;
 }
+
+a[href$="/6610"]:after {  /* For Tame */
+  padding: 3px;
+  content: image-url("dog.png");
+  vertical-align: -6px;
+}
+
