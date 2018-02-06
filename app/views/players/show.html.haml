@@ -44,82 +44,13 @@
     %th{:align => "center"}  EHP
   %tbody
     %tr
-      %th{:align => "left"} Overall
-      %td= @player.overall_xp
-      %td= @player.overall_lvl
-      %td= @player.overall_ehp
-    %tr
-      %th{:align => "left"} Attack
-      %td= @player.attack_xp
-      %td= @player.attack_lvl
-      %td= @player.attack_ehp
-    %tr
-      %th{:align => "left"} Strength
-      %td= @player.strength_xp
-      %td= @player.strength_lvl
-      %td= @player.strength_ehp
-    %tr
-      %th{:align => "left"} Defence
-      %td= @player.defence_xp
-      %td= @player.defence_lvl
-      %td= @player.defence_ehp
-    %tr
-      %th{:align => "left"} Hitpoints
-      %td= @player.hitpoints_xp
-      %td= @player.hitpoints_lvl
-      %td= @player.hitpoints_ehp
-    %tr
-      %th{:align => "left"} Ranged
-      %td= @player.ranged_xp
-      %td= @player.ranged_lvl
-      %td= @player.ranged_ehp
-    %tr
-      %th{:align => "left"} Prayer
-      %td= @player.prayer_xp
-      %td= @player.prayer_lvl
-      %td= @player.prayer_ehp
-    %tr
-      %th{:align => "left"} Magic
-      %td= @player.magic_xp
-      %td= @player.magic_lvl
-      %td= @player.magic_ehp
-    %tr
-      %th{:align => "left"} Cooking
-      %td= @player.cooking_xp
-      %td= @player.cooking_lvl
-      %td= @player.cooking_ehp
-    %tr
-      %th{:align => "left"} Woodcutting
-      %td= @player.woodcutting_xp
-      %td= @player.woodcutting_lvl
-      %td= @player.woodcutting_ehp
-    %tr
-      %th{:align => "left"} Fishing
-      %td= @player.fishing_xp
-      %td= @player.fishing_lvl
-      %td= @player.fishing_ehp
-    %tr
-      %th{:align => "left"} Firemaking
-      %td= @player.firemaking_xp
-      %td= @player.firemaking_lvl
-      %td= @player.firemaking_ehp
-    %tr
-      %th{:align => "left"} Crafting
-      %td= @player.crafting_xp
-      %td= @player.crafting_lvl
-      %td= @player.crafting_ehp
-    %tr
-      %th{:align => "left"} Smithing
-      %td= @player.smithing_xp
-      %td= @player.smithing_lvl
-      %td= @player.smithing_ehp
-    %tr
-      %th{:align => "left"} Mining
-      %td= @player.mining_xp
-      %td= @player.mining_lvl
-      %td= @player.mining_ehp
-    %tr
-      %th{:align => "left"} Runecraft
-      %td= @player.runecraft_xp
-      %td= @player.runecraft_lvl
-      %td= @player.runecraft_ehp
+      %th= image_tag "overall.png"
+      %td= @player["overall_xp"]
+      %td= @player["overall_lvl"]
+      %td= @player["overall_ehp"]
+    - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+      %tr
+        %th= image_tag "#{skill}.png"
+        %td= @player["#{skill}_xp"]
+        %td= @player["#{skill}_lvl"]
+        %td= @player["#{skill}_ehp"]
