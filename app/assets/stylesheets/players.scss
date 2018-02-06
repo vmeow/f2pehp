@@ -14,7 +14,6 @@ body {
   background-image: image-url("original_bg2.jpg");
   background-position: top center;
   background-repeat: repeat-y;
-  overflow-x: auto;
 }
 
 div {
@@ -24,7 +23,6 @@ div {
   overflow: hidden;
   background-color: rgba(0,0,0,0.75);
   border: 3px solid #3E3B23;
-  overflow-x: auto;
 }
 
 div#main {
