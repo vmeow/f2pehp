@@ -21,26 +21,33 @@
     = link_to "About Us/Donations", donate_path
 
 %br 
-= content_tag(:div, nil, style: "margin: auto; width: 575px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 115px; padding: 5px;") do 
-    = form_tag ranks_path, :method => :get, :id => 'display_form' do
-      = "Display Skill as:"
-      %br
-      = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
-        = "EHP"
-        
+= content_tag(:div, nil, style: "margin: auto; width: 565px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "margin-right: auto; float:left;  width: 130px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+    = content_tag(:div, nil, style: "margin: auto; width: 115px; padding: 5px; margin-bottom: 5px;") do 
+      = form_tag ranks_path, :method => "get", id: "search-players-form" do
+        = text_field_tag :search, params[:search], placeholder: "Find Player", :class => "search-field", style: "width: 105px;"
         %br
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
-        = "Level"
+        = submit_tag "Find"
         
+    = content_tag(:div, nil, style: "margin: auto; width: 115px; padding: 5px;") do 
+      = form_tag ranks_path, :method => :get, :id => 'display_form' do
+        = "Display Skill as:"
         %br
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
-        = "XP"
-      = submit_tag 'Refresh', {:id => 'display_submit'}
+        = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
+          = "EHP"
+          
+          %br
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
+          = "Level"
+          
+          %br
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
+          = "XP"
+        = submit_tag 'Refresh', {:id => 'display_submit'}
 
   = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 95px; padding: 5px;") do 
     = form_tag ranks_path, :method => :get, :id => 'filters_form' do
@@ -64,8 +71,20 @@
         = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
         = "HCIM"
       = submit_tag 'Filter', :id => "filters_submit"
-    
-  = content_tag(:div, nil, style: "margin-left:auto; float: right; margin-right: 5px; width: 115px; padding: 5px;") do
+      
+  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left;  width: 165px; padding: 5px;") do 
+    = form_tag ranks_path, :method => :get, :id => 'skills_form' do
+      - all_skills = F2POSRSRanks::Application.config.f2p_skills
+      = "Show Skills?"
+      %br
+      - all_skills.each.with_index 1 do |skill, idx|
+        = check_box_tag "skills_[#{skill}]", 1, @skills.include?("#{skill}"), :id => "skills_#{skill}"
+        = image_tag "#{skill}.png"
+        - if (idx % 3) == 0
+          %br
+      = submit_tag 'Refresh', :id => "skills_submit"
+      
+  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left;  width: 115px; padding: 5px;") do
     = form_tag ranks_path, :method => :get, :id => 'show_limits_form' do
       = "Limit Results?"
       %br
@@ -91,17 +110,7 @@
         = "All Accounts"
       = submit_tag 'Refresh', :id => "show_limit_submit"
       
-  = content_tag(:div, nil, style: "margin-left:auto; margin-right: 5px; float: right; width: 165px; padding: 5px;") do 
-    = form_tag ranks_path, :method => :get, :id => 'skills_form' do
-      - all_skills = F2POSRSRanks::Application.config.f2p_skills
-      = "Show Skills?"
-      %br
-      - all_skills.each.with_index 1 do |skill, idx|
-        = check_box_tag "skills_[#{skill}]", 1, @skills.include?("#{skill}"), :id => "skills_#{skill}"
-        = image_tag "#{skill}.png"
-        - if (idx % 3) == 0
-          %br
-      = submit_tag 'Refresh', :id => "skills_submit"
+
 
 = content_tag(:div, nil, style: "margin: auto; max-width: 780px; overflow-x: auto; margin-top: 5px; margin-bottom: 5px; color: none; background-color: transparent; border: none") do 
   %table

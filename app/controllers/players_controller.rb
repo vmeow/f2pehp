@@ -21,6 +21,16 @@ class PlayersController < ApplicationController
       session[:filters_] = @filters
     end
     
+    if params[:search]
+      found = Player.where(player_name: params[:search]).first
+      if found
+        @player = found
+        redirect_to @player
+      else
+        flash[:notice] = "Player not found."
+      end
+    end
+    
     if @skills == {}
       params[:skills_] = {}
       session[:skills_] = {}
