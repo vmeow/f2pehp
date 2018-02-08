@@ -1,14 +1,14 @@
-%h1 
-  = F2POSRSRanks::Application.config.version
-%h4 
-= "by unkie, shoot me an email/send feedback at f2posrsranks@gmail.com"
-%br
-%p#notice= notice
+= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
+  %h1 
+    = link_to "F2P.wiki", players_path
+  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "for all your F2P OSRS needs"
+  %p#notice= notice
 
 - skill_list = F2POSRSRanks::Application.config.f2p_skills.clone
 - skill_list << "overall"
 = skill_list
-- Player.where(player_acc_type: 'Reg').each do |player|
+- Player.all.each do |player|
   - str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}'"
   - skill_list.each do |skill|
     - lvl = "#{skill}_lvl"
