@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'plaintext' => 'players#plaintext'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_players', as: :refresh_players
+  post 'players#index' => 'players#refresh_1000', as: :refresh_1000
   post 'players#secretpage' => 'players#export_players', as: :export_players
   post 'players#names' => 'players#find_new', as: :find_new
 

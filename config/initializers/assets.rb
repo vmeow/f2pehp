@@ -6,7 +6,7 @@ Rails.application.config.assets.version = '1.0'
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 F2POSRSRanks::Application.configure do
-   config.version = "F2P Wiki v1.0"
+   config.version = "F2P Wiki v1.02"
    
    config.fakes = ["K4de", "Susen", "Turkish Bear", "YamiOscuro", "Minijordan", "Gwyse", "Garof", "Spiderdreng4", "Ski Jump", "Rodaten", "Drequis", "Macho95", "Regretterd", "Dragons Lair", "Hai Yass", "Foolthiz", "Quincyx3", "Kortemark", "9 Dryad Cow", "Mmm Crabz", "Dailypoon25", "Smorc Champ", "Godlike", "Saap", "Ajshmayjay", "Dubstepn69", "Feeshone", "Orangemarmal", "Cfwx", "Luulul", "Tubracito", "Reclaimzed", "Xanthe Will", "Honesdale", "10hp Skill", "Xyujah1", "Vipc", "1212x", "Cybathug", "Afkallday", "Purcopyx", "Add1s0n", "Vulfepayne", "Airagan", "Cameronkuh", "Anne De Tank", "Psicowave", "CountStumpy2", "Mirnoi", "Riko661", "Gatormind", "Woodcutter7k", "Dopey Goat", "Uristmcdorf", "Boaswen", "Sirbloby123", "Del5thslave", "Minningguy14", "Del4thslave", "Aylaw", "0n Gp", "Venedi", "Yutram", "Whispah11", "Funkyjunk122", "Why You No", "Mrsshoarma", "Deathyy18", "Morthook", "Alexnolan", "Zem Fishies", "Bobfish66", "Hengen Mies", "Penguins 0", "Kingpin6999", "Minecat", "Greenholgart", "Ocigoniel", "Omgfreecake", "Vornollo", "Szzadi3", "Mistereremin", "Kawaiiniisan", "Thenthedr", "Redboyfrisco", "0t H", "Miner Timmie", "Takane", "Consortium", "Crisp Gains", "Mkbngg", "Mcgavin", "Orydel", "Porttieerik", "Mikeyman", "Azzazeell", "Zuls", "Purcopyxx", "Grand Danke", "Broembroemk", "Sir Kmilooxd", "Denise", "Puh3linmembu", "Salmonsmoker", "Recknded", "Justdontrush", "Hvvvppw", "Southernlady", "Onoesa", "Groovydroid", "Skiller0nlyy", "Mate Sauron", "Firem", "King Of Rr", "Kedaredan", "Umap", "Asku", "Aracion", "Ur Kiddin", "Muhpatriarky", "Bringing", "Amethyst Alt", "Gwilalian", "Minerio", "To Tank", "Etion Isces", "Flysandgold", "Adiput16", "Me Exp", "X O L337 O X", "Annebelle", "Like Fire", "K S", "Zomble Boy", "Sinister Ug", "Mivok", "Chessy 018", "Pot Of Bone", "Alt Amethyst", "Ckzlphc", "Tko1", "Eat Baby Boy", "Jerayred", "Zjs", "Bank Nothing", "Iron Farter", "Dying Sea", "Xcrushyx", "Acigosh", "Sionoft", "Igsuck", "9 Only Low", "Apex Tigrex", "Lordnetto", "Anshelm", "Glardoldan", "Jayden 1486", "K1ss K1lla", "Lost Forest", "Lilypadda", "2002 Tii", "Conelle", "Resolution", "Sphdinp", "Araliclya", "Chanpluru", "Skillerzzzse", "Trigobard", "Raerey", "Tom Clancy", "Lolislay3r", "Emx", "Seek God", "Hagain", "Whatttattata",  "Dressing", "Blye", "Notoskillhop", "Unililith", "Hirawiel", "021805", "Lil Deyoung", "Albertxyx", "Pressing", "Strokinglogs", "Shark Fishr", "Del3rdslave", "Bangbung32", "Negnelfi", "30 Bag", "Tianyumi", "Mrwoodcut", "Dominics 1st", "Al Alt2", "06account", "Atipatio", "Snail4sale", "Bmatic 15", "Bgjela", "Esh", "Vexens23", "W333seers Wc", "Isstoissr", "Goldwing100", "Steampress", "Flag1er", "Ezr3all", "Y3w5", "Whirlwind Ko"]
    config.downcase_fakes = config.fakes.map(&:downcase)
@@ -105,113 +105,99 @@ F2POSRSRanks::Application.configure do
 
 
 
-    config.ehp_iron['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_iron['attack_xphrs'] = [5000, 10000, 20000, 30000, 35000, 40000, 44000, 47000]
+    config.ehp_iron['attack_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_iron['attack_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
 
-    config.ehp_iron['strength_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431] 
-    config.ehp_iron['strength_xphrs'] = [5000, 10000, 20000, 30000, 35000, 40000, 44000, 47000]
+    config.ehp_iron['strength_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431] 
+    config.ehp_iron['strength_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
 
-    config.ehp_iron['defence_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_iron['defence_xphrs'] = [5000, 10000, 20000, 30000, 35000, 40000, 44000, 47000]
+    config.ehp_iron['defence_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_iron['defence_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
 
     config.ehp_iron['hitpoints_tiers'] = [0]
     config.ehp_iron['hitpoints_xphrs'] = [0]
 
-    config.ehp_iron['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431] 
-    config.ehp_iron['ranged_xphrs'] = [4000, 9000, 17000, 27000, 30000, 35000, 40000, 42000]
+    #config.ehp_iron['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431] 
+    #config.ehp_iron['ranged_xphrs'] = [4000, 9000, 17000, 27000, 30000, 35000, 40000, 42000]
+    config.ehp_iron['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
+    config.ehp_iron['ranged_xphrs'] = [4000, 9000, 17500, 20850, 21700, 24300, 25100, 27700, 28200, 30900, 31400, 33700, 34500, 37000, 38500, 40000, 40200]
 
-    config.ehp_iron['prayer_tiers'] = [0]
-    config.ehp_iron['prayer_xphrs'] = [15200]
+    config.ehp_iron['prayer_tiers'] = [0, 10680000, 13034000, 163880000]
+    config.ehp_iron['prayer_xphrs'] = [9300, 2350000, 9300, 36120000]
 
-    config.ehp_iron['magic_tiers'] = [0, 3973, 33648]
-    config.ehp_iron['magic_xphrs'] = [5000, 34800, 56100]
+    config.ehp_iron['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
+    config.ehp_iron['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
 
-    #config.ehp_iron['cooking_tiers'] = [0]
-    #config.ehp_iron['cooking_xphrs'] = [0]
-    config.ehp_iron['cooking_tiers'] = [0, 101333, 224466]
-    config.ehp_iron['cooking_xphrs'] = [40000, 140000, 156800]
+    config.ehp_iron['cooking_tiers'] = [0, 101333]
+    config.ehp_iron['cooking_xphrs'] = [40000, 120000]
 
-    #config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 9800000]
-    #config.ehp_iron['woodcutting_xphrs'] = [6000, 12000, 24000, 34700, 72000]
-    config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
-    config.ehp_iron['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 78500]
+    config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
+    config.ehp_iron['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
 
-    #config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 9600000]
-    #config.ehp_iron['fishing_xphrs'] = [12000, 22000, 26000, 28000, 30000, 32000, 38000, 72000]
-    config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431]
-    config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 78500]
+    config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
+    config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
 
-    #config.ehp_iron['firemaking_tiers'] = [0]
-    #config.ehp_iron['firemaking_xphrs'] = [0]
     config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
-    config.ehp_iron['firemaking_xphrs'] = [45000, 67500, 101250, 126000]
+    config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 86000]
 
     config.ehp_iron['crafting_tiers'] = [0]
-    config.ehp_iron['crafting_xphrs'] = [13300]
+    config.ehp_iron['crafting_xphrs'] = [15550]
 
-    config.ehp_iron['smithing_tiers'] = [0]
-    config.ehp_iron['smithing_xphrs'] = [8100]
+    config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
+    config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
 
     config.ehp_iron['mining_tiers'] = [0]
     config.ehp_iron['mining_xphrs'] = [0]
 
-    config.ehp_iron['runecraft_tiers'] = [0]
-    config.ehp_iron['runecraft_xphrs'] = [4285]
+    config.ehp_iron['runecraft_tiers'] = [0, 11970000, 13034000, 183673000]
+    config.ehp_iron['runecraft_xphrs'] = [3970, 1060000, 3970, 16327000]
 
 
 
-    config.ehp_uim['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_uim['attack_xphrs'] = [5000, 10000, 20000, 30000, 35000, 40000, 44000, 47000]
+    config.ehp_uim['attack_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_uim['attack_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
 
-    config.ehp_uim['strength_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431] 
-    config.ehp_uim['strength_xphrs'] = [5000, 10000, 20000, 30000, 35000, 40000, 44000, 47000]
+    config.ehp_uim['strength_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431] 
+    config.ehp_uim['strength_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
 
-    config.ehp_uim['defence_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_uim['defence_xphrs'] =  [5000, 10000, 20000, 30000, 35000, 40000, 44000, 47000]
+    config.ehp_uim['defence_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_uim['defence_xphrs'] =  [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
 
     config.ehp_uim['hitpoints_tiers'] = [0]
     config.ehp_uim['hitpoints_xphrs'] = [0]
 
-    config.ehp_uim['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_uim['ranged_xphrs'] = [4000, 9000, 17000, 27000, 30000, 35000, 40000, 42000]
+    config.ehp_uim['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
+    config.ehp_uim['ranged_xphrs'] = [4000, 9000, 17500, 20850, 21700, 24300, 25100, 27700, 28200, 30900, 31400, 33700, 34500, 37000, 38500, 40000, 40200]
+    
+    config.ehp_uim['prayer_tiers'] = [0, 10680000, 13034000, 163880000]
+    config.ehp_uim['prayer_xphrs'] = [9300, 2350000, 9300, 36120000]
 
-    config.ehp_uim['prayer_tiers'] = [0]
-    config.ehp_uim['prayer_xphrs'] = [15200]
+    config.ehp_uim['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
+    config.ehp_uim['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
 
-    config.ehp_uim['magic_tiers'] = [0, 3973, 33648]
-    config.ehp_uim['magic_xphrs'] = [5000, 34800, 45600]
+    config.ehp_uim['cooking_tiers'] = [0, 101333]
+    config.ehp_uim['cooking_xphrs'] = [40000, 120000]
 
-    #config.ehp_uim['cooking_tiers'] = [0] 
-    #config.ehp_uim['cooking_xphrs'] = [0]
-    config.ehp_uim['cooking_tiers'] = [0, 101333, 224466]
-    config.ehp_uim['cooking_xphrs'] = [40000, 140000, 156800]
+    config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
+    config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
 
-    #config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 9800000]
-    #config.ehp_uim['woodcutting_xphrs'] = [6000, 12000, 24000, 34700, 72000]
-    config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
-    config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 78500]
+    config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
+    config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
 
-    #config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 9600000] 
-    #config.ehp_uim['fishing_xphrs'] = [12000, 22000, 26000, 28000, 30000, 32000, 38000, 72000]
-    config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431]
-    config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 78500]
-
-    #config.ehp_uim['firemaking_tiers'] = [0]
-    #config.ehp_uim['firemaking_xphrs'] = [0]
     config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
-    config.ehp_uim['firemaking_xphrs'] = [45000, 67500, 101250, 126000]
+    config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 86000]
 
-    config.ehp_uim['crafting_tiers'] = [0] 
-    config.ehp_uim['crafting_xphrs'] = [0]
+    config.ehp_uim['crafting_tiers'] = [0, 11275000, 13034000, 173000000] 
+    config.ehp_uim['crafting_xphrs'] = [13600, 1759250, 13600, 27000000]
 
-    config.ehp_uim['smithing_tiers'] = [0, 9800000]
-    config.ehp_uim['smithing_xphrs'] = [4800, 6900]
+    config.ehp_uim['smithing_tiers'] = [0, 10092000, 13034000, 154850000]
+    config.ehp_uim['smithing_xphrs'] = [7650, 2942000, 7650, 45150000]
 
     config.ehp_uim['mining_tiers'] = [0] 
     config.ehp_uim['mining_xphrs'] =[0]
 
     config.ehp_uim['runecraft_tiers'] = [0] 
-    config.ehp_uim['runecraft_xphrs'] = [3500]
+    config.ehp_uim['runecraft_xphrs'] = [3970]
 end
 
 # Precompile additional assets.
