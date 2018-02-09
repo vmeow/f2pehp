@@ -20,52 +20,20 @@
   = content_tag(:div, nil, style: "color: white; font-weight: bold; float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
     = "About Us/Donations"
 
-%br
-= content_tag(:div, nil, style: "margin: auto; width: 720px;; padding: 0px; background: none; border: none;") do 
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin: auto; width: 240px;; padding: 0px; background: none; border: none;") do 
-    = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-bottom: 30px; text-align:center; width:220px; padding: 5px; margin-top: 0px; padding-bottom: 20px;") do 
-      %h1 F2P Supporters
-      = "Anonymous"
-      %br
-      = link_to "Obor", "players/3849"
-      %br
-      = link_to "Bargan", "players/3777"
-      = " "
-      = link_to "nagraB", "players/3783"
-      %br
-      = link_to "F2P Lukie", "players/11773"
-      %br
-      = link_to "Tame My Wild", "players/11774"
-      %br
-      = link_to "Pawz", "players/967"
-      %br
-      = link_to "IronMace Din", "players/3813"
-      %br
-      = link_to "HCIM_btw_fev", "players/11796"
-      %br
-      = link_to "citnA", "players/11829"
-      %br
-      = link_to "Based Chew", "players/3816"
-
-    = content_tag(:div, nil, style: "text-align:center; width:220px; padding: 5px; margin-top: 0px; padding-bottom: 20px;") do 
-      %h1 Contact Us
-      = link_to "email us: f2posrsranks@gmail.com", "mailto:f2posrsranks@gmail.com"
-    
-    
-  = content_tag(:div, nil, style: "float: right; margin-left: auto; text-align: left; width: 430px; padding: 10px;") do 
+= content_tag(:div, nil, style: "margin: auto; width: 740px; padding: 0px; background: none; border: none;") do 
+  = content_tag(:div, nil, style: "margin-left: 30px; float: left; margin-right: auto; text-align: left; width: 430px; padding: 10px;") do 
     %h1{:align => "center"} About Us
-    = "This is a fan-made passion project started in October 2017. It will always be 100% ad-free and non-profit, and constantly updated to improve the F2P OSRS community. We work with respected F2P individuals to bring forth EHP balances and F2P meta changes. We are working on new features and additions all the time, including XP and EHP calculators, a F2P skilling method GP/XP calculator, a collection of interesting OSRS data and statistics, an expected monster drops calculator, etc. in future updates." 
+    = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+      = "This is a fan-made passion project started in October 2017. It will always be 100% ad-free and non-profit, and is constantly updated with the help of the F2P OSRS community. We work with respected F2P individuals to bring forth EHP balances and meta changes. We also work on new features and additions all the time, and we welcome any suggestions." 
     %h3{:align => "center"} Please consider supporting this free service.
-    = "Money is literally the last thing on our minds when it comes to this site: donations were the very last feature, delayed until v1.0 public release."
+    = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+      = "Money is literally our least important concern, as we wish only to serve the F2P OSRS community. However, hosting and server fees add up, so all donations are greatly appreciated."
     %h3{:align => "center"} You will support:
     &nbsp;
     = "- consistent site improvements requiring countless, unpaid hours"
     %br
     &nbsp;
     = "- hosting fees and server/database costs"
-    %br
-    &nbsp;&nbsp;&nbsp;
-    = "(currently, we are upgrading our database)"
     %br
     &nbsp;
     = "- new features and more comprehensive/interesting F2P data"
@@ -94,3 +62,32 @@
       </form>
     = content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 430px; max-width: 430px; padding: 0px; background: none; border: none;") do 
       = "please leave your F2P account name and your request in the note, or coordinate with us at f2posrsranks@gmail.com"
+      
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; width: 240px;; padding: 0px; background: none; border: none;") do 
+    = content_tag(:div, nil, style: "text-align:center; width:220px; padding: 5px; margin-bottom: 10px; margin-top: 0px; padding-bottom: 20px;") do 
+      %h1 Contact Us
+      = link_to "email us: f2posrsranks@gmail.com", "mailto:f2posrsranks@gmail.com"
+    
+    = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-bottom: 10px; text-align:center; width:220px; padding: 5px; margin-top: 0px; padding-bottom: 20px;") do 
+      %h1 F2P Supporters
+      = "Anonymous"
+      %br
+      = link_to "Obor", "players/3849"
+      %br
+      = link_to "Bargan", "players/3777"
+      = " "
+      = link_to "nagraB", "players/3783"
+      %br
+      = link_to "F2P Lukie", "players/11773"
+      %br
+      = link_to "Tame My Wild", "players/11774"
+      %br
+      = link_to "Pawz", "players/967"
+      %br
+      = link_to "IronMace Din", "players/3813"
+      %br
+      = link_to "HCIM_btw_fev", "players/11796"
+      %br
+      = link_to "citnA", "players/11829"
+      %br
+      = link_to "Based Chew", "players/3816"
