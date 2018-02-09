@@ -21,25 +21,94 @@
     = link_to "About Us/Donations", donate_path
 
 %br  
-= content_tag(:div, nil, style: "text-align: center; margin: auto; width:300px; padding: 5px;") do 
-  %h3 F2P Clans
-  = link_to "W_385", "http://www.reddit.com/r/W385/"
-  %br
-  = link_to "Free to play", "https://www.reddit.com/r/f2posrs/"
-  %br
-  = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/forums.ws?320,321,76,65920787"
-  %h3 Guides
-  = link_to "Asura Zoma's F2P Ironman Guide", "http://pastebin.com/raw/FuTEC8eB"
-  %h3 Charts
-  = link_to "Best Arrows at Each Level", "https://i.redd.it/wbvbp88s4ycy.png"
-  %br
-  = link_to "Loot from 11k Ogresse Kills", "https://i.redd.it/hbfboi9ia0701.png"
-  %br
-  %br
-  = "more links will be added soon"
-  %br
-
-
-//%br
-//= content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 60px; max-width:60px; padding: 5px;") do 
-//  = link_to 'Back', players_path
+= content_tag(:div, nil, style: "margin: auto; width: 640px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
+    %h3 Efficiency
+    %h6 Guides
+    = link_to "Advanced F2P Ironman Guide - Asura Zoma", "http://pastebin.com/raw/FuTEC8eB"
+    %br
+    = link_to "Reg Startup/Maxing Tips - Pawz", "https://www.youtube.com/watch?v=1wXJYhKZUDA"
+    %br
+    = link_to "UIM Startup Guide - Terrathrone", "http://youtu.be/MrakJzeKGTc"
+    %br
+    = link_to "Lvl 3 UIM Skiller Startup Guide - Turipo", "https://www.reddit.com/r/W385/comments/5uk9ku/f2p_level_3_skiller_ultimate_ironman_startup_guide/"
+    %br
+    = link_to "Efficient Multiquesting - EZScape", "http://youtu.be/d3zcXf90ODc"
+    %br
+    %br
+    
+    %h6 Skilling Videos
+    = link_to "3-tick wc - Faij", "http://www.youtube.com/watch?time_continue=6&v=GTEDU2KLjqE"
+    %br
+    = link_to "3-tick snowfish - Pawz", "http://www.youtube.com/watch?v=qSEWlM6aTuE"
+    %br
+    = link_to "3-tick mining - Firebolt8xp", "http://www.youtube.com/watch?v=hetEDZ2589o"
+    %br
+    = link_to "Efficient fm - Pawz", "http://www.youtube.com/watch?v=K7oigkUPhe0"
+    %br
+    = link_to "3-tick fish & 0-tick cook - Eirerie", "http://youtu.be/Bt5BlieARmU"
+    %br
+    = link_to "UIM wc/fm - Disziple", "http://youtu.be/RfX6MLnbiBI"
+    %br
+    = link_to "Efficient Boneyard pray - ColdFingers3", "http://www.youtube.com/watch?v=85lJ9_uxuKc"
+    %br
+    = link_to "2-tick essence mining - Pawz", "http://youtu.be/C-EVCH3q9qc"
+    %br
+    = link_to "Lvl 3 UIM suicide tiara RC - Needfireplz", "http://www.youtube.com/watch?v=4NBsXsOS9tg"
+    %br 
+    %br
+     
+    %h6 Charts
+    = link_to "Best Arrows at Each Level - UncleTomas", "http://i.redd.it/wbvbp88s4ycy.png"
+    %br
+    = link_to "Power Ammy vs Strength Ammy - UncleTomas", "http://i.imgur.com/cNeN6Xd.png"
+    %br
+    = link_to "Loot from 11k Ogresse Kills - W_385", "http://i.redd.it/hbfboi9ia0701.png"
+    
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
+    %h3 Community
+    %h6 Clans
+    = link_to "W_385", "http://www.reddit.com/r/W385/"
+    %br
+    = link_to "Free to play", "https://www.reddit.com/r/f2posrs/"
+    %br
+    = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/forums.ws?320,321,76,65920787"
+    %br
+    %br
+    
+    %h6 Youtube Channels
+    = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 240px; min-width: 240px; padding: 5px; margin-bottom: 10px; background: none; border: none;") do 
+      %thead
+        %tr
+          %th Regs
+          %th Ironmen
+      %tbody
+        %tr
+          %td= link_to "Pawz", "http://www.youtube.com/user/OneOrePerHour"
+          %td= link_to "Tame My Wild*", "http://www.youtube.com/channel/UCbmXIJdVqV4uR3C_0kATbbg"
+        %tr
+          %td= link_to "Faij", "http://www.youtube.com/channel/UC1Sy5U05d0VUAQq9Jfn89-A"
+          %td= link_to "Disziple*", "http://www.youtube.com/channel/UCu3YJ3dhTXIySE8AMWjjMpw"
+        %tr 
+          %td= link_to "Wide Abdomen", "http://www.youtube.com/channel/UC1M0Uj-Yojtfq-Gf6OZ0U8g"
+          %td= link_to "F2P HCIM MrG", "http://www.youtube.com/user/MrGraumanChannel"
+        %tr
+          %td= link_to "Dagah", "http://www.youtube.com/channel/UCARtI9MaSPX3rytNcDm-gpQ"
+          %td= link_to "DIY Qweef", "http://www.youtube.com/channel/UCHA4bEo-ZJ8wBDrEH1iyPMA"
+        %tr
+          %td= link_to "Freckled Kid", "http://www.youtube.com/channel/UCQnAzLbpqsS_8bP2KAiBzjg"
+          %td= link_to "Terrathrone*", "http://www.youtube.com/watch?v=Yz23Mb1ABB4&list=PLyEAkC8t_JfVG0s6ps2yEZjk-E594uB0c"
+        %tr
+          %td= link_to "Magnus F2P", "http://www.youtube.com/channel/UCvE3DoLAECkRvII-MqLhloQ"
+        %tr
+          %td= link_to "Cephalotaxus*", "http://www.youtube.com/channel/UCFkL5t0ekeqcwwx44r1nLVw"
+          
+    = "* inactive"
+    %br
+    %br
+    
+    %h6 Streamers
+    = link_to "Pawz", "http://www.twitch.tv/pawzrs"
+    %br
+    = link_to "Aip", "http://www.twitch.tv/a_i_p_s"
+    %br

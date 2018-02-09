@@ -69,6 +69,16 @@ h5 {
   margin-bottom: 5px;
 }
 
+h6 {
+  font-family: 'Verdana';
+  font-size: 14px;
+  color: #969696;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  line-height: 1;
+}
+
 
 table {
   //margin-left: 10px;
@@ -119,9 +129,6 @@ table th.hilite {
     color: black;
     background-color: white;
     font-family: 'Verdana';
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 5px;
 }
 
 
@@ -210,5 +217,11 @@ a[href$="/11774"]:after {  /* For Tame */
 a[href$="/11829"]:after {  /* For citnA */
   padding: 3px;
   content: image-url("bronzehelm.png");
+  vertical-align: -6px;
+}
+
+a[href$="/3816"]:after {  /* For Based Chew */
+  padding: 3px;
+  content: image-url("cupcake.png");
   vertical-align: -6px;
 }

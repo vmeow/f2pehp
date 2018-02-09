@@ -31,17 +31,17 @@
   = content_tag(:table, nil, style: "margin-right: auto; float: left; width: 100px; min-width: 100px; padding: 5px; margin-bottom: 10px;") do 
     %thead
       %tr
-        %th Banned
+        %th Fake F2P
     %tbody
-      - F2POSRSRanks::Application.config.banned.each do |player|
+      - F2POSRSRanks::Application.config.fakes.each do |player|
         %tr
           %td{:align => "center"}= player
           
   = content_tag(:table, nil, style: "margin-left: auto; float: right; width: 100px; min-width: 100px; padding: 5px; margin-bottom: 10px;") do 
     %thead
       %tr
-        %th Fake F2P
+        %th Banned
     %tbody
-      - F2POSRSRanks::Application.config.fakes.each do |player|
+      - F2POSRSRanks::Application.config.banned.each do |player|
         %tr
           %td{:align => "center"}= player
