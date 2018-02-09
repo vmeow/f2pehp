@@ -21,7 +21,7 @@
     = link_to "About Us/Donations", donate_path
   
 %br  
-= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 140px; padding: 10px; margin-bottom: 20px;") do 
+= content_tag(:div, nil, style: "text-align: center; margin: auto; width: 160px; padding: 10px; margin-bottom: 20px;") do 
   %h3 Update Stats
   = form_tag players_path(@player), :method => :put do
     = link_to "#{@player.player_name}", @player, method: :update_player

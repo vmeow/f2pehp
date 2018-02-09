@@ -15,6 +15,7 @@ class PlayersController < ApplicationController
     @skills = params[:skills_] || session[:skills_] || {}
     @display = params[:display] || session[:display] || "ehp"
     @show_limit = params[:show_limit] || session[:show_limit] || 500
+    @display = @display.downcase
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters

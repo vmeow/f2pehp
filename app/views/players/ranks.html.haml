@@ -20,38 +20,15 @@
   = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
     = link_to "About Us/Donations", donate_path
 
-%br 
-= content_tag(:div, nil, style: "margin: auto; width: 575px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "margin-right: auto; float:left;  width: 135px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-    = content_tag(:div, nil, style: "margin: auto; width: 115px; padding: 5px; margin-bottom: 5px;") do 
-      = form_tag ranks_path, :method => "get", id: "search-players-form" do
-        = text_field_tag :search, params[:search], placeholder: "Find Player", :class => "search-field", style: "width: 105px;"
-        %br
-        = submit_tag "Find"
-        
-    = content_tag(:div, nil, style: "margin: auto; width: 115px; padding: 5px;") do 
-      = form_tag ranks_path, :method => :get, :id => 'display_form' do
-        = "Display Skill as:"
-        %br
-        = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
-          = "EHP"
-          
-          %br
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
-          = "Level"
-          
-          %br
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
-          = "XP"
-        = submit_tag 'Refresh', {:id => 'display_submit'}
-
-  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 95px; padding: 5px;") do 
-    = form_tag ranks_path, :method => :get, :id => 'filters_form' do
+= content_tag(:div, nil, style: "margin: auto; width: 280px; padding: 5px; margin-bottom: 5px; margin-top: 0px;") do 
+  = form_tag ranks_path, :method => "get", id: "search-players-form" do
+    = "Find Player "
+    = text_field_tag :search, params[:search], placeholder: "Player Name", :class => "search-field", style: "width: 140px;"
+    = submit_tag "Find"
     
+= content_tag(:div, nil, style: "margin: auto; width: 420px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "margin-right: auto; float:left; width: 95px; padding: 5px;") do 
+    = form_tag ranks_path, :method => :get, :id => 'filters_form' do
       = "Filter Account Type?"
       %br
       = content_tag(:div, nil, style: "text-align: left;width: 95px; border: none; background: none;") do
@@ -72,7 +49,7 @@
         = "HCIM"
       = submit_tag 'Filter', :id => "filters_submit"
       
-  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left;  width: 165px; padding: 5px;") do 
+  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 165px; padding: 5px;") do 
     = form_tag ranks_path, :method => :get, :id => 'skills_form' do
       - all_skills = F2POSRSRanks::Application.config.f2p_skills
       = "Show Skills?"
@@ -84,31 +61,56 @@
           %br
       = submit_tag 'Refresh', :id => "skills_submit"
       
-  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left;  width: 115px; padding: 5px;") do
-    = form_tag ranks_path, :method => :get, :id => 'show_limits_form' do
-      = "Limit Results?"
-      %br
-      = content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
-        &nbsp;
-        = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
-        = "Top 250"
+  = content_tag(:div, nil, style: "margin-right: auto; float:left;  width: 100px; margin-top: 0px; margin-left: 2px; color: none; background-color: transparent; border: none") do 
+    = content_tag(:div, nil, style: "margin: auto; width: 80px; padding: 5px;") do 
+      = form_tag ranks_path, :method => :get, :id => 'display_form' do
+        = "Skill Display"
         %br
-        &nbsp;
-        = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
-        = "Top 500"
+        = select_tag :display, options_for_select(["EHP", "LVL", "XP"], @display.upcase)
+        
+        /= content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
+        /  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        /  = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
+        /  = "EHP"
+          
+        /  %br
+        /  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        /  = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
+        /  = "Level"
+          
+        /  %br
+        /  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        /  = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
+        /  = "XP"
+        = submit_tag 'Refresh', {:id => 'display_submit'}
+        
+    = content_tag(:div, nil, style: "margin: auto; width: 80px; padding: 5px; margin-top: 5px;") do
+      = form_tag ranks_path, :method => :get, :id => 'show_limits_form' do
+        = "Show Limit"
         %br
-        &nbsp;
-        = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
-        = "Top 1000"
-        %br
-        &nbsp;
-        = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
-        = "Top 2000"
-        %br
-        &nbsp;
-        = radio_button_tag "show_limit", 20000, @show_limit.equal?(20000), :show_limit => 20000
-        = "All Accounts"
-      = submit_tag 'Refresh', :id => "show_limit_submit"
+        = select_tag :show_limit, options_for_select(["250", "500", "1000", "2000", "20000"], @show_limit)
+  
+        /= content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
+        /  &nbsp;
+        /  = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
+        /  = "Top 250"
+        /  %br
+        /  &nbsp;
+        /  = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
+        /  = "Top 500"
+        /  %br
+        /  &nbsp;
+        /  = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
+        /  = "Top 1000"
+        /  %br
+        /  &nbsp;
+        /  = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
+        /  = "Top 2000"
+        /  %br
+        /  &nbsp;
+        /  = radio_button_tag "show_limit", 20000, @show_limit.equal?(20000), :show_limit => 20000
+        /  = "All Accounts"
+        = submit_tag 'Refresh', :id => "show_limit_submit"
       
 
 
