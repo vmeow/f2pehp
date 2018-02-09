@@ -20,8 +20,7 @@
   = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
     = link_to "About Us/Donations", donate_path
 
-%br
-= content_tag(:div, nil, style: "text-align: center; width: 300px; padding: 5px; margin: auto;") do 
+= content_tag(:div, nil, style: "text-align: center; width: 680px; padding: 5px; margin: auto;") do 
   %h3 Message Of The Day
   %h4
     = "We have now expanded our database to include the top 4000 HC, 4000 UIM, and ~4000 IM by total level, with the cutoff around 320 for HC, 220 for UIM, and 320 for IM (sorry low level skillers!)."
@@ -32,6 +31,51 @@
     = "We now have secured the domain "
     = link_to "f2p.wiki,", "http://www.f2p.wiki"
     = " where we are now officially located."
-  %h4 
-    = "We have upgraded our server for faster site response times, less down-time, and useful metrics/alerts. Thanks again to our "
-    = link_to "supporters!", donate_path
+
+%br
+= content_tag(:div, nil, style: "margin: auto; min-width: 200px; width: 640px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, style: "float:left; margin: auto; min-width: 200px; width: 390px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
+    = content_tag(:div, nil, style: "text-align: center; width: 260px; margin: auto;") do 
+      %h1
+        = link_to "Top 25 F2P Players", ranks_path
+    %br  
+    = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 360px; min-width: 360px; padding: 5px; margin-bottom: 10px;") do 
+      %thead
+        %tr
+          %th Rank
+          %th Name
+          %th Account Type
+          %th Overall EHP
+      %tbody
+        - Player.order('overall_ehp').reverse.first(25).each.with_index 1 do |player, index|
+          %tr
+            %td{:align => "right"}= index
+            %td= link_to player.player_name, player
+            %td{:align => "center"}= player.player_acc_type
+            %td= player.overall_ehp
+            
+  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin: auto; width: 240px;; padding: 0px; background: none; border: none;") do 
+    = content_tag(:div, nil, style: "float: left; margin-right: auto; text-align:center; width:220px; margin-top: 0px; margin-bottom: 17px;") do 
+      %h1 
+        = link_to "F2P Supporters", donate_path
+    %br
+    = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-bottom: 30px; text-align:center; width:220px; margin-top: 0px;") do 
+      = "Anonymous"
+      %br
+      = link_to "Obor", "players/3849"
+      %br
+      = link_to "Bargan", "players/3777"
+      = " "
+      = link_to "nagraB", "players/3783"
+      %br
+      = link_to "F2P Lukie", "players/11773"
+      %br
+      = link_to "Tame My Wild", "players/11774"
+      %br
+      = link_to "Pawz", "players/967"
+      %br
+      = link_to "IronMace Din", "players/3813"
+      %br
+      = link_to "HCIM_btw_fev", "players/11796"
+      %br
+      = link_to "citnA", "players/11829"
