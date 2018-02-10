@@ -29,12 +29,6 @@ div {
   border: 3px solid #3E3B23;
 }
 
-div#main {
-  //margin: 20px;
-  //padding: 0 20px 20px;
-}
-
-
 a {
   color: #90c040;
   text-decoration: none;
@@ -81,20 +75,14 @@ h6 {
 
 
 table {
-  //margin-left: 10px;
-  //margin-top: 5px;
   margin: auto;
-  
-  //border: 3px solid #3E3B23;
   border-collapse: collapse;
   color: #969696;
-  
   background-color: rgba(0,0,0,0.5);
   border-color: #333333;
   min-width: 560px;
   max-width: 660px;
   overflow-x: auto;
-  
   /*
   background: url("original_backdrop_745.png");
   background-size: 100% auto;
@@ -133,34 +121,8 @@ table th.hilite {
 
 
 
-.left {
- text-align:left;
- margin-right:auto;
-}
-
-.right {
- text-align:right;
- margin-left:auto;
-}
-
-.center {
- text-align:center;
- margin-left:auto;
- margin-right:auto;
-}
-
-
-
-
-
-
-
-
-
-
 
 a[href$="/3849"]:before { /* For Obor*/
-  vertical-align: middle;
   padding: 3px;
   vertical-align: -6px;
   content: image-url("shamanmask.png");

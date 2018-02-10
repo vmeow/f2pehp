@@ -26,9 +26,10 @@
     = content_tag(:div, nil, style: "text-align: center; width: 290px; padding: 5px; margin-bottom: 20px;") do 
       %h3 Message Of The Day
       %h4
-        = "We have now expanded our database to include the top 4000 HC, 4000 UIM, and ~4000 IM by total level, with the cutoff around 320 for HC, 220 for UIM, and 320 for IM (sorry low level skillers!)."
+        = "Many links, guides, videos, and F2P OSRS content creators have been added to "
+        = link_to "Useful Links.", links_path
       %h4
-        = "F2P IM/HCIM/UIM EHP has now been implemented to the site. See the new EHP "
+        = "F2P IM/HCIM/UIM EHP changes have now been implemented to the site. See the new EHP "
         = link_to "here!", ehp_path
       %h4
         = "We now have secured the domain "
@@ -36,11 +37,9 @@
         = " where we are now officially located."
       
     = content_tag(:div, nil, style: "margin: auto; width: 240px; padding: 0px; background: none; border: none;") do 
-      = content_tag(:div, nil, style: "margin: auto; text-align:center; width:220px; margin-top: 0px; margin-bottom: 10px; padding: 5px;") do 
+      = content_tag(:div, nil, style: "margin: auto; margin-bottom: 30px; text-align:center; width:220px; margin-top: 0px; padding: 5px;") do 
         %h1 
           = link_to "F2P Supporters", donate_path
-          
-      = content_tag(:div, nil, style: "margin: auto; margin-bottom: 30px; text-align:center; width:220px; margin-top: 0px; padding: 5px;") do 
         = "Anonymous"
         %br
         = link_to "Obor", "players/3849"
@@ -65,10 +64,9 @@
         
   = content_tag(:div, nil, style: "float:left; margin-right: auto; margin-left: 0px; min-width: 440px; width: 440px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
     = content_tag(:div, nil, style: "min-width: 410px; width: 410px; margin-left: 0px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-      = content_tag(:div, nil, style: "text-align: center; width: 280px; margin: auto;") do 
+      = content_tag(:div, nil, style: "background-color: rgba(0,0,0,0.5); border: 1px solid black; border-bottom: none; text-align: center; width: 380px; margin: auto;") do 
         %h1
-          = link_to "Top 25 F2P Players", ranks_path
-      %br  
+          = link_to "Top 25 F2P OSRS Players", ranks_path
       = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 380px; min-width: 380px; padding: 5px; margin-bottom: 10px;") do 
         %thead
           %tr
