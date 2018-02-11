@@ -147,16 +147,84 @@ class PlayersController < ApplicationController
     redirect_to players_path
   end
 
-  # PATCH/PUT /players/1
-  # PATCH/PUT /players/1.json
-  def update_player
-    @player = Player.find params[:id]
-    if F2POSRSRanks::Application.config.downcase_fakes.include?(@player.player_name.downcase)
-      Player.where(player_name: @player.player_name).destroy_all
-      redirect_to players_url, notice: 'Fake F2P player was successfully removed.'
+  def get_stats(name)
+    if name == "Bargan"
+      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
+    else
+      begin
+        uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+      rescue Exception => e  
+        puts e.message 
+        Player.where(player_name: player.player_name).destroy_all
+      end
+      all_stats = uri.read.split(" ")
     end
-    @player.update_attribute(:potential_p2p, "0")
-    case @player.player_acc_type
+    return all_stats
+  end
+  
+  def check_hc_death(player, overall_xp)
+    if player.player_acc_type == "HCIM"
+      begin
+        hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+        hc_stats = hc_uri.read.split(" ")
+        hc_xp = hc_stats[0].split(",")[2].to_f
+        if hc_xp < overall_xp
+          player.update_attribute(:player_acc_type, "IM")
+        end
+      rescue Exception => e   
+        puts e.message 
+      end
+    end
+  end
+  
+  def calc_ehp(player, all_stats, ehp)
+    player.update_attribute(:potential_p2p, "0")
+    total_ehp = 0.0
+    F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
+      skill_lvl = all_stats[skill_idx].split(",")[1].to_f
+      skill_xp = all_stats[skill_idx].split(",")[2].to_f
+      if skill != "p2p" and skill != "overall" and skill != "lms"
+        skill_ehp = 0.0
+        skill_tiers = ehp["#{skill}_tiers"]
+        skill_xphrs = ehp["#{skill}_xphrs"]
+        last_skill_tier = 0.0
+        skill_tiers.each.with_index do |skill_tier, tier_idx|
+          skill_tier = skill_tier.to_f
+          skill_xphr = skill_xphrs[tier_idx].to_f
+          if skill_xphr != 0 and skill_tier < skill_xp
+            if (tier_idx + 1) < skill_tiers.length and skill_xp >=  skill_tiers[tier_idx + 1]
+              skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
+            else
+              skill_ehp += (skill_xp.to_f - skill_tier)/skill_xphr
+            end
+          end
+        end
+        if skill_xp == "-1"
+          player.update_attribute(:"#{skill}_xp", 0)
+        else
+          player.update_attribute(:"#{skill}_xp", skill_xp)
+        end
+        player.update_attribute(:"#{skill}_lvl", skill_lvl)
+        player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
+        total_ehp += skill_ehp.round(2)
+      elsif skill == "p2p" and skill_xp != 0
+        player.update_attribute(:potential_p2p, skill_xp)
+      elsif skill == "overall"
+        check_hc_death(player, skill_xp)
+        player.update_attribute(:"#{skill}_lvl", skill_lvl)
+        player.update_attribute(:"#{skill}_xp", skill_xp)
+      end
+    end
+    player.update_attribute(:overall_ehp, total_ehp.round(2))
+    if player.potential_p2p.to_f <= 0
+      player.update_attribute(:potential_p2p, "0")
+    else
+      Player.where(player_name: player.player_name).destroy_all
+    end
+  end
+
+  def get_ehp_type(player)
+    case player.player_acc_type
     when "Reg"
       ehp = F2POSRSRanks::Application.config.ehp_reg
     when "HCIM", "IM"
@@ -164,73 +232,22 @@ class PlayersController < ApplicationController
     when "UIM"
       ehp = F2POSRSRanks::Application.config.ehp_uim
     end
-    
-    begin
-      name = @player.player_name.gsub(" ", "_")
-      puts name
-      if name == "Bargan"
-        all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
-      else
-        uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-        all_stats = uri.read.split(" ")
-      end
-      total_ehp = 0.0
-      F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
-        skill_lvl = all_stats[skill_idx].split(",")[1].to_f
-        skill_xp = all_stats[skill_idx].split(",")[2].to_f
-        if skill != "p2p" and skill != "overall" and skill != "lms"
-          @player.update_attribute(:"#{skill}_lvl", skill_lvl)
-          @player.update_attribute(:"#{skill}_xp", skill_xp)
-        
-          skill_ehp = 0.0
-          skill_tiers = ehp["#{skill}_tiers"]
-          skill_xphrs = ehp["#{skill}_xphrs"]
-          last_skill_tier = 0.0
-          skill_tiers.each.with_index do |skill_tier, tier_idx|
-            skill_tier = skill_tier.to_f
-            skill_xphr = skill_xphrs[tier_idx].to_f
-            if skill_xphr != 0 and skill_tier < skill_xp
-              if (tier_idx + 1) < skill_tiers.length and skill_xp >=  skill_tiers[tier_idx + 1]
-                skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
-              else
-                skill_ehp += (skill_xp.to_f - skill_tier)/skill_xphr
-              end
-            end
-          end
-          @player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
-          total_ehp += skill_ehp.round(2)
-        elsif skill == "p2p" and skill_xp != 0
-          @player.update_attribute(:potential_p2p, skill_xp)
-        elsif skill == "overall"
-          if @player.player_acc_type == "HCIM"
-            hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
-            hc_stats = hc_uri.read.split(" ")
-            hc_xp = hc_stats[skill_idx].split(",")[2].to_f
-            if hc_xp < skill_xp
-              @player.update_attribute(:player_acc_type, "IM")
-            end
-          end
-          @player.update_attribute(:"#{skill}_lvl", skill_lvl)
-          @player.update_attribute(:"#{skill}_xp", skill_xp)
-        end
-      end
-      @player.update_attribute(:overall_ehp, total_ehp.round(2))
-      if @player.potential_p2p.to_f <= 0
-        @player.update_attribute(:potential_p2p, "0")
-      else
-        @player.update_attribute(:overall_ehp, "0")
-        @player.update_attribute(:overall_lvl, "0")
-        @player.update_attribute(:overall_xp, "0")
-        Player.where(player_name: @player.player_name).destroy_all
-      end
-    rescue Exception => e  
-      puts e.message 
-      @player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
-      @player.update_attribute(:overall_ehp, "0")
-      @player.update_attribute(:overall_lvl, "0")
-      @player.update_attribute(:overall_xp, "0")
+  end
+  
+  # PATCH/PUT /players/1
+  # PATCH/PUT /players/1.json
+  def update_player
+    @player = Player.find params[:id]
+    if F2POSRSRanks::Application.config.downcase_fakes.include?(@player.player_name.downcase)
       Player.where(player_name: @player.player_name).destroy_all
+      redirect_to ranks_path, notice: 'Fake F2P player was successfully removed.'
     end
+    name = @player.player_name.gsub(" ", "_")
+    puts name
+    all_stats = get_stats(name)
+    ehp = get_ehp_type(@player)
+    calc_ehp(@player, all_stats, ehp)
+    
     respond_to do |format|
       format.html { redirect_to @player, notice: 'Player was successfully updated.'}
       format.json { head :no_content }
@@ -239,95 +256,24 @@ class PlayersController < ApplicationController
   end
   
   def refresh_players
-    Player.all.each do |player|
-      if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
-        Player.where(player_name: player.player_name).destroy_all
-        next
-      end
-      player.update_attribute(:potential_p2p, "0")
-      case player.player_acc_type
-      when "Reg"
-        ehp = F2POSRSRanks::Application.config.ehp_reg
-      when "HCIM", "IM"
-        ehp = F2POSRSRanks::Application.config.ehp_iron
-      when "UIM"
-        ehp = F2POSRSRanks::Application.config.ehp_uim
-      end
-      name = player.player_name.gsub(" ", "_")
-      puts name
-      begin
-        if name == "Bargan"
-          all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
-        else
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-          all_stats = uri.read.split(" ")
-        end
-        total_ehp = 0.0
-        F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
-          skill_lvl = all_stats[skill_idx].split(",")[1].to_f
-          skill_xp = all_stats[skill_idx].split(",")[2].to_f
-          if skill != "p2p" and skill != "overall" and skill != "lms"
-            player.update_attribute(:"#{skill}_lvl", skill_lvl)
-            player.update_attribute(:"#{skill}_xp", skill_xp)
-        
-            skill_ehp = 0.0
-            skill_tiers = ehp["#{skill}_tiers"]
-            skill_xphrs = ehp["#{skill}_xphrs"]
-            last_skill_tier = 0.0
-            skill_tiers.each.with_index do |skill_tier, tier_idx|
-              skill_tier = skill_tier.to_f
-              skill_xphr = skill_xphrs[tier_idx].to_f
-              if skill_xphr != 0 and skill_tier < skill_xp
-                if (tier_idx + 1) < skill_tiers.length and skill_xp >=   skill_tiers[tier_idx + 1]
-                  skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
-                else
-                skill_ehp += (skill_xp.to_f - skill_tier)/skill_xphr
-                end
-              end
-            end
-            player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
-            total_ehp += skill_ehp.round(2)
-          elsif skill == "p2p" and skill_xp != 0
-            player.update_attribute(:potential_p2p, player.potential_p2p.to_f + skill_xp.to_f)
-          elsif skill == "overall"
-            if player.player_acc_type == "HCIM"
-              hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
-              hc_stats = hc_uri.read.split(" ")
-              hc_xp = hc_stats[skill_idx].split(",")[2].to_f
-              if hc_xp < skill_xp
-                player.update_attribute(:player_acc_type, "IM")
-              end
-            end
-            player.update_attribute(:"#{skill}_lvl", skill_lvl)
-            if skill_xp == "-1"
-              player.update_attribute(:"#{skill}_xp", 0)
-            else
-              player.update_attribute(:"#{skill}_xp", skill_xp)
-            end
-          end
-        end
-        player.update_attribute(:overall_ehp, total_ehp.round(2))
-        if player.potential_p2p.to_f <= 0
-          player.update_attribute(:potential_p2p, "0")
-        else
-          player.update_attribute(:overall_ehp, "0")
-          player.update_attribute(:overall_lvl, "0")
-          player.update_attribute(:overall_xp, "0")
+    Player.all.in_batches(of: 25) do |batch|
+      batch.each do |player|
+        if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
           Player.where(player_name: player.player_name).destroy_all
+          next
         end
-      rescue Exception => e  
-        #puts e.message 
-        player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
-        player.update_attribute(:overall_ehp, "0")
-        player.update_attribute(:overall_lvl, "0")
-        player.update_attribute(:overall_xp, "0")
-        Player.where(player_name: player.player_name).destroy_all
-        next
+        name = player.player_name.gsub(" ", "_")
+        puts name
+        begin
+          all_stats = get_stats(name)
+        rescue
+          next
+        end
+        ehp = get_ehp_type(player)
+        calc_ehp(player, all_stats, ehp)
       end
-      
-      
     end
-    redirect_to players_path, notice: 'All players were successfully updated.'
+    redirect_to ranks_path, notice: 'All players were successfully updated.'
   end
   
   def export_players
@@ -363,94 +309,26 @@ class PlayersController < ApplicationController
     end
   end
   
-  def refresh_1000
-    Player.all.order("overall_ehp").first(1000).each do |player|
-      if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
-        Player.where(player_name: player.player_name).destroy_all
-        next
-      end
-      player.update_attribute(:potential_p2p, "0")
-      case player.player_acc_type
-      when "Reg"
-        ehp = F2POSRSRanks::Application.config.ehp_reg
-      when "HCIM", "IM"
-        ehp = F2POSRSRanks::Application.config.ehp_iron
-      when "UIM"
-        ehp = F2POSRSRanks::Application.config.ehp_uim
-      end
-      name = player.player_name.gsub(" ", "_")
-      puts name
-      begin
-        if name == "Bargan"
-          all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
-        else
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-          all_stats = uri.read.split(" ")
-        end
-        total_ehp = 0.0
-        F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
-          skill_lvl = all_stats[skill_idx].split(",")[1].to_f
-          skill_xp = all_stats[skill_idx].split(",")[2].to_f
-          if skill != "p2p" and skill != "overall" and skill != "lms"
-            player.update_attribute(:"#{skill}_lvl", skill_lvl)
-            player.update_attribute(:"#{skill}_xp", skill_xp)
-        
-            skill_ehp = 0.0
-            skill_tiers = ehp["#{skill}_tiers"]
-            skill_xphrs = ehp["#{skill}_xphrs"]
-            last_skill_tier = 0.0
-            skill_tiers.each.with_index do |skill_tier, tier_idx|
-              skill_tier = skill_tier.to_f
-              skill_xphr = skill_xphrs[tier_idx].to_f
-              if skill_xphr != 0 and skill_tier < skill_xp
-                if (tier_idx + 1) < skill_tiers.length and skill_xp >=   skill_tiers[tier_idx + 1]
-                  skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
-                else
-                skill_ehp += (skill_xp.to_f - skill_tier)/skill_xphr
-                end
-              end
-            end
-            player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
-            total_ehp += skill_ehp.round(2)
-          elsif skill == "p2p" and skill_xp != 0
-            player.update_attribute(:potential_p2p, player.potential_p2p.to_f + skill_xp.to_f)
-          elsif skill == "overall"
-            if player.player_acc_type == "HCIM"
-              hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
-              hc_stats = hc_uri.read.split(" ")
-              hc_xp = hc_stats[skill_idx].split(",")[2].to_f
-              if hc_xp < skill_xp
-                player.update_attribute(:player_acc_type, "IM")
-              end
-            end
-            player.update_attribute(:"#{skill}_lvl", skill_lvl)
-            if skill_xp == "-1"
-              player.update_attribute(:"#{skill}_xp", 0)
-            else
-              player.update_attribute(:"#{skill}_xp", skill_xp)
-            end
-          end
-        end
-        player.update_attribute(:overall_ehp, total_ehp.round(2))
-        if player.potential_p2p.to_f <= 0
-          player.update_attribute(:potential_p2p, "0")
-        else
-          player.update_attribute(:overall_ehp, "0")
-          player.update_attribute(:overall_lvl, "0")
-          player.update_attribute(:overall_xp, "0")
+  def refresh_250
+    #Player.all.order("overall_ehp").first(1000).each do |player|
+    Player.where("overall_ehp > 500").find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
           Player.where(player_name: player.player_name).destroy_all
+          next
         end
-      rescue Exception => e  
-        #puts e.message 
-        player.update_attribute(:potential_p2p, "NAME UNAVAILABLE")
-        player.update_attribute(:overall_ehp, "0")
-        player.update_attribute(:overall_lvl, "0")
-        player.update_attribute(:overall_xp, "0")
-        Player.where(player_name: player.player_name).destroy_all
-        next
+        name = player.player_name.gsub(" ", "_")
+        puts name
+        begin
+          all_stats = get_stats(name)
+        rescue
+          next
+        end
+        ehp = get_ehp_type(player)
+        calc_ehp(player, all_stats, ehp)
       end
     end
-    redirect_to players_path, notice: 'All players were successfully updated.'
+    redirect_to ranks_path, notice: 'All players were successfully updated.'
   end
   
   def find_new
