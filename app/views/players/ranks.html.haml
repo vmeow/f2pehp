@@ -25,7 +25,12 @@
     = "Find Player "
     = text_field_tag :search, params[:search], placeholder: "Player Name", :class => "search-field", style: "width: 140px;"
     = submit_tag "Find"
-    
+
+//= form_for ranks_path, :method => :get, remote: true do |f|
+//= content_tag(:div, nil, style: "text-align: left;width: 95px; border: none; background: none;") do
+//  = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), data: { remote: true, url: url_for(action: :ranks, id: "filters_Reg"), method: "GET"}
+//  = "Reg"
+
 = content_tag(:div, nil, style: "margin: auto; width: 420px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
   = content_tag(:div, nil, style: "margin-right: auto; float:left; width: 95px; padding: 5px;") do 
     = form_tag ranks_path, :method => :get, :id => 'filters_form' do

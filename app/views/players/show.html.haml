@@ -23,6 +23,7 @@
 = content_tag(:div, nil, style: "text-align: center; margin: auto; width: 160px; padding: 10px; margin-bottom: 20px;") do 
   %h3 Update Stats
   = form_tag players_path(@player), :method => :put do
+    //= link_to "#{@player.player_name}", @player, remote: true, class: "update-player-button", method: :update_player
     = link_to "#{@player.player_name}", @player, method: :update_player
 
 = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 

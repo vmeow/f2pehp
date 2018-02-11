@@ -10,7 +10,6 @@ class PlayersController < ApplicationController
   # GET /players.json
   def ranks
     sort_by = params[:sort_by] || session[:sort_by] || {}
-    search_term = params[:search] || session[:search] || {}
     @filters = params[:filters_] || session[:filters_] || {}
     @skills = params[:skills_] || session[:skills_] || {}
     @display = params[:display] || session[:display] || "ehp"
@@ -55,19 +54,12 @@ class PlayersController < ApplicationController
       sort_by = "overall_ehp"
     end
     
-    if search_term == {}
-      search_term = ""
-    end
-    
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skills_] != session[:skills_] || params[:show_limit] != session[:show_limit] || params[:display] != session[:display]# || params[:search] != session[:search]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skills_] != session[:skills_] || params[:show_limit] != session[:show_limit] || params[:display] != session[:display]
       session[:filters_] = @filters
       session[:skills_] = @skills
       session[:sort_by] = sort_by
       session[:show_limit] = @show_limit
       session[:display] = @display
-      #session[:search] = search_term
-      #redirect_to(players_path(sort_by: sort_by, filters_: @filters, skills_: @skills)) && return
-      #redirect_to(players_path(sort_by: sort_by, search: search_term, filters_: @filters)) && return
     end
     
     ordering = sort_by
@@ -111,14 +103,11 @@ class PlayersController < ApplicationController
     when "potential_p2p"
       @player_p2p_header = 'hilite'
     end
-    #if !search_term.nil? or search_term != ""
-    #  @players = Player.where('player_name like ?', "%#{search_term}%").order(ordering)
-    #else
-    #  @players = Player.all.order(ordering)
-    #end
+
     @players = Player.where(player_acc_type: @filters.keys).order(ordering)
     @players = @players.reverse
     @players = @players.first(@show_limit.to_i)
+    
   end
   
   def clear
@@ -242,7 +231,11 @@ class PlayersController < ApplicationController
       @player.update_attribute(:overall_xp, "0")
       Player.where(player_name: @player.player_name).destroy_all
     end
-    redirect_to @player, notice: 'Player was successfully updated.'
+    respond_to do |format|
+      format.html { redirect_to @player, notice: 'Player was successfully updated.'}
+      format.json { head :no_content }
+      format.js   { render :layout => false }
+    end
   end
   
   def refresh_players
