@@ -21,8 +21,11 @@ class PlayersController < ApplicationController
       session[:filters_] = @filters
     end
     
+    players_table = Player.arel_table
+
     if params[:search]
-      found = Player.where('player_name like ?', "%#{params[:search]}%").first
+      #found = Player.where('player_name like ?', "%#{params[:search]}%").first
+      found = Player.where(players_table[:player_name].matches("%#{params[:search]}%")).first
       if found
         @player = found
         redirect_to @player
