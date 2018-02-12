@@ -1,27 +1,27 @@
-= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
+= content_tag(:div, nil, class: ["div", "title"]) do 
   %h1 
     = link_to "F2P.wiki", players_path
-  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, class: ["container", "subtitle"]) do 
     = "for all your F2P OSRS needs"
   %p#notice= notice
 
 %br
-= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "F2P OSRS Ranks", ranks_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Hall of Shame", fake_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
     = link_to "Useful Links", links_path
-  = content_tag(:div, nil, style: "color: white; font-weight: bold; float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 75px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "changelog", "selected-link"]) do 
     = "Changelog"
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donations", donate_path
   
-= content_tag(:div, nil, style: "margin: auto; width: 760px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 5px; text-align: left; width: 340px; padding: 10px;") do 
+= content_tag(:div, nil, class: "container", style: "width: 760px;") do 
+  = content_tag(:div, nil, class: "left", style: "margin-left: 5px; text-align: left; width: 340px; padding: 10px;") do 
     %h3 F2P OSRS Changelog
     = "Dec 7, 2017"
     %br
@@ -129,7 +129,7 @@
     %br
     %br
     
-  = content_tag(:div, nil, style: "float: left; margin-left: 10px; text-align: left; width: 340px; padding: 10px;") do 
+  = content_tag(:div, nil, class: "left", style: "margin-left: 10px; text-align: left; width: 340px; padding: 10px;") do 
     %h3
       = "F2P Wiki v1.02 Feb 8, 2018"
     = "EHP updated for IM/HC/UIM due to ogresses and mining guild. View the full changes "

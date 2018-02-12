@@ -1,23 +1,23 @@
-= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
+= content_tag(:div, nil, class: ["div", "title"]) do 
   %h1 
     = link_to "F2P.wiki", players_path
-  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, class: ["container", "subtitle"]) do 
     = "for all your F2P OSRS needs"
   %p#notice= notice
 
 %br
-= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "color: white; font-weight: bold; float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks", "selected-link"]) do
     = "F2P OSRS Ranks"
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Hall of Shame", fake_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
     = link_to "Useful Links", links_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 75px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
     = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donations", donate_path
 
 = content_tag(:div, nil, style: "margin: auto; width: 280px; padding: 5px; margin-bottom: 5px; margin-top: 0px;") do 
@@ -26,35 +26,20 @@
     = text_field_tag :search, params[:search], placeholder: "Player Name", :class => "search-field", style: "width: 140px;"
     = submit_tag "Find"
 
-//= form_for ranks_path, :method => :get, remote: true do |f|
-//= content_tag(:div, nil, style: "text-align: left;width: 95px; border: none; background: none;") do
-//  = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), data: { remote: true, url: url_for(action: :ranks, id: "filters_Reg"), method: "GET"}
-//  = "Reg"
-
-= content_tag(:div, nil, style: "margin: auto; width: 420px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "margin-right: auto; float:left; width: 95px; padding: 5px;") do 
+= content_tag(:div, nil, class: "container", style: "width: 420px;") do 
+  = content_tag(:div, nil, class: "left", style: "width: 95px; padding: 5px;") do 
     = form_tag ranks_path, :method => :get, :id => 'filters_form' do
       = "Filter Account Type?"
       %br
-      = content_tag(:div, nil, style: "text-align: left;width: 95px; border: none; background: none;") do
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[Reg]", 1, @filters.include?("Reg"), :id => "filters_Reg"
-        = "Reg"
-        %br
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[IM]", 1, @filters.include?("IM"), :id => "filters_IM"
-        = "IM"
-        %br
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[UIM]", 1, @filters.include?("UIM"), :id => "filters_UIM"
-        = "UIM"
-        %br
-        &nbsp;&nbsp;&nbsp;
-        = check_box_tag "filters_[HCIM]", 1, @filters.include?("HCIM"), :id => "filters_HCIM"
-        = "HCIM"
+      = content_tag(:div, nil, class: "container", style: "text-align: left; width: 95px; margin-bottom: 0px;") do
+        - ["Reg", "IM", "UIM", "HCIM"].each do |type|
+          &nbsp;&nbsp;&nbsp;
+          = check_box_tag "filters_[#{type}]", 1, @filters.include?(type), :id => "filters_#{type}"
+          = type
+          %br
       = submit_tag 'Filter', :id => "filters_submit"
       
-  = content_tag(:div, nil, style: "margin-left: 5px; margin-right: auto; float:left; width: 165px; padding: 5px;") do 
+  = content_tag(:div, nil, class: ["div", "left"], style: "margin-left: 5px; width: 165px; padding: 5px;") do 
     = form_tag ranks_path, :method => :get, :id => 'skills_form' do
       - all_skills = F2POSRSRanks::Application.config.f2p_skills
       = "Show Skills?"
@@ -66,27 +51,12 @@
           %br
       = submit_tag 'Refresh', :id => "skills_submit"
       
-  = content_tag(:div, nil, style: "margin-right: auto; float:left;  width: 100px; margin-top: 0px; margin-left: 2px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 100px; margin-left: 2px;") do 
     = content_tag(:div, nil, style: "margin: auto; width: 80px; padding: 5px;") do 
       = form_tag ranks_path, :method => :get, :id => 'display_form' do
         = "Skill Display"
         %br
         = select_tag :display, options_for_select(["EHP", "LVL", "XP"], @display.upcase)
-        
-        /= content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
-        /  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        /  = radio_button_tag "display", "ehp", @display.equal?("ehp"), {:display => "ehp"}
-        /  = "EHP"
-          
-        /  %br
-        /  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        /  = radio_button_tag "display", "lvl", @display.equal?("lvl"), {:display => "lvl"}
-        /  = "Level"
-          
-        /  %br
-        /  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        /  = radio_button_tag "display", "xp", @display.equal?("xp"), {:display => "xp"}
-        /  = "XP"
         = submit_tag 'Refresh', {:id => 'display_submit'}
         
     = content_tag(:div, nil, style: "margin: auto; width: 80px; padding: 5px; margin-top: 5px;") do
@@ -94,38 +64,16 @@
         = "Show Limit"
         %br
         = select_tag :show_limit, options_for_select(["250", "500", "1000", "2000", "20000"], @show_limit)
-  
-        /= content_tag(:div, nil, style: "text-align: left;width: 115px; border: none; background: none;") do
-        /  &nbsp;
-        /  = radio_button_tag "show_limit", 250, @show_limit.equal?(250), :show_limit => 250
-        /  = "Top 250"
-        /  %br
-        /  &nbsp;
-        /  = radio_button_tag "show_limit", 500, @show_limit.equal?(500), :show_limit => 500
-        /  = "Top 500"
-        /  %br
-        /  &nbsp;
-        /  = radio_button_tag "show_limit", 1000, @show_limit.equal?(1000), :show_limit => 1000
-        /  = "Top 1000"
-        /  %br
-        /  &nbsp;
-        /  = radio_button_tag "show_limit", 2000, @show_limit.equal?(2000), :show_limit => 2000
-        /  = "Top 2000"
-        /  %br
-        /  &nbsp;
-        /  = radio_button_tag "show_limit", 20000, @show_limit.equal?(20000), :show_limit => 20000
-        /  = "All Accounts"
         = submit_tag 'Refresh', :id => "show_limit_submit"
       
 
 
-= content_tag(:div, nil, style: "margin: auto; max-width: 780px; overflow-x: auto; margin-top: 5px; margin-bottom: 5px; color: none; background-color: transparent; border: none") do 
+= content_tag(:div, nil, class: "container", style: "max-width: 780px; overflow-x: auto; margin-top: 5px;") do 
   %table
     %thead
       %tr
         %th Rank
         %th Name
-        //%th Update Stats
         %th Account Type
         %th{:class => @player_lvl_header}= link_to 'Total LVL',ranks_path(:sort_by => 'overall_lvl'), :id => 'player_lvl_header'
         %th{:class => @player_xp_header}= link_to 'Total XP', ranks_path(:sort_by => 'overall_xp'), :id => 'player_xp_header'
@@ -136,7 +84,6 @@
             - template2 = "%s %s"
             - t = template % [skill, session[:display]]
             - t2 = template2 % [skill.capitalize, session[:display].upcase]
-            //%th{:class => @player_header["#{skill}"]}= link_to t2, ranks_path(:sort_by => t), :id => "player_header[#{skill}]"
             %th{:class => "@player_#{skill}_header"}= link_to t2, ranks_path(:sort_by => t), :id => "player_#{skill}_header"
   
     %tbody
@@ -144,7 +91,6 @@
         %tr
           %td{:align => "right"}= index
           %td= link_to player.player_name, player
-          //%td= link_to 'Update', player, method: :update_player
           %td{:align => "center"}= player.player_acc_type
           %td= player.overall_lvl
           %td= player.overall_xp

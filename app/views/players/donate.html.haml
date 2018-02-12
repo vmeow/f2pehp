@@ -1,27 +1,27 @@
-= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
+= content_tag(:div, nil, class: ["div", "title"]) do 
   %h1 
     = link_to "F2P.wiki", players_path
-  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+  = content_tag(:div, nil, class: ["container", "subtitle"]) do 
     = "for all your F2P OSRS needs"
   %p#notice= notice
   
 %br
-= content_tag(:div, nil, style: "margin: auto; width: 820px; margin-top: 0px; margin-bottom: 10px; color: none; background-color: transparent; border: none") do 
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 115px; padding: 10px;") do 
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "F2P OSRS Ranks", ranks_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 80px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 100px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Hall of Shame", fake_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 90px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
     = link_to "Useful Links", links_path
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 75px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
     = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, style: "color: white; font-weight: bold; float: left; margin-right: auto; margin-left: 10px; text-align: center; width: 140px; padding: 10px;") do 
+  = content_tag(:div, nil, class: ["bar", "donate", "selected-link"]) do 
     = "About Us/Donations"
 
-= content_tag(:div, nil, style: "margin: auto; width: 740px; padding: 0px; background: none; border: none;") do 
-  = content_tag(:div, nil, style: "margin-left: 30px; float: left; margin-right: auto; text-align: left; width: 430px; padding: 10px;") do 
+= content_tag(:div, nil, class: "container", style: "width: 740px;") do 
+  = content_tag(:div, nil, class: "left", style: "margin-left: 30px; text-align: left; width: 430px; padding: 10px;") do 
     %h1{:align => "center"} About Us
     = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
       = "This is a fan-made passion project started in October 2017. It will always be 100% ad-free and non-profit, and is constantly updated with the help of the F2P OSRS community. We work with respected F2P individuals to bring forth EHP balances and meta changes. We also work on new features and additions all the time, and we welcome any suggestions." 
@@ -52,7 +52,7 @@
     = "(no excessively offensive language, please)"
     %br
     %br
-    = content_tag(:div, nil, style: "text-align: left; margin: auto; min-width: 100px; max-width: 100px; padding: 0px; background: none; border: none;") do 
+    = content_tag(:div, nil, class: "container", style: "width: 100px;") do 
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
@@ -60,15 +60,15 @@
       <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
-    = content_tag(:div, nil, style: "text-align: center; margin: auto; min-width: 430px; max-width: 430px; padding: 0px; background: none; border: none;") do 
+    = content_tag(:div, nil, class: "container", style: "text-align: center; width: 430px;") do 
       = "please leave your F2P account name and your request in the note, or coordinate with us at f2posrsranks@gmail.com"
       
-  = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-left: 10px; width: 240px;; padding: 0px; background: none; border: none;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 10px; width: 240px;") do 
     = content_tag(:div, nil, style: "text-align:center; width:220px; padding: 5px; margin-bottom: 10px; margin-top: 0px; padding-bottom: 20px;") do 
       %h1 Contact Us
       = link_to "email us: f2posrsranks@gmail.com", "mailto:f2posrsranks@gmail.com"
     
-    = content_tag(:div, nil, style: "float: left; margin-right: auto; margin-bottom: 10px; text-align:center; width:220px; padding: 5px; margin-top: 0px; padding-bottom: 20px;") do 
+    = content_tag(:div, nil, class: ["supporters", "left"]) do 
       %h1 F2P Supporters
       = "Anonymous"
       %br

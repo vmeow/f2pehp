@@ -21,14 +21,6 @@ html {
   padding: 0px;
 }
 
-div {
-  margin-bottom: 5px;
-  color: #969696;
-  overflow: hidden;
-  background-color: rgba(0,0,0,0.75);
-  border: 3px solid #3E3B23;
-}
-
 a {
   color: #90c040;
   text-decoration: none;
@@ -80,7 +72,7 @@ table {
   color: #969696;
   background-color: rgba(0,0,0,0.5);
   border-color: #333333;
-  min-width: 560px;
+  min-width: 380px;
   max-width: 660px;
   overflow-x: auto;
   /*
@@ -117,6 +109,76 @@ table th.hilite {
     color: black;
     background-color: white;
     font-family: 'Verdana';
+}
+
+.title {
+  text-align: center;
+  width: 240px;
+  padding: 5px;
+  margin: auto;
+}
+
+.subtitle {
+  font-style: italic;
+  color: white;
+  font-weight: bold;
+  width: 200px;
+}
+
+div {
+  margin-bottom: 5px;
+  color: #969696;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.75);
+  border: 3px solid #3E3B23;
+}
+
+.container {
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: none;
+  background-color: transparent;
+  border: none;
+}
+
+.left {
+  float: left;
+  margin-right: auto;
+}
+
+.bar {
+  float: left;
+  margin-right: auto;
+  margin-left: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+.ranks {  width: 115px; }
+.ehp {  width: 80px; }
+.fake {  width: 100px; }
+.links {  width: 90px; }
+.changelog {  width: 75px; }
+.donate {  width: 140px; }
+.motd {
+  text-align: center;
+  width: 290px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+.supporters {
+  text-align:center;
+  width:220px;
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  padding: 5px;
+}
+
+.selected-link {
+  color: white;
+  font-weight: bold;
 }
 
 
