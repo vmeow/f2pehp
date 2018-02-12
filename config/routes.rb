@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'changelog' => 'players#changelog'
   get 'oldchangelog' => 'players#oldchangelog'
   get 'donate' => 'players#donate'
-  get 'secretpage' => 'players#secretpage'
+  get 'controls' => 'players#controls'
   get 'plaintext' => 'players#plaintext'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
