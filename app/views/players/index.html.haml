@@ -76,7 +76,7 @@
             %th Account Type
             %th Overall EHP
         %tbody
-          - Player.where("overall_ehp > 2000").order('overall_ehp').reverse.first(25).each.with_index 1 do |player, index|
+          - Player.where("overall_ehp > 1500").order('overall_ehp').reverse.first(25).each.with_index 1 do |player, index|
             %tr
               %td{:align => "right"}= index
               %td= link_to player.player_name, player
