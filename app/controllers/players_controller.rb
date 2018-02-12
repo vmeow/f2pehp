@@ -22,7 +22,7 @@ class PlayersController < ApplicationController
     end
     
     if params[:search]
-      found = Player.where(player_name: params[:search]).first
+      found = Player.where('player_name like ?', "%#{params[:search]}%").first
       if found
         @player = found
         redirect_to @player
@@ -310,7 +310,6 @@ class PlayersController < ApplicationController
   end
   
   def refresh_250
-    #Player.all.order("overall_ehp").first(1000).each do |player|
     Player.where("overall_ehp > 500").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
