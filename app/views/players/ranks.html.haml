@@ -61,9 +61,9 @@
         
     = content_tag(:div, nil, style: "margin: auto; width: 80px; padding: 5px; margin-top: 5px;") do
       = form_tag ranks_path, :method => :get, :id => 'show_limits_form' do
-        = "Show Limit"
+        = "Per Page"
         %br
-        = select_tag :show_limit, options_for_select(["250", "500", "1000", "2000", "20000"], @show_limit)
+        = select_tag :show_limit, options_for_select(["25", "50", "100", "250", "500"], @show_limit)
         = submit_tag 'Refresh', :id => "show_limit_submit"
       
 
@@ -89,7 +89,8 @@
     %tbody
       - @players.each.with_index 1 do |player, index|
         %tr
-          %td{:align => "right"}= index
+          - offset = index + (@players.current_page - 1)*@show_limit.to_i
+          %td{:align => "right"}= offset
           %td= link_to player.player_name, player
           %td{:align => "center"}= player.player_acc_type
           %td= player.overall_lvl
@@ -100,3 +101,5 @@
               - template = "%s_%s"
               - t = template % [skill, @display]
               %td= player[t]
+              
+= will_paginate @players

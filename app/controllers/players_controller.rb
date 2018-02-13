@@ -13,7 +13,7 @@ class PlayersController < ApplicationController
     @filters = params[:filters_] || session[:filters_] || {}
     @skills = params[:skills_] || session[:skills_] || {}
     @display = params[:display] || session[:display] || "ehp"
-    @show_limit = params[:show_limit] || session[:show_limit] || 500
+    @show_limit = params[:show_limit] || session[:show_limit] || 100
     @display = @display.downcase
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
@@ -108,6 +108,8 @@ class PlayersController < ApplicationController
     end
 
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{ordering} DESC")
+    
+    @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
   def clear
