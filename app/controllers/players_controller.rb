@@ -107,10 +107,7 @@ class PlayersController < ApplicationController
       @player_p2p_header = 'hilite'
     end
 
-    @players = Player.where(player_acc_type: @filters.keys).order(ordering)
-    @players = @players.reverse
-    @players = @players.first(@show_limit.to_i)
-    
+    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{ordering} DESC")
   end
   
   def clear
