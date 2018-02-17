@@ -108,13 +108,12 @@ class PlayersController < ApplicationController
       @player_p2p_header = 'hilite'
     end
     
-    #if ordering.include?("_lvl")
-    #  skill_order = ordering
-    #  skill_order.slice! "_lvl"
-    #  @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{skill_order}_lvl DESC, #{skill_order}_xp DESC")
-    #else
-    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{ordering} DESC")
-    #end
+    if ordering.include?("_lvl")
+      xp_ordering = ordering.gsub("lvl", "xp")
+      @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{ordering} DESC, #{xp_ordering} DESC")
+    else
+      @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{ordering} DESC")
+    end
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
