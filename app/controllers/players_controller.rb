@@ -69,6 +69,7 @@ class PlayersController < ApplicationController
     case sort_by
     when "overall_ehp"
       @player_ehp_header = 'hilite'
+      #@player_header["ehp"] = 'hilite'
     when "overall_lvl"
       @player_lvl_header = 'hilite'
     when "overall_xp"
