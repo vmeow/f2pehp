@@ -25,31 +25,66 @@
   = form_tag players_path(@player), :method => :put do
     = link_to "#{@player.player_name}", @player, method: :update_player
 
-= content_tag(:table, nil, style: "text-align: center; margin: auto; width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
-  %tbody
-    %tr
-      %th{:align => "left"} Player Name 
-      %td= @player.player_name
-    %tr
-      %th{:align => "left"} Account Type 
-      %td= @player.player_acc_type
+= content_tag(:div, nil, class: "container", style: "width: 620px;") do 
+  - if @player.player_name == "Obor"
+    = content_tag(:div, nil, class: ["container", "left"], style: "width: 360px;") do 
+      = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
+        %tbody
+          %tr
+            %th{:align => "left"} Player Name 
+            %td= @player.player_name
+          %tr
+            %th{:align => "left"} Account Type 
+            %td= @player.player_acc_type
+      
+      = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 10px;") do 
+        %thead
+          %th{:align => "center"}  
+          %th{:align => "center"}  XP
+          %th{:align => "center"}  Level
+          %th{:align => "center"}  EHP
+        %tbody
+          %tr
+            %th= image_tag "overall.png"
+            %td= @player["overall_xp"]
+            %td= @player["overall_lvl"]
+            %td= @player["overall_ehp"]
+          - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+            %tr
+              %th= image_tag "#{skill}.png"
+              %td= @player["#{skill}_xp"]
+              %td= @player["#{skill}_lvl"]
+              %td= @player["#{skill}_ehp"]
+              
+    = content_tag(:div, nil, class: ["container", "right"], style: "width: 250px;") do 
+      = image_tag "obor.png"
+  - else
+    = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 200px; min-width: 200px; padding: 5px; margin-bottom: 10px;") do 
+      %tbody
+        %tr
+          %th{:align => "left"} Player Name 
+          %td= @player.player_name
+        %tr
+          %th{:align => "left"} Account Type 
+          %td= @player.player_acc_type
+    
+    = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 10px;") do 
+      %thead
+        %th{:align => "center"}  
+        %th{:align => "center"}  XP
+        %th{:align => "center"}  Level
+        %th{:align => "center"}  EHP
+      %tbody
+        %tr
+          %th= image_tag "overall.png"
+          %td= @player["overall_xp"]
+          %td= @player["overall_lvl"]
+          %td= @player["overall_ehp"]
+        - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+          %tr
+            %th= image_tag "#{skill}.png"
+            %td= @player["#{skill}_xp"]
+            %td= @player["#{skill}_lvl"]
+            %td= @player["#{skill}_ehp"]
+            
 
-%br
-= content_tag(:table, nil, style: "text-align: center; margin: auto; max-width: 600px; min-width: 300px; padding: 5px; margin-bottom: 10px;") do 
-  %thead
-    %th{:align => "center"}  
-    %th{:align => "center"}  XP
-    %th{:align => "center"}  Level
-    %th{:align => "center"}  EHP
-  %tbody
-    %tr
-      %th= image_tag "overall.png"
-      %td= @player["overall_xp"]
-      %td= @player["overall_lvl"]
-      %td= @player["overall_ehp"]
-    - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
-      %tr
-        %th= image_tag "#{skill}.png"
-        %td= @player["#{skill}_xp"]
-        %td= @player["#{skill}_lvl"]
-        %td= @player["#{skill}_ehp"]
