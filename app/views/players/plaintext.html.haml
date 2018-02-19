@@ -8,7 +8,7 @@
 - skill_list = F2POSRSRanks::Application.config.f2p_skills.clone
 - skill_list << "overall"
 = skill_list
-- Player.all.each do |player|
+- Player.all.order("overall_ehp DESC")each do |player|
   - str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}'"
   - skill_list.each do |skill|
     - lvl = "#{skill}_lvl"
