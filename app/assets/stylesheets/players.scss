@@ -59,6 +59,8 @@ h5 {
   display: block;
   width: 100%;
   line-height: 1;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 h6 {
@@ -77,7 +79,7 @@ table, th, td {
 }
 
 table th.hilite {
-  background-color: none; //#5B1D76;
+  background-color: brown; //#5B1D76;
 }
 
 table a {
