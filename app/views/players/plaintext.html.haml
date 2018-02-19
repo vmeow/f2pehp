@@ -1,9 +1,6 @@
-= content_tag(:div, nil, style: "text-align: center; width: 240px; padding: 5px; margin: auto;") do 
-  %h1 
-    = link_to "F2P.wiki", players_path
-  = content_tag(:div, nil, style: "font-style: italic; color: white; font-weight: bold; margin: auto; width: 200px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
-    = "for all your F2P OSRS needs"
-  %p#notice= notice
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+%p#notice= notice
 
 - skill_list = F2POSRSRanks::Application.config.f2p_skills.clone
 - skill_list << "overall"

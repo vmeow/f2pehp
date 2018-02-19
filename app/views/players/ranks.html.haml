@@ -1,11 +1,7 @@
-= content_tag(:div, nil, class: ["div", "title"]) do 
-  %h1 
-    = link_to "F2P.wiki", players_path
-  = content_tag(:div, nil, class: ["container", "subtitle"]) do 
-    = "for all your F2P OSRS needs"
-  %p#notice= notice
+= link_to image_tag("f2pwiki_500.png"), players_path
 
-%br
+%p#notice= notice
+
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["bar", "ranks", "selected-link"]) do
     = "F2P OSRS Ranks"

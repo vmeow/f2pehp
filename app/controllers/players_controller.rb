@@ -203,6 +203,12 @@ class PlayersController < ApplicationController
     end
   end
   
+  def remove_cutoff(player)
+    if player.overall_ehp < 50
+      Player.where(player_name: player.player_name).destroy_all
+    end
+  end
+  
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update_player
@@ -216,6 +222,7 @@ class PlayersController < ApplicationController
     all_stats = get_stats(name)
     ehp = get_ehp_type(@player)
     calc_ehp(@player, all_stats, ehp)
+    remove_cutoff(@player)
     
     respond_to do |format|
       format.html { redirect_to @player, notice: 'Player was successfully updated.'}
@@ -225,7 +232,7 @@ class PlayersController < ApplicationController
   end
   
   def refresh_players
-    Player.all.in_batches(of: 25) do |batch|
+    Player.where("id > 5000").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
           Player.where(player_name: player.player_name).destroy_all
@@ -240,6 +247,7 @@ class PlayersController < ApplicationController
         end
         ehp = get_ehp_type(player)
         calc_ehp(player, all_stats, ehp)
+        remove_cutoff(player)
       end
     end
     redirect_to ranks_path, notice: 'All players were successfully updated.'

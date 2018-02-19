@@ -1,11 +1,7 @@
-= content_tag(:div, nil, class: ["div", "title"]) do 
-  %h1 
-    = link_to "F2P.wiki", players_path
-  = content_tag(:div, nil, class: ["container", "subtitle"]) do 
-    = "for all your F2P OSRS needs"
-  %p#notice= notice
+= link_to image_tag("f2pwiki_500.png"), players_path
 
-%br
+%p#notice= notice
+
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "F2P OSRS Ranks", ranks_path
@@ -24,6 +20,10 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
+      %h6
+        = "Big shoutout to "
+        = link_to "Toady", "http://twitch.tv/toadyrs"
+        = " for the new site logo!"
       %h6
         = "F2P Wiki v1.04 release in progress; site logo commissioned, calcs in progress"
       %h6
