@@ -27,11 +27,12 @@
       = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
         %thead
           %th{:colspan => 4}
-            = "Personal scores for #{@player.player_name}"
+            = "Personal scores for "
             - if @player.player_acc_type == "Reg"
               = " (Reg)"
             - else
               = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
+            = " #{@player.player_name}"
         %thead
           %th{:align => "center"}  
           %th{:align => "center"}  XP
@@ -75,11 +76,12 @@
       = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
         %thead
           %th{:colspan => 4}
-            = "Personal scores for #{@player.player_name}"
+            = "Personal scores for "
             - if @player.player_acc_type == "Reg"
               = " (Reg)"
             - else
               = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
+            = " #{@player.player_name}"
         %thead
           %th{:align => "center"}  
           %th{:align => "center"}  XP
