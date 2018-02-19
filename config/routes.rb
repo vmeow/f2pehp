@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'donate' => 'players#donate'
   get 'controls' => 'players#controls'
   get 'plaintext' => 'players#plaintext'
+  get 'dps' => 'players#dps'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<script src="vendor/assets/javascripts/meleedps.js"></script>
+	<title>F2P DPS Calc</title>
+</head>
+
+<body>
+	<h4>F2P DPS Calc</h4>
+	<noscript><div><strong>Please enable JavaScript in your browser to use this page</strong></div></noscript>
+
+	<fieldset class="block">
+		<legend>Player</legend>
+
+		Attack:
+		<input type="number" name="att" value="1" min="0" max="120" step="1" size="6" maxlength="3" oninput="dps()" style="width:60px">
+		Strength:
+		<input type="number" name="str" value="1" min="0" max="120" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px"><br>
+		Attack style:
+		<select id="attStyle" onchange="dps()" >
+	  	<option value="1" selected="selected">Accurate</option>
+			<option value="2">Aggressive</option>
+			<option value="3">Controlled</option>
+	        <option value="4">Defensive</option>
+		</select><br>
+
+		Attack prayer:
+		<select id="attPrayer" onchange="dps()">
+			<option value="0" selected="selected">None</option>
+	  	<option value="1">Clarity of thought</option>
+			<option value="2">Improved reflexes</option>
+			<option value="3">Incredible reflexes</option>
+		</select><br>
+		Strength prayer:
+		<select id="strPrayer" onchange="dps()">
+			<option value="0" selected="selected">None</option>
+	  	<option value="1">Burst of strength</option>
+			<option value="2">Superhuman strength</option>
+			<option value="3">Ultimate strength</option>
+		</select><br>
+
+		First weapon att/str:
+			<input type="number" name="attackbonus1" value="0" max="999" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px">
+			<input type="number" name="strengthbonus1" value="0" max="999" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px">
+			<br>
+		Second weapon att/str:
+			<input type="number" name="attackbonus2" value="0" max="999" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px">
+			<input type="number" name="strengthbonus2" value="0" max="999" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px">
+			<br>
+
+		First weapon ticks:
+		<input type="number" name="attackspeed1" value="4" min="1" max="7" step="1" size="1" maxlength="1" oninput="dps()">
+		Second weapon ticks:
+		<input type="number" name="attackspeed2" value="4" min="1" max="7" step="1" size="1" maxlength="1" oninput="dps()">
+
+	</fieldset>
+
+	<fieldset class="block">
+		<legend>Enemy</legend>
+		Hitpoints:
+		<input type="number" name="enemyHit" value="1" min="1" max="999" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px">
+		Defence:
+		<input type="number" name="enemyDef" value="1" min="1" max="999" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px">
+		Armour:
+		<input type="number" name="enemyArm" value="0" max="999" step="1" size="3" maxlength="3" oninput="dps()" style="width:60px">
+	</fieldset>
+
+	<br><br>
+	<div class="float">
+	<fieldset>
+		<legend>Results for weapon 1</legend>
+		Max hit: <span id="maxhit1"></span><br>
+		Accuracy:  <span id="accuracy1"></span><br>
+		DPS: <span id="dps1"></span><br>
+		XP/h:  <span id="xph1"></span>
+	</fieldset>
+	</div>
+	<div class="float">
+	<fieldset>
+		<legend>Results for weapon 2</legend>
+		Max hit: <span id="maxhit2"></span><br>
+		Accuracy:  <span id="accuracy2"></span><br>
+		DPS: <span id="dps2"></span><br>
+		XP/h:  <span id="xph2"></span>
+	</fieldset>
+	</div>
+	<div class="float">
+	<fieldset>
+		<legend>Next max hits</legend>
+		<table id="projections"></table>
+	</fieldset>
+	</div>
+
+
+
+
+
+</body>
+
+</html>
