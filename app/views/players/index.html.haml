@@ -24,15 +24,15 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
-      %h5
+      %h6
         = "F2P Wiki v1.04 release in progress; site logo commissioned, calcs in progress"
-      %h5
+      %h6
         = "F2P Wiki v1.03 release: check out changes "
         = link_to "here.", changelog_path
-      %h5
+      %h6
         = "Many links, guides, videos, and F2P OSRS content creators have been added to "
         = link_to "Useful Links.", links_path
-      %h5
+      %h6
         = "F2P IM/HCIM/UIM EHP changes have now been implemented to the site. See the new EHP "
         = link_to "here!", ehp_path
       
