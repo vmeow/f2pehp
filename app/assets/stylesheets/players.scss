@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
   color: #969696; 
-  font-family: Tahoma, Verdana, sans-serif;
+  font-family: Arial,Helvetica,sans-serif;
   font-size: 10pt;
   width: 100%;
   height: 100%;
@@ -31,7 +31,7 @@ a:hover {
 
 h1 {
   color: white;
-  font-family: 'Verdana';
+  font-family: 'Arial';
   font-size: 150%;
   font-style: bold;
   display: block;
@@ -40,23 +40,29 @@ h1 {
 
 h3 {
   color: white;
-  font-family: 'Verdana';
+  font-family: 'Arial';
   font-style: bold;
   display: block;
   width: 100%;
 }
 
+h4 {
+  color: #d9c27e;
+  line-height: 1;
+}
+
 h5 {
-  color: gold;
-  font-family: 'Verdana';
-  font-size: 18px;
+  font-size: 14px;
+  color: white;
+  font-family: 'Arial';
   font-style: bold;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  display: block;
+  width: 100%;
+  line-height: 1;
 }
 
 h6 {
-  font-family: 'Verdana';
+  font-family: 'Arial';
   font-size: 14px;
   color: #969696;
   font-weight: bold;
@@ -65,50 +71,106 @@ h6 {
   line-height: 1;
 }
 
+table, th, td {
+  //border: 1px solid black;
+  padding: 4px;
+}
+
+table th.hilite {
+  background-color: none; //#5B1D76;
+}
+
+table a {
+  color: black; //#90c040;
+}
 
 table {
   margin: auto;
   border-collapse: collapse;
+  
+  /*
   color: #969696;
   background-color: rgba(0,0,0,0.5);
   border-color: #333333;
   min-width: 380px;
   max-width: 660px;
-  overflow-x: auto;
-  /*
-  background: url("original_backdrop_745.png");
-  background-size: 100% auto;
-  min-width: 960px;
-  overflow-y: scroll;
   */
+  
+  overflow-x: auto;
+  
+  color: black;
+  background: image-url("scroll_middle_379.gif");
+  background-size: 100% auto;
+  border: none;
 }
 
-table a {
-  color: #90c040;
+#headerHiscores {
+    background: image-url("scroll_top_379.gif") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
+
 }
 
-/*
-table:before { 
-  position: absolute;
-  top: 595px;
-  margin-left: -11px;
-  content: url("scrolltop.png");
+#footerHiscores {
+    background: image-url("scroll_bottom_379.gif") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
 }
-*/
 
-table, th, td {
-  border: 1px solid black;
-  padding: 4px;
+.skills {
+  background: image-url("banner_middle2.gif");
+  background-size: 100% auto;
+  text-align: left;
+  margin-left: 666px;
 }
-table th.hilite {
-  background-color: #5B1D76; //#242424;
+
+.skills a { color: #d9c27e; }
+
+#headerSkills {
+  background: image-url("banner_top2.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
 }
+
+#footerSkills {
+  background: image-url("banner_bottom2.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+}
+
+
 
 /*SEARCH BAR STYLING*/
 #search input[type="text"]{
     color: black;
     background-color: white;
-    font-family: 'Verdana';
+    font-family: 'Arial';
+}
+
+.search {
+  background: image-url("search_box.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+  font-weight: bold;
+  line-height: 25px;
+  padding-top: 5px;
+  color: #d9c27e;
+}
+
+.filter {
+  background: image-url("compare_users.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+  font-weight: bold;
+  line-height: 25px;
+  padding-top: 5px;
+  color: #d9c27e;
 }
 
 .title {
@@ -130,7 +192,7 @@ div {
   color: #969696;
   overflow: hidden;
   background-color: rgba(0,0,0,0.75);
-  border: 3px solid #3E3B23;
+  border: 3px solid #382418;
 }
 
 .container {
@@ -209,92 +271,91 @@ div {
 
 
 
-
+/* FLAIRS */
 a[href$="/3849"]:before { /* For Obor*/
   padding: 3px;
   vertical-align: -6px;
-  content: image-url("shamanmask.png");
+  content: image-url("flairs/shamanmask.png");
 }
-
 a[href$="/3849"]:after { /* For Obor*/
   padding: 3px;
   vertical-align: -6px;
-  content: image-url("oborclub.png");
+  content: image-url("flairs/oborclub.png");
 }
 
 a[href$="/967"]:after { /* For Pawz*/
   padding: 3px;
-  content: image-url("rs3helm.png");
+  content: image-url("flairs/rs3helm.png");
   vertical-align: -6px;
 }
 
 /* For nagraB */
 a[href$="/3777"]:after, a[href$="/3783"]:after { 
   padding: 3px;
-  content: image-url("bargan2.png");
+  content: image-url("flairs/bargan2.png");
   vertical-align: -8px;
 }
  
 a[href$="/3813"]:after {  /* For Mace Din */
   padding: 3px;
-  content: image-url("maceblur2.png");
+  content: image-url("flairs/maceblur2.png");
   vertical-align: -6px;
 }
 a[href$="/3813"]:before {  /* For Mace Din */
   padding: 3px;
-  content: image-url("soda.png");
+  content: image-url("flairs/soda.png");
   vertical-align: -6px;
 }
 
 a[href$="/11796"]:after {  /* For HCIM btw fev */
   padding: 3px;
-  content: image-url("kitten.png");
+  content: image-url("flairs/kitten.png");
   vertical-align: -6px;
 }
 
 a[href$="/11773"]:after {  /* For F2P Lukie */
   padding: 3px;
-  content: image-url("tea.png");
+  content: image-url("flairs/tea.png");
   vertical-align: -6px;
 }
 
 a[href$="/11774"]:after {  /* For Tame */
   padding: 3px;
-  content: image-url("dog.png");
+  content: image-url("flairs/dog.png");
   vertical-align: -6px;
 }
 
 a[href$="/11829"]:after {  /* For citnA */
   padding: 3px;
-  content: image-url("bronzehelm.png");
+  content: image-url("flairs/bronzehelm.png");
   vertical-align: -6px;
 }
 
 a[href$="/3816"]:after {  /* For Based Chew */
   padding: 3px;
-  content: image-url("cupcake.png");
+  content: image-url("flairs/cupcake.png");
   vertical-align: -6px;
 }
 
 a[href$="/11797"]:after {  /* For lRAIDERSS */
   padding: 3px;
-  content: image-url("raiders3.png");
+  content: image-url("flairs/raiders3.png");
   vertical-align: -8px;
 }
 
 a[href$="/953"]:after {  /* For Sofacanlazy */
   padding: 3px;
-  content: image-url("australia-flag.png");
+  content: image-url("flairs/australia-flag.png");
   vertical-align: -6px;
 }
 
-
-
-a[href$="/3813"] {  /* Mace Din */
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  color: #8B4513;
+a[href$="/12373"]:after {  /* For I love rs */
+  padding: 3px;
+  content: image-url("flairs/tank.png");
+  vertical-align: -6px;
 }
 
+/* FONT CHANGES */
 a[href$="/3849"] { /* For Obor*/
   color: #FFD700;
   font-family: Times New Roman;

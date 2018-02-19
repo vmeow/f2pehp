@@ -9,12 +9,11 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def ranks
-    sort_by = params[:sort_by] || session[:sort_by] || {}
+    @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
-    @skills = params[:skills_] || session[:skills_] || {}
-    @display = params[:display] || session[:display] || "ehp"
+    @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
-    @display = @display.downcase
+    
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters
@@ -24,7 +23,6 @@ class PlayersController < ApplicationController
     players_table = Player.arel_table
 
     if params[:search]
-      #found = Player.where('player_name like ?', "%#{params[:search]}%").first
       found = Player.where(players_table[:player_name].matches("%#{params[:search]}%")).first
       if found
         @player = found
@@ -34,9 +32,10 @@ class PlayersController < ApplicationController
       end
     end
     
-    if @skills == {}
-      params[:skills_] = {}
-      session[:skills_] = {}
+    if @skill == {}
+      @skill = "overall"
+      params[:skill] = "overall"
+      session[:skill] = "overall"
     end
     
     if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
@@ -53,68 +52,30 @@ class PlayersController < ApplicationController
       session[:player_to_del_name] = nil
     end
     
-    if sort_by == {}
-      sort_by = "overall_ehp"
+    if @sort_by == {}
+      @sort_by = "ehp"
     end
     
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skills_] != session[:skills_] || params[:show_limit] != session[:show_limit] || params[:display] != session[:display]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] 
       session[:filters_] = @filters
-      session[:skills_] = @skills
-      session[:sort_by] = sort_by
+      session[:skill] = @skill
+      session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
-      session[:display] = @display
     end
     
-    ordering = sort_by
-    case sort_by
-    when "overall_ehp"
+    case @sort_by
+    when "ehp"
       @player_ehp_header = 'hilite'
-      #@player_header["ehp"] = 'hilite'
-    when "overall_lvl"
+      ordering = "#{@skill}_ehp DESC"
+    when "lvl"
       @player_lvl_header = 'hilite'
-    when "overall_xp"
+      ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC"
+    when "xp"
       @player_xp_header = 'hilite'
-    when "attack_ehp", "attack_lvl", "attack_xp"
-      @player_attack_header = 'hilite'
-    when "strength_ehp"
-      @player_strength_header = 'hilite'
-    when "defence_ehp"
-      @player_defence_header = 'hilite'
-    when "hitpoints_ehp"
-      @player_hitpoints_header = 'hilite'
-    when "ranged_ehp"
-      @player_ranged_header = 'hilite'
-    when "prayer_ehp"
-      @player_prayer_header = 'hilite'
-    when "magic_ehp"
-      @player_magic_header = 'hilite'
-    when "cooking_ehp"
-      @player_cooking_header = 'hilite'
-    when "woodcutting_ehp"
-      @player_woodcutting_header = 'hilite'
-    when "fishing_ehp"
-      @player_fishing_header = 'hilite'
-    when "firemaking_ehp"
-      @player_firemaking_header = 'hilite'
-    when "crafting_ehp"
-      @player_crafting_header = 'hilite'
-    when "smithing_ehp"
-      @player_smithing_header = 'hilite'
-    when "mining_ehp"
-      @player_mining_header = 'hilite'
-    when "runecraft_ehp", "runecraft_lvl", "runecraft_xp"
-      @player_runecraft_header = 'hilite'
-    when "potential_p2p"
-      @player_p2p_header = 'hilite'
+      ordering = "#{@skill}_xp DESC"
     end
-    
-    if ordering.include?("_lvl")
-      xp_ordering = ordering.gsub("lvl", "xp")
-      @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{ordering} DESC, #{xp_ordering} DESC")
-    else
-      @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order("#{ordering} DESC")
-    end
-    
+      
+    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   

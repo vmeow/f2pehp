@@ -23,20 +23,18 @@
 = content_tag(:div, nil, class: "container", style: "width: 760px;") do 
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
-      %h3 Message Of The Day
-      %h4
+      %h1 Message Of The Day
+      %h5
+        = "F2P Wiki v1.04 release in progress; site logo commissioned, calcs in progress"
+      %h5
         = "F2P Wiki v1.03 release: check out changes "
         = link_to "here.", changelog_path
-      %h4
+      %h5
         = "Many links, guides, videos, and F2P OSRS content creators have been added to "
         = link_to "Useful Links.", links_path
-      %h4
+      %h5
         = "F2P IM/HCIM/UIM EHP changes have now been implemented to the site. See the new EHP "
         = link_to "here!", ehp_path
-      %h4
-        = "We now have secured the domain "
-        = link_to "f2p.wiki,", "http://www.f2p.wiki"
-        = " where we are now officially located."
       
     = content_tag(:div, nil, class: "container", style: "width: 240px;") do 
       = content_tag(:div, nil, class: "supporters") do 
@@ -68,13 +66,16 @@
         %br
         = link_to "Sofacanlazy", "players/953"
         %br
+        = link_to "I love rs", "players/12373"
+        %br
         
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; min-width: 440px; width: 440px;") do 
-    = content_tag(:div, nil, class: "container", style: "min-width: 410px; width: 410px; margin-left: 0px;") do 
-      = content_tag(:div, nil, style: "background-color: rgba(0,0,0,0.5); border: 1px solid black; border-bottom: none; text-align: center; width: 380px; margin: auto;") do 
-        %h1
-          = link_to "Top 25 F2P OSRS Players", ranks_path
-      = content_tag(:table, nil, style: "text-align: center; width: 380px; padding: 5px;") do 
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-bottom: 0px;") 
+    = content_tag(:div, nil, class: "container", style: "min-width: 410px; width: 410px; margin-left: 0px; margin-bottom: 0px;") do 
+      = content_tag(:table, nil, style: "text-align: center; width: 380px; padding: 5px; margin-bottom: 0px;") do 
+        %thead
+          %tr
+            %th{:align => "center", :colspan => 4}= link_to "F2P Overall Hiscores", ranks_path
         %thead
           %tr
             %th Rank
@@ -82,11 +83,10 @@
             %th Account Type
             %th Overall EHP
         %tbody
-          - Player.where("overall_ehp > 1500").order('overall_ehp').reverse.first(25).each.with_index 1 do |player, index|
+          - Player.limit(25).where("overall_ehp > 1500").order('overall_ehp DESC').each.with_index 1 do |player, index|
             %tr
               %td{:align => "right"}= index
               %td= link_to player.player_name, player
               %td{:align => "center"}= player.player_acc_type
               %td= player.overall_ehp
-              
-    
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-top: 0px;") 
