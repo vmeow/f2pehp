@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
-  color: #969696; 
+  color: white; 
   font-family: Arial,Helvetica,sans-serif;
   font-size: 10pt;
   width: 100%;
@@ -359,6 +359,6 @@ a[href$="/12373"]:after {  /* For I love rs */
 
 /* FONT CHANGES */
 a[href$="/3849"] { /* For Obor*/
-  color: #FFD700;
+  color: black; //#FFD700;
   font-family: Times New Roman;
 }

@@ -25,7 +25,8 @@
 - ehp_reg = F2POSRSRanks::Application.config.ehp_reg
 - ehp_iron = F2POSRSRanks::Application.config.ehp_iron
 - ehp_uim = F2POSRSRanks::Application.config.ehp_uim
-%table
+= content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
+= content_tag(:table, nil, style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
   %thead
     %tr
       %th Skill
@@ -34,8 +35,8 @@
       %th UIM EHP
   %tbody
     - f2p_skills.each do |skill|
-      %tr
-        %td= image_tag "#{skill}.png"
+      %tr{:style => "border-top: 1px solid black;" }
+        %td= image_tag "skills/#{skill}.png"
         %td{:align => "center"}
           - ehp_reg["#{skill}_tiers"].each.with_index do |tier, idx|
             = "#{tier} xp: #{ehp_reg["#{skill}_xphrs"][idx]} xp/hr"
@@ -48,3 +49,4 @@
           - ehp_uim["#{skill}_tiers"].each.with_index do |tier, idx|
             = "#{tier} xp: #{ehp_uim["#{skill}_xphrs"][idx]} xp/hr"
             %br
+= content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
