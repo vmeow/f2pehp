@@ -28,8 +28,10 @@ class PlayersController < ApplicationController
       if found
         @player = found
         redirect_to @player
+        return
       else
         flash[:notice] = "Player not found."
+        return
       end
     end
     
@@ -40,19 +42,23 @@ class PlayersController < ApplicationController
     end
     
     if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
-      found = Player.where('lower(player_name) = ?', params[:search].downcase).first
+      found = Player.where('lower(player_name) = ?', params[:player_to_add_name].downcase).first
       if found
+        puts "FOUND"
         redirect_to found, notice: 'The player you wish to add already exists.'
+        return
       end
 
       
       if F2POSRSRanks::Application.config.downcase_fakes.include?(params[:player_to_add_name].downcase)
         redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
+        return
       end
-      Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc]})
+      name = params[:player_to_add_name].gsub(" ", "_")
+
+      Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc], slug: name})
 
       player = Player.where(player_name: params[:player_to_add_name]).first
-      name = params[:player_to_add_name].gsub(" ", "_")
       puts name
       params[:player_to_add_name] = nil
       params[:player_to_add_acc] = nil
@@ -62,9 +68,11 @@ class PlayersController < ApplicationController
       all_stats = get_stats(name)
       ehp = get_ehp_type(player)
       calc_ehp(player, all_stats, ehp)
-      remove_cutoff(player)
-    
-      redirect_to player, notice: 'Player added successfully.'
+      if remove_cutoff(player)
+        redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
+      else
+        redirect_to player, notice: 'Player added successfully.'
+      end
     end
     
     if !params[:player_to_del_name].nil?
@@ -117,7 +125,13 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
-    @player = Player.friendly.find(params[:id])
+    name = params[:id].gsub("_", " ")
+    @player = Player.where('lower(player_name) = ?', name.downcase).first
+    if @player.nil?
+      @player = Player.find(params[:id])
+    end
+    #@player = Player.friendly.find(params[:id])
+    #@player = Player.find_by_slug(params[:id])
   end
 
   # GET /players/new
@@ -228,6 +242,7 @@ class PlayersController < ApplicationController
     if player.overall_ehp < 75
       Player.where(player_name: player.player_name).destroy_all
       #redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
+      return true
     end
   end
   
@@ -373,9 +388,15 @@ class PlayersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_player
-    @player = Player.friendly.find(params[:id])
+    name = params[:id].gsub("_", " ")
+    @player = Player.where('lower(player_name) = ?', name.downcase).first
+    if @player.nil?
+      @player = Player.find(params[:id])
+    end
+    #@player = Player.friendly.find(params[:id])
+    #@player = Player.find_by_slug(params[:id])
   end
-
+  
   def player_params
     params.require(:player).permit(
       :player_name,

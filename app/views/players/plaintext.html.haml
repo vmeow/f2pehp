@@ -6,7 +6,8 @@
 - skill_list << "overall"
 = skill_list
 - Player.all.order("overall_ehp DESC").each do |player|
-  - str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}'"
+  - name = player.player_name.gsub(" ", "_")
+  - str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}', 'slug': '#{name}'"
   - skill_list.each do |skill|
     - lvl = "#{skill}_lvl"
     - xp = "#{skill}_xp"
