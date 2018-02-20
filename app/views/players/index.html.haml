@@ -21,20 +21,14 @@
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
       %h6
+        = link_to "F2P Wiki v1.05 release:", changelog_path
+        = " More Regs scoured, hiscores limited to 75 EHP+ players, Add Player feature" 
+      %h6
         = "Big shoutout to "
         = link_to "Toady", "http://twitch.tv/toadyrs"
         = " for the new site logo!"
       %h6
-        = "F2P Wiki v1.04 release in progress; site logo commissioned, calcs in progress"
-      %h6
-        = "F2P Wiki v1.03 release: check out changes "
-        = link_to "here.", changelog_path
-      %h6
-        = "Many links, guides, videos, and F2P OSRS content creators have been added to "
-        = link_to "Useful Links.", links_path
-      %h6
-        = "F2P IM/HCIM/UIM EHP changes have now been implemented to the site. See the new EHP "
-        = link_to "here!", ehp_path
+        = "F2P Wiki v1.04 release: site styling to match official OSRS hiscores"
       
     = content_tag(:div, nil, class: "container", style: "width: 240px;") do 
       = content_tag(:div, nil, class: "supporters") do 
@@ -42,31 +36,31 @@
           = link_to "F2P Supporters", donate_path
         = "Anonymous"
         %br
-        = link_to "Obor", "players/3849"
+        = link_to "Obor", "players/68"
         %br
-        = link_to "Bargan", "players/3777"
+        = link_to "Bargan", "players/36"
         = " "
-        = link_to "nagraB", "players/3783"
+        = link_to "nagraB", "players/510"
         %br
-        = link_to "F2P Lukie", "players/11773"
+        = link_to "F2P Lukie", "players/32"
         %br
-        = link_to "Tame My Wild", "players/11774"
+        = link_to "Tame My Wild", "players/16"
         %br
-        = link_to "Pawz", "players/967"
+        = link_to "Pawz", "players/2"
         %br
-        = link_to "IronMace Din", "players/3813"
+        = link_to "IronMace Din", "players/70"
         %br
-        = link_to "HCIM_btw_fev", "players/11796"
+        = link_to "HCIM_btw_fev", "players/344"
         %br
-        = link_to "citnA", "players/11829"
+        = link_to "citnA", "players/444"
         %br
-        = link_to "Based Chew", "players/3816"
+        = link_to "Based Chew", "players/62"
         %br
-        = link_to "lRAIDERSS", "players/11797"
+        = link_to "lRAIDERSS", "players/276"
         %br
-        = link_to "Sofacanlazy", "players/953"
+        = link_to "Sofacanlazy", "players/8"
         %br
-        = link_to "I love rs", "players/12373"
+        = link_to "I love rs", "players/719"
         %br
         
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; min-width: 440px; width: 440px;") do 

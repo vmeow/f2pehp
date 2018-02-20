@@ -20,10 +20,11 @@ class PlayersController < ApplicationController
       session[:filters_] = @filters
     end
     
-    players_table = Player.arel_table
+    #players_table = Player.arel_table
 
     if params[:search]
-      found = Player.where(players_table[:player_name].matches("%#{params[:search]}%")).first
+      #found = Player.where(players_table[:player_name].matches("%#{params[:search]}%")).first
+      found = Player.where('lower(player_name) = ?', params[:search].downcase).first
       if found
         @player = found
         redirect_to @player
@@ -39,11 +40,31 @@ class PlayersController < ApplicationController
     end
     
     if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
+      found = Player.where('lower(player_name) = ?', params[:search].downcase).first
+      if found
+        redirect_to found, notice: 'The player you wish to add already exists.'
+      end
+
+      
+      if F2POSRSRanks::Application.config.downcase_fakes.include?(params[:player_to_add_name].downcase)
+        redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
+      end
       Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc]})
+
+      player = Player.where(player_name: params[:player_to_add_name]).first
+      name = params[:player_to_add_name].gsub(" ", "_")
+      puts name
       params[:player_to_add_name] = nil
       params[:player_to_add_acc] = nil
       session[:player_to_add_name] = nil
       session[:player_to_add_acc] = nil
+      
+      all_stats = get_stats(name)
+      ehp = get_ehp_type(player)
+      calc_ehp(player, all_stats, ehp)
+      remove_cutoff(player)
+    
+      redirect_to player, notice: 'Player added successfully.'
     end
     
     if !params[:player_to_del_name].nil?
@@ -96,7 +117,7 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
-    @player = Player.find params[:id]
+    @player = Player.friendly.find(params[:id])
   end
 
   # GET /players/new
@@ -204,8 +225,9 @@ class PlayersController < ApplicationController
   end
   
   def remove_cutoff(player)
-    if player.overall_ehp < 50
+    if player.overall_ehp < 75
       Player.where(player_name: player.player_name).destroy_all
+      #redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
     end
   end
   
@@ -232,7 +254,7 @@ class PlayersController < ApplicationController
   end
   
   def refresh_players
-    Player.where("id > 5000").find_in_batches(batch_size: 25) do |batch|
+    Player.all.find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
           Player.where(player_name: player.player_name).destroy_all
@@ -351,7 +373,7 @@ class PlayersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_player
-    @player = Player.find(params[:id])
+    @player = Player.friendly.find(params[:id])
   end
 
   def player_params

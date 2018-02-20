@@ -1,4 +1,10 @@
 class Player < ActiveRecord::Base
+  
+  extend FriendlyId
+  friendly_id :player_name, use: :slugged
+  
+  attr_accessor :slug
+  
   def refresh_players
     Player.all.each do |player|
       player.update_attribute(:potential_p2p, "0")
