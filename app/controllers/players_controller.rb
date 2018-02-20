@@ -56,7 +56,7 @@ class PlayersController < ApplicationController
       end
       name = params[:player_to_add_name].gsub(" ", "_")
 
-      Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc], slug: name})
+      Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc]})
 
       player = Player.where(player_name: params[:player_to_add_name]).first
       puts name
@@ -131,7 +131,6 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
     end
     #@player = Player.friendly.find(params[:id])
-    #@player = Player.find_by_slug(params[:id])
   end
 
   # GET /players/new
@@ -394,7 +393,6 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
     end
     #@player = Player.friendly.find(params[:id])
-    #@player = Player.find_by_slug(params[:id])
   end
   
   def player_params

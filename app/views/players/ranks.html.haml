@@ -54,7 +54,7 @@
           %tr
             - offset = index + (@players.current_page - 1)*@show_limit.to_i
             %td{:align => "right"}= offset
-            %td= link_to player.player_name, player
+            %td= link_to player.player_name, "players/#{player.player_name}"
             %td{:align => "center"}= player.player_acc_type
             %td= player["#{@skill}_lvl"]
             %td= player["#{@skill}_xp"]

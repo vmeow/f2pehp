@@ -274,91 +274,91 @@ div {
 
 
 /* FLAIRS */
-a[href$="/68"]:before { /* For Obor*/
+a[href$="/Obor"]:before { /* For Obor*/
   padding: 3px;
   vertical-align: -6px;
   content: image-url("flairs/shamanmask.png");
 }
-a[href$="/68"]:after { /* For Obor*/
+a[href$="/Obor"]:after { /* For Obor*/
   padding: 3px;
   vertical-align: -6px;
   content: image-url("flairs/oborclub.png");
 }
 
-a[href$="/2"]:after { /* For Pawz*/
+a[href$="/Pawz"]:after { /* For Pawz*/
   padding: 3px;
   content: image-url("flairs/rs3helm.png");
   vertical-align: -6px;
 }
 
 /* For nagraB */
-a[href$="/510"]:after, a[href$="/36"]:after { 
+a[href$="/nagraB"]:after, a[href$="/Bargan"]:after { 
   padding: 3px;
   content: image-url("flairs/bargan2.png");
   vertical-align: -8px;
 }
  
-a[href$="/70"]:after {  /* For Mace Din */
+a[href$="/IronMace_Din"]:after {  /* For Mace Din */
   padding: 1px;
   content: image-url("flairs/maceblur2.png");
   vertical-align: -6px;
 }
-a[href$="/70"]:before {  /* For Mace Din */
+a[href$="/IronMace_Din"]:before {  /* For Mace Din */
   padding: 1px;
   content: image-url("flairs/soda.png");
   vertical-align: -6px;
 }
 
-a[href$="/344"]:after {  /* For HCIM btw fev */
+a[href$="/HCIM_btw_fev"]:after {  /* For HCIM btw fev */
   padding: 3px;
   content: image-url("flairs/kitten.png");
   vertical-align: -6px;
 }
 
-a[href$="/32"]:after {  /* For F2P Lukie */
+a[href$="/F2P_Lukie"]:after {  /* For F2P Lukie */
   padding: 3px;
   content: image-url("flairs/tea.png");
   vertical-align: -6px;
 }
 
-a[href$="/16"]:after {  /* For Tame */
+a[href$="/Tame_My_Wild"]:after {  /* For Tame */
   padding: 3px;
   content: image-url("flairs/dog.png");
   vertical-align: -6px;
 }
 
-a[href$="/444"]:after {  /* For citnA */
+a[href$="/citnA"]:after {  /* For citnA */
   padding: 3px;
   content: image-url("flairs/bronzehelm.png");
   vertical-align: -6px;
 }
 
-a[href$="/62"]:after {  /* For Based Chew */
+a[href$="/Based_Chew"]:after {  /* For Based Chew */
   padding: 3px;
   content: image-url("flairs/cupcake.png");
   vertical-align: -6px;
 }
 
-a[href$="/276"]:after {  /* For lRAIDERSS */
+a[href$="/lRAIDERSS"]:after {  /* For lRAIDERSS */
   padding: 3px;
   content: image-url("flairs/raiders3.png");
   vertical-align: -12px;
 }
 
-a[href$="/8"]:after {  /* For Sofacanlazy */
+a[href$="/Sofacanlazy"]:after {  /* For Sofacanlazy */
   padding: 3px;
   content: image-url("flairs/australia-flag.png");
   vertical-align: -6px;
 }
 
-a[href$="/719"]:after {  /* For I love rs */
+a[href$="/I_love_rs"]:after {  /* For I love rs */
   padding: 3px;
   content: image-url("flairs/tank.png");
   vertical-align: -7px;
 }
 
 /* FONT CHANGES */
-a[href$="/68"] { /* For Obor*/
+a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
   //font-family: Times New Roman;
 }
