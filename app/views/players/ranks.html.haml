@@ -43,7 +43,7 @@
       %thead
         %tr
           %th Rank
-          %th Name
+          %th{:align => "left"} Name
           %th Account
           %th{:class => @player_lvl_header}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
           %th{:class => @player_xp_header}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
@@ -55,11 +55,11 @@
             - offset = index + (@players.current_page - 1)*@show_limit.to_i
             %td{:align => "right"}= offset
             - name = player.player_name.gsub(" ", "_")
-            %td= link_to player.player_name, "players/#{name}"
+            %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
             %td= player["#{@skill}_lvl"]
-            %td= player["#{@skill}_xp"]
-            %td= player["#{@skill}_ehp"]
+            %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
+            %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
             
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
 

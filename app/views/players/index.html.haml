@@ -73,7 +73,7 @@
         %thead
           %tr
             %th Rank
-            %th Name
+            %th{:align => "left"} Name
             %th Account Type
             %th Overall EHP
         %tbody
@@ -81,7 +81,8 @@
             %tr
               %td{:align => "right"}= index
               - name = player.player_name.gsub(" ", "_")
-              %td= link_to player.player_name, "players/#{name}"
+              %td{:align => "left"}= link_to player.player_name, "players/#{name}"
               %td{:align => "center"}= player.player_acc_type
-              %td= player.overall_ehp
+              %td= number_with_delimiter(player.overall_ehp.to_f, :delimiter => ",", :separator => ".") 
+ 
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-top: 0px;") 

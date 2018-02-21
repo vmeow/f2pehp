@@ -16,4 +16,30 @@
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donations", donate_path
     
- 
+= field_set_tag 'Melee DPS', class: "meleedps", style: "text-align: left;" do
+  = "Attack"
+  %br
+  = "Level"
+  = number_field_tag "att", 1, {min: 0, max: 120, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+  = "Prayer"
+  = select_tag "att_pray", options_for_select(["Clarity of Thought", "Improved Reflexes", "Incredible Reflexes"]), :include_blank => true
+  %br
+  = "Strength"
+  %br
+  = "Level"
+  = number_field_tag "str", 1, {min: 0, max: 120, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+  = "Prayer"
+  = select_tag "str_pray", options_for_select(["Burst of Strength", "Superhuman Strength", "Ultimate Strength"]), :include_blank => true
+  %br
+  = "Strength Potion?"
+  = check_box_tag "str_pot", 1
+
+  %br
+  = "Combat Style"
+  = select_tag "combat_style", options_for_select(["Accurate/Defensive", "Aggressive", "Controlled"])
+  %br
+  
+  
+  
+  
+  

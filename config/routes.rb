@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'controls' => 'players#controls'
   get 'plaintext' => 'players#plaintext'
   get 'dps' => 'players#dps'
+  get 'calcs' => 'players#calcs'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#index' => 'players#refresh_250', as: :refresh_250
