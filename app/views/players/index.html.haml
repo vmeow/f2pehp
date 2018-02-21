@@ -80,7 +80,8 @@
           - Player.limit(25).where("overall_ehp > 1500").order('overall_ehp DESC').each.with_index 1 do |player, index|
             %tr
               %td{:align => "right"}= index
-              %td= link_to player.player_name, "players/#{player.player_name}"
+              - name = player.player_name.gsub(" ", "_")
+              %td= link_to player.player_name, "players/#{name}"
               %td{:align => "center"}= player.player_acc_type
               %td= player.overall_ehp
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-top: 0px;") 
