@@ -270,6 +270,8 @@ div {
 
 
 .meleedps {
+  width: 600px;
+  margin: auto;
   text-align: left;
   line-height: 22px;
 }
@@ -304,7 +306,7 @@ a[href$="/nagraB"]:after, a[href$="/Bargan"]:after {
 a[href$="/IronMace_Din"]:after, a[href$="/IronMace Din"]:after {  /* For Mace Din */
   padding: 1px;
   content: image-url("flairs/maceblur2.png");
-  vertical-align: -6px;
+  vertical-align: -5px;
 }
 
 a[href$="/HCIM_btw_fev"]:after, a[href$="/HCIM btw fev"]:after {  /* For HCIM btw fev */
