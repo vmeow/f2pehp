@@ -48,16 +48,15 @@ class PlayersController < ApplicationController
         redirect_to found, notice: 'The player you wish to add already exists.'
         return
       end
-
       
       if F2POSRSRanks::Application.config.downcase_fakes.include?(params[:player_to_add_name].downcase)
         redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
         return
       end
       name = params[:player_to_add_name].gsub(" ", "_")
-
+      
       Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc]})
-
+      
       player = Player.where(player_name: params[:player_to_add_name]).first
       puts name
       params[:player_to_add_name] = nil
@@ -66,6 +65,10 @@ class PlayersController < ApplicationController
       session[:player_to_add_acc] = nil
       
       all_stats = get_stats(name)
+      if all_stats == false
+        redirect_to ranks_path, notice: 'Invalid player name.'
+        return
+      end 
       ehp = get_ehp_type(player)
       calc_ehp(player, all_stats, ehp)
       if remove_cutoff(player)
@@ -163,11 +166,12 @@ class PlayersController < ApplicationController
     else
       begin
         uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+        all_stats = uri.read.split(" ")
       rescue Exception => e  
         puts e.message 
-        Player.where(player_name: player.player_name).destroy_all
+        Player.where(player_name: name).destroy_all
+        return false
       end
-      all_stats = uri.read.split(" ")
     end
     return all_stats
   end
