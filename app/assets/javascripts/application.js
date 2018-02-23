@@ -28,9 +28,7 @@ function ready() {
     	var att = document.querySelector('[name="att"]').value;
     	var str = document.querySelector('[name="str"]').value;
     	var attbonus1 = Number(document.querySelector('[name="attackbonus1"]').value);
-    	var attbonus2 = Number(document.querySelector('[name="attackbonus2"]').value);
     	var strbonus1 = Number(document.querySelector('[name="strengthbonus1"]').value);
-    	var strbonus2 = Number(document.querySelector('[name="strengthbonus2"]').value);
     	var enemyHit = Number(document.querySelector('[name="enemyHit"]').value);
     	var enemyDef = Number(document.querySelector('[name="enemyDef"]').value);
     	var enemyArm = Number(document.querySelector('[name="enemyArm"]').value);

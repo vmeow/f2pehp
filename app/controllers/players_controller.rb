@@ -24,15 +24,14 @@ class PlayersController < ApplicationController
 
     if params[:search]
       #found = Player.where(players_table[:player_name].matches("%#{params[:search]}%")).first
-      found = Player.where('lower(player_name) = ?', params[:search].downcase).first
-      if found
-        @player = found
+      params[:id] = params[:search]
+      show
+      if @player
         redirect_to @player
-        return
       else
-        flash[:notice] = "Player not found."
-        return
+        redirect_to ranks_path, notice: "Player not found."
       end
+      return
     end
     
     if @skill == {}
@@ -44,7 +43,6 @@ class PlayersController < ApplicationController
     if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
       found = Player.where('lower(player_name) = ?', params[:player_to_add_name].downcase).first
       if found
-        puts "FOUND"
         redirect_to found, notice: 'The player you wish to add already exists.'
         return
       end
@@ -53,11 +51,10 @@ class PlayersController < ApplicationController
         redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
         return
       end
-      name = params[:player_to_add_name].gsub(" ", "_")
       
       Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc]})
-      
       player = Player.where(player_name: params[:player_to_add_name]).first
+      name = params[:player_to_add_name].gsub(" ", "_")
       puts name
       params[:player_to_add_name] = nil
       params[:player_to_add_acc] = nil
@@ -71,6 +68,11 @@ class PlayersController < ApplicationController
       end 
       ehp = get_ehp_type(player)
       calc_ehp(player, all_stats, ehp)
+      if !Player.where('lower(player_name) = ?', name.downcase).first
+        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
+        return
+      end
+
       if remove_cutoff(player)
         redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
       else
@@ -138,9 +140,12 @@ class PlayersController < ApplicationController
       @player = Player.where('lower(player_name) = ?', name.downcase).first
     end
     if @player.nil?
-      @player = Player.find(params[:id])
+      begin
+        @player = Player.find(params[:id])
+      rescue
+        return
+      end
     end
-    #@player = Player.friendly.find(params[:id])
   end
 
   # GET /players/new
@@ -398,19 +403,7 @@ class PlayersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_player
-    @player = Player.where('lower(player_name) = ?', params[:id].downcase).first
-    if @player.nil?
-      name = params[:id].gsub("_", " ")
-      @player = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if @player.nil?
-      name = params[:id].gsub(" ", "_")
-      @player = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if @player.nil?
-      @player = Player.find(params[:id])
-    end
-    #@player = Player.friendly.find(params[:id])
+    show
   end
   
   def player_params
