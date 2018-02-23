@@ -95,7 +95,7 @@
     = number_field_tag "magic", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px"}
     %br
     = "Prayer"
-    = select_tag "magic_pray", options_for_select(["Sharp Eye (+5%)", "Hawk Eye (+10%)", "Eagle Eye (+15%)"]), style: "width: 135px;", :include_blank => true
+    = select_tag "magic_pray", options_for_select(["Mystic Will (+5%)", "Mystic Lore (+10%)", "Mystic Might (+15%)"]), style: "width: 135px;", :include_blank => true
   
     %br
     = "Spell"
@@ -123,4 +123,4 @@
 = field_set_tag 'Mob', class: "meleedps" do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 280px;") do 
     = "Mob"
-    = select_tag "att_pray", options_for_select(["Incredible Reflexes (+15%)"]), style: "width: 205px;", :include_blank => true
+    = select_tag "mob_name", options_for_select(["Ogress Warrior", "Ogress Shaman", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Flesh crawler"]), style: "width: 205px;", :include_blank => true

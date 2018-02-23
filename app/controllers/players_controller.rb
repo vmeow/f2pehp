@@ -125,8 +125,15 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
-    name = params[:id].gsub("_", " ")
-    @player = Player.where('lower(player_name) = ?', name.downcase).first
+    @player = Player.where('lower(player_name) = ?', params[:id].downcase).first
+    if @player.nil?
+      name = params[:id].gsub("_", " ")
+      @player = Player.where('lower(player_name) = ?', name.downcase).first
+    end
+    if @player.nil?
+      name = params[:id].gsub(" ", "_")
+      @player = Player.where('lower(player_name) = ?', name.downcase).first
+    end
     if @player.nil?
       @player = Player.find(params[:id])
     end
@@ -387,8 +394,15 @@ class PlayersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_player
-    name = params[:id].gsub("_", " ")
-    @player = Player.where('lower(player_name) = ?', name.downcase).first
+    @player = Player.where('lower(player_name) = ?', params[:id].downcase).first
+    if @player.nil?
+      name = params[:id].gsub("_", " ")
+      @player = Player.where('lower(player_name) = ?', name.downcase).first
+    end
+    if @player.nil?
+      name = params[:id].gsub(" ", "_")
+      @player = Player.where('lower(player_name) = ?', name.downcase).first
+    end
     if @player.nil?
       @player = Player.find(params[:id])
     end
