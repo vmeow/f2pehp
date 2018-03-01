@@ -64,7 +64,100 @@
     = content_tag(:div, nil, class: ["container", "right"], style: "width: 250px;") do 
       = image_tag "flairs/obor.png"
       
-
+- elsif @player.player_name == "Bargan"
+  = content_tag(:div, nil, class: "container", style: "width: 620px;") do 
+    = content_tag(:div, nil, class: ["container", "left"], style: "width: 300px;") do 
+      = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
+      = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
+        %thead
+          %th{:colspan => 4}
+            = "Personal scores for "
+            - if @player.player_acc_type == "Reg"
+              = " (Reg)"
+            - else
+              = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
+            = " #{@player.player_name}"
+        %thead
+          %th{:align => "center"}  
+          %th{:align => "center"}  XP
+          %th{:align => "center"}  Level
+          %th{:align => "center"}  EHP
+        %tbody
+          %tr
+            %th= image_tag "skills/overall.png"
+            %td= @player["overall_xp"]
+            %td= @player["overall_lvl"]
+            %td= @player["overall_ehp"]
+          - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+            %tr
+              %th= image_tag "skills/#{skill}.png"
+              %td= @player["#{skill}_xp"]
+              %td= @player["#{skill}_lvl"]
+              %td= @player["#{skill}_ehp"]
+      = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
+      
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 90px; width: 152px; height: 98px; padding-top: 0px;") do 
+      %h4 Update Stats
+      = form_tag players_path(@player), :method => :put do
+        = link_to "#{@player.player_name}", @player, method: :update_player
+        
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 90px; width: 152px; height: 98px;") do 
+      = form_tag ranks_path, :method => "get", id: "search-players-form" do
+        = "Search by name"
+        %br
+        = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
+        %br
+        = submit_tag "Search"
+        
+    = content_tag(:div, nil, class: ["container", "right"], style: "width: 250px;") do 
+      = image_tag "flairs/Bargan_large.png"
+- elsif @player.player_name == "nagraB"
+  = content_tag(:div, nil, class: "container", style: "width: 620px;") do 
+    = content_tag(:div, nil, class: ["container", "left"], style: "width: 300px;") do 
+      = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
+      = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
+        %thead
+          %th{:colspan => 4}
+            = "Personal scores for "
+            - if @player.player_acc_type == "Reg"
+              = " (Reg)"
+            - else
+              = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
+            = " #{@player.player_name}"
+        %thead
+          %th{:align => "center"}  
+          %th{:align => "center"}  XP
+          %th{:align => "center"}  Level
+          %th{:align => "center"}  EHP
+        %tbody
+          %tr
+            %th= image_tag "skills/overall.png"
+            %td= @player["overall_xp"]
+            %td= @player["overall_lvl"]
+            %td= @player["overall_ehp"]
+          - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+            %tr
+              %th= image_tag "skills/#{skill}.png"
+              %td= @player["#{skill}_xp"]
+              %td= @player["#{skill}_lvl"]
+              %td= @player["#{skill}_ehp"]
+      = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
+      
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 90px; width: 152px; height: 98px; padding-top: 0px;") do 
+      %h4 Update Stats
+      = form_tag players_path(@player), :method => :put do
+        = link_to "#{@player.player_name}", @player, method: :update_player
+        
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 90px; width: 152px; height: 98px;") do 
+      = form_tag ranks_path, :method => "get", id: "search-players-form" do
+        = "Search by name"
+        %br
+        = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
+        %br
+        = submit_tag "Search"
+        
+    = content_tag(:div, nil, class: ["container", "right"], style: "width: 250px;") do 
+      = image_tag "flairs/nagrab_large.png"
 - else
   = content_tag(:div, nil, class: "container", style: "width: 680px;") do 
     = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 190px; width: 300px;") do 
