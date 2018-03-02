@@ -1,3 +1,4 @@
+- @title = "DPS Calcs" 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
 %p#notice= notice
@@ -5,8 +6,8 @@
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "F2P OSRS Ranks", ranks_path
-  = content_tag(:div, nil, class: ["bar", "ehp", "selected-link"]) do 
-    = "EHP Rates"
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Hall of Shame", fake_path
   = content_tag(:div, nil, class: ["bar", "links"]) do 
