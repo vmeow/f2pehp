@@ -45,7 +45,7 @@
     %h5 Equipment
     = "Weapon"
     &nbsp
-    = select_tag "melee_weapon", options_for_select(["Rune scimitar", "Rune sword", "Rune 2h sword", "Hill giant club", "Adamant scimitar", "Adamant sword", "Adamant 2h sword"]), style: "width: 135px;", :include_blank => true
+    = select_tag "melee_weapon", options_for_select(["Rune scimitar", "Rune sword", "Rune 2h sword", "Hill giant club", "Adamant scimitar", "Adamant sword", "Adamant 2h sword", "None"], "Rune scimitar"), style: "width: 135px;", :include_blank => true
     %br
     = "Neck Slot"
     = select_tag "melee_neck", options_for_select(["Amulet of power", "Amulet of strength", "Amulet of accuracy"]), style: "width: 135px;", :include_blank => true
@@ -105,10 +105,10 @@
     %h5 Equipment
     = "Weapon"
     &nbsp
-    = select_tag "magic_weapon", options_for_select(["Staff of (element)", "Staff"]), style: "width: 135px;"
+    = select_tag "magic_weapon", options_for_select(["Staff of (element)", "Staff"], "Staff of (element)"), style: "width: 135px;", :include_blank => true
     %br
     = "Neck Slot"
-    = select_tag "magic_neck", options_for_select(["Amulet of magic", "Amulet of power", "Amulet of accuracy"]), style: "width: 135px;", :include_blank => true
+    = select_tag "magic_neck", options_for_select(["Amulet of magic", "Amulet of power", "Amulet of accuracy"], "Amulet of magic"), style: "width: 135px;", :include_blank => true
     %br
     = "Head Slot"
     = select_tag "magic_head", options_for_select(["Wizard hat"]), style: "width: 135px;", :include_blank => true

@@ -39,8 +39,7 @@ function ready() {
     	var e = document.getElementById("strPrayer");
     	var strPrayer = e.options[e.selectedIndex].value;
     	var attackspeed1 = Number(document.querySelector('[name="attackspeed1"]').value);
-    	var attackspeed2 = Number(document.querySelector('[name="attackspeed2"]').value);
-    
+
     	// Effective str
     	var A = str;
     	switch(strPrayer){
