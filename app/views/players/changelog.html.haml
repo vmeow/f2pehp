@@ -9,7 +9,7 @@
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Hall of Shame", fake_path
+    = link_to "DPS Calculator", dps_path
   = content_tag(:div, nil, class: ["bar", "links"]) do 
     = link_to "Useful Links", links_path
   = content_tag(:div, nil, class: ["bar", "changelog", "selected-link"]) do 
@@ -110,7 +110,12 @@
     
   = content_tag(:div, nil, class: "left", style: "margin-left: 10px; text-align: left; width: 340px; padding: 10px;") do 
     %h3 F2P Wiki Changelog
-    %h5 v1.06 Feb 2?, 2018
+    %h5 v1.07 Mar 3, 2018
+    = "Feature complete: DPS Calculators for melee, ranged, and magic with PvP option"
+    %br
+    %br
+    
+    %h5 v1.06 Feb 27, 2018
     = "Fix: Search function fixed for names with \"_\", correct redirect for invalid names"
     %br
     = "Fix: Add player function fixed for invalid names"

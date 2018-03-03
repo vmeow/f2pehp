@@ -8,8 +8,8 @@
     = link_to "F2P OSRS Ranks", ranks_path
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, class: ["bar", "fake", "selected-link"]) do 
+    = "DPS Calculator"
   = content_tag(:div, nil, class: ["bar", "links"]) do 
     = link_to "Useful Links", links_path
   = content_tag(:div, nil, class: ["bar", "changelog"]) do 
@@ -134,10 +134,31 @@
         %td= label_tag "Legs Slot"
         %td= select_tag "magic_legs", options_for_select(["Zamorak robe"], "Zamorak robe"), style: "width: 135px;", :include_blank => true
 
-= field_set_tag 'Mob', class: "dps", style: "width: 240px;" do
+= field_set_tag 'Enemy Stats', class: "dps", style: "width: 240px;" do
   = content_tag(:div, nil, class: ["container", "left"], style: "text-align: center; width: 240px;") do 
-    = "Mob Name "
+    %h5 Mob Name
     = select_tag "mob_name", options_for_select(["Ogress Warrior", "Ogress Shaman", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Flesh crawler"]), style: "width: 135px;", :include_blank => true
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
+    = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
+      %h5 Custom Stats
+      %tr
+        %td= label_tag "Use Custom Stats?"
+        %td= check_box_tag "custom_stats", 1
+      %tr
+        %td= label_tag "PvP?"
+        %td= check_box_tag "pvp", 1
+      %tr
+        %td= label_tag "Enemy HP"
+        %td= number_field_tag "mob_hp", 1, {min: 1, max: 9999, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+      %tr
+        %td= label_tag "Enemy Defence Level"
+        %td= number_field_tag "mob_def", 1, {min: 1, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+      %tr
+        %td= label_tag "Enemy Magic Level"
+        %td= number_field_tag "mob_magic", 1, {min: 1, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+      %tr
+        %td= label_tag "Enemy Armor Bonus"
+        %td= number_field_tag "mob_arm", 0, {min: 0, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px"}
 
 
 = field_set_tag 'Results', class: "dps" do

@@ -9,14 +9,18 @@
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Hall of Shame", fake_path
+    = link_to "DPS Calculator", dps_path
   = content_tag(:div, nil, class: ["bar", "links", "selected-link"]) do 
     = "Useful Links"
   = content_tag(:div, nil, class: ["bar", "changelog"]) do 
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donations", donate_path
-
+    
+= content_tag(:div, nil, class: "container", style: "width: 140px;") do 
+  = content_tag(:div, nil, class: ["bar", "fake"]) do
+    = link_to "Hall of Shame", fake_path
+    
 = content_tag(:div, nil, class: "container", style: "width: 650px;") do 
   = content_tag(:div, nil, class: "left", style: "text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
     %h1 Efficiency

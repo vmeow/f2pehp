@@ -37,6 +37,10 @@ function ready() {
     	var meleeNeck = document.querySelector('[name="melee_neck"]').value;
 
         var mob = document.querySelector('[name="mob_name"]').value;
+        var customStats = document.querySelector('[name="custom_stats"]').checked;
+        var mobHP = document.querySelector('[name="mob_hp"]').value;
+        var mobDef = document.querySelector('[name="mob_def"]').value;
+        var mobArm = document.querySelector('[name="mob_arm"]').value;
         
         // Equipment bonuses
         var attBonus = 0;
@@ -266,6 +270,11 @@ function ready() {
     		default:
     			break;
     	}
+    	if(customStats){
+    	    enemyDef = Number(mobDef);
+    	    enemyHP = Number(mobHP);
+    	    enemyArm = Number(mobArm);
+    	}
     	
     	var effD = enemyDef + 9;
     	var defRoll = effD * (enemyArm+64);
@@ -288,7 +297,7 @@ function ready() {
 
         // Overkill DPS
     	var okdps = realhit / (0.6*meleeTicks);
-
+    	
         // XP/h
     	var xph = okdps * 3600 * 4;
 
@@ -323,6 +332,11 @@ function ready() {
     	var rangedHand = document.querySelector('[name="ranged_hand"]').value;
 
         var mob = document.querySelector('[name="mob_name"]').value;
+        var customStats = document.querySelector('[name="custom_stats"]').checked;
+        var mobHP = document.querySelector('[name="mob_hp"]').value;
+        var mobDef = document.querySelector('[name="mob_def"]').value;
+        var mobArm = document.querySelector('[name="mob_arm"]').value;
+        
         // Equipment bonuses
         var rangedBonus = 0;
         var rangedStr = 0;
@@ -505,6 +519,11 @@ function ready() {
     		default:
     			break;
     	}
+    	if(customStats){
+    	    enemyDef = Number(mobDef);
+    	    enemyHP = Number(mobHP);
+    	    enemyArm = Number(mobArm);
+    	}
     	
     	var effD = enemyDef + 9;
     	var defRoll = effD * (enemyArm+64);
@@ -554,6 +573,13 @@ function ready() {
     	var magicLegs = document.querySelector('[name="magic_legs"]').value;
 
         var mob = document.querySelector('[name="mob_name"]').value;
+        var customStats = document.querySelector('[name="custom_stats"]').checked;
+        var pvp = document.querySelector('[name="pvp"]').checked;
+        var mobHP = document.querySelector('[name="mob_hp"]').value;
+        var mobDef = document.querySelector('[name="mob_def"]').value;
+        var mobMagic = document.querySelector('[name="mob_magic"]').value;
+        var mobArm = document.querySelector('[name="mob_arm"]').value;
+        
         // Equipment bonuses
         var magicBonus = 0;
         var magicTicks = 5;
@@ -647,40 +673,49 @@ function ready() {
     	
     	switch(mob){
     		case "Ogress Warrior":
-    		    enemyDef = 82;
+    		    enemyDef = 60;
     		    enemyHP = 82;
     		    enemyArm = 14;
     			break;
     		case "Ogress Shaman":
-    		    enemyDef = 82;
+    		    enemyDef = 68;
     		    enemyHP = 82;
     		    enemyArm = 16;
     			break;
     		case "Lesser demon":
-    		    enemyDef = 71;
+    		    enemyDef = 1;
     		    enemyHP = 81;
     		    enemyArm = -10;
     			break;
     		case "Moss giant":
-    		    enemyDef = 30;
+    		    enemyDef = 1;
     		    enemyHP = 60;
     			break;
     		case "Hill giant":
-    		    enemyDef = 26;
+    		    enemyDef = 1;
     		    enemyHP = 35;
     			break;
     		case "Giant spider":
-    		    enemyDef = 31;
+    		    enemyDef = 1;
     		    enemyHP = 50;
     		    enemyArm = 10;
     			break;
     		case "Flesh crawler":
-    		    enemyDef = 10;
+    		    enemyDef = 1;
     		    enemyHP = 25;
     		    enemyArm = 15;
     		    break;
     		default:
     			break;
+    	}
+    	if(customStats){
+    	    if(pvp){
+    	        enemyDef = Math.floor(Number(mobDef) * 0.3) + Math.floor(Number(mobMagic) * 0.7);
+    	    } else {
+    	        enemyDef = Number(mobMagic);
+    	    }
+    	    enemyHP = Number(mobHP);
+    	    enemyArm = Number(mobArm);
     	}
     	
     	var effD = enemyDef + 9;
@@ -728,6 +763,11 @@ function ready() {
     $('#melee_weapon').change(dps);
     $('#melee_neck').change(dps);
     $('#mob_name').change(dps);
+    $('#custom_stats').change(dps);
+    $('#pvp').change(dps);
+    $('#mob_arm').change(dps);
+    $('#mob_hp').change(dps);
+    $('#mob_def').change(dps);
     dps();
     
     $('#ranged').change(rangeddps);
@@ -741,6 +781,11 @@ function ready() {
     $('#ranged_legs').change(rangeddps);
     $('#ranged_hand').change(rangeddps);
     $('#mob_name').change(rangeddps);
+    $('#custom_stats').change(rangeddps);
+    $('#pvp').change(rangeddps);
+    $('#mob_arm').change(rangeddps);
+    $('#mob_hp').change(rangeddps);
+    $('#mob_def').change(rangeddps);
     rangeddps();
     
     $('#magic').change(magicdps);
@@ -752,6 +797,12 @@ function ready() {
     $('#magic_legs').change(magicdps);
     $('#magic_spell').change(magicdps);
     $('#mob_name').change(magicdps);
+    $('#custom_stats').change(magicdps);
+    $('#pvp').change(magicdps);
+    $('#mob_arm').change(magicdps);
+    $('#mob_magic').change(magicdps);
+    $('#mob_hp').change(magicdps);
+    $('#mob_def').change(magicdps);
     magicdps();
 }
 
