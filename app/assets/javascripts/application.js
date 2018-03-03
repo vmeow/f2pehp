@@ -459,30 +459,6 @@ function ready() {
     
     	// Maximum base hits
     	var rangedMaxHit = maxhit(rangedA, rangedStr);
-
-        // Projected max hits
-        /*
-        var projected1 = new Array();
-        var projected2 = new Array();
-    
-        var projections = "<tbody><tr><td>Str</td>";
-        var j = 0;
-        for(i=1; i<13; i++){
-        	j = Number(str)+i;
-        	projections += "<td>" + j + "</td>";
-    	}
-        projections += "</tr><tr><td>Wpn1</td>";
-        for(i=1; i<13; i++){
-        	projections += "<td>" + maxhit(A+i, strbonus1) + "</td>";
-        }
-        projections += "</tr><tr><td>Wpn2</td>";
-        for(i=1; i<13; i++){
-        	projections += "<td>" + maxhit(A+i, strbonus2) + "</td>";
-        }
-        projections += "</tr><tbody>";
-        */
-        
-
     	rangedEffA = Math.floor(rangedEffA) + 8;
     
     	// Attack roll
@@ -564,7 +540,184 @@ function ready() {
         $("#ranged_dps").val(rangedDps);
         $("#ranged_xph").val(Math.round(rangedXph));
     }
+
+    function magicdps(){
+    	// Scan variables
+    	var magic = document.querySelector('[name="magic"]').value;
+    	var magicPrayer = document.querySelector('[name="magic_pray"]').value;
+    	var magicSpell = document.querySelector('[name="magic_spell"]').value;
+
+    	var magicWeapon = document.querySelector('[name="magic_weapon"]').value;
+    	var magicNeck = document.querySelector('[name="magic_neck"]').value;
+    	var magicHead = document.querySelector('[name="magic_head"]').value;
+    	var magicBody = document.querySelector('[name="magic_body"]').value;
+    	var magicLegs = document.querySelector('[name="magic_legs"]').value;
+
+        var mob = document.querySelector('[name="mob_name"]').value;
+        // Equipment bonuses
+        var magicBonus = 0;
+        var magicTicks = 5;
+        
+        switch(magicWeapon){
+            case "Staff of (element)":
+                magicBonus += 10;
+                break;
+        }
+        
+        switch(magicNeck){
+            case "Amulet of magic":
+                magicBonus += 10;
+                break;
+            case "Amulet of power":
+                magicBonus += 6;
+                break;
+            case "Amulet of accuracy":
+                magicBonus += 4;
+                break;
+            default:
+                break;
+        }
+        
+        switch(magicHead){
+            case "Wizard hat":
+                magicBonus += 2;
+                break;
+        }
+        
+        switch(magicBody){
+            case "Wizard robe":
+                magicBonus += 3;
+                break;
+            case "Zamorak robe top":
+                magicBonus += 2;
+                break;
+            default:
+                break;
+        }
+        
+        switch(magicLegs){
+            case "Zamorak robe":
+                magicBonus += 2;
+                break;
+            default:
+                break;
+        }
+        
+    	// Maximum base hits
+    	var magicMaxHit = 0;
+    	var magicXpPerCast = 0;
+        switch(magicSpell){
+            case "Fire blast":
+                magicMaxHit = 16;
+                magicXpPerCast = 34.5;
+                break;
+            case "Fire bolt":
+                magicMaxHit = 12;
+                magicXpPerCast = 22.5;
+                break;
+            case "Fire strike":
+                magicMaxHit = 8;
+                magicXpPerCast = 11.5;
+                break;
+        }
+
+        var magicEffA = magic;
+    	switch(magicPrayer){
+    		case "Mystic Will (+5%)":
+    			magicEffA *= 1.05;
+    			break;
+    		case "Mystic Lore (+10%)":
+    			magicEffA *= 1.10;
+    			break;
+    		case "Mystic Might (+15%)":
+    			magicEffA *= 1.15;
+    			break;
+    		default:
+    			break;
+    	}
+        magicEffA = Math.floor(magicEffA) + 8;
+        
+    	// Attack roll
+    	var attRoll = magicEffA * (magicBonus + 64);
+
+    	// Enemy effective def & defence roll
+    	var enemyDef = 0;
+    	var enemyHP = 0;
+    	var enemyArm = 0;
+    	
+    	switch(mob){
+    		case "Ogress Warrior":
+    		    enemyDef = 82;
+    		    enemyHP = 82;
+    		    enemyArm = 14;
+    			break;
+    		case "Ogress Shaman":
+    		    enemyDef = 82;
+    		    enemyHP = 82;
+    		    enemyArm = 16;
+    			break;
+    		case "Lesser demon":
+    		    enemyDef = 71;
+    		    enemyHP = 81;
+    		    enemyArm = -10;
+    			break;
+    		case "Moss giant":
+    		    enemyDef = 30;
+    		    enemyHP = 60;
+    			break;
+    		case "Hill giant":
+    		    enemyDef = 26;
+    		    enemyHP = 35;
+    			break;
+    		case "Giant spider":
+    		    enemyDef = 31;
+    		    enemyHP = 50;
+    		    enemyArm = 10;
+    			break;
+    		case "Flesh crawler":
+    		    enemyDef = 10;
+    		    enemyHP = 25;
+    		    enemyArm = 15;
+    		    break;
+    		default:
+    			break;
+    	}
+    	
+    	var effD = enemyDef + 9;
+    	var defRoll = effD * (enemyArm+64);
     
+    	// Hit chance
+    	var magicAccuracy = 0;
+    	if(attRoll > defRoll) {
+    		magicAccuracy = 1 - (defRoll+2) / (2*(attRoll+1));
+    	} else {
+    		magicAccuracy = attRoll / (2*(defRoll+1));
+    	}
+    
+        // DPS
+    	var magicDps = magicAccuracy * magicMaxHit / 2 / (0.6*magicTicks);
+
+    	// Overkill formula
+    	var Y = Math.min(magicMaxHit, enemyHP);
+    	var realhit = ( (magicAccuracy*Y*(Y+1)) / (enemyHP*(magicMaxHit+1) )) * ( 0.5 * (magicMaxHit+enemyHP+1) - ((1/3) * (2*Y+1)) );
+
+        // Overkill DPS
+    	var okdps = realhit / (0.6*magicTicks);
+
+        // XP/h
+    	var magicXph = okdps * 3600 * 2 + 6000/magicTicks*magicXpPerCast;
+
+    	// Rounding
+    	magicAccuracy = Math.round(magicAccuracy*10000)/10000;
+    	magicDps = Math.round(magicDps*1000)/1000;
+
+    	// Output
+        $("#magic_maxhit").val(magicMaxHit);
+        $("#magic_accuracy").val(magicAccuracy);
+        $("#magic_dps").val(magicDps);
+        $("#magic_xph").val(Math.round(magicXph));
+    }
+
     // run the update on every input change and on startup
     $('#att').change(dps);
     $('#str').change(dps);
@@ -589,6 +742,17 @@ function ready() {
     $('#ranged_hand').change(rangeddps);
     $('#mob_name').change(rangeddps);
     rangeddps();
+    
+    $('#magic').change(magicdps);
+    $('#magic_pray').change(magicdps);
+    $('#magic_weapon').change(magicdps);
+    $('#magic_neck').change(magicdps);
+    $('#magic_head').change(magicdps);
+    $('#magic_body').change(magicdps);
+    $('#magic_legs').change(magicdps);
+    $('#magic_spell').change(magicdps);
+    $('#mob_name').change(magicdps);
+    magicdps();
 }
 
 $(document).on('turbolinks:load', ready);
