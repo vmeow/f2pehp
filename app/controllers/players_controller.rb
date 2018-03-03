@@ -349,9 +349,6 @@ class PlayersController < ApplicationController
         puts name
         begin
           all_stats = get_stats(name)
-          if all_stats = false:
-            next
-          end
         rescue
           next
         end
