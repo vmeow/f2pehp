@@ -223,34 +223,22 @@ function ready() {
     	var enemyArm = 0;
     	
     	switch(mob){
-    		case "Ogresse Warrior":
+    		case "Ogress Warrior":
     		    enemyDef = 82;
     		    enemyHP = 82;
-    		    switch(meleeAttStyle){
-    		        case "Stab":
-    		            enemyArm = 10;
-    		            break;
-    		        case "Slash":
-    		            enemyArm = 12;
-    		            break;
-    		        case "Crush":
-    		            enemyArm = 12;
-    		            break;
+    		    if(meleeAttStyle == "Stab"){
+    		        enemyArm = 10;
+    		    } else {
+    		        enemyArm = 12;
     		    }
     			break;
     		case "Ogress Shaman":
     		    enemyDef = 82;
     		    enemyHP = 82;
-    		    switch(meleeAttStyle){
-    		        case "Stab":
-    		            enemyArm = 12;
-    		            break;
-    		        case "Slash":
-    		            enemyArm = 14;
-    		            break;
-    		        case "Crush":
-    		            enemyArm = 14;
-    		            break;
+    		    if(meleeAttStyle == "Stab"){
+    		        enemyArm = 12;
+    		    } else {
+    		        enemyArm = 14;
     		    }
     			break;
     		case "Lesser demon":
@@ -309,12 +297,14 @@ function ready() {
     	dps = Math.round(dps*1000)/1000;
 
     	// Output
-        alert("maxhit: " + maxHit + ", accuracy: " + accuracy +  ", dps: " + dps + ", xph: " + xph);
-
-    	document.getElementById("#melee_maxhit").value = maxHit;
-    	document.getElementById("#melee_accuracy").innerHTML = accuracy;
-    	document.getElementById("#melee_dps").innerHTML = dps;
-    	document.getElementById("#melee_xph").innerHTML = Math.round(xph);
+        $("#melee_maxhit").val(maxHit);
+        $("#melee_accuracy").val(accuracy);
+        $("#melee_dps").val(dps);
+        $("#melee_xph").val(Math.round(xph));
+    	//document.getElementById("#melee_maxhit").value = maxHit;
+    	//document.getElementById("#melee_accuracy").innerHTML = accuracy;
+    	//document.getElementById("#melee_dps").innerHTML = dps;
+    	//document.getElementById("#melee_xph").innerHTML = Math.round(xph);
     	//document.getElementById("projections").innerHTML = projections;
     }
     
