@@ -74,7 +74,6 @@ h6 {
 }
 
 table, th, td {
-  //border: 1px solid black;
   padding: 4px;
 }
 
@@ -89,21 +88,16 @@ table a {
 table {
   margin: auto;
   border-collapse: collapse;
-  
-  /*
-  color: #969696;
-  background-color: rgba(0,0,0,0.5);
-  border-color: #333333;
-  min-width: 380px;
-  max-width: 660px;
-  */
-  
   overflow-x: auto;
-  
   color: black;
   background: image-url("scroll_middle_379.gif");
   background-size: 100% auto;
   border: none;
+}
+
+.blank {
+  color:#969696;
+  background: none;
 }
 
 #headerHiscores {
@@ -269,7 +263,6 @@ div {
     color: white;
 }
 
-
 .meleedps {
   border: 3px solid #382418;
   background-color: black;
@@ -277,8 +270,13 @@ div {
   margin: auto;
   text-align: left;
   line-height: 22px;
+  
+  display: table;
 }
 
+.meleedps { display: table; }
+form .label { display: table-cell; }
+form .input { display: table-cell; }
 
 
 /* FLAIRS */

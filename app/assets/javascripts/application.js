@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require meleedps.js
+/*global $*/
 
 function ready() {
     function maxhit(level, gear){
@@ -23,33 +24,111 @@ function ready() {
     }
     
     function dps(){
-    
     	// Scan variables
     	var att = document.querySelector('[name="att"]').value;
     	var str = document.querySelector('[name="str"]').value;
-    	var attbonus1 = Number(document.querySelector('[name="attackbonus1"]').value);
-    	var strbonus1 = Number(document.querySelector('[name="strengthbonus1"]').value);
-    	var enemyHit = Number(document.querySelector('[name="enemyHit"]').value);
-    	var enemyDef = Number(document.querySelector('[name="enemyDef"]').value);
-    	var enemyArm = Number(document.querySelector('[name="enemyArm"]').value);
-    	var e = document.getElementById("attStyle");
-    	var attStyle = e.options[e.selectedIndex].value;
-    	var e = document.getElementById("attPrayer");
-    	var attPrayer = e.options[e.selectedIndex].value;
-    	var e = document.getElementById("strPrayer");
-    	var strPrayer = e.options[e.selectedIndex].value;
-    	var attackspeed1 = Number(document.querySelector('[name="attackspeed1"]').value);
+    	var attStyle = document.querySelector('[name="melee_style"]').value;
+    	var attPrayer = document.querySelector('[name="att_pray"]').value;
+    	var strPrayer = document.querySelector('[name="str_pray"]').value;
+    	
+    	var strPot = document.querySelector('[name="str_pot"]').checked;
 
+    	var meleeWeapon = document.querySelector('[name="melee_weapon"]').value;
+    	var meleeNeck = document.querySelector('[name="melee_neck"]').value;
+
+        var mob = document.querySelector('[name="mob_name"]').value;
+        
+        // Equipment bonuses
+        var attBonus = 0;
+        var strBonus = 0;
+        var meleeTicks = 4;
+        var meleeAttStyle = "";
+        switch(meleeWeapon){
+            case "Rune scimitar":
+                attBonus += 45;
+                strBonus += 44;
+                meleeTicks = 4;
+                meleeAttStyle = "Slash";
+                break;
+            case "Rune sword":
+                attBonus += 38;
+                strBonus += 39;
+                meleeTicks = 4;
+                meleeAttStyle = "Stab";
+                break;
+            case "Rune 2h sword":
+                attBonus += 69;
+                strBonus += 70;
+                meleeTicks = 7;
+                meleeAttStyle = "Slash";
+                break;
+            case "Hill giant club":
+                attBonus += 65;
+                strBonus += 70;
+                meleeTicks = 7;
+                meleeAttStyle = "Crush";
+                break;
+            case "Adamant scimitar":
+                attBonus += 29;
+                strBonus += 28;
+                meleeTicks = 4;
+                meleeAttStyle = "Slash";
+                break;
+            case "Adamant sword":
+                attBonus += 23;
+                strBonus += 24;
+                meleeTicks = 4;
+                meleeAttStyle = "Stab";
+                break;
+            case "Adamant 2h sword":
+                attBonus += 43;
+                strBonus += 44;
+                meleeTicks = 7;
+                meleeAttStyle = "Slash";
+                break;
+            case "None":
+                meleeTicks = 4;
+                meleeAttStyle = "Crush";
+                break;
+            case "Event rpg":
+                meleeTicks = 3;
+                meleeAttStyle = "Crush";
+                break;
+            default:
+                meleeTicks = 4;
+                meleeAttStyle = "Crush";
+                break;
+        }
+        
+        switch(meleeNeck){
+            case "Amulet of power":
+                attBonus += 6;
+                strBonus += 6;
+                break;
+            case "Amulet of strength":
+                strBonus += 10;
+                break;
+            case "Amulet of accuracy":
+                attBonus += 4;
+                break;
+            default:
+                break;
+        }
+        
     	// Effective str
     	var A = str;
+    	if(strPot){
+    	    A = Math.floor(A * 1.1 + 3);
+    	}
+
     	switch(strPrayer){
-    		case "1":
+    		case "Burst of Strength (+5%)":
     			A *= 1.05;
     			break;
-    		case "2":
+    		case "Superhuman Strength (+10%)":
     			A *= 1.10;
     			break;
-    		case "3":
+    		case "Ultimate Strength (+15%)":
     			A *= 1.15;
     			break;
     		default:
@@ -58,21 +137,32 @@ function ready() {
     
     	A = Math.floor(A);
     	switch(attStyle){
-    		case "2":
+    		case "Aggressive":
     			A += 3;
     			break;
-    		case "3":
+    		case "Controlled":
+    		    if(meleeWeapon == "Rune scimitar"){
+    		        meleeAttStyle = "Stab"; 
+    		        att -= 38;
+    		    } else if(meleeWeapon == "Adamant scimitar") {
+    		        meleeAttStyle = "Stab"; 
+    		        att -= 23;
+    		    }
     			A += 1;
     			break;
+    	    case "Accurate":
+    	        break;
+    	    case "Defensive":
+    	        break;
     		default:
     			break;
     	}
     
     	// Maximum base hits
-    	var maxhit1 = maxhit(A, strbonus1);
-    	var maxhit2 = maxhit(A, strbonus2);
-    
+    	var maxHit = maxhit(A, strBonus);
+
         // Projected max hits
+        /*
         var projected1 = new Array();
         var projected2 = new Array();
     
@@ -91,17 +181,18 @@ function ready() {
         	projections += "<td>" + maxhit(A+i, strbonus2) + "</td>";
         }
         projections += "</tr><tbody>";
-    
+        */
+        
     	// Effective att
     	var effA = att;
     	switch(attPrayer){
-    		case "1":
+    		case "Clarity of Thought (+5%)":
     			effA *= 1.05;
     			break;
-    		case "2":
+    		case "Improved Reflexes (+10%)":
     			effA *= 1.10;
     			break;
-    		case "3":
+    		case "Incredible Reflexes (+15%)":
     			effA *= 1.15;
     			break;
     		default:
@@ -109,82 +200,135 @@ function ready() {
     	}
     	effA = Math.floor(effA) + 8;
     	switch(attStyle){
-    		case "1":
+    		case "Accurate":
     			effA += 3;
     			break;
-    		case "3":
+    		case "Controlled":
     			effA += 1;
     			break;
+    	    case "Aggressive":
+    	        break;
+    	    case "Defensive":
+    	        break;
     		default:
     			break;
     	}
     
     	// Attack roll
-    	attRoll1 = effA * (attbonus1+64);
-    	attRoll2 = effA * (attbonus2+64);
-    
+    	var attRoll = effA * (attBonus + 64);
+
     	// Enemy effective def & defence roll
+    	var enemyDef = 0;
+    	var enemyHP = 0;
+    	var enemyArm = 0;
+    	
+    	switch(mob){
+    		case "Ogresse Warrior":
+    		    enemyDef = 82;
+    		    enemyHP = 82;
+    		    switch(meleeAttStyle){
+    		        case "Stab":
+    		            enemyArm = 10;
+    		            break;
+    		        case "Slash":
+    		            enemyArm = 12;
+    		            break;
+    		        case "Crush":
+    		            enemyArm = 12;
+    		            break;
+    		    }
+    			break;
+    		case "Ogress Shaman":
+    		    enemyDef = 82;
+    		    enemyHP = 82;
+    		    switch(meleeAttStyle){
+    		        case "Stab":
+    		            enemyArm = 12;
+    		            break;
+    		        case "Slash":
+    		            enemyArm = 14;
+    		            break;
+    		        case "Crush":
+    		            enemyArm = 14;
+    		            break;
+    		    }
+    			break;
+    		case "Lesser demon":
+    		    enemyDef = 71;
+    		    enemyHP = 81;
+    			break;
+    		case "Moss giant":
+    		    enemyDef = 30;
+    		    enemyHP = 60;
+    			break;
+    		case "Hill giant":
+    		    enemyDef = 26;
+    		    enemyHP = 35;
+    			break;
+    		case "Giant spider":
+    		    enemyDef = 31;
+    		    enemyHP = 50;
+    		    enemyArm = 10;
+    			break;
+    		case "Flesh crawler":
+    		    enemyDef = 10;
+    		    enemyHP = 25;
+    		    enemyArm = 15;
+    		    break;
+    		default:
+    			break;
+    	}
+    	
     	var effD = enemyDef + 9;
     	var defRoll = effD * (enemyArm+64);
     
     	// Hit chance
-    	var accuracy1 = 0;
-    	var accuracy2 = 0;
-    	if(attRoll1 > defRoll){
-    		accuracy1 = 1 - (defRoll+2) / (2*(attRoll1+1));
+    	var accuracy = 0;
+    	if(attRoll > defRoll){
+    		accuracy = 1 - (defRoll+2) / (2*(attRoll+1));
     	}
     	else{
-    		accuracy1 = attRoll1 / (2*(defRoll+1));
-    	}
-    	if(attRoll2 > defRoll){
-    		accuracy2 = 1 - (defRoll+2) / (2*(attRoll2+1));
-    	}
-    	else{
-    		accuracy2 = attRoll2 / (2*(defRoll+1));
+    		accuracy = attRoll / (2*(defRoll+1));
     	}
     
         // DPS
-    	var dps1 = accuracy1 * maxhit1 / 2 / (0.6*attackspeed1);
-    	var dps2 = accuracy2 * maxhit2 / 2 / (0.6*attackspeed2);
-    
+    	var dps = accuracy * maxHit / 2 / (0.6*meleeTicks);
+
     	// Overkill formula
-    	var Y1 = Math.min(maxhit1,enemyHit);
-        var Y2 = Math.min(maxhit2,enemyHit);
-    	var realhit1 = ( (accuracy1*Y1*(Y1+1)) / (enemyHit*(maxhit1+1) )) * ( 0.5 * (maxhit1+enemyHit+1) - ((1/3) * (2*Y1+1)) );
-    	var realhit2 = ( (accuracy2*Y2*(Y2+1)) / (enemyHit*(maxhit2+1) )) * ( 0.5 * (maxhit2+enemyHit+1) - ((1/3) * (2*Y2+1)) );
-    
+    	var Y = Math.min(maxHit,enemyHP);
+    	var realhit = ( (accuracy*Y*(Y+1)) / (enemyHP*(maxHit+1) )) * ( 0.5 * (maxHit+enemyHP+1) - ((1/3) * (2*Y+1)) );
+
         // Overkill DPS
-    	var okdps1 = realhit1 / (0.6*attackspeed1);
-    	var okdps2 = realhit2 / (0.6*attackspeed2);
-    
+    	var okdps = realhit / (0.6*meleeTicks);
+
         // XP/h
-    	var xph1 = okdps1 * 3600 * 4;
-    	var xph2 = okdps2 * 3600 * 4;
-    
+    	var xph = okdps * 3600 * 4;
+
     	// Rounding
-    	accuracy1 = Math.round(accuracy1*10000)/10000;
-    	accuracy2 = Math.round(accuracy2*10000)/10000;
-    	dps1 = Math.round(dps1*1000)/1000;
-    	dps2 = Math.round(dps2*1000)/1000;
-    
+    	accuracy = Math.round(accuracy*10000)/10000;
+    	dps = Math.round(dps*1000)/1000;
+
     	// Output
-    	document.getElementById("maxhit1").innerHTML = maxhit1;
-    	document.getElementById("maxhit2").innerHTML = maxhit2;
-    	document.getElementById("accuracy1").innerHTML = accuracy1;
-    	document.getElementById("accuracy2").innerHTML = accuracy2;
-    	document.getElementById("dps1").innerHTML = dps1;
-    	document.getElementById("dps2").innerHTML = dps2;
-    	document.getElementById("xph1").innerHTML = Math.round(xph1);
-    	document.getElementById("xph2").innerHTML = Math.round(xph2);
-    	document.getElementById("projections").innerHTML = projections;
+        alert("maxhit: " + maxHit + ", accuracy: " + accuracy +  ", dps: " + dps + ", xph: " + xph);
+
+    	document.getElementById("#melee_maxhit").value = maxHit;
+    	document.getElementById("#melee_accuracy").innerHTML = accuracy;
+    	document.getElementById("#melee_dps").innerHTML = dps;
+    	document.getElementById("#melee_xph").innerHTML = Math.round(xph);
+    	//document.getElementById("projections").innerHTML = projections;
     }
+    
     // run the update on every input change and on startup
-    $("input.att").change(dps);
-    $("input.str").change(dps);
-    $("input.att_pray").change(dps);
-    $("input.str_pray").change(dps);
-    $("input.str_pot").change(dps);
-    updateSum();
+    $('#att').change(dps);
+    $('#str').change(dps);
+    $('#att_pray').change(dps);
+    $('#str_pray').change(dps);
+    $('#str_pot').change(dps);
+    $('#melee_style').change(dps);
+    $('#melee_weapon').change(dps);
+    $('#melee_neck').change(dps);
+    $('#mob_name').change(dps);
+    dps();
 }
 
 $(document).on('turbolinks:load', ready);
