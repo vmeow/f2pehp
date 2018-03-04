@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220061248) do
+ActiveRecord::Schema.define(version: 20180304003642) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -81,6 +81,22 @@ ActiveRecord::Schema.define(version: 20180220061248) do
     t.string  "sort_skill"
     t.string  "potential_p2p"
     t.string  "slug"
+    t.integer "overall_rank"
+    t.integer "attack_rank"
+    t.integer "defence_rank"
+    t.integer "strength_rank"
+    t.integer "hitpoints_rank"
+    t.integer "ranged_rank"
+    t.integer "prayer_rank"
+    t.integer "magic_rank"
+    t.integer "cooking_rank"
+    t.integer "woodcutting_rank"
+    t.integer "fishing_rank"
+    t.integer "firemaking_rank"
+    t.integer "crafting_rank"
+    t.integer "smithing_rank"
+    t.integer "mining_rank"
+    t.integer "runecraft_rank"
   end
 
   add_index "players", ["slug"], name: "index_players_on_slug", unique: true

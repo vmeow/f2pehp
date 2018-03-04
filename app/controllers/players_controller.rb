@@ -165,12 +165,21 @@ class PlayersController < ApplicationController
     redirect_to players_path
   end
 
-  def get_stats(name)
+  def get_stats(name, acc_type)
     if name == "Bargan"
       all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
     else
       begin
-        uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+        case acc_type
+        when "Reg"
+          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+        when "HCIM"
+          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+        when "UIM"
+          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
+        when "IM"
+          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
+        end
         all_stats = uri.read.split(" ")
       rescue Exception => e  
         puts e.message 
@@ -202,6 +211,7 @@ class PlayersController < ApplicationController
     F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
       skill_lvl = all_stats[skill_idx].split(",")[1].to_f
       skill_xp = all_stats[skill_idx].split(",")[2].to_f
+      skill_rank = all_stats[skill_idx].split(",")[0].to_f
       if skill != "p2p" and skill != "overall" and skill != "lms"
         skill_ehp = 0.0
         skill_tiers = ehp["#{skill}_tiers"]
@@ -225,6 +235,7 @@ class PlayersController < ApplicationController
         end
         player.update_attribute(:"#{skill}_lvl", skill_lvl)
         player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
+        player.update_attribute(:"#{skill}_rank", skill_rank)
         total_ehp += skill_ehp.round(2)
       elsif skill == "p2p" and skill_xp != 0
         player.update_attribute(:potential_p2p, skill_xp)
@@ -232,6 +243,7 @@ class PlayersController < ApplicationController
         check_hc_death(player, skill_xp)
         player.update_attribute(:"#{skill}_lvl", skill_lvl)
         player.update_attribute(:"#{skill}_xp", skill_xp)
+        player.update_attribute(:"#{skill}_rank", skill_rank)
       end
     end
     player.update_attribute(:overall_ehp, total_ehp.round(2))
@@ -271,7 +283,7 @@ class PlayersController < ApplicationController
     end
     name = @player.player_name.gsub(" ", "_")
     puts name
-    all_stats = get_stats(name)
+    all_stats = get_stats(name, @player.player_acc_type)
     ehp = get_ehp_type(@player)
     calc_ehp(@player, all_stats, ehp)
     remove_cutoff(@player)
@@ -293,7 +305,7 @@ class PlayersController < ApplicationController
         name = player.player_name.gsub(" ", "_")
         puts name
         begin
-          all_stats = get_stats(name)
+          all_stats = get_stats(name, player.player_acc_type)
         rescue
           next
         end
@@ -348,7 +360,7 @@ class PlayersController < ApplicationController
         name = player.player_name.gsub(" ", "_")
         puts name
         begin
-          all_stats = get_stats(name)
+          all_stats = get_stats(name, player.player_acc_type)
         rescue
           next
         end
@@ -413,51 +425,67 @@ class PlayersController < ApplicationController
       :overall_xp, 
       :overall_lvl, 
       :overall_ehp, 
+      :overall_rank, 
       :attack_xp, 
       :attack_lvl, 
       :attack_ehp, 
+      :attack_rank, 
       :strength_xp, 
       :strength_lvl, 
-      :strength_ehp, 
+      :strength_ehp,
+      :strength_rank,  
       :defence_xp, 
       :defence_lvl, 
       :defence_ehp, 
+      :defence_rank,  
       :hitpoints_xp, 
       :hitpoints_lvl, 
       :hitpoints_ehp, 
+      :hitpoints_rank, 
       :ranged_xp, 
       :ranged_lvl, 
       :ranged_ehp, 
+      :ranged_rank, 
       :prayer_xp, 
       :prayer_lvl, 
-      :prayer_ehp, 
+      :prayer_ehp,
+      :prayer_rank, 
       :magic_xp, 
       :magic_lvl, 
       :magic_ehp, 
+      :magic_rank, 
       :cooking_xp, 
       :cooking_lvl, 
       :cooking_ehp, 
+      :cooking_rank, 
       :woodcutting_xp, 
       :woodcutting_lvl, 
       :woodcutting_ehp, 
+      :woodcutting_rank, 
       :fishing_xp, 
       :fishing_lvl, 
       :fishing_ehp, 
+      :fishing_rank, 
       :firemaking_xp, 
       :firemaking_lvl, 
       :firemaking_ehp, 
+      :firemaking_rank, 
       :crafting_xp, 
       :crafting_lvl, 
       :crafting_ehp, 
+      :crafting_rank, 
       :smithing_xp, 
       :smithing_lvl, 
       :smithing_ehp, 
+      :smithing_rank, 
       :mining_xp, 
       :mining_lvl, 
       :mining_ehp, 
+      :mining_rank, 
       :runecraft_xp, 
       :runecraft_lvl, 
       :runecraft_ehp,
+      :runecraft_rank,
       :potential_p2p)
   end
 end

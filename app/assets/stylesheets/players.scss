@@ -359,9 +359,15 @@ a[href$="/I_love_rs"]:after, a[href$="/I love rs"]:after {  /* For I love rs */
   vertical-align: -7px;
 }
 
-a[href$="/Say_F2p_Ult"]:after, a[href$="/Say F2p Ult"]:after {  /* For Sofacanlazy */
+a[href$="/Say_F2p_Ult"]:after, a[href$="/Say F2p Ult"]:after {  /* For Say F2p Ult */
   padding: 3px;
   content: image-url("flairs/santa.png");
+  vertical-align: -6px;
+}
+
+a[href$="/Irish_Woof"]:after, a[href$="/Irish Woof"]:after {  /* For Irish Woof */
+  padding: 3px;
+  //content: image-url("flairs/santa.png");
   vertical-align: -6px;
 }
 

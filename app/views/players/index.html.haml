@@ -22,21 +22,16 @@
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
       %h6 
+        = "v1.08 release: "
+        = link_to "No alt F2P EHP for regs,", "http://www.reddit.com/r/CrystalMathLabs/comments/7wn8m7/updated_f2pehp_rates/"
+        = " ranks from hiscores added to personal hiscores page."
+      %h6 
         = "v1.07 release: "
         = link_to "Melee, Ranged, and Magic DPS calc", dps_path
         = ", auto-update players with >500 EHP daily at midnight PST"
       %h6 Mr Hakumo outed as fake f2p.
       %h6 A Level 73 outed as fake f2p.
-      %h6
-        = link_to "F2P Wiki v1.05 release:", changelog_path
-        = " Search improved, F2p.wiki/players/name feature, More Regs scoured, hiscores limited to 75 EHP+ players, Add Player feature" 
-      %h6
-        = "Big shoutout to "
-        = link_to "Toady", "http://twitch.tv/toadyrs"
-        = " for the new site logo!"
-      %h6
-        = "F2P Wiki v1.04 release: site styling to match official OSRS hiscores"
-      
+          
     = content_tag(:div, nil, class: "container", style: "width: 240px;") do 
       = content_tag(:div, nil, class: "supporters") do 
         %h1 
@@ -69,6 +64,7 @@
         %br
         = link_to "Say F2p Ult", "players/Say_F2p_Ult"
         %br
+        = link_to "Irish Woof", "players/Irish_Woof"
         
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; min-width: 440px; width: 440px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-bottom: 0px;") 
