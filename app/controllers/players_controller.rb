@@ -61,7 +61,7 @@ class PlayersController < ApplicationController
       session[:player_to_add_name] = nil
       session[:player_to_add_acc] = nil
       
-      all_stats = get_stats(name)
+      all_stats = get_stats(name, player.player_acc_type)
       if all_stats == false
         redirect_to ranks_path, notice: 'Invalid player name.'
         return
@@ -110,7 +110,7 @@ class PlayersController < ApplicationController
     end
       
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
-    @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("overall_ehp > 75").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
   def clear
