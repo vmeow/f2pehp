@@ -371,6 +371,12 @@ a[href$="/Irish_Woof"]:after, a[href$="/Irish Woof"]:after {  /* For Irish Woof 
   vertical-align: -6px;
 }
 
+a[href$="/H_C_Gilrix"]:after {  /* For H C Gilrix */
+  padding: 3px;
+  content: image-url("flairs/HCIM.png");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
