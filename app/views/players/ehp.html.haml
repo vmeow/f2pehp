@@ -53,3 +53,25 @@
             = "#{tier} xp: #{xphr} xp/hr"
             %br
 = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
+%br
+%br
+%br
+= content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
+= content_tag(:table, nil, style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
+  %thead
+    %tr
+      %th Skill
+      %th Reg EHP
+      %th IM/HCIM EHP
+      %th UIM EHP
+  %tbody
+    - f2p_skills.each do |skill|
+      %tr{:style => "border-top: 1px solid black;" }
+        %td= image_tag "skills/#{skill}.png"
+        %td{:align => "center"}
+          = ehp_reg["#{skill}_method"]
+        %td{:align => "center"}
+          = ehp_iron["#{skill}_method"]
+        %td{:align => "center"}
+          = ehp_uim["#{skill}_method"]
+= content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 

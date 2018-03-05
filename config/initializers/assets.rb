@@ -16,7 +16,7 @@ F2POSRSRanks::Application.configure do
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
                      "magic", "cooking", "woodcutting", "p2p", "fishing", "firemaking", "crafting",
                      "smithing", "mining", "p2p", "p2p", "p2p", "p2p", "p2p", "runecraft", "p2p", 
-                     "p2p", "p2p", "p2p", "p2p", "p2p", "p2p", "p2p", "lms", "p2p", "p2p"]
+                     "p2p", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "lms", "p2p_minigame", "p2p_minigame"]
     
     config.f2p_skills = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
                          "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
@@ -58,6 +58,55 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg = Hash.new
     config.ehp_iron = Hash.new
     config.ehp_uim = Hash.new
+    
+    config.ehp_reg['attack_method'] = "Pray flicking with strength potions at Giant Spiders"
+    config.ehp_reg['strength_method'] = "Pray flicking with strength potions at Giant Spiders"
+    config.ehp_reg['defence_method'] = "Pray flicking with strength potions at Giant Spiders"
+    config.ehp_reg['ranged_method'] = "Pray flicking at Giant Spiders"
+    config.ehp_reg['hitpoints_method'] = "0 time during combats"
+    config.ehp_reg['prayer_method'] = "Big bones with mostly 0-tick banking"
+    config.ehp_reg['magic_method'] = "Best spell, then curse splashing until 55, 0 time high alch during other skills"
+    config.ehp_reg['cooking_method'] = "Best food, then wines"
+    config.ehp_reg['woodcutting_method'] = "Best tree, then 3-tick willows with snow"
+    config.ehp_reg['fishing_method'] = "Best fish, then 3-tick fly fishing with snow"
+    config.ehp_reg['firemaking_method'] = "Best logs, double lane firemaking at grand exchange"
+    config.ehp_reg['crafting_method'] = "Best leather item, then best gem"
+    config.ehp_reg['smithing_method'] = "Best platebody until adamant platebody"
+    config.ehp_reg['mining_method'] = "Best rock until iron, 3-tick empty shortbow on hobgoblin iron at 51"
+    config.ehp_reg['runecraft_method'] = "Solo earth tiaras with energy potions"
+    
+    config.ehp_iron['attack_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
+    config.ehp_iron['strength_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
+    config.ehp_iron['defence_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
+    config.ehp_iron['ranged_method'] = "1-20 minotaurs, 20-40 hill giants, 40-50 moss giants, 50-99 ogresses, with pray flicking"
+    config.ehp_iron['hitpoints_method'] = "0 time during combats"
+    config.ehp_iron['prayer_method'] = "Boneyard and 0-time big bones from giants/ogresses"
+    config.ehp_iron['magic_method'] = "Best spell, then curse splashing, then fire blasts and 0-time teleport/superheat/high alch during other skills"
+    config.ehp_iron['cooking_method'] = "Best fish until trout/salmon, 0-tick during fishing"
+    config.ehp_iron['woodcutting_method'] = "Best tree until willows, 3-ticked with snow"
+    config.ehp_iron['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow"
+    config.ehp_iron['firemaking_method'] = "Best tree until willows, during woodcutting"
+    config.ehp_iron['crafting_method'] = "Leather, then symbols, then tiaras and gem amulets from ogresses"
+    config.ehp_iron['smithing_method'] = "Knight's sword, mining guild falador teleport iron platebodies and 0-time silver/gold smelting"
+    config.ehp_iron['mining_method'] = "0 time during crafting, smithing, runecraft"
+    config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with varrock tele, with 0-time crafting guild air rc"
+    
+    config.ehp_uim['attack_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
+    config.ehp_uim['strength_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
+    config.ehp_uim['defence_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
+    config.ehp_uim['ranged_method'] = "1-20 minotaurs, 20-40 hill giants, 40-50 moss giants, 50-99 ogresses, with pray flicking"
+    config.ehp_uim['hitpoints_method'] = "0 time during combats"
+    config.ehp_uim['prayer_method'] = "Boneyard and 0-time big bones from giants/ogresses"
+    config.ehp_uim['magic_method'] = "Best spell, then curse splashing, then fire blasts and 0-time teleport/superheat/high alch during other skills"
+    config.ehp_uim['cooking_method'] = "Best fish until trout/salmon, 0-tick during fishing"
+    config.ehp_uim['woodcutting_method'] = "Best tree until willows, 3-ticked with snow"
+    config.ehp_uim['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow"
+    config.ehp_uim['firemaking_method'] = "Best tree until willows, during woodcutting"
+    config.ehp_uim['crafting_method'] = "Leather, then symbols, then tiaras with 0-time cut and dropped gems from ogresses"
+    config.ehp_uim['smithing_method'] = "Knight's sword, varrock west and falador tele iron platebodies and 0-time silver smelting"
+    config.ehp_uim['mining_method'] = "0 time during crafting, smithing, runecraft"
+    config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with varrock tele"
+
     #config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
     #config.ehp_reg['attack_xphrs'] = [7200, 14400, 28900, 43000, 51000, 57800, 63000, 68000]
     config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]

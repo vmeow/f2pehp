@@ -212,7 +212,7 @@ class PlayersController < ApplicationController
       skill_lvl = all_stats[skill_idx].split(",")[1].to_f
       skill_xp = all_stats[skill_idx].split(",")[2].to_f
       skill_rank = all_stats[skill_idx].split(",")[0].to_f
-      if skill != "p2p" and skill != "overall" and skill != "lms"
+      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
         skill_ehp = 0.0
         skill_tiers = ehp["#{skill}_tiers"]
         skill_xphrs = ehp["#{skill}_xphrs"]
@@ -239,6 +239,8 @@ class PlayersController < ApplicationController
         total_ehp += skill_ehp.round(2)
       elsif skill == "p2p" and skill_xp != 0
         player.update_attribute(:potential_p2p, skill_xp)
+      elsif skill == "p2p_minigame" and skill_lvl != -1
+        player.update_attribute(:potential_p2p, skill_lvl)
       elsif skill == "overall"
         check_hc_death(player, skill_xp)
         player.update_attribute(:"#{skill}_lvl", skill_lvl)
