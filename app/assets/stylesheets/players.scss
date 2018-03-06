@@ -377,6 +377,12 @@ a[href$="/H_C_Gilrix"]:after {  /* For H C Gilrix */
   vertical-align: -6px;
 }
 
+a[href$="/Faij"]:after {  /* For Faij */
+  padding: 3px;
+  content: image-url("flairs/frog.png");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
