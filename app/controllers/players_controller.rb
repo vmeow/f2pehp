@@ -237,10 +237,10 @@ class PlayersController < ApplicationController
         player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
         player.update_attribute(:"#{skill}_rank", skill_rank)
         total_ehp += skill_ehp.round(2)
-      elsif skill == "p2p" and skill_xp != 0
+      elsif skill == "p2p" and skill_xp > 0 
         player.update_attribute(:potential_p2p, skill_xp)
         Player.where(player_name: player.player_name).destroy_all
-      elsif skill == "p2p_minigame" and skill_lvl != -1
+      elsif skill == "p2p_minigame" and skill_lvl > 0
         player.update_attribute(:potential_p2p, skill_lvl)
         Player.where(player_name: player.player_name).destroy_all
       elsif skill == "overall"
