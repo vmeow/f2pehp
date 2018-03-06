@@ -239,8 +239,10 @@ class PlayersController < ApplicationController
         total_ehp += skill_ehp.round(2)
       elsif skill == "p2p" and skill_xp != 0
         player.update_attribute(:potential_p2p, skill_xp)
+        Player.where(player_name: player.player_name).destroy_all
       elsif skill == "p2p_minigame" and skill_lvl != -1
         player.update_attribute(:potential_p2p, skill_lvl)
+        Player.where(player_name: player.player_name).destroy_all
       elsif skill == "overall"
         check_hc_death(player, skill_xp)
         player.update_attribute(:"#{skill}_lvl", skill_lvl)
