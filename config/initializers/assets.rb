@@ -107,23 +107,20 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['mining_method'] = "0 time during crafting, smithing, runecraft"
     config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with varrock tele"
 
-    #config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    #config.ehp_reg['attack_xphrs'] = [7200, 14400, 28900, 43000, 51000, 57800, 63000, 68000]
     config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_reg['attack_xphrs'] = [5300, 10600, 21500, 31600, 37500, 42500, 46300, 50000]
+    config.ehp_reg['attack_xphrs'] = [5300, 25450, 29500, 37900, 44800, 46900, 50800, 53500]
 
     config.ehp_reg['strength_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_reg['strength_xphrs'] = [5300, 10600, 21500, 31600, 37500, 42500, 46300, 50000]
+    config.ehp_reg['strength_xphrs'] = [5300, 25450, 29500, 37900, 44800, 46900, 50800, 53500]
 
     config.ehp_reg['defence_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_reg['defence_xphrs'] = [5300, 10600, 21500, 31600, 37500, 42500, 46300, 50000]
+    config.ehp_reg['defence_xphrs'] = [5300, 25450, 29500, 37900, 44800, 46900, 50800, 53500]
 
     config.ehp_reg['hitpoints_tiers'] = [0]
     config.ehp_reg['hitpoints_xphrs'] = [0]
 
     config.ehp_reg['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    #config.ehp_reg['ranged_xphrs'] = [7000, 14000, 28000, 42500, 49000, 56500, 61200, 66000]
-    config.ehp_reg['ranged_xphrs'] = [4900, 9750, 15000, 29600, 34100, 39400, 42650, 46000]
+    config.ehp_reg['ranged_xphrs'] = [4900, 24650, 30500, 44800, 45900, 46100, 49200, 55000]
 
     config.ehp_reg['prayer_tiers'] = [0]
     config.ehp_reg['prayer_xphrs'] =[43000]
@@ -157,22 +154,20 @@ F2POSRSRanks::Application.configure do
 
 
 
-    config.ehp_iron['attack_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_iron['attack_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
+    config.ehp_iron['attack_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_iron['attack_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
 
-    config.ehp_iron['strength_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431] 
-    config.ehp_iron['strength_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
+    config.ehp_iron['strength_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431] 
+    config.ehp_iron['strength_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
 
-    config.ehp_iron['defence_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_iron['defence_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
+    config.ehp_iron['defence_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_iron['defence_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
 
     config.ehp_iron['hitpoints_tiers'] = [0]
     config.ehp_iron['hitpoints_xphrs'] = [0]
 
-    #config.ehp_iron['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431] 
-    #config.ehp_iron['ranged_xphrs'] = [4000, 9000, 17000, 27000, 30000, 35000, 40000, 42000]
     config.ehp_iron['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
-    config.ehp_iron['ranged_xphrs'] = [4000, 9000, 17500, 20850, 21700, 24300, 25100, 27700, 28200, 30900, 31400, 33700, 34500, 37000, 38500, 40000, 40200]
+    config.ehp_iron['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 46550]
 
     config.ehp_iron['prayer_tiers'] = [0, 10680000, 13034000, 163880000]
     config.ehp_iron['prayer_xphrs'] = [9300, 2350000, 9300, 36120000]
@@ -206,20 +201,20 @@ F2POSRSRanks::Application.configure do
 
 
 
-    config.ehp_uim['attack_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_uim['attack_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
+    config.ehp_uim['attack_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_uim['attack_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
 
-    config.ehp_uim['strength_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431] 
-    config.ehp_uim['strength_xphrs'] = [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
+    config.ehp_uim['strength_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431] 
+    config.ehp_uim['strength_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
 
-    config.ehp_uim['defence_tiers'] = [0, 37224, 100000, 737627, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_uim['defence_xphrs'] =  [5000, 10000, 20000, 25000, 30000, 32000, 35000, 47000]
+    config.ehp_uim['defence_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
+    config.ehp_uim['defence_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
 
     config.ehp_uim['hitpoints_tiers'] = [0]
     config.ehp_uim['hitpoints_xphrs'] = [0]
 
     config.ehp_uim['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
-    config.ehp_uim['ranged_xphrs'] = [4000, 9000, 17500, 20850, 21700, 24300, 25100, 27700, 28200, 30900, 31400, 33700, 34500, 37000, 38500, 40000, 40200]
+    config.ehp_uim['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 46550]
     
     config.ehp_uim['prayer_tiers'] = [0, 10680000, 13034000, 163880000]
     config.ehp_uim['prayer_xphrs'] = [9300, 2350000, 9300, 36120000]
