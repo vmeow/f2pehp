@@ -41,9 +41,23 @@ class PlayersController < ApplicationController
     end
     
     if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
-      found = Player.where('lower(player_name) = ?', params[:player_to_add_name].downcase).first
-      if found
-        redirect_to found, notice: 'The player you wish to add already exists.'
+      name1 = params[:player_to_add_name].downcase
+      while name1[-1] == " " or name1[-1] == "_"
+        name1 = name1[0...-1]
+      end
+      name2 = name1.gsub(" ", "_")
+      name3 = name1.gsub("_", " ")
+      found1 = Player.where('lower(player_name) = ?', name1).first
+      found2 = Player.where('lower(player_name) = ?', name2).first
+      found3 = Player.where('lower(player_name) = ?', name3).first
+      if found1
+        redirect_to found1, notice: 'The player you wish to add already exists.'
+        return
+      elsif found2
+        redirect_to found2, notice: 'The player you wish to add already exists.'
+        return
+      elsif found3
+        redirect_to found3, notice: 'The player you wish to add already exists.'
         return
       end
       
