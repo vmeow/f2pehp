@@ -21,6 +21,8 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
+      %h6
+        = "Players with clue scrolls and P2P minigames removed. Players with over 200 EHP will now be updated daily."
       %h6 
         = "v1.09 release: Combat EHP rebalancing,"
         = link_to "EHP methods now located below EHP rates,", ehp_path

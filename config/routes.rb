@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   get 'dps' => 'players#dps'
   get 'calcs' => 'players#calcs'
   post 'players/:id' => 'players#update_player'
-  post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#index' => 'players#refresh_250', as: :refresh_250
+  post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players
   post 'players#names' => 'players#find_new', as: :find_new
 
