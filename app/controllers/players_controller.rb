@@ -310,12 +310,15 @@ class PlayersController < ApplicationController
         puts name
         begin
           all_stats = get_stats(name, player.player_acc_type)
+          if all_stats == false
+            next
+          end
+          ehp = get_ehp_type(player)
+          calc_ehp(player, all_stats, ehp)
+          remove_cutoff(player)
         rescue
           next
         end
-        ehp = get_ehp_type(player)
-        calc_ehp(player, all_stats, ehp)
-        remove_cutoff(player)
       end
     end
     redirect_to ranks_path, notice: 'All players were successfully updated.'
@@ -365,11 +368,15 @@ class PlayersController < ApplicationController
         puts name
         begin
           all_stats = get_stats(name, player.player_acc_type)
+          if all_stats == false
+            next
+          end
+          ehp = get_ehp_type(player)
+          calc_ehp(player, all_stats, ehp)
+          remove_cutoff(player)
         rescue
           next
         end
-        ehp = get_ehp_type(player)
-        calc_ehp(player, all_stats, ehp)
       end
     end
     redirect_to ranks_path, notice: 'All players were successfully updated.'

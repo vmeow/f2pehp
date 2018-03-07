@@ -13,19 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20180304003642) do
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
-    t.string   "sluggable_type", limit: 50
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-
   create_table "players", force: :cascade do |t|
     t.string  "player_name"
     t.string  "player_acc_type"
@@ -98,8 +85,6 @@ ActiveRecord::Schema.define(version: 20180304003642) do
     t.integer "mining_rank"
     t.integer "runecraft_rank"
   end
-
-  add_index "players", ["slug"], name: "index_players_on_slug", unique: true
 
   create_table "settings", force: :cascade do |t|
     t.string   "var",                   null: false
