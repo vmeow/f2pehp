@@ -95,7 +95,10 @@
               %td{:align => "right"}= index
               - name = player.player_name.gsub(" ", "_")
               %td{:align => "left"}= link_to player.player_name, "players/#{name}"
-              %td{:align => "center"}= player.player_acc_type
+              - if name == "UncleTomas"
+                %td{:align => "center"}= "DEAD HC NOOB"
+              - else
+                %td{:align => "center"}= player.player_acc_type
               %td= number_with_delimiter(player.overall_ehp.to_f, :delimiter => ",", :separator => ".") 
  
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-top: 0px;") 
