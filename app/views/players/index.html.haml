@@ -22,6 +22,8 @@
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
       %h6
+        = link_to "RIP Unkie", "https://www.reddit.com/r/W385/comments/839k1b/f/"
+      %h6
         = "Players with clue scrolls and P2P minigames removed. Players with over 200 EHP will now be updated daily."
       %h6 
         = "v1.09 release: Combat EHP rebalancing,"
@@ -95,10 +97,7 @@
               %td{:align => "right"}= index
               - name = player.player_name.gsub(" ", "_")
               %td{:align => "left"}= link_to player.player_name, "players/#{name}"
-              - if name == "UncleTomas"
-                %td{:align => "center"}= "DEAD HC NOOB"
-              - else
-                %td{:align => "center"}= player.player_acc_type
+              %td{:align => "center"}= player.player_acc_type
               %td= number_with_delimiter(player.overall_ehp.to_f, :delimiter => ",", :separator => ".") 
  
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-top: 0px;") 

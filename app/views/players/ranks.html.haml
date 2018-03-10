@@ -57,10 +57,7 @@
             %td{:align => "right"}= offset
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
-            - if name == "UncleTomas"
-              %td{:align => "center"}= "DEAD HC NOOB LOL"
-            - else
-              %td{:align => "center"}= player.player_acc_type
+            %td{:align => "center"}= player.player_acc_type
             %td= player["#{@skill}_lvl"]
             %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
             %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
