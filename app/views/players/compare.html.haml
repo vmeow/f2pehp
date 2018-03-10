@@ -1,0 +1,82 @@
+- @title = "Personal Hiscores" 
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+%p#notice= notice
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
+    = link_to "F2P OSRS Ranks", ranks_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
+    = link_to "DPS Calculator", dps_path
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
+    = link_to "Useful Links", links_path
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, class: ["bar", "donate"]) do 
+    = link_to "About Us/Donations", donate_path
+    
+= content_tag(:div, nil, class: ["container", "compare-wide"], style: "margin: auto; width: 400px; height: 76px;") do 
+  = form_tag compare_path, :method => :get, :id => 'filters_form' do
+    = "Comparing #{@player1.player_name} with #{@player2.player_name}"
+    %br
+    = text_field_tag :player1, params[:player1], placeholder: "#{@player1}", :class => "search-field", style: "width: 100px;"
+    = " with "
+    = text_field_tag :player2, params[:player2], placeholder: "#{@player2}", :class => "search-field", style: "width: 100px;"
+    = submit_tag 'Compare', :id => "compare_submit"
+    
+= content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 720px; height: 68px; margin-bottom: 0px;") 
+= content_tag(:table, nil, style: "text-align: right; margin: auto; width: 720px; padding: 15px; margin-bottom: 0px;") do 
+  %thead
+    %th{:align => "center"}  Skill
+    %th{:align => "center"}  
+    %th{:align => "center"}  XP
+    %th{:align => "center"}  Level
+    %th{:align => "center"}  EHP
+    %th{:align => "center"}  
+    %th{:align => "center"}  Skill
+    %th{:align => "center"}  
+    %th{:align => "center"}  XP
+    %th{:align => "center"}  Level
+    %th{:align => "center"}  EHP
+  %tbody
+    %tr
+      %th= image_tag "skills/overall.png"
+      %td{:style => "text-align: left; font-weight: bold;"}= "Overall"
+      %td= number_with_delimiter(@player1["overall_xp"].to_i, :delimiter => ",") 
+      %td= @player1["overall_lvl"]
+      %td= number_with_delimiter(@player1["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
+      - if @player1["overall_xp"].to_i > @player2["overall_xp"].to_i
+        %td= image_tag "arrowup.gif"
+      - elsif @player1["overall_xp"].to_i == @player2["overall_xp"].to_i
+        %td= image_tag "arrowequal.gif"
+      - else
+        %td= image_tag "arrowdown.gif"
+      %th= image_tag "skills/overall.png"
+      %td{:style => "text-align: left; font-weight: bold;"}= "Overall"
+      %td= number_with_delimiter(@player2["overall_xp"].to_i, :delimiter => ",") 
+      %td= @player2["overall_lvl"]
+      %td= number_with_delimiter(@player2["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
+    
+    - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+      %tr
+        - skill_name = "#{skill}".capitalize
+        %th= image_tag "skills/#{skill}.png"
+        %td{:style => "text-align: left; font-weight: bold;"}= skill_name
+        %td= number_with_delimiter(@player1["#{skill}_xp"].to_i, :delimiter => ",") 
+        %td= @player1["#{skill}_lvl"]
+        %td= number_with_delimiter(@player1["#{skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
+        - if @player1["#{skill}_xp"].to_i > @player2["#{skill}_xp"].to_i
+          %td= image_tag "arrowup.gif"
+        - elsif @player1["#{skill}_xp"].to_i == @player2["#{skill}_xp"].to_i
+          %td= image_tag "arrowequal.gif"
+        - else
+          %td= image_tag "arrowdown.gif"
+        %th= image_tag "skills/#{skill}.png"
+        %td{:style => "text-align: left; font-weight: bold;"}= skill_name
+        %td= number_with_delimiter(@player2["#{skill}_xp"].to_i, :delimiter => ",") 
+        %td= @player2["#{skill}_lvl"]
+        %td= number_with_delimiter(@player2["#{skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
+
+= content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 720px; height: 70px; margin-top: 0px;") 

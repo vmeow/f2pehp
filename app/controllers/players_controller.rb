@@ -20,16 +20,23 @@ class PlayersController < ApplicationController
       session[:filters_] = @filters
     end
     
-    #players_table = Player.arel_table
-
     if params[:search]
-      #found = Player.where(players_table[:player_name].matches("%#{params[:search]}%")).first
       params[:id] = params[:search]
       show
       if @player
         redirect_to @player
       else
         redirect_to ranks_path, notice: "Player not found."
+      end
+      return
+    end 
+    
+    if params[:player1] and params[:player2]
+      compare
+      if @player1 and @player2
+        redirect_to compare_path
+      else
+        redirect_to ranks_path, notice: "Players not found."
       end
       return
     end
@@ -156,6 +163,42 @@ class PlayersController < ApplicationController
     if @player.nil?
       begin
         @player = Player.find(params[:id])
+      rescue
+        return
+      end
+    end
+  end
+  
+  def compare
+    @player1 = Player.where('lower(player_name) = ?', params[:player1].downcase).first
+    if @player1.nil?
+      name = params[:player1].gsub("_", " ")
+      @player1 = Player.where('lower(player_name) = ?', name.downcase).first
+    end
+    if @player1.nil?
+      name = params[:player1].gsub(" ", "_")
+      @player1 = Player.where('lower(player_name) = ?', name.downcase).first
+    end
+    if @player1.nil?
+      begin
+        @player1 = Player.find(params[:id])
+      rescue
+        return
+      end
+    end
+    
+    @player2 = Player.where('lower(player_name) = ?', params[:player2].downcase).first
+    if @player2.nil?
+      name = params[:player2].gsub("_", " ")
+      @player2 = Player.where('lower(player_name) = ?', name.downcase).first
+    end
+    if @player2.nil?
+      name = params[:player2].gsub(" ", "_")
+      @player2 = Player.where('lower(player_name) = ?', name.downcase).first
+    end
+    if @player2.nil?
+      begin
+        @player2 = Player.find(params[:id])
       rescue
         return
       end

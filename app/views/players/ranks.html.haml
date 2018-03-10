@@ -83,6 +83,16 @@
       = submit_tag "Add"
       
   = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
+    = form_tag compare_path, :method => :get, :id => 'filters_form' do
+      = "Compare Users"
+      %br
+      = text_field_tag :player1, params[:player1], placeholder: "", :class => "search-field", style: "width: 100px;"
+      %br
+      = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
+      %br
+      = submit_tag 'Compare', :id => "compare_submit"
+      
+  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
     = form_tag ranks_path, :method => :get, :id => 'filters_form' do
       = "Filter Accounts"
       %br
