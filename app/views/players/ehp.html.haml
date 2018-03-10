@@ -38,23 +38,32 @@
       %tr{:style => "border-top: 1px solid black;" }
         %td= image_tag "skills/#{skill}.png"
         %td{:align => "center"}
-          - ehp_reg["#{skill}_tiers"].each.with_index do |tier, idx|
-            - tier = number_with_delimiter(tier.to_i, :delimiter => ",") 
-            - xphr = number_with_delimiter("#{ehp_reg["#{skill}_xphrs"][idx]}".to_i, :delimiter => ",") 
-            = "#{tier} xp: #{xphr} xp/hr"
-            %br
+          - if skill == "hitpoints"
+            = "0 EHP given"
+          - else
+            - ehp_reg["#{skill}_tiers"].each.with_index do |tier, idx|
+              - tier = number_with_delimiter(tier.to_i, :delimiter => ",") 
+              - xphr = number_with_delimiter("#{ehp_reg["#{skill}_xphrs"][idx]}".to_i, :delimiter => ",") 
+              = "#{tier} xp: #{xphr} xp/hr"
+              %br
         %td{:align => "center"}
-          - ehp_iron["#{skill}_tiers"].each.with_index do |tier, idx|
-            - tier = number_with_delimiter(tier.to_i, :delimiter => ",") 
-            - xphr = number_with_delimiter("#{ehp_iron["#{skill}_xphrs"][idx]}".to_i, :delimiter => ",") 
-            = "#{tier} xp: #{xphr} xp/hr"
-            %br
+          - if skill == "mining" or skill == "hitpoints"
+            = "0 EHP given"
+          - else
+            - ehp_iron["#{skill}_tiers"].each.with_index do |tier, idx|
+              - tier = number_with_delimiter(tier.to_i, :delimiter => ",") 
+              - xphr = number_with_delimiter("#{ehp_iron["#{skill}_xphrs"][idx]}".to_i, :delimiter => ",") 
+              = "#{tier} xp: #{xphr} xp/hr"
+              %br
         %td{:align => "center"}
-          - ehp_uim["#{skill}_tiers"].each.with_index do |tier, idx|
-            - tier = number_with_delimiter(tier.to_i, :delimiter => ",") 
-            - xphr = number_with_delimiter("#{ehp_uim["#{skill}_xphrs"][idx]}".to_i, :delimiter => ",") 
-            = "#{tier} xp: #{xphr} xp/hr"
-            %br
+          - if skill == "mining" or skill == "hitpoints"
+            = "0 EHP given"
+          - else
+            - ehp_uim["#{skill}_tiers"].each.with_index do |tier, idx|
+              - tier = number_with_delimiter(tier.to_i, :delimiter => ",") 
+              - xphr = number_with_delimiter("#{ehp_uim["#{skill}_xphrs"][idx]}".to_i, :delimiter => ",") 
+              = "#{tier} xp: #{xphr} xp/hr"
+              %br
 = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
 %br
 %br
