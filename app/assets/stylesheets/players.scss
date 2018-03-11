@@ -290,6 +290,10 @@ div {
 form .label { display: table-cell; }
 form .input { display: table-cell; }
 
+.collapse-title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 /* FLAIRS */
 a[href$="/Obor"]:before { /* For Obor*/

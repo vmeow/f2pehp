@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require meleedps.js
 /*global $*/
 
 function ready() {
@@ -753,6 +752,27 @@ function ready() {
         $("#magic_xph").val(Math.round(magicXph));
     }
 
+function combat(){
+    	// Scan variables
+    	var att = document.querySelector('[name="combat_att"]').value;
+    	var str = document.querySelector('[name="combat_str"]').value;
+    	var def = document.querySelector('[name="combat_def"]').value;
+    	var hp = document.querySelector('[name="combat_hp"]').value;
+    	var pray = document.querySelector('[name="combat_pray"]').value;
+    	var ranged = document.querySelector('[name="combat_ranged"]').value;
+    	var magic = document.querySelector('[name="combat_magic"]').value;
+
+        // Calc Combat
+        var base = 0.25 * (Number(def) + Number(hp) + Number(Math.floor(pray/2)));
+     	var melee = 0.325 * (Number(att) + Number(str));
+	    var range = 0.325 * (Math.floor(ranged/2) + Number(ranged));
+	    var mage = 0.325 * (Math.floor(magic/2) + Number(magic));
+        var combat = Math.floor(base + Math.max(melee, range, mage)) 
+
+    	// Output
+        $("#combat_level").val(combat);
+    }
+
     // run the update on every input change and on startup
     $('#att').change(dps);
     $('#str').change(dps);
@@ -804,6 +824,15 @@ function ready() {
     $('#mob_hp').change(magicdps);
     $('#mob_def').change(magicdps);
     magicdps();
+    
+    $('#combat_att').change(combat);
+    $('#combat_str').change(combat);
+    $('#combat_def').change(combat);
+    $('#combat_hp').change(combat);
+    $('#combat_pray').change(combat);
+    $('#combat_magic').change(combat);
+    $('#combat_ranged').change(combat);
+    combat();
 }
 
 $(document).on('turbolinks:load', ready);

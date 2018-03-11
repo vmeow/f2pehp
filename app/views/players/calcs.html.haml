@@ -1,4 +1,4 @@
-- @title = "DPS Calcs" 
+- @title = "Calcs" 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
 %p#notice= notice
@@ -19,6 +19,41 @@
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
     
+= field_set_tag 'Combat Calc', class: "dps" do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 
+    = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
+      %tr
+        %td= label_tag "Attack Level"
+        %td= number_field_tag "combat_att", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Str Level"
+        %td= number_field_tag "combat_str", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+      %tr
+        %td= label_tag "Defence Level"
+        %td= number_field_tag "combat_def", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 
+    = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
+      %tr
+        %td= label_tag "Hitpoints Level"
+        %td= number_field_tag "combat_hp", 1, {min: 10, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Ranged Level"
+        %td= number_field_tag "combat_ranged", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+      %tr
+        %td= label_tag "Magic Level"
+        %td= number_field_tag "combat_magic", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Prayer Level"
+        %td= number_field_tag "combat_pray", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px"}
+        
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
+    = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
+      %tr
+        %td= label_tag "Combat Level"
+        %td= text_field_tag "combat_level", "", :disabled => true, :remote => true
+
+        
+
 = field_set_tag 'DPS Calc', class: ["dps"] do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
