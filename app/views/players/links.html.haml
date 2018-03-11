@@ -5,21 +5,19 @@
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "F2P OSRS Ranks", ranks_path
+    = link_to "Hiscores", ranks_path
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, class: ["bar", "calcs"]) do 
+    = link_to "Calculators", calcs_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "DPS Calculator", dps_path
+    = link_to "Hall of Shame", fake_path
   = content_tag(:div, nil, class: ["bar", "links", "selected-link"]) do 
-    = "Useful Links"
+    = "Links"
   = content_tag(:div, nil, class: ["bar", "changelog"]) do 
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donations", donate_path
-    
-= content_tag(:div, nil, class: "container", style: "width: 140px;") do 
-  = content_tag(:div, nil, class: ["bar", "fake"]) do
-    = link_to "Hall of Shame", fake_path
+    = link_to "About Us/Donate", donate_path
     
 = content_tag(:div, nil, class: "container", style: "width: 650px;") do 
   = content_tag(:div, nil, class: "left", style: "text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 

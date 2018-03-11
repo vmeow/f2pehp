@@ -554,6 +554,17 @@ class PlayersController < ApplicationController
       :runecraft_lvl, 
       :runecraft_ehp,
       :runecraft_rank,
-      :potential_p2p)
+      :potential_p2p,
+      :ogress_overall_ehp,
+      :ogress_attack_ehp,
+      :ogress_strength_ehp,
+      :ogress_defence_ehp,
+      :ogress_ranged_ehp,
+      :ogress_prayer_ehp,
+      :ogress_magic_ehp,
+      :ogress_smithing_ehp,
+      :ogress_crafting_ehp,
+      :ogress_runecraft_ehp
+      )
   end
 end
