@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'plaintext' => 'players#plaintext'
   get 'dps' => 'players#dps'
   get 'calcs' => 'players#calcs'
+  get 'gpxp' => 'players#gpxp'
   get 'compare' => 'players#compare'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
