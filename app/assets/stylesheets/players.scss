@@ -345,6 +345,12 @@ a[href$="/Tame_My_Wild"]:after, a[href$="/Tame My Wild"]:after {  /* For Tame */
   vertical-align: -6px;
 }
 
+a[href$="/Scincoidea"]:after {  /* For Scincoidea */
+  padding: 3px;
+  content: image-url("flairs/skink.png");
+  vertical-align: -6px;
+}
+
 a[href$="/citnA"]:after {  /* For citnA */
   padding: 3px;
   content: image-url("flairs/bronzehelm.png");
