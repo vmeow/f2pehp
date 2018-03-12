@@ -61,6 +61,17 @@
 - items["Emerald ring"] = prices["1639"]["overall_average"].to_f
 - items["Ruby amulet (u)"] = prices["1679"]["overall_average"].to_f
 - items["Diamond amulet (u)"] = prices["1681"]["overall_average"].to_f
+
+- if items["Ruby amulet (u)"] == 0
+  - response_ruby_ammy = URI.parse("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=1679")
+  - ruby_ammy = JSON.parse(response_ruby_ammy.read.gsub('\"', '"'))
+  - items["Ruby amulet (u)"] = ruby_ammy["item"]["current"]["price"].gsub(",", "").to_f
+
+- if items["Diamond amulet (u)"] == 0
+  - response_dia_ammy = URI.parse("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=1681")
+  - dia_ammy = JSON.parse(response_dia_ammy.read.gsub('\"', '"'))
+  - items["Diamond amulet (u)"] = dia_ammy["item"]["current"]["price"].gsub(",", "").to_f
+
 - items["Logs"] = prices["1511"]["overall_average"].to_f
 - items["Oak logs"] = prices["1521"]["overall_average"].to_f
 - items["Willow logs"] = prices["1519"]["overall_average"].to_f
@@ -90,6 +101,8 @@
 - items["Anchovies"] = prices["319"]["overall_average"].to_f
 - items["Anchovy pizza"] = prices["2297"]["overall_average"].to_f
 - items["Plain pizza"] = prices["2289"]["overall_average"].to_f
+
+
 
 - skill_items = Hash.new
 - skill_items["Smithing"] = [["Iron bar", 12.5, 2*items["Iron ore"], items["Iron bar"]],
@@ -157,4 +170,4 @@
             %td= item[2] - item[3]
             %td= number_with_precision((item[2] - item[3])/item[1], :precision => 2)
       %br
-    = "all item values obtained from OSBuddy"
+    = "all item values obtained from OSBuddy; inactive prices redirected to OSRS GE"
