@@ -23,15 +23,7 @@
   = link_to "View Plaintext Player List", plaintext_path
 %br
 %br
-= button_to "Update All Players\' Stats", {:method => "put", :controller => "players", :action => "refresh_players"} 
-%br
-%br
-= button_to "Update Top 250 Players\' Stats", {:method => "put", :controller => "players", :action => "refresh_250"} 
-%br
-%br
-= button_to "Export All Players\' Stats", {:controller => "players", :action => "export_players"} 
-%br
-%br
+
 = form_tag ranks_path, :method => "get", id: "create-player-form" do
   = "Add a missing Player"
   %br
@@ -45,10 +37,3 @@
 
 %br
 %br
-= form_tag ranks_path, :method => "get", id: "delete-player-form" do
-  = "Remove a Player"
-  %br
-  = text_field_tag :player_to_del_name, params[:player_to_del_name], placeholder: "Player Name"
-  = "Player Name"
-  %br
-  = submit_tag "Delete" 
