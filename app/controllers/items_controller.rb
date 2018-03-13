@@ -1,8 +1,6 @@
 class ItemsController < ApplicationController
   def create_items
-    Item.all.each do |item|
-      item.destroy
-    end
+    Item.destroy_all
     
     Item.create([
       {name: "Nature rune", itemid: 561, alch: 108},
@@ -98,12 +96,16 @@ class ItemsController < ApplicationController
   
   def update_prices
     summary = URI.parse('https://rsbuddy.com/exchange/summary.json')
-    prices = JSON.parse(summary.read.gsub('\"', '"'))
+    curr_prices = JSON.parse(summary.read.gsub('\"', '"'))
     @items = Item.all
-    @prices = Hash.new
+    if @items.nil?
+      create_items
+      @items = Item.all
+    end
     @alchs = Hash.new
-    @items.each do |item|
-      current_price = prices["#{item[:itemid]}"]["overall_average"].to_f
+    @prices = Hash.new
+    Item.all.each do |item|
+      current_price = curr_prices["#{item[:itemid]}"]["overall_average"].to_f
       icon_name = item[:name].gsub("_", " ")
       item.update_attribute(:icon, "items/#{icon_name}.gif")
       
