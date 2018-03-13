@@ -24,6 +24,14 @@
 %br
 %br
 
+= button_to "Update Items", {:method => "put", :controller => "items", :action => "update_prices"} 
+%br
+%br
+
+= button_to "Populate Items", {:method => "put", :controller => "items", :action => "create_items"} 
+%br
+%br
+
 = form_tag ranks_path, :method => "get", id: "create-player-form" do
   = "Add a missing Player"
   %br

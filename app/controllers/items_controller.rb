@@ -105,6 +105,12 @@ class ItemsController < ApplicationController
     @alchs = Hash.new
     @prices = Hash.new
     Item.all.each do |item|
+      puts "item start"
+      puts item[:id]
+      puts item[:name]
+      puts item[:itemid]
+      puts "item end"
+      
       current_price = curr_prices["#{item[:itemid]}"]["overall_average"].to_f
       icon_name = item[:name].gsub("_", " ")
       item.update_attribute(:icon, "items/#{icon_name}.gif")
