@@ -245,28 +245,6 @@
         %th GP/XP profit
       - alchs.each do |item|
         %tr
-          - image_name = item[0].gsub(" ", "_")
-          %td= image_tag "items/#{image_name}.gif"
-          %td= item[0]
-          %td= item[1]
-          %td= item[1] + items["Nature rune"]
-          %td= item[2]
-          %td= item[2] - item[1] - items["Nature rune"]
-          %td= number_with_precision((item[2] - item[1] - items["Nature rune"])/65, :precision => 2)
-
-= field_set_tag 'High Alch', class: ["dps"], id: "alch", style: "width: 560px; margin: auto;" do
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 560px; border-right:") do 
-    = content_tag(:table, nil, class: ["blank"], style: "width: 560px;") do 
-      %tr
-        %th Item
-        %th 
-        %th Buy
-        %th Buy + Nat
-        %th Alch
-        %th Net profit
-        %th GP/XP profit
-      - alchs.each do |item|
-        %tr
           - image_name = item[:name].gsub(" ", "_")
           %td= image_tag "items/#{image_name}.gif"
           %td= item[:name]
