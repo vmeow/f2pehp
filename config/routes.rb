@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :players
+  resources :players, :items
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players
   post 'players#names' => 'players#find_new', as: :find_new
+  post 'items#update_prices' => 'items#update_prices', as: :update_prices
 
   get 'clear' => 'players#index', as: :clear
     # Example of regular route:

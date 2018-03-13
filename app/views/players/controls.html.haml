@@ -24,6 +24,10 @@
 %br
 %br
 
+= button_to "Update Items", {:method => "put", :controller => "items", :action => "update_prices"} 
+%br
+%br
+
 = form_tag ranks_path, :method => "get", id: "create-player-form" do
   = "Add a missing Player"
   %br
@@ -34,6 +38,3 @@
   = "Player Account Type"
   %br
   = submit_tag "Add" 
-
-%br
-%br

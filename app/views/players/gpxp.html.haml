@@ -18,7 +18,10 @@
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
-    
+
+- itemc = ItemsController.new
+- itemc.update_prices
+
 - summary = URI.parse('https://rsbuddy.com/exchange/summary.json')
 - prices = JSON.parse(summary.read.gsub('\"', '"'))
 
@@ -102,7 +105,58 @@
 - items["Anchovy pizza"] = prices["2297"]["overall_average"].to_f
 - items["Plain pizza"] = prices["2289"]["overall_average"].to_f
 
+- items["Nature rune"] = prices["561"]["overall_average"].to_f
+- items["Gold amulet"] = prices["1692"]["overall_average"].to_f
+- items["Green dhide body"] = prices["1135"]["overall_average"].to_f
+- items["Green dhide chaps"] = prices["1099"]["overall_average"].to_f
+- items["Green dhide vamb"] = prices["1065"]["overall_average"].to_f
+- items["Adamant platelegs"] = prices["1073"]["overall_average"].to_f
+- items["Adamant plateskirt"] = prices["1091"]["overall_average"].to_f
+- items["Adamant 2h sword"] = prices["1317"]["overall_average"].to_f
+- items["Rune dagger"] = prices["1213"]["overall_average"].to_f
+- items["Rune sword"] = prices["1289"]["overall_average"].to_f
+- items["Rune longsword"] = prices["1303"]["overall_average"].to_f
+- items["Rune scimitar"] = prices["1333"]["overall_average"].to_f
+- items["Rune axe"] = prices["1359"]["overall_average"].to_f
+- items["Rune mace"] = prices["1432"]["overall_average"].to_f
+- items["Rune battleaxe"] = prices["1373"]["overall_average"].to_f
+- items["Rune warhammer"] = prices["1347"]["overall_average"].to_f
+- items["Rune chainbody"] = prices["1113"]["overall_average"].to_f
+- items["Rune med helm"] = prices["1147"]["overall_average"].to_f
+- items["Rune full helm"] = prices["1163"]["overall_average"].to_f
+- items["Rune kiteshield"] = prices["1201"]["overall_average"].to_f
+- items["Rune pickaxe"] = prices["1275"]["overall_average"].to_f
 
+- alchs = Item.where(name: ["Gold amulet (u)",
+                             "Gold amulet",
+                             "Gold necklace",
+                             "Gold ring",
+                             "Green dhide body",
+                             "Green dhide chaps",
+                             "Green dhide vamb",
+                             "Steel platebody",
+                             "Mithril platebody",
+                             "Adamant platebody",
+                             "Rune platebody",
+                             "Adamant platelegs",
+                             "Adamant plateskirt",
+                             "Adamant 2h sword",
+                             "Rune platelegs",
+                             "Rune plateskirt",
+                             "Rune 2h sword",
+                             "Rune dagger",
+                             "Rune sword",
+                             "Rune longsword",
+                             "Rune scimitar",
+                             "Rune axe",
+                             "Rune battleaxe",
+                             "Rune mace",
+                             "Rune warhammer",
+                             "Rune chainbody",
+                             "Rune med helm",
+                             "Rune full helm",
+                             "Rune kiteshield",
+                             "Rune pickaxe"]).order("alch - current DESC")
 
 - skill_items = Hash.new
 - skill_items["Smithing"] = [["Iron bar", 12.5, 2*items["Iron ore"], items["Iron bar"]],
@@ -149,13 +203,17 @@
                             ["Jug of wine", 200, items["Grapes"] + items["Jug of water"], items["Jug of wine"]]]
 
 
-= field_set_tag 'GP/XP', class: ["dps"], style: "width: 380px; margin: auto;" do
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 380px; border-right:") do 
+
+= link_to "High Alchemy Calculator", "#alch"
+  
+= field_set_tag 'GP/XP', class: ["dps"], style: "width: 480px; margin: auto;" do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 480px; border-right:") do 
     - ["Prayer", "Cooking", "Firemaking", "Crafting", "Smithing", "Runecraft"].each do |skill|
       %h5 #{skill}
-      = content_tag(:table, nil, class: ["blank"], style: "width: 380px;") do 
+      = content_tag(:table, nil, class: ["blank"], style: "width: 480px;") do 
         %tr
           %th Item
+          %th 
           %th XP
           %th Buy
           %th Sell
@@ -163,6 +221,8 @@
           %th GP/XP
         - skill_items["#{skill}"].each do |item|
           %tr
+            - image_name = item[0].gsub(" ", "_")
+            %td= image_tag "items/#{image_name}.gif"
             %td= item[0]
             %td= item[1]
             %td= item[2]
@@ -170,4 +230,55 @@
             %td= item[2] - item[3]
             %td= number_with_precision((item[2] - item[3])/item[1], :precision => 2)
       %br
-    = "all item values obtained from OSBuddy; inactive prices redirected to OSRS GE"
+    = "all item values from OSBuddy; inactive prices from OSRS GE"
+    
+= field_set_tag 'High Alch', class: ["dps"], id: "alch", style: "width: 560px; margin: auto;" do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 560px; border-right:") do 
+    = content_tag(:table, nil, class: ["blank"], style: "width: 560px;") do 
+      %tr
+        %th Item
+        %th 
+        %th Buy
+        %th Buy + Nat
+        %th Alch
+        %th Net profit
+        %th GP/XP profit
+      - alchs.each do |item|
+        %tr
+          - image_name = item[0].gsub(" ", "_")
+          %td= image_tag "items/#{image_name}.gif"
+          %td= item[0]
+          %td= item[1]
+          %td= item[1] + items["Nature rune"]
+          %td= item[2]
+          %td= item[2] - item[1] - items["Nature rune"]
+          %td= number_with_precision((item[2] - item[1] - items["Nature rune"])/65, :precision => 2)
+
+= field_set_tag 'High Alch', class: ["dps"], id: "alch", style: "width: 560px; margin: auto;" do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 560px; border-right:") do 
+    = content_tag(:table, nil, class: ["blank"], style: "width: 560px;") do 
+      %tr
+        %th Item
+        %th 
+        %th Buy
+        %th Buy + Nat
+        %th Alch
+        %th Net profit
+        %th GP/XP profit
+      - alchs.each do |item|
+        %tr
+          - image_name = item[:name].gsub(" ", "_")
+          %td= image_tag "items/#{image_name}.gif"
+          %td= item[:name]
+          %td= item[:current]
+          %td= item[:current] + items["Nature rune"]
+          %td= item[:alch]
+          - if (item[:alch] - item[:current] - items["Nature rune"]) > 0
+            %td{:style => "color: green;"}= item[:alch] - item[:current] - items["Nature rune"]
+          - elsif (item[:alch] - item[:current] - items["Nature rune"]) == 0
+            %td= item[:alch] - item[:current] - items["Nature rune"]
+          - else (item[:alch] - item[:current] - items["Nature rune"]) == 0
+            %td{:style => "color: red;"}= item[:alch] - item[:current] - items["Nature rune"]
+
+          %td= number_with_precision((item[:alch] - item[:current] - items["Nature rune"])/65, :precision => 2)
+
