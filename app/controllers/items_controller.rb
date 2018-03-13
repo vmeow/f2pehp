@@ -1,7 +1,10 @@
+require 'net/http'
+require 'uri'
+require "open-uri"
+require 'nokogiri'
+
 class ItemsController < ApplicationController
   def create_items
-    Item.destroy_all
-    
     Item.create([
       {name: "Nature rune", itemid: 561, alch: 108},
       {name: "Green dhide body", itemid: 1135, alch: 4680},
@@ -96,7 +99,11 @@ class ItemsController < ApplicationController
   
   def update_prices
     summary = URI.parse('https://rsbuddy.com/exchange/summary.json')
-    curr_prices = JSON.parse(summary.read.gsub('\"', '"'))
+    begin
+      curr_prices = JSON.parse(summary.read.gsub('\"', '"'))
+    rescue
+      curr_prices = nil
+    end
     @items = Item.all
     if @items.nil?
       create_items
@@ -110,8 +117,10 @@ class ItemsController < ApplicationController
       puts item[:name]
       puts item[:itemid]
       puts "item end"
-      
-      current_price = curr_prices["#{item[:itemid]}"]["overall_average"].to_f
+      current_price = 0
+      if !curr_prices.nil?
+        current_price = curr_prices["#{item[:itemid]}"]["overall_average"].to_f
+      end
       icon_name = item[:name].gsub("_", " ")
       item.update_attribute(:icon, "items/#{icon_name}.gif")
       
