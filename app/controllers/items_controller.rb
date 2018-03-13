@@ -98,22 +98,105 @@ class ItemsController < ApplicationController
   
   def update_prices
     summary = URI.parse('https://rsbuddy.com/exchange/summary.json')
-    @prices = JSON.parse(summary.read.gsub('\"', '"'))
+    prices = JSON.parse(summary.read.gsub('\"', '"'))
     @items = Item.all
+    @prices = Hash.new
+    @alchs = Hash.new
     @items.each do |item|
-      current_price = @prices["#{item.itemid}"]["overall_average"].to_f
-      icon_name = item.name.gsub("_", " ")
+      current_price = prices["#{item[:itemid]}"]["overall_average"].to_f
+      icon_name = item[:name].gsub("_", " ")
       item.update_attribute(:icon, "items/#{icon_name}.gif")
       
       if current_price == 0
-        item_response = URI.parse("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=#{item.itemid}")
+        item_response = URI.parse("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=#{item[:itemid]}")
         item_json = JSON.parse(item_response.read.gsub('\"', '"'))
         ge_price = item_json["item"]["current"]["price"].to_f
         item.update_attribute(:current, ge_price)
       else
         item.update_attribute(:current, current_price)
       end      
+      @prices[item[:name]] = item[:current]
+      @alchs[item[:name]] = item[:alch]
 
     end
+  end
+  
+  def gpxp
+    update_prices
+    
+    @alchs = Item.where(name: ["Gold amulet (u)",
+                             "Gold amulet",
+                             "Gold necklace",
+                             "Gold ring",
+                             "Green dhide body",
+                             "Green dhide chaps",
+                             "Green dhide vamb",
+                             "Steel platebody",
+                             "Mithril platebody",
+                             "Adamant platebody",
+                             "Rune platebody",
+                             "Adamant platelegs",
+                             "Adamant plateskirt",
+                             "Adamant 2h sword",
+                             "Rune platelegs",
+                             "Rune plateskirt",
+                             "Rune 2h sword",
+                             "Rune dagger",
+                             "Rune sword",
+                             "Rune longsword",
+                             "Rune scimitar",
+                             "Rune axe",
+                             "Rune battleaxe",
+                             "Rune mace",
+                             "Rune warhammer",
+                             "Rune chainbody",
+                             "Rune med helm",
+                             "Rune full helm",
+                             "Rune kiteshield",
+                             "Rune pickaxe"]).order("alch - current DESC")
+
+    @skill_items = Hash.new
+    @skill_items["Smithing"] = [["Iron bar", 12.5, 2*@prices["Iron ore"], @prices["Iron bar"]],
+                                ["Silver bar", 13.7, @prices["Silver ore"], @prices["Silver bar"]],
+                                ["Steel nails", 37.5, @prices["Steel bar"], 15*@prices["Steel nails"]],
+                                ["Steel platebody", 187.5, 5*@prices["Steel bar"], @prices["Steel platebody"]],
+                                ["Mithril platebody", 250, 5*@prices["Mithril bar"], @prices["Mithril platebody"]],
+                                ["Adamant platebody", 312.5, 5*@prices["Adamantite bar"], @prices["Adamant platebody"]],
+                                ["Rune platebody", 375, 5*@prices["Runite bar"], @prices["Rune platebody"]],
+                                ["Rune platelegs", 202.5, 3*@prices["Runite bar"], @prices["Rune platelegs"]],
+                                ["Rune plateskirt", 202.5, 3*@prices["Runite bar"], @prices["Rune plateskirt"]],
+                                ["Rune 2h sword", 202.5, 3*@prices["Runite bar"], @prices["Rune 2h sword"]]]
+
+    @skill_items["Crafting"] = [["Gold ring", 15, @prices["Gold bar"], @prices["Gold ring"]],
+                                ["Gold necklace", 20, @prices["Gold bar"], @prices["Gold necklace"]],
+                                ["Gold amulet (u)", 30, @prices["Gold bar"], @prices["Gold amulet (u)"]],
+                                ["Sapphire", 50, @prices["Uncut sapphire"], @prices["Sapphire"]],
+                                ["Sapphire ring", 40, @prices["Gold bar"] + @prices["Sapphire"], @prices["Sapphire ring"]],
+                                ["Emerald", 67.5, @prices["Uncut emerald"], @prices["Emerald"]],
+                                ["Emerald ring", 55, @prices["Gold bar"] + @prices["Emerald"], @prices["Emerald ring"]],
+                                ["Ruby", 85, @prices["Uncut ruby"], @prices["Ruby"]],
+                                ["Diamond", 107.5, @prices["Uncut diamond"], @prices["Diamond"]],
+                                ["Ruby amulet (u)", 85, @prices["Gold bar"] + @prices["Ruby"], @prices["Ruby amulet (u)"]],
+                                ["Diamond amulet (u)", 100, @prices["Gold bar"] + @prices["Diamond"], @prices["Diamond amulet (u)"]]]
+
+    @skill_items["Firemaking"] = [["Logs", 40, @prices["Logs"], 0],
+                                  ["Oak logs", 60, @prices["Oak logs"], 0],
+                                  ["Willow logs", 90, @prices["Willow logs"], 0],
+                                  ["Maple logs", 135, @prices["Maple logs"], 0],
+                                  ["Yew logs", 202.5, @prices["Yew logs"], 0]]
+
+    @skill_items["Prayer"] = [["Big bones", 15, @prices["Big bones"], 0]]
+
+    @skill_items["Runecraft"] = [["Air tiara", 25, @prices["Air talisman"] + @prices["Tiara"], @prices["Air tiara"]],
+                                 ["Earth tiara", 33, @prices["Earth talisman"] + @prices["Tiara"], @prices["Earth tiara"]],
+                                 ["Body tiara", 37.5, @prices["Body talisman"] + @prices["Tiara"], @prices["Body tiara"]]]
+
+    @skill_items["Cooking"] = [["Anchovy pizza", 39, @prices["Anchovies"] + @prices["Plain pizza"], @prices["Anchovy pizza"]],
+                               ["Trout", 70, @prices["Raw trout"], @prices["Trout"]],
+                               ["Salmon", 90, @prices["Raw salmon"], @prices["Salmon"]],
+                               ["Tuna", 100, @prices["Raw tuna"], @prices["Tuna"]],
+                               ["Lobster", 120, @prices["Raw lobster"], @prices["Lobster"]],
+                               ["Swordfish", 140, @prices["Raw swordfish"], @prices["Swordfish"]],
+                               ["Jug of wine", 200, @prices["Grapes"] + @prices["Jug of water"], @prices["Jug of wine"]]]
   end
 end

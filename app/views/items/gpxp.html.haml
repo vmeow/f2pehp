@@ -1,0 +1,77 @@
+- @title = "GP/XP and Alchs" 
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+%p#notice= notice
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
+    = link_to "Hiscores", ranks_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, class: ["bar", "calcs"]) do 
+    = link_to "Calculators", calcs_path
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
+    = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
+    = link_to "Links", links_path
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, class: ["bar", "donate"]) do 
+    = link_to "About Us/Donate", donate_path
+
+= link_to "High Alchemy Calculator", "#alch"
+  
+= field_set_tag 'GP/XP', class: ["dps"], style: "width: 480px; margin: auto;" do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 480px; border-right:") do 
+    - ["Prayer", "Cooking", "Firemaking", "Crafting", "Smithing", "Runecraft"].each do |skill|
+      %h5 #{skill}
+      = content_tag(:table, nil, class: ["blank"], style: "width: 480px;") do 
+        %tr
+          %th Item
+          %th 
+          %th XP
+          %th Buy
+          %th Sell
+          %th Net cost
+          %th GP/XP
+        - @skill_items["#{skill}"].each do |item|
+          %tr
+            - image_name = item[0].gsub(" ", "_")
+            %td= image_tag "items/#{image_name}.gif"
+            %td= item[0]
+            %td= item[1]
+            %td= item[2]
+            %td= item[3]
+            %td= item[2] - item[3]
+            %td= number_with_precision((item[2] - item[3])/item[1], :precision => 2)
+      %br
+    = "all item values from OSBuddy; inactive prices from OSRS GE"
+    
+= field_set_tag 'High Alch', class: ["dps"], id: "alch", style: "width: 560px; margin: auto;" do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 560px; border-right:") do 
+    = content_tag(:table, nil, class: ["blank"], style: "width: 560px;") do 
+      %tr
+        %th Item
+        %th 
+        %th Buy
+        %th Buy + Nat
+        %th Alch
+        %th Net profit
+        %th GP/XP profit
+      - @alchs.each do |item|
+        %tr
+          - image_name = item[:name].gsub(" ", "_")
+          %td= image_tag "items/#{image_name}.gif"
+          %td= item[:name]
+          %td= item[:current]
+          %td= item[:current] + @prices["Nature rune"]
+          %td= item[:alch]
+          - if (item[:alch] - item[:current] - @prices["Nature rune"]) > 0
+            %td{:style => "color: green;"}= item[:alch] - item[:current] - @prices["Nature rune"]
+          - elsif (item[:alch] - item[:current] - @prices["Nature rune"]) == 0
+            %td= item[:alch] - item[:current] - @prices["Nature rune"]
+          - else (item[:alch] - item[:current] - @prices["Nature rune"]) == 0
+            %td{:style => "color: red;"}= item[:alch] - item[:current] - @prices["Nature rune"]
+
+          %td= number_with_precision((item[:alch] - item[:current] - @prices["Nature rune"])/65, :precision => 2)
+
