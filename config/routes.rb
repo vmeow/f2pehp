@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'players#secretpage' => 'players#export_players', as: :export_players
   post 'players#names' => 'players#find_new', as: :find_new
   post 'items#update_prices' => 'items#update_prices', as: :update_prices
+  post 'items#create_items' => 'items#create_items', as: :create_items
 
   get 'clear' => 'players#index', as: :clear
     # Example of regular route:
