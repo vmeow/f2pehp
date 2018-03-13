@@ -250,7 +250,7 @@ class PlayersController < ApplicationController
   def check_hc_death(player, overall_xp)
     if player.player_acc_type == "HCIM"
       begin
-        hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+        hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{player.player_name}")
         hc_stats = hc_uri.read.split(" ")
         hc_xp = hc_stats[0].split(",")[2].to_f
         if hc_xp < overall_xp
