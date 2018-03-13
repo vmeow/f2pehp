@@ -25,7 +25,7 @@
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 480px; border-right:") do 
     - ["Prayer", "Cooking", "Firemaking", "Crafting", "Smithing", "Runecraft"].each do |skill|
       %h5 #{skill}
-      = content_tag(:table, nil, class: ["blank"], style: "width: 480px;") do 
+      = content_tag(:table, nil, class: ["blank"], style: "width: 480px; line-height: 15px; padding: 1px;") do 
         %tr
           %th Item
           %th 
@@ -43,7 +43,7 @@
             %td= item[2]
             %td= item[3]
             %td= item[2] - item[3]
-            %td= number_with_precision((item[2] - item[3])/item[1], :precision => 2)
+            %td= number_with_precision((item[2] - item[3])/item[1].to_f, :precision => 2)
       %br
     = "all item values from OSBuddy; inactive prices from OSRS GE"
     
@@ -73,5 +73,5 @@
           - else (item[:alch] - item[:current] - @prices["Nature rune"]) == 0
             %td{:style => "color: red;"}= item[:alch] - item[:current] - @prices["Nature rune"]
 
-          %td= number_with_precision((item[:alch] - item[:current] - @prices["Nature rune"])/65, :precision => 2)
+          %td= number_with_precision((item[:alch] - item[:current] - @prices["Nature rune"])/65.0, :precision => 2)
 
