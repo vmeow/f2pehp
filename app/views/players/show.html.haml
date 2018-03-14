@@ -89,7 +89,8 @@
       - elsif @player.player_name == "Scincoidea"
         = image_tag "flairs/scin.png"
       - elsif @player.player_name == "FitMC"
-        %h3 Definitely an OSRS player and not a Minecraft YouTuber.
+        = content_tag(:div, nil, style: "padding: 20px; width: 280px; height: 40px;") do 
+          %h5 Definitely an OSRS player and not a Minecraft YouTuber.
       
 - else
   = content_tag(:div, nil, class: "container", style: "width: 680px;") do 
