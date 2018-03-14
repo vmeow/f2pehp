@@ -27,18 +27,3 @@
 = button_to "Update Items", {:method => "put", :controller => "items", :action => "update_prices"} 
 %br
 %br
-
-= button_to "Populate Items", {:method => "put", :controller => "items", :action => "create_items"} 
-%br
-%br
-
-= form_tag ranks_path, :method => "get", id: "create-player-form" do
-  = "Add a missing Player"
-  %br
-  = text_field_tag :player_to_add_name, params[:player_to_add_name], placeholder: "Player Name"
-  = "Player Name"
-  %br
-  = text_field_tag :player_to_add_acc, params[:player_to_add_acc], placeholder: "Player Account Type"
-  = "Player Account Type"
-  %br
-  = submit_tag "Add" 
