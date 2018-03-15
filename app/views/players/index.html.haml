@@ -23,6 +23,12 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
+      %h6 
+        = "Shoutout to "
+        = link_to "FlippingOldschool", "https://www.youtube.com/channel/UCIi4nY4YuOYUJEg8XLM0vQw"
+        = "for his wonderful "
+        = link_to "video on the F2P community.", "https://www.youtube.com/watch?v=wIlJ1AL1qWY"
+      %h6 All players will now be updated daily; players with >200 EHP updated twice daily.
       %h6
         = link_to "v1.13 release: High alch calc", gpxp_path
       %h6

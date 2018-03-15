@@ -139,8 +139,6 @@ class ItemsController < ApplicationController
   end
   
   def gpxp
-    update_prices
-    
     @alchs = Item.where(name: ["Gold amulet (u)",
                              "Gold amulet",
                              "Gold necklace",
