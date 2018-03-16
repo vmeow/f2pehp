@@ -91,7 +91,8 @@
       - elsif @player.player_name == "UncleTomas"
         = content_tag(:div, nil, style: "margin: auto; padding: 10px; width: 180px; height: 40px;") do 
           %h5 Gone but never forgotten
-          %h5 RIP Unkie
+          %h5 
+            = link_to "RIP Unkie", "https://i.imgur.com/EE28q9w.png"
         = image_tag "flairs/tyrone.png"
       - elsif @player.player_name == "FitMC"
         = content_tag(:div, nil, style: "padding: 20px; width: 280px; height: 40px;") do 
