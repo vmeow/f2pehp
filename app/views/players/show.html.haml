@@ -19,7 +19,7 @@
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
 
-- if ["Obor", "Bargan", "nagraB", "Scincoidea", "FitMC"].include?(@player.player_name)
+- if ["Obor", "Bargan", "nagraB", "Scincoidea", "FitMC", "UncleTomas"].include?(@player.player_name)
   = content_tag(:div, nil, class: "container", style: "width: 680px;") do 
     = content_tag(:div, nil, class: ["container", "left"], style: "width: 300px;") do 
       = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
@@ -88,6 +88,11 @@
         = image_tag "flairs/nagrab_large2.png"
       - elsif @player.player_name == "Scincoidea"
         = image_tag "flairs/scin.png"
+      - elsif @player.player_name == "UncleTomas"
+        = content_tag(:div, nil, style: "margin: auto; padding: 10px; width: 180px; height: 40px;") do 
+          %h5 Gone but never forgotten
+          %h5 RIP Unkie
+        = image_tag "flairs/tyrone.png"
       - elsif @player.player_name == "FitMC"
         = content_tag(:div, nil, style: "padding: 20px; width: 280px; height: 40px;") do 
           %h5 Definitely an OSRS player and not a Minecraft YouTuber.

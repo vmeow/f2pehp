@@ -411,6 +411,12 @@ a[href$="/Faij"]:after {  /* For Faij */
   vertical-align: -6px;
 }
 
+a[href$="/UncleTomas"]:after {  
+  padding: 3px;
+  content: image-url("flairs/shade_robe");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
