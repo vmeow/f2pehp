@@ -60,15 +60,29 @@
         = form_tag players_path(@player), :method => :put do
           = link_to "#{@player.player_name}", @player, method: :update_player
           
-      = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 20px; width: 152px; height: 98px;") do 
-        = form_tag ranks_path, :method => "get", id: "search-players-form" do
-          = "Search by name"
-          %br
-          = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
-          %br
-          = submit_tag "Search"
+      = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; width: 152px; height: 98px;") do 
+        = "Other Hiscores"
+        %br
+        - if @player.player_acc_type == "HCIM"
+          = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/hiscorepersonal.ws?user1=#{@player.player_name}"
+        - elsif @player.player_acc_type == "UIM"
+          = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ultimate/hiscorepersonal.ws?user1=#{@player.player_name}"
+        - elsif @player.player_acc_type == "IM"
+          = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ironman/hiscorepersonal.ws?user1=#{@player.player_name}"
+        - elsif @player.player_acc_type == "Reg"
+          = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.player_name}"
+        %br
+        = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.player_name}"
           
-    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 152px; height: 126px;") do 
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 5px; margin-bottom: 5px; width: 152px; height: 98px;") do 
+      = form_tag ranks_path, :method => "get", id: "search-players-form" do
+        = "Search by name"
+        %br
+        = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
+        %br
+        = submit_tag "Search"
+          
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 5px; margin-bottom: 5px; width: 152px; height: 126px;") do 
       = form_tag compare_path, :method => :get, :id => 'filters_form' do
         = "Compare Users"
         %br
@@ -77,7 +91,8 @@
         = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
         %br
         = submit_tag 'Compare', :id => "compare_submit"
-        
+    
+
         
     = content_tag(:div, nil, class: ["container", "right"], style: "width: 350px;") do 
       - if @player.player_name == "Obor"
@@ -132,12 +147,26 @@
               %td= number_with_delimiter(@player["#{skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
               %td= number_with_delimiter(@player["#{skill}_rank"].to_i, :delimiter => ",") 
       = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
-    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; width: 152px; height: 98px; padding-top: 0px;") do 
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 10px; width: 152px; height: 98px; padding-top: 0px;") do 
       %h4 Update Stats
       = form_tag players_path(@player), :method => :put do
         = link_to "#{@player.player_name}", @player, method: :update_player
         
-    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; width: 152px; height: 98px;") do 
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 5px; width: 152px; height: 98px;") do 
+      = "Other Hiscores"
+      %br
+      - if @player.player_acc_type == "HCIM"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/hiscorepersonal.ws?user1=#{@player.player_name}"
+      - elsif @player.player_acc_type == "UIM"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ultimate/hiscorepersonal.ws?user1=#{@player.player_name}"
+      - elsif @player.player_acc_type == "IM"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ironman/hiscorepersonal.ws?user1=#{@player.player_name}"
+      - elsif @player.player_acc_type == "Reg"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.player_name}"
+      %br
+      = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.player_name}"
+        
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 5px; width: 152px; height: 98px;") do 
       = form_tag ranks_path, :method => "get", id: "search-players-form" do
         = "Search by name"
         %br
@@ -145,7 +174,7 @@
         %br
         = submit_tag "Search"
         
-    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 20px; width: 152px; height: 126px;") do 
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 20px; margin-bottom: 5px; width: 152px; height: 126px;") do 
       = form_tag compare_path, :method => :get, :id => 'filters_form' do
         = "Compare Users"
         %br
