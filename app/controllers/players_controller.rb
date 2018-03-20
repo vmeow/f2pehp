@@ -121,13 +121,13 @@ class PlayersController < ApplicationController
     case @sort_by
     when "ehp"
       @player_ehp_header = 'hilite'
-      ordering = "#{@skill}_ehp DESC, #{@skill}_lvl DESC, #{@skill}_xp DESC"
+      ordering = "#{@skill}_ehp DESC, #{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
     when "lvl"
       @player_lvl_header = 'hilite'
-      ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC"
+      ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
     when "xp"
       @player_xp_header = 'hilite'
-      ordering = "#{@skill}_xp DESC"
+      ordering = "#{@skill}_xp DESC, #{@skill}_rank ASC"
     end
       
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
