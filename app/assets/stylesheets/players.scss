@@ -413,7 +413,13 @@ a[href$="/Faij"]:after {  /* For Faij */
 
 a[href$="/UncleTomas"]:after {  
   padding: 3px;
-  content: image-url("flairs/shade_robe");
+  content: image-url("flairs/shade_robe.png");
+  vertical-align: -5px;
+}
+
+a[href$="/Tohno1612"]:after {  
+  padding: 3px;
+  content: image-url("flairs/addy_helm.png");
   vertical-align: -5px;
 }
 
