@@ -32,3 +32,11 @@
 = button_to "Update Items", {:method => "put", :controller => "items", :action => "update_prices"} 
 %br
 %br
+
+= form_tag ranks_path, :method => "get", id: "delete-player-form" do
+  = "Remove a Player"
+  %br
+  = text_field_tag :player_to_del_name, params[:player_to_del_name], placeholder: "Player Name"
+  = "Player Name"
+  %br
+  = submit_tag "Delete" 
