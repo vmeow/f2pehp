@@ -12,11 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 /*global $*/
 
 function ready() {
+    $('#calcs').click(function(event) {
+        $('#calcs-list').slideToggle(100);
+        event.stopPropagation();
+    });
+    
     function maxhit(level, gear){
       level += 8;
       return Math.floor(0.5 + level * (gear+64) / 640);
@@ -836,18 +840,9 @@ function ready() {
 
 }
 
-
-        
-$(document).ready(function() {    
-    $('#calcs').click(function(event) {
-        $('#calcs-list').slideToggle(100);
-        event.stopPropagation();
-    });
-});
-
 $(document).on("click", function(event){
     $("#calcs-list").slideUp("fast");
 });
 
-
-$(document).on('turbolinks:load', ready);
+$(document).ready(ready);
+$(document).on('page:load', ready);
