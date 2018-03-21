@@ -1,6 +1,6 @@
-- @title = "Admin Page" 
+- @title = "Test Page" 
 = link_to image_tag("f2pwiki_500.png"), players_path
-
+  
 %p#notice= notice
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
@@ -25,12 +25,3 @@
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
-
-= content_tag(:div, nil, style: " margin: auto; text-align: center; width: 155px; padding: 10px;") do 
-  = link_to "View Plaintext Player List", plaintext_path
-%br
-%br
-
-= button_to "Update Items", {:method => "put", :controller => "items", :action => "update_prices"} 
-%br
-%br

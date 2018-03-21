@@ -9,7 +9,14 @@
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "calcs"]) do 
-    = link_to "Calculators", calcs_path
+    = content_tag(:div, nil, class: ["container", "calcs"], style: "margin-bottom: 0px; padding: 0px;", id: "calcs") do 
+      = "Calculators"
+    = content_tag(:div, nil, class: ["dropdown", "container"], id: "calcs-list", remote: true) do
+      = link_to "Melee DPS", meleedps_path, remote: true
+      = link_to "Ranged DPS", rangeddps_path, remote: true
+      = link_to "Magic DPS", magicdps_path, remote: true
+      = link_to "Combat Lvl", combat_path, remote: true
+      = link_to "GP/XP, Alch", gpxp_path, remote: true
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Hall of Shame", fake_path
   = content_tag(:div, nil, class: ["bar", "links"]) do 
@@ -24,6 +31,11 @@
     %h1{:align => "center"} About Us
     = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
       = "This is a fan-made passion project started in October 2017. It will always be 100% ad-free and non-profit, and is constantly updated with the help of the F2P OSRS community. We work with respected F2P individuals to bring forth EHP balances and meta changes. We also work on new features and additions all the time, and we welcome any suggestions." 
+      = "Special thanks to "
+      = link_to "Bargan", "players/Bargan"
+      = " and "
+      = link_to "Obor", "players/Obor"
+      = " for their keen eye on bug fixes and suggestions."
     %h3{:align => "center"} Please consider supporting this free service.
     = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
       = "Money is literally our least important concern, as we wish only to serve the F2P OSRS community. However, hosting and server fees add up, so all donations are greatly appreciated."

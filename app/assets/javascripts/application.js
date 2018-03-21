@@ -752,7 +752,7 @@ function ready() {
         $("#magic_xph").val(Math.round(magicXph));
     }
 
-function combat(){
+    function combat(){
     	// Scan variables
     	var att = document.querySelector('[name="combat_att"]').value;
     	var str = document.querySelector('[name="combat_str"]').value;
@@ -833,6 +833,21 @@ function combat(){
     $('#combat_magic').change(combat);
     $('#combat_ranged').change(combat);
     combat();
+
 }
+
+
+        
+$(document).ready(function() {    
+    $('#calcs').click(function(event) {
+        $('#calcs-list').slideToggle(100);
+        event.stopPropagation();
+    });
+});
+
+$(document).on("click", function(event){
+    $("#calcs-list").slideUp("fast");
+});
+
 
 $(document).on('turbolinks:load', ready);

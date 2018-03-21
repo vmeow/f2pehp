@@ -16,9 +16,14 @@ Rails.application.routes.draw do
   get 'controls' => 'players#controls'
   get 'plaintext' => 'players#plaintext'
   get 'dps' => 'players#dps'
+  get 'meleedps' => 'players#meleedps'
+  get 'rangeddps' => 'players#rangeddps'
+  get 'magicdps' => 'players#magicdps'
+  get 'combat' => 'players#combat'
   get 'calcs' => 'players#calcs'
   get 'gpxp' => 'items#gpxp'
   get 'compare' => 'players#compare'
+  get 'test' => 'players#test'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players

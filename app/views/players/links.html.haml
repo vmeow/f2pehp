@@ -9,7 +9,14 @@
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "calcs"]) do 
-    = link_to "Calculators", calcs_path
+    = content_tag(:div, nil, class: ["container", "calcs"], style: "margin-bottom: 0px; padding: 0px;", id: "calcs") do 
+      = "Calculators"
+    = content_tag(:div, nil, class: ["dropdown", "container"], id: "calcs-list", remote: true) do
+      = link_to "Melee DPS", meleedps_path, remote: true
+      = link_to "Ranged DPS", rangeddps_path, remote: true
+      = link_to "Magic DPS", magicdps_path, remote: true
+      = link_to "Combat Lvl", combat_path, remote: true
+      = link_to "GP/XP, Alch", gpxp_path, remote: true
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Hall of Shame", fake_path
   = content_tag(:div, nil, class: ["bar", "links", "selected-link"]) do 
