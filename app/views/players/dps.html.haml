@@ -8,8 +8,13 @@
     = link_to "Hiscores", ranks_path
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "calcs", "selected-link"]) do 
-    = "Calculators"
+  = content_tag(:div, nil, class: ["bar", "calcs"]) do 
+    = content_tag(:div, nil, class: ["container", "calcs"], style: "margin-bottom: 0px; padding: 0px;", id: "calcs") do 
+      = "Calculators"
+    = content_tag(:div, nil, class: ["dropdown", "container"], id: "calcs-list", remote: true) do
+      = "Combat DPS"
+      = link_to "Combat Lvl", combat_path
+      = link_to "GP/XP, Alch", gpxp_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Hall of Shame", fake_path
   = content_tag(:div, nil, class: ["bar", "links"]) do 
@@ -18,9 +23,6 @@
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
-
-= content_tag(:div, nil, class: ["bar", "donate"], style: "margin: auto; float:none;") do 
-  = link_to "GP/XP, Alch Calc", gpxp_path
 
 = field_set_tag 'Combat Calc', class: "dps" do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 

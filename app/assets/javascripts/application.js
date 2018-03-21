@@ -777,6 +777,7 @@ function ready() {
         $("#combat_level").val(combat);
     }
 
+    
     // run the update on every input change and on startup
     $('#att').change(dps);
     $('#str').change(dps);
@@ -792,7 +793,6 @@ function ready() {
     $('#mob_arm').change(dps);
     $('#mob_hp').change(dps);
     $('#mob_def').change(dps);
-    dps();
     
     $('#ranged').change(rangeddps);
     $('#ranged_pray').change(rangeddps);
@@ -810,7 +810,6 @@ function ready() {
     $('#mob_arm').change(rangeddps);
     $('#mob_hp').change(rangeddps);
     $('#mob_def').change(rangeddps);
-    rangeddps();
     
     $('#magic').change(magicdps);
     $('#magic_pray').change(magicdps);
@@ -827,7 +826,6 @@ function ready() {
     $('#mob_magic').change(magicdps);
     $('#mob_hp').change(magicdps);
     $('#mob_def').change(magicdps);
-    magicdps();
     
     $('#combat_att').change(combat);
     $('#combat_str').change(combat);
@@ -836,8 +834,11 @@ function ready() {
     $('#combat_pray').change(combat);
     $('#combat_magic').change(combat);
     $('#combat_ranged').change(combat);
-    combat();
 
+    dps()
+    rangeddps()
+    magicdps()
+    combat()
 }
 
 $(document).on("click", function(event){
