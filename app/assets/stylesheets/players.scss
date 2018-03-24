@@ -450,6 +450,12 @@ a[href$="/Tohno1612"]:after {
   vertical-align: -5px;
 }
 
+a[href$="/Freckled_Kid"]:after {  
+  padding: 3px;
+  content: image-url("flairs/burnt_bones.png");
+  vertical-align: -5px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
