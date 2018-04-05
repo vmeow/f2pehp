@@ -378,9 +378,9 @@ a[href$="/FitMC"]:after {  /* For FitMC */
   vertical-align: -9px;
 }
 
-a[href$="/Scincoidea"]:after {  /* For Scincoidea */
+a[href$="/For_Ulven"]:after {
   padding: 3px;
-  content: image-url("flairs/skink.png");
+  content: image-url("flairs/wolf.png");
   vertical-align: -4px;
 }
 
@@ -456,6 +456,11 @@ a[href$="/Freckled_Kid"]:after {
   vertical-align: -5px;
 }
 
+a[href$="/Leftoverover"]:after {  
+  padding: 3px;
+  content: image-url("flairs/rope.png");
+  vertical-align: -5px;
+}
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
