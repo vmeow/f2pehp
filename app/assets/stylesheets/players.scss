@@ -461,6 +461,13 @@ a[href$="/Leftoverover"]:after {
   content: image-url("flairs/rope.png");
   vertical-align: -5px;
 }
+
+a[href$="/Gl4Head"]:after {  
+  padding: 3px;
+  content: image-url("flairs/fighting_boots.png");
+  vertical-align: -5px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
