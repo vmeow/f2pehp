@@ -45,6 +45,10 @@ function ready() {
         var mobDef = document.querySelector('[name="mob_def"]').value;
         var mobArm = document.querySelector('[name="mob_arm"]').value;
         
+        var customPlayerStats = document.querySelector('[name="custom_stats_melee"]').checked;
+        var customAtt = document.querySelector('[name="att_bonus"]').value;
+        var customStr = document.querySelector('[name="str_bonus"]').value;
+
         // Equipment bonuses
         var attBonus = 0;
         var strBonus = 0;
@@ -166,30 +170,12 @@ function ready() {
     	}
     
     	// Maximum base hits
-    	var maxHit = maxhit(A, strBonus);
-
-        // Projected max hits
-        /*
-        var projected1 = new Array();
-        var projected2 = new Array();
-    
-        var projections = "<tbody><tr><td>Str</td>";
-        var j = 0;
-        for(i=1; i<13; i++){
-        	j = Number(str)+i;
-        	projections += "<td>" + j + "</td>";
+    	if(customPlayerStats){
+    	    var maxHit = maxhit(A, Number(customStr));
+    	} else {
+    	    var maxHit = maxhit(A, strBonus);
     	}
-        projections += "</tr><tr><td>Wpn1</td>";
-        for(i=1; i<13; i++){
-        	projections += "<td>" + maxhit(A+i, strbonus1) + "</td>";
-        }
-        projections += "</tr><tr><td>Wpn2</td>";
-        for(i=1; i<13; i++){
-        	projections += "<td>" + maxhit(A+i, strbonus2) + "</td>";
-        }
-        projections += "</tr><tbody>";
-        */
-        
+
     	// Effective att
     	var effA = att;
     	switch(attPrayer){
@@ -222,7 +208,11 @@ function ready() {
     	}
     
     	// Attack roll
-    	var attRoll = effA * (attBonus + 64);
+    	if(customPlayerStats){
+    	    var attRoll = effA * (Number(customAtt) + 64);
+    	} else {
+    	    var attRoll = effA * (attBonus + 64);
+    	}
 
     	// Enemy effective def & defence roll
     	var enemyDef = 0;
@@ -309,6 +299,11 @@ function ready() {
     	dps = Math.round(dps*1000)/1000;
 
     	// Output
+        if (customAtt <= -65) {
+            accuracy = 0;
+            dps = 0;
+            xph = 0;
+        }
         $("#melee_maxhit").val(maxHit);
         $("#melee_accuracy").val(accuracy);
         $("#melee_dps").val(dps);
@@ -340,6 +335,10 @@ function ready() {
         var mobDef = document.querySelector('[name="mob_def"]').value;
         var mobArm = document.querySelector('[name="mob_arm"]').value;
         
+        var customPlayerStats = document.querySelector('[name="custom_stats_ranged"]').checked;
+        var customRangedAtt = document.querySelector('[name="ranged_att_bonus"]').value;
+        var customRangedStr = document.querySelector('[name="ranged_str_bonus"]').value;
+
         // Equipment bonuses
         var rangedBonus = 0;
         var rangedStr = 0;
@@ -474,13 +473,17 @@ function ready() {
     			break;
     	}
     
-    	// Maximum base hits
-    	var rangedMaxHit = maxhit(rangedA, rangedStr);
+    	// Maximum base hits, attack roll
+    	if(customPlayerStats){
+    	    var attRoll = rangedEffA * (Number(customRangedAtt) + 64);
+        	var rangedMaxHit = maxhit(rangedA, Number(customRangedStr));
+    	} else {
+    	    var attRoll = rangedEffA * (rangedBonus + 64);
+    	    var rangedMaxHit = maxhit(rangedA, rangedStr);
+    	}
+    	
     	rangedEffA = Math.floor(rangedEffA) + 8;
-    
-    	// Attack roll
-    	var attRoll = rangedEffA * (rangedBonus + 64);
-
+    	
     	// Enemy effective def & defence roll
     	var enemyDef = 0;
     	var enemyHP = 0;
@@ -557,6 +560,11 @@ function ready() {
     	rangedDps = Math.round(rangedDps*1000)/1000;
 
     	// Output
+        if (customRangedAtt <= -65) {
+            rangedAccuracy = 0;
+            rangedDps = 0;
+            rangedXph = 0;
+        }
         $("#ranged_maxhit").val(rangedMaxHit);
         $("#ranged_accuracy").val(rangedAccuracy);
         $("#ranged_dps").val(rangedDps);
@@ -582,6 +590,10 @@ function ready() {
         var mobDef = document.querySelector('[name="mob_def"]').value;
         var mobMagic = document.querySelector('[name="mob_magic"]').value;
         var mobArm = document.querySelector('[name="mob_arm"]').value;
+        
+        var customPlayerStats = document.querySelector('[name="custom_stats_magic"]').checked;
+        var customMagicAtt = document.querySelector('[name="magic_att_bonus"]').value;
+
         
         // Equipment bonuses
         var magicBonus = 0;
@@ -667,7 +679,11 @@ function ready() {
         magicEffA = Math.floor(magicEffA) + 8;
         
     	// Attack roll
-    	var attRoll = magicEffA * (magicBonus + 64);
+    	if(customPlayerStats){
+    	    var attRoll = magicEffA * (Number(customMagicAtt) + 64);
+    	} else {
+         	var attRoll = magicEffA * (magicBonus + 64);
+    	}
 
     	// Enemy effective def & defence roll
     	var enemyDef = 0;
@@ -748,8 +764,13 @@ function ready() {
     	// Rounding
     	magicAccuracy = Math.round(magicAccuracy*10000)/10000;
     	magicDps = Math.round(magicDps*1000)/1000;
-
+    	
     	// Output
+        if (customMagicAtt <= -65) {
+            magicAccuracy = 0;
+            magicDps = 0;
+            magicXph = 6000/magicTicks*magicXpPerCast;
+        }
         $("#magic_maxhit").val(magicMaxHit);
         $("#magic_accuracy").val(magicAccuracy);
         $("#magic_dps").val(magicDps);
@@ -793,6 +814,9 @@ function ready() {
     $('#mob_arm').change(dps);
     $('#mob_hp').change(dps);
     $('#mob_def').change(dps);
+    $('#custom_stats_melee').change(dps);
+    $('#att_bonus').change(dps);
+    $('#str_bonus').change(dps);
     
     $('#ranged').change(rangeddps);
     $('#ranged_pray').change(rangeddps);
@@ -810,6 +834,9 @@ function ready() {
     $('#mob_arm').change(rangeddps);
     $('#mob_hp').change(rangeddps);
     $('#mob_def').change(rangeddps);
+    $('#custom_stats_ranged').change(rangeddps);
+    $('#ranged_att_bonus').change(rangeddps);
+    $('#ranged_str_bonus').change(rangeddps);
     
     $('#magic').change(magicdps);
     $('#magic_pray').change(magicdps);
@@ -826,6 +853,8 @@ function ready() {
     $('#mob_magic').change(magicdps);
     $('#mob_hp').change(magicdps);
     $('#mob_def').change(magicdps);
+    $('#custom_stats_magic').change(magicdps);
+    $('#magic_att_bonus').change(magicdps);
     
     $('#combat_att').change(combat);
     $('#combat_str').change(combat);

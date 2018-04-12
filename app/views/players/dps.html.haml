@@ -24,41 +24,6 @@
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
 
-= field_set_tag 'Combat Calc', class: "dps" do
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 
-    = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
-      %tr
-        %td= label_tag "Attack Level"
-        %td= number_field_tag "combat_att", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
-      %tr
-        %td= label_tag "Str Level"
-        %td= number_field_tag "combat_str", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
-      %tr
-        %td= label_tag "Defence Level"
-        %td= number_field_tag "combat_def", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 
-    = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
-      %tr
-        %td= label_tag "Hitpoints Level"
-        %td= number_field_tag "combat_hp", 1, {min: 10, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
-      %tr
-        %td= label_tag "Ranged Level"
-        %td= number_field_tag "combat_ranged", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
-      %tr
-        %td= label_tag "Magic Level"
-        %td= number_field_tag "combat_magic", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
-      %tr
-        %td= label_tag "Prayer Level"
-        %td= number_field_tag "combat_pray", 1, {min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
-        
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
-    = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
-      %tr
-        %td= label_tag "Combat Level"
-        %td= text_field_tag "combat_level", "", :disabled => true, :remote => true
-
-        
-
 = field_set_tag 'DPS Calc', class: ["dps"] do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
@@ -101,6 +66,20 @@
       %tr
         %td= label_tag "Neck Slot"
         %td= select_tag "melee_neck", options_for_select(["Amulet of power", "Amulet of strength", "Amulet of accuracy"]), style: "width: 135px;", :include_blank => true
+      %tr
+        %td= ""
+      %tr
+        %td= ""
+      %tr
+        %td= label_tag "Custom Stats?"
+        %td= check_box_tag "custom_stats_melee", 1
+      %tr
+        %td= label_tag "Attack Bonus"
+        %td= number_field_tag "att_bonus", 0, {min: -999, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Str Bonus"
+        %td= number_field_tag "str_bonus", 0, {min: 0, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+        
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
       %h5 Ranged
@@ -134,6 +113,19 @@
       %tr
         %td= label_tag "Hand Slot"
         %td= select_tag "ranged_hand", options_for_select(["Green d'hide vambs", "Leather vambs"], "Green d'hide vambs"), style: "width: 135px;", :include_blank => true
+      %tr
+        %td= ""
+      %tr
+        %td= ""
+      %tr
+        %td= label_tag "Custom Stats?"
+        %td= check_box_tag "custom_stats_ranged", 1
+      %tr
+        %td= label_tag "Ranged attack"
+        %td= number_field_tag "ranged_att_bonus", 0, {min: -999, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Ranged str"
+        %td= number_field_tag "ranged_str_bonus", 0, {min: 0, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
       %h5 Magic
@@ -175,6 +167,16 @@
       %tr
         %td= label_tag "Legs Slot"
         %td= select_tag "magic_legs", options_for_select(["Zamorak robe"], "Zamorak robe"), style: "width: 135px;", :include_blank => true
+      %tr
+        %td= ""
+      %tr
+        %td= ""
+      %tr
+        %td= label_tag "Custom Stats?"
+        %td= check_box_tag "custom_stats_magic", 1
+      %tr
+        %td= label_tag "Magic attack"
+        %td= number_field_tag "magic_att_bonus", 0, {min: -999, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
 
 = field_set_tag 'Enemy Stats', class: "dps", style: "width: 240px;" do
   = content_tag(:div, nil, class: ["container", "left"], style: "text-align: center; width: 240px;") do 
