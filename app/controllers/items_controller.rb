@@ -179,9 +179,9 @@ class ItemsController < ApplicationController
                                 ["Mithril platebody", 250, 5*@prices["Mithril bar"], @prices["Mithril platebody"]],
                                 ["Adamant platebody", 312.5, 5*@prices["Adamantite bar"], @prices["Adamant platebody"]],
                                 ["Rune platebody", 375, 5*@prices["Runite bar"], @prices["Rune platebody"]],
-                                ["Rune platelegs", 202.5, 3*@prices["Runite bar"], @prices["Rune platelegs"]],
-                                ["Rune plateskirt", 202.5, 3*@prices["Runite bar"], @prices["Rune plateskirt"]],
-                                ["Rune 2h sword", 202.5, 3*@prices["Runite bar"], @prices["Rune 2h sword"]]]
+                                ["Rune platelegs", 225, 3*@prices["Runite bar"], @prices["Rune platelegs"]],
+                                ["Rune plateskirt", 225, 3*@prices["Runite bar"], @prices["Rune plateskirt"]],
+                                ["Rune 2h sword", 225, 3*@prices["Runite bar"], @prices["Rune 2h sword"]]]
 
     @skill_items["Crafting"] = [["Gold ring", 15, @prices["Gold bar"], @prices["Gold ring"]],
                                 ["Gold necklace", 20, @prices["Gold bar"], @prices["Gold necklace"]],
