@@ -127,7 +127,7 @@ class ItemsController < ApplicationController
       if current_price == 0
         item_response = URI.parse("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=#{item[:itemid]}")
         item_json = JSON.parse(item_response.read.gsub('\"', '"'))
-        ge_price = item_json["item"]["current"]["price"].gsub(',', ' ').to_f
+        ge_price = item_json["item"]["current"]["price"].to_s.gsub(',', ' ')
         item.update_attribute(:current, ge_price)
       else
         item.update_attribute(:current, current_price)
