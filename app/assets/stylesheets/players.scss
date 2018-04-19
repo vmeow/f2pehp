@@ -468,6 +468,12 @@ a[href$="/Gl4Head"]:after {
   vertical-align: -5px;
 }
 
+a[href$="/DJ9"]:after {  
+  padding: 3px;
+  content: image-url("flairs/death_rune.png");
+  vertical-align: -7px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
