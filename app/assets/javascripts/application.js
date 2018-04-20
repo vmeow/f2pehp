@@ -48,6 +48,7 @@ function ready() {
         var customPlayerStats = document.querySelector('[name="custom_stats_melee"]').checked;
         var customAtt = document.querySelector('[name="att_bonus"]').value;
         var customStr = document.querySelector('[name="str_bonus"]').value;
+        var customSpeed = document.querySelector('[name="att_speed"]').value;
 
         // Equipment bonuses
         var attBonus = 0;
@@ -210,6 +211,7 @@ function ready() {
     	// Attack roll
     	if(customPlayerStats){
     	    var attRoll = effA * (Number(customAtt) + 64);
+    	    meleeTicks = Number(customSpeed);
     	} else {
     	    var attRoll = effA * (attBonus + 64);
     	}
@@ -338,6 +340,7 @@ function ready() {
         var customPlayerStats = document.querySelector('[name="custom_stats_ranged"]').checked;
         var customRangedAtt = document.querySelector('[name="ranged_att_bonus"]').value;
         var customRangedStr = document.querySelector('[name="ranged_str_bonus"]').value;
+        var customRangedSpeed = document.querySelector('[name="ranged_att_speed"]').value;
 
         // Equipment bonuses
         var rangedBonus = 0;
@@ -477,6 +480,7 @@ function ready() {
     	if(customPlayerStats){
     	    var attRoll = rangedEffA * (Number(customRangedAtt) + 64);
         	var rangedMaxHit = maxhit(rangedA, Number(customRangedStr));
+        	rangedTicks = Number(customRangedSpeed);
     	} else {
     	    var attRoll = rangedEffA * (rangedBonus + 64);
     	    var rangedMaxHit = maxhit(rangedA, rangedStr);
@@ -593,6 +597,7 @@ function ready() {
         
         var customPlayerStats = document.querySelector('[name="custom_stats_magic"]').checked;
         var customMagicAtt = document.querySelector('[name="magic_att_bonus"]').value;
+        var customMagicSpeed = document.querySelector('[name="magic_att_speed"]').value;
 
         
         // Equipment bonuses
@@ -681,6 +686,7 @@ function ready() {
     	// Attack roll
     	if(customPlayerStats){
     	    var attRoll = magicEffA * (Number(customMagicAtt) + 64);
+    	    magicTicks = Number(customMagicSpeed);
     	} else {
          	var attRoll = magicEffA * (magicBonus + 64);
     	}
@@ -817,6 +823,7 @@ function ready() {
     $('#custom_stats_melee').change(dps);
     $('#att_bonus').change(dps);
     $('#str_bonus').change(dps);
+    $('#att_speed').change(dps);
     
     $('#ranged').change(rangeddps);
     $('#ranged_pray').change(rangeddps);
@@ -837,6 +844,7 @@ function ready() {
     $('#custom_stats_ranged').change(rangeddps);
     $('#ranged_att_bonus').change(rangeddps);
     $('#ranged_str_bonus').change(rangeddps);
+    $('#ranged_att_speed').change(rangeddps);
     
     $('#magic').change(magicdps);
     $('#magic_pray').change(magicdps);
@@ -855,6 +863,7 @@ function ready() {
     $('#mob_def').change(magicdps);
     $('#custom_stats_magic').change(magicdps);
     $('#magic_att_bonus').change(magicdps);
+    $('#magic_att_speed').change(magicdps);
     
     $('#combat_att').change(combat);
     $('#combat_str').change(combat);
