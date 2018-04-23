@@ -101,10 +101,10 @@ class PlayersController < ApplicationController
       end
     end
     
-    if !params[:player_to_del_name].nil?
-      Player.where(player_name: params[:player_to_del_name]).destroy_all
-      params[:player_to_del_name] = nil
-      session[:player_to_del_name] = nil
+    if !params[:delete_player].nil?
+      Player.where(player_name: params[:delete_player]).destroy_all
+      params[:delete_player] = nil
+      session[:delete_player] = nil
     end
     
     if @sort_by == {}
