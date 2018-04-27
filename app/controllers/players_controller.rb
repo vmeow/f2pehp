@@ -384,7 +384,7 @@ class PlayersController < ApplicationController
     Player.all.find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_attribute(:overall_ehp_start, :overall_ehp)
+          player.update_attribute(player.overall_ehp_start, player.overall_ehp)
         rescue
           next
         end
