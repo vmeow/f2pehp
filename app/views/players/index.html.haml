@@ -32,6 +32,8 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
+      %h6{:style => "color: #ffff00;"} 
+        = "Playing Fe: Early gz to mini for 200m fishing! :3"
       %h6
         = "We're happy to announce the first F2P EHP competition partnered with F2P.wiki, hosted by"
         = link_to "Freckled Kid", "players/Freckled_Kid"
@@ -52,14 +54,7 @@
         = link_to "Irish Woof", "players/Irish_Woof"
         = " for his new "
         = link_to "F2P Reg Guide", "http://termbin.com/wiyv"
-      %h6 Links to official OSRS hiscores and Crystalmathlabs now on each player's personal hiscores.
-      %h6 
-        = "Shoutout to "
-        = link_to "FlippingOldschool", "https://www.youtube.com/channel/UCIi4nY4YuOYUJEg8XLM0vQw"
-        = "for his wonderful "
-        = link_to "video on the F2P community.", "https://www.youtube.com/watch?v=wIlJ1AL1qWY"
-      %h6 All players will now be updated daily; players with >200 EHP updated twice daily.
-          
+      
     = content_tag(:div, nil, class: "container", style: "width: 240px;") do 
       = content_tag(:div, nil, class: "supporters") do 
         %h1 
@@ -81,6 +76,8 @@
         = link_to "FitMC", "players/FitMC"
         %br
         = link_to "For Ulven", "players/For_Ulven"
+        %br
+        = link_to "Playing Fe", "players/Playing_Fe"
         %br
         = link_to "Pawz", "players/Pawz"
         %br

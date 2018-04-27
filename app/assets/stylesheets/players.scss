@@ -475,6 +475,12 @@ a[href$="/DJ9"]:after {
   vertical-align: -7px;
 }
 
+a[href$="/Playing_Fe"]:after {  
+  padding: 3px;
+  content: image-url("flairs/salmon.png");
+  vertical-align: -7px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
