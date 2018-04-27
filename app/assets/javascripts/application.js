@@ -21,6 +21,11 @@ function ready() {
         event.stopPropagation();
     });
     
+    $('#links').click(function(event) {
+        $('#links-list').slideToggle(100);
+        event.stopPropagation();
+    });
+    
     function maxhit(level, gear){
       level += 8;
       return Math.floor(0.5 + level * (gear+64) / 640);
@@ -881,6 +886,10 @@ function ready() {
 
 $(document).on("click", function(event){
     $("#calcs-list").slideUp("fast");
+});
+
+$(document).on("click", function(event){
+    $("#links-list").slideUp("fast");
 });
 
 $(document).ready(ready);
