@@ -53,7 +53,7 @@
             - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
             %td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
             %td= number_with_delimiter(player["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
-            %td= number_with_delimiter(ehp_gained, :delimiter => ",", :separator => ".") 
+            %td= number_with_delimiter(number_with_precision(ehp_gained, precision: 2), :delimiter => ",", :separator => ".") 
 
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 630px; height: 60px;") 
 

@@ -23,7 +23,7 @@ class PlayersController < ApplicationController
       session[:comp_show_limit] = @comp_show_limit
     end
           
-    @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order("overall_ehp - overall_ehp_start DESC")
+    @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order("overall_ehp - overall_ehp_start DESC, overall_ehp DESC")
     @comp_players = @comp_players.where("overall_ehp > 75").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
   
   end
