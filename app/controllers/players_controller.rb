@@ -364,11 +364,23 @@ class PlayersController < ApplicationController
     end
   end
   
-  def ehp_savepoint
+  def ehp_start
     Player.all.find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_attribute(:overall_ehp_savepoint, :overall_ehp)
+          player.update_attribute(:overall_ehp_start, :overall_ehp)
+        rescue
+          next
+        end
+      end
+    end
+  end
+  
+  def ehp_end
+    Player.all.find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        begin
+          player.update_attribute(:overall_ehp_end, :overall_ehp)
         rescue
           next
         end
@@ -514,7 +526,8 @@ class PlayersController < ApplicationController
       :overall_lvl, 
       :overall_ehp, 
       :overall_rank, 
-      :overall_ehp_savepoint,
+      :overall_ehp_start,
+      :overall_ehp_end,
       :attack_xp, 
       :attack_lvl, 
       :attack_ehp, 

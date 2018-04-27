@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427160837) do
+ActiveRecord::Schema.define(version: 20180427165251) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20180427160837) do
     t.integer "smithing_rank"
     t.integer "mining_rank"
     t.integer "runecraft_rank"
+    t.float   "overall_ehp_start"
+    t.float   "overall_ehp_end"
   end
 
   create_table "settings", force: :cascade do |t|
