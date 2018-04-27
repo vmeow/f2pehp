@@ -26,95 +26,56 @@
 
 - skill_name = "#{@skill}".capitalize
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
-  = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; margin-right: 5px; width: 200px;")
-
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 430px; max-width: 430px; overflow-x: auto; margin-top: 5px;") do 
-    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 430px; height: 41px;") 
-    = content_tag(:table, nil, style: "text-align: center; width: 430px; padding: 4px; margin-bottom: 0px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 630px; height: 60px;") 
+    = content_tag(:table, nil, style: "text-align: center; width: 630px; padding: 4px; margin-bottom: 0px;") do 
       %thead
         %tr
-          %th{:align => "center", :colspan => 6}
-            = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
-            = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
+          %th{:align => "center", :style => "font-size: 18px; text-decoration: underline;", :colspan => 6}
+            = link_to "F2P Overall EHP Competition - May 1, 00:00 GMT to May 7, 00:00 GMT", "https://www.reddit.com/r/f2posrs/comments/8f7wdg/free_to_play_ehp_competition/"
       %thead
         %tr
           %th Rank
           %th{:align => "left"} Name
           %th Account
-          - if @sort_by == "lvl"
-            %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",competitions_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
-          - else
-            %th{:class => @player_lvl_header}= link_to "Level",competitions_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
-          - if @sort_by == "xp"
-            %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", competitions_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
-          - else
-            %th{:class => @player_xp_header}= link_to "XP", competitions_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
-          - if @sort_by == "ehp"
-            %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP", competitions_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
-          - else
-            %th{:class => @player_ehp_header}= link_to "EHP", competitions_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
-  
+          %th Starting EHP
+          %th Current EHP
+          %th EHP Gained
+
       %tbody
-        - @players.each.with_index 1 do |player, index|
+        - @comp_players.each.with_index 1 do |player, index|
           %tr
-            - offset = index + (@players.current_page - 1)*@show_limit.to_i
+            - offset = index + (@comp_players.current_page - 1)*@comp_show_limit.to_i
             %td{:align => "right"}= offset
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            %td= player["#{@skill}_lvl"]
-            %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
-            %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
-            
-    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
+            - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
+            %td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
+            %td= number_with_delimiter(player["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
+            %td= number_with_delimiter(ehp_gained, :delimiter => ",", :separator => ".") 
 
-  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag competitions_path, :method => "get", id: "search-players-form" do
-      = "Search by name"
-      %br
-      = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
-      %br
-      = submit_tag "Search"
-      
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 630px; height: 60px;") 
+
   = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag competitions_path, :method => "get", id: "add-player-form" do
-      = "Add to Hiscores"
-      %br
-      = text_field_tag :player_to_add_name, params[:player_to_add_name], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
-      %br
-      = select_tag :player_to_add_acc, options_for_select(["Reg", "IM", "UIM", "HCIM"])
-      %br
-      = submit_tag "Add"
-      
-  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag compare_path, :method => :get, :id => 'filters_form' do
-      = "Compare Users"
-      %br
-      = text_field_tag :player1, params[:player1], placeholder: "", :class => "search-field", style: "width: 100px;"
-      %br
-      = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
-      %br
-      = submit_tag 'Compare', :id => "compare_submit"
-      
-  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag competitions_path, :method => :get, :id => 'filters_form' do
+    = form_tag competitions_path, :method => :get, :id => 'comp_filters_form' do
       = "Filter Accounts"
       %br
       = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
         - ["Reg", "IM", "UIM", "HCIM"].each do |type|
           &nbsp
-          = check_box_tag "filters_[#{type}]", 1, @filters.include?(type), :id => "filters_#{type}"
+          = check_box_tag "comp_filters_[#{type}]", 1, @comp_filters.include?(type), :id => "comp_filters_#{type}"
           = type
           - if type == "IM"
             %br
-      = submit_tag 'Filter', :id => "filters_submit"
+      = submit_tag 'Filter', :id => "comp_filters_submit"
       
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag competitions_path, :method => :get, :id => 'show_limits_form' do
+    = form_tag competitions_path, :method => :get, :id => 'comp_show_limits_form' do
       = "Players Per Page"
       %br
-      = select_tag :show_limit, options_for_select(["25", "50", "100", "250", "500"], @show_limit)
+      = select_tag :comp_show_limit, options_for_select(["25", "50", "100", "250", "500"], @comp_show_limit)
       %br
-      = submit_tag 'Refresh', :id => "show_limit_submit"
+      = submit_tag 'Refresh', :id => "comp_show_limit_submit"
 
-= will_paginate @players
+= will_paginate @comp_players

@@ -9,7 +9,23 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def competitions
-    ranks
+    @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
+    @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
+    
+    if @comp_filters == {}
+      @comp_filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
+      params[:comp_filters_] = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
+      session[:comp_filters_] = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
+    end
+    
+    if params[:comp_filters_] != session[:comp_filters_] || params[:comp_show_limit] != session[:comp_show_limit] 
+      session[:comp_filters_] = @comp_filters
+      session[:comp_show_limit] = @comp_show_limit
+    end
+          
+    @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order("overall_ehp - overall_ehp_start DESC")
+    @comp_players = @comp_players.where("overall_ehp > 75").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
+  
   end
   
   def tracking
