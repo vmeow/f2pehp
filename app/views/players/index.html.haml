@@ -33,8 +33,13 @@
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
       %h6
+        = "We're happy to announce the first F2P EHP competition partnered with F2P.wiki, hosted by"
+        = link_to "Freckled Kid", "players/Freckled_Kid"
+        = ", with more information"
+        = link_to "here.", "https://www.reddit.com/r/W385/comments/8f7wma/free_to_play_ehp_competition/"
+      %h6
         = "v1.17 release: "
-        = link_to "Competitions", competitions_path
+        = link_to "Competitions with EHP tracking", competitions_path
       %h6
         = "v1.16 release: "
         = link_to "DPS calcs", dps_path
