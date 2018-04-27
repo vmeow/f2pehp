@@ -1,5 +1,5 @@
-desc "Store starting current EHP for all players"
-task :ehp_start => :environment do
+desc "Set starting current EHP to 0 for all players"
+task :ehp_reset => :environment do
     plyr = PlayersController.new
-    plyr.ehp_start
+    plyr.ehp_reset
 end
