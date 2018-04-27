@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'donate' => 'players#donate'
   get 'controls' => 'players#controls'
   get 'plaintext' => 'players#plaintext'
+  get 'names' => 'players#names'
   get 'dps' => 'players#dps'
   get 'combat' => 'players#combat'
   get 'calcs' => 'players#calcs'

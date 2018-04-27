@@ -1,0 +1,8 @@
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+%p#notice= notice
+
+- Player.all.order("overall_ehp DESC").each do |player|
+  - name = player.player_name.gsub(" ", "_")
+  = name
+  %br
