@@ -50,14 +50,17 @@
         - @comp_players.each.with_index 1 do |player, index|
           %tr
             - offset = index + (@comp_players.current_page - 1)*@comp_show_limit.to_i
-            %td{:align => "right"}= offset
+            //%td{:align => "right"}= offset
+            %td= "???"
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
             - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
-            %td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
+            //%td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
+            %td= "???"
             %td= number_with_delimiter(player["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
-            %td= number_with_delimiter(number_with_precision(ehp_gained, precision: 2), :delimiter => ",", :separator => ".") 
+            //%td= number_with_delimiter(number_with_precision(ehp_gained, precision: 2), :delimiter => ",", :separator => ".") 
+            %td= "???"
 
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 630px; height: 60px;") 
 
