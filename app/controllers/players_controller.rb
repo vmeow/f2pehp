@@ -8,6 +8,14 @@ class PlayersController < ApplicationController
 
   # GET /players
   # GET /players.json
+  def competitions
+    ranks
+  end
+  
+  def tracking
+    ranks
+  end
+  
   def ranks
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
@@ -356,6 +364,18 @@ class PlayersController < ApplicationController
     end
   end
   
+  def ehp_savepoint
+    Player.all.find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        begin
+          player.update_attribute(:overall_ehp_savepoint, :overall_ehp)
+        rescue
+          next
+        end
+      end
+    end
+  end
+  
   def refresh_players
     Player.all.find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
@@ -494,6 +514,7 @@ class PlayersController < ApplicationController
       :overall_lvl, 
       :overall_ehp, 
       :overall_rank, 
+      :overall_ehp_savepoint,
       :attack_xp, 
       :attack_lvl, 
       :attack_ehp, 

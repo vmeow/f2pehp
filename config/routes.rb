@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'gpxp' => 'items#gpxp'
   get 'compare' => 'players#compare'
   get 'test' => 'players#test'
+  get 'competitions' => 'players#competitions'
+  get 'tracking' => 'players#tracking'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
