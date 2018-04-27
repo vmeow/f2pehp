@@ -403,6 +403,18 @@ class PlayersController < ApplicationController
     end
   end
   
+  def ehp_reset
+    Player.all.find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        begin
+          player.update_attribute(:overall_ehp_start, 0.0)
+        rescue
+          next
+        end
+      end
+    end
+  end
+  
   def refresh_players
     Player.all.find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
