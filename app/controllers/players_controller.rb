@@ -509,31 +509,6 @@ class PlayersController < ApplicationController
     redirect_to ranks_path, notice: 'All players were successfully updated.'
   end
   
-  def refresh_end_250
-    Player.where("overall_ehp <= 200").find_in_batches(batch_size: 25) do |batch|
-      batch.each do |player|
-        if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
-          Player.where(player_name: player.player_name).destroy_all
-          next
-        end
-        name = player.player_name.gsub(" ", "_")
-        puts name
-        begin
-          all_stats = get_stats(name, player.player_acc_type)
-          if all_stats == false
-            next
-          end
-          ehp = get_ehp_type(player)
-          calc_ehp(player, all_stats, ehp)
-          remove_cutoff(player)
-        rescue
-          next
-        end
-      end
-    end
-    redirect_to ranks_path, notice: 'All players were successfully updated.'
-  end
-  
   def find_new
     hc_start = "59"
     hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
