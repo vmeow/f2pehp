@@ -29,7 +29,7 @@
     = link_to "About Us/Donate", donate_path
 
 - skill_name = "#{@skill}".capitalize
-- datetime = DateTime.now
+- datetime = DateTime.new(2018,5,5)
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 630px; height: 60px;") 
