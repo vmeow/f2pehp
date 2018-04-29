@@ -8,6 +8,10 @@ class PlayersController < ApplicationController
 
   # GET /players
   # GET /players.json
+  def test
+    competitions
+  end
+  
   def competitions
     @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
     @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
@@ -22,8 +26,15 @@ class PlayersController < ApplicationController
       session[:comp_filters_] = @comp_filters
       session[:comp_show_limit] = @comp_show_limit
     end
+    
+    datetime = DateTime.now
+    if datetime.strftime("%m") =="05" and datetime.strftime("%d").to_i >= 7
+      ordering = "overall_ehp_end - overall_ehp_start DESC, overall_ehp DESC" 
+    else
+      ordering = "overall_ehp - overall_ehp_start DESC, overall_ehp DESC"
+    end
           
-    @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order("overall_ehp - overall_ehp_start DESC, overall_ehp DESC")
+    @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order(ordering)
     @comp_players = @comp_players.where("overall_ehp > 75").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
   
   end
@@ -499,7 +510,7 @@ class PlayersController < ApplicationController
   end
   
   def refresh_end_250
-    Player.where("overall_ehp < 200").find_in_batches(batch_size: 25) do |batch|
+    Player.where("overall_ehp <= 200").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         if F2POSRSRanks::Application.config.downcase_fakes.include?(player.player_name.downcase)
           Player.where(player_name: player.player_name).destroy_all

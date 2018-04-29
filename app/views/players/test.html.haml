@@ -1,13 +1,13 @@
-- @title = "Test Page" 
-= link_to image_tag("f2pwiki_500.png"), players_path
-  
+- @title = "Competitions" 
+= link_to image_tag("f2pehpcompetition.png"), players_path
+
 %p#notice= notice
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Competitions", competitions_path
+  = content_tag(:div, nil, class: ["bar", "fake", "selected-link"]) do 
+    = "Competitions"
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "calcs"]) do 
@@ -27,3 +27,73 @@
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
+
+- skill_name = "#{@skill}".capitalize
+- datetime = DateTime.new(2018,5,5)
+= content_tag(:div, nil, class: "container", style: "width: 800px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 630px; height: 60px;") 
+    = content_tag(:table, nil, style: "text-align: center; width: 630px; padding: 4px; margin-bottom: 0px;") do 
+      %thead
+        %tr
+          %th{:align => "center", :style => "font-size: 18px; text-decoration: underline;", :colspan => 6}
+            = link_to "F2P Overall EHP Competition - May 1, 00:00 GMT to May 7, 00:00 GMT", "https://www.reddit.com/r/f2posrs/comments/8f7wdg/free_to_play_ehp_competition/"
+      %thead
+        %tr
+          %th Rank
+          %th{:align => "left"} Name
+          %th Account
+          %th Starting EHP
+          %th Current EHP
+          %th EHP Gained
+
+      %tbody
+        - @comp_players.each.with_index 1 do |player, index|
+          %tr
+            - offset = index + (@comp_players.current_page - 1)*@comp_show_limit.to_i
+            - puts(datetime.strftime("%m%d"))
+            - if datetime.strftime("%m") != "04"
+              %td{:align => "right"}= offset
+            - else
+              %td= "???"
+            - name = player.player_name.gsub(" ", "_")
+            %td{:align => "left"}= link_to player.player_name, "players/#{name}"
+            %td{:align => "center"}= player.player_acc_type
+            - if datetime.strftime("%m") == "05" && datetime.strftime("%m").to_i >= 7
+              - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
+            - else
+              - ehp_gained =player["overall_ehp_end"].to_f - player["overall_ehp_start"].to_f
+            - if datetime.strftime("%m") != "04"
+              %td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
+            - else
+              %td= "???"
+            %td= number_with_delimiter(player["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
+            - if datetime.strftime("%m") != "04"
+              %td= number_with_delimiter(number_with_precision(ehp_gained, precision: 2), :delimiter => ",", :separator => ".") 
+            - else
+              %td= "???"
+
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 630px; height: 60px;") 
+
+  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
+    = form_tag competitions_path, :method => :get, :id => 'comp_filters_form' do
+      = "Filter Accounts"
+      %br
+      = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
+        - ["Reg", "IM", "UIM", "HCIM"].each do |type|
+          &nbsp
+          = check_box_tag "comp_filters_[#{type}]", 1, @comp_filters.include?(type), :id => "comp_filters_#{type}"
+          = type
+          - if type == "IM"
+            %br
+      = submit_tag 'Filter', :id => "comp_filters_submit"
+      
+  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
+    = form_tag competitions_path, :method => :get, :id => 'comp_show_limits_form' do
+      = "Players Per Page"
+      %br
+      = select_tag :comp_show_limit, options_for_select(["25", "50", "100", "250", "500"], @comp_show_limit)
+      %br
+      = submit_tag 'Refresh', :id => "comp_show_limit_submit"
+
+= will_paginate @comp_players
