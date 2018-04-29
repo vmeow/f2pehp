@@ -29,6 +29,7 @@
     = link_to "About Us/Donate", donate_path
 
 - skill_name = "#{@skill}".capitalize
+- datetime = DateTime.now
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 630px; height: 60px;") 
@@ -50,17 +51,24 @@
         - @comp_players.each.with_index 1 do |player, index|
           %tr
             - offset = index + (@comp_players.current_page - 1)*@comp_show_limit.to_i
-            //%td{:align => "right"}= offset
-            %td= "???"
+            - puts(datetime.strftime("%m%d"))
+            - if datetime.strftime("%m") != "04"
+              %td{:align => "right"}= offset
+            - else
+              %td= "???"
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
             - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
-            //%td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
-            %td= "???"
+            - if datetime.strftime("%m") != "04"
+              %td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
+            - else
+              %td= "???"
             %td= number_with_delimiter(player["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
-            //%td= number_with_delimiter(number_with_precision(ehp_gained, precision: 2), :delimiter => ",", :separator => ".") 
-            %td= "???"
+            - if datetime.strftime("%m") != "04"
+              %td= number_with_delimiter(number_with_precision(ehp_gained, precision: 2), :delimiter => ",", :separator => ".") 
+            - else
+              %td= "???"
 
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 630px; height: 60px;") 
 
