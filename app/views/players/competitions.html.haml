@@ -59,7 +59,10 @@
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
+            - if datetime.strftime("%m") == "05" && datetime.strftime("%m").to_i >= 7
+              - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
+            - else
+              - ehp_gained =player["overall_ehp_end"].to_f - player["overall_ehp_start"].to_f
             - if datetime.strftime("%m") != "04"
               %td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
             - else
