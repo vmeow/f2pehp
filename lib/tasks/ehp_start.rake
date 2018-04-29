@@ -1,6 +1,6 @@
-desc "Store starting current EHP for all players"
+desc "Refreshes and store starting current EHP for all players"
 task :ehp_start => :environment do
     plyr = PlayersController.new
-    plyr.refresh_all
+    plyr.refresh_players
     plyr.ehp_start
 end
