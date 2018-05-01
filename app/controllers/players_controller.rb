@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
     end
     
     datetime = DateTime.now
-    if datetime.strftime("%m") =="05" and datetime.strftime("%d").to_i >= 7
+    if datetime.strftime("%m") =="05" and datetime.strftime("%d").to_i >= 8
       ordering = "overall_ehp_end - overall_ehp_start DESC, overall_ehp DESC" 
     else
       ordering = "overall_ehp - overall_ehp_start DESC, overall_ehp DESC"

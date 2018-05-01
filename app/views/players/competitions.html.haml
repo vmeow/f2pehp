@@ -30,7 +30,7 @@
 
 - skill_name = "#{@skill}".capitalize
 - datetime = DateTime.now
-- enddatetime = Time.new(2018, 5, 7)
+- enddatetime = Time.new(2018, 5, 8)
 - hours = ((enddatetime - Time.now) / 3600).to_i
 - mins = ((((enddatetime - Time.now) / 3600) - hours) * 60).round
 
@@ -64,7 +64,7 @@
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            - if datetime.strftime("%m") == "05" && datetime.strftime("%m").to_i >= 7
+            - if datetime.strftime("%m") == "05" && datetime.strftime("%m").to_i >= 8
               - ehp_gained = player["overall_ehp_end"].to_f - player["overall_ehp_start"].to_f
             - else
               - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
