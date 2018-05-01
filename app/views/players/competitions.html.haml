@@ -30,6 +30,12 @@
 
 - skill_name = "#{@skill}".capitalize
 - datetime = DateTime.now
+- enddatetime = Time.new(2018, 5, 7)
+- hours = ((enddatetime - Time.now) / 3600).to_i
+- mins = ((((enddatetime - Time.now) / 3600) - hours) * 60).round
+
+= "#{hours} hours, #{mins} minutes until competition end!"
+
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 630px; height: 60px;") 
@@ -51,7 +57,6 @@
         - @comp_players.each.with_index 1 do |player, index|
           %tr
             - offset = index + (@comp_players.current_page - 1)*@comp_show_limit.to_i
-            - puts(datetime.strftime("%m%d"))
             - if datetime.strftime("%m") != "04"
               %td{:align => "right"}= offset
             - else
