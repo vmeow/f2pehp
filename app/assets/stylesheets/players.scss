@@ -481,6 +481,12 @@ a[href$="/Playing_Fe"]:after {
   vertical-align: -7px;
 }
 
+a[href$="/Yellow_bead"]:after {  
+  padding: 3px;
+  content: image-url("flairs/yellow_bead.png");
+  vertical-align: -1px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
