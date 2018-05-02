@@ -13,6 +13,11 @@ class PlayersController < ApplicationController
   end
   
   def competitions
+    player = params[:player_name] 
+    player_acc = params[:player_acc]
+    start_ehp = params[:start_ehp]
+    Player.create!({ player_name: player, 'player_acc_type': params[:player_acc], 'overall_ehp_start': start_ehp.to_f})
+    
     @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
     @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
     
