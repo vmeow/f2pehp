@@ -34,7 +34,10 @@
 - hours = ((enddatetime - Time.now) / 3600).to_i
 - mins = ((((enddatetime - Time.now) / 3600) - hours) * 60).round
 
-= "#{hours} hours, #{mins} minutes until competition end!"
+- if datetime.strftime("%m") == "05" && datetime.strftime("%d").to_i >= 8
+  = "Competition has ended. Congratulations to the winners!"
+- else
+  = "#{hours} hours, #{mins} minutes until competition end!"
 
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
@@ -64,7 +67,7 @@
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            - if datetime.strftime("%m") == "05" && datetime.strftime("%m").to_i >= 8
+            - if datetime.strftime("%m") == "05" && datetime.strftime("%d").to_i >= 8
               - ehp_gained = player["overall_ehp_end"].to_f - player["overall_ehp_start"].to_f
             - else
               - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f

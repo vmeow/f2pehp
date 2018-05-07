@@ -29,7 +29,13 @@
     = link_to "About Us/Donate", donate_path
 
 - skill_name = "#{@skill}".capitalize
-- datetime = DateTime.new(2018,5,5)
+- datetime = Time.new(2018, 5, 9)
+- enddatetime = Time.new(2018, 5, 8)
+- hours = ((enddatetime - datetime) / 3600).to_i
+- mins = ((((enddatetime - datetime) / 3600) - hours) * 60).round
+
+= "#{hours} hours, #{mins} minutes until competition end!"
+
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 630px; height: 60px;") 
@@ -37,7 +43,7 @@
       %thead
         %tr
           %th{:align => "center", :style => "font-size: 18px; text-decoration: underline;", :colspan => 6}
-            = link_to "F2P Overall EHP Competition - May 1, 00:00 GMT to May 7, 00:00 GMT", "https://www.reddit.com/r/f2posrs/comments/8f7wdg/free_to_play_ehp_competition/"
+            = link_to "F2P Overall EHP Competition - May 1, 00:00 GMT to May 8, 00:00 GMT", "https://www.reddit.com/r/f2posrs/comments/8f7wdg/free_to_play_ehp_competition/"
       %thead
         %tr
           %th Rank
@@ -51,7 +57,6 @@
         - @comp_players.each.with_index 1 do |player, index|
           %tr
             - offset = index + (@comp_players.current_page - 1)*@comp_show_limit.to_i
-            - puts(datetime.strftime("%m%d"))
             - if datetime.strftime("%m") != "04"
               %td{:align => "right"}= offset
             - else
@@ -59,7 +64,7 @@
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            - if datetime.strftime("%m") == "05" && datetime.strftime("%m").to_i >= 7
+            - if datetime.strftime("%m") == "05" && datetime.strftime("%d").to_i >= 8
               - ehp_gained = player["overall_ehp_end"].to_f - player["overall_ehp_start"].to_f
             - else
               - ehp_gained = player["overall_ehp"].to_f - player["overall_ehp_start"].to_f
