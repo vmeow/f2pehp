@@ -495,17 +495,14 @@ a[href$="/Obor"] { /* For Obor*/
 
 /* EHP COMP CROWNS */
 a[href$="/Freckled_Kid"]:before, a[href$="/IronAgnusDei"]:before {  
-  padding: 3px;
+  padding-right: 2px;
   content: image-url("flairs/gold_crown.png");
-  vertical-align: -1px;
 }
 a[href$="/parity32"]:before, a[href$="/Ironman260"]:before {  
-  padding: 3px;
+  padding-right: 2px;
   content: image-url("flairs/silver_crown.png");
-  vertical-align: -1px;
 }
 a[href$="/DJ9"]:before, a[href$="/UncleTomas"]:before {  
-  padding: 3px;
+  padding-right: 2px;
   content: image-url("flairs/bronze_crown.png");
-  vertical-align: -1px;
 }
