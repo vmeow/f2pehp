@@ -41,15 +41,50 @@
     - elsif @player.player_name == "Tame My Wild"
       = image_tag "flairs/tame.png"
     - elsif @player.player_name == "UncleTomas"
-      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 100px;") do 
         %h5 Gone but never forgotten
         %h5 
           = link_to "RIP Unkie", "https://i.imgur.com/EE28q9w.png"
+        %br
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Ironman"
+          %br
+          = "May 2018 EHP Comp"
       = image_tag "flairs/tyrone.png"
     - elsif @player.player_name == "FitMC"
       = content_tag(:div, nil, style: "margin: auto; padding: 20px; width: 200px; height: 40px;") do 
         %h5 Definitely an OSRS player and not a Minecraft YouTuber.
-        
+    - elsif @player.player_name == "Freckled Kid"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: gold;"} 
+          = "1st Place Reg"
+          %br
+          = "May 2018 EHP Comp"
+    - elsif @player.player_name == "parity32"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: silver;"} 
+          = "2nd Place Reg"
+          %br
+          = "May 2018 EHP Comp"
+    - elsif @player.player_name == "DJ9"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Reg"
+          %br
+          = "May 2018 EHP Comp"
+    - elsif @player.player_name == "IronAgnusDei"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: gold;"} 
+          = "1st Place Ironman"
+          %br
+          = "May 2018 EHP Comp"
+    - elsif @player.player_name == "Ironman260"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: silver;"} 
+          = "2nd Place Ironman"
+          %br
+          = "May 2018 EHP Comp"
+          
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 300px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
     = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
