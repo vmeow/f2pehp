@@ -8,6 +8,10 @@ class PlayersController < ApplicationController
 
   # GET /players
   # GET /players.json
+  def plaintextcomp
+    competitions
+  end
+  
   def test
     competitions
   end

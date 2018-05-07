@@ -3,7 +3,8 @@
 %p#notice= notice
 
 = "Name, overall_ehp_start, overall_ehp_end, overall_ehp gained\n"
-- Player.all.order("overall_ehp_end - overall_ehp_start DESC, overall_ehp DESC").each do |player|
+
+- @comp_players.each do |player|
   - name = player.player_name.gsub(" ", "_")
   - str = "#{player.player_name} "
   - str = str + "#{player.overall_ehp_start} "
