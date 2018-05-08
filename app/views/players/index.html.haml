@@ -32,13 +32,21 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
-      %h6{:style => "color: #ffff00;"} 
-        = "Playing Fe: Early gz to mini for 200m fishing! :3"
       %h6
-        = "We're happy to announce the first F2P EHP competition partnered with F2P.wiki, hosted by"
+        = "The May EHP Competition has ended. Congratulations to "
+        %br
         = link_to "Freckled Kid", "players/Freckled_Kid"
-        = ", with more information"
-        = link_to "here.", "https://www.reddit.com/r/W385/comments/8f7wma/free_to_play_ehp_competition/"
+        = ", "
+        = link_to "IronAgnusDei", "players/IronAgnusDei"
+        %br
+        = link_to "parity32", "players/parity32"
+        = ", "
+        = link_to "Ironman260", "players/Ironman260"
+        %br
+        = link_to "DJ9", "players/DJ9"
+        = ", and "
+        = link_to "UncleTomas", "players/UncleTomas"
+        = "!"
       %h6
         = "v1.17 release: "
         = link_to "Competitions with EHP tracking", competitions_path
@@ -53,7 +61,7 @@
         = "Special thanks to "
         = link_to "Irish Woof", "players/Irish_Woof"
         = " for his new "
-        = link_to "F2P Reg Guide", "http://termbin.com/wiyv"
+        = link_to "F2P Reg Guide", "https://pastebin.com/raw/qWWCvXjr"
       
     = content_tag(:div, nil, class: "container", style: "width: 240px;") do 
       = content_tag(:div, nil, class: "supporters") do 

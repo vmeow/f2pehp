@@ -36,13 +36,7 @@ class PlayersController < ApplicationController
       session[:comp_show_limit] = @comp_show_limit
     end
     
-    datetime = DateTime.now
-    
-    if datetime.strftime("%m") =="05" and datetime.strftime("%d").to_i >= 8
-      ordering = "overall_ehp_end - overall_ehp_start DESC, overall_ehp DESC" 
-    else
-      ordering = "overall_ehp - overall_ehp_start DESC, overall_ehp DESC"
-    end
+    ordering = "overall_ehp_end - overall_ehp_start DESC, overall_ehp DESC" 
           
     @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order(ordering)
     @comp_players = @comp_players.where("overall_ehp > 75").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
