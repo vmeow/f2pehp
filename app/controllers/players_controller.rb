@@ -17,10 +17,10 @@ class PlayersController < ApplicationController
   end
   
   def competitions
-    player = params[:player_name] 
-    player_acc = params[:player_acc]
-    start_ehp = params[:start_ehp]
-    Player.create!({ player_name: player, 'player_acc_type': params[:player_acc], 'overall_ehp_start': start_ehp.to_f})
+    #player = params[:player_name] 
+    #player_acc = params[:player_acc]
+    #start_ehp = params[:start_ehp]
+    #Player.create!({ player_name: player, 'player_acc_type': params[:player_acc], 'overall_ehp_start': start_ehp.to_f})
     
     @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
     @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
@@ -86,7 +86,12 @@ class PlayersController < ApplicationController
       session[:skill] = "overall"
     end
     
-    if !params[:player_to_add_name].nil? and !params[:player_to_add_acc].nil?
+    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+      
+      puts "\""
+      puts params[:player_to_add_name]
+      puts "\""
+      
       name1 = params[:player_to_add_name].downcase
       while name1[-1] == " " or name1[-1] == "_"
         name1 = name1[0...-1]
@@ -554,6 +559,11 @@ class PlayersController < ApplicationController
       format.html {redirect_to players_url, notice: 'Player was successfully deleted.'}
       format.json {head :no_content}
     end
+  end
+  
+  def delete_nil
+    Player.where(player_name: "").destroy_all
+    Player.where("overall_ehp < 75").destroy_all
   end
 
   private

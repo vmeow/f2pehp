@@ -6,7 +6,10 @@
 - skill_list << "overall"
 = skill_list
 - Player.all.order("overall_ehp DESC").each do |player|
-  - name = player.player_name.gsub(" ", "_")
+  - if not player.player_name.nil?
+    - name = player.player_name.gsub(" ", "_")
+  - else
+    - name = player.player_name
   - str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}'"
   - skill_list.each do |skill|
     - lvl = "#{skill}_lvl"
