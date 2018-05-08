@@ -88,10 +88,6 @@ class PlayersController < ApplicationController
     
     if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
       
-      puts "\""
-      puts params[:player_to_add_name]
-      puts "\""
-      
       name1 = params[:player_to_add_name].downcase
       while name1[-1] == " " or name1[-1] == "_"
         name1 = name1[0...-1]
