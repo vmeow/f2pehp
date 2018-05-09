@@ -493,6 +493,12 @@ a[href$="/Drae"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/Pink_skirt"]:after {  
+  padding: 3px;
+  content: image-url("flairs/pink_skirt.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
