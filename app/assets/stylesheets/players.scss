@@ -487,6 +487,12 @@ a[href$="/Yellow_bead"]:after {
   vertical-align: -1px;
 }
 
+a[href$="/Drae"]:after {  
+  padding: 3px;
+  content: image-url("flairs/rsz_dshield.png");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
