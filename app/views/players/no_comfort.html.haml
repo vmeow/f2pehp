@@ -1,0 +1,70 @@
+- @title = "Personal Hiscores" 
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+%p#notice= notice
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
+    = link_to "Hiscores", ranks_path
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
+    = link_to "Competitions", competitions_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, class: ["bar", "calcs"]) do 
+    = content_tag(:div, nil, class: ["container", "calcs"], style: "margin-bottom: 0px; padding: 0px;", id: "calcs") do 
+      = "Calculators"
+    = content_tag(:div, nil, class: ["dropdown", "container"], id: "calcs-list", remote: true) do
+      = link_to "Combat DPS", dps_path
+      = link_to "Combat Lvl", combat_path
+      = link_to "GP/XP, Alch", gpxp_path
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
+    = content_tag(:div, nil, class: ["container", "links"], style: "margin-bottom: 0px; padding: 0px;", id: "links") do 
+      = "Links"
+    = content_tag(:div, nil, class: ["dropdown", "container"], id: "links-list", remote: true) do
+      = link_to "Links", links_path
+      = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, class: ["bar", "donate"]) do 
+    = link_to "About Us/Donate", donate_path
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 320px;") do 
+    = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 180px;") do 
+      %h5 Bio
+      = "shit player w/ shit stats"
+      %h5 Accomplishments
+      = "- suck"
+      %br
+      = "- not even winning f2p ehp comp where litcherally #3 was afk fleshies"
+      %br
+      = "- not even #1 ehp lol, there are 3 players in f2p and 1 only afks"
+
+  = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 300px;") do 
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
+    = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
+      %thead
+        %th{:colspan => 5}
+          = "Personal scores for No Comfort"
+      %thead
+        %th{:align => "center"}  
+        %th{:align => "center"}  Level
+        %th{:align => "center"}  XP
+        %th{:align => "center"}  EHP
+        %th{:align => "center"}  Rank
+      %tbody
+        %tr
+          %th= image_tag "skills/overall.png"
+          %td= "not even max lol"
+          %td= "who cares abt total xp"
+          %td= "ehp is just some arbitrary nerd shit"
+          %td= "not even #1 lol, beaten by an afk account"
+        - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+          %tr
+            %th= image_tag "skills/#{skill}.png"
+            %td= "0"
+            %td= "0"
+            %td= "0"
+            %td= "0"
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
+ 

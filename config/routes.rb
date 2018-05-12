@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'competitions' => 'players#competitions'
   get 'plaintextcomp' => 'players#plaintextcomp'
   get 'tracking' => 'players#tracking'
+  get 'no_comfort' => 'players#no_comfort'
   post 'players/:id' => 'players#update_player'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
