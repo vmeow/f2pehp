@@ -499,6 +499,12 @@ a[href$="/Pink_skirt"]:after {
   vertical-align: -8px;
 }
 
+a[href$="/David_BBQ"]:after {  
+  padding: 3px;
+  content: image-url("flairs/cooked_chicken.png");
+  vertical-align: -4px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
