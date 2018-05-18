@@ -560,6 +560,7 @@ class PlayersController < ApplicationController
   def delete_nil
     Player.where(player_name: "").destroy_all
     Player.where("overall_ehp < 75").destroy_all
+    Player.where(overall_ehp: nil).destroy_all
   end
 
   private
