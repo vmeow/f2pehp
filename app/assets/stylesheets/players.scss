@@ -505,6 +505,12 @@ a[href$="/David_BBQ"]:after {
   vertical-align: -4px;
 }
 
+a[href$="/ZINJANTHROPI"]:after {  
+  padding: 3px;
+  content: image-url("flairs/ZINJANTHROPI.jpg");
+  vertical-align: -4px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
