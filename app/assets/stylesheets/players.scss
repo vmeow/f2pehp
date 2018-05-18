@@ -506,15 +506,9 @@ a[href$="/David_BBQ"]:after {
 }
 
 a[href$="/ZINJANTHROPI"]:after {  
-  padding: 3px;
-  content: image-url("flairs/ZINJANTHROPI.jpg");
-  vertical-align: -4px;
-}
-
-a[href$="/ZINJANTHROPI"]:before {  
-  padding: 3px;
+  padding: 1px;
   content: image-url("flairs/ZINJANTHROPI.png");
-  vertical-align: -4px;
+  vertical-align: -6px;
 }
 
 /* FONT CHANGES */
