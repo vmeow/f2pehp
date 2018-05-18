@@ -511,6 +511,12 @@ a[href$="/ZINJANTHROPI"]:after {
   vertical-align: -4px;
 }
 
+a[href$="/ZINJANTHROPI"]:before {  
+  padding: 3px;
+  content: image-url("flairs/ZINJANTHROPI.png");
+  vertical-align: -4px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
