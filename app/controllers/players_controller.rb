@@ -174,7 +174,7 @@ class PlayersController < ApplicationController
     end
       
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
-    @players = @players.where("overall_ehp > 75").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
   def clear
@@ -370,9 +370,8 @@ class PlayersController < ApplicationController
   end
   
   def remove_cutoff(player)
-    if player.overall_ehp < 75
+    if player.overall_ehp < 1
       Player.where(player_name: player.player_name).destroy_all
-      #redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
       return true
     end
   end
