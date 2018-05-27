@@ -511,10 +511,21 @@ a[href$="/ZINJANTHROPI"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/Schwifty_Bud"]:after {  
+  padding: 3px;
+  content: image-url("flairs/rick_sanchez.png");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
   //font-family: Times New Roman;
+}
+
+a[href$="/Schwifty_Bud"] { /* For Obor*/
+  font-family: Script;
+  font-variant: small-caps;
 }
 
 /* EHP COMP CROWNS */
