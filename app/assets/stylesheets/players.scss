@@ -519,10 +519,8 @@ a[href$="/Schwifty_Bud"]:after {
 
 a[href$="/Snooz_Button"]:after {  
   padding: 3px;
-  font-size: 10px;
-  color: #969696;
-  content: "#freebargan";
-  vertical-align: 0px;
+  content: image-url("flairs/macaroni.png");
+  vertical-align: -6px;
 }
 
 /* FONT CHANGES */
