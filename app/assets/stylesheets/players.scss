@@ -517,6 +517,14 @@ a[href$="/Schwifty_Bud"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/Snooz_Button"]:after {  
+  padding: 3px;
+  font-size: 10px;
+  color: #969696;
+  content: "#freebargan";
+  vertical-align: 0px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
