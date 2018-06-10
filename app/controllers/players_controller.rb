@@ -50,6 +50,7 @@ class PlayersController < ApplicationController
   def ranks
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
+    @restrictions = params[:restrictions_] || session[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     
@@ -154,8 +155,9 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
     
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] 
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] 
       session[:filters_] = @filters
+      session[:restrictions_] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
@@ -172,8 +174,20 @@ class PlayersController < ApplicationController
       @player_xp_header = 'hilite'
       ordering = "#{@skill}_xp DESC, #{@skill}_rank ASC"
     end
-      
+    
+    
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
+    
+    if @restrictions["10 hitpoints"]
+      @players = @players.where(hitpoints_lvl: 10)
+    end
+    if @restrictions["1 defence"]
+      @players = @players.where(defence_lvl: 1)
+    end
+    if @restrictions["3 combat"]
+      @players = @players.where(hitpoints_lvl: 10, attack_lvl: 1, strength_lvl: 1, defence_lvl: 1, ranged_lvl: 1, magic_lvl: 1, prayer_lvl: 1)
+    end
+      
     @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
