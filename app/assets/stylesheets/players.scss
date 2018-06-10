@@ -523,6 +523,12 @@ a[href$="/Snooz_Button"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/UI_Pain"]:after {  
+  padding: 3px;
+  content: image-url("flairs/steel_axe.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
