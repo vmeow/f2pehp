@@ -50,7 +50,7 @@ class PlayersController < ApplicationController
   def ranks
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
-    @restrictions = params[:restrictions_] || session[:restrictions_] || {}
+    @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     
