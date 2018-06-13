@@ -138,11 +138,11 @@ class PlayersController < ApplicationController
         return
       end
 
-      if remove_cutoff(player)
-        redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
-      else
-        redirect_to player, notice: 'Player added successfully.'
-      end
+      #if remove_cutoff(player)
+      #  redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
+      #else
+      redirect_to player, notice: 'Player added successfully.'
+      #end
     end
     
     if !params[:delete_player].nil?
