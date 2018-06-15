@@ -529,6 +529,12 @@ a[href$="/UI_Pain"]:after {
   vertical-align: -8px;
 }
 
+a[href$="/Valleyman6"]:after {  
+  padding: 3px;
+  content: image-url("flairs/uk_flag.png");
+  vertical-align: 0px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
