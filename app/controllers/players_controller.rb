@@ -433,6 +433,10 @@ class PlayersController < ApplicationController
     name = @player.player_name.gsub(" ", "_")
     puts name
     all_stats = get_stats(name, @player.player_acc_type)
+    if !all_stats
+      Player.where(player_name: @player.player_name).destroy_all
+      redirect_to ranks_path
+    end
     ehp = get_ehp_type(@player)
     calc_ehp(@player, all_stats, ehp)
     calc_combat(@player)
@@ -503,6 +507,7 @@ class PlayersController < ApplicationController
         begin
           all_stats = get_stats(name, player.player_acc_type)
           if all_stats == false
+            Player.where(player_name: @player.player_name).destroy_all
             next
           end
           ehp = get_ehp_type(player)
