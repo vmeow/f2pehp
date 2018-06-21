@@ -30,11 +30,17 @@
 
 - skill_name = "#{@skill}".capitalize
 - datetime = DateTime.now
-- enddatetime = Time.new(2018, 5, 8)
+- enddatetime = Time.new(2018, 7, 1)
 - hours = ((enddatetime - Time.now) / 3600).to_i
 - mins = ((((enddatetime - Time.now) / 3600) - hours) * 60).round
 
-= "Competition has ended. Congratulations to the winners!"
+- if hours > 168 or (hours == 168 and mins > 0)
+  = "Time until competition start: #{hours - 168} hours, #{mins} minutes"
+- elsif hours < 0 or (hours == 0 and mins < 0)
+  = "Competition ended. Congratulations to the winners!"
+- else
+  = "Time until competition end: #{hours} hours, #{mins} minutes"
+
 
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do 
@@ -42,8 +48,8 @@
     = content_tag(:table, nil, style: "text-align: center; width: 630px; padding: 4px; margin-bottom: 0px;") do 
       %thead
         %tr
-          %th{:align => "center", :style => "font-size: 18px; text-decoration: underline;", :colspan => 6}
-            = link_to "F2P Overall EHP Competition - May 1, 00:00 GMT to May 8, 00:00 GMT", "https://www.reddit.com/r/f2posrs/comments/8f7wdg/free_to_play_ehp_competition/"
+          %th{:align => "center", :style => "font-size: 17px; text-decoration: underline;", :colspan => 6}
+            = link_to "F2P Gatherers EHP Competition - June 24, 00:00 GMT to July 1, 00:00 GMT", "https://www.reddit.com/r/W385/comments/8o2i2h/june_24_july_1_gatherers_ehp_competition/"
       %thead
         %tr
           %th Rank
@@ -61,9 +67,19 @@
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            - ehp_gained = player["overall_ehp_end"].to_f - player["overall_ehp_start"].to_f
-            %td= number_with_delimiter(player["overall_ehp_start"].to_f, :delimiter => ",", :separator => ".") 
-            %td= number_with_delimiter(player["overall_ehp_end"].to_f, :delimiter => ",", :separator => ".") 
+            - ehp_start = player["woodcutting_ehp_start"].to_f + player["fishing_ehp_start"].to_f + player["mining_ehp_start"].to_f + player["firemaking_ehp_start"].to_f + player["cooking_ehp_start"].to_f
+            
+            - if hours > 168 or (hours == 168 and mins > 0)
+              - ehp_gained = 0
+              - ehp_end = "???"
+            - elsif hours < 0 or (hours == 0 and mins < 0)
+              - ehp_gained = player["woodcutting_ehp_end"].to_f + player["fishing_ehp_end"].to_f + player["mining_ehp_end"].to_f + player["firemaking_ehp_end"].to_f + player["cooking_ehp_end"].to_f - ehp_start
+              - ehp_end = ehp_start + ehp_gained
+            - else
+              - ehp_gained = player["woodcutting_ehp"].to_f + player["fishing_ehp"].to_f + player["mining_ehp"].to_f + player["firemaking_ehp"].to_f + player["cooking_ehp"].to_f - ehp_start
+              - ehp_end = ehp_start + ehp_gained
+            %td= number_with_delimiter(number_with_precision(ehp_start, precision: 2), :delimiter => ",", :separator => ".") 
+            %td= number_with_delimiter(number_with_precision(ehp_end, precision: 2), :delimiter => ",", :separator => ".") 
             %td= number_with_delimiter(number_with_precision(ehp_gained, precision: 2), :delimiter => ",", :separator => ".") 
 
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 630px; height: 60px;") 

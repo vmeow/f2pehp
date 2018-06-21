@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427165251) do
+ActiveRecord::Schema.define(version: 20180620234219) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -96,6 +96,16 @@ ActiveRecord::Schema.define(version: 20180427165251) do
     t.integer "runecraft_rank"
     t.float   "overall_ehp_start"
     t.float   "overall_ehp_end"
+    t.float   "mining_ehp_start"
+    t.float   "mining_ehp_end"
+    t.float   "fishing_ehp_start"
+    t.float   "fishing_ehp_end"
+    t.float   "woodcutting_ehp_start"
+    t.float   "woodcutting_ehp_end"
+    t.float   "firemaking_ehp_start"
+    t.float   "firemaking_ehp_end"
+    t.float   "cooking_ehp_start"
+    t.float   "cooking_ehp_end"
   end
 
   create_table "settings", force: :cascade do |t|

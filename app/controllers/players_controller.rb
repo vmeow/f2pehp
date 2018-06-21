@@ -36,10 +36,20 @@ class PlayersController < ApplicationController
       session[:comp_show_limit] = @comp_show_limit
     end
     
-    ordering = "overall_ehp_end - overall_ehp_start DESC, overall_ehp DESC" 
-          
+    enddatetime = Time.new(2018, 7, 1)
+    hours = ((enddatetime - Time.now) / 3600).to_i
+    mins = ((((enddatetime - Time.now) / 3600) - hours) * 60).round
+  
+    if hours > 168 or (hours == 168 and mins > 0)
+      ordering = "overall_ehp DESC" 
+    elsif hours < 0 or (hours == 0 and mins < 0)
+      ordering = "woodcutting_ehp_end - woodcutting_ehp_start + fishing_ehp_end - fishing_ehp_start + mining_ehp_end - mining_ehp_start + firemaking_ehp_end - firemaking_ehp_start + cooking_ehp_end - cooking_ehp_start DESC, overall_ehp DESC" 
+    else
+      ordering = "woodcutting_ehp - woodcutting_ehp_start + fishing_ehp - fishing_ehp_start + mining_ehp - mining_ehp_start + firemaking_ehp - firemaking_ehp_start + cooking_ehp - cooking_ehp_start DESC, overall_ehp DESC" 
+    end
+
     @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order(ordering)
-    @comp_players = @comp_players.where("overall_ehp > 75 and overall_ehp_end > 0").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
+    @comp_players = @comp_players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
   
   end
   
@@ -416,7 +426,12 @@ class PlayersController < ApplicationController
     Player.all.find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_attribute(:overall_ehp_start, player['overall_ehp'].to_f)
+          #player.update_attribute(:overall_ehp_start, player['overall_ehp'].to_f)
+          player.update_attribute(:mining_ehp_start, player['mining_ehp'].to_f)
+          player.update_attribute(:fishing_ehp_start, player['fishing_ehp'].to_f)
+          player.update_attribute(:woodcutting_ehp_start, player['woodcutting_ehp'].to_f)
+          player.update_attribute(:firemaking_ehp_start, player['firemaking_ehp'].to_f)
+          player.update_attribute(:cooking_ehp_start, player['cooking_ehp'].to_f)
         rescue
           next
         end
@@ -428,7 +443,13 @@ class PlayersController < ApplicationController
     Player.all.find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_attribute(:overall_ehp_end, player['overall_ehp'].to_f)        rescue
+          #player.update_attribute(:overall_ehp_end, player['overall_ehp'].to_f)
+          player.update_attribute(:mining_ehp_end, player['mining_ehp'].to_f)
+          player.update_attribute(:fishing_ehp_end, player['fishing_ehp'].to_f)
+          player.update_attribute(:woodcutting_ehp_end, player['woodcutting_ehp'].to_f)
+          player.update_attribute(:firemaking_ehp_end, player['firemaking_ehp'].to_f)
+          player.update_attribute(:cooking_ehp_end, player['cooking_ehp'].to_f)
+        rescue
           next
         end
       end
@@ -625,18 +646,26 @@ class PlayersController < ApplicationController
       :cooking_lvl, 
       :cooking_ehp, 
       :cooking_rank, 
+      :cooking_ehp_start, 
+      :cooking_ehp_end, 
       :woodcutting_xp, 
       :woodcutting_lvl, 
       :woodcutting_ehp, 
       :woodcutting_rank, 
+      :woodcutting_ehp_start, 
+      :woodcutting_ehp_end, 
       :fishing_xp, 
       :fishing_lvl, 
       :fishing_ehp, 
       :fishing_rank, 
+      :fishing_ehp_start, 
+      :fishing_ehp_end, 
       :firemaking_xp, 
       :firemaking_lvl, 
       :firemaking_ehp, 
       :firemaking_rank, 
+      :firemaking_ehp_start, 
+      :firemaking_ehp_end, 
       :crafting_xp, 
       :crafting_lvl, 
       :crafting_ehp, 
@@ -649,6 +678,8 @@ class PlayersController < ApplicationController
       :mining_lvl, 
       :mining_ehp, 
       :mining_rank, 
+      :mining_ehp_start, 
+      :mining_ehp_end, 
       :runecraft_xp, 
       :runecraft_lvl, 
       :runecraft_ehp,

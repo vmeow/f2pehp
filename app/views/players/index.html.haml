@@ -32,6 +32,13 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 Message Of The Day
+      %h6 
+        = "v1.19 release: "
+        = link_to "June Gatherers EHP Competition", competitions_path
+      %h6 
+        = "IM/HC/UIM Firemaking EHP has been adjusted from 86000 to 144600 after 101333 XP."
+      %h6
+        = "v1.18: Filter hiscores by most popular combat restrictions"
       %h6
         = "Until further notice, the 75 EHP requirement has been lifted to add a player to the hiscores."
       %h6
@@ -49,21 +56,6 @@
         = ", and "
         = link_to "UncleTomas", "players/UncleTomas"
         = "!"
-      %h6
-        = "v1.17 release: "
-        = link_to "Competitions with EHP tracking", competitions_path
-      %h6
-        = "v1.16 release: "
-        = link_to "DPS calcs", dps_path
-        = " now have custom att/str bonus input, fixed issue in "
-        = link_to "GP/XP calc", gpxp_path
-        = " for inactive items above 999 gp, added PvP world 417 to"
-        = link_to "changelog", changelog_path
-      %h6 
-        = "Special thanks to "
-        = link_to "Irish Woof", "players/Irish_Woof"
-        = " for his new "
-        = link_to "F2P Reg Guide", "https://pastebin.com/raw/qWWCvXjr"
       
     = content_tag(:div, nil, class: "container", style: "width: 240px;") do 
       = content_tag(:div, nil, class: "supporters") do 
