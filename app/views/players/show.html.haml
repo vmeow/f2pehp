@@ -122,6 +122,9 @@
             %td= number_with_delimiter(@player["#{skill}_xp"].to_i, :delimiter => ",") 
             %td= number_with_delimiter(@player["#{skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
             %td= number_with_delimiter(@player["#{skill}_rank"].to_i, :delimiter => ",") 
+        %tr
+          %td Combat
+          %td= @player["combat_lvl"]
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 10px; width: 152px; height: 98px; padding-top: 0px;") do 
     %h4 Update Stats

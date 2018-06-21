@@ -42,6 +42,10 @@
         = image_tag "skills/#{skill}.png", style: "vertical-align: -6px;"
         = link_to "#{skill.capitalize}", :controller => "players", :action => "ranks", :skill => "#{skill}"
         
+      %br  
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = link_to "Combat Level", :controller => "players", :action => "ranks", :skill => "combat", :sort_by => "lvl"
+      
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 430px; max-width: 430px; overflow-x: auto; margin-top: 5px;") do 
@@ -50,7 +54,8 @@
       %thead
         %tr
           %th{:align => "center", :colspan => 6}
-            = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
+            - if @skill != "combat"
+              = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
             = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
       %thead
         %tr
@@ -61,14 +66,15 @@
             %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
           - else
             %th{:class => @player_lvl_header}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
-          - if @sort_by == "xp"
-            %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
-          - else
-            %th{:class => @player_xp_header}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
-          - if @sort_by == "ehp"
-            %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
-          - else
-            %th{:class => @player_ehp_header}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+          - if @skill != "combat"
+            - if @sort_by == "xp"
+              %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+            - else
+              %th{:class => @player_xp_header}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+            - if @sort_by == "ehp"
+              %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+            - else
+              %th{:class => @player_ehp_header}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
   
       %tbody
         - @players.each.with_index 1 do |player, index|
@@ -79,8 +85,9 @@
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
             %td= player["#{@skill}_lvl"]
-            %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
-            %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
+            - if @skill != "combat"
+              %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
+              %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
             
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
 

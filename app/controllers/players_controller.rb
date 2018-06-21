@@ -179,7 +179,11 @@ class PlayersController < ApplicationController
       ordering = "#{@skill}_ehp DESC, #{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
     when "lvl"
       @player_lvl_header = 'hilite'
-      ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
+      if @skill == "combat"
+        ordering = "#{@skill}_lvl DESC"
+      else
+        ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
+      end
     when "xp"
       @player_xp_header = 'hilite'
       ordering = "#{@skill}_xp DESC, #{@skill}_rank ASC"
@@ -382,6 +386,24 @@ class PlayersController < ApplicationController
     end
   end
 
+  def calc_combat(player)
+    att = player.attack_lvl
+    str = player.strength_lvl
+    defence = player.defence_lvl
+    hp = player.hitpoints_lvl
+    ranged = player.ranged_lvl
+    magic = player.magic_lvl
+    pray = player.prayer_lvl
+    
+    base = 0.25 * (defence + hp + (pray/2).floor)
+    melee = 0.325 * (att + str)
+	  range = 0.325 * ((ranged/2).floor + ranged)
+	  mage = 0.325 * ((magic/2).floor + magic)
+    combat = (base + [melee, range, mage].max).floor 
+    
+    player.update_attribute(:combat_lvl, combat)
+  end
+
   def get_ehp_type(player)
     case player.player_acc_type
     when "Reg"
@@ -413,6 +435,7 @@ class PlayersController < ApplicationController
     all_stats = get_stats(name, @player.player_acc_type)
     ehp = get_ehp_type(@player)
     calc_ehp(@player, all_stats, ehp)
+    calc_combat(@player)
     remove_cutoff(@player)
     
     respond_to do |format|
@@ -684,7 +707,8 @@ class PlayersController < ApplicationController
       :runecraft_lvl, 
       :runecraft_ehp,
       :runecraft_rank,
-      :potential_p2p
+      :potential_p2p,
+      :combat_lvl
       )
   end
 end
