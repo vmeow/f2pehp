@@ -180,7 +180,7 @@ class PlayersController < ApplicationController
     when "lvl"
       @player_lvl_header = 'hilite'
       if @skill == "combat"
-        ordering = "#{@skill}_lvl DESC"
+        ordering = "#{@skill}_lvl DESC, overall_ehp DESC"
       else
         ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
       end
