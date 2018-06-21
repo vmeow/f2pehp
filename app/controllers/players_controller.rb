@@ -566,6 +566,7 @@ class PlayersController < ApplicationController
           end
           ehp = get_ehp_type(player)
           calc_ehp(player, all_stats, ehp)
+          calc_combat(player)
           remove_cutoff(player)
         rescue
           next

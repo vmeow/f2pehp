@@ -43,7 +43,8 @@
         = link_to "#{skill.capitalize}", :controller => "players", :action => "ranks", :skill => "#{skill}"
         
       %br  
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/combat.png", style: "vertical-align: -6px;"
       = link_to "Combat Level", :controller => "players", :action => "ranks", :skill => "combat", :sort_by => "lvl"
       
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
@@ -54,7 +55,9 @@
       %thead
         %tr
           %th{:align => "center", :colspan => 6}
-            - if @skill != "combat"
+            - if @skill == "combat"
+              = image_tag "skills/combat.png", style: "vertical-align: -6px;"
+            - else
               = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
             = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
       %thead
