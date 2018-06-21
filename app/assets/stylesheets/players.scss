@@ -535,6 +535,12 @@ a[href$="/Valleyman6"]:after {
   vertical-align: 0px;
 }
 
+a[href$="/Fe_F2P"]:after {  
+  padding: 3px;
+  content: image-url("flairs/skulled.png");
+  vertical-align: -4px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
