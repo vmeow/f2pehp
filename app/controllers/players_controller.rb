@@ -399,7 +399,7 @@ class PlayersController < ApplicationController
     melee = 0.325 * (att + str)
 	  range = 0.325 * ((ranged/2).floor + ranged)
 	  mage = 0.325 * ((magic/2).floor + magic)
-    combat = (base + [melee, range, mage].max).floor 
+    combat = (base + [melee, range, mage].max).round(5)
     
     player.update_attribute(:combat_lvl, combat)
   end
