@@ -142,7 +142,14 @@ class PlayersController < ApplicationController
 
       ehp = get_ehp_type(player)
       calc_ehp(player, all_stats, ehp)
-      player.update_attribute(:overall_ehp_start, player['overall_ehp'].to_f)
+      calc_combat(player)
+      #player.update_attribute(:overall_ehp_start, player['overall_ehp'].to_f)
+      player.update_attribute(:mining_ehp_start, player['mining_ehp'].to_f)
+      player.update_attribute(:fishing_ehp_start, player['fishing_ehp'].to_f)
+      player.update_attribute(:woodcutting_ehp_start, player['woodcutting_ehp'].to_f)
+      player.update_attribute(:firemaking_ehp_start, player['firemaking_ehp'].to_f)
+      player.update_attribute(:cooking_ehp_start, player['cooking_ehp'].to_f)
+      
       if !Player.where('lower(player_name) = ?', name.downcase).first and !Player.where('lower(player_name) = ?', name1.downcase).first and !Player.where('lower(player_name) = ?', name2.downcase).first and !Player.where('lower(player_name) = ?', name3.downcase).first
         redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
         return
