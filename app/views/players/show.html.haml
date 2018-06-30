@@ -55,17 +55,22 @@
       = content_tag(:div, nil, style: "margin: auto; padding: 20px; width: 200px; height: 40px;") do 
         %h5 Definitely an OSRS player and not a Minecraft YouTuber.
     - elsif @player.player_name == "Freckled Kid"
-      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
         %h5{:style => "color: gold;"} 
           = "1st Place Reg"
           %br
           = "May 2018 EHP Comp"
     - elsif @player.player_name == "parity32"
-      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
         %h5{:style => "color: silver;"} 
           = "2nd Place Reg"
           %br
           = "May 2018 EHP Comp"
+          %br
+          %br
+          = "2nd Place Reg"
+          %br
+          = "June 2018 EHP Comp"
     - elsif @player.player_name == "DJ9"
       = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
         %h5{:style => "color: #CD7F32;"} 
@@ -79,17 +84,46 @@
           %br
           = "May 2018 EHP Comp"
     - elsif @player.player_name == "Ironman260"
-      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
         %h5{:style => "color: silver;"} 
           = "2nd Place Ironman"
           %br
           = "May 2018 EHP Comp"
+        %br
+        %h5{:style => "color: gold;"} 
+          = "1st Place Ironman"
+          %br
+          = "June 2018 EHP Comp"
     - elsif @player.player_name == "UI Pain"
       = content_tag(:div, nil, style: "margin: auto; padding: 20px; width: 200px; height: 50px;") do 
         %h5 First F2P UIM lvl 3 skiller to achieve 99 woodcutting
     - elsif @player.player_name == "Fe F2P"
       = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 20px;") do 
         %h5 Fe F2P, the HCIM killer
+    - elsif @player.player_name == "Pawz"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: gold;"} 
+          = "1st Place Reg"
+          %br
+          = "June 2018 EHP Comp"
+    - elsif @player.player_name == "minlvlskilla"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: silver;"} 
+          = "2nd Place Ironman"
+          %br
+          = "June 2018 EHP Comp"
+    - elsif @player.player_name == "thelast lvl"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Ironman"
+          %br
+          = "June 2018 EHP Comp"
+    - elsif @player.player_name == "Snooz Button"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Reg"
+          %br
+          = "June 2018 EHP Comp"
           
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 300px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
