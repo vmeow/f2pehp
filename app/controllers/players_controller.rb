@@ -49,7 +49,7 @@ class PlayersController < ApplicationController
     end
 
     @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order(ordering)
-    @comp_players = @comp_players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
+    @comp_players = @comp_players.where("woodcutting_ehp_end - woodcutting_ehp_start + fishing_ehp_end - fishing_ehp_start + mining_ehp_end - mining_ehp_start + firemaking_ehp_end - firemaking_ehp_start + cooking_ehp_end - cooking_ehp_start > 1").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
   
   end
   
