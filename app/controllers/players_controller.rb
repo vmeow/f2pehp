@@ -347,6 +347,9 @@ class PlayersController < ApplicationController
       skill_lvl = all_stats[skill_idx].split(",")[1].to_f
       skill_xp = all_stats[skill_idx].split(",")[2].to_f
       skill_rank = all_stats[skill_idx].split(",")[0].to_f
+      if skill == "hitpoints" and skill_lvl < 10
+        skill_lvl = 10
+      end
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
         skill_ehp = 0.0
         skill_tiers = ehp["#{skill}_tiers"]
@@ -363,7 +366,7 @@ class PlayersController < ApplicationController
             end
           end
         end
-        if skill_xp == "-1"
+        if skill_xp < 0
           player.update_attribute(:"#{skill}_xp", 0)
         else
           player.update_attribute(:"#{skill}_xp", skill_xp)
@@ -407,6 +410,10 @@ class PlayersController < ApplicationController
 	  range = 0.325 * ((ranged/2).floor + ranged)
 	  mage = 0.325 * ((magic/2).floor + magic)
     combat = (base + [melee, range, mage].max).round(5)
+    
+    if combat < 3.4
+      combat = 3.4
+    end
     
     player.update_attribute(:combat_lvl, combat)
   end
