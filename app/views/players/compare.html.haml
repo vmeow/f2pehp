@@ -37,8 +37,8 @@
     = text_field_tag :player2, params[:player2], placeholder: "#{@player2}", :class => "search-field", style: "width: 100px;"
     = submit_tag 'Compare', :id => "compare_submit"
     
-= content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 720px; height: 68px; margin-bottom: 0px;") 
-= content_tag(:table, nil, style: "text-align: right; margin: auto; width: 720px; padding: 15px; margin-bottom: 0px;") do 
+= content_tag(:div, nil, class: "container", id: "headerCompare", style: "margin: auto; width: 765px; height: 46px; margin-bottom: 0px;")
+= content_tag(:table, nil, class: "compare", style: "text-align: right; margin: auto; width: 745px; padding: 15px; margin-bottom: 0px;") do 
   %thead
     %th{:align => "center"}  Skill
     %th{:align => "center"}  
@@ -90,4 +90,4 @@
         %td= @player2["#{skill}_lvl"]
         %td= number_with_delimiter(@player2["#{skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
 
-= content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 720px; height: 70px; margin-top: 0px;") 
+= content_tag(:div, nil, class: "container", id: "footerCompare", style: "margin:auto; width: 765px; height: 50px; margin-top: 0px;") 

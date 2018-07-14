@@ -95,6 +95,11 @@ table {
   background-size: 100% auto;
 }
 
+table.compare {
+  background: image-url("scroll_middle_745.gif");
+  width: 720px;
+}
+
 .blank {
   color:#969696;
   background: none;
@@ -110,6 +115,21 @@ table {
 
 #footerHiscores {
     background: image-url("scroll_bottom_379.gif") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
+}
+
+#headerCompare {
+    background: image-url("scroll_top_765.png") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
+
+}
+
+#footerCompare {
+    background: image-url("scroll_bottom_765.png") no-repeat;
     max-width: 100%;
     max-height: 100%;
     background-size: 100% auto;
