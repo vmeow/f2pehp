@@ -1,5 +1,5 @@
-class AddCombatLevelToPlayers < ActiveRecord::Migration
+class ChangeCombatToBeFloatInPlayers < ActiveRecord::Migration
   def change
-    add_column :players, :combat_level, :integer
+    change_column :players, :combat_lvl, :float
   end
 end
