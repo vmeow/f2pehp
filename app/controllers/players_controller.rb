@@ -71,24 +71,18 @@ class PlayersController < ApplicationController
     end
     
     if params[:search]
-      params[:id] = params[:search]
-      show
-      if @player
-        redirect_to @player
+      @player = Player.find_player(params[:search])
+      if @player 
+        name = @player.player_name.gsub(" ", "_")
+        redirect_to "/players/#{name}"
       else
-        redirect_to ranks_path, notice: "Player not found."
+        redirect_to ranks_path, notice: 'Player not found.'
       end
       return
     end 
     
     if params[:player1] and params[:player2]
       compare
-      if @player1 and @player2
-        redirect_to compare_path
-      else
-        redirect_to ranks_path, notice: "Players not found."
-      end
-      return
     end
     
     if @skill == {}
@@ -98,51 +92,37 @@ class PlayersController < ApplicationController
     end
     
     if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+      name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
+      params[:player_to_add_name] = nil
+      session[:player_to_add_name] = nil
       
-      name1 = params[:player_to_add_name].downcase
-      while name1[-1] == " " or name1[-1] == "_"
-        name1 = name1[0...-1]
-      end
-      name2 = name1.gsub(" ", "_")
-      name3 = name1.gsub("_", " ")
-      found1 = Player.where('lower(player_name) = ?', name1).first
-      found2 = Player.where('lower(player_name) = ?', name2).first
-      found3 = Player.where('lower(player_name) = ?', name3).first
-      if found1
-        redirect_to found1, notice: 'The player you wish to add already exists.'
+      found = Player.find_player(name)
+      if found
+        redirect_to "/players/#{found.player_name.gsub(" ", "_")}", notice: 'The player you wish to add already exists.'
         return
-      elsif found2
-        redirect_to found2, notice: 'The player you wish to add already exists.'
-        return
-      elsif found3
-        redirect_to found3, notice: 'The player you wish to add already exists.'
-        return
-      end
-      
-      if F2POSRSRanks::Application.config.downcase_fakes.include?(params[:player_to_add_name].downcase)
+      elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
         redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
         return
       end
       
-      Player.create!({ player_name: params[:player_to_add_name], 'player_acc_type': params[:player_to_add_acc]})
-      player = Player.where(player_name: params[:player_to_add_name]).first
-      name = params[:player_to_add_name].gsub(" ", "_")
-      puts name
-      params[:player_to_add_name] = nil
-      params[:player_to_add_acc] = nil
-      session[:player_to_add_name] = nil
-      session[:player_to_add_acc] = nil
+      acc_type = determine_acc_type(name)
+      if acc_type.nil?
+        redirect_to ranks_path, notice: "Player hiscores not found."
+        return 
+      end
+      Player.create!({ player_name: name, 'player_acc_type': acc_type})
+      player = Player.find_player(name)
       
-      all_stats = get_stats(name, player.player_acc_type)
-      if all_stats == false
-        redirect_to ranks_path, notice: 'Invalid player name.'
+      result = player.update_player
+      
+      if result == "p2p"
+        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
         return
-      end 
+      elsif result == "cutoff"
+        redirect_to ranks_path, notice: "The player you wish to add does not meet the EHP requirement."
+        return
+      end
       
-
-      ehp = get_ehp_type(player)
-      calc_ehp(player, all_stats, ehp)
-      calc_combat(player)
       #player.update_attribute(:overall_ehp_start, player['overall_ehp'].to_f)
       player.update_attribute(:mining_ehp_start, player['mining_ehp'].to_f)
       player.update_attribute(:fishing_ehp_start, player['fishing_ehp'].to_f)
@@ -150,22 +130,7 @@ class PlayersController < ApplicationController
       player.update_attribute(:firemaking_ehp_start, player['firemaking_ehp'].to_f)
       player.update_attribute(:cooking_ehp_start, player['cooking_ehp'].to_f)
       
-      if !Player.where('lower(player_name) = ?', name.downcase).first and !Player.where('lower(player_name) = ?', name1.downcase).first and !Player.where('lower(player_name) = ?', name2.downcase).first and !Player.where('lower(player_name) = ?', name3.downcase).first
-        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
-        return
-      end
-
-      #if remove_cutoff(player)
-      #  redirect_to ranks_path, notice: 'The player you wish to add does not yet meet the 75 EHP requirement.'
-      #else
       redirect_to player, notice: 'Player added successfully.'
-      #end
-    end
-    
-    if !params[:delete_player].nil?
-      Player.where(player_name: params[:delete_player]).destroy_all
-      params[:delete_player] = nil
-      session[:delete_player] = nil
     end
     
     if @sort_by == {}
@@ -212,80 +177,19 @@ class PlayersController < ApplicationController
     @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
-  def clear
-    @filters = {}
-    params[:search] = {}
-    params[:sort_by] = {}
-    params[:filters_] = {}
-    session[:filters_] = {}
-    session[:sort_by] = {}
-    session[:search] = {}
-    reset_session
-    session.clear
-    @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
-    redirect_to(players_path(filters_: @filters, sort_by: "overall_ehp"))
-  end
-  
   # GET /players/1
   # GET /players/1.json
   def show
-    @player = Player.where('lower(player_name) = ?', params[:id].downcase).first
-    if @player.nil?
-      name = params[:id].gsub("_", " ")
-      @player = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if @player.nil?
-      name = params[:id].gsub(" ", "_")
-      @player = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if @player.nil?
-      begin
-        @player = Player.find(params[:id])
-      rescue
-        return
-      end
-    end
+    id = params[:search] || params[:id]
+    @player = Player.find_player(id)
   end
   
   def compare
-    @player1 = Player.where('lower(player_name) = ?', params[:player1].downcase).first
-    if @player1.nil?
-      name = params[:player1].gsub("_", " ")
-      @player1 = Player.where('lower(player_name) = ?', name.downcase).first
+    @player1 = Player.find_player(params[:player1])
+    @player2 = Player.find_player(params[:player2])
+    if @player1 == false or @player2 == false
+      redirect_to ranks_path, notice: "Players not found."
     end
-    if @player1.nil?
-      name = params[:player1].gsub(" ", "_")
-      @player1 = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if @player1.nil?
-      begin
-        @player1 = Player.find(params[:id])
-      rescue
-        return
-      end
-    end
-    
-    @player2 = Player.where('lower(player_name) = ?', params[:player2].downcase).first
-    if @player2.nil?
-      name = params[:player2].gsub("_", " ")
-      @player2 = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if @player2.nil?
-      name = params[:player2].gsub(" ", "_")
-      @player2 = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if @player2.nil?
-      begin
-        @player2 = Player.find(params[:id])
-      rescue
-        return
-      end
-    end
-  end
-
-  # GET /players/new
-  def new
-    @player = Player.new
   end
   
   # GET /changelog
@@ -299,7 +203,26 @@ class PlayersController < ApplicationController
     flash[:notice] = 'Player was successfully created.'
     redirect_to players_path
   end
+  
 
+  def is_acc_type(name, acc_type)
+    return get_stats(name, acc_type) != false
+  end
+  
+  def determine_acc_type(name)
+    if is_acc_type(name, "UIM")
+      return "UIM"
+    elsif is_acc_type(name, "HCIM")
+      return "HCIM"
+    elsif is_acc_type(name, "IM")
+      return "IM"
+    elsif is_acc_type(name, "Reg")
+      return "Reg"
+    else
+      return nil
+    end
+  end
+  
   def get_stats(name, acc_type)
     if name == "Bargan"
       all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
@@ -317,8 +240,7 @@ class PlayersController < ApplicationController
         end
         all_stats = uri.read.split(" ")
       rescue Exception => e  
-        puts e.message 
-        Player.where(player_name: name).destroy_all
+        puts e.message
         return false
       end
     end
@@ -536,39 +458,6 @@ class PlayersController < ApplicationController
     redirect_to ranks_path, notice: 'All players were successfully updated.'
   end
   
-  def export_players
-    skill_list = F2POSRSRanks::Application.config.f2p_skills
-    skill_list << "overall"
-    File.open("players.txt", "w+") do |f|
-      
-      Player.all.each do |player|
-        str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}', 'potential_p2p': '#{player.potential_p2p}'"
-        skill_list.each do |skill|
-          lvl = "#{skill}_lvl"
-          xp = "#{skill}_xp"
-          ehp = "#{skill}_ehp"
-          if (not player["#{lvl}"].nil?) and player['potential_p2p'] == '0'
-            str += ", #{skill}_lvl: #{player[lvl]}"
-          else
-            str += ", #{skill}_lvl: 0"
-          end
-          if (not player["#{xp}"].nil?) and player['potential_p2p'] == '0'
-            str += ", #{skill}_xp: #{player[xp]}"
-          else
-            str += ", #{skill}_xp: 0"
-          end
-          if (not player["#{ehp}"].nil?) and player['potential_p2p'] == '0'
-            str += ", #{skill}_ehp: #{player[ehp]}"
-          else
-            str += ", #{skill}_ehp: 0"
-          end
-        end
-        str += "},\n"
-        f.write(str)
-      end
-    end
-  end
-  
   def refresh_250
     Player.where("overall_ehp > 200").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
@@ -595,6 +484,7 @@ class PlayersController < ApplicationController
     redirect_to ranks_path, notice: 'All players were successfully updated.'
   end
   
+  # not working; URI.parse broken
   def find_new
     hc_start = "59"
     hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
@@ -622,23 +512,7 @@ class PlayersController < ApplicationController
       page_string = f.read
     end
     flash[:notice] = open("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}").read.truncate(1250)
-    redirect_to players_path#, notice: 'New players were found.'
-  end
-
-  # DELETE /players/1
-  # DELETE /players/1.json
-  def destroy
-    @player.destroy
-    respond_to do |format|
-      format.html {redirect_to players_url, notice: 'Player was successfully deleted.'}
-      format.json {head :no_content}
-    end
-  end
-  
-  def delete_nil
-    Player.where(player_name: "").destroy_all
-    Player.where("overall_ehp < 75").destroy_all
-    Player.where(overall_ehp: nil).destroy_all
+    redirect_to players_path
   end
 
   private
