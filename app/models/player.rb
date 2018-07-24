@@ -77,12 +77,16 @@ class Player < ActiveRecord::Base
     all_stats = get_stats
     update_attribute(:potential_p2p, "0")
     total_ehp = 0.0
+    total_lvl = 8
+    total_xp = 0
+    under_34 = false
     F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
       skill_lvl = all_stats[skill_idx].split(",")[1].to_f
       skill_xp = all_stats[skill_idx].split(",")[2].to_f
       skill_rank = all_stats[skill_idx].split(",")[0].to_f
       if skill == "hitpoints" and skill_lvl < 10
         skill_lvl = 10
+        skill_xp = 1154
       end
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
         skill_ehp = 0.0
@@ -108,6 +112,8 @@ class Player < ActiveRecord::Base
         update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
         update_attribute(:"#{skill}_rank", skill_rank)
         total_ehp += skill_ehp.round(2)
+        total_xp += skill_xp
+        total_lvl += skill_lvl
       elsif skill == "p2p" and skill_xp > 0 
         update_attribute(:potential_p2p, skill_xp)
         Player.where(player_name: player_name).destroy_all
@@ -115,12 +121,23 @@ class Player < ActiveRecord::Base
         update_attribute(:potential_p2p, skill_lvl)
         Player.where(player_name: player_name).destroy_all
       elsif skill == "overall"
-        update_attribute(:"#{skill}_lvl", skill_lvl)
-        update_attribute(:"#{skill}_xp", skill_xp)
-        update_attribute(:"#{skill}_rank", skill_rank)
+        if skill_lvl < 34
+          under_34 = true
+        else
+          update_attribute(:"#{skill}_lvl", skill_lvl)
+          update_attribute(:"#{skill}_xp", skill_xp)
+          update_attribute(:"#{skill}_rank", skill_rank)
+        end
       end
     end
+    
     update_attribute(:overall_ehp, total_ehp.round(2))
+    
+    if under_34
+      update_attribute(:"overall_lvl", total_lvl)
+      update_attribute(:"overall_xp", total_xp)
+    end
+      
     if potential_p2p.to_f <= 0
       update_attribute(:potential_p2p, "0")
     else
