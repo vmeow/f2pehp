@@ -205,21 +205,27 @@ class PlayersController < ApplicationController
   end
   
 
-  def is_acc_type(name, acc_type)
-    return get_stats(name, acc_type) != false
+  def acc_type_xp(name, acc_type)
+    stats = get_stats(name, acc_type)
+    return 0 if not stats
+    return stats[0].split(",")[2].to_f
   end
   
   def determine_acc_type(name)
-    if is_acc_type(name, "UIM")
+    uim_xp = acc_type_xp(name, "UIM")
+    hcim_xp = acc_type_xp(name, "HCIM")
+    im_xp = acc_type_xp(name, "IM")
+    reg_xp = acc_type_xp(name, "Reg")
+    if uim_xp > 0 and uim_xp >= reg_xp and uim_xp >= im_xp
       return "UIM"
-    elsif is_acc_type(name, "HCIM")
+    elsif hcim_xp > 0 and hcim_xp >= reg_xp and hcim_xp >= im_xp
       return "HCIM"
-    elsif is_acc_type(name, "IM")
+    elsif im_xp > 0 and im_xp >= reg_xp
       return "IM"
-    elsif is_acc_type(name, "Reg")
+    elsif reg_xp > 0 
       return "Reg"
     else
-      return nil
+      raise("Account type cannot be determined.")
     end
   end
   
