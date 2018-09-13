@@ -37,13 +37,13 @@ class Player < ActiveRecord::Base
       begin
         case player_acc_type
         when "Reg"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
         when "HCIM"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
         when "UIM"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
         when "IM"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
         end
         all_stats = uri.read.split(" ")
       rescue Exception => e  
@@ -57,10 +57,10 @@ class Player < ActiveRecord::Base
   def check_hc_death
     if player_acc_type == "HCIM"
       begin
-        hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{self.player_name}")
+        hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{self.player_name}")
         hc_stats = hc_uri.read.split(" ")
         hc_xp = hc_stats[0].split(",")[2].to_f
-        im_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{self.player_name}")
+        im_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{self.player_name}")
         im_stats = im_uri.read.split(" ")
         im_xp = im_stats[0].split(",")[2].to_f
         if hc_xp < im_xp

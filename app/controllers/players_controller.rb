@@ -1,4 +1,4 @@
-require 'net/http'
+require 'net/https'
 require 'uri'
 require "open-uri"
 require 'nokogiri'
@@ -236,13 +236,13 @@ class PlayersController < ApplicationController
       begin
         case acc_type
         when "Reg"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
         when "HCIM"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
         when "UIM"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
         when "IM"
-          uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
         end
         all_stats = uri.read.split(" ")
       rescue Exception => e  
@@ -256,7 +256,7 @@ class PlayersController < ApplicationController
   def check_hc_death(player, overall_xp)
     if player.player_acc_type == "HCIM"
       begin
-        hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{player.player_name}")
+        hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{player.player_name}")
         hc_stats = hc_uri.read.split(" ")
         hc_xp = hc_stats[0].split(",")[2].to_f
         if hc_xp < overall_xp
@@ -493,16 +493,16 @@ class PlayersController < ApplicationController
   # not working; URI.parse broken
   def find_new
     hc_start = "59"
-    hc_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
+    hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
     
     #uim_start = "21"
-    #uim_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ultimate/a=13/overall.ws?table=0&page=#{uim_start}")
+    #uim_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/a=13/overall.ws?table=0&page=#{uim_start}")
     
     #iron_start = "773"
-    #iron_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool_ironman/a=13/overall.ws?table=0&page=#{iron_start}")
+    #iron_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/a=13/overall.ws?table=0&page=#{iron_start}")
     
     #reg_start = "8976"
-    #reg_uri = URI.parse("http://services.runescape.com/m=hiscore_oldschool/a=13/overall.ws?table=0&page=#{reg_start}")
+    #reg_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/a=13/overall.ws?table=0&page=#{reg_start}")
 
     ehp_reg = F2POSRSRanks::Application.config.ehp_reg
     ehp_iron = F2POSRSRanks::Application.config.ehp_iron
@@ -517,7 +517,7 @@ class PlayersController < ApplicationController
     open(url) do |f|
       page_string = f.read
     end
-    flash[:notice] = open("http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}").read.truncate(1250)
+    flash[:notice] = open("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}").read.truncate(1250)
     redirect_to players_path
   end
 

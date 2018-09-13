@@ -32,6 +32,8 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 News
+      %h6
+        = "There has been a massive bug impacting the player hiscores. We are working on a fix and apologize for any inconvenience. As we roll out the fix, please do feel free to add yourself to the hiscores."
       %h6 
         = "Site refactoring in progress. Please let us know if you run across any issues, thank you!  "
       %h6
@@ -60,21 +62,7 @@
         = "v1.18: Filter hiscores by most popular combat restrictions"
       %h6
         = "Until further notice, the 75 EHP requirement has been lifted to add a player to the hiscores."
-      %h6
-        = "The May EHP Competition has ended. Congratulations to "
-        %br
-        = link_to "Freckled Kid", "players/Freckled_Kid"
-        = ", "
-        = link_to "IronAgnusDei", "players/IronAgnusDei"
-        %br
-        = link_to "parity32", "players/parity32"
-        = ", "
-        = link_to "Ironman260", "players/Ironman260"
-        %br
-        = link_to "DJ9", "players/DJ9"
-        = ", and "
-        = link_to "UncleTomas", "players/UncleTomas"
-        = "!"
+
       
     = content_tag(:div, nil, class: "container", style: "width: 240px;") do 
       = content_tag(:div, nil, class: "supporters") do 
