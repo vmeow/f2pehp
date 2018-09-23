@@ -168,7 +168,7 @@ class PlayersController < ApplicationController
     if @restrictions["3 combat"]
       @players = @players.where(hitpoints_lvl: 10, attack_lvl: 1, strength_lvl: 1, defence_lvl: 1, ranged_lvl: 1, magic_lvl: 1, prayer_lvl: 1)
     end
-    if @skill = "combat"
+    if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
     end
     
