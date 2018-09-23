@@ -561,6 +561,12 @@ a[href$="/Fe_F2P"]:after {
   vertical-align: -4px;
 }
 
+a[href$="/UIM_STK_F2P"]:after {  
+  padding: 3px;
+  content: image-url("items/Rune_scimitar.gif");
+  vertical-align: -10px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;

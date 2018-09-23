@@ -32,6 +32,10 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 News
+      - if (Time.new(2018, 9, 29) - Time.now) > 0
+        %h6{:style => "color: yellow;"}
+          = "UIM STK F2P: Hail Iron"
+  
       %h6
         = "There has been a massive bug impacting the player hiscores. We are working on a fix and apologize for any inconvenience. As we roll out the fix, please do feel free to add yourself to the hiscores."
       %h6 
@@ -93,6 +97,8 @@
         = link_to "Pawz", "players/Pawz"
         %br
         = link_to "Yellow bead", "players/Yellow_bead"
+        %br
+        = link_to "UIM STK F2P", "players/UIM_STK_F2P"
         %br
         = link_to "ZINJANTHROPI", "players/ZINJANTHROPI"
         %br

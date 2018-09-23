@@ -17,11 +17,6 @@ class PlayersController < ApplicationController
   end
   
   def competitions
-    #player = params[:player_name] 
-    #player_acc = params[:player_acc]
-    #start_ehp = params[:start_ehp]
-    #Player.create!({ player_name: player, 'player_acc_type': params[:player_acc], 'overall_ehp_start': start_ehp.to_f})
-    
     @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
     @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
     
@@ -173,7 +168,10 @@ class PlayersController < ApplicationController
     if @restrictions["3 combat"]
       @players = @players.where(hitpoints_lvl: 10, attack_lvl: 1, strength_lvl: 1, defence_lvl: 1, ranged_lvl: 1, magic_lvl: 1, prayer_lvl: 1)
     end
-      
+    if @skill = "combat"
+      @players = @players.where("combat_lvl IS NOT NULL")
+    end
+    
     @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
@@ -229,166 +227,11 @@ class PlayersController < ApplicationController
     end
   end
   
-  def get_stats(name, acc_type)
-    if name == "Bargan"
-      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
-    else
-      begin
-        case acc_type
-        when "Reg"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-        when "HCIM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
-        when "UIM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
-        when "IM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
-        end
-        all_stats = uri.read.split(" ")
-      rescue Exception => e  
-        puts e.message
-        return false
-      end
-    end
-    return all_stats
-  end
-  
-  def check_hc_death(player, overall_xp)
-    if player.player_acc_type == "HCIM"
-      begin
-        hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{player.player_name}")
-        hc_stats = hc_uri.read.split(" ")
-        hc_xp = hc_stats[0].split(",")[2].to_f
-        if hc_xp < overall_xp
-          player.update_attribute(:player_acc_type, "IM")
-        end
-      rescue Exception => e   
-        puts e.message 
-      end
-    end
-  end
-  
-  def calc_ehp(player, all_stats, ehp)
-    player.update_attribute(:potential_p2p, "0")
-    total_ehp = 0.0
-    F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
-      skill_lvl = all_stats[skill_idx].split(",")[1].to_f
-      skill_xp = all_stats[skill_idx].split(",")[2].to_f
-      skill_rank = all_stats[skill_idx].split(",")[0].to_f
-      if skill == "hitpoints" and skill_lvl < 10
-        skill_lvl = 10
-      end
-      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
-        skill_ehp = 0.0
-        skill_tiers = ehp["#{skill}_tiers"]
-        skill_xphrs = ehp["#{skill}_xphrs"]
-        last_skill_tier = 0.0
-        skill_tiers.each.with_index do |skill_tier, tier_idx|
-          skill_tier = skill_tier.to_f
-          skill_xphr = skill_xphrs[tier_idx].to_f
-          if skill_xphr != 0 and skill_tier < skill_xp
-            if (tier_idx + 1) < skill_tiers.length and skill_xp >=  skill_tiers[tier_idx + 1]
-              skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
-            else
-              skill_ehp += (skill_xp.to_f - skill_tier)/skill_xphr
-            end
-          end
-        end
-        if skill_xp < 0
-          player.update_attribute(:"#{skill}_xp", 0)
-        else
-          player.update_attribute(:"#{skill}_xp", skill_xp)
-        end
-        player.update_attribute(:"#{skill}_lvl", skill_lvl)
-        player.update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
-        player.update_attribute(:"#{skill}_rank", skill_rank)
-        total_ehp += skill_ehp.round(2)
-      elsif skill == "p2p" and skill_xp > 0 
-        player.update_attribute(:potential_p2p, skill_xp)
-        Player.where(player_name: player.player_name).destroy_all
-      elsif skill == "p2p_minigame" and skill_lvl > 0
-        player.update_attribute(:potential_p2p, skill_lvl)
-        Player.where(player_name: player.player_name).destroy_all
-      elsif skill == "overall"
-        check_hc_death(player, skill_xp)
-        player.update_attribute(:"#{skill}_lvl", skill_lvl)
-        player.update_attribute(:"#{skill}_xp", skill_xp)
-        player.update_attribute(:"#{skill}_rank", skill_rank)
-      end
-    end
-    player.update_attribute(:overall_ehp, total_ehp.round(2))
-    if player.potential_p2p.to_f <= 0
-      player.update_attribute(:potential_p2p, "0")
-    else
-      Player.where(player_name: player.player_name).destroy_all
-    end
-  end
-
-  def calc_combat(player)
-    att = player.attack_lvl
-    str = player.strength_lvl
-    defence = player.defence_lvl
-    hp = player.hitpoints_lvl
-    ranged = player.ranged_lvl
-    magic = player.magic_lvl
-    pray = player.prayer_lvl
-    
-    base = 0.25 * (defence + hp + (pray/2).floor)
-    melee = 0.325 * (att + str)
-	  range = 0.325 * ((ranged/2).floor + ranged)
-	  mage = 0.325 * ((magic/2).floor + magic)
-    combat = (base + [melee, range, mage].max).round(5)
-    
-    if combat < 3.4
-      combat = 3.4
-    end
-    
-    player.update_attribute(:combat_lvl, combat)
-  end
-
-  def get_ehp_type(player)
-    case player.player_acc_type
-    when "Reg"
-      ehp = F2POSRSRanks::Application.config.ehp_reg
-    when "HCIM", "IM"
-      ehp = F2POSRSRanks::Application.config.ehp_iron
-    when "UIM"
-      ehp = F2POSRSRanks::Application.config.ehp_uim
-    end
-  end
-  
-  def remove_cutoff(player)
-    if player.overall_ehp < 1
-      Player.where(player_name: player.player_name).destroy_all
-      return true
-    end
-  end
-  
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update_player
-    @player = Player.find params[:id]
-    if F2POSRSRanks::Application.config.downcase_fakes.include?(@player.player_name.downcase)
-      Player.where(player_name: @player.player_name).destroy_all
-      redirect_to ranks_path, notice: 'Fake F2P player was successfully removed.'
-    end
-    name = @player.player_name.gsub(" ", "_")
-    puts name
-    all_stats = get_stats(name, @player.player_acc_type)
-    if !all_stats
-      Player.where(player_name: @player.player_name).destroy_all
-      redirect_to ranks_path
-    end
-    ehp = get_ehp_type(@player)
-    calc_ehp(@player, all_stats, ehp)
-    calc_combat(@player)
-    remove_cutoff(@player)
-    
-    respond_to do |format|
-      format.html { redirect_to @player, notice: 'Player was successfully updated.'}
-      format.json { head :no_content }
-      format.js   { render :layout => false }
-    end
+    @player.update_player
+    @player
   end
   
   def ehp_start
