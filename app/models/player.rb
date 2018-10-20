@@ -208,7 +208,7 @@ class Player < ActiveRecord::Base
     if check_p2p
       return "p2p"
     end
-    check_hc_death
+    # check_hc_death
     calc_combat
     if remove_cutoff
       return "cutoff"
