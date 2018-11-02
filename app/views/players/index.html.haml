@@ -32,10 +32,10 @@
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 315px;") do 
     = content_tag(:div, nil, class: "motd") do 
       %h1 News
-      - if (Time.new(2018, 9, 29) - Time.now) > 0
-        %h6{:style => "color: yellow;"}
-          = "UIM STK F2P: Hail Iron"
-  
+      %h6 
+        = "We are actively looking for volunteer contributors to improve and maintain the F2P.wiki. If you are interested, please email "
+        = link_to "f2posrsranks@gmail.com.", "mailto:f2posrsranks@gmail.com"
+        = "Working knowledge of git version control is crucial, and Ruby on Rails/HTML/CSS/JavaScript very helpful."
       %h6 
         = "Site refactoring in progress. Please let us know if you run across any issues, thank you!  "
       %h6

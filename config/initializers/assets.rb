@@ -16,7 +16,7 @@ F2POSRSRanks::Application.configure do
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
                      "magic", "cooking", "woodcutting", "p2p", "fishing", "firemaking", "crafting",
                      "smithing", "mining", "p2p", "p2p", "p2p", "p2p", "p2p", "runecraft", "p2p", 
-                     "p2p", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "lms", "p2p_minigame", "p2p_minigame"]
+                     "p2p", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame", "lms"]
     
     config.f2p_skills = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
                          "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
