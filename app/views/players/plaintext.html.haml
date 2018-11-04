@@ -25,8 +25,8 @@
       - str = str +  ", #{skill}_ehp: #{player[ehp]}"
     - else
       - str = str +  ", #{skill}_ehp: 0"
-  - str = str + ", overall_ehp_start: #{player.overall_ehp_start}"
-  - str = str + ", overall_ehp_end: #{player.overall_ehp_end}"
+  - str = str + ", overall_ehp_start: #{player.overall_ehp_start || 0}"
+  - str = str + ", overall_ehp_end: #{player.overall_ehp_end || 0}"
   - str = str +  "},\n"
   = str
   %br
