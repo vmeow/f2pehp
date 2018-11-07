@@ -21,7 +21,7 @@ class Player < ActiveRecord::Base
     end
     if player.nil?
       begin
-        player = Player.find(id)
+        player = Player.find(Float(id))
       rescue
         return false
       end
