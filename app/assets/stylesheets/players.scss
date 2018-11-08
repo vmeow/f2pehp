@@ -573,6 +573,12 @@ a[href$="/WishengradHC"]:after {
   vertical-align: -10px;
 }
 
+a[href$="/Ikiji"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Mystery_box.png");
+  vertical-align: -7px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
