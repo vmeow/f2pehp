@@ -1,5 +1,11 @@
 - @title = "F2P OSRS Wiki" 
-= link_to image_tag("birthdayf2pwiki.png"), players_path
+// - if abs(Time.now - Time.new(2018, 11, 16)) < 3600
+= puts Time.now
+- timediff = (Time.now - Time.new(2018, 11, 16))/3600
+- if timediff > -24 and timediff < 24
+  = link_to image_tag("rip_bargan2.png"), players_path
+- else
+  = link_to image_tag("birthdayf2pwiki.png"), players_path
 
 %p#notice= notice
 
