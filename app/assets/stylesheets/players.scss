@@ -585,6 +585,18 @@ a[href$="/Netbook_Pro"]:after {
   vertical-align: -7px;
 }
 
+a[href$="/Xan_So"]:after {  
+  padding: 3px;
+  content: image-url("items/Maple_shortbow.png");
+  vertical-align: -7px;
+}
+
+a[href$="/tannerdino"]:after {  
+  padding: 3px;
+  content: image-url("items/Mossy_key.png");
+  vertical-align: -5px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
