@@ -169,7 +169,7 @@
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 10px; width: 152px; height: 98px; padding-top: 0px;") do 
     %h4 Update Stats
     = form_tag players_path(@player), :method => :put do
-      = link_to "#{@player.player_name}", @player, method: :put
+      = link_to "#{@player.player_name}", @player, method: @player.update_player
       
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 5px; width: 152px; height: 98px;") do 
     = "Other Hiscores"
