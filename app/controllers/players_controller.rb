@@ -253,6 +253,11 @@ class PlayersController < ApplicationController
   
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
+  def update
+    @player.update_player
+    @player
+  end
+  
   def update_player
     @player.update_player
     @player

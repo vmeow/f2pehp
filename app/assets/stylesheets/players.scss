@@ -597,6 +597,12 @@ a[href$="/tannerdino"]:after {
   vertical-align: -5px;
 }
 
+a[href$="/MA5ON"]:after {  
+  padding: 3px;
+  content: image-url("items/Diamond.gif");
+  vertical-align: -10px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
