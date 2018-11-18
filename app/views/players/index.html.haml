@@ -122,7 +122,7 @@
         %br
         = link_to "citnA", "players/citnA"
         %br
-        = link_to "Based Chew", "players/Based_Chew"
+        = link_to "Lea Sinclair", "players/Lea_Sinclair"
         %br
         = link_to "lRAIDERSS", "players/lRAIDERSS"
         %br
@@ -176,7 +176,10 @@
             %tr
               %td{:align => "right"}= index
               - name = player.player_name.gsub(" ", "_")
-              %td{:align => "left"}= link_to player.player_name, "players/#{name}"
+              - if player.player_name == "Based Chew"
+                %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
+              - else
+                %td{:align => "left"}= link_to player.player_name, "players/#{name}"
               %td{:align => "center"}= player.player_acc_type
               %td= number_with_delimiter(player.overall_ehp.to_f, :delimiter => ",", :separator => ".") 
  

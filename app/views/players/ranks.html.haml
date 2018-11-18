@@ -85,7 +85,10 @@
             - offset = index + (@players.current_page - 1)*@show_limit.to_i
             %td{:align => "right"}= offset
             - name = player.player_name.gsub(" ", "_")
-            %td{:align => "left"}= link_to player.player_name, "players/#{name}"
+            - if player.player_name == "Based Chew"
+              %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
+            - else
+              %td{:align => "left"}= link_to player.player_name, "players/#{name}"           
             %td{:align => "center"}= player.player_acc_type
             %td= player["#{@skill}_lvl"]
             - if @skill != "combat"
