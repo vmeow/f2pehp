@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   get 'plaintextcomp' => 'players#plaintextcomp'
   get 'tracking' => 'players#tracking'
   get 'no_comfort' => 'players#no_comfort'
-  post 'players/:id' => 'players#update_player'
+  put 'players/:id' => 'players#update_player'
+  put 'players.:id' => 'players#update_player'
+  put 'update' => 'players#update_player'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players
