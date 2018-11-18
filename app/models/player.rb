@@ -196,7 +196,6 @@ class Player < ActiveRecord::Base
   def update_player
     if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
-      redirect_to ranks_path, notice: 'Fake F2P player was successfully removed.'
     end
     puts player_name
     all_stats = get_stats
