@@ -603,6 +603,12 @@ a[href$="/MA5ON"]:after {
   vertical-align: -10px;
 }
 
+a[href$="/n4ckerd"]:after {  
+  padding: 3px;
+  content: image-url("items/Gilded_med_helm.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
