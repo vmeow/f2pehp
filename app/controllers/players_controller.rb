@@ -226,7 +226,6 @@ class PlayersController < ApplicationController
     return all_stats
   end
   
-
   def acc_type_xp(name, acc_type)
     stats = get_stats(name, acc_type)
     return 0 if not stats
@@ -261,78 +260,6 @@ class PlayersController < ApplicationController
   def update_player
     @player.update_player
     @player
-  end
-  
-  def ehp_start
-    Player.all.find_in_batches(batch_size: 25) do |batch|
-      batch.each do |player|
-        begin
-          #player.update_attribute(:overall_ehp_start, player['overall_ehp'].to_f)
-          player.update_attribute(:mining_ehp_start, player['mining_ehp'].to_f)
-          player.update_attribute(:fishing_ehp_start, player['fishing_ehp'].to_f)
-          player.update_attribute(:woodcutting_ehp_start, player['woodcutting_ehp'].to_f)
-          player.update_attribute(:firemaking_ehp_start, player['firemaking_ehp'].to_f)
-          player.update_attribute(:cooking_ehp_start, player['cooking_ehp'].to_f)
-        rescue
-          next
-        end
-      end
-    end
-  end
-  
-  def ehp_end
-    Player.all.find_in_batches(batch_size: 25) do |batch|
-      batch.each do |player|
-        begin
-          #player.update_attribute(:overall_ehp_end, player['overall_ehp'].to_f)
-          player.update_attribute(:mining_ehp_end, player['mining_ehp'].to_f)
-          player.update_attribute(:fishing_ehp_end, player['fishing_ehp'].to_f)
-          player.update_attribute(:woodcutting_ehp_end, player['woodcutting_ehp'].to_f)
-          player.update_attribute(:firemaking_ehp_end, player['firemaking_ehp'].to_f)
-          player.update_attribute(:cooking_ehp_end, player['cooking_ehp'].to_f)
-        rescue
-          next
-        end
-      end
-    end
-  end
-  
-  def ehp_reset
-    Player.all.find_in_batches(batch_size: 25) do |batch|
-      batch.each do |player|
-        begin
-          player.update_attribute(:overall_ehp_start, 0.0)
-        rescue
-          next
-        end
-      end
-    end
-  end
-  
-  def refresh_players
-    Player.all.find_in_batches(batch_size: 25) do |batch|
-      batch.each do |player|
-        begin
-          player.update_player
-        rescue
-          next
-        end
-      end
-    end
-    redirect_to ranks_path, notice: 'All players were successfully updated.'
-  end
-  
-  def refresh_250
-    Player.where("overall_ehp > 200").find_in_batches(batch_size: 25) do |batch|
-      batch.each do |player|
-        begin
-          player.update_player
-        rescue
-          next
-        end
-      end
-    end
-    redirect_to ranks_path, notice: 'All players were successfully updated.'
   end
   
   # not working; URI.parse broken
