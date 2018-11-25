@@ -167,10 +167,8 @@
           %td= @player["combat_lvl"]
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 10px; width: 152px; height: 98px; padding-top: 0px;") do 
-    %h4 Update Stats6
-    = "Temporarily out of service :/"
-    // = form_tag players_path(@player), :method => :put do
-    // = link_to "#{@player.player_name}", @player, method: @player.update_player
+    %h4 Update Stats
+    = link_to "#{@player.player_name}", update_player_path
       
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 20px; margin-bottom: 5px; width: 152px; height: 98px;") do 
     = "Other Hiscores"

@@ -132,7 +132,7 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
     
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] 
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_]
       session[:filters_] = @filters
       session[:restrictions_] = @restrictions
       session[:skill] = @skill
@@ -255,6 +255,7 @@ class PlayersController < ApplicationController
   def update
     @player.update_player
     @player
+    redirect_to @player
   end
   
   def update_player
