@@ -49,7 +49,111 @@ class PlayersController < ApplicationController
   end
   
   def tracking
-    ranks
+    @sort_by = params[:sort_by] || session[:sort_by] || {}
+    @filters = params[:filters_] || session[:filters_] || {}
+    @restrictions = params[:restrictions_] || {}
+    @skill = params[:skill] || session[:skill] || {}
+    @show_limit = params[:show_limit] || session[:show_limit] || 100
+    @time = params[:time] || session[:time] || "week"
+    
+    if @filters == {}
+      @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
+      params[:filters_] = @filters
+      session[:filters_] = @filters
+    end
+    
+    if params[:search]
+      @player = Player.find_player(params[:search])
+      if @player 
+        name = @player.player_name.gsub(" ", "_")
+        redirect_to "/players/#{name}"
+      else
+        redirect_to ranks_path, notice: 'Player not found.'
+      end
+      return
+    end 
+    
+    if params[:player1] and params[:player2]
+      compare
+    end
+    
+    if @skill == {}
+      @skill = "overall"
+      params[:skill] = "overall"
+      session[:skill] = "overall"
+    end
+    
+    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+      name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
+      params[:player_to_add_name] = nil
+      session[:player_to_add_name] = nil
+      
+      found = Player.find_player(name)
+      if found
+        redirect_to "/players/#{found.player_name.gsub(" ", "_")}", notice: 'The player you wish to add already exists.'
+        return
+      elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
+        redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
+        return
+      end
+      
+      acc_type = determine_acc_type(name)
+      if acc_type.nil?
+        redirect_to ranks_path, notice: "Player hiscores not found."
+        return 
+      end
+      Player.create!({ player_name: name, 'player_acc_type': acc_type})
+      player = Player.find_player(name)
+      
+      result = player.update_player
+      
+      if result == "p2p"
+        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
+        return
+      elsif result == "cutoff"
+        redirect_to ranks_path, notice: "The player you wish to add does not meet the EHP requirement."
+        return
+      end
+
+      redirect_to player, notice: 'Player added successfully.'
+    end
+    
+    if @sort_by == {}
+      @sort_by = "ehp"
+    end
+    
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:time] != session[:time]
+      session[:filters_] = @filters
+      session[:restrictions_] = @restrictions
+      session[:skill] = @skill
+      session[:sort_by] = @sort_by
+      session[:show_limit] = @show_limit
+      session[:time] = @time
+    end
+    
+    case @sort_by
+    when "ehp"
+      @player_ehp_header = 'hilite'
+      ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC"
+    when "xp"
+      @player_xp_header = 'hilite'
+      ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC"
+    end
+    
+    
+    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
+    
+    if @restrictions["10 hitpoints"]
+      @players = @players.where(hitpoints_lvl: 10)
+    end
+    if @restrictions["1 defence"]
+      @players = @players.where(defence_lvl: 1)
+    end
+    if @restrictions["3 combat"]
+      @players = @players.where("combat_lvl < 4")
+    end
+    
+    @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
   def ranks
@@ -382,7 +486,264 @@ class PlayersController < ApplicationController
       :runecraft_ehp,
       :runecraft_rank,
       :potential_p2p,
-      :combat_lvl
+      :combat_lvl,
+      
+      :attack_xp_day_start,
+      :attack_xp_day_max,
+      :attack_ehp_day_start,
+      :attack_ehp_day_max,
+      :attack_xp_week_start,
+      :attack_xp_week_max,
+      :attack_ehp_week_start,
+      :attack_ehp_week_max,
+      :attack_xp_month_start,
+      :attack_xp_month_max,
+      :attack_ehp_month_start,
+      :attack_ehp_month_max,
+      :attack_xp_year_start,
+      :attack_xp_year_max,
+      :attack_ehp_year_start,
+      :attack_ehp_year_max,
+      :strength_xp_day_start,
+      :strength_xp_day_max,
+      :strength_ehp_day_start,
+      :strength_ehp_day_max,
+      :strength_xp_week_start,
+      :strength_xp_week_max,
+      :strength_ehp_week_start,
+      :strength_ehp_week_max,
+      :strength_xp_month_start,
+      :strength_xp_month_max,
+      :strength_ehp_month_start,
+      :strength_ehp_month_max,
+      :strength_xp_year_start,
+      :strength_xp_year_max,
+      :strength_ehp_year_start,
+      :strength_ehp_year_max,
+      :defence_xp_day_start,
+      :defence_xp_day_max,
+      :defence_ehp_day_start,
+      :defence_ehp_day_max,
+      :defence_xp_week_start,
+      :defence_xp_week_max,
+      :defence_ehp_week_start,
+      :defence_ehp_week_max,
+      :defence_xp_month_start,
+      :defence_xp_month_max,
+      :defence_ehp_month_start,
+      :defence_ehp_month_max,
+      :defence_xp_year_start,
+      :defence_xp_year_max,
+      :defence_ehp_year_start,
+      :defence_ehp_year_max,
+      :hitpoints_xp_day_start,
+      :hitpoints_xp_day_max,
+      :hitpoints_ehp_day_start,
+      :hitpoints_ehp_day_max,
+      :hitpoints_xp_week_start,
+      :hitpoints_xp_week_max,
+      :hitpoints_ehp_week_start,
+      :hitpoints_ehp_week_max,
+      :hitpoints_xp_month_start,
+      :hitpoints_xp_month_max,
+      :hitpoints_ehp_month_start,
+      :hitpoints_ehp_month_max,
+      :hitpoints_xp_year_start,
+      :hitpoints_xp_year_max,
+      :hitpoints_ehp_year_start,
+      :hitpoints_ehp_year_max,
+      :ranged_xp_day_start,
+      :ranged_xp_day_max,
+      :ranged_ehp_day_start,
+      :ranged_ehp_day_max,
+      :ranged_xp_week_start,
+      :ranged_xp_week_max,
+      :ranged_ehp_week_start,
+      :ranged_ehp_week_max,
+      :ranged_xp_month_start,
+      :ranged_xp_month_max,
+      :ranged_ehp_month_start,
+      :ranged_ehp_month_max,
+      :ranged_xp_year_start,
+      :ranged_xp_year_max,
+      :ranged_ehp_year_start,
+      :ranged_ehp_year_max,
+      :prayer_xp_day_start,
+      :prayer_xp_day_max,
+      :prayer_ehp_day_start,
+      :prayer_ehp_day_max,
+      :prayer_xp_week_start,
+      :prayer_xp_week_max,
+      :prayer_ehp_week_start,
+      :prayer_ehp_week_max,
+      :prayer_xp_month_start,
+      :prayer_xp_month_max,
+      :prayer_ehp_month_start,
+      :prayer_ehp_month_max,
+      :prayer_xp_year_start,
+      :prayer_xp_year_max,
+      :prayer_ehp_year_start,
+      :prayer_ehp_year_max,
+      :magic_xp_day_start,
+      :magic_xp_day_max,
+      :magic_ehp_day_start,
+      :magic_ehp_day_max,
+      :magic_xp_week_start,
+      :magic_xp_week_max,
+      :magic_ehp_week_start,
+      :magic_ehp_week_max,
+      :magic_xp_month_start,
+      :magic_xp_month_max,
+      :magic_ehp_month_start,
+      :magic_ehp_month_max,
+      :magic_xp_year_start,
+      :magic_xp_year_max,
+      :magic_ehp_year_start,
+      :magic_ehp_year_max,
+      :cooking_xp_day_start,
+      :cooking_xp_day_max,
+      :cooking_ehp_day_start,
+      :cooking_ehp_day_max,
+      :cooking_xp_week_start,
+      :cooking_xp_week_max,
+      :cooking_ehp_week_start,
+      :cooking_ehp_week_max,
+      :cooking_xp_month_start,
+      :cooking_xp_month_max,
+      :cooking_ehp_month_start,
+      :cooking_ehp_month_max,
+      :cooking_xp_year_start,
+      :cooking_xp_year_max,
+      :cooking_ehp_year_start,
+      :cooking_ehp_year_max,
+      :woodcutting_xp_day_start,
+      :woodcutting_xp_day_max,
+      :woodcutting_ehp_day_start,
+      :woodcutting_ehp_day_max,
+      :woodcutting_xp_week_start,
+      :woodcutting_xp_week_max,
+      :woodcutting_ehp_week_start,
+      :woodcutting_ehp_week_max,
+      :woodcutting_xp_month_start,
+      :woodcutting_xp_month_max,
+      :woodcutting_ehp_month_start,
+      :woodcutting_ehp_month_max,
+      :woodcutting_xp_year_start,
+      :woodcutting_xp_year_max,
+      :woodcutting_ehp_year_start,
+      :woodcutting_ehp_year_max,
+      :fishing_xp_day_start,
+      :fishing_xp_day_max,
+      :fishing_ehp_day_start,
+      :fishing_ehp_day_max,
+      :fishing_xp_week_start,
+      :fishing_xp_week_max,
+      :fishing_ehp_week_start,
+      :fishing_ehp_week_max,
+      :fishing_xp_month_start,
+      :fishing_xp_month_max,
+      :fishing_ehp_month_start,
+      :fishing_ehp_month_max,
+      :fishing_xp_year_start,
+      :fishing_xp_year_max,
+      :fishing_ehp_year_start,
+      :fishing_ehp_year_max,
+      :firemaking_xp_day_start,
+      :firemaking_xp_day_max,
+      :firemaking_ehp_day_start,
+      :firemaking_ehp_day_max,
+      :firemaking_xp_week_start,
+      :firemaking_xp_week_max,
+      :firemaking_ehp_week_start,
+      :firemaking_ehp_week_max,
+      :firemaking_xp_month_start,
+      :firemaking_xp_month_max,
+      :firemaking_ehp_month_start,
+      :firemaking_ehp_month_max,
+      :firemaking_xp_year_start,
+      :firemaking_xp_year_max,
+      :firemaking_ehp_year_start,
+      :firemaking_ehp_year_max,
+      :crafting_xp_day_start,
+      :crafting_xp_day_max,
+      :crafting_ehp_day_start,
+      :crafting_ehp_day_max,
+      :crafting_xp_week_start,
+      :crafting_xp_week_max,
+      :crafting_ehp_week_start,
+      :crafting_ehp_week_max,
+      :crafting_xp_month_start,
+      :crafting_xp_month_max,
+      :crafting_ehp_month_start,
+      :crafting_ehp_month_max,
+      :crafting_xp_year_start,
+      :crafting_xp_year_max,
+      :crafting_ehp_year_start,
+      :crafting_ehp_year_max,
+      :smithing_xp_day_start,
+      :smithing_xp_day_max,
+      :smithing_ehp_day_start,
+      :smithing_ehp_day_max,
+      :smithing_xp_week_start,
+      :smithing_xp_week_max,
+      :smithing_ehp_week_start,
+      :smithing_ehp_week_max,
+      :smithing_xp_month_start,
+      :smithing_xp_month_max,
+      :smithing_ehp_month_start,
+      :smithing_ehp_month_max,
+      :smithing_xp_year_start,
+      :smithing_xp_year_max,
+      :smithing_ehp_year_start,
+      :smithing_ehp_year_max,
+      :mining_xp_day_start,
+      :mining_xp_day_max,
+      :mining_ehp_day_start,
+      :mining_ehp_day_max,
+      :mining_xp_week_start,
+      :mining_xp_week_max,
+      :mining_ehp_week_start,
+      :mining_ehp_week_max,
+      :mining_xp_month_start,
+      :mining_xp_month_max,
+      :mining_ehp_month_start,
+      :mining_ehp_month_max,
+      :mining_xp_year_start,
+      :mining_xp_year_max,
+      :mining_ehp_year_start,
+      :mining_ehp_year_max,
+      :runecraft_xp_day_start,
+      :runecraft_xp_day_max,
+      :runecraft_ehp_day_start,
+      :runecraft_ehp_day_max,
+      :runecraft_xp_week_start,
+      :runecraft_xp_week_max,
+      :runecraft_ehp_week_start,
+      :runecraft_ehp_week_max,
+      :runecraft_xp_month_start,
+      :runecraft_xp_month_max,
+      :runecraft_ehp_month_start,
+      :runecraft_ehp_month_max,
+      :runecraft_xp_year_start,
+      :runecraft_xp_year_max,
+      :runecraft_ehp_year_start,
+      :runecraft_ehp_year_max,
+      :overall_xp_day_start,
+      :overall_xp_day_max,
+      :overall_ehp_day_start,
+      :overall_ehp_day_max,
+      :overall_xp_week_start,
+      :overall_xp_week_max,
+      :overall_ehp_week_start,
+      :overall_ehp_week_max,
+      :overall_xp_month_start,
+      :overall_xp_month_max,
+      :overall_ehp_month_start,
+      :overall_ehp_month_max,
+      :overall_xp_year_start,
+      :overall_xp_year_max,
+      :overall_ehp_year_start,
+      :overall_ehp_year_max
       )
   end
 end

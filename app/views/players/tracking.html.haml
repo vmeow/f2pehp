@@ -51,24 +51,20 @@
         %tr
           %th{:align => "center", :colspan => 6}
             = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
-            = "F2P #{skill_name} #{@sort_by.upcase} Tracking"
+            = "F2P #{skill_name} #{@sort_by.upcase} Current Top #{@time.capitalize}"
       %thead
         %tr
           %th Rank
           %th{:align => "left"} Name
           %th Account
-          - if @sort_by == "lvl"
-            %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level", tracking_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
-          - else
-            %th{:class => @player_lvl_header}= link_to "Level", tracking_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
           - if @sort_by == "xp"
-            %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", tracking_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+            %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP Gained", tracking_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
           - else
-            %th{:class => @player_xp_header}= link_to "XP", tracking_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+            %th{:class => @player_xp_header}= link_to "XP Gained", tracking_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
           - if @sort_by == "ehp"
-            %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP", tracking_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+            %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP Gained", tracking_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
           - else
-            %th{:class => @player_ehp_header}= link_to "EHP", tracking_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+            %th{:class => @player_ehp_header}= link_to "EHP Gained", tracking_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
   
       %tbody
         - @players.each.with_index 1 do |player, index|
@@ -78,9 +74,8 @@
             - name = player.player_name.gsub(" ", "_")
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            %td= player["#{@skill}_lvl"]
-            %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
-            %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
+            %td= number_with_delimiter(player["#{@skill}_xp"].to_i - player["#{@skill}_xp_#{@time}_start"].to_i, :delimiter => ",") 
+            %td= number_with_delimiter(player["#{@skill}_ehp"].to_f - player["#{@skill}_ehp_#{@time}_start"].to_f, :delimiter => ",", :separator => ".") 
             
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
 
@@ -92,14 +87,11 @@
       %br
       = submit_tag "Search"
       
-  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
+  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
     = form_tag tracking_path, :method => "get", id: "add-player-form" do
-      = "Add to Tracking"
+      = "Add to Hiscores"
       %br
       = text_field_tag :player_to_add_name, params[:player_to_add_name], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
-      %br
-      = select_tag :player_to_add_acc, options_for_select(["Reg", "IM", "UIM", "HCIM"])
-      %br
       = submit_tag "Add"
       
   = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
@@ -111,7 +103,20 @@
       = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
       %br
       = submit_tag 'Compare', :id => "compare_submit"
-      
+
+  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
+    = form_tag tracking_path, :method => :get, :id => 'filters_form' do
+      = "Current Top Filter"
+      %br
+      = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-left: 25px;") do
+        = link_to "Day", tracking_path(:time => "day")
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = link_to "Week", tracking_path(:time => "week")
+        %br
+        = link_to "Month", tracking_path(:time => "month")
+        &nbsp&nbsp&nbsp
+        = link_to "Year", tracking_path(:time => "year")
+
   = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
     = form_tag tracking_path, :method => :get, :id => 'filters_form' do
       = "Filter Accounts"
