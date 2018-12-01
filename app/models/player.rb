@@ -214,4 +214,13 @@ class Player < ActiveRecord::Base
     end
   end
   
+  def update_player_start_stats(time)
+    all_skills = F2POSRSRanks::Application.config.skills + "overall"
+    all_skills.each do |skill|
+      xp = "#{skill}_xp".constantize
+      ehp = "#{skill}_ehp".constantize
+      update_attributes(:"#{skill}_xp_#{time}_start", xp)
+      update_attributes(:"#{skill}_ehp_#{time}_start", ehp)
+    end
+  end
 end
