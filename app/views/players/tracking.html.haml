@@ -84,75 +84,76 @@
             
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
 
-  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag tracking_path, :method => "get", id: "search-players-form" do
-      = "Search by name"
-      %br
-      = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
-      %br
-      = submit_tag "Search"
-      
-  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag tracking_path, :method => "get", id: "add-player-form" do
-      = "Add to Hiscores"
-      %br
-      = text_field_tag :player_to_add_name, params[:player_to_add_name], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
-      = submit_tag "Add"
-      
-  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag compare_path, :method => :get, :id => 'filters_form' do
-      = "Compare Users"
-      %br
-      = text_field_tag :player1, params[:player1], placeholder: "", :class => "search-field", style: "width: 100px;"
-      %br
-      = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
-      %br
-      = submit_tag 'Compare', :id => "compare_submit"
-
-  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag tracking_path, :method => :get, :id => 'filters_form' do
-      = "Current Top Filter"
-      %br
-      = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-left: 25px;") do
-        = link_to "Day", tracking_path(:time => "day")
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        = link_to "Week", tracking_path(:time => "week")
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 160px; max-width: 430px; overflow-x: auto; margin-top: 5px;") do 
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
+      = form_tag tracking_path, :method => "get", id: "search-players-form" do
+        = "Search by name"
         %br
-        = link_to "Month", tracking_path(:time => "month")
-        &nbsp&nbsp&nbsp
-        = link_to "Year", tracking_path(:time => "year")
-
-  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag tracking_path, :method => :get, :id => 'filters_form' do
-      = "Filter Accounts"
-      %br
-      = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
-        - ["Reg", "IM", "UIM", "HCIM"].each do |type|
-          &nbsp
-          = check_box_tag "filters_[#{type}]", 1, @filters.include?(type), :id => "filters_#{type}"
-          = type
-          - if type == "IM"
-            %br
-      = submit_tag 'Filter', :id => "filters_submit"
-      
-  = content_tag(:div, nil, class: ["container", "left", "filter"], style: "line-height: 18px; margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag tracking_path, :method => :get, :id => 'restrictions_form' do
-      = "Restrictions"
-      %br
-      = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
-        - ["3 combat", "1 defence", "10 hitpoints"].each do |type|
-          &nbsp
-          = check_box_tag "restrictions_[#{type}]", 1, @restrictions.include?(type), :id => "restrictions_#{type}"
-          = type
+        = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
+        %br
+        = submit_tag "Search"
+        
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
+      = form_tag tracking_path, :method => "get", id: "add-player-form" do
+        = "Add to Hiscores"
+        %br
+        = text_field_tag :player_to_add_name, params[:player_to_add_name], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
+        = submit_tag "Add"
+        
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
+      = form_tag compare_path, :method => :get, :id => 'filters_form' do
+        = "Compare Users"
+        %br
+        = text_field_tag :player1, params[:player1], placeholder: "", :class => "search-field", style: "width: 100px;"
+        %br
+        = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
+        %br
+        = submit_tag 'Compare', :id => "compare_submit"
+  
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
+      = form_tag tracking_path, :method => :get, :id => 'filters_form' do
+        = "Current Top Filter"
+        %br
+        = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-left: 25px;") do
+          = link_to "Day", tracking_path(:time => "day")
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          = link_to "Week", tracking_path(:time => "week")
           %br
-      = submit_tag 'Filter', :id => "restrictions_submit"
-
-  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag tracking_path, :method => :get, :id => 'show_limits_form' do
-      = "Players Per Page"
-      %br
-      = select_tag :show_limit, options_for_select(["25", "50", "100", "250", "500"], @show_limit)
-      %br
-      = submit_tag 'Refresh', :id => "show_limit_submit"
+          = link_to "Month", tracking_path(:time => "month")
+          &nbsp&nbsp&nbsp
+          = link_to "Year", tracking_path(:time => "year")
+  
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
+      = form_tag tracking_path, :method => :get, :id => 'filters_form' do
+        = "Filter Accounts"
+        %br
+        = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
+          - ["Reg", "IM", "UIM", "HCIM"].each do |type|
+            &nbsp
+            = check_box_tag "filters_[#{type}]", 1, @filters.include?(type), :id => "filters_#{type}"
+            = type
+            - if type == "IM"
+              %br
+        = submit_tag 'Filter', :id => "filters_submit"
+        
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "line-height: 18px; margin-left: 15px; width: 140px; height: 126px;") do 
+      = form_tag tracking_path, :method => :get, :id => 'restrictions_form' do
+        = "Restrictions"
+        %br
+        = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
+          - ["3 combat", "1 defence", "10 hitpoints"].each do |type|
+            &nbsp
+            = check_box_tag "restrictions_[#{type}]", 1, @restrictions.include?(type), :id => "restrictions_#{type}"
+            = type
+            %br
+        = submit_tag 'Filter', :id => "restrictions_submit"
+  
+    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
+      = form_tag tracking_path, :method => :get, :id => 'show_limits_form' do
+        = "Players Per Page"
+        %br
+        = select_tag :show_limit, options_for_select(["25", "50", "100", "250", "500"], @show_limit)
+        %br
+        = submit_tag 'Refresh', :id => "show_limit_submit"
 
 = will_paginate @players
