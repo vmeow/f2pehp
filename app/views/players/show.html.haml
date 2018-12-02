@@ -131,15 +131,15 @@
     = link_to "Records", player_path(@player.player_name, :display => "records")
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
     = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
-      %thead
-        %th{:colspan => 5}
-          = "Personal scores for "
-          - if @player.player_acc_type == "Reg"
-            = " (Reg)"
-          - else
-            = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
-          = " #{@player.player_name}"
       - if @display == "stats"
+        %thead
+          %th{:colspan => 5}
+            = "Personal scores for "
+            - if @player.player_acc_type == "Reg"
+              = " (Reg)"
+            - else
+              = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
+            = " #{@player.player_name}"
         %thead
           %th{:align => "center"}  
           %th{:align => "center"}  Level
@@ -165,6 +165,14 @@
             %td= @player["combat_lvl"]
       - elsif @display == "gains"
         %thead
+          %th{:colspan => 5}
+            = "Current Gains for "
+            - if @player.player_acc_type == "Reg"
+              = " (Reg)"
+            - else
+              = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
+            = " #{@player.player_name}"
+        %thead
           %th{:align => "center"}  
           %th{:align => "center"} #{@time.capitalize} XP Gained
           %th{:align => "center"} #{@time.capitalize} EHP Gained
@@ -179,6 +187,14 @@
               %td= number_with_delimiter(@player["#{skill}_xp"].to_i - @player["#{skill}_xp_#{@time}_start"].to_i, :delimiter => ",") 
               %td= number_with_delimiter(number_with_precision(@player["#{skill}_ehp"].to_f - @player["#{skill}_ehp_#{@time}_start"], precision: 2), :delimiter => ",", :separator => ".") 
       - else
+        %thead
+          %th{:colspan => 5}
+            = "Record Gains for "
+            - if @player.player_acc_type == "Reg"
+              = " (Reg)"
+            - else
+              = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
+            = " #{@player.player_name}"
         %thead
           %th{:align => "center"}
           %th{:align => "center"} Record #{@time.capitalize} XP
