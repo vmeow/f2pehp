@@ -75,7 +75,7 @@
             %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
             %td= number_with_delimiter(player["#{@skill}_xp"].to_i - player["#{@skill}_xp_#{@time}_start"].to_i, :delimiter => ",") 
-            %td= number_with_delimiter(player["#{@skill}_ehp"].to_f - player["#{@skill}_ehp_#{@time}_start"].to_f, :delimiter => ",", :separator => ".") 
+            %td= number_with_delimiter(number_with_precision(player["#{@skill}_ehp"].to_f - player["#{@skill}_ehp_#{@time}_start"].to_f, precision: 2), :delimiter => ",", :separator => ".") 
             
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
 

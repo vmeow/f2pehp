@@ -134,14 +134,13 @@ class PlayersController < ApplicationController
     case @sort_by
     when "ehp"
       @player_ehp_header = 'hilite'
-      ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC"
+      ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp DESC"
     when "xp"
       @player_xp_header = 'hilite'
-      ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC"
+      ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp DESC"
     end
     
-    
-    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
+    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(ordering)
     
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10)

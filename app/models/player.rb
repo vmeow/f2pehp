@@ -1,5 +1,9 @@
 class Player < ActiveRecord::Base
   
+  SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
+            "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
+            "smithing", "mining", "runecraft", "overall"]
+  
   def self.clean_trailing_leading_spaces(str)
     if str.downcase == "_yrak"
       return str
@@ -215,12 +219,12 @@ class Player < ActiveRecord::Base
   end
   
   def update_player_start_stats(time)
-    all_skills = F2POSRSRanks::Application.config.skills + "overall"
-    all_skills.each do |skill|
-      xp = "#{skill}_xp".constantize
-      ehp = "#{skill}_ehp".constantize
-      update_attributes(:"#{skill}_xp_#{time}_start", xp)
-      update_attributes(:"#{skill}_ehp_#{time}_start", ehp)
+    puts player_name
+    SKILLS.each do |skill|
+      xp = self.read_attribute("#{skill}_xp")
+      ehp = self.read_attribute("#{skill}_ehp")
+      update_attributes("#{skill}_xp_#{time}_start" => xp)
+      update_attributes("#{skill}_ehp_#{time}_start" => ehp)
     end
   end
 end
