@@ -42,14 +42,12 @@ namespace :players do
   
   desc "Update week stats for players with over 250 overall EHP"
   task :start_week => :environment do
-    if Time.now.gmtime.wday == 1
-      Player.where("overall_ehp > 250").find_in_batches(batch_size: 25) do |batch|
-        batch.each do |player|
-          begin
-            player.update_player_start_stats("week")
-          rescue
-            next
-          end
+    Player.where("overall_ehp > 250").find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        begin
+          player.update_player_start_stats("week")
+        rescue
+          next
         end
       end
     end
@@ -57,14 +55,12 @@ namespace :players do
   
   desc "Update month stats for players with over 250 overall EHP"
   task :start_month => :environment do
-    if Time.now.gmtime.day == 2
-      Player.where("overall_ehp > 250").find_in_batches(batch_size: 25) do |batch|
-        batch.each do |player|
-          begin
-            player.update_player_start_stats("month")
-          rescue
-            next
-          end
+    Player.where("overall_ehp > 250").find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        begin
+          player.update_player_start_stats("month")
+        rescue
+          next
         end
       end
     end
@@ -72,14 +68,12 @@ namespace :players do
   
   desc "Update year stats for players with over 250 overall EHP"
   task :start_year => :environment do
-    if Time.now.gmtime.day == 2 && Time.now.gmtime.month == 12
-      Player.where("overall_ehp > 250").find_in_batches(batch_size: 25) do |batch|
-        batch.each do |player|
-          begin
-            player.update_player_start_stats("year")
-          rescue
-            next
-          end
+    Player.where("overall_ehp > 250").find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        begin
+          player.update_player_start_stats("year")
+        rescue
+          next
         end
       end
     end
@@ -96,11 +90,11 @@ namespace :players do
             player.update_player_start_stats("week")
           end
           
-          if Time.now.gmtime.day == 2
+          if Time.now.gmtime.day == 1
             player.update_player_start_stats("month")
           end
 
-          if Time.now.gmtime.day == 2 && Time.now.gmtime.month == 12
+          if Time.now.gmtime.month == 1 and Time.now.gmtime.day == 1
             player.update_player_start_stats("year")
           end
         rescue
