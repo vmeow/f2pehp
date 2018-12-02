@@ -365,8 +365,7 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update
     @player.update_player
-    @player
-    redirect_to @player
+    redirect_to player_path(@player.player_name)
   end
   
   def update_player
