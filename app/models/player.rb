@@ -217,7 +217,9 @@ class Player < ActiveRecord::Base
       return "cutoff"
     end
     
-    check_record_gains
+    if overall_ehp > 250 or F2POSRSRanks::Application.config.supporters.include?(player_name)
+      check_record_gains
+    end
   end
   
   def check_record_gains
