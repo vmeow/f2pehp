@@ -1,15 +1,15 @@
-- @title = "Hiscores" 
+- @title = "Record Gains" 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
 %p#notice= notice
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks", "selected-link"]) do
-    = "Hiscores"
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
+    = link_to "Hiscores", ranks_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
+  = content_tag(:div, nil, class: ["bar", "ehp", "selected-link"]) do 
+    = "Records"
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "links"]) do 
@@ -26,18 +26,13 @@
     = content_tag(:div, nil, class: ["container", "skills"], style: "width: 200px; margin-bottom: 0px; line-height: 28px;") do 
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "Overall", :controller => "players", :action => "ranks", :skill => "overall"
+      = link_to "Overall", :controller => "players", :action => "records", :skill => "overall"
       - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
         %br
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         = image_tag "skills/#{skill}.png", style: "vertical-align: -6px;"
-        = link_to "#{skill.capitalize}", :controller => "players", :action => "ranks", :skill => "#{skill}"
+        = link_to "#{skill.capitalize}", :controller => "players", :action => "records", :skill => "#{skill}"
         
-      %br  
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/combat.png", style: "vertical-align: -6px;"
-      = link_to "Combat Level", :controller => "players", :action => "ranks", :skill => "combat", :sort_by => "lvl"
-      
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 430px; max-width: 430px; overflow-x: auto; margin-top: 5px;") do 
@@ -46,29 +41,21 @@
       %thead
         %tr
           %th{:align => "center", :colspan => 6}
-            - if @skill == "combat"
-              = image_tag "skills/combat.png", style: "vertical-align: -6px;"
-            - else
-              = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
-            = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
+            = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
+            = "F2P #{skill_name} #{@sort_by.upcase} Current Top #{@time.capitalize}"
       %thead
         %tr
           %th Rank
           %th{:align => "left"} Name
           %th Account
-          - if @sort_by == "lvl"
-            %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
+          - if @sort_by == "xp"
+            %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "Record XP", records_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
           - else
-            %th{:class => @player_lvl_header}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
-          - if @skill != "combat"
-            - if @sort_by == "xp"
-              %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
-            - else
-              %th{:class => @player_xp_header}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
-            - if @sort_by == "ehp"
-              %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
-            - else
-              %th{:class => @player_ehp_header}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+            %th{:class => @player_xp_header}= link_to "Record XP", records_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+          - if @sort_by == "ehp"
+            %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "Record EHP", records_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+          - else
+            %th{:class => @player_ehp_header}= link_to "Record EHP", records_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
   
       %tbody
         - @players.each.with_index 1 do |player, index|
@@ -76,20 +63,15 @@
             - offset = index + (@players.current_page - 1)*@show_limit.to_i
             %td{:align => "right"}= offset
             - name = player.player_name.gsub(" ", "_")
-            - if player.player_name == "Based Chew"
-              %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
-            - else
-              %td{:align => "left"}= link_to player.player_name, "players/#{name}"           
+            %td{:align => "left"}= link_to player.player_name, "players/#{name}"
             %td{:align => "center"}= player.player_acc_type
-            %td= player["#{@skill}_lvl"]
-            - if @skill != "combat"
-              %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
-              %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
+            %td= number_with_delimiter(player["#{@skill}_xp_#{@time}_max"].to_i, :delimiter => ",") 
+            %td= number_with_delimiter(number_with_precision(player["#{@skill}_ehp_#{@time}_max"].to_f, precision: 2), :delimiter => ",", :separator => ".") 
             
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
 
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag ranks_path, :method => "get", id: "search-players-form" do
+    = form_tag records_path, :method => "get", id: "search-players-form" do
       = "Search by name"
       %br
       = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
@@ -97,11 +79,10 @@
       = submit_tag "Search"
       
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag ranks_path, :method => "get", id: "add-player-form" do
+    = form_tag records_path, :method => "get", id: "add-player-form" do
       = "Add to Hiscores"
       %br
       = text_field_tag :player_to_add_name, params[:player_to_add_name], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
-      %br
       = submit_tag "Add"
       
   = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
@@ -113,9 +94,22 @@
       = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
       %br
       = submit_tag 'Compare', :id => "compare_submit"
-      
+
+  = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
+    = form_tag records_path, :method => :get, :id => 'filters_form' do
+      = "Current Top Filter"
+      %br
+      = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-left: 25px;") do
+        = link_to "Day", records_path(:time => "day")
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = link_to "Week", records_path(:time => "week")
+        %br
+        = link_to "Month", records_path(:time => "month")
+        &nbsp&nbsp&nbsp
+        = link_to "Year", records_path(:time => "year")
+
   = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag ranks_path, :method => :get, :id => 'filters_form' do
+    = form_tag records_path, :method => :get, :id => 'filters_form' do
       = "Filter Accounts"
       %br
       = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
@@ -128,7 +122,7 @@
       = submit_tag 'Filter', :id => "filters_submit"
       
   = content_tag(:div, nil, class: ["container", "left", "filter"], style: "line-height: 18px; margin-left: 15px; width: 140px; height: 126px;") do 
-    = form_tag ranks_path, :method => :get, :id => 'restrictions_form' do
+    = form_tag records_path, :method => :get, :id => 'restrictions_form' do
       = "Restrictions"
       %br
       = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
@@ -138,9 +132,9 @@
           = type
           %br
       = submit_tag 'Filter', :id => "restrictions_submit"
-      
+
   = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
-    = form_tag ranks_path, :method => :get, :id => 'show_limits_form' do
+    = form_tag records_path, :method => :get, :id => 'show_limits_form' do
       = "Players Per Page"
       %br
       = select_tag :show_limit, options_for_select(["25", "50", "100", "250", "500"], @show_limit)

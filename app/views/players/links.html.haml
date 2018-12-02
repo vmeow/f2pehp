@@ -1,4 +1,4 @@
-- @title = "F2P OSRS Links" 
+- @title = "Links" 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
 %p#notice= notice
@@ -9,26 +9,28 @@
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Current Top", tracking_path
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "Records", records_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "calcs"]) do 
-    = content_tag(:div, nil, class: ["container", "calcs"], style: "margin-bottom: 0px; padding: 0px;", id: "calcs") do 
-      = "Calculators"
-    = content_tag(:div, nil, class: ["dropdown", "container"], id: "calcs-list", remote: true) do
-      = link_to "Combat DPS", dps_path
-      = link_to "Combat Lvl", combat_path
-      = link_to "GP/XP, Alch", gpxp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = content_tag(:div, nil, class: ["container", "links"], style: "margin-bottom: 0px; padding: 0px;", id: "links") do 
-      = "Links"
-    = content_tag(:div, nil, class: ["dropdown", "container"], id: "links-list", remote: true) do
-      = link_to "Links", links_path
-      = link_to "Hall of Shame", fake_path
+  = content_tag(:div, nil, class: ["bar", "links", "selected-link"]) do 
+    = "Links"
   = content_tag(:div, nil, class: ["bar", "changelog"]) do 
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
     
-= content_tag(:div, nil, class: "container", style: "width: 650px;") do 
+
+= link_to "Hall of Shame", fake_path
+%br
+= "Calculators:"
+= link_to "Combat DPS Calc", dps_path
+= " | "
+= link_to "Combat Level Calc", combat_path
+= " | "
+= link_to "GP/XP and Alch prices", gpxp_path
+
+
+= content_tag(:div, nil, class: "container", style: "width: 650px; margin-top: 15px;") do 
   = content_tag(:div, nil, class: "left", style: "text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
     %h1 Efficiency
     %h5 Guides
@@ -43,6 +45,15 @@
     = link_to "Lvl 3 UIM Skiller Startup Guide - Turipo", "https://www.reddit.com/r/W385/comments/5uk9ku/f2p_level_3_skiller_ultimate_ironman_startup_guide/"
     %br
     = link_to "Efficient Multiquesting - EZScape", "http://youtu.be/d3zcXf90ODc"
+    %br
+    %br
+    
+    %h5 Calculators
+    = link_to "Combat DPS", dps_path
+    %br
+    = link_to "Combat Lvl", combat_path
+    %br
+    = link_to "GP/XP, Alch", gpxp_path
     %br
     %br
     

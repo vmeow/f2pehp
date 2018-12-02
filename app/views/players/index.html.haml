@@ -9,20 +9,11 @@
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
     = link_to "Current Top", tracking_path
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "Records", records_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "calcs"]) do 
-    = content_tag(:div, nil, class: ["container", "calcs"], style: "margin-bottom: 0px; padding: 0px;", id: "calcs") do 
-      = "Calculators"
-    = content_tag(:div, nil, class: ["dropdown", "container"], id: "calcs-list", remote: true) do
-      = link_to "Combat DPS", dps_path
-      = link_to "Combat Lvl", combat_path
-      = link_to "GP/XP, Alch", gpxp_path
   = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = content_tag(:div, nil, class: ["container", "links"], style: "margin-bottom: 0px; padding: 0px;", id: "links") do 
-      = "Links"
-    = content_tag(:div, nil, class: ["dropdown", "container"], id: "links-list", remote: true) do
-      = link_to "Links", links_path
-      = link_to "Hall of Shame", fake_path
+    = link_to "Links", links_path
   = content_tag(:div, nil, class: ["bar", "changelog"]) do 
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
@@ -33,8 +24,13 @@
     = content_tag(:div, nil, class: "motd") do 
       %h1 News
       %h6 
+        = "v1.50 release: The long awaited"
         = link_to "EHP and XP tracking", tracking_path
-        = " released. Personal scores page now displays time period gains and records in addition to stats."
+        = "and"
+        = link_to "Record Gains!", records_path
+        = "Personal scores page now displays time period gains and records in addition to stats."
+      %h6
+        = "Calculators and Hall of Shame moved to Links."
       %h6
         = "The June EHP Competition has ended. Congratulations to "
         %br

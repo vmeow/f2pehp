@@ -23,10 +23,8 @@ Rails.application.routes.draw do
   get 'compare' => 'players#compare'
   get 'test' => 'players#test'
   get 'competitions' => 'players#competitions'
-  get 'plaintextcomp' => 'players#plaintextcomp'
   get 'tracking' => 'players#tracking'
-  get 'no_comfort' => 'players#no_comfort'
-  put 'players/:id' => 'players#update_player'
+  get 'records' => 'players#records'
   put 'players.:id' => 'players#update_player'
   put 'update' => 'players#update_player'
   get 'players/:id/update' => 'players#update', as: :update_player
@@ -37,8 +35,7 @@ Rails.application.routes.draw do
   post 'items#update_prices' => 'items#update_prices', as: :update_prices
   post 'items#create_items' => 'items#create_items', as: :create_items
 
-  get 'clear' => 'players#index', as: :clear
-    # Example of regular route:
+  # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

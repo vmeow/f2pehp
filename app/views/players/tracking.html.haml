@@ -9,20 +9,11 @@
   = content_tag(:div, nil, class: ["bar", "fake", "selected-link"]) do 
     = "Current Top"
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "Records", records_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "calcs"]) do 
-    = content_tag(:div, nil, class: ["container", "calcs"], style: "margin-bottom: 0px; padding: 0px;", id: "calcs") do 
-      = "Calculators"
-    = content_tag(:div, nil, class: ["dropdown", "container"], id: "calcs-list", remote: true) do
-      = link_to "Combat DPS", dps_path
-      = link_to "Combat Lvl", combat_path
-      = link_to "GP/XP, Alch", gpxp_path
   = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = content_tag(:div, nil, class: ["container", "links"], style: "margin-bottom: 0px; padding: 0px;", id: "links") do 
-      = "Links"
-    = content_tag(:div, nil, class: ["dropdown", "container"], id: "links-list", remote: true) do
-      = link_to "Links", links_path
-      = link_to "Hall of Shame", fake_path
+    = link_to "Links", links_path
   = content_tag(:div, nil, class: ["bar", "changelog"]) do 
     = link_to "Changelog", changelog_path
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
@@ -43,6 +34,20 @@
         = link_to "#{skill.capitalize}", :controller => "players", :action => "tracking", :skill => "#{skill}"
         
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
+    = "Reset Schedule: "
+    %br
+    = "day: 00:00 GMT"
+    %br
+    = "week: Monday 00:00 GMT"
+    %br
+    = "month: 1st of month, 00:00 GMT"
+    %br
+    = "year: Jan 1st, 00:00 GMT"
+    %br
+    %br
+    = "Tracking only available to players"
+    %br
+    = "with >250 EHP, or supporters."
 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 430px; max-width: 430px; overflow-x: auto; margin-top: 5px;") do 
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 430px; height: 41px;") 
@@ -51,7 +56,7 @@
         %tr
           %th{:align => "center", :colspan => 6}
             = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
-            = "F2P #{skill_name} #{@sort_by.upcase} Current Top #{@time.capitalize}"
+            = "F2P #{skill_name} #{@sort_by.upcase} Current Top #{@time.capitalize} of #{@time_display}"
       %thead
         %tr
           %th Rank
