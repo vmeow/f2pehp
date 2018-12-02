@@ -8,7 +8,7 @@
   = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "Hiscores", ranks_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Competitions", competitions_path
+    = link_to "Current Top", tracking_path
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "calcs"]) do 
@@ -32,6 +32,23 @@
 = content_tag(:div, nil, class: "container", style: "width: 760px;") do 
   = content_tag(:div, nil, class: "left", style: "margin-left: 5px; text-align: left; width: 340px; padding: 10px;") do 
     %h3 F2P OSRS Changelog
+    %h5 October 30, 2018
+    = "- Global release of Old School Runescape Mobile app"
+    %br
+    = "- Shitton of new skill total and regular F2P worlds"
+    %br
+    %br
+    
+    %h5 September 27, 2018
+    = "Left click Withdraw-X from bank"
+    %br
+    %br
+    
+    %h5 September 13, 2018
+    = "Left click range cooking"
+    %br
+    %br
+    
     %h5 July 5, 2018
     = "New F2P worlds: 118 (NA West), 119 (NA West, 500 skill total), 124 (Aus)"
     %br
@@ -156,9 +173,20 @@
     
   = content_tag(:div, nil, class: "left", style: "margin-left: 10px; text-align: left; width: 340px; padding: 10px;") do 
     %h3 F2P Wiki Changelog
+    %h5 v1.50 December 2, 2018
+    = "Release of XP and EHP tracking"
+    %br
+    = "Various bug fixes, refactoring, and QoL"
+    %br
+    = "We'll try to keep a better changelog :)"
+    %br
+    %br
+    
     %h5 v1.23 ???
     = "Minor fixes and refactoring: "
     = "Do not display null combat levels"
+    %br
+    %br
     
     %h5 v1.22 July 14, 2018
     = "Adding a player to hiscores only requires a name, and automatically finds the account type."

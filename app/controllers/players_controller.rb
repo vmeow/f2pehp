@@ -281,6 +281,14 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    @display = params[:display] || session[:display] || "stats"
+    @time = params[:time] || session[:time] || "week"
+    
+    if params[:display] != session[:display] || params[:time] != session[:time]
+      session[:display] = @display
+      session[:time] = @time
+    end
+
     id = params[:search] || params[:id]
     @player = Player.find_player(id)
   end

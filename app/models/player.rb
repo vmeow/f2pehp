@@ -216,6 +216,30 @@ class Player < ActiveRecord::Base
     if remove_cutoff
       return "cutoff"
     end
+    
+    check_record_gains
+  end
+  
+  def check_record_gains
+    SKILLS.each do |skill|
+      xp = self.read_attribute("#{skill}_xp")
+      ehp = self.read_attribute("#{skill}_ehp")
+      ["day", "week", "month", "year"].each do |time|
+        start_xp = self.read_attribute("#{skill}_xp_#{time}_start")
+        start_ehp = self.read_attribute("#{skill}_ehp_#{time}_start")
+        max_xp = self.read_attribute("#{skill}_xp_#{time}_max")
+        max_ehp = self.read_attribute("#{skill}_ehp_#{time}_max")
+        if start_xp.nil? or start_ehp.nil?
+          next
+        end
+        if max_xp.nil? or xp - start_xp > max_xp
+          update_attributes("#{skill}_xp_#{time}_max" => xp - start_xp)
+        end
+        if max_ehp.nil? or ehp - start_ehp > max_ehp
+          update_attributes("#{skill}_ehp_#{time}_max" => ehp - start_ehp)
+        end
+      end
+    end
   end
   
   def update_player_start_stats(time)

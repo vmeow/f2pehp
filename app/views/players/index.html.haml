@@ -7,7 +7,7 @@
   = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "Hiscores", ranks_path
   = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Competitions", competitions_path
+    = link_to "Current Top", tracking_path
   = content_tag(:div, nil, class: ["bar", "ehp"]) do 
     = link_to "EHP Rates", ehp_path
   = content_tag(:div, nil, class: ["bar", "calcs"]) do 
@@ -33,13 +33,8 @@
     = content_tag(:div, nil, class: "motd") do 
       %h1 News
       %h6 
-        = "Jagex released a change to their OSRS hiscores API, meaning our algorithms would detect LMS scores as P2P minigame scores. This has been fixed; apologies for any inconveniences and thanks for your patience."
-      %h6 
-        = "We are actively looking for volunteer contributors to improve and maintain the F2P.wiki. If you are interested, please email "
-        = link_to "f2posrsranks@gmail.com.", "mailto:f2posrsranks@gmail.com"
-        = "Working knowledge of git version control is crucial, and Ruby on Rails/HTML/CSS/JavaScript very helpful."
-      %h6 
-        = "Site refactoring in progress. Please let us know if you run across any issues, thank you!  "
+        = link_to "EHP and XP tracking", tracking_path
+        = " released."
       %h6
         = "The June EHP Competition has ended. Congratulations to "
         %br
