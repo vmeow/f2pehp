@@ -98,7 +98,7 @@
   
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
       = form_tag records_path, :method => :get, :id => 'filters_form' do
-        = "Current Top Filter"
+        = "Time Period"
         %br
         = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-left: 25px;") do
           = link_to "Day", records_path(:time => "day")
