@@ -45,7 +45,6 @@ class PlayersController < ApplicationController
   end
   
   def tracking
-    Time.zone = "Pacific Time (US & Canada)"
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
     @restrictions = params[:restrictions_] || {}
@@ -54,13 +53,13 @@ class PlayersController < ApplicationController
     @time = params[:time] || session[:time] || "week"
     case @time
     when "day"
-      @time_display = Time.zone.now.strftime("%b %d, %Y")
+      @time_display = Time.now.gmtime.strftime("%b %d, %Y")
     when "week"
-      @time_display = Time.zone.now.beginning_of_week.strftime("%b %d, %Y")
+      @time_display = Time.now.gmtime.beginning_of_week.strftime("%b %d, %Y")
     when "month"
-      @time_display = Time.zone.now.strftime("%b %Y")
+      @time_display = Time.now.gmtime.strftime("%b %Y")
     when "year"
-      @time_display = Time.zone.now.year
+      @time_display = Time.now.gmtime.year
     end  
       
     if @filters == {}

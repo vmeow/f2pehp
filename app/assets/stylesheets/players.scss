@@ -459,6 +459,12 @@ a[href$="/Faij"]:after {  /* For Faij */
   vertical-align: -5px;
 }
 
+a[href$="/Frogmask"]:after {  /* For Faij */
+  padding: 3px;
+  content: image-url("flairs/frog.png");
+  vertical-align: -5px;
+}
+
 a[href$="/UncleTomas"]:after {  
   padding: 3px;
   content: image-url("flairs/shade_robe.png");
