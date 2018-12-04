@@ -4,6 +4,8 @@ class Player < ActiveRecord::Base
             "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
             "smithing", "mining", "runecraft", "overall"]
   
+  TIMES = ["day", "week", "month", "year"]
+  
   def self.clean_trailing_leading_spaces(str)
     if str.downcase == "_yrak"
       return str
@@ -218,6 +220,13 @@ class Player < ActiveRecord::Base
     end
     
     if overall_ehp > 250 or F2POSRSRanks::Application.config.supporters.include?(player_name)
+      TIMES.each do |time|
+        xp = self.read_attribute("overall_xp_#{time}_start")
+        if xp.nil? or xp == 0
+          update_player_start_stats(time)
+        end
+      end
+      
       check_record_gains
     end
   end
@@ -226,7 +235,7 @@ class Player < ActiveRecord::Base
     SKILLS.each do |skill|
       xp = self.read_attribute("#{skill}_xp")
       ehp = self.read_attribute("#{skill}_ehp")
-      ["day", "week", "month", "year"].each do |time|
+      TIMES.each do |time|
         start_xp = self.read_attribute("#{skill}_xp_#{time}_start")
         start_ehp = self.read_attribute("#{skill}_ehp_#{time}_start")
         max_xp = self.read_attribute("#{skill}_xp_#{time}_max")
