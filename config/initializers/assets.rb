@@ -55,7 +55,8 @@ F2POSRSRanks::Application.configure do
                         "H C Gilrix",
                         "Frogmask",
                         "Adentia",
-                        "Sir BoJo"]
+                        "Sir BoJo",
+                        "f2p Ello"]
    
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
