@@ -45,7 +45,7 @@ supporters = ["Bargan",
               "Frogmask",
               "NoQuestsHCIM",
               "Adentia",
-              "5perm_sock",
+              "5perm sock",
               "Sir BoJo",
               "f2p Ello"]
 
