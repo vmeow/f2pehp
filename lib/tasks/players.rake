@@ -43,6 +43,7 @@ supporters = ["Bargan",
               "Tohno1612",
               "H C Gilrix",
               "Frogmask",
+              "NoQuestsHCIM",
               "Adentia",
               "Sir BoJo",
               "f2p Ello"]
