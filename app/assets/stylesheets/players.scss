@@ -615,6 +615,13 @@ a[href$="/n4ckerd"]:after {
   vertical-align: -8px;
 }
 
+
+a[href$="/NoQuestsHCIM"]:after {  
+  padding: 3px;
+  content: image-url("flairs/noquest.png");
+  vertical-align: -8px;
+}
+
 a[href$="/Adentia"]:after {  
   padding: 3px;
   content: image-url("items/Bunny_ears.png");
