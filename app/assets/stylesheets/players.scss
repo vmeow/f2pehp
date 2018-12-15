@@ -641,6 +641,13 @@ a[href$="/f2p_Ello"]:after {
   vertical-align: -12px;
 }
 
+
+a[href$="/Ghost_Bloke"]:after {  
+  padding: 3px;
+  content: image-url("flairs/ghost_bloke.png");
+  vertical-align: -7px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
