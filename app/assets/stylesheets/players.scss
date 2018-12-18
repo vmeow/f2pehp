@@ -634,19 +634,23 @@ a[href$="/Sir_BoJo"]:after {
   vertical-align: -12px;
 }
 
-
 a[href$="/f2p_Ello"]:after {  
   padding: 3px;
   content: image-url("items/Book_of_knowledge.png");
   vertical-align: -12px;
 }
 
-
 a[href$="/Ghost_Bloke"]:after {  
   padding: 3px;
   content: image-url("flairs/ghost_bloke.png");
   vertical-align: -7px;
 }
+
+// a[href$="/Fe_Apes"]:after {  
+//   padding: 3px;
+//   content: image-url("flairs/ghost_bloke.png");
+//   vertical-align: -7px;
+// }
 
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
