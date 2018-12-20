@@ -646,11 +646,11 @@ a[href$="/Ghost_Bloke"]:after {
   vertical-align: -7px;
 }
 
-// a[href$="/Fe_Apes"]:after {  
-//   padding: 3px;
-//   content: image-url("flairs/ghost_bloke.png");
-//   vertical-align: -7px;
-// }
+a[href$="/Fe_Apes"]:after {  
+  padding: 3px;
+  content: image-url("flairs/fe_apes.jpg");
+  vertical-align: -9px;
+}
 
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
