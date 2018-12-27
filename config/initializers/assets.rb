@@ -60,7 +60,8 @@ F2POSRSRanks::Application.configure do
                         "Sir BoJo",
                         "f2p Ello",
                         "Ghost Bloke",
-                        "Fe Apes"]
+                        "Fe Apes",
+                        "Iron of One"]
    
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",

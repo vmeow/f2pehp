@@ -652,6 +652,12 @@ a[href$="/Fe_Apes"]:after {
   vertical-align: -9px;
 }
 
+a[href$="/Iron_of_One"]:after {  
+  padding: 3px;
+  content: image-url("items/Dark_cavalier.png");
+  vertical-align: -7px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;

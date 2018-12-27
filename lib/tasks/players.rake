@@ -49,7 +49,8 @@ supporters = ["Bargan",
               "Sir BoJo",
               "f2p Ello",
               "Ghost Bloke",
-              "Fe Apes"]
+              "Fe Apes",
+              "Iron of One"]
 
 SUPPORTERS = "("
 supporters.each do |name|
