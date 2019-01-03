@@ -658,6 +658,12 @@ a[href$="/Iron_of_One"]:after {
   vertical-align: -7px;
 }
 
+a[href$="/InsurgentF2P"]:after {  
+  padding: 3px;
+  content: image-url("skills/defence.png");
+  vertical-align: -5px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
