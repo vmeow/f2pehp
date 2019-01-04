@@ -664,6 +664,12 @@ a[href$="/InsurgentF2P"]:after {
   vertical-align: -5px;
 }
 
+a[href$="/cwismis_noob"]:after {  
+  padding: 3px;
+  content: image-url("flairs/christmas_tree.png");
+  vertical-align: -9px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
