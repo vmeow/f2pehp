@@ -670,6 +670,12 @@ a[href$="/cwismis_noob"]:after {
   vertical-align: -9px;
 }
 
+a[href$="/Sad_Jesus"]:after {  
+  padding: 3px;
+  content: image-url("flairs/sad_jesus.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
