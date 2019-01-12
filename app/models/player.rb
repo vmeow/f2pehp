@@ -63,13 +63,13 @@ class Player < ActiveRecord::Base
   def check_hc_death
     if player_acc_type == "HCIM"
       begin
-        hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{self.player_name}")
-        hc_stats = hc_uri.read.split(" ")
-        hc_xp = hc_stats[0].split(",")[2].to_f
         im_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{self.player_name}")
         im_stats = im_uri.read.split(" ")
         im_xp = im_stats[0].split(",")[2].to_f
-        if hc_xp < im_xp
+        hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{self.player_name}")
+        hc_stats = hc_uri.read.split(" ")
+        hc_xp = hc_stats[0].split(",")[2].to_f
+        if hc_xp < (im_xp - 50000)
           update_attribute(:player_acc_type, "IM")
         end
       rescue Exception => e   
@@ -213,7 +213,7 @@ class Player < ActiveRecord::Base
     if check_p2p
       return "p2p"
     end
-    # check_hc_death
+    check_hc_death
     calc_combat
     if remove_cutoff
       return "cutoff"
