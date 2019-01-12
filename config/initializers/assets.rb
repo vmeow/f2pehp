@@ -64,7 +64,8 @@ F2POSRSRanks::Application.configure do
                         "Iron of One",
                         "InsurgentF2P",
                         "cwismis noob",
-                        "Sad Jesus"]
+                        "Sad Jesus",
+                        "SapphireHam"]
    
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",

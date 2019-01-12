@@ -676,6 +676,12 @@ a[href$="/Sad_Jesus"]:after {
   vertical-align: -8px;
 }
 
+a[href$="/SapphireHam"]:after {  
+  padding: 3px;
+  content: image-url("items/Coal.gif");
+  vertical-align: -11px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
