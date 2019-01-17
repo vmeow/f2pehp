@@ -682,6 +682,12 @@ a[href$="/SapphireHam"]:after {
   vertical-align: -11px;
 }
 
+a[href$="/ColdFingers1"]:after {  
+  padding: 3px;
+  content: image-url("flairs/ColdFingers1.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
