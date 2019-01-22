@@ -391,25 +391,28 @@ class PlayersController < ApplicationController
       session[:show_limit] = @show_limit
     end
     
-    case @sort_by
-    when "ehp"
-      @player_ehp_header = 'hilite'
-      ordering = "#{@skill}_ehp DESC, #{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
-    when "lvl"
-      @player_lvl_header = 'hilite'
-      if @skill == "combat"
-        ordering = "#{@skill}_lvl DESC, overall_ehp DESC"
-      else
-        ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
+    if @skill == "max_lvl" or @skill == "max_xp"
+      ordering = "overall_ehp DESC, overall_xp DESC, overall_lvl DESC, overall_rank ASC"
+    else
+      case @sort_by
+      when "ehp"
+        @player_ehp_header = 'hilite'
+        ordering = "#{@skill}_ehp DESC, #{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
+      when "lvl"
+        @player_lvl_header = 'hilite'
+        if @skill == "combat"
+          ordering = "#{@skill}_lvl DESC, overall_ehp DESC"
+        else
+          ordering = "#{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC"
+        end
+      when "xp"
+        @player_xp_header = 'hilite'
+        ordering = "#{@skill}_xp DESC, #{@skill}_rank ASC"
       end
-    when "xp"
-      @player_xp_header = 'hilite'
-      ordering = "#{@skill}_xp DESC, #{@skill}_rank ASC"
     end
-    
-    
+
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
-    
+
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10)
     end
@@ -423,7 +426,13 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl IS NOT NULL")
     end
     
-    @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    if @skill == "max_lvl"
+      @players = @players.sort {|a,b| a.time_to_max("lvl") <=> b.time_to_max("lvl")}
+    elsif @skill == "max_xp"
+      @players = @players.sort {|a,b| a.time_to_max("xp") <=> b.time_to_max("xp")}
+    end
+    
+    @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
   
   # GET /players/1

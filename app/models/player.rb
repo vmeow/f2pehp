@@ -69,7 +69,7 @@ class Player < ActiveRecord::Base
         hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{self.player_name}")
         hc_stats = hc_uri.read.split(" ")
         hc_xp = hc_stats[0].split(",")[2].to_f
-        if hc_xp < (im_xp - 50000)
+        if hc_xp < (im_xp - 1000000)
           update_attribute(:player_acc_type, "IM")
         end
       rescue Exception => e   
@@ -261,5 +261,49 @@ class Player < ActiveRecord::Base
       update_attributes("#{skill}_xp_#{time}_start" => xp)
       update_attributes("#{skill}_ehp_#{time}_start" => ehp)
     end
+  end
+  
+  def calc_skill_ehp(xp, tiers, xphrs)
+    ehp = 0
+    tiers.each.with_index do |tier, idx|
+      tier = tier.to_f
+      xphr = xphrs[idx].to_f
+      if xphr != 0 and tier < xp
+        if (idx+1) < tiers.length and xp >=  tiers[idx+1]
+          ehp += (tiers[idx+1].to_f - tier)/xphr
+        else
+          ehp += (xp.to_f - tier)/xphr
+        end
+      end
+    end
+    return ehp
+  end
+  
+  def calc_max_lvl_ehp(tiers, xphrs)
+    return calc_skill_ehp(13034431, tiers, xphrs)
+  end
+  
+  def calc_max_xp_ehp(tiers, xphrs)
+    return calc_skill_ehp(200000000, tiers, xphrs)
+  end
+  
+  def time_to_max(lvl_or_xp)
+    ehp = get_ehp_type
+    time_to_max = 0
+    F2POSRSRanks::Application.config.skills.each do |skill|
+      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
+        skill_ehp = self.read_attribute("#{skill}_ehp")
+        if lvl_or_xp == "lvl"
+          max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        else
+          max_ehp = calc_max_xp_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        end
+
+        if max_ehp > skill_ehp
+          time_to_max += max_ehp - skill_ehp
+        end
+      end
+    end
+    return time_to_max
   end
 end
