@@ -56,6 +56,7 @@ F2POSRSRanks::Application.configure do
                         "Frogmask",
                         "NoQuestsHCIM",
                         "Adentia",
+                        "threewaygang",
                         "5perm sock",
                         "Sir BoJo",
                         "f2p Ello",
