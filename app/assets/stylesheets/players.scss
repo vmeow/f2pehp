@@ -346,12 +346,12 @@ form .input { display: table-cell; }
 /* FLAIRS */
 a[href$="/Obor"]:before { /* For Obor*/
   padding: 3px;
-  vertical-align: -6px;
+  vertical-align: -8px;
   content: image-url("flairs/shamanmask.png");
 }
 a[href$="/Obor"]:after { /* For Obor*/
   padding: 3px;
-  vertical-align: -6px;
+  vertical-align: -7px;
   content: image-url("flairs/oborclub.png");
 }
 
@@ -372,13 +372,13 @@ a[href$="/nagraB"]:after, a[href$="/Bargan"]:after {
 a[href$="/IronMace_Din"]:after, a[href$="/IronMace Din"]:after {  /* For Mace Din */
   padding: 1px;
   content: image-url("flairs/maceblur2.png");
-  vertical-align: -5px;
+  vertical-align: -6px;
 }
 
 a[href$="/HCIM_btw_fev"]:after, a[href$="/HCIM btw fev"]:after {  /* For HCIM btw fev */
   padding: 3px;
   content: image-url("flairs/kitten.png");
-  vertical-align: -6px;
+  vertical-align: -7px;
 }
 
 a[href$="/F2P_Lukie"]:after, a[href$="/F2P Lukie"]:after  {  /* For F2P Lukie */
@@ -388,7 +388,7 @@ a[href$="/F2P_Lukie"]:after, a[href$="/F2P Lukie"]:after  {  /* For F2P Lukie */
 }
 
 a[href$="/Tame_My_Wild"]:after, a[href$="/Tame My Wild"]:after {  /* For Tame */
-  padding: 3px;
+  padding: 0px;
   content: image-url("flairs/dog.png");
   vertical-align: -9px;
 }
@@ -402,7 +402,7 @@ a[href$="/FitMC"]:after {  /* For FitMC */
 a[href$="/For_Ulven"]:after {
   padding: 3px;
   content: image-url("flairs/wolf.png");
-  vertical-align: -4px;
+  vertical-align: -6px;
 }
 
 a[href$="/citnA"]:after {  /* For citnA */
@@ -450,7 +450,7 @@ a[href$="/Irish_Woof"]:after, a[href$="/Irish Woof"]:after {  /* For Irish Woof 
 a[href$="/H_C_Gilrix"]:after {  /* For H C Gilrix */
   padding: 3px;
   content: image-url("flairs/HCIM.png");
-  vertical-align: -6px;
+  vertical-align: -5px;
 }
 
 a[href$="/Faij"]:after {  /* For Faij */
@@ -474,13 +474,13 @@ a[href$="/UncleTomas"]:after {
 a[href$="/Tohno1612"]:after {  
   padding: 3px;
   content: image-url("flairs/addy_helm.png");
-  vertical-align: -5px;
+  vertical-align: -8px;
 }
 
 a[href$="/Freckled_Kid"]:after {  
   padding: 3px;
   content: image-url("flairs/burnt_bones.png");
-  vertical-align: -5px;
+  vertical-align: -3px;
 }
 
 a[href$="/Leftoverover"]:after {  
@@ -492,13 +492,13 @@ a[href$="/Leftoverover"]:after {
 a[href$="/Gl4Head"]:after {  
   padding: 3px;
   content: image-url("flairs/fighting_boots.png");
-  vertical-align: -5px;
+  vertical-align: -7px;
 }
 
 a[href$="/DJ9"]:after {  
   padding: 3px;
   content: image-url("flairs/death_rune.png");
-  vertical-align: -7px;
+  vertical-align: -8px;
 }
 
 a[href$="/Playing_Fe"]:after {  
@@ -528,7 +528,7 @@ a[href$="/Pink_skirt"]:after {
 a[href$="/David_BBQ"]:after {  
   padding: 3px;
   content: image-url("flairs/cooked_chicken.png");
-  vertical-align: -4px;
+  vertical-align: -6px;
 }
 
 a[href$="/ZINJAN"]:after {  
@@ -552,7 +552,7 @@ a[href$="/Snooz_Button"]:after {
 a[href$="/UI_Pain"]:after {  
   padding: 3px;
   content: image-url("flairs/steel_axe.png");
-  vertical-align: -8px;
+  vertical-align: -7px;
 }
 
 a[href$="/Valleyman6"]:after {  
@@ -564,7 +564,7 @@ a[href$="/Valleyman6"]:after {
 a[href$="/Fe_F2P"]:after {  
   padding: 3px;
   content: image-url("flairs/skulled.png");
-  vertical-align: -4px;
+  vertical-align: -7px;
 }
 
 a[href$="/UIM_STK_F2P"]:after {  
@@ -588,7 +588,7 @@ a[href$="/Ikiji"]:after {
 a[href$="/Netbook_Pro"]:after {  
   padding: 3px;
   content: image-url("flairs/malta_flag.png");
-  vertical-align: -7px;
+  vertical-align: -3px;
 }
 
 a[href$="/Xan_So"]:after {  
@@ -600,7 +600,7 @@ a[href$="/Xan_So"]:after {
 a[href$="/tannerdino"]:after {  
   padding: 3px;
   content: image-url("items/Mossy_key.png");
-  vertical-align: -5px;
+  vertical-align: -4px;
 }
 
 a[href$="/MA5ON"]:after {  
@@ -637,7 +637,7 @@ a[href$="/Sir_BoJo"]:after {
 a[href$="/f2p_Ello"]:after {  
   padding: 3px;
   content: image-url("items/Book_of_knowledge.png");
-  vertical-align: -12px;
+  vertical-align: -9px;
 }
 
 a[href$="/Ghost_Bloke"]:after {  
@@ -655,7 +655,7 @@ a[href$="/Fe_Apes"]:after {
 a[href$="/Iron_of_One"]:after {  
   padding: 3px;
   content: image-url("items/Dark_cavalier.png");
-  vertical-align: -7px;
+  vertical-align: -5px;
 }
 
 a[href$="/InsurgentF2P"]:after {  

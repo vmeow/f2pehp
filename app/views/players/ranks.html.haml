@@ -24,12 +24,12 @@
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; margin-right: 5px; width: 200px;") do 
     = content_tag(:div, nil, class: "container", id: "headerSkills", style: "margin: auto; margin-bottom: 0px; width: 200px; height: 103px;") 
     = content_tag(:div, nil, class: ["container", "skills"], style: "width: 200px; margin-bottom: 0px; line-height: 28px;") do 
-      // &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      // = link_to "Time to all 99s", :controller => "players", :action => "ranks", :skill => "max_lvl"
-      // %br
-      // &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      // = link_to "Time to all 200m", :controller => "players", :action => "ranks", :skill => "max_xp"
-      // %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = link_to "Time to all 99s", :controller => "players", :action => "ranks", :skill => "overall", :ttm => "lvl"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = link_to "Time to all 200m", :controller => "players", :action => "ranks", :skill => "overall", :ttm => "xp"
+      %br
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/overall.png", style: "vertical-align: -6px;"
       = link_to "Overall", :controller => "players", :action => "ranks", :skill => "overall"
