@@ -68,7 +68,8 @@ F2POSRSRanks::Application.configure do
                         "Sad Jesus",
                         "SapphireHam",
                         "Doublessssss",
-                        "ColdFingers1"]
+                        "ColdFingers1",
+                        "xmymwf609"]
    
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
