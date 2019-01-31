@@ -688,6 +688,12 @@ a[href$="/ColdFingers1"]:after {
   vertical-align: -8px;
 }
 
+a[href$="/Cas_F2P_HC"]:after {  
+  padding: 3px;
+  content: image-url("items/Big_bones.gif");
+  vertical-align: -11px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;

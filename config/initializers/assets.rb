@@ -69,7 +69,8 @@ F2POSRSRanks::Application.configure do
                         "SapphireHam",
                         "Doublessssss",
                         "ColdFingers1",
-                        "xmymwf609"]
+                        "xmymwf609",
+                        "Cas F2P HC"]
    
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
