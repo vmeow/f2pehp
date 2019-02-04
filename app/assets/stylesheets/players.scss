@@ -694,6 +694,12 @@ a[href$="/Cas_F2P_HC"]:after {
   vertical-align: -11px;
 }
 
+a[href$="/Onnn"]:after {  
+  padding: 3px;
+  content: image-url("flairs/canada-flag.png");
+  vertical-align: -3px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
