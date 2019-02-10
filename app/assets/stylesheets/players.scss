@@ -700,6 +700,12 @@ a[href$="/Onnn"]:after {
   vertical-align: -3px;
 }
 
+a[href$="/Shade_Core"]:after {  
+  padding: 3px;
+  content: image-url("flairs/shade_core.png");
+  vertical-align: -3px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
