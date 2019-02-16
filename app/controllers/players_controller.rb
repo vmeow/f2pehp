@@ -394,9 +394,9 @@ class PlayersController < ApplicationController
     if @skill.include?("ttm")
       case @skill
       when "ttm_lvl"
-        ordering = "ttm_lvl DESC, overall_ehp DESC"
+        ordering = "ttm_lvl ASC, overall_ehp DESC"
       when "ttm_xp"
-        ordering = "ttm_xp DESC, overall_ehp DESC"    
+        ordering = "ttm_xp ASC, overall_ehp DESC"    
       end
     else
       case @sort_by
@@ -418,6 +418,10 @@ class PlayersController < ApplicationController
       
 
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
+    
+    if @skill.include?("ttm")
+      @players = @players.where("overall_ehp > 1000")
+    end
 
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10)
