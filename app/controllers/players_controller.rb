@@ -393,9 +393,9 @@ class PlayersController < ApplicationController
     
     if @skill.include?("ttm")
       case @skill
-      when "time to max, lvl"
+      when "ttm_lvl"
         ordering = "ttm_lvl DESC, overall_ehp DESC"
-      when "time to max, xp"
+      when "ttm_xp"
         ordering = "ttm_xp DESC, overall_ehp DESC"    
       end
     else
