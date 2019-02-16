@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181201214248) do
+ActiveRecord::Schema.define(version: 20190216073827) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -363,6 +363,8 @@ ActiveRecord::Schema.define(version: 20181201214248) do
     t.integer "overall_xp_year_max"
     t.float   "overall_ehp_year_start"
     t.float   "overall_ehp_year_max"
+    t.float   "ttm_lvl"
+    t.float   "ttm_xp"
   end
 
   create_table "settings", force: :cascade do |t|

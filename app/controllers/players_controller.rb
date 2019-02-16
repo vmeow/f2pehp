@@ -391,8 +391,13 @@ class PlayersController < ApplicationController
       session[:show_limit] = @show_limit
     end
     
-    if @skill == "max_lvl" or @skill == "max_xp"
-      ordering = "overall_ehp DESC, overall_xp DESC, overall_lvl DESC, overall_rank ASC"
+    if @skill.include?("ttm")
+      case @skill
+      when "time to max, lvl"
+        ordering = "ttm_lvl DESC, overall_ehp DESC"
+      when "time to max, xp"
+        ordering = "ttm_xp DESC, overall_ehp DESC"    
+      end
     else
       case @sort_by
       when "ehp"
@@ -410,6 +415,7 @@ class PlayersController < ApplicationController
         ordering = "#{@skill}_xp DESC, #{@skill}_rank ASC"
       end
     end
+      
 
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
 
@@ -424,12 +430,6 @@ class PlayersController < ApplicationController
     end
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
-    end
-    
-    if @skill == "max_lvl"
-      @players = @players.sort {|a,b| a.time_to_max("lvl") <=> b.time_to_max("lvl")}
-    elsif @skill == "max_xp"
-      @players = @players.sort {|a,b| a.time_to_max("xp") <=> b.time_to_max("xp")}
     end
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)

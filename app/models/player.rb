@@ -229,6 +229,8 @@ class Player < ActiveRecord::Base
       
       check_record_gains
     end
+    
+    update_attributes(:ttm_lvl => time_to_max("lvl"), :ttm_xp => time_to_max("xp"))
   end
   
   def check_record_gains

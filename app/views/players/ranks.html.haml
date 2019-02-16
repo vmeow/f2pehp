@@ -20,16 +20,25 @@
     = link_to "About Us/Donate", donate_path
 
 - skill_name = "#{@skill}".capitalize
+- if @skill == "ttm_lvl"
+  - title = "F2P Time to all 99s Hiscores"
+  - skill_icon = "skills/overall.png"
+- elsif @skill == "ttm_xp"
+  - title = "F2P Time to all 200m Hiscores"
+  - skill_icon = "skills/overall.png"
+- else
+  - title = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
+  - skill_icon = "skills/#{@skill}.png"
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; margin-right: 5px; width: 200px;") do 
     = content_tag(:div, nil, class: "container", id: "headerSkills", style: "margin: auto; margin-bottom: 0px; width: 200px; height: 103px;") 
     = content_tag(:div, nil, class: ["container", "skills"], style: "width: 200px; margin-bottom: 0px; line-height: 28px;") do 
-      // &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      // = link_to "Time to all 99s", :controller => "players", :action => "ranks", :skill => "overall", :ttm => "lvl"
-      // %br
-      // &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      // = link_to "Time to all 200m", :controller => "players", :action => "ranks", :skill => "overall", :ttm => "xp"
-      // %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = link_to "Time to all 99s", :controller => "players", :action => "ranks", :skill => "ttm_lvl"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = link_to "Time to all 200m", :controller => "players", :action => "ranks", :skill => "ttm_xp"
+      %br
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/overall.png", style: "vertical-align: -6px;"
       = link_to "Overall", :controller => "players", :action => "ranks", :skill => "overall"
@@ -55,26 +64,29 @@
             - if @skill == "combat"
               = image_tag "skills/combat.png", style: "vertical-align: -6px;"
             - else
-              = image_tag "skills/#{@skill}.png", style: "vertical-align: -6px;"
-            = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
+              = image_tag skill_icon, style: "vertical-align: -6px;"
+            = title
       %thead
         %tr
           %th Rank
           %th{:align => "left"} Name
           %th Account
-          - if @sort_by == "lvl"
-            %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
+          - if @skill.include?("ttm")
+            %th Time to Max (Hours)
           - else
-            %th{:class => @player_lvl_header}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
-          - if @skill != "combat"
-            - if @sort_by == "xp"
-              %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+            - if @sort_by == "lvl"
+              %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
             - else
-              %th{:class => @player_xp_header}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
-            - if @sort_by == "ehp"
-              %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
-            - else
-              %th{:class => @player_ehp_header}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+              %th{:class => @player_lvl_header}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
+            - if @skill != "combat"
+              - if @sort_by == "xp"
+                %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+              - else
+                %th{:class => @player_xp_header}= link_to "XP", ranks_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
+              - if @sort_by == "ehp"
+                %th{:class => @player_ehp_header, :style => "text-decoration: underline;"}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
+              - else
+                %th{:class => @player_ehp_header}= link_to "EHP", ranks_path(:sort_by => 'ehp', :skill => @skill), :id => 'player_ehp_header'
   
       %tbody
         - @players.each.with_index 1 do |player, index|
@@ -85,12 +97,15 @@
             - if player.player_name == "Based Chew"
               %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
             - else
-              %td{:align => "left"}= link_to player.player_name, "players/#{name}"           
-            %td{:align => "center"}= player.player_acc_type
-            %td= player["#{@skill}_lvl"]
-            - if @skill != "combat"
-              %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
-              %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
+              %td{:align => "left"}= link_to player.player_name, "players/#{name}"  
+            %td{:align => "center"}= player.player_acc_type   
+            - if @skill.include?("ttm")
+              %td= number_with_delimiter(number_with_precision(player["#{@skill}"].to_f, :precision => 2), :delimiter => ",", :separator => ".") 
+            - else
+              %td= player["#{@skill}_lvl"]
+              - if @skill != "combat"
+                %td= number_with_delimiter(player["#{@skill}_xp"].to_i, :delimiter => ",") 
+                %td= number_with_delimiter(player["#{@skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
             
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
 
