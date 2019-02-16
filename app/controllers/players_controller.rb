@@ -420,7 +420,7 @@ class PlayersController < ApplicationController
     @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
     
     if @skill.include?("ttm")
-      @players = @players.where("overall_ehp > 1000")
+      @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")
     end
 
     if @restrictions["10 hitpoints"]
