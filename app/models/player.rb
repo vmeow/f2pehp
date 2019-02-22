@@ -375,9 +375,12 @@ class Player < ActiveRecord::Base
         else
           max_ehp = calc_max_xp_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
         end
+        
+        max_ehp = (max_ehp*100).floor/100.0
 
         if max_ehp > skill_ehp
           time_to_max += max_ehp - skill_ehp
+          puts "#{skill}: max_ehp: #{max_ehp}, skill_ehp: #{skill_ehp}"
         end
       end
     end
