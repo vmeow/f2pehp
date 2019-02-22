@@ -6,6 +6,81 @@ class Player < ActiveRecord::Base
   
   TIMES = ["day", "week", "month", "year"]
   
+  SUPPORTERS = ["Bargan",
+                "Freckled Kid",
+                "Obor",
+                "Gl4Head",
+                "Ikiji",
+                "Xan So",
+                "Netbook Pro",
+                "F2P Lukie",
+                "Tame My Wild",
+                "FitMC",
+                "Pink skirt",
+                "UIM STK F2P",
+                "MA5ON",
+                "For Ulven",
+                "tannerdino",
+                "Playing Fe",
+                "Pawz",
+                "Yellow bead",
+                "ZINJAN",
+                "Valleyman6",
+                "Snooz Button",
+                "IronMace Din",
+                "HCIM_btw_fev",
+                "citnA",
+                "Lea Sinclair",
+                "lRAIDERSS",
+                "Sofacanlazy",
+                "I love rs",
+                "Say F2p Ult",
+                "Irish Woof",
+                "Faij",
+                "Leftoverover",
+                "DJ9",
+                "Drae",
+                "David BBQ",
+                "Schwifty Bud",
+                "UI Pain",
+                "Fe F2P",
+                "WishengradHC",
+                "n4ckerd",
+                "Tohno1612",
+                "H C Gilrix",
+                "Frogmask",
+                "NoQuestsHCIM",
+                "Adentia",
+                "threewaygang",
+                "5perm sock",
+                "Sir BoJo",
+                "f2p Ello",
+                "Ghost Bloke",
+                "Fe Apes",
+                "Iron of One",
+                "InsurgentF2P",
+                "cwismis noob",
+                "Sad Jesus",
+                "SapphireHam",
+                "Doublessssss",
+                "ColdFingers1",
+                "xmymwf609",
+                "Cas F2P HC",
+                "Onnn",
+                "Shade_Core",
+                "Metan",
+                "F2P UIM OREO",
+                "Crawler"]
+  
+  def self.supporters()
+    SUPPORTERS
+  end
+  
+  def self.sql_supporters()
+    quoted_names = SUPPORTERS.map{ |name| "'#{name}'" }
+    "(#{quoted_names.join(",")})"
+  end
+  
   def self.clean_trailing_leading_spaces(str)
     if str.downcase == "_yrak"
       return str

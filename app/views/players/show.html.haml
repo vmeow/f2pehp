@@ -179,10 +179,10 @@
           %tr
             %th= image_tag "skills/combat.png"
             %td= @player["combat_lvl"]
-      - elsif @player.overall_ehp < 250 and (@display == "gains" or @display == "records") and !F2POSRSRanks::Application.config.supporters.include?(@player.player_name)
+      - elsif @player.overall_ehp < 250 and (@display == "gains" or @display == "records") and !Player.supporters.include?(@player.player_name)
         %head
           %th= "This player is not being tracked. This will require 250 EHP or F2P Supporter status."
-      - elsif @display == "gains" and (@player.overall_ehp > 250 or F2POSRSRanks::Application.config.supporters.include?(@player.player_name)) 
+      - elsif @display == "gains" and (@player.overall_ehp > 250 or Player.supporters.include?(@player.player_name)) 
         %thead
           %th{:colspan => 5}
             = "Current Gains for "
