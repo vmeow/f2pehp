@@ -185,13 +185,19 @@
             %td= ""
           %tr
             %td= ""
+            
+        %thead
+          %th{:align => "center"}  
+          %th{:align => "center"}  Time to
+          %th{:align => "center"}  Hours
+        %tbody
           %tr
             %th= image_tag "skills/hourglass.png"
-            %td{:colspan => 2}= "Time to all 99s"
+            %td{:style => "font-style: bold;"}= "All 99s"
             %td= number_with_delimiter(number_with_precision(@player["ttm_lvl"], :precision => 2), :delimiter => ",") 
           %tr
             %th= image_tag "skills/hourglass.png"
-            %td{:colspan => 2}= "Time to all 200m"
+            %td{:style => "font-style: bold;"}= "All 200m"
             %td= number_with_delimiter(number_with_precision(@player["ttm_xp"], :precision => 2), :delimiter => ",") 
       - elsif @player.overall_ehp < 250 and (@display == "gains" or @display == "records") and !Player.supporters.include?(@player.player_name)
         %head
