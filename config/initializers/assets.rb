@@ -72,7 +72,10 @@ F2POSRSRanks::Application.configure do
                         "xmymwf609",
                         "Cas F2P HC",
                         "Onnn",
-                        "Shade_Core"]
+                        "Shade_Core",
+                        "Metan",
+                        "F2P UIM OREO",
+                        "Crawler"]
    
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
