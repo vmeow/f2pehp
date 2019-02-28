@@ -295,7 +295,7 @@ class Player < ActiveRecord::Base
       return "cutoff"
     end
     
-    if overall_ehp > 250 or F2POSRSRanks::Application.config.supporters.include?(player_name)
+    if overall_ehp > 250 or Player.supporters.include?(player_name)
       TIMES.each do |time|
         xp = self.read_attribute("overall_xp_#{time}_start")
         if xp.nil? or xp == 0
