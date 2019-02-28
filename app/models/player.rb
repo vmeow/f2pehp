@@ -70,7 +70,8 @@ class Player < ActiveRecord::Base
                 "Shade_Core",
                 "Metan",
                 "F2P UIM OREO",
-                "Crawler"]
+                "Crawler",
+                "UIM Dakota"]
   
   def self.supporters()
     SUPPORTERS

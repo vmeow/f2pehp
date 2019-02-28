@@ -718,6 +718,12 @@ a[href$="/Crawler"]:after {
   vertical-align: -4px;
 }
 
+a[href$="/UIM_Dakota"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Cadava_berries.png");
+  vertical-align: -7px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
