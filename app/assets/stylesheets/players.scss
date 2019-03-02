@@ -706,6 +706,24 @@ a[href$="/Shade_Core"]:after {
   vertical-align: -4px;
 }
 
+a[href$="/F2P_UIM_OREO"]:after {  
+  padding: 3px;
+  content: image-url("flairs/f2p_uim_oreo.jpg");
+  vertical-align: -8px;
+}
+
+a[href$="/Crawler"]:after {  
+  padding: 3px;
+  content: image-url("flairs/flesh_crawler.png");
+  vertical-align: -4px;
+}
+
+a[href$="/UIM_Dakota"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Cadava_berries.png");
+  vertical-align: -7px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
