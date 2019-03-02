@@ -1,4 +1,4 @@
-class Skill < ActiveRecord::Base
+class Skill
   #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
   HISCORES_SKILLS = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
                    "magic", "cooking", "woodcutting", "p2p", "fishing", "firemaking", "crafting",
@@ -290,4 +290,12 @@ class Skill < ActiveRecord::Base
 
   EHP_UIM['runecraft_tiers'] = [0] 
   EHP_UIM['runecraft_xphrs'] = [3970]
+  
+  def self.skills
+    SKILLS
+  end
+  
+  def self.f2p_skills
+    F2P_SKILLS
+  end
 end
