@@ -245,6 +245,23 @@ F2POSRSRanks::Application.configure do
 
     config.ehp_uim['runecraft_tiers'] = [0] 
     config.ehp_uim['runecraft_xphrs'] = [3970]
+    
+    # Bonus XP (End): 
+    # 0.2500 Smithing:Mining from 0 to 200000000 Mining xp 
+    # 1.1350 Magic:Mining from 0 to 200000000 Mining xp 
+    # 0.1380 Magic:Woodcutting from 0 to 200000000 Woodcutting xp 
+    # 0.1380 Magic:Fishing from 0 to 200000000 Fishing xp 
+    
+    # Bonus XP (Start): 
+    # 0.1071 Prayer:Cooking from 61512 to 200000000 Cooking xp   
+    
+    # ratio, bonus_for, bonus_from, start_xp, end_xp
+    config.bonus_xp_reg = [[0.25, "smithing", "mining", 0, 200000000],
+                           [1.135, "magic", "mining", 0, 200000000],
+                           [0.138, "magic", "woodcutting", 0, 200000000],
+                           [0.138, "magic", "fishing", 0, 200000000],
+                           [0.1071, "prayer", "cooking", 61512, 200000000]
+                           ]
 end
 
 # Precompile additional assets.

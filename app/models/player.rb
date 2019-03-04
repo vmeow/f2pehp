@@ -1,3 +1,4 @@
+require 'open-uri'
 class Player < ActiveRecord::Base
   
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
@@ -162,10 +163,16 @@ class Player < ActiveRecord::Base
     total_lvl = 8
     total_xp = 0
     under_34 = false
+    bonus_xp = calc_bonus_xp(all_stats)
     F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
       skill_lvl = all_stats[skill_idx].split(",")[1].to_f
       skill_xp = all_stats[skill_idx].split(",")[2].to_f
       skill_rank = all_stats[skill_idx].split(",")[0].to_f
+      
+      if bonus_xp[skill]
+        skill_xp -= bonus_xp[skill]
+      end
+      
       if skill == "hitpoints" and skill_lvl < 10
         skill_lvl = 10
         skill_xp = 1154
@@ -287,6 +294,7 @@ class Player < ActiveRecord::Base
     end
     calc_ehp
     if check_p2p
+      Player.where(player_name: player_name).destroy_all
       return "p2p"
     end
     check_hc_death
@@ -295,18 +303,18 @@ class Player < ActiveRecord::Base
       return "cutoff"
     end
     
-    if overall_ehp > 250 or Player.supporters.include?(player_name)
-      TIMES.each do |time|
-        xp = self.read_attribute("overall_xp_#{time}_start")
-        if xp.nil? or xp == 0
-          update_player_start_stats(time)
-        end
-      end
+    # if overall_ehp > 250 or Player.supporters.include?(player_name)
+    #   TIMES.each do |time|
+    #     xp = self.read_attribute("overall_xp_#{time}_start")
+    #     if xp.nil? or xp == 0
+    #       update_player_start_stats(time)
+    #     end
+    #   end
       
-      check_record_gains
-    end
+    #   check_record_gains
+    # end
     
-    update_attributes(:ttm_lvl => time_to_max("lvl"), :ttm_xp => time_to_max("xp"))
+    # update_attributes(:ttm_lvl => time_to_max("lvl"), :ttm_xp => time_to_max("xp"))
   end
   
   def check_record_gains
@@ -332,7 +340,6 @@ class Player < ActiveRecord::Base
   end
   
   def update_player_start_stats(time)
-    puts player_name
     SKILLS.each do |skill|
       xp = self.read_attribute("#{skill}_xp")
       ehp = self.read_attribute("#{skill}_ehp")
@@ -381,10 +388,42 @@ class Player < ActiveRecord::Base
 
         if max_ehp > skill_ehp
           time_to_max += max_ehp - skill_ehp
-          puts "#{skill}: max_ehp: #{max_ehp}, skill_ehp: #{skill_ehp}"
         end
       end
     end
     return time_to_max
+  end
+  
+  def get_bonus_xp
+    case player_acc_type
+    when "Reg"
+      bonus_xp = F2POSRSRanks::Application.config.bonus_xp_reg
+    when "HCIM", "IM"
+      bonus_xp = F2POSRSRanks::Application.config.bonus_xp_iron
+    when "UIM"
+      bonus_xp = F2POSRSRanks::Application.config.bonus_xp_uim
+    end
+    return bonus_xp
+  end
+  
+  def calc_bonus_xp(all_stats)
+    bonus_xps = get_bonus_xp
+    bonuses = {}
+    skills_list = F2POSRSRanks::Application.config.skills
+    bonus_xps.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
+      skill_from = all_stats[skills_list.index(bonus_from)].split(",")[2].to_i     
+      if skill_from <= start_xp.to_i
+        next
+      end
+      
+      bonus_xp = (skill_from - start_xp.to_i)*ratio.to_f
+      
+      if bonuses[bonus_for]
+        bonuses[bonus_for] += bonus_xp
+      else
+        bonuses[bonus_for] = bonus_xp
+      end
+    end
+    return bonuses
   end
 end
