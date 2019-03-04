@@ -169,15 +169,21 @@ class Player < ActiveRecord::Base
       skill_xp = all_stats[skill_idx].split(",")[2].to_f
       skill_rank = all_stats[skill_idx].split(",")[0].to_f
       
-      if bonus_xp[skill]
-        skill_xp -= bonus_xp[skill]
-      end
-      
       if skill == "hitpoints" and skill_lvl < 10
         skill_lvl = 10
         skill_xp = 1154
       end
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
+        if skill_xp < 0
+          update_attribute(:"#{skill}_xp", 0)
+        else
+          update_attribute(:"#{skill}_xp", skill_xp)
+        end
+      
+        if bonus_xp[skill]
+          skill_xp -= bonus_xp[skill]
+        end
+        
         skill_ehp = 0.0
         skill_tiers = ehp["#{skill}_tiers"]
         skill_xphrs = ehp["#{skill}_xphrs"]
@@ -191,11 +197,6 @@ class Player < ActiveRecord::Base
               skill_ehp += (skill_xp.to_f - skill_tier)/skill_xphr
             end
           end
-        end
-        if skill_xp < 0
-          update_attribute(:"#{skill}_xp", 0)
-        else
-          update_attribute(:"#{skill}_xp", skill_xp)
         end
         update_attribute(:"#{skill}_lvl", skill_lvl)
         update_attribute(:"#{skill}_ehp", skill_ehp.round(2))

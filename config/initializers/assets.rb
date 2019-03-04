@@ -320,6 +320,12 @@ F2POSRSRanks::Application.configure do
                            [0.138, "magic", "fishing", 0, 200000000],
                            [0.1071, "prayer", "cooking", 61512, 200000000]
                            ]
+                           
+    config.bonus_xp_iron = [
+                           ]
+                           
+    config.bonus_xp_uim = [
+                           ]
 end
 
 # Precompile additional assets.

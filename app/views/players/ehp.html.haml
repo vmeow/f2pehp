@@ -22,10 +22,15 @@
 - ehp_reg = F2POSRSRanks::Application.config.ehp_reg
 - ehp_iron = F2POSRSRanks::Application.config.ehp_iron
 - ehp_uim = F2POSRSRanks::Application.config.ehp_uim
+- bonus_xp_reg = F2POSRSRanks::Application.config.bonus_xp_reg
+- bonus_xp_iron = F2POSRSRanks::Application.config.bonus_xp_iron
+- bonus_xp_uim = F2POSRSRanks::Application.config.bonus_xp_uim
 
 = link_to "What is EHP?", "https://redd.it/834aag"
 = "|"
 = link_to "EHP Methods", "#ehp-methods"
+= "|"
+= link_to "Bonus XP", "#bonus_xp"
 %br
 = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
 = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
@@ -72,6 +77,28 @@
 %br
 = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
 = content_tag(:table, nil, id: "ehp-methods", style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
+  %thead
+    %tr
+      %th Skill
+      %th Reg EHP
+      %th IM/HCIM EHP
+      %th UIM EHP
+  %tbody
+    - f2p_skills.each do |skill|
+      %tr{:style => "border-top: 1px solid black;" }
+        %td= image_tag "skills/#{skill}.png"
+        %td{:align => "center"}
+          = ehp_reg["#{skill}_method"]
+        %td{:align => "center"}
+          = ehp_iron["#{skill}_method"]
+        %td{:align => "center"}
+          = ehp_uim["#{skill}_method"]
+= content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
+%br
+%br
+%br
+= content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
+= content_tag(:table, nil, id: "bonus-xp", style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
   %thead
     %tr
       %th Skill
