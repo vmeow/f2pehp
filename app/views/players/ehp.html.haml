@@ -30,7 +30,7 @@
 = "|"
 = link_to "EHP Methods", "#ehp-methods"
 = "|"
-= link_to "Bonus XP", "#bonus_xp"
+= link_to "Bonus XP", "#bonus-xp"
 %br
 = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
 = content_tag(:table, nil, style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
@@ -75,6 +75,7 @@
 %br
 %br
 %br
+
 = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
 = content_tag(:table, nil, id: "ehp-methods", style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
   %thead
@@ -97,22 +98,30 @@
 %br
 %br
 %br
+
 = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
-= content_tag(:table, nil, id: "bonus-xp", style: "text-align: center; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
+= content_tag(:table, nil, id: "bonus-xp", style: "text-align: left; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
   %thead
     %tr
-      %th Skill
-      %th Reg EHP
-      %th IM/HCIM EHP
-      %th UIM EHP
+      %th{:style => "text-align: center"} Reg Bonus XP
   %tbody
-    - f2p_skills.each do |skill|
-      %tr{:style => "border-top: 1px solid black;" }
-        %td= image_tag "skills/#{skill}.png"
-        %td{:align => "center"}
-          = ehp_reg["#{skill}_method"]
-        %td{:align => "center"}
-          = ehp_iron["#{skill}_method"]
-        %td{:align => "center"}
-          = ehp_uim["#{skill}_method"]
+    - bonus_xp_reg.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
+      %tr
+        %td{:style => "padding-left: 140px;"}= "#{ratio} #{bonus_for.capitalize}:#{bonus_from.capitalize} from #{start_xp} #{bonus_from.capitalize} XP to #{end_xp}"
+  
+  %thead
+    %tr
+      %th{:style => "text-align: center"} IM/HCIM Bonus XP
+  %tbody
+    - bonus_xp_iron.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
+      %tr
+        %td{:style => "padding-left: 140px;"}= "#{ratio} #{bonus_for.capitalize}:#{bonus_from.capitalize} from #{start_xp} #{bonus_from.capitalize} XP to #{end_xp}"
+    
+  %thead
+    %tr
+      %th{:style => "text-align: center"} UIM Bonus XP
+  %tbody
+    - bonus_xp_uim.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
+      %tr
+        %td{:style => "padding-left: 140px;"}= "#{ratio} #{bonus_for.capitalize}:#{bonus_from.capitalize} from #{start_xp} #{bonus_from.capitalize} XP to #{end_xp}"
 = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 

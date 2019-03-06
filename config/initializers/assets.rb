@@ -139,8 +139,8 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['prayer_tiers'] = [0]
     config.ehp_reg['prayer_xphrs'] =[43000]
   
-    config.ehp_reg['magic_tiers'] = [0, 174, 1358, 3973, 5018, 166636]
-    config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 72000, 199822941]
+    config.ehp_reg['magic_tiers'] = [0, 174, 1358, 3973, 5018]
+    config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 72000]
   
     config.ehp_reg['cooking_tiers'] = [0, 7842, 37224, 737627]
     config.ehp_reg['cooking_xphrs'] = [40000, 130000, 175000, 480000]
@@ -165,8 +165,8 @@ F2POSRSRanks::Application.configure do
   
     # config.ehp_reg['runecraft_tiers'] = [0]
     # config.ehp_reg['runecraft_xphrs'] = [26000]
-    config.ehp_reg['smithing_tiers'] = [0, 2783114, 4385776, 150000000]
-    config.ehp_reg['smithing_xphrs'] = [2673114, 212000, 265000, 50000000]
+    config.ehp_reg['smithing_tiers'] = [0, 2783114, 4385776]
+    config.ehp_reg['smithing_xphrs'] = [2673114, 212000, 265000]
   
     config.ehp_reg['mining_tiers'] = [0, 14833, 41171, 111945, 737627] 
     config.ehp_reg['mining_xphrs'] = [4000, 12000, 25000, 57000, 65000]
