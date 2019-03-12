@@ -74,7 +74,8 @@ class Player < ActiveRecord::Base
                 "UIM Dakota",
                 "HCBown",
                 "Dukeddd",
-                "one a time"]
+                "one a time",
+                "Yewsless"]
   
   def self.supporters()
     SUPPORTERS

@@ -724,6 +724,12 @@ a[href$="/UIM_Dakota"]:after {
   vertical-align: -7px;
 }
 
+a[href$="/Yewsless"]:after {  
+  padding: 3px;
+  content: image-url("items/Yew_logs.gif");
+  vertical-align: -10px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
