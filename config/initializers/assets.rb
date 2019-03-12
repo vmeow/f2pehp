@@ -191,8 +191,8 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
     config.ehp_iron['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 46550]
   
-    config.ehp_iron['prayer_tiers'] = [0, 10680000, 13034000, 163880000]
-    config.ehp_iron['prayer_xphrs'] = [9300, 2350000, 9300, 36120000]
+    config.ehp_iron['prayer_tiers'] = [0]
+    config.ehp_iron['prayer_xphrs'] = [9300]
   
     # config.ehp_iron['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_iron['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
@@ -206,8 +206,8 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['cooking_tiers'] = [0]
     config.ehp_iron['cooking_xphrs'] = [0]
   
-    config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000, 194700000]
-    config.ehp_iron['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500, 5300000]
+    config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
+    config.ehp_iron['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
   
     # config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
@@ -218,8 +218,8 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333, 190400000]
-    config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600, 9600000]
+    config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
+    config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
     config.ehp_iron['crafting_tiers'] = [0]
     config.ehp_iron['crafting_xphrs'] = [15550]
@@ -227,14 +227,14 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
-    config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
-    config.ehp_iron['smithing_xphrs'] = [15200, 2984000, 15200, 45800000]
+    config.ehp_iron['smithing_tiers'] = [0]
+    config.ehp_iron['smithing_xphrs'] = [17200]
   
     config.ehp_iron['mining_tiers'] = [0]
     config.ehp_iron['mining_xphrs'] = [0]
   
-    config.ehp_iron['runecraft_tiers'] = [0, 11970000, 13034000, 183673000]
-    config.ehp_iron['runecraft_xphrs'] = [3970, 1060000, 3970, 16327000]
+    config.ehp_iron['runecraft_tiers'] = [0]
+    config.ehp_iron['runecraft_xphrs'] = [3970]
   
   
   
@@ -262,9 +262,6 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['magic_tiers'] = [0, 3973, 18247]
     config.ehp_uim['magic_xphrs'] = [5000, 34800, 199981753]
   
-    config.ehp_uim['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
-    config.ehp_uim['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
-  
     # config.ehp_uim['cooking_tiers'] = [0, 101333]
     # config.ehp_uim['cooking_xphrs'] = [40000, 120000]
   
@@ -274,8 +271,8 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
     # config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
   
-    config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000, 194700000]
-    config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500, 5300000]
+    config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
+    config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
   
     # config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
@@ -286,17 +283,17 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333, 190400000]
-    config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600, 9600000]
+    config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
+    config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_uim['crafting_tiers'] = [0, 11275000, 13034000, 173000000] 
-    config.ehp_uim['crafting_xphrs'] = [13600, 1759250, 13600, 27000000]
+    config.ehp_uim['crafting_tiers'] = [0] 
+    config.ehp_uim['crafting_xphrs'] = [13600]
   
     # config.ehp_uim['smithing_tiers'] = [0, 10092000, 13034000, 154850000]
     # config.ehp_uim['smithing_xphrs'] = [7650, 2942000, 7650, 45150000]
   
-    config.ehp_uim['smithing_tiers'] = [0, 10092000, 13034000, 154850000]
-    config.ehp_uim['smithing_xphrs'] = [15200, 2942000, 15200, 45150000]
+    config.ehp_uim['smithing_tiers'] = [0]
+    config.ehp_uim['smithing_xphrs'] = [17200]
   
     config.ehp_uim['mining_tiers'] = [0] 
     config.ehp_uim['mining_xphrs'] =[0]
@@ -321,10 +318,47 @@ F2POSRSRanks::Application.configure do
                            [0.1071, "prayer", "cooking", 61512, 200000000]
                            ]
                            
-    config.bonus_xp_iron = [
+    config.bonus_xp_iron = [[0.1071, "prayer", "attack", 4470, 37224],
+                            [0.0625, "prayer", "attack", 37224, 737627],
+                            [0.0457, "prayer", "attack", 737627, 200000000],
+                            [0.1071, "prayer", "strength", 4470, 37224],
+                            [0.0625, "prayer", "strength", 37224, 737627],
+                            [0.0457, "prayer", "strength", 737627, 200000000],
+                            [0.1071, "prayer", "defence", 4470, 37224],
+                            [0.0625, "prayer", "defence", 37224, 737627],
+                            [0.0457, "prayer", "defence", 737627, 200000000],
+                            [0.1071, "prayer", "ranged", 4470, 37224],
+                            [0.0625, "prayer", "ranged", 37224, 101333],
+                            [0.0457, "prayer", "ranged", 101333, 200000000],
+                            [0.0323, "crafting", "attack", 737627, 200000000],
+                            [0.0323, "crafting", "strength", 737627, 200000000],
+                            [0.0323, "crafting", "defence", 737627, 200000000],
+                            [0.0323, "crafting", "ranged", 101333, 200000000],
+                            [0.0992, "runecraft", "crafting", 4470, 200000000],
+                            [0.2610, "smithing", "crafting", 4470, 200000000],
+                            [0.0274, "woodcutting", "fishing", 4470, 200000000],
+                            [0.0500, "firemaking", "fishing", 4470, 200000000]
                            ]
                            
-    config.bonus_xp_uim = [
+    config.bonus_xp_uim = [[0.1071, "prayer", "attack", 4470, 37224],
+                            [0.0625, "prayer", "attack", 37224, 737627],
+                            [0.0457, "prayer", "attack", 737627, 200000000],
+                            [0.1071, "prayer", "strength", 4470, 37224],
+                            [0.0625, "prayer", "strength", 37224, 737627],
+                            [0.0457, "prayer", "strength", 737627, 200000000],
+                            [0.1071, "prayer", "defence", 4470, 37224],
+                            [0.0625, "prayer", "defence", 37224, 737627],
+                            [0.0457, "prayer", "defence", 737627, 200000000],
+                            [0.1071, "prayer", "ranged", 4470, 37224],
+                            [0.0625, "prayer", "ranged", 37224, 101333],
+                            [0.0457, "prayer", "ranged", 101333, 200000000],
+                            [0.0323, "crafting", "attack", 737627, 200000000],
+                            [0.0323, "crafting", "strength", 737627, 200000000],
+                            [0.0323, "crafting", "defence", 737627, 200000000],
+                            [0.0323, "crafting", "ranged", 101333, 200000000],
+                            [0.2610, "smithing", "crafting", 4470, 200000000],
+                            [0.0274, "woodcutting", "fishing", 4470, 200000000],
+                            [0.0500, "firemaking", "fishing", 4470, 200000000]
                            ]
 end
 

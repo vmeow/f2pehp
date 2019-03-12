@@ -417,7 +417,7 @@ class Player < ActiveRecord::Base
         next
       end
       
-      bonus_xp = (skill_from - start_xp.to_i)*ratio.to_f
+      bonus_xp = ([skill_from, end_xp].min - start_xp.to_i)*ratio.to_f
       
       if bonuses[bonus_for]
         bonuses[bonus_for] += bonus_xp
