@@ -730,6 +730,12 @@ a[href$="/Yewsless"]:after {
   vertical-align: -10px;
 }
 
+a[href$="/DansPotatoe"]:after {  
+  padding: 3px;
+  content: image-url("items/Potato.png");
+  vertical-align: -2px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
