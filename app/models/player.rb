@@ -91,7 +91,7 @@ class Player < ActiveRecord::Base
     if str.downcase == "_yrak"
       return str
     else
-      str = str.gsub(/[-_\\+(%20)]/, " ")
+      str = str.gsub(/[-_\\+]|(%20)/, " ")
       return str.gsub(/\A[^A-z0-9]+|[^A-z0-9\s\_-]+|[^A-z0-9]+\z/, "")
     end
   end
