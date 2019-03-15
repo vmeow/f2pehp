@@ -92,7 +92,7 @@ class Player < ActiveRecord::Base
       return str
     else
       str = str.gsub(/[-_\\+(%20)]/, " ")
-      return str.gsub(/\A[^a-z0-9]+|[^a-z0-9\s\_-]+|[^a-z0-9]+\z/, "")
+      return str.gsub(/\A[^A-z0-9]+|[^A-z0-9\s\_-]+|[^A-z0-9]+\z/, "")
     end
   end
   
