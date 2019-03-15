@@ -5,9 +5,62 @@ require 'nokogiri'
 
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[show edit update destroy]
+  
+  def search_player_if_needed
+    if params[:search]
+      @player = Player.find_player(params[:search])
+      if @player 
+        name = @player.player_name.gsub(" ", "_")
+        redirect_to "/players/#{name}"
+      else
+        redirect_to ranks_path, notice: 'Player not found.'
+      end
+      return
+    end 
+  end
 
-  # GET /players
-  # GET /players.json
+  def create_player_if_needed
+    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+      if params[:player_to_add_name].length > 12
+        redirect_to ranks_path, notice: 'Invalid player name.'
+        return
+      end
+
+      name = Player.sanitize_name(params[:player_to_add_name])
+      params[:player_to_add_name] = nil
+      session[:player_to_add_name] = nil
+      
+      found = Player.find_player(name)
+      if found
+        redirect_to "/players/#{found.player_name.gsub(" ", "_")}", notice: 'The player you wish to add already exists.'
+        return
+      elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
+        redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
+        return
+      end
+      
+      acc_type = determine_acc_type(name)
+      if acc_type.nil?
+        redirect_to ranks_path, notice: "Player hiscores not found."
+        return 
+      end
+      Player.create!({ player_name: name, 'player_acc_type': acc_type})
+      player = Player.find_player(name)
+      
+      result = player.update_player
+      
+      if result == "p2p"
+        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
+        return
+      elsif result == "cutoff"
+        redirect_to ranks_path, notice: "The player you wish to add does not meet the EHP requirement."
+        return
+      end
+
+      redirect_to player, notice: 'Player added successfully.'
+    end
+  end
+
   def test
     competitions
   end
@@ -80,16 +133,7 @@ class PlayersController < ApplicationController
       session[:sort_by] = "ehp"
     end
     
-    if params[:search]
-      @player = Player.find_player(params[:search])
-      if @player 
-        name = @player.player_name.gsub(" ", "_")
-        redirect_to "/players/#{name}"
-      else
-        redirect_to ranks_path, notice: 'Player not found.'
-      end
-      return
-    end 
+    search_player_if_needed
     
     if params[:player1] and params[:player2]
       compare
@@ -101,42 +145,7 @@ class PlayersController < ApplicationController
       session[:skill] = "overall"
     end
     
-    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
-      redirect_to ranks_path, notice: 'Temporarily disabled.'
-      return 
-      name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
-      params[:player_to_add_name] = nil
-      session[:player_to_add_name] = nil
-      
-      found = Player.find_player(name)
-      if found
-        redirect_to "/players/#{found.player_name.gsub(" ", "_")}", notice: 'The player you wish to add already exists.'
-        return
-      elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
-        redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
-        return
-      end
-      
-      acc_type = determine_acc_type(name)
-      if acc_type.nil?
-        redirect_to ranks_path, notice: "Player hiscores not found."
-        return 
-      end
-      Player.create!({ player_name: name, 'player_acc_type': acc_type})
-      player = Player.find_player(name)
-      
-      result = player.update_player
-      
-      if result == "p2p"
-        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
-        return
-      elsif result == "cutoff"
-        redirect_to ranks_path, notice: "The player you wish to add does not meet the EHP requirement."
-        return
-      end
-
-      redirect_to player, notice: 'Player added successfully.'
-    end
+    create_player_if_needed
     
     if @sort_by == {}
       @sort_by = "ehp"
@@ -212,16 +221,7 @@ class PlayersController < ApplicationController
       session[:sort_by] = "ehp"
     end
     
-    if params[:search]
-      @player = Player.find_player(params[:search])
-      if @player 
-        name = @player.player_name.gsub(" ", "_")
-        redirect_to "/players/#{name}"
-      else
-        redirect_to ranks_path, notice: 'Player not found.'
-      end
-      return
-    end 
+    search_player_if_needed
     
     if params[:player1] and params[:player2]
       compare
@@ -233,42 +233,7 @@ class PlayersController < ApplicationController
       session[:skill] = "overall"
     end
     
-    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != ""
-      redirect_to ranks_path, notice: 'Temporarily disabled.'
-      return 
-      name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
-      params[:player_to_add_name] = nil
-      session[:player_to_add_name] = nil
-      
-      found = Player.find_player(name)
-      if found
-        redirect_to "/players/#{found.player_name.gsub(" ", "_")}", notice: 'The player you wish to add already exists.'
-        return
-      elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
-        redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
-        return
-      end
-      
-      acc_type = determine_acc_type(name)
-      if acc_type.nil?
-        redirect_to ranks_path, notice: "Player hiscores not found."
-        return 
-      end
-      Player.create!({ player_name: name, 'player_acc_type': acc_type})
-      player = Player.find_player(name)
-      
-      result = player.update_player
-      
-      if result == "p2p"
-        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
-        return
-      elsif result == "cutoff"
-        redirect_to ranks_path, notice: "The player you wish to add does not meet the EHP requirement."
-        return
-      end
-
-      redirect_to player, notice: 'Player added successfully.'
-    end
+    create_player_if_needed
     
     if @sort_by == {}
       @sort_by = "ehp"
@@ -320,16 +285,7 @@ class PlayersController < ApplicationController
       session[:filters_] = @filters
     end
     
-    if params[:search]
-      @player = Player.find_player(params[:search])
-      if @player 
-        name = @player.player_name.gsub(" ", "_")
-        redirect_to "/players/#{name}"
-      else
-        redirect_to ranks_path, notice: 'Player not found.'
-      end
-      return
-    end 
+    search_player_if_needed
     
     if params[:player1] and params[:player2]
       compare
@@ -341,49 +297,7 @@ class PlayersController < ApplicationController
       session[:skill] = "overall"
     end
     
-    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
-      redirect_to ranks_path, notice: 'Temporarily disabled.'
-      return 
-      name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
-      params[:player_to_add_name] = nil
-      session[:player_to_add_name] = nil
-      
-      found = Player.find_player(name)
-      if found
-        redirect_to "/players/#{found.player_name.gsub(" ", "_")}", notice: 'The player you wish to add already exists.'
-        return
-      elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
-        redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
-        return
-      end
-      
-      acc_type = determine_acc_type(name)
-      if acc_type.nil?
-        redirect_to ranks_path, notice: "Player hiscores not found."
-        return 
-      end
-      Player.create!({ player_name: name, 'player_acc_type': acc_type})
-      player = Player.find_player(name)
-      
-      result = player.update_player
-      
-      if result == "p2p"
-        redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
-        return
-      elsif result == "cutoff"
-        redirect_to ranks_path, notice: "The player you wish to add does not meet the EHP requirement."
-        return
-      end
-      
-      #player.update_attribute(:overall_ehp_start, player['overall_ehp'].to_f)
-      player.update_attribute(:mining_ehp_start, player['mining_ehp'].to_f)
-      player.update_attribute(:fishing_ehp_start, player['fishing_ehp'].to_f)
-      player.update_attribute(:woodcutting_ehp_start, player['woodcutting_ehp'].to_f)
-      player.update_attribute(:firemaking_ehp_start, player['firemaking_ehp'].to_f)
-      player.update_attribute(:cooking_ehp_start, player['cooking_ehp'].to_f)
-      
-      redirect_to player, notice: 'Player added successfully.'
-    end
+    create_player_if_needed
     
     if @sort_by == {}
       @sort_by = "ehp"

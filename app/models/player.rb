@@ -86,16 +86,18 @@ class Player < ActiveRecord::Base
     "(#{quoted_names.join(",")})"
   end
   
-  def self.clean_trailing_leading_spaces(str)
+  # The characters +, _, \s, -, %20 count as the same when doing a lookup on hiscores.
+  def self.sanitize_name(str)
     if str.downcase == "_yrak"
       return str
     else
-      return str.gsub(/\A[\s_]+|[\s_]+\z/, "")
+      str = str.gsub(/[-_\\+(%20)]/, " ")
+      return str.gsub(/\A[^a-z0-9]+|[^a-z0-9\s\_-]+|[^a-z0-9]+\z/, "")
     end
   end
   
   def self.find_player(id)
-    id = self.clean_trailing_leading_spaces(id)
+    id = self.sanitize_name(id)
     player = Player.where('lower(player_name) = ?', id.downcase).first
     if player.nil?
       name = id.gsub("_", " ")
