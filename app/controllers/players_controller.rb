@@ -102,6 +102,8 @@ class PlayersController < ApplicationController
     end
     
     if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+      redirect_to ranks_path, notice: 'Temporarily disabled.'
+      return 
       name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
       params[:player_to_add_name] = nil
       session[:player_to_add_name] = nil
@@ -231,7 +233,9 @@ class PlayersController < ApplicationController
       session[:skill] = "overall"
     end
     
-    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != ""
+      redirect_to ranks_path, notice: 'Temporarily disabled.'
+      return 
       name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
       params[:player_to_add_name] = nil
       session[:player_to_add_name] = nil
@@ -338,6 +342,8 @@ class PlayersController < ApplicationController
     end
     
     if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+      redirect_to ranks_path, notice: 'Temporarily disabled.'
+      return 
       name = Player.clean_trailing_leading_spaces(params[:player_to_add_name])
       params[:player_to_add_name] = nil
       session[:player_to_add_name] = nil
