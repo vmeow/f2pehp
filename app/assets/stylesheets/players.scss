@@ -736,6 +736,12 @@ a[href$="/DansPotatoe"]:after {
   vertical-align: -2px;
 }
 
+a[href$="/Wizards_Foot"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Wizards_Foot_flair.png");
+  vertical-align: -10px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
