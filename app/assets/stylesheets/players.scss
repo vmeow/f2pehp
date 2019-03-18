@@ -742,6 +742,12 @@ a[href$="/Wizards_Foot"]:after {
   vertical-align: -10px;
 }
 
+a[href$="/F2P_Jords"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Druidic_wreath.png");
+  vertical-align: -2px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
