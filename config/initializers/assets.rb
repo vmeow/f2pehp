@@ -8,10 +8,10 @@ Rails.application.config.assets.version = '1.0'
 F2POSRSRanks::Application.configure do
     config.version = "F2P Wiki v1.13"
 
-    config.fakes = ["supernovax9", "Alkie", "Da Jugg King", "F 2 P Jesus", "K4de", "Susen", "Turkish Bear", "YamiOscuro", "G-Jax", "A Level 73", "Mr Hakumo", "GeerdWilders", "Non-Skiller", "Diu", "Cyclostroith", "Flippencio", "Lxnch", "Gl No Arm", "Biostabil", "Candlebeard", "F2Prod", "Low Magic","Dpss Khz", "Joeeee", "2 Fiery 2613", "Plaffy", "Plop City", "Luumu", "Skeez N Flex", "Deoxys X", "Lil Skanks", "Deoxys Y", "Count Ragula", "Incipient11", "Vastn00b", "Ernestas", "Getido", "Akst0rm", "Gfyyjgfhjjfg", "Mycookingalt", "Antidzakar", "The Daddy De", "Angel Xx", "When 07", "Slabs986", "Kliiiiiiir", "Xzs", "Looorloorke", "Rs3hasailing", "Gybes729", "Schticks377", "Crunch42", "Luolaneekeri", "Brgn", "Cumcumber100", "Minijordan", "Gwyse", "Garof", "Spiderdreng4", "Ski Jump", "Rodaten", "Drequis", "Macho95", "Regretterd", "Dragons Lair", "Hai Yass", "Foolthiz", "Quincyx3", "Kortemark", "9 Dryad Cow", "Mmm Crabz", "Dailypoon25", "Smorc Champ", "Godlike", "Saap", "Ajshmayjay", "Dubstepn69", "Feeshone", "Orangemarmal", "Cfwx", "Luulul", "Tubracito", "Reclaimzed", "Xanthe Will", "Honesdale", "10hp Skill", "Xyujah1", "Vipc", "1212x", "Cybathug", "Afkallday", "Purcopyx", "Add1s0n", "Vulfepayne", "Airagan", "Cameronkuh", "Anne De Tank", "Psicowave", "CountStumpy2", "Mirnoi", "Riko661", "Gatormind", "Woodcutter7k", "Dopey Goat", "Uristmcdorf", "Boaswen", "Sirbloby123", "Del5thslave", "Minningguy14", "Del4thslave", "Aylaw", "0n Gp", "Venedi", "Yutram", "Whispah11", "Funkyjunk122", "Why You No", "Mrsshoarma", "Deathyy18", "Morthook", "Alexnolan", "Zem Fishies", "Bobfish66", "Hengen Mies", "Penguins 0", "Kingpin6999", "Minecat", "Greenholgart", "Ocigoniel", "Omgfreecake", "Vornollo", "Szzadi3", "Mistereremin", "Kawaiiniisan", "Thenthedr", "Redboyfrisco", "0t H", "Miner Timmie", "Takane", "Consortium", "Crisp Gains", "Mkbngg", "Mcgavin", "Orydel", "Porttieerik", "Mikeyman", "Azzazeell", "Zuls", "Purcopyxx", "Grand Danke", "Broembroemk", "Sir Kmilooxd", "Denise", "Puh3linmembu", "Salmonsmoker", "Recknded", "Justdontrush", "Hvvvppw", "Southernlady", "Onoesa", "Groovydroid", "Skiller0nlyy", "Mate Sauron", "Firem", "King Of Rr", "Kedaredan", "Umap", "Asku", "Aracion", "Ur Kiddin", "Muhpatriarky", "Bringing", "Amethyst Alt", "Gwilalian", "Minerio", "To Tank", "Etion Isces", "Flysandgold", "Adiput16", "Me Exp", "X O L337 O X", "Like Fire", "K S", "Zomble Boy", "Sinister Ug", "Mivok", "Chessy 018", "Pot Of Bone", "Alt Amethyst", "Ckzlphc", "Tko1", "Eat Baby Boy", "Jerayred", "Zjs", "Bank Nothing", "Iron Farter", "Dying Sea", "Xcrushyx", "Acigosh", "Sionoft", "Igsuck", "9 Only Low", "Apex Tigrex", "Lordnetto", "Anshelm", "Glardoldan", "Jayden 1486", "K1ss K1lla", "Lost Forest", "Lilypadda", "2002 Tii", "Conelle", "Resolution", "Sphdinp", "Araliclya", "Chanpluru", "Skillerzzzse", "Trigobard", "Raerey", "Tom Clancy", "Lolislay3r", "Emx", "Seek God", "Hagain", "Whatttattata",  "Dressing", "Blye", "Notoskillhop", "Unililith", "Hirawiel", "021805", "Lil Deyoung", "Albertxyx", "Pressing", "Strokinglogs", "Shark Fishr", "Del3rdslave", "Bangbung32", "Negnelfi", "30 Bag", "Tianyumi", "Mrwoodcut", "Dominics 1st", "Al Alt2", "06account", "Atipatio", "Snail4sale", "Bmatic 15", "Bgjela", "Vexens23", "W333seers Wc", "Isstoissr", "Goldwing100", "Steampress", "Flag1er", "Ezr3all", "Y3w5", "Whirlwind Ko"] 
-    config.downcase_fakes = config.fakes.map(&:downcase)
-    config.banned = ["F2Prod", "Sharply Stab", "Wachbirne", "Nanitronic", "Hc Tppk", "iron s4v4gez"]
-   
+   config.fakes = ["laye btw", "supernovax9", "Alkie", "Da Jugg King", "F 2 P Jesus", "K4de", "Susen", "Turkish Bear", "YamiOscuro", "G-Jax", "A Level 73", "Mr Hakumo", "GeerdWilders", "Non-Skiller", "Diu", "Cyclostroith", "Flippencio", "Lxnch", "Gl No Arm", "Biostabil", "Candlebeard", "F2Prod", "Low Magic","Dpss Khz", "Joeeee", "2 Fiery 2613", "Plaffy", "Plop City", "Luumu", "Skeez N Flex", "Deoxys X", "Lil Skanks", "Deoxys Y", "Count Ragula", "Incipient11", "Vastn00b", "Ernestas", "Getido", "Akst0rm", "Gfyyjgfhjjfg", "Mycookingalt", "Antidzakar", "The Daddy De", "Angel Xx", "When 07", "Slabs986", "Kliiiiiiir", "Xzs", "Looorloorke", "Rs3hasailing", "Gybes729", "Schticks377", "Crunch42", "Luolaneekeri", "Brgn", "Cumcumber100", "Minijordan", "Gwyse", "Garof", "Spiderdreng4", "Ski Jump", "Rodaten", "Drequis", "Macho95", "Regretterd", "Dragons Lair", "Hai Yass", "Foolthiz", "Quincyx3", "Kortemark", "9 Dryad Cow", "Mmm Crabz", "Dailypoon25", "Smorc Champ", "Godlike", "Saap", "Ajshmayjay", "Dubstepn69", "Feeshone", "Orangemarmal", "Cfwx", "Luulul", "Tubracito", "Reclaimzed", "Xanthe Will", "Honesdale", "10hp Skill", "Xyujah1", "Vipc", "1212x", "Cybathug", "Afkallday", "Purcopyx", "Add1s0n", "Vulfepayne", "Airagan", "Cameronkuh", "Anne De Tank", "Psicowave", "CountStumpy2", "Mirnoi", "Riko661", "Gatormind", "Woodcutter7k", "Dopey Goat", "Uristmcdorf", "Boaswen", "Sirbloby123", "Del5thslave", "Minningguy14", "Del4thslave", "Aylaw", "0n Gp", "Venedi", "Yutram", "Whispah11", "Funkyjunk122", "Why You No", "Mrsshoarma", "Deathyy18", "Morthook", "Alexnolan", "Zem Fishies", "Bobfish66", "Hengen Mies", "Penguins 0", "Kingpin6999", "Minecat", "Greenholgart", "Ocigoniel", "Omgfreecake", "Vornollo", "Szzadi3", "Mistereremin", "Kawaiiniisan", "Thenthedr", "Redboyfrisco", "0t H", "Miner Timmie", "Takane", "Consortium", "Crisp Gains", "Mkbngg", "Mcgavin", "Orydel", "Porttieerik", "Mikeyman", "Azzazeell", "Zuls", "Purcopyxx", "Grand Danke", "Broembroemk", "Sir Kmilooxd", "Denise", "Puh3linmembu", "Salmonsmoker", "Recknded", "Justdontrush", "Hvvvppw", "Southernlady", "Onoesa", "Groovydroid", "Skiller0nlyy", "Mate Sauron", "Firem", "King Of Rr", "Kedaredan", "Umap", "Asku", "Aracion", "Ur Kiddin", "Muhpatriarky", "Bringing", "Amethyst Alt", "Gwilalian", "Minerio", "To Tank", "Etion Isces", "Flysandgold", "Adiput16", "Me Exp", "X O L337 O X", "Like Fire", "K S", "Zomble Boy", "Sinister Ug", "Mivok", "Chessy 018", "Pot Of Bone", "Alt Amethyst", "Ckzlphc", "Tko1", "Eat Baby Boy", "Jerayred", "Zjs", "Bank Nothing", "Iron Farter", "Dying Sea", "Xcrushyx", "Acigosh", "Sionoft", "Igsuck", "9 Only Low", "Apex Tigrex", "Lordnetto", "Anshelm", "Glardoldan", "Jayden 1486", "K1ss K1lla", "Lost Forest", "Lilypadda", "2002 Tii", "Conelle", "Resolution", "Sphdinp", "Araliclya", "Chanpluru", "Skillerzzzse", "Trigobard", "Raerey", "Tom Clancy", "Lolislay3r", "Emx", "Seek God", "Hagain", "Whatttattata",  "Dressing", "Blye", "Notoskillhop", "Unililith", "Hirawiel", "021805", "Lil Deyoung", "Albertxyx", "Pressing", "Strokinglogs", "Shark Fishr", "Del3rdslave", "Bangbung32", "Negnelfi", "30 Bag", "Tianyumi", "Mrwoodcut", "Dominics 1st", "Al Alt2", "06account", "Atipatio", "Snail4sale", "Bmatic 15", "Bgjela", "Vexens23", "W333seers Wc", "Isstoissr", "Goldwing100", "Steampress", "Flag1er", "Ezr3all", "Y3w5", "Whirlwind Ko"] 
+   config.downcase_fakes = config.fakes.map(&:downcase)
+   config.banned = ["F2Prod", "Sharply Stab", "Wachbirne", "Nanitronic", "Hc Tppk", "iron s4v4gez"]
+
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall", "attack", "defence", "strength", "hitpoints", "ranged", "prayer",
                      "magic", "cooking", "woodcutting", "p2p", "fishing", "firemaking", "crafting",
@@ -64,7 +64,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['defence_method'] = "1 defence clan wars alts after 99 att/str"
     config.ehp_reg['ranged_method'] = "1 defence clan wars alts"
     config.ehp_reg['hitpoints_method'] = "0 time during combats"
-    config.ehp_reg['prayer_method'] = "Big bones with mostly 0-tick banking"
+    config.ehp_reg['prayer_method'] = "Big bones: 43k/h solo,  34.2k/h while 'burycooking'"
     config.ehp_reg['magic_method'] = "Best spell, then curse splashing until 55, 0 time high alch/superheat during other skills"
     config.ehp_reg['cooking_method'] = "Best food, then wines"
     config.ehp_reg['woodcutting_method'] = "Best tree, then 3-tick willows with snow"
@@ -82,9 +82,9 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['hitpoints_method'] = "0 time during combats"
     config.ehp_iron['prayer_method'] = "Boneyard and 0-time big bones from giants/ogresses"
     config.ehp_iron['magic_method'] = "Best spell, then 0-time teleport/superheat/high alch during other skills"
-    config.ehp_iron['cooking_method'] = "Best fish until trout/salmon, 3.5-ticked"
+    config.ehp_iron['cooking_method'] = "Best fish until trout/salmon, 0-time while 3-tick fishing."
     config.ehp_iron['woodcutting_method'] = "Best tree until willows, 3-ticked with snow"
-    config.ehp_iron['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow"
+    config.ehp_iron['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish"
     config.ehp_iron['firemaking_method'] = "Best tree until willows, during woodcutting"
     config.ehp_iron['crafting_method'] = "Leather, then symbols, then tiaras and gem amulets from ogresses"
     config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, mining guild and falador teleport iron platebodies and 0-time silver/gold smelting"
@@ -98,9 +98,9 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['hitpoints_method'] = "0 time during combats"
     config.ehp_uim['prayer_method'] = "Boneyard and 0-time big bones from giants/ogresses"
     config.ehp_uim['magic_method'] = "Best spell, then 0-time teleport/superheat/high alch during other skills"
-    config.ehp_uim['cooking_method'] = "Best fish until trout/salmon, 3.5-ticked"
+    config.ehp_uim['cooking_method'] = "Best fish until trout/salmon, 0-time while 3-tick fishing."
     config.ehp_uim['woodcutting_method'] = "Best tree until willows, 3-ticked with snow"
-    config.ehp_uim['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow"
+    config.ehp_uim['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish"
     config.ehp_uim['firemaking_method'] = "Best tree until willows, during woodcutting"
     config.ehp_uim['crafting_method'] = "Leather, then symbols, then tiaras with 0-time cut and dropped gems from ogresses"
     config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, varrock west and falador tele iron platebodies and 0-time silver smelting"
@@ -197,8 +197,11 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_iron['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
-    config.ehp_iron['magic_tiers'] = [0, 3973, 18247]
-    config.ehp_iron['magic_xphrs'] = [5000, 34800, 199981753]
+    config.ehp_iron['magic_tiers'] = [0, 174, 3973, 247886]
+    config.ehp_iron['magic_xphrs'] = [5000, 15600, 34800, 54000]
+
+    config.ehp_reg['magic_tiers'] = [0, 174, 1358, 3973, 5018]
+    config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 72000]
   
     # config.ehp_iron['cooking_tiers'] = [0, 101333]
     # config.ehp_iron['cooking_xphrs'] = [40000, 120000]
@@ -253,15 +256,15 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
     config.ehp_uim['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 46550]
     
-    config.ehp_uim['prayer_tiers'] = [0, 10680000, 13034000, 163880000]
-    config.ehp_uim['prayer_xphrs'] = [9300, 2350000, 9300, 36120000]
+    config.ehp_uim['prayer_tiers'] = [0]
+    config.ehp_uim['prayer_xphrs'] = [9300]
   
     # config.ehp_uim['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_uim['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
-    config.ehp_uim['magic_tiers'] = [0, 3973, 18247]
-    config.ehp_uim['magic_xphrs'] = [5000, 34800, 199981753]
-  
+    config.ehp_uim['magic_tiers'] = [0, 174, 3973, 247886]
+    config.ehp_uim['magic_xphrs'] = [5000, 15600, 34800, 54000]
+
     # config.ehp_uim['cooking_tiers'] = [0, 101333]
     # config.ehp_uim['cooking_xphrs'] = [40000, 120000]
   
@@ -337,7 +340,10 @@ F2POSRSRanks::Application.configure do
                             [0.0992, "runecraft", "crafting", 4470, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            [0.0500, "firemaking", "fishing", 4470, 200000000]
+                            [0.0500, "firemaking", "fishing", 4470, 200000000],
+                            [1.4133, "magic", "smithing", 0, 200000000],
+                            [0.0381, "magic", "crafting", 0, 200000000],
+                            [0.2154, "magic", "runecraft", 0, 200000000]
                            ]
                            
     config.bonus_xp_uim = [[0.1071, "prayer", "attack", 4470, 37224],
@@ -358,7 +364,10 @@ F2POSRSRanks::Application.configure do
                             [0.0323, "crafting", "ranged", 101333, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            [0.0500, "firemaking", "fishing", 4470, 200000000]
+                            [0.0500, "firemaking", "fishing", 4470, 200000000],
+                            [1.4133, "magic", "smithing", 0, 200000000],
+                            [0.0381, "magic", "crafting", 0, 200000000],
+                            [0.2154, "magic", "runecraft", 0, 200000000]
                            ]
 end
 
