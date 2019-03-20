@@ -78,7 +78,8 @@ class Player < ActiveRecord::Base
                 "one a time",
                 "Yewsless",
                 "Wizards Foot",
-                "F2P Jords"]
+                "F2P Jords",
+                "a q p IM"]
   
   def self.supporters()
     SUPPORTERS
