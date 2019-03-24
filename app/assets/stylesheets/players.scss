@@ -748,6 +748,12 @@ a[href$="/F2P_Jords"]:after {
   vertical-align: -2px;
 }
 
+a[href$="/Hardcore_VFL"]:after {  
+  padding: 3px;
+  content: image-url("HCIM.png");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
