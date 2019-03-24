@@ -172,27 +172,15 @@ class Player < ActiveRecord::Base
     total_lvl = 8
     total_xp = 0
     under_34 = false
-    bonus_xp = calc_bonus_xp(all_stats)
     F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
       skill_lvl = all_stats[skill_idx].split(",")[1].to_f
       skill_xp = all_stats[skill_idx].split(",")[2].to_f
       skill_rank = all_stats[skill_idx].split(",")[0].to_f
-      
       if skill == "hitpoints" and skill_lvl < 10
         skill_lvl = 10
         skill_xp = 1154
       end
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
-        if skill_xp < 0
-          update_attribute(:"#{skill}_xp", 0)
-        else
-          update_attribute(:"#{skill}_xp", skill_xp)
-        end
-      
-        if bonus_xp[skill]
-          skill_xp -= bonus_xp[skill]
-        end
-        
         skill_ehp = 0.0
         skill_tiers = ehp["#{skill}_tiers"]
         skill_xphrs = ehp["#{skill}_xphrs"]
@@ -206,6 +194,11 @@ class Player < ActiveRecord::Base
               skill_ehp += (skill_xp.to_f - skill_tier)/skill_xphr
             end
           end
+        end
+        if skill_xp < 0
+          update_attribute(:"#{skill}_xp", 0)
+        else
+          update_attribute(:"#{skill}_xp", skill_xp)
         end
         update_attribute(:"#{skill}_lvl", skill_lvl)
         update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
@@ -302,7 +295,7 @@ class Player < ActiveRecord::Base
       Player.where(player_name: player_name).destroy_all
       return false
     end
-    calc_ehp
+    calc_ehp_using_bonus_xp
     if check_p2p
       Player.where(player_name: player_name).destroy_all
       return "p2p"
@@ -313,18 +306,18 @@ class Player < ActiveRecord::Base
       return "cutoff"
     end
     
-    # if overall_ehp > 250 or Player.supporters.include?(player_name)
-    #   TIMES.each do |time|
-    #     xp = self.read_attribute("overall_xp_#{time}_start")
-    #     if xp.nil? or xp == 0
-    #       update_player_start_stats(time)
-    #     end
-    #   end
+    if overall_ehp > 250 or Player.supporters.include?(player_name)
+      TIMES.each do |time|
+        xp = self.read_attribute("overall_xp_#{time}_start")
+        if xp.nil? or xp == 0
+          update_player_start_stats(time)
+        end
+      end
       
-    #   check_record_gains
-    # end
+      check_record_gains
+    end
     
-    # update_attributes(:ttm_lvl => time_to_max("lvl"), :ttm_xp => time_to_max("xp"))
+    update_attributes(:ttm_lvl => time_to_max("lvl"), :ttm_xp => time_to_max("xp"))
   end
   
   def check_record_gains
@@ -435,5 +428,106 @@ class Player < ActiveRecord::Base
       end
     end
     return bonuses
+  end
+  
+  def parse_raw_stats(all_stats)
+    stats_hash = Hash.new
+    stats_hash["p2p_xp"] = 0
+    stats_hash["p2p_minigame_score"] = 0
+    F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
+      skill_lvl = all_stats[skill_idx].split(",")[1].to_f
+      skill_xp = all_stats[skill_idx].split(",")[2].to_i
+      skill_rank = all_stats[skill_idx].split(",")[0].to_i
+      
+      skill_lvl = 0 if skill_lvl < 0
+      skill_xp = 0 if skill_xp < 0
+      skill_rank = 0 if skill_rank < 0
+      
+      if skill == "hitpoints" and skill_lvl < 10
+        skill_lvl = 10
+        skill_xp = 1154
+      end
+      
+      if skill == "p2p" 
+        stats_hash["p2p_xp"] += skill_xp
+      elsif skill == "p2p_minigame"
+        stats_hash["p2p_minigame_score"] += skill_lvl
+      elsif skill == "lms"
+        stats_hash["lms_score"] = skill_lvl
+        stats_hash["lms_rank"] = skill_rank
+      else
+        stats_hash["#{skill}_lvl"] = skill_lvl
+        stats_hash["#{skill}_xp"] = skill_xp
+        stats_hash["#{skill}_rank"] = skill_rank
+      end
+    end
+    return stats_hash
+  end
+  
+  def calc_ehp_using_bonus_xp
+    ehp = get_ehp_type
+    all_stats = get_stats
+    stats_hash = parse_raw_stats(all_stats)
+    if stats_hash["p2p_xp"] > 0 or stats_hash ["p2p_minigame_score"] > 0
+      Player.where(player_name: player_name).destroy_all
+      # TODO: mark player for deletion instead of actually deleting.
+      #       then, filter players with this column.
+      # update_attribute(:potential_p2p, "1")
+    end
+    total_ehp = 0.0
+    total_lvl = 8
+    total_xp = 0
+    bonus_xp = calc_bonus_xp(all_stats)
+    stats_list = F2POSRSRanks::Application.config.f2p_skills
+    
+    stats_list.each.with_index do |skill, skill_idx|
+      skill_lvl = stats_hash["#{skill}_lvl"]
+      skill_xp = stats_hash["#{skill}_xp"]
+      skill_rank = stats_hash["#{skill}_rank"]
+
+      update_attribute(:"#{skill}_xp", skill_xp)
+      update_attribute(:"#{skill}_lvl", skill_lvl)
+      update_attribute(:"#{skill}_rank", skill_rank)
+      
+      skill_tiers = ehp["#{skill}_tiers"]
+      skill_xphrs = ehp["#{skill}_xphrs"]
+      skill_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
+      
+      if bonus_xp[skill]
+        bonus_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp - bonus_xp[skill])
+        skill_ehp -= bonus_ehp
+      end
+
+      update_attribute(:"#{skill}_ehp", skill_ehp.round(2))
+      total_ehp += skill_ehp.round(2)
+      total_xp += skill_xp
+      total_lvl += skill_lvl
+    end
+    
+    update_attribute(:overall_ehp, total_ehp.round(2))
+    update_attribute(:overall_rank, stats_hash["overall_rank"])
+    if stats_hash["overall_lvl"] < 34
+      update_attribute(:overall_lvl, total_lvl)
+      update_attribute(:overall_xp, total_xp)
+    else
+      update_attribute(:overall_lvl, stats_hash["overall_lvl"])
+      update_attribute(:overall_xp, stats_hash["overall_xp"])
+    end
+  end
+  
+  def calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
+    skill_ehp = 0.0
+    skill_tiers.each.with_index do |skill_tier, tier_idx|
+      skill_tier = skill_tier.to_f
+      skill_xphr = skill_xphrs[tier_idx].to_f
+      if skill_xphr != 0 and skill_tier < skill_xp
+        if (tier_idx + 1) < skill_tiers.length and skill_xp >=  skill_tiers[tier_idx + 1]
+          skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
+        else
+          skill_ehp += (skill_xp - skill_tier)/skill_xphr
+        end
+      end
+    end
+    return skill_ehp
   end
 end
