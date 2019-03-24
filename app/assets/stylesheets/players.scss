@@ -754,6 +754,12 @@ a[href$="/Hardcore_VFL"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/Pizzarrhea"]:after {  
+  padding: 3px;
+  content: image-url("flairs/pizzarrhea.gif");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
