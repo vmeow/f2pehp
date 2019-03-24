@@ -312,6 +312,7 @@ class Player < ActiveRecord::Base
     
     stats_hash["ttm_lvl"] = time_to_max("lvl")
     stats_hash["ttm_xp"] = time_to_max("xp")
+    print stats_hash
     update_attributes(stats_hash)
     
     if overall_ehp > 250 or Player.supporters.include?(player_name)
