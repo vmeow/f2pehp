@@ -139,8 +139,8 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['prayer_tiers'] = [0]
     config.ehp_reg['prayer_xphrs'] =[43000]
   
-    config.ehp_reg['magic_tiers'] = [0, 174, 1358, 3973, 5018, 166636]
-    config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 72000, 132000]
+    config.ehp_reg['magic_tiers'] = [0, 174, 1358, 3973, 5018]
+    config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 0]
   
     config.ehp_reg['cooking_tiers'] = [0, 7842, 37224, 737627]
     config.ehp_reg['cooking_xphrs'] = [40000, 130000, 175000, 480000]
@@ -197,8 +197,8 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_iron['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
-    config.ehp_iron['magic_tiers'] = [0, 174, 3973, 247886]
-    config.ehp_iron['magic_xphrs'] = [5000, 15600, 34800, 54000]
+    config.ehp_iron['magic_tiers'] = [0, 174, 3973, 7842]
+    config.ehp_iron['magic_xphrs'] = [5000, 15600, 34800, 0]
   
     # config.ehp_iron['cooking_tiers'] = [0, 101333]
     # config.ehp_iron['cooking_xphrs'] = [40000, 120000]
@@ -259,8 +259,8 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_uim['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
-    config.ehp_uim['magic_tiers'] = [0, 174, 3973, 247886]
-    config.ehp_uim['magic_xphrs'] = [5000, 15600, 34800, 54000]
+    config.ehp_uim['magic_tiers'] = [0, 174, 3973, 7842]
+    config.ehp_uim['magic_xphrs'] = [5000, 15600, 34800, 0]
 
     # config.ehp_uim['cooking_tiers'] = [0, 101333]
     # config.ehp_uim['cooking_xphrs'] = [40000, 120000]
