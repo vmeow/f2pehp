@@ -205,9 +205,9 @@ F2POSRSRanks::Application.configure do
   
     config.ehp_iron['cooking_tiers'] = [0]
     config.ehp_iron['cooking_xphrs'] = [0]
-  
+
     config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
-    config.ehp_iron['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
+    config.ehp_iron['woodcutting_xphrs'] = [4000, 8500, 16000, 22800, 28500, 34300, 40000, 42850, 78500]
   
     # config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
@@ -218,8 +218,8 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
-    config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
+    config.ehp_iron['firemaking_tiers'] = [0]
+    config.ehp_iron['firemaking_xphrs'] = [0]
   
     config.ehp_iron['crafting_tiers'] = [0]
     config.ehp_iron['crafting_xphrs'] = [15550]
@@ -272,7 +272,7 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
   
     config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
-    config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
+    config.ehp_uim['woodcutting_xphrs'] = [4000, 8500, 16000, 22800, 28500, 34300, 40000, 42850, 78500]
   
     # config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
@@ -283,8 +283,8 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
-    config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
+    config.ehp_uim['firemaking_tiers'] = [0]
+    config.ehp_uim['firemaking_xphrs'] = [0]
   
     config.ehp_uim['crafting_tiers'] = [0] 
     config.ehp_uim['crafting_xphrs'] = [13600]
@@ -337,6 +337,7 @@ F2POSRSRanks::Application.configure do
                             [0.0992, "runecraft", "crafting", 4470, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
+                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [0.0500, "firemaking", "fishing", 4470, 200000000],
                             [1.4133, "magic", "smithing", 0, 200000000],
                             [0.0381, "magic", "crafting", 0, 200000000],
@@ -361,6 +362,7 @@ F2POSRSRanks::Application.configure do
                             [0.0323, "crafting", "ranged", 101333, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
+                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [0.0500, "firemaking", "fishing", 4470, 200000000],
                             [1.4133, "magic", "smithing", 0, 200000000],
                             [0.0381, "magic", "crafting", 0, 200000000],
