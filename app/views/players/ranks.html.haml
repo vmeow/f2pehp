@@ -108,7 +108,7 @@
             %td{:align => "center"}= player.player_acc_type   
             - if @skill.include?("ttm")
               %td= number_with_delimiter(number_with_precision(player["#{@skill}"].to_f, :precision => 2), :delimiter => ",", :separator => ".") 
-            - if @skill == "no_combats"
+            - elsif @skill == "no_combats"
               %td= player["overall_lvl"] - player["hitpoints_lvl"] - player["attack_lvl"] - player["strength_lvl"] - player["defence_lvl"] - player["ranged_lvl"] - player["magic_lvl"] - player["prayer_lvl"]
               - no_combats_xp =  player["overall_xp"] - player["hitpoints_xp"] - player["attack_xp"] - player["strength_xp"] - player["defence_xp"] - player["ranged_xp"] - player["magic_xp"] - player["prayer_xp"]
               - no_combats_ehp =number_with_precision(player["overall_ehp"] - player["attack_ehp"] - player["strength_ehp"] - player["defence_ehp"] - player["ranged_ehp"] - player["magic_ehp"] - player["prayer_ehp"], precision: 2)
