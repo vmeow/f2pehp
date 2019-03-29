@@ -81,7 +81,8 @@ class Player < ActiveRecord::Base
                 "a q p IM",
                 "Hardcore VFL",
                 "Pizzarrhea",
-                "bemanisows"]
+                "bemanisows",
+                "Dusty Lime"]
   
   def self.supporters()
     SUPPORTERS
