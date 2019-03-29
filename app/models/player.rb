@@ -247,14 +247,14 @@ class Player < ActiveRecord::Base
     return false
   end
 
-  def calc_combat
-    att = attack_lvl
-    str = strength_lvl
-    defence = defence_lvl
-    hp = hitpoints_lvl
-    ranged = ranged_lvl
-    magic = magic_lvl
-    pray = prayer_lvl
+  def calc_combat(stats_hash)
+    att = stats_hash["attack_lvl"]
+    str = stats_hash["strength_lvl"]
+    defence = stats_hash["defence_lvl"]
+    hp = stats_hash["hitpoints_lvl"]
+    ranged = stats_hash["ranged_lvl"]
+    magic = stats_hash["magic_lvl"]
+    pray = stats_hash["prayer_lvl"]
     
     base = 0.25 * (defence + hp + (pray/2).floor)
     melee = 0.325 * (att + str)
@@ -280,8 +280,8 @@ class Player < ActiveRecord::Base
     end
   end
   
-  def remove_cutoff
-    if overall_ehp < 1
+  def remove_cutoff(stats_hash)
+    if stats_hash["overall_ehp"] < 1
       Player.where(player_name: player_name).destroy_all
       return true
     end
@@ -306,25 +306,25 @@ class Player < ActiveRecord::Base
       return "p2p"
     end
     check_hc_death
-    calc_combat
-    if remove_cutoff
-      return "cutoff"
-    end
+    calc_combat(stats_hash)
+    # if remove_cutoff(stats_hash)
+    #   return "cutoff"
+    # end
     
-    stats_hash["ttm_lvl"] = time_to_max("lvl")
-    stats_hash["ttm_xp"] = time_to_max("xp")
+    # stats_hash["ttm_lvl"] = time_to_max("lvl")
+    # stats_hash["ttm_xp"] = time_to_max("xp")
     update_attributes(stats_hash)
     
-    if overall_ehp > 250 or Player.supporters.include?(player_name)
-      TIMES.each do |time|
-        xp = self.read_attribute("overall_xp_#{time}_start")
-        if xp.nil? or xp == 0
-          update_player_start_stats(time)
-        end
-      end
+    # if stats_hash["overall_ehp"] > 250 or Player.supporters.include?(player_name)
+    #   TIMES.each do |time|
+    #     xp = self.read_attribute("overall_xp_#{time}_start")
+    #     if xp.nil? or xp == 0
+    #       update_player_start_stats(time)
+    #     end
+    #   end
       
-      check_record_gains
-    end
+    #   check_record_gains
+    # end
   end
   
   def check_record_gains
@@ -531,6 +531,7 @@ class Player < ActiveRecord::Base
   
   def adjust_bonus_xp(stats_hash, bonus_xp)
     ehp = get_ehp_type
+    bonus_xp_list = get_bonus_xp
     puts bonus_xp
     bonus_xp.keys.each do |bonus_for|
       if bonus_for == "magic"
@@ -544,19 +545,26 @@ class Player < ActiveRecord::Base
 
       bonus_xp[bonus_for].keys.each do |bonus_from|
         expected_xp = bonus_xp[bonus_for][bonus_from]
+        puts "actual xp: #{actual_xp}, expected_xp: #{expected_xp}"
         
         if expected_xp > actual_xp
+          puts "no subtract"
+          skill_from_tiers = ehp["#{bonus_from}_tiers"]
+          skill_from_xphrs = ehp["#{bonus_from}_xphrs"]
           actual_ehp = 0
           xp_discrepancy = expected_xp - actual_xp
           actual_xp = 0
-          adjusted_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, xp_discrepancy)
+          min_ratio = bonus_xp_list.map {|xp| xp[0] if xp[1].include?(bonus_for) and xp[2].include?(bonus_from)}.compact.min
+          bonus_from_xp_discrepancy = xp_discrepancy/min_ratio
+          adjusted_ehp = calc_tiered_ehp(skill_from_tiers, skill_from_xphrs, stats_hash["#{bonus_from}_xp"] + bonus_from_xp_discrepancy) - stats_hash["#{bonus_from}_ehp"]
           puts "#{bonus_for} discrepancy of #{xp_discrepancy} from #{bonus_from}. removing #{adjusted_ehp} ehp from #{bonus_from}"
         else
           actual_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, actual_xp - expected_xp)
           adjusted_ehp = 0
+          puts "subtract, actual xp: #{actual_xp}, expected_xp: #{expected_xp}"
+          actual_xp -= expected_xp
         end
       
-        actual_xp -= expected_xp
         stats_hash["#{bonus_from}_ehp"] = (stats_hash["#{bonus_from}_ehp"] - adjusted_ehp).round(2)
         stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - adjusted_ehp).round(2)
         

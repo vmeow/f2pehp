@@ -337,8 +337,8 @@ F2POSRSRanks::Application.configure do
                             [0.0992, "runecraft", "crafting", 4470, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [0.0500, "firemaking", "fishing", 4470, 200000000],
+                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [1.4133, "magic", "smithing", 0, 200000000],
                             [0.0381, "magic", "crafting", 0, 200000000],
                             [0.2154, "magic", "runecraft", 0, 200000000]
@@ -362,8 +362,8 @@ F2POSRSRanks::Application.configure do
                             [0.0323, "crafting", "ranged", 101333, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [0.0500, "firemaking", "fishing", 4470, 200000000],
+                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [1.4133, "magic", "smithing", 0, 200000000],
                             [0.0381, "magic", "crafting", 0, 200000000],
                             [0.2154, "magic", "runecraft", 0, 200000000]
