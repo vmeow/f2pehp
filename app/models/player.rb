@@ -81,7 +81,10 @@ class Player < ActiveRecord::Base
                 "F2P Jords",
                 "a q p IM",
                 "Hardcore VFL",
-                "Pizzarrhea"]
+                "Pizzarrhea",
+                "bemanisows",
+                "Dusty Lime",
+                "Brantrout"]
   
   def self.supporters()
     SUPPORTERS

@@ -760,6 +760,18 @@ a[href$="/Pizzarrhea"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/bemanisows"]:after {  
+  padding: 3px;
+  content: image-url("flairs/vannaka.png");
+  vertical-align: -12px;
+}
+
+a[href$="/Dusty_Lime"]:after {  
+  padding: 3px;
+  content: image-url("items/Rune_chainbody.gif");
+  vertical-align: -12px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
