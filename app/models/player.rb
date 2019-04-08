@@ -552,14 +552,15 @@ class Player < ActiveRecord::Base
         
         if expected_xp > actual_xp
           puts "no subtract"
-          skill_from_tiers = ehp["#{bonus_from}_tiers"]
-          skill_from_xphrs = ehp["#{bonus_from}_xphrs"]
+          # skill_from_tiers = ehp["#{bonus_from}_tiers"]
+          # skill_from_xphrs = ehp["#{bonus_from}_xphrs"]
           actual_ehp = 0
           xp_discrepancy = expected_xp - actual_xp
           actual_xp = 0
-          min_ratio = bonus_xp_list.map {|xp| xp[0] if xp[1].include?(bonus_for) and xp[2].include?(bonus_from)}.compact.min
-          bonus_from_xp_discrepancy = xp_discrepancy/min_ratio
-          adjusted_ehp = calc_tiered_ehp(skill_from_tiers, skill_from_xphrs, stats_hash["#{bonus_from}_xp"] + bonus_from_xp_discrepancy) - stats_hash["#{bonus_from}_ehp"]
+          adjusted_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, xp_discrepancy)
+          # min_ratio = bonus_xp_list.map {|xp| xp[0] if xp[1].include?(bonus_for) and xp[2].include?(bonus_from)}.compact.min
+          # bonus_from_xp_discrepancy = xp_discrepancy/min_ratio
+          # adjusted_ehp = calc_tiered_ehp(skill_from_tiers, skill_from_xphrs, stats_hash["#{bonus_from}_xp"] + bonus_from_xp_discrepancy) - stats_hash["#{bonus_from}_ehp"]
           puts "#{bonus_for} discrepancy of #{xp_discrepancy} from #{bonus_from}. removing #{adjusted_ehp} ehp from #{bonus_from}"
         else
           actual_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, actual_xp - expected_xp)
@@ -568,14 +569,15 @@ class Player < ActiveRecord::Base
           actual_xp -= expected_xp
         end
       
-        stats_hash["#{bonus_from}_ehp"] = (stats_hash["#{bonus_from}_ehp"] - adjusted_ehp).round(2)
+        stats_hash["#{bonus_for}_ehp"] = (stats_hash["#{bonus_for}_ehp"] - adjusted_ehp).round(2)
         stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - adjusted_ehp).round(2)
         
-        if actual_ehp < 0
-          stats_hash["#{bonus_for}_ehp"] = 0
-        else
-          stats_hash["#{bonus_for}_ehp"] = actual_ehp.round(2)
-        end
+        # if actual_ehp < 0
+        #   stats_hash["#{bonus_for}_ehp"] = 0
+        # else
+        #   stats_hash["#{bonus_for}_ehp"] = actual_ehp.round(2)
+        # end
+        stats_hash["#{bonus_for}_ehp"] = actual_ehp.round(2)
       end
     end
     return stats_hash
