@@ -68,6 +68,7 @@ class PlayersController < ApplicationController
   def competitions
     @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
     @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
+    @comp_show_limit = [@comp_show_limit.to_i, 500].min
     
     if @comp_filters == {}
       @comp_filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
@@ -103,6 +104,7 @@ class PlayersController < ApplicationController
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
+    @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
     case @time
     when "day"
@@ -191,6 +193,7 @@ class PlayersController < ApplicationController
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
+    @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
     case @time
     when "day"
@@ -278,6 +281,7 @@ class PlayersController < ApplicationController
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
+    @show_limit = [@show_limit.to_i, 500].min
     
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
