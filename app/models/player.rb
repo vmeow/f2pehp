@@ -226,10 +226,10 @@ class Player < ActiveRecord::Base
           update_attribute(:"#{skill}_rank", skill_rank)
         end
       elsif skill == "clues_all"
-        update_attribute(:clues_all, skill_lvl)
+        update_attribute(:clues_all, [skill_lvl, 0].max)
         update_attribute(:clues_all_rank, skill_rank)
       elsif skill == "clues_beginner"
-        update_attribute(:clues_beginner, skill_lvl)
+        update_attribute(:clues_beginner, [skill_lvl, 0].max)
         update_attribute(:clues_beginner_rank, skill_rank)
       end
     end
