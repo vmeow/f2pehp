@@ -208,6 +208,28 @@
             %th= image_tag "skills/hourglass.png"
             %td{:style => "font-style: bold;"}= "All 200m"
             %td= number_with_delimiter(number_with_precision(@player["ttm_xp"], :precision => 2), :delimiter => ",") 
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+        %thead
+          %th{:align => "center"}
+          %th{:align => "center"} Clue
+          %th{:align => "center"} Score
+          %th{:align => "center"} Rank
+        %tbody
+          %tr
+            %th= image_tag "skills/clue.png"
+            %td= "All"
+            %td= @player["clues_all"]
+            %td= @player["clues_all_rank"]
+          %tr
+            %th= image_tag "skills/clue.png"
+            %td= "Beginner"
+            %td= @player["clues_beginner"]
+            %td= @player["clues_beginner_rank"]
       - elsif @player.overall_ehp < 250 and (@display == "gains" or @display == "records") and !Player.supporters.include?(@player.player_name)
         %head
           %th= "This player is not being tracked. This will require 250 EHP or F2P Supporter status."

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190216073827) do
+ActiveRecord::Schema.define(version: 20190412030512) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -365,6 +365,10 @@ ActiveRecord::Schema.define(version: 20190216073827) do
     t.float   "overall_ehp_year_max"
     t.float   "ttm_lvl"
     t.float   "ttm_xp"
+    t.integer "clues_all"
+    t.integer "clues_beginner"
+    t.integer "clues_all_rank"
+    t.integer "clues_beginner_rank"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -377,6 +381,11 @@ ActiveRecord::Schema.define(version: 20190216073827) do
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+
+  create_table "skills", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

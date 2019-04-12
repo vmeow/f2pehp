@@ -184,6 +184,7 @@ class PlayersController < ApplicationController
     end
     
     @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("potential_p2p <= 0")
   end
 
   def records
@@ -272,7 +273,7 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl < 4")
     end
     
-    @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("overall_ehp > 1 and potential_p2p <= 0").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def ranks
@@ -322,6 +323,13 @@ class PlayersController < ApplicationController
       when "ttm_xp"
         ordering = "ttm_xp ASC, overall_ehp DESC"    
       end
+    elsif @skill.include?("clues")
+      case @skill
+      when "clues_all"
+        ordering = "clues_all DESC"
+      when "clues_beginner"
+        ordering = "clues_beginner DESC"    
+      end
     elsif @skill.include?("no_combats")
       case @sort_by
       when "ehp"
@@ -368,6 +376,7 @@ class PlayersController < ApplicationController
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
     end
+    @players = @players.where("potential_p2p <= 0")
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end

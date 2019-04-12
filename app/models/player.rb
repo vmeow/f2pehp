@@ -129,7 +129,7 @@ class Player < ActiveRecord::Base
   def get_stats
     name = player_name
     if name == "Bargan"
-      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
+      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
     else
       begin
         case player_acc_type
@@ -185,7 +185,7 @@ class Player < ActiveRecord::Base
         skill_lvl = 10
         skill_xp = 1154
       end
-      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
+      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
         skill_ehp = 0.0
         skill_tiers = ehp["#{skill}_tiers"]
         skill_xphrs = ehp["#{skill}_xphrs"]
@@ -213,10 +213,10 @@ class Player < ActiveRecord::Base
         total_lvl += skill_lvl
       elsif skill == "p2p" and skill_xp > 0 
         update_attribute(:potential_p2p, skill_xp)
-        Player.where(player_name: player_name).destroy_all
+        # Player.where(player_name: player_name).destroy_all
       elsif skill == "p2p_minigame" and skill_lvl > 0
         update_attribute(:potential_p2p, skill_lvl)
-        Player.where(player_name: player_name).destroy_all
+        # Player.where(player_name: player_name).destroy_all
       elsif skill == "overall"
         if skill_lvl < 34
           under_34 = true
@@ -225,6 +225,12 @@ class Player < ActiveRecord::Base
           update_attribute(:"#{skill}_xp", skill_xp)
           update_attribute(:"#{skill}_rank", skill_rank)
         end
+      elsif skill == "clues_all"
+        update_attribute(:clues_all, skill_lvl)
+        update_attribute(:clues_all_rank, skill_rank)
+      elsif skill == "clues_beginner"
+        update_attribute(:clues_beginner, skill_lvl)
+        update_attribute(:clues_beginner_rank, skill_rank)
       end
     end
     
@@ -237,14 +243,14 @@ class Player < ActiveRecord::Base
       
     if potential_p2p.to_f <= 0
       update_attribute(:potential_p2p, "0")
-    else
-      Player.where(player_name: player_name).destroy_all
+    # else
+    #   Player.where(player_name: player_name).destroy_all
     end
   end
   
   def check_p2p
     if potential_p2p.to_f > 0
-      destroy
+      # destroy
       return true
     end
     return false
@@ -297,7 +303,8 @@ class Player < ActiveRecord::Base
     puts player_name
     all_stats = get_stats
     if all_stats == false
-      Player.where(player_name: player_name).destroy_all
+      update_attributes(:potential_p2p => 1)
+      # Player.where(player_name: player_name).destroy_all
       return false
     end
     calc_ehp
@@ -384,7 +391,7 @@ class Player < ActiveRecord::Base
     ehp = get_ehp_type
     time_to_max = 0
     F2POSRSRanks::Application.config.skills.each do |skill|
-      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
+      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
         skill_ehp = self.read_attribute("#{skill}_ehp")
         if lvl_or_xp == "lvl"
           max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
