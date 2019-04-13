@@ -429,8 +429,9 @@ class Player < ActiveRecord::Base
       retries ||= 0
       xps = uri.read.split(" ")[1]
     rescue
-      sleep(5)
+      sleep(10)
       retry if (retries += 1) < 5
+      raise "CML API unresponsive."
     end
     return parse_cml_xps(xps)
   end
@@ -459,11 +460,20 @@ class Player < ActiveRecord::Base
   def repair_tracking(time)
     xps = get_cml_xp(time)
     xp_start = {}
+    
     SKILLS.each do |skill|
-      xp_start = xp_start.merge({"#{skill}_xp_#{time}_start" => xps["#{skill}_xp"]})
+      xp_start = xp_start.merge({"#{skill}_xp_#{time}_start" => xps["#{skill}_xp"].to_i})
     end
+    
+    ehp = get_ehp_type
+    ehp_start = {}
+    (SKILLS - ["overall"]).each do |skill|
+      skill_ehp = calc_skill_ehp(xps["#{skill}_xp"].to_i, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+      ehp_start = ehp_start.merge({"#{skill}_ehp_#{time}_start" => skill_ehp})
+    end
+    ehp_start["overall_ehp_#{time}_start"] = ehp_start.values.sum
 
-    update_attributes(xp_start)
-    return xp_start
+    update_attributes(xp_start.merge(ehp_start))
+    return xp_start, ehp_start
   end
 end
