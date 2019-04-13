@@ -476,4 +476,53 @@ class Player < ActiveRecord::Base
     update_attributes(xp_start.merge(ehp_start))
     return xp_start, ehp_start
   end
+  
+  def get_cml_records
+    uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=recordsofplayer&player=#{player_name}")
+    begin
+      retries ||= 0
+      player_records = uri.read
+    rescue
+      sleep(10)
+      retry if (retries += 1) < 5
+      raise "CML API unresponsive."
+    end
+    return parse_cml_records(player_records)
+  end
+  
+  def parse_cml_records(player_records)
+    player_records = player_records.split("\n")
+    recs = {}
+    player_records.each.with_index do |rec, idx|
+      skill = F2POSRSRanks::Application.config.skills[idx]
+      if SKILLS.include?(skill)
+        skill_recs = rec.split(",")
+        skill_recs_hash = {"#{skill}_xp_day_max" => skill_recs[0],
+                           "#{skill}_xp_week_max" => skill_recs[2],
+                           "#{skill}_xp_month_max" => skill_recs[4]
+                          }
+        recs = recs.merge(skill_recs_hash)
+      end
+    end
+    return recs
+  end
+  
+  def repair_records
+    recs = get_cml_records
+    
+    ehp = get_ehp_type
+    ehp_recs = {}
+    (TIMES - ["year"]).each do |time|
+      time_recs = {}
+      (SKILLS - ["overall"]).each do |skill|
+        skill_ehp = calc_skill_ehp(recs["#{skill}_xp_#{time}_max"].to_i, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        time_recs = time_recs.merge({"#{skill}_ehp_#{time}_max" => skill_ehp})
+      end
+      ehp_recs = ehp_recs.merge(time_recs)
+      ehp_recs["overall_ehp_#{time}_max"] = time_recs.values.max
+    end
+
+    update_attributes(recs.merge(ehp_recs))
+    return recs, ehp_recs
+  end
 end
