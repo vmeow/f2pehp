@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Player < ActiveRecord::Base
   
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
@@ -408,5 +410,60 @@ class Player < ActiveRecord::Base
       end
     end
     return time_to_max
+  end
+  
+  def get_cml_xp(time)
+    today = DateTime.now
+    month = today.month
+    year = today.year
+    
+    if time == "year"
+      time_diff = (today - DateTime.new(year, 1, 1)).to_i
+    elsif time == "month"
+      time_diff = (today - DateTime.new(year, month, 1)).to_i
+    end
+    time_string = "#{time_diff}d"
+    
+    uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=datapoints&player=#{player_name}&time=#{time_string}")
+    begin
+      retries ||= 0
+      xps = uri.read.split(" ")[1]
+    rescue
+      sleep(5)
+      retry if (retries += 1) < 5
+    end
+    return parse_cml_xps(xps)
+  end
+  
+  def parse_cml_xps(xps)
+    xps = xps.split(",")
+    return {"overall_xp" => xps[0],
+            "attack_xp" => xps[1],
+            "defence_xp" => xps[2],
+            "strength_xp" => xps[3],
+            "hitpoints_xp" => xps[4],
+            "ranged_xp" => xps[5],
+            "prayer_xp" => xps[6],
+            "magic_xp" => xps[7],
+            "cooking_xp" => xps[8],
+            "woodcutting_xp" => xps[9],
+            "fishing_xp" => xps[11],
+            "firemaking_xp" => xps[12],
+            "crafting_xp" => xps[13],
+            "smithing_xp" => xps[14],
+            "mining_xp" => xps[15],
+            "runecraft_xp" => xps[21]
+            }
+  end
+  
+  def repair_tracking(time)
+    xps = get_cml_xp(time)
+    xp_start = {}
+    SKILLS.each do |skill|
+      xp_start = xp_start.merge({"#{skill}_xp_#{time}_start" => xps["#{skill}_xp"]})
+    end
+
+    update_attributes(xp_start)
+    return xp_start
   end
 end
