@@ -223,9 +223,14 @@ class Player < ActiveRecord::Base
         if skill_lvl < 34
           under_34 = true
         else
-          update_attribute(:"#{skill}_lvl", skill_lvl)
-          update_attribute(:"#{skill}_xp", skill_xp)
-          update_attribute(:"#{skill}_rank", skill_rank)
+          if skill_lvl > 1493 or skill_xp > 14*200000000
+            destroy
+            return
+          else
+            update_attribute(:"#{skill}_lvl", skill_lvl)
+            update_attribute(:"#{skill}_xp", skill_xp)
+            update_attribute(:"#{skill}_rank", skill_rank)
+          end
         end
       elsif skill == "clues_all"
         update_attribute(:clues_all, [skill_lvl, 0].max)
