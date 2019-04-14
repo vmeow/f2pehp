@@ -504,6 +504,7 @@ class Player < ActiveRecord::Base
         recs = recs.merge(skill_recs_hash)
       end
     end
+    puts recs
     return recs
   end
   
@@ -515,14 +516,20 @@ class Player < ActiveRecord::Base
     (TIMES - ["year"]).each do |time|
       time_recs = {}
       (SKILLS - ["overall"]).each do |skill|
-        skill_ehp = calc_skill_ehp(recs["#{skill}_xp_#{time}_max"].to_i, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
-        time_recs = time_recs.merge({"#{skill}_ehp_#{time}_max" => skill_ehp})
+        xp_gain = recs["#{skill}_xp_#{time}_max"].to_i
+        curr_xp = self.read_attribute("#{skill}_xp")
+        before_xp = curr_xp - xp_gain
+        before_ehp = calc_skill_ehp(before_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        curr_ehp = calc_skill_ehp(curr_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        ehp_gain = (curr_ehp - before_ehp).round(2)
+        time_recs = time_recs.merge({"#{skill}_ehp_#{time}_max" => ehp_gain})
       end
       ehp_recs = ehp_recs.merge(time_recs)
       ehp_recs["overall_ehp_#{time}_max"] = time_recs.values.max
     end
-
-    update_attributes(recs.merge(ehp_recs))
-    return recs, ehp_recs
+    
+    recs_hash = recs.merge(ehp_recs)
+    update_attributes(recs_hash)
+    return recs_hash
   end
 end
