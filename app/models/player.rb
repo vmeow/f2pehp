@@ -174,7 +174,7 @@ class Player < ActiveRecord::Base
   def calc_ehp
     ehp = get_ehp_type
     all_stats = get_stats
-    update_attribute(:potential_p2p, "0")
+    update_attribute(:potential_p2p, 0)
     total_ehp = 0.0
     total_lvl = 8
     total_xp = 0
@@ -244,7 +244,7 @@ class Player < ActiveRecord::Base
     end
       
     if potential_p2p.to_f <= 0
-      update_attribute(:potential_p2p, "0")
+      update_attribute(:potential_p2p, 0)
     # else
     #   Player.where(player_name: player_name).destroy_all
     end

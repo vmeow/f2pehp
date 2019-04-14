@@ -103,6 +103,11 @@ class PlayersController < ApplicationController
     @filters = params[:filters_] || session[:filters_] || {}
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
+    unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
+      @skill = "overall"
+      params[:skill] = "overall"
+      session[:skill] = "overall"
+    end
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
@@ -193,6 +198,11 @@ class PlayersController < ApplicationController
     @filters = params[:filters_] || session[:filters_] || {}
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
+    unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
+      @skill = "overall"
+      params[:skill] = "overall"
+      session[:skill] = "overall"
+    end
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190412030512) do
+ActiveRecord::Schema.define(version: 20190414030406) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20190412030512) do
     t.float   "runecraft_ehp"
     t.string  "filter_acc"
     t.string  "sort_skill"
-    t.string  "potential_p2p"
+    t.integer "potential_p2p"
     t.string  "slug"
     t.integer "overall_rank"
     t.integer "attack_rank"
@@ -381,6 +381,11 @@ ActiveRecord::Schema.define(version: 20190412030512) do
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+
+  create_table "skills", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
