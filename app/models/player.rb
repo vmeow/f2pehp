@@ -86,7 +86,8 @@ class Player < ActiveRecord::Base
                 "bemanisows",
                 "Dusty Lime",
                 "Brantrout",
-                "f2p uim nerd"]
+                "f2p uim nerd",
+                "Romans ch 12"]
   
   def self.supporters()
     SUPPORTERS

@@ -778,6 +778,12 @@ a[href$="/Brantrout"]:after {
   vertical-align: -10px;
 }
 
+a[href$="/minlvlskilla"]:after {  
+  padding: 3px;
+  content: image-url("flairs/3.png");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
