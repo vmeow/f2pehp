@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190414030406) do
+ActiveRecord::Schema.define(version: 20190414040119) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20190414030406) do
   create_table "players", force: :cascade do |t|
     t.string  "player_name"
     t.string  "player_acc_type"
-    t.integer "overall_xp"
+    t.integer "overall_xp",                  limit: 8
     t.integer "overall_lvl"
     t.float   "overall_ehp"
     t.integer "attack_xp"
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20190414030406) do
     t.string  "filter_acc"
     t.string  "sort_skill"
     t.integer "potential_p2p"
-    t.string  "slug"
     t.integer "overall_rank"
     t.integer "attack_rank"
     t.integer "defence_rank"
@@ -106,7 +105,6 @@ ActiveRecord::Schema.define(version: 20190414030406) do
     t.float   "firemaking_ehp_end"
     t.float   "cooking_ehp_start"
     t.float   "cooking_ehp_end"
-    t.float   "combat_lvl"
     t.integer "attack_xp_day_start"
     t.integer "attack_xp_day_max"
     t.float   "attack_ehp_day_start"
@@ -369,6 +367,7 @@ ActiveRecord::Schema.define(version: 20190414030406) do
     t.integer "clues_beginner"
     t.integer "clues_all_rank"
     t.integer "clues_beginner_rank"
+    t.float   "combat_lvl"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -381,11 +380,6 @@ ActiveRecord::Schema.define(version: 20190414030406) do
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
-
-  create_table "skills", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
