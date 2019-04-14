@@ -772,6 +772,24 @@ a[href$="/Dusty_Lime"]:after {
   vertical-align: -12px;
 }
 
+a[href$="/Brantrout"]:after {  
+  padding: 3px;
+  content: image-url("items/Trout.gif");
+  vertical-align: -10px;
+}
+
+a[href$="/minlvlskilla"]:after {  
+  padding: 3px;
+  content: image-url("flairs/3.png");
+  vertical-align: -6px;
+}
+
+a[href$="/Feature"]:after {  
+  padding: 3px;
+  content: image-url("flairs/camel.png");
+  vertical-align: -6px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;

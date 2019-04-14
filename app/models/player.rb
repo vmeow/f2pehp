@@ -86,7 +86,8 @@ class Player < ActiveRecord::Base
                 "bemanisows",
                 "Dusty Lime",
                 "Brantrout",
-                "f2p uim nerd"]
+                "f2p uim nerd",
+                "Romans ch 12"]
   
   def self.supporters()
     SUPPORTERS
@@ -162,7 +163,7 @@ class Player < ActiveRecord::Base
         hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{self.player_name}")
         hc_stats = hc_uri.read.split(" ")
         hc_xp = hc_stats[0].split(",")[2].to_f
-        if hc_xp < (im_xp - 1000000)
+        if hc_xp < (im_xp - 1000000) or (im_xp - hc_xp).to_f/hc_xp > 0.05
           update_attribute(:player_acc_type, "IM")
         end
       rescue Exception => e   
