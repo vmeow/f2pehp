@@ -1,4 +1,5 @@
 require 'open-uri'
+
 class Player < ActiveRecord::Base
   
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
@@ -84,7 +85,8 @@ class Player < ActiveRecord::Base
                 "Pizzarrhea",
                 "bemanisows",
                 "Dusty Lime",
-                "Brantrout"]
+                "Brantrout",
+                "f2p uim nerd"]
   
   def self.supporters()
     SUPPORTERS
@@ -129,7 +131,7 @@ class Player < ActiveRecord::Base
   def get_stats
     name = player_name
     if name == "Bargan"
-      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
+      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
     else
       begin
         case player_acc_type
@@ -172,7 +174,7 @@ class Player < ActiveRecord::Base
   def calc_ehp
     ehp = get_ehp_type
     all_stats = get_stats
-    update_attribute(:potential_p2p, "0")
+    update_attribute(:potential_p2p, 0)
     total_ehp = 0.0
     total_lvl = 8
     total_xp = 0
@@ -185,7 +187,7 @@ class Player < ActiveRecord::Base
         skill_lvl = 10
         skill_xp = 1154
       end
-      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
+      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
         skill_ehp = 0.0
         skill_tiers = ehp["#{skill}_tiers"]
         skill_xphrs = ehp["#{skill}_xphrs"]
@@ -213,10 +215,10 @@ class Player < ActiveRecord::Base
         total_lvl += skill_lvl
       elsif skill == "p2p" and skill_xp > 0 
         update_attribute(:potential_p2p, skill_xp)
-        Player.where(player_name: player_name).destroy_all
+        # Player.where(player_name: player_name).destroy_all
       elsif skill == "p2p_minigame" and skill_lvl > 0
         update_attribute(:potential_p2p, skill_lvl)
-        Player.where(player_name: player_name).destroy_all
+        # Player.where(player_name: player_name).destroy_all
       elsif skill == "overall"
         if skill_lvl < 34
           under_34 = true
@@ -225,6 +227,12 @@ class Player < ActiveRecord::Base
           update_attribute(:"#{skill}_xp", skill_xp)
           update_attribute(:"#{skill}_rank", skill_rank)
         end
+      elsif skill == "clues_all"
+        update_attribute(:clues_all, [skill_lvl, 0].max)
+        update_attribute(:clues_all_rank, skill_rank)
+      elsif skill == "clues_beginner"
+        update_attribute(:clues_beginner, [skill_lvl, 0].max)
+        update_attribute(:clues_beginner_rank, skill_rank)
       end
     end
     
@@ -236,15 +244,15 @@ class Player < ActiveRecord::Base
     end
       
     if potential_p2p.to_f <= 0
-      update_attribute(:potential_p2p, "0")
-    else
-      Player.where(player_name: player_name).destroy_all
+      update_attribute(:potential_p2p, 0)
+    # else
+    #   Player.where(player_name: player_name).destroy_all
     end
   end
   
   def check_p2p
     if potential_p2p.to_f > 0
-      destroy
+      # destroy
       return true
     end
     return false
@@ -297,7 +305,8 @@ class Player < ActiveRecord::Base
     puts "updating #{player_name}"
     all_stats = get_stats
     if all_stats == false
-      Player.where(player_name: player_name).destroy_all
+      update_attributes(:potential_p2p => 1)
+      # Player.where(player_name: player_name).destroy_all
       return false
     end
     stats_hash = parse_raw_stats(all_stats)
@@ -389,7 +398,7 @@ class Player < ActiveRecord::Base
     ehp = get_ehp_type
     time_to_max = 0
     F2POSRSRanks::Application.config.skills.each do |skill|
-      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame"
+      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
         skill_ehp = self.read_attribute("#{skill}_ehp")
         if lvl_or_xp == "lvl"
           max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
@@ -597,5 +606,126 @@ class Player < ActiveRecord::Base
       end
     end
     return skill_ehp
+  end
+
+  def get_cml_xp(time)
+    today = DateTime.now
+    month = today.month
+    year = today.year
+    
+    if time == "year"
+      time_diff = (today - DateTime.new(year, 1, 1)).to_i
+    elsif time == "month"
+      time_diff = (today - DateTime.new(year, month, 1)).to_i
+    end
+    time_string = "#{time_diff}d"
+    
+    uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=datapoints&player=#{player_name}&time=#{time_string}")
+    begin
+      retries ||= 0
+      xps = uri.read.split(" ")[1]
+    rescue
+      sleep(10)
+      retry if (retries += 1) < 5
+      raise "CML API unresponsive."
+    end
+    return parse_cml_xps(xps)
+  end
+  
+  def parse_cml_xps(xps)
+    xps = xps.split(",")
+    return {"overall_xp" => xps[0],
+            "attack_xp" => xps[1],
+            "defence_xp" => xps[2],
+            "strength_xp" => xps[3],
+            "hitpoints_xp" => xps[4],
+            "ranged_xp" => xps[5],
+            "prayer_xp" => xps[6],
+            "magic_xp" => xps[7],
+            "cooking_xp" => xps[8],
+            "woodcutting_xp" => xps[9],
+            "fishing_xp" => xps[11],
+            "firemaking_xp" => xps[12],
+            "crafting_xp" => xps[13],
+            "smithing_xp" => xps[14],
+            "mining_xp" => xps[15],
+            "runecraft_xp" => xps[21]
+            }
+  end
+  
+  def repair_tracking(time)
+    xps = get_cml_xp(time)
+    xp_start = {}
+    
+    SKILLS.each do |skill|
+      xp_start = xp_start.merge({"#{skill}_xp_#{time}_start" => xps["#{skill}_xp"].to_i})
+    end
+    
+    ehp = get_ehp_type
+    ehp_start = {}
+    (SKILLS - ["overall"]).each do |skill|
+      skill_ehp = calc_skill_ehp(xps["#{skill}_xp"].to_i, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+      ehp_start = ehp_start.merge({"#{skill}_ehp_#{time}_start" => skill_ehp})
+    end
+    ehp_start["overall_ehp_#{time}_start"] = ehp_start.values.sum
+
+    update_attributes(xp_start.merge(ehp_start))
+    return xp_start, ehp_start
+  end
+  
+  def get_cml_records
+    uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=recordsofplayer&player=#{player_name}")
+    begin
+      retries ||= 0
+      player_records = uri.read
+    rescue
+      sleep(10)
+      retry if (retries += 1) < 5
+      raise "CML API unresponsive."
+    end
+    return parse_cml_records(player_records)
+  end
+  
+  def parse_cml_records(player_records)
+    player_records = player_records.split("\n")
+    recs = {}
+    player_records.each.with_index do |rec, idx|
+      skill = F2POSRSRanks::Application.config.skills[idx]
+      if SKILLS.include?(skill)
+        skill_recs = rec.split(",")
+        skill_recs_hash = {"#{skill}_xp_day_max" => skill_recs[0],
+                           "#{skill}_xp_week_max" => skill_recs[2],
+                           "#{skill}_xp_month_max" => skill_recs[4]
+                          }
+        recs = recs.merge(skill_recs_hash)
+      end
+    end
+    puts recs
+    return recs
+  end
+  
+  def repair_records
+    recs = get_cml_records
+    
+    ehp = get_ehp_type
+    ehp_recs = {}
+    (TIMES - ["year"]).each do |time|
+      time_recs = {}
+      (SKILLS - ["overall"]).each do |skill|
+        xp_gain = recs["#{skill}_xp_#{time}_max"].to_i
+        curr_xp = self.read_attribute("#{skill}_xp")
+        before_xp = curr_xp - xp_gain
+        before_ehp = calc_skill_ehp(before_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        curr_ehp = calc_skill_ehp(curr_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        ehp_gain = (curr_ehp - before_ehp).round(2)
+        time_recs = time_recs.merge({"#{skill}_ehp_#{time}_max" => ehp_gain})
+      end
+      ehp_recs = ehp_recs.merge(time_recs)
+      ehp_recs["overall_ehp_#{time}_max"] = time_recs.values.max
+    end
+    
+    recs_hash = recs.merge(ehp_recs)
+    update_attributes(recs_hash)
+    return recs_hash
   end
 end

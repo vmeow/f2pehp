@@ -68,6 +68,7 @@ class PlayersController < ApplicationController
   def competitions
     @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
     @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
+    @comp_show_limit = [@comp_show_limit.to_i, 500].min
     
     if @comp_filters == {}
       @comp_filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
@@ -102,7 +103,13 @@ class PlayersController < ApplicationController
     @filters = params[:filters_] || session[:filters_] || {}
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
+    unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
+      @skill = "overall"
+      params[:skill] = "overall"
+      session[:skill] = "overall"
+    end
     @show_limit = params[:show_limit] || session[:show_limit] || 100
+    @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
     case @time
     when "day"
@@ -182,6 +189,7 @@ class PlayersController < ApplicationController
     end
     
     @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("CAST(potential_p2p AS FLOAT) <= 0")
   end
 
   def records
@@ -190,7 +198,13 @@ class PlayersController < ApplicationController
     @filters = params[:filters_] || session[:filters_] || {}
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
+    unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
+      @skill = "overall"
+      params[:skill] = "overall"
+      session[:skill] = "overall"
+    end
     @show_limit = params[:show_limit] || session[:show_limit] || 100
+    @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
     case @time
     when "day"
@@ -269,7 +283,7 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl < 4")
     end
     
-    @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("overall_ehp > 1 and CAST(potential_p2p AS FLOAT) <= 0").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def ranks
@@ -278,6 +292,7 @@ class PlayersController < ApplicationController
     @restrictions = params[:restrictions_] || {}
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
+    @show_limit = [@show_limit.to_i, 500].min
     
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
@@ -317,6 +332,13 @@ class PlayersController < ApplicationController
         ordering = "ttm_lvl ASC, overall_ehp DESC"
       when "ttm_xp"
         ordering = "ttm_xp ASC, overall_ehp DESC"    
+      end
+    elsif @skill.include?("clues")
+      case @skill
+      when "clues_all"
+        ordering = "clues_all DESC"
+      when "clues_beginner"
+        ordering = "clues_beginner DESC"    
       end
     elsif @skill.include?("no_combats")
       case @sort_by
@@ -364,6 +386,7 @@ class PlayersController < ApplicationController
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
     end
+    @players = @players.where("CAST(potential_p2p AS FLOAT) <= 0")
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
