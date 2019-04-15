@@ -1,4 +1,4 @@
-![](app/assets/f2pwiki_500.png)
+![](app/assets/images/f2pwiki_500.png)
 # F2P.wiki
 
 F2P.wiki is an open source Old School RuneScape hiscores for Free-to-play players. 
