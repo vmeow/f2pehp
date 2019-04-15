@@ -222,7 +222,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['firemaking_xphrs'] = [0]
   
     config.ehp_iron['crafting_tiers'] = [0]
-    config.ehp_iron['crafting_xphrs'] = [15550]
+    config.ehp_iron['crafting_xphrs'] = [15600]
   
     # config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
@@ -287,7 +287,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['firemaking_xphrs'] = [0]
   
     config.ehp_uim['crafting_tiers'] = [0] 
-    config.ehp_uim['crafting_xphrs'] = [13600]
+    config.ehp_uim['crafting_xphrs'] = [15600]
   
     # config.ehp_uim['smithing_tiers'] = [0, 10092000, 13034000, 154850000]
     # config.ehp_uim['smithing_xphrs'] = [7650, 2942000, 7650, 45150000]
@@ -330,10 +330,6 @@ F2POSRSRanks::Application.configure do
                             [0.1071, "prayer", "ranged", 4470, 37224],
                             [0.0625, "prayer", "ranged", 37224, 101333],
                             [0.0457, "prayer", "ranged", 101333, 200000000],
-                            [0.0323, "crafting", "attack", 737627, 200000000],
-                            [0.0323, "crafting", "strength", 737627, 200000000],
-                            [0.0323, "crafting", "defence", 737627, 200000000],
-                            [0.0323, "crafting", "ranged", 101333, 200000000],
                             [0.0992, "runecraft", "crafting", 4470, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
@@ -356,10 +352,6 @@ F2POSRSRanks::Application.configure do
                             [0.1071, "prayer", "ranged", 4470, 37224],
                             [0.0625, "prayer", "ranged", 37224, 101333],
                             [0.0457, "prayer", "ranged", 101333, 200000000],
-                            [0.0323, "crafting", "attack", 737627, 200000000],
-                            [0.0323, "crafting", "strength", 737627, 200000000],
-                            [0.0323, "crafting", "defence", 737627, 200000000],
-                            [0.0323, "crafting", "ranged", 101333, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
                             [0.0274, "woodcutting", "fishing", 4470, 200000000],
                             [0.0500, "firemaking", "fishing", 4470, 200000000],
