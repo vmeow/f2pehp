@@ -165,8 +165,8 @@ F2POSRSRanks::Application.configure do
   
     # config.ehp_reg['runecraft_tiers'] = [0]
     # config.ehp_reg['runecraft_xphrs'] = [26000]
-    config.ehp_reg['smithing_tiers'] = [0, 2783114, 4385776]
-    config.ehp_reg['smithing_xphrs'] = [2673114, 212000, 265000]
+    config.ehp_reg['smithing_tiers'] = [0, 37224, 605032, 2783114, 4385776]
+    config.ehp_reg['smithing_xphrs'] = [40000, 129000, 200000, 212000, 265000]
   
     config.ehp_reg['mining_tiers'] = [0, 14833, 41171, 111945, 737627] 
     config.ehp_reg['mining_xphrs'] = [4000, 12000, 25000, 57000, 65000]
