@@ -228,7 +228,7 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
     config.ehp_iron['smithing_tiers'] = [0]
-    config.ehp_iron['smithing_xphrs'] = [17200]
+    config.ehp_iron['smithing_xphrs'] = [18350]
   
     config.ehp_iron['mining_tiers'] = [0]
     config.ehp_iron['mining_xphrs'] = [0]
@@ -293,7 +293,7 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['smithing_xphrs'] = [7650, 2942000, 7650, 45150000]
   
     config.ehp_uim['smithing_tiers'] = [0]
-    config.ehp_uim['smithing_xphrs'] = [17200]
+    config.ehp_uim['smithing_xphrs'] = [18350]
   
     config.ehp_uim['mining_tiers'] = [0] 
     config.ehp_uim['mining_xphrs'] =[0]
