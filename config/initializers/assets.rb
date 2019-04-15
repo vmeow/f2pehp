@@ -143,7 +143,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 0]
   
     config.ehp_reg['cooking_tiers'] = [0, 7842, 37224, 737627]
-    config.ehp_reg['cooking_xphrs'] = [40000, 130000, 175000, 480000]
+    config.ehp_reg['cooking_xphrs'] = [40000, 130000, 175000, 320000]
   
     config.ehp_reg['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
     config.ehp_reg['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 78500]
