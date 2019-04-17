@@ -790,6 +790,12 @@ a[href$="/Feature"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/Arizer_Air"]:after {  
+  padding: 3px;
+  content: image-url("flairs/chicken_wing.png");
+  vertical-align: -5px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
