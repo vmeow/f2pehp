@@ -90,7 +90,8 @@ class Player < ActiveRecord::Base
                 "Romans ch 12",
                 "Feature",
                 "Arizer Air",
-                "Irondish"]
+                "Irondish",
+                "Maze"]
   
   def self.supporters()
     SUPPORTERS

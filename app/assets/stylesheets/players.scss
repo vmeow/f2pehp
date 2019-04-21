@@ -802,6 +802,12 @@ a[href$="/Irondish"]:after {
   vertical-align: -4px;
 }
 
+a[href$="/Maze"]:after {  
+  padding: 3px;
+  content: image-url("flairs/mysterious.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
