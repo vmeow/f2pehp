@@ -808,6 +808,12 @@ a[href$="/Maze"]:after {
   vertical-align: -8px;
 }
 
+a[href$="/the_f2p_uim"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Green_partyhat.png");
+  vertical-align: -5px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
