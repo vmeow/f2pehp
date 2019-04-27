@@ -790,6 +790,30 @@ a[href$="/Feature"]:after {
   vertical-align: -6px;
 }
 
+a[href$="/Arizer_Air"]:after {  
+  padding: 3px;
+  content: image-url("flairs/chicken_wing.png");
+  vertical-align: -5px;
+}
+
+a[href$="/Irondish"]:after {  
+  padding: 3px;
+  content: image-url("flairs/egg.png");
+  vertical-align: -4px;
+}
+
+a[href$="/Maze"]:after {  
+  padding: 3px;
+  content: image-url("flairs/mysterious.png");
+  vertical-align: -8px;
+}
+
+a[href$="/the_f2p_uim"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Green_partyhat.png");
+  vertical-align: -5px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
