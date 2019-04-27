@@ -91,7 +91,9 @@ class Player < ActiveRecord::Base
                 "Feature",
                 "Arizer Air",
                 "Irondish",
-                "Maze"]
+                "Maze",
+                "P1J"
+                "Earfs"]
   
   def self.supporters()
     SUPPORTERS
