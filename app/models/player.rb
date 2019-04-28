@@ -95,7 +95,15 @@ class Player < ActiveRecord::Base
                 "P1J",
                 "Earfs",
                 "the f2p uim"]
-  
+
+  def self.skills()
+    SKILLS
+  end
+
+  def self.times()
+    TIMES
+  end
+
   def self.supporters()
     SUPPORTERS
   end
@@ -271,14 +279,14 @@ class Player < ActiveRecord::Base
     return false
   end
 
-  def calc_combat
-    att = attack_lvl
-    str = strength_lvl
-    defence = defence_lvl
-    hp = hitpoints_lvl
-    ranged = ranged_lvl
-    magic = magic_lvl
-    pray = prayer_lvl
+  def calc_combat(stats_hash)
+    att = stats_hash["attack_lvl"]
+    str = stats_hash["strength_lvl"]
+    defence = stats_hash["defence_lvl"]
+    hp = stats_hash["hitpoints_lvl"]
+    ranged = stats_hash["ranged_lvl"]
+    magic = stats_hash["magic_lvl"]
+    pray = stats_hash["prayer_lvl"]
     
     base = 0.25 * (defence + hp + (pray/2).floor)
     melee = 0.325 * (att + str)
@@ -304,8 +312,8 @@ class Player < ActiveRecord::Base
     end
   end
   
-  def remove_cutoff
-    if overall_ehp < 1
+  def remove_cutoff(stats_hash)
+    if stats_hash["overall_ehp"] < 1
       Player.where(player_name: player_name).destroy_all
       return true
     end
@@ -315,24 +323,32 @@ class Player < ActiveRecord::Base
     if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
     end
-    puts player_name
+    puts "updating #{player_name}"
     all_stats = get_stats
     if all_stats == false
       update_attributes(:potential_p2p => 1)
       # Player.where(player_name: player_name).destroy_all
       return false
     end
-    calc_ehp
+    stats_hash = parse_raw_stats(all_stats)
+    bonus_xp = calc_bonus_xps(stats_hash)
+    stats_hash = calc_ehp(stats_hash)
+    stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
     if check_p2p
+      # Player.where(player_name: player_name).destroy_all
       return "p2p"
     end
     check_hc_death
-    calc_combat
-    if remove_cutoff
-      return "cutoff"
-    end
+    calc_combat(stats_hash)
+    # if remove_cutoff(stats_hash)
+    #   return "cutoff"
+    # end
     
-    if overall_ehp > 250 or Player.supporters.include?(player_name)
+    stats_hash["ttm_lvl"] = time_to_max(stats_hash, "lvl")
+    stats_hash["ttm_xp"] = time_to_max(stats_hash, "xp")
+    update_attributes(stats_hash)
+    
+    if stats_hash["overall_ehp"] > 250 or Player.supporters.include?(player_name)
       TIMES.each do |time|
         xp = self.read_attribute("overall_xp_#{time}_start")
         if xp.nil? or xp == 0
@@ -342,8 +358,6 @@ class Player < ActiveRecord::Base
       
       check_record_gains
     end
-    
-    update_attributes(:ttm_lvl => time_to_max("lvl"), :ttm_xp => time_to_max("xp"))
   end
   
   def check_record_gains
@@ -369,7 +383,6 @@ class Player < ActiveRecord::Base
   end
   
   def update_player_start_stats(time)
-    puts player_name
     SKILLS.each do |skill|
       xp = self.read_attribute("#{skill}_xp")
       ehp = self.read_attribute("#{skill}_ehp")
@@ -402,12 +415,12 @@ class Player < ActiveRecord::Base
     return calc_skill_ehp(200000000, tiers, xphrs)
   end
   
-  def time_to_max(lvl_or_xp)
+  def time_to_max(stats_hash, lvl_or_xp)
     ehp = get_ehp_type
-    time_to_max = 0
+    ttm = 0
     F2POSRSRanks::Application.config.skills.each do |skill|
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
-        skill_ehp = self.read_attribute("#{skill}_ehp")
+        skill_ehp = stats_hash["#{skill}_ehp"]
         if lvl_or_xp == "lvl"
           max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
         else
@@ -417,14 +430,224 @@ class Player < ActiveRecord::Base
         max_ehp = (max_ehp*100).floor/100.0
 
         if max_ehp > skill_ehp
-          time_to_max += max_ehp - skill_ehp
-          puts "#{skill}: max_ehp: #{max_ehp}, skill_ehp: #{skill_ehp}"
+          ttm += max_ehp - skill_ehp
         end
       end
     end
-    return time_to_max
+    return ttm
   end
   
+  def get_bonus_xp
+    case player_acc_type
+    when "Reg"
+      bonus_xp = F2POSRSRanks::Application.config.bonus_xp_reg
+    when "HCIM", "IM"
+      bonus_xp = F2POSRSRanks::Application.config.bonus_xp_iron
+    when "UIM"
+      bonus_xp = F2POSRSRanks::Application.config.bonus_xp_uim
+    end
+    return bonus_xp
+  end
+  
+  # Returns hash in the following format. 
+  # "bonus_for": {bonus_from: expected_xp_in_bonus_for, bonus_from: xp, ...}
+  # bonuses: {
+  #   "prayer": {"attack": 123, "defence": 12, "strength": 12, ...},
+  #   "smithing": {"crafting": 123456},
+  #   ...
+  # }
+  def calc_bonus_xps(stats_hash)
+    bonus_xps = get_bonus_xp
+    bonuses = {}
+    bonus_xps.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
+      skill_from = stats_hash["#{bonus_from}_xp"]     
+      if skill_from <= start_xp.to_i
+        next
+      end
+      
+      bonus_xp = [([skill_from, end_xp].min - start_xp.to_i)*ratio.to_f, 200000000].min
+      
+      if bonuses[bonus_for] and bonuses[bonus_for][bonus_from]
+        bonuses[bonus_for][bonus_from] += bonus_xp
+      elsif bonuses[bonus_for]
+        bonuses[bonus_for][bonus_from] = bonus_xp
+      else
+        bonuses[bonus_for] = {"#{bonus_from}" => bonus_xp}
+      end
+    end
+    return bonuses
+  end
+  
+  def calc_bonus_xp(all_stats)
+    bonus_xps = get_bonus_xp
+    bonuses = {}
+    skills_list = F2POSRSRanks::Application.config.skills
+    bonus_xps.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
+      skill_from = all_stats[skills_list.index(bonus_from)].split(",")[2].to_i     
+      if skill_from <= start_xp.to_i
+        next
+      end
+      
+      bonus_xp = ([skill_from, end_xp].min - start_xp.to_i)*ratio.to_f
+      
+      if bonuses[bonus_for]
+        bonuses[bonus_for] += bonus_xp
+      else
+        bonuses[bonus_for] = bonus_xp
+      end
+    end
+    return bonuses
+  end
+  
+  def parse_raw_stats(all_stats)
+    stats_hash = Hash.new
+    stats_hash["potential_p2p"] = 0
+    F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
+      skill_lvl = all_stats[skill_idx].split(",")[1].to_f
+      skill_xp = all_stats[skill_idx].split(",")[2].to_i
+      skill_rank = all_stats[skill_idx].split(",")[0].to_i
+      
+      skill_lvl = 0 if skill_lvl < 0
+      skill_xp = 0 if skill_xp < 0
+      skill_rank = 0 if skill_rank < 0
+      
+      if skill == "hitpoints" and skill_lvl < 10
+        skill_lvl = 10
+        skill_xp = 1154
+      end
+      
+      if skill == "p2p" 
+        stats_hash["potential_p2p"] += skill_xp
+      elsif skill == "p2p_minigame"
+        stats_hash["potential_p2p"] += skill_lvl
+      elsif skill == "lms"
+        next
+      elsif skill == "clues_all" or skill == "clues_beginner"
+        stats_hash[skill] = [skill_lvl, 0].max
+        stats_hash["#{skill}_rank"] = skill_rank
+      else
+        stats_hash["#{skill}_lvl"] = skill_lvl
+        stats_hash["#{skill}_xp"] = skill_xp
+        stats_hash["#{skill}_rank"] = skill_rank
+      end
+    end
+    return stats_hash
+  end
+  
+  def calc_ehp(stats_hash)
+    ehp = get_ehp_type
+    total_ehp = 0.0
+    total_lvl = 8
+    total_xp = 0
+    stats_list = F2POSRSRanks::Application.config.f2p_skills
+    
+    stats_list.each.with_index do |skill, skill_idx|
+      skill_lvl = stats_hash["#{skill}_lvl"]
+      skill_xp = stats_hash["#{skill}_xp"]
+      
+      skill_tiers = ehp["#{skill}_tiers"]
+      skill_xphrs = ehp["#{skill}_xphrs"]
+      skill_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
+
+      stats_hash["#{skill}_ehp"] = skill_ehp.round(2)
+      total_ehp += skill_ehp.round(2)
+      total_xp += skill_xp
+      total_lvl += skill_lvl
+    end
+    
+    stats_hash["overall_ehp"] = total_ehp.round(2)
+    
+    if stats_hash["overall_lvl"] < 34
+      stats_hash["overall_lvl"] = total_lvl
+      stats_hash["overall_xp"] = total_xp
+    end
+
+    return stats_hash
+  end
+  
+  def adjust_bonus_xp(stats_hash, bonus_xp)
+    ehp = get_ehp_type
+    bonus_xp_list = get_bonus_xp
+    bonus_xp.keys.each do |bonus_for|
+      if bonus_for == "magic"
+        next
+      end
+
+      skill_xp = stats_hash["#{bonus_for}_xp"]
+      skill_ehp = stats_hash["#{bonus_for}_ehp"]
+      skill_tiers = ehp["#{bonus_for}_tiers"]
+      skill_xphrs = ehp["#{bonus_for}_xphrs"]
+      actual_xp = skill_xp
+
+      # get expected total bonus xp discrepancy
+      bonus_xp[bonus_for].keys.each do |bonus_from|
+        expected_xp = bonus_xp[bonus_for][bonus_from]
+        actual_xp -= expected_xp
+      end
+
+      # calc ehp discrepancy
+      if actual_xp < 0
+        xp_discrepancy = -actual_xp
+        if skill_xphrs == [0]
+          if bonus_for == "firemaking"
+            skill_xphrs = [144600]
+            skill_ehp = skill_xp/144600
+          elsif bonus_for == "cooking"
+            skill_xphrs = [120000]
+            skill_ehp = skill_xp/120000
+          end
+        end
+        ehp_discrepancy = calc_skill_ehp(skill_xp + xp_discrepancy, skill_tiers, skill_xphrs) - skill_ehp
+      else
+        xp_discrepancy = 0
+        ehp_discrepancy = 0
+      end
+
+      # subtract ehp discrepancy from the bonus_for skill if multiskill bonuses
+      if bonus_xp[bonus_for].size > 1
+        bonus_for_ehp = stats_hash["#{bonus_for}_ehp"]
+        if bonus_for_ehp < ehp_discrepancy
+          # puts "1 Subtracting #{ehp_discrepancy} ehp discrepancy and #{bonus_for_ehp} #{bonus_for} from overall_ehp."
+          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy - bonus_for_ehp).round(2)
+          stats_hash["#{bonus_for}_ehp"] = 0
+        else
+          # puts "2 Subtracting #{ehp_discrepancy} from #{bonus_for} ehp."
+          stats_hash["#{bonus_for}_ehp"] = (stats_hash["#{bonus_for}_ehp"] - ehp_discrepancy).round(2)
+          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy).round(2)
+        end
+      else
+        bonus_from = bonus_xp[bonus_for].keys[0]
+        bonus_from_ehp = stats_hash["#{bonus_from}_ehp"]
+        if bonus_from_ehp < ehp_discrepancy
+          # puts "3 Subtracting #{ehp_discrepancy} ehp discrepancy and #{bonus_from_ehp} #{bonus_from} from overall_ehp."
+          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy - bonus_from_ehp).round(2)
+          stats_hash["#{bonus_from}_ehp"] = 0
+        else
+          # puts "4 Subtracting #{ehp_discrepancy} discrepancy from #{bonus_from} ehp."
+          stats_hash["#{bonus_from}_ehp"] = (stats_hash["#{bonus_from}_ehp"] - ehp_discrepancy).round(2)
+          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy).round(2)
+        end
+      end
+    end
+    return stats_hash
+  end
+  
+  def calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
+    skill_ehp = 0.0
+    skill_tiers.each.with_index do |skill_tier, tier_idx|
+      skill_tier = skill_tier.to_f
+      skill_xphr = skill_xphrs[tier_idx].to_f
+      if skill_xphr != 0 and skill_tier < skill_xp
+        if (tier_idx + 1) < skill_tiers.length and skill_xp >=  skill_tiers[tier_idx + 1]
+          skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
+        else
+          skill_ehp += (skill_xp - skill_tier)/skill_xphr
+        end
+      end
+    end
+    return skill_ehp
+  end
+
   def get_cml_xp(time)
     today = DateTime.now
     month = today.month
@@ -544,5 +767,26 @@ class Player < ActiveRecord::Base
     recs_hash = recs.merge(ehp_recs)
     update_attributes(recs_hash)
     return recs_hash
+  end
+
+  def recalculate_ehp
+    skill_hash = {}
+    ehp = get_ehp_type
+    TIMES.each do |time|
+      start_stats_hash = {}
+      SKILLS.each do |skill|
+        start_xp = self.read_attribute("#{skill}_xp_#{time}_start")
+        start_stats_hash["#{skill}_xp"] = start_xp
+        start_stats_hash["#{skill}_lvl"] = 1
+      end
+      bonus_xp = calc_bonus_xps(start_stats_hash)
+      start_stats_hash = calc_ehp(start_stats_hash)
+      start_stats_hash = adjust_bonus_xp(start_stats_hash, bonus_xp)
+
+      SKILLS.each do |skill|
+        skill_hash["#{skill}_ehp_#{time}_start"] = start_stats_hash["#{skill}_ehp"]
+      end
+    end
+    update_attributes(skill_hash)
   end
 end
