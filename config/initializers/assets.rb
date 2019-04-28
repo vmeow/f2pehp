@@ -86,10 +86,10 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['woodcutting_method'] = "Best tree until willows, 3-ticked with snow, bonus xp from Erie fishing"
     config.ehp_iron['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish (Erie fishing)"
     config.ehp_iron['firemaking_method'] = "Best tree until willows, during woodcutting, bonus xp from Erie fishing"
-    config.ehp_iron['crafting_method'] = "Leather, then symbols, then tiaras and gem amulets from ogresses"
-    config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, mining guild and falador teleport iron platebodies and 0-time silver/gold smelting"
+    config.ehp_iron['crafting_method'] = "Leather, then symbols, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
+    config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, mining guild and falador tele iron platebodies and 0-time silver smelting"
     config.ehp_iron['mining_method'] = "0 time during crafting, smithing, runecraft"
-    config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with varrock tele, with 0-time crafting guild air rc"
+    config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with varrock tele"
     
     config.ehp_uim['attack_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
     config.ehp_uim['strength_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
@@ -102,7 +102,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['woodcutting_method'] = "Best tree until willows, 3-ticked with snow, bonus xp from Erie fishing"
     config.ehp_uim['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish (Erie fishing)"
     config.ehp_uim['firemaking_method'] = "Best tree until willows, during woodcutting, bonus xp from Erie fishing"
-    config.ehp_uim['crafting_method'] = "Leather, then symbols, then tiaras with 0-time cut and dropped gems from ogresses"
+    config.ehp_uim['crafting_method'] = "Leather, then symbols, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
     config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, varrock west and falador tele iron platebodies and 0-time silver smelting"
     config.ehp_uim['mining_method'] = "0 time during crafting, smithing, runecraft"
     config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with varrock tele"
@@ -222,7 +222,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['firemaking_xphrs'] = [0]
   
     config.ehp_iron['crafting_tiers'] = [0]
-    config.ehp_iron['crafting_xphrs'] = [15600]
+    config.ehp_iron['crafting_xphrs'] = [19500]
   
     # config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
@@ -234,7 +234,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['mining_xphrs'] = [0]
   
     config.ehp_iron['runecraft_tiers'] = [0]
-    config.ehp_iron['runecraft_xphrs'] = [3970]
+    config.ehp_iron['runecraft_xphrs'] = [3820]
   
   
   
@@ -287,7 +287,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['firemaking_xphrs'] = [0]
   
     config.ehp_uim['crafting_tiers'] = [0] 
-    config.ehp_uim['crafting_xphrs'] = [15600]
+    config.ehp_uim['crafting_xphrs'] = [19500]
   
     # config.ehp_uim['smithing_tiers'] = [0, 10092000, 13034000, 154850000]
     # config.ehp_uim['smithing_xphrs'] = [7650, 2942000, 7650, 45150000]
@@ -299,7 +299,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['mining_xphrs'] =[0]
   
     config.ehp_uim['runecraft_tiers'] = [0] 
-    config.ehp_uim['runecraft_xphrs'] = [3970]
+    config.ehp_uim['runecraft_xphrs'] = [3820]
     
     # Bonus XP (End): 
     # 0.2500 Smithing:Mining from 0 to 200000000 Mining xp 
@@ -330,10 +330,11 @@ F2POSRSRanks::Application.configure do
                             [0.1071, "prayer", "ranged", 4470, 37224],
                             [0.0625, "prayer", "ranged", 37224, 101333],
                             [0.0457, "prayer", "ranged", 101333, 200000000],
-                            [0.0992, "runecraft", "crafting", 4470, 200000000],
+                            # [0.0992, "runecraft", "crafting", 4470, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
-                            [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            [0.0500, "firemaking", "fishing", 4470, 200000000],
+                            [1.3425, "cooking", "fishing", 0, 200000000],
+                            # [0.0274, "woodcutting", "fishing", 4470, 200000000],
+                            # [0.0500, "firemaking", "fishing", 4470, 200000000],
                             [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [1.4133, "magic", "smithing", 0, 200000000],
                             [0.0381, "magic", "crafting", 0, 200000000],
@@ -353,8 +354,9 @@ F2POSRSRanks::Application.configure do
                             [0.0625, "prayer", "ranged", 37224, 101333],
                             [0.0457, "prayer", "ranged", 101333, 200000000],
                             [0.2610, "smithing", "crafting", 4470, 200000000],
-                            [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            [0.0500, "firemaking", "fishing", 4470, 200000000],
+                            [1.3425, "cooking", "fishing", 0, 200000000],
+                            # [0.0274, "woodcutting", "fishing", 4470, 200000000],
+                            # [0.0500, "firemaking", "fishing", 4470, 200000000],
                             [1.3333, "firemaking", "woodcutting", 0, 200000000],
                             [1.4133, "magic", "smithing", 0, 200000000],
                             [0.0381, "magic", "crafting", 0, 200000000],

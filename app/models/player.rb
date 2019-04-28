@@ -95,7 +95,15 @@ class Player < ActiveRecord::Base
                 "P1J",
                 "Earfs",
                 "the f2p uim"]
-  
+
+  def self.skills()
+    SKILLS
+  end
+
+  def self.times()
+    TIMES
+  end
+
   def self.supporters()
     SUPPORTERS
   end
@@ -327,7 +335,7 @@ class Player < ActiveRecord::Base
     stats_hash = calc_ehp(stats_hash)
     stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
     if check_p2p
-      Player.where(player_name: player_name).destroy_all
+      # Player.where(player_name: player_name).destroy_all
       return "p2p"
     end
     check_hc_death
@@ -457,7 +465,7 @@ class Player < ActiveRecord::Base
         next
       end
       
-      bonus_xp = ([skill_from, end_xp].min - start_xp.to_i)*ratio.to_f
+      bonus_xp = [([skill_from, end_xp].min - start_xp.to_i)*ratio.to_f, 200000000].min
       
       if bonuses[bonus_for] and bonuses[bonus_for][bonus_from]
         bonuses[bonus_for][bonus_from] += bonus_xp
@@ -580,6 +588,15 @@ class Player < ActiveRecord::Base
       # calc ehp discrepancy
       if actual_xp < 0
         xp_discrepancy = -actual_xp
+        if skill_xphrs == [0]
+          if bonus_for == "firemaking"
+            skill_xphrs = [144600]
+            skill_ehp = skill_xp/144600
+          elsif bonus_for == "cooking"
+            skill_xphrs = [120000]
+            skill_ehp = skill_xp/120000
+          end
+        end
         ehp_discrepancy = calc_skill_ehp(skill_xp + xp_discrepancy, skill_tiers, skill_xphrs) - skill_ehp
       else
         xp_discrepancy = 0
@@ -590,55 +607,27 @@ class Player < ActiveRecord::Base
       if bonus_xp[bonus_for].size > 1
         bonus_for_ehp = stats_hash["#{bonus_for}_ehp"]
         if bonus_for_ehp < ehp_discrepancy
+          # puts "1 Subtracting #{ehp_discrepancy} ehp discrepancy and #{bonus_for_ehp} #{bonus_for} from overall_ehp."
           stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy - bonus_for_ehp).round(2)
           stats_hash["#{bonus_for}_ehp"] = 0
         else
+          # puts "2 Subtracting #{ehp_discrepancy} from #{bonus_for} ehp."
           stats_hash["#{bonus_for}_ehp"] = (stats_hash["#{bonus_for}_ehp"] - ehp_discrepancy).round(2)
+          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy).round(2)
         end
       else
         bonus_from = bonus_xp[bonus_for].keys[0]
         bonus_from_ehp = stats_hash["#{bonus_from}_ehp"]
         if bonus_from_ehp < ehp_discrepancy
+          # puts "3 Subtracting #{ehp_discrepancy} ehp discrepancy and #{bonus_from_ehp} #{bonus_from} from overall_ehp."
           stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy - bonus_from_ehp).round(2)
           stats_hash["#{bonus_from}_ehp"] = 0
         else
+          # puts "4 Subtracting #{ehp_discrepancy} discrepancy from #{bonus_from} ehp."
           stats_hash["#{bonus_from}_ehp"] = (stats_hash["#{bonus_from}_ehp"] - ehp_discrepancy).round(2)
+          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy).round(2)
         end
       end
-
-      # bonus_xp[bonus_for].keys.each do |bonus_from|
-      #   expected_xp = bonus_xp[bonus_for][bonus_from]
-      #   puts "actual xp: #{actual_xp}, expected_xp: #{expected_xp}"
-        
-      #   if expected_xp > actual_xp
-      #     puts "no subtract"
-      #     # skill_from_tiers = ehp["#{bonus_from}_tiers"]
-      #     # skill_from_xphrs = ehp["#{bonus_from}_xphrs"]
-      #     actual_ehp = 0
-      #     xp_discrepancy = expected_xp - actual_xp
-      #     actual_xp = 0
-      #     adjusted_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, xp_discrepancy)
-      #     # min_ratio = bonus_xp_list.map {|xp| xp[0] if xp[1].include?(bonus_for) and xp[2].include?(bonus_from)}.compact.min
-      #     # bonus_from_xp_discrepancy = xp_discrepancy/min_ratio
-      #     # adjusted_ehp = calc_tiered_ehp(skill_from_tiers, skill_from_xphrs, stats_hash["#{bonus_from}_xp"] + bonus_from_xp_discrepancy) - stats_hash["#{bonus_from}_ehp"]
-      #     puts "#{bonus_for} discrepancy of #{xp_discrepancy} from #{bonus_from}. removing #{adjusted_ehp} ehp from #{bonus_from}"
-      #   else
-      #     actual_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, actual_xp - expected_xp)
-      #     adjusted_ehp = 0
-      #     puts "subtract, actual xp: #{actual_xp}, expected_xp: #{expected_xp}"
-      #     actual_xp -= expected_xp
-      #   end
-      
-      #   stats_hash["#{bonus_for}_ehp"] = (stats_hash["#{bonus_for}_ehp"] - adjusted_ehp).round(2)
-      #   stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - adjusted_ehp).round(2)
-        
-      #   # if actual_ehp < 0
-      #   #   stats_hash["#{bonus_for}_ehp"] = 0
-      #   # else
-      #   #   stats_hash["#{bonus_for}_ehp"] = actual_ehp.round(2)
-      #   # end
-      #   stats_hash["#{bonus_for}_ehp"] = actual_ehp.round(2)
-      # end
     end
     return stats_hash
   end
@@ -778,5 +767,26 @@ class Player < ActiveRecord::Base
     recs_hash = recs.merge(ehp_recs)
     update_attributes(recs_hash)
     return recs_hash
+  end
+
+  def recalculate_ehp
+    skill_hash = {}
+    ehp = get_ehp_type
+    TIMES.each do |time|
+      start_stats_hash = {}
+      SKILLS.each do |skill|
+        start_xp = self.read_attribute("#{skill}_xp_#{time}_start")
+        start_stats_hash["#{skill}_xp"] = start_xp
+        start_stats_hash["#{skill}_lvl"] = 1
+      end
+      bonus_xp = calc_bonus_xps(start_stats_hash)
+      start_stats_hash = calc_ehp(start_stats_hash)
+      start_stats_hash = adjust_bonus_xp(start_stats_hash, bonus_xp)
+
+      SKILLS.each do |skill|
+        skill_hash["#{skill}_ehp_#{time}_start"] = start_stats_hash["#{skill}_ehp"]
+      end
+    end
+    update_attributes(skill_hash)
   end
 end
