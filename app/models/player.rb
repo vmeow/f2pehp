@@ -616,7 +616,8 @@ class Player < ActiveRecord::Base
     rescue
       sleep(10)
       retry if (retries += 1) < 5
-      raise "CML API unresponsive."
+      puts "CML API unresponsive."
+      return false
     end
     return parse_cml_records(player_records)
   end
@@ -641,6 +642,9 @@ class Player < ActiveRecord::Base
   
   def repair_records
     recs = get_cml_records
+    unless recs
+      return
+    end
     
     ehp = get_ehp_type
     ehp_recs = {}

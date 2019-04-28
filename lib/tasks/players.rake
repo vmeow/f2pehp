@@ -116,4 +116,17 @@ namespace :players do
       end
     end
   end
+
+  desc "Repair records from CML."
+  task :repair_records => :environment do
+    Player.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").find_in_batches(batch_size: 25) do |batch|
+      batch.each do |player|
+        begin
+          player.repair_records
+        rescue
+          next
+        end
+      end
+    end
+  end
 end
