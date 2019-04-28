@@ -189,7 +189,7 @@ class PlayersController < ApplicationController
     end
     
     @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
-    @players = @players.where("CAST(potential_p2p AS FLOAT) <= 0")
+    @players = @players.where("potential_p2p <= 0")
   end
 
   def records
@@ -283,7 +283,7 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl < 4")
     end
     
-    @players = @players.where("overall_ehp > 1 and CAST(potential_p2p AS FLOAT) <= 0").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("overall_ehp > 1 and potential_p2p <= 0").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def ranks
@@ -386,7 +386,7 @@ class PlayersController < ApplicationController
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
     end
-    @players = @players.where("CAST(potential_p2p AS FLOAT) <= 0")
+    @players = @players.where("potential_p2p <= 0")
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end

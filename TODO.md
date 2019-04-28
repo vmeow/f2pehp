@@ -39,9 +39,9 @@ List is in order of priority, with time estimates and the following tags.
 
 ## In Progress
 
-* [DVPS] Upgrade to Rails 5.2 (12h)
+* [DVPS] Upgrade to Rails 5.2 (12h) - Unkie
   * remove unused gems
-* [DVPS] Complete open sourcing (8h)
+* [DVPS] Complete open sourcing (8h) - Unkie
   * refactoring to improve readability
     * move stuff out of config/initializers/assets.rb
     * separate out API/parsing from Player

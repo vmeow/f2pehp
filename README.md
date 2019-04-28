@@ -40,7 +40,7 @@ bundle exec rake db:migrate
 rails s
 ```
 
-The app should now be running at http://localhost:3000.
+The app should now be running at http://localhost:3000 or 127.0.0.1:3000.
 
 ## License
 
