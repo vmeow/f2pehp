@@ -1,16 +1,16 @@
-# To Do list
+# To Do List
 
 List is in order of priority, with time estimates and the following tags.
 
 * [BUGS] resolve unexpected site behavior
 * [CALC] calculators
 * [DATA] database and data storage
-* [DVPS] devops
 * [TEST] testing, QA
 * [ALGO] algorithms, EHP, other backend
+* [DVPS] devops and misc
 * [FRNT] web development, frontend
 
-## To Do
+## Backlog
 
 * [DATA] Display players' ranks on F2P.wiki only (8h)
 * [FRNT] FAQs page (8h)
@@ -19,8 +19,12 @@ List is in order of priority, with time estimates and the following tags.
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
 * [FRNT] Create new pages to compare gains and records (2h)
 * [TEST] Create unit test suite (24h)
+* [DVPS] Upgrade to Rails 5.2 (12h)
 * [DVPS] Explore migrating away from Heroku (40h)
 * [DATA] Explore options to improve datapoint storage (12h)
+  * AWS EC2, DigitalOcean
+* [DVPS] Allow upload of content (flairs, news, etc) (24h)
+  * Create admin user(s)?
 * [ALGO] Improve HC death, de-iron, and de-UIM detection (4h)
 * [DATA] Remove deprecated columns from competitions (30m)
 * [CALC] Fix ranged DPS calculator to use correct attack speed (30m)
