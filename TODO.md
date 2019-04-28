@@ -1,4 +1,4 @@
-# To Do
+# To Do list
 
 List is in order of priority, with time estimates and the following tags.
 
@@ -10,12 +10,12 @@ List is in order of priority, with time estimates and the following tags.
 * [ALGO] algorithms, EHP, other backend
 * [FRNT] web development, frontend
 
-## Backend
+## To Do
 
 * [DATA] Display players' ranks on F2P.wiki only (8h)
 * [FRNT] FAQs page (8h)
 * [ALGO] Fix time-to-max to include bonus xp (4h)
-** Reg ttm should be <2400h
+  * Reg ttm should be <2400h
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
 * [FRNT] Create new pages to compare gains and records (2h)
 * [TEST] Create unit test suite (24h)
@@ -34,13 +34,13 @@ List is in order of priority, with time estimates and the following tags.
 * [FRNT] Fix names and flairs that spill to two lines long (1h)
 * [FRNT] Consider restructuring Supporters list (2h)
 
-# In Progress
+## In Progress
 
 * [DVPS] Complete open sourcing (8h)
-** refactoring to improve readability
-** READMEs
+  * refactoring to improve readability
+  * READMEs
 
-# Done
+## Done
 
 * [ALGO] Update Reg EHP from no-alt EHP to alt EHP. (2h) - Unkie
 * [ALGO] Update IM/HC/UIM EHP to use Ogress EHP. (40h) - Unkie
