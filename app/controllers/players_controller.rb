@@ -176,7 +176,7 @@ class PlayersController < ApplicationController
       ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp DESC"
     end
     
-    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(ordering)
+    @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(ordering)
     
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10)
@@ -271,7 +271,7 @@ class PlayersController < ApplicationController
       ordering = "#{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp DESC"
     end
     
-    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
+    @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
     
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10)
