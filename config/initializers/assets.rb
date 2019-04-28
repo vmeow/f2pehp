@@ -64,11 +64,11 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['defence_method'] = "1 defence clan wars alts after 99 att/str"
     config.ehp_reg['ranged_method'] = "1 defence clan wars alts"
     config.ehp_reg['hitpoints_method'] = "0 time during combats"
-    config.ehp_reg['prayer_method'] = "Big bones: 43k/h solo,  34.2k/h while 'burycooking'"
+    config.ehp_reg['prayer_method'] = "Big bones"
     config.ehp_reg['magic_method'] = "Best spell, then curse splashing until 55, 0 time high alch/superheat during other skills"
-    config.ehp_reg['cooking_method'] = "Best food, then wines while burying big bones"
+    config.ehp_reg['cooking_method'] = "0-time cooking from Erie fishing"
     config.ehp_reg['woodcutting_method'] = "Best tree, then 3-tick willows with snow"
-    config.ehp_reg['fishing_method'] = "Best fish, then 3-tick fly fishing with snow"
+    config.ehp_reg['fishing_method'] = "Best fish, then 3-tick Erie fishing with 0-time cooking"
     config.ehp_reg['firemaking_method'] = "Best logs, double lane firemaking at grand exchange"
     config.ehp_reg['crafting_method'] = "Best leather item, then best gem"
     config.ehp_reg['smithing_method'] = "Best platebody until adamant platebody, with alts to trade"
@@ -142,15 +142,15 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['magic_tiers'] = [0, 174, 1358, 3973, 5018]
     config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 0]
   
-    config.ehp_reg['cooking_tiers'] = [0, 7842, 37224, 737627]
-    config.ehp_reg['cooking_xphrs'] = [40000, 130000, 175000, 320000]
+    config.ehp_reg['cooking_tiers'] = [0]
+    config.ehp_reg['cooking_xphrs'] = [0]
   
     config.ehp_reg['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
     config.ehp_reg['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 78500]
   
-    config.ehp_reg['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431]
-    config.ehp_reg['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 78500]
-  
+    config.ehp_reg['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
+    config.ehp_reg['fishing_xphrs'] = [14000, 26700, 33300, 42800, 52400, 61900, 66400, 71400, 78500]  
+
     config.ehp_reg['firemaking_tiers'] = [0, 13363, 61512, 273742]
     config.ehp_reg['firemaking_xphrs'] = [45000, 130500, 195750, 293625]
   
@@ -312,10 +312,10 @@ F2POSRSRanks::Application.configure do
     
     # ratio, bonus_for, bonus_from, start_xp, end_xp
     config.bonus_xp_reg = [[0.25, "smithing", "mining", 0, 200000000],
+                           [1.3425, "cooking", "fishing", 0, 200000000],
                            [1.135, "magic", "mining", 0, 200000000],
                            [0.138, "magic", "woodcutting", 0, 200000000],
                            [0.138, "magic", "fishing", 0, 200000000],
-                           [0.1071, "prayer", "cooking", 61512, 200000000]
                            ]
                            
     config.bonus_xp_iron = [[0.1071, "prayer", "attack", 4470, 37224],
