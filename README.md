@@ -3,6 +3,19 @@
 
 F2P.wiki is an open source Old School RuneScape hiscores for Free-to-play players. 
 
+## Contributing
+
+We are happy to receive any and all help!
+
+* Developers (Ruby, Rails, HTML/CSS/JavaScript)
+* Open source experts
+* Project owners
+* Content managers (FAQs, links, etc.)
+
+Feel free to look at our [TODO](TODO.md) list for any ideas.
+
+To contribute a code change, please create a separate branch and submit a pull request.
+
 ## Install and setup
 
 (work in progress)
@@ -28,12 +41,6 @@ rails s
 ```
 
 The app should now be running at http://localhost:3000.
-
-## Contributing
-
-Feel free to look at our [TODO](TODO.md) list.
-
-Please create pull requests to submit your changes.
 
 ## License
 
