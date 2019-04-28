@@ -787,6 +787,7 @@ class Player < ActiveRecord::Base
         skill_hash["#{skill}_ehp_#{time}_start"] = start_stats_hash["#{skill}_ehp"]
       end
     end
+    puts skill_hash
     update_attributes(skill_hash)
   end
 end
