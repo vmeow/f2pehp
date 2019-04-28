@@ -60,43 +60,6 @@ class PlayersController < ApplicationController
       redirect_to player, notice: 'Player added successfully.'
     end
   end
-
-  def test
-    competitions
-  end
-  
-  def competitions
-    @comp_filters = params[:comp_filters_] || session[:comp_filters_] || {}
-    @comp_show_limit = params[:comp_show_limit] || session[:comp_show_limit] || 100
-    @comp_show_limit = [@comp_show_limit.to_i, 500].min
-    
-    if @comp_filters == {}
-      @comp_filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
-      params[:comp_filters_] = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
-      session[:comp_filters_] = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
-    end
-    
-    if params[:comp_filters_] != session[:comp_filters_] || params[:comp_show_limit] != session[:comp_show_limit] 
-      session[:comp_filters_] = @comp_filters
-      session[:comp_show_limit] = @comp_show_limit
-    end
-    
-    enddatetime = Time.new(2018, 7, 1)
-    hours = ((enddatetime - Time.now) / 3600).to_i
-    mins = ((((enddatetime - Time.now) / 3600) - hours) * 60).round
-  
-    if hours > 168 or (hours == 168 and mins > 0)
-      ordering = "overall_ehp DESC" 
-    elsif hours < 0 or (hours == 0 and mins < 0)
-      ordering = "woodcutting_ehp_end - woodcutting_ehp_start + fishing_ehp_end - fishing_ehp_start + mining_ehp_end - mining_ehp_start + firemaking_ehp_end - firemaking_ehp_start + cooking_ehp_end - cooking_ehp_start DESC, overall_ehp DESC" 
-    else
-      ordering = "woodcutting_ehp - woodcutting_ehp_start + fishing_ehp - fishing_ehp_start + mining_ehp - mining_ehp_start + firemaking_ehp - firemaking_ehp_start + cooking_ehp - cooking_ehp_start DESC, overall_ehp DESC" 
-    end
-
-    @comp_players = Player.limit(@comp_show_limit.to_i).where(player_acc_type: @comp_filters.keys).order(ordering)
-    @comp_players = @comp_players.where("woodcutting_ehp_end - woodcutting_ehp_start + fishing_ehp_end - fishing_ehp_start + mining_ehp_end - mining_ehp_start + firemaking_ehp_end - firemaking_ehp_start + cooking_ehp_end - cooking_ehp_start > 1").paginate(:page => params[:page], :per_page => @comp_show_limit.to_i)
-  
-  end
   
   def tracking
     @sort_by = params[:sort_by] || session[:sort_by] || {}
@@ -532,8 +495,6 @@ class PlayersController < ApplicationController
       :overall_lvl, 
       :overall_ehp, 
       :overall_rank, 
-      :overall_ehp_start,
-      :overall_ehp_end,
       :attack_xp, 
       :attack_lvl, 
       :attack_ehp, 
@@ -566,26 +527,18 @@ class PlayersController < ApplicationController
       :cooking_lvl, 
       :cooking_ehp, 
       :cooking_rank, 
-      :cooking_ehp_start, 
-      :cooking_ehp_end, 
       :woodcutting_xp, 
       :woodcutting_lvl, 
       :woodcutting_ehp, 
       :woodcutting_rank, 
-      :woodcutting_ehp_start, 
-      :woodcutting_ehp_end, 
       :fishing_xp, 
       :fishing_lvl, 
       :fishing_ehp, 
       :fishing_rank, 
-      :fishing_ehp_start, 
-      :fishing_ehp_end, 
       :firemaking_xp, 
       :firemaking_lvl, 
       :firemaking_ehp, 
       :firemaking_rank, 
-      :firemaking_ehp_start, 
-      :firemaking_ehp_end, 
       :crafting_xp, 
       :crafting_lvl, 
       :crafting_ehp, 
@@ -598,8 +551,6 @@ class PlayersController < ApplicationController
       :mining_lvl, 
       :mining_ehp, 
       :mining_rank, 
-      :mining_ehp_start, 
-      :mining_ehp_end, 
       :runecraft_xp, 
       :runecraft_lvl, 
       :runecraft_ehp,

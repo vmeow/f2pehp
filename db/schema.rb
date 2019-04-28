@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_205015) do
+ActiveRecord::Schema.define(version: 2019_04_28_205756) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_205015) do
   create_table "players", force: :cascade do |t|
     t.string "player_name"
     t.string "player_acc_type"
-    t.bigint "overall_xp"
+    t.integer "overall_xp"
     t.integer "overall_lvl"
     t.float "overall_ehp"
     t.integer "attack_xp"
@@ -73,8 +73,6 @@ ActiveRecord::Schema.define(version: 2019_04_28_205015) do
     t.integer "runecraft_xp"
     t.integer "runecraft_lvl"
     t.float "runecraft_ehp"
-    t.string "filter_acc"
-    t.string "sort_skill"
     t.integer "potential_p2p"
     t.integer "overall_rank"
     t.integer "attack_rank"
@@ -92,18 +90,6 @@ ActiveRecord::Schema.define(version: 2019_04_28_205015) do
     t.integer "smithing_rank"
     t.integer "mining_rank"
     t.integer "runecraft_rank"
-    t.float "overall_ehp_start"
-    t.float "overall_ehp_end"
-    t.float "mining_ehp_start"
-    t.float "mining_ehp_end"
-    t.float "fishing_ehp_start"
-    t.float "fishing_ehp_end"
-    t.float "woodcutting_ehp_start"
-    t.float "woodcutting_ehp_end"
-    t.float "firemaking_ehp_start"
-    t.float "firemaking_ehp_end"
-    t.float "cooking_ehp_start"
-    t.float "cooking_ehp_end"
     t.integer "attack_xp_day_start"
     t.integer "attack_xp_day_max"
     t.float "attack_ehp_day_start"
