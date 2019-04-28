@@ -40,8 +40,6 @@ List is in order of priority, with time estimates and the following tags.
 
 ## In Progress
 
-* [DVPS] Upgrade to Rails 5.2 (4h) - Unkie
-  * remove unused gems
 * [DVPS] Complete open sourcing (8h) - Unkie
   * refactoring to improve readability
     * move stuff out of config/initializers/assets.rb
@@ -52,6 +50,8 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Done
 
+* [DVPS] Upgrade to Rails 5.2 (4h) - Unkie
+  * remove unused gems
 * [ALGO] Update Reg EHP from no-alt EHP to alt EHP. (2h) - Unkie
 * [ALGO] Update IM/HC/UIM EHP to use Ogress EHP. (40h) - Unkie
 * [ALGO] Implement Bonus XP algorithms (40h) - Unkie

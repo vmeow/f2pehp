@@ -22,11 +22,19 @@
   = content_tag(:div, nil, class: "left", style: "margin-left: 30px; text-align: left; width: 430px; padding: 10px;") do 
     %h1{:align => "center"} About Us
     = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
-      = "This is a fan-made passion project started in October 2017. It will always be 100% ad-free and non-profit, and is constantly updated with the help of the F2P OSRS community. We work with respected F2P individuals to bring forth EHP balances and meta changes. We also work on new features and additions all the time, and we welcome any suggestions." 
+      = "F2P.wiki is an "
+      = link_to "open source", "https://github.com/vmeow/f2pehp/"
+      = "Old School RuneScape hiscores for Free-to-play players. It is a fan-made passion project started in October 2017. It will always be 100% ad-free and non-profit, and is constantly updated with the help of the F2P OSRS community."
+      %br
+      %br
+      = "F2P.wiki works with respected F2P individuals to bring forth EHP balances, information about meta changes, and various F2P Old School RuneScape tools. We also work on new features and additions all the time, and we welcome suggestions and contributors; see " 
+      = link_to "our GitHub repo!", "https://github.com/vmeow/f2pehp/"
       = "Special thanks to "
       = link_to "Bargan", "players/Bargan"
-      = " and "
+      = ","
       = link_to "Obor", "players/Obor"
+      = ", and "
+      = link_to "tannerdino", "players/tannerdino"
       = " for their keen eye on bug fixes and suggestions."
     %h3{:align => "center"} Please consider supporting this free service.
     = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
