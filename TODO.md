@@ -19,7 +19,6 @@ List is in order of priority, with time estimates and the following tags.
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
 * [FRNT] Create new pages to compare gains and records (2h)
 * [TEST] Create unit test suite (24h)
-* [DVPS] Upgrade to Rails 5.2 (12h)
 * [DVPS] Explore migrating away from Heroku (40h)
 * [DATA] Explore options to improve datapoint storage (12h)
   * AWS EC2, DigitalOcean
@@ -40,8 +39,14 @@ List is in order of priority, with time estimates and the following tags.
 
 ## In Progress
 
+* [DVPS] Upgrade to Rails 5.2 (12h)
+  * remove unused gems
 * [DVPS] Complete open sourcing (8h)
   * refactoring to improve readability
+    * move stuff out of config/initializers/assets.rb
+    * separate out API/parsing from Player
+    * separate out algorithms from Player
+    * remove deprecrated code from players_controller.rb
   * READMEs
 
 ## Done
