@@ -24,6 +24,7 @@ List is in order of priority, with time estimates and the following tags.
   * AWS EC2, DigitalOcean
 * [DVPS] Allow upload of content (flairs, news, etc) (24h)
   * Create admin user(s)?
+* [DATA] Add and display player created_at/updated_at timestamps (2h)
 * [ALGO] Improve HC death, de-iron, and de-UIM detection (4h)
 * [DATA] Remove deprecated columns from competitions (30m)
 * [CALC] Fix ranged DPS calculator to use correct attack speed (30m)
@@ -39,9 +40,7 @@ List is in order of priority, with time estimates and the following tags.
 
 ## In Progress
 
-* [DVPS] Upgrade to Rails 5.2 (12h)
-  * remove unused gems
-* [DVPS] Complete open sourcing (8h)
+* [DVPS] Complete open sourcing (8h) - Unkie
   * refactoring to improve readability
     * move stuff out of config/initializers/assets.rb
     * separate out API/parsing from Player
@@ -51,6 +50,8 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Done
 
+* [DVPS] Upgrade to Rails 5.2 (4h) - Unkie
+  * remove unused gems
 * [ALGO] Update Reg EHP from no-alt EHP to alt EHP. (2h) - Unkie
 * [ALGO] Update IM/HC/UIM EHP to use Ogress EHP. (40h) - Unkie
 * [ALGO] Implement Bonus XP algorithms (40h) - Unkie

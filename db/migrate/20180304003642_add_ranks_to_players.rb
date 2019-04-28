@@ -1,4 +1,4 @@
-class AddRanksToPlayers < ActiveRecord::Migration
+class AddRanksToPlayers < ActiveRecord::Migration[4.2]
   def change
     add_column :players, :overall_rank, :integer
     add_column :players, :attack_rank, :integer

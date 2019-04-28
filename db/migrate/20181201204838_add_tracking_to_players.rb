@@ -1,4 +1,4 @@
-class AddTrackingToPlayers < ActiveRecord::Migration
+class AddTrackingToPlayers < ActiveRecord::Migration[4.2]
   def change
     add_column :players, :attack_xp_day_start, :int
     add_column :players, :attack_xp_day_max, :int

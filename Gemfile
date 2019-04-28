@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rake', '< 11.0'
-ruby '2.3.7'
+
+ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.9'
+gem 'rails', '5.2.2'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use Haml as the templating library
@@ -25,11 +25,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # addons
-gem 'whenever', '~> 0.10.0', :require => false
 gem 'will_paginate', '~> 3.1.0'
 gem 'scout_apm'
 
-gem "rails-settings-cached"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -46,7 +44,7 @@ group :development, :test do
 	gem 'guard-rspec'
 
 	# Use sqlite3 as the database for Active Record
-	gem 'sqlite3'
+	gem 'sqlite3', '~> 1.3.6'
 
 	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 	gem 'spring'
@@ -58,24 +56,8 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'web-console', '~> 3.7'
 end
 
-# debugger is useful in development mode too
-group :development, :test do
-  gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
-end
-# setup Cucumber, RSpec, autotest support
-group :test do
-  gem 'rspec-rails', '3.5'
-  gem 'simplecov', :require => false
-  gem 'cucumber-rails', :require => false
-  gem 'cucumber-rails-training-wheels' # basic imperative step defs
-  gem 'database_cleaner' # required by Cucumber
-  gem 'autotest-rails'
-  gem 'factory_girl_rails' # if using FactoryGirl
-  gem 'metric_fu'        # collect code metrics
-end
+gem 'rspec'
+gem 'rspec-rails'
