@@ -246,7 +246,7 @@ class Player < ActiveRecord::Base
       # Player.where(player_name: player_name).destroy_all
       return false
     end
-    stats_hash = parse_raw_stats(all_stats)
+    stats_hash = Player.parse_raw_stats(all_stats)
     bonus_xp = calc_bonus_xps(stats_hash)
     stats_hash = calc_ehp(stats_hash)
     stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
@@ -394,7 +394,7 @@ class Player < ActiveRecord::Base
     return bonuses
   end
   
-  def parse_raw_stats(all_stats)
+  def self.parse_raw_stats(all_stats)
     stats_hash = Hash.new
     stats_hash["potential_p2p"] = 0
     F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
@@ -687,5 +687,85 @@ class Player < ActiveRecord::Base
       end
     end
     update_attributes(skill_hash)
+  end
+  
+  def self.get_stats(name, acc_type)
+    if name == "Bargan"
+      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
+    else
+      begin
+        case acc_type
+        when "Reg"
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
+        when "HCIM"
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
+        when "UIM"
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
+        when "IM"
+          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
+        end
+        all_stats = uri.read.split(" ")
+      rescue Exception => e  
+        puts e.message 
+        return false
+      end
+    end
+    return all_stats
+  end
+  
+  def self.acc_type_xp(name, acc_type)
+    stats = self.get_stats(name, acc_type)
+    return 0 if not stats
+    return stats[0].split(",")[2].to_f
+  end
+  
+  def self.determine_acc_type(name)
+    uim_xp = acc_type_xp(name, "UIM")
+    hcim_xp = acc_type_xp(name, "HCIM")
+    im_xp = acc_type_xp(name, "IM")
+    reg_xp = acc_type_xp(name, "Reg")
+    if uim_xp > 0 and uim_xp >= reg_xp and uim_xp >= im_xp
+      return "UIM"
+    elsif hcim_xp > 0 and hcim_xp >= reg_xp and hcim_xp >= im_xp
+      return "HCIM"
+    elsif im_xp > 0 and im_xp >= reg_xp
+      return "IM"
+    elsif reg_xp > 0 
+      return "Reg"
+    else
+      return nil
+      # raise "Account type cannot be determined."
+    end
+  end
+
+  def self.check_p2p(stats)
+    return stats["potential_p2p"] > 0
+  end
+
+  def self.create_new(name)  
+    name = self.sanitize_name(name)
+    found = self.find_player(name)
+    if found
+      return "exists"
+    elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
+      return "p2p"
+    end
+
+    acc_type = self.determine_acc_type(name)
+    if acc_type.nil?
+      return nil
+    end
+
+    stats = self.get_stats(name, acc_type)
+    stats = self.parse_raw_stats(stats)
+    
+    if self.check_p2p(stats)
+      return "p2p"
+    end
+
+    Player.create!({"player_name" => name, "player_acc_type" => acc_type})
+    player = Player.find_player(name)
+    result = player.update_player
+    return player
   end
 end

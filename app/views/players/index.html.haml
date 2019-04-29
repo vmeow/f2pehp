@@ -252,7 +252,7 @@
             %th Account Type
             %th Overall EHP
         %tbody
-          - Player.limit(25).where("overall_ehp > 1500").order('overall_ehp DESC').each.with_index 1 do |player, index|
+          - Player.limit(25).where("potential_p2p <= 0 and overall_ehp > 1500").order('overall_ehp DESC').each.with_index 1 do |player, index|
             %tr
               %td{:align => "right"}= index
               - name = player.player_name.gsub(" ", "_")

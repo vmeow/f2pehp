@@ -46,6 +46,7 @@ List is in order of priority, with time estimates and the following tags.
     * separate out API/parsing from Player
     * separate out algorithms from Player
     * remove deprecrated code from players_controller.rb
+    * do not allow player creation unless F2P
   * READMEs
 
 ## Done

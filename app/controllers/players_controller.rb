@@ -8,7 +8,8 @@ class PlayersController < ApplicationController
   
   def search_player_if_needed
     if params[:search]
-      @player = Player.find_player(params[:search])
+      name = Player.sanitize_name(params[:search])
+      @player = Player.find_player(name)
       if @player 
         name = @player.player_name.gsub(" ", "_")
         redirect_to "/players/#{name}"
@@ -29,27 +30,16 @@ class PlayersController < ApplicationController
       name = Player.sanitize_name(params[:player_to_add_name])
       params[:player_to_add_name] = nil
       session[:player_to_add_name] = nil
-      
-      found = Player.find_player(name)
-      if found
-        redirect_to "/players/#{found.player_name.gsub(" ", "_")}", notice: 'The player you wish to add already exists.'
-        return
-      elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
-        redirect_to ranks_path, notice: 'The player you wish to add is not a free to play account.'
-        return
-      end
-      
-      acc_type = determine_acc_type(name)
-      if acc_type.nil?
+
+      result = Player.create_new(name)
+
+      if result.nil?
         redirect_to ranks_path, notice: "Player hiscores not found."
-        return 
-      end
-      Player.create!({ player_name: name, 'player_acc_type': acc_type})
-      player = Player.find_player(name)
-      
-      result = player.update_player
-      
-      if result == "p2p"
+        return
+      elsif result == "exists"
+        redirect_to "/players/#{name.gsub(" ", "_")}", notice: "The player you wish to add already exists."
+        return
+      elsif result == "p2p"
         redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
         return
       elsif result == "cutoff"
@@ -57,11 +47,14 @@ class PlayersController < ApplicationController
         return
       end
 
-      redirect_to player, notice: 'Player added successfully.'
+      redirect_to result, notice: "Player added successfully."
     end
   end
   
   def tracking
+    search_player_if_needed
+    create_player_if_needed
+
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
     @restrictions = params[:restrictions_] || {}
@@ -103,8 +96,6 @@ class PlayersController < ApplicationController
       session[:sort_by] = "ehp"
     end
     
-    search_player_if_needed
-    
     if params[:player1] and params[:player2]
       compare
     end
@@ -114,8 +105,6 @@ class PlayersController < ApplicationController
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-    
-    create_player_if_needed
     
     if @sort_by == {}
       @sort_by = "ehp"
@@ -156,6 +145,9 @@ class PlayersController < ApplicationController
   end
 
   def records
+    search_player_if_needed
+    create_player_if_needed
+
     Time.zone = "Pacific Time (US & Canada)"
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
@@ -197,9 +189,7 @@ class PlayersController < ApplicationController
       params[:sort_by] = "ehp"
       session[:sort_by] = "ehp"
     end
-    
-    search_player_if_needed
-    
+        
     if params[:player1] and params[:player2]
       compare
     end
@@ -209,9 +199,7 @@ class PlayersController < ApplicationController
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-    
-    create_player_if_needed
-    
+        
     if @sort_by == {}
       @sort_by = "ehp"
     end
@@ -250,6 +238,9 @@ class PlayersController < ApplicationController
   end
 
   def ranks
+    search_player_if_needed
+    create_player_if_needed
+
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
     @restrictions = params[:restrictions_] || {}
@@ -262,9 +253,7 @@ class PlayersController < ApplicationController
       params[:filters_] = @filters
       session[:filters_] = @filters
     end
-    
-    search_player_if_needed
-    
+        
     if params[:player1] and params[:player2]
       compare
     end
@@ -274,9 +263,7 @@ class PlayersController < ApplicationController
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-    
-    create_player_if_needed
-    
+        
     if @sort_by == {}
       @sort_by = "ehp"
     end
@@ -367,6 +354,12 @@ class PlayersController < ApplicationController
 
     id = params[:search] || params[:id]
     @player = Player.find_player(id)
+    if @player.potential_p2p > 0
+      redirect_to ranks_path, notice: "Player '#{@player.player_name}' is not free to play."
+      return
+    end
+
+    @player
   end
   
   def compare
@@ -389,54 +382,6 @@ class PlayersController < ApplicationController
     redirect_to players_path
   end
   
-  def get_stats(name, acc_type)
-    if name == "Bargan"
-      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
-    else
-      begin
-        case acc_type
-        when "Reg"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-        when "HCIM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
-        when "UIM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
-        when "IM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
-        end
-        all_stats = uri.read.split(" ")
-      rescue Exception => e  
-        puts e.message
-        return false
-      end
-    end
-    return all_stats
-  end
-  
-  def acc_type_xp(name, acc_type)
-    stats = get_stats(name, acc_type)
-    return 0 if not stats
-    return stats[0].split(",")[2].to_f
-  end
-  
-  def determine_acc_type(name)
-    uim_xp = acc_type_xp(name, "UIM")
-    hcim_xp = acc_type_xp(name, "HCIM")
-    im_xp = acc_type_xp(name, "IM")
-    reg_xp = acc_type_xp(name, "Reg")
-    if uim_xp > 0 and uim_xp >= reg_xp and uim_xp >= im_xp
-      return "UIM"
-    elsif hcim_xp > 0 and hcim_xp >= reg_xp and hcim_xp >= im_xp
-      return "HCIM"
-    elsif im_xp > 0 and im_xp >= reg_xp
-      return "IM"
-    elsif reg_xp > 0 
-      return "Reg"
-    else
-      raise("Account type cannot be determined.")
-    end
-  end
-  
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update
@@ -447,37 +392,6 @@ class PlayersController < ApplicationController
   def update_player
     @player.update_player
     @player
-  end
-  
-  # not working; URI.parse broken
-  def find_new
-    hc_start = "59"
-    hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}")
-    
-    #uim_start = "21"
-    #uim_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/a=13/overall.ws?table=0&page=#{uim_start}")
-    
-    #iron_start = "773"
-    #iron_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/a=13/overall.ws?table=0&page=#{iron_start}")
-    
-    #reg_start = "8976"
-    #reg_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/a=13/overall.ws?table=0&page=#{reg_start}")
-
-    ehp_reg = F2POSRSRanks::Application.config.ehp_reg
-    ehp_iron = F2POSRSRanks::Application.config.ehp_iron
-    ehp_uim = F2POSRSRanks::Application.config.ehp_uim
-    
-    xp_table = F2POSRSRanks::Application.config.xp_table
-    lvl_tiers = F2POSRSRanks::Application.config.lvl_tiers
-    lvl_xps = F2POSRSRanks::Application.config.lvl_xps
-    
-    contents = hc_uri.read
-
-    open(url) do |f|
-      page_string = f.read
-    end
-    flash[:notice] = open("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/a=13/overall.ws?table=0&page=#{hc_start}").read.truncate(1250)
-    redirect_to players_path
   end
 
   private
