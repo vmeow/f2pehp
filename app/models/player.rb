@@ -187,12 +187,8 @@ class Player < ActiveRecord::Base
     end
   end
   
-  def check_p2p
-    if potential_p2p.to_f > 0
-      # destroy
-      return true
-    end
-    return false
+  def check_p2p(stats_hash)
+    return stats_hash["potential_p2p"].to_f > 0
   end
 
   def calc_combat(stats_hash)
@@ -243,22 +239,15 @@ class Player < ActiveRecord::Base
     all_stats = get_stats
     if all_stats == false
       update_attributes(:potential_p2p => 1)
-      # Player.where(player_name: player_name).destroy_all
       return false
     end
     stats_hash = Player.parse_raw_stats(all_stats)
     bonus_xp = calc_bonus_xps(stats_hash)
     stats_hash = calc_ehp(stats_hash)
     stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
-    if check_p2p
-      # Player.where(player_name: player_name).destroy_all
-      return "p2p"
-    end
+
     check_hc_death
     calc_combat(stats_hash)
-    # if remove_cutoff(stats_hash)
-    #   return "cutoff"
-    # end
     
     stats_hash["ttm_lvl"] = time_to_max(stats_hash, "lvl")
     stats_hash["ttm_xp"] = time_to_max(stats_hash, "xp")
