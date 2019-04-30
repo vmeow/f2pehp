@@ -814,6 +814,12 @@ a[href$="/the_f2p_uim"]:after {
   vertical-align: -5px;
 }
 
+a[href$="/ColdFingers3"]:after {  
+  padding: 3px;
+  content: image-url("flairs/Snow_imp_gloves.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;

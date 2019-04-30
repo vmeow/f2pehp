@@ -26,7 +26,6 @@ List is in order of priority, with time estimates and the following tags.
   * Create admin user(s)?
 * [DATA] Add and display player created_at/updated_at timestamps (2h)
 * [ALGO] Improve HC death, de-iron, and de-UIM detection (4h)
-* [DATA] Remove deprecated columns from competitions (30m)
 * [CALC] Fix ranged DPS calculator to use correct attack speed (30m)
 * [CALC] Fix GP/XP calculator to update GE prices once per hour (2h)
 * [CALC] Create general drop rate calculator (2h)
@@ -40,7 +39,7 @@ List is in order of priority, with time estimates and the following tags.
 
 ## In Progress
 
-* [DVPS] Complete open sourcing (8h) - Unkie
+* [DVPS] Complete open sourcing (8h)
   * refactoring to improve readability
     * move stuff out of config/initializers/assets.rb
     * separate out API/parsing from Player
@@ -51,8 +50,9 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Done
 
-* [DVPS] Upgrade to Rails 5.2 (4h) - Unkie
+* [DVPS] Upgrade to Rails 5.2 (4h)
   * remove unused gems
-* [ALGO] Update Reg EHP from no-alt EHP to alt EHP. (2h) - Unkie
-* [ALGO] Update IM/HC/UIM EHP to use Ogress EHP. (40h) - Unkie
-* [ALGO] Implement Bonus XP algorithms (40h) - Unkie
+* [DATA] Remove deprecated columns from competitions (30m)
+* [ALGO] Update Reg EHP from no-alt EHP to alt EHP. (2h)
+* [ALGO] Update IM/HC/UIM EHP to use Ogress EHP. (40h)
+* [ALGO] Implement Bonus XP algorithms (40h)
