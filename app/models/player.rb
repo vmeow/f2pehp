@@ -1,6 +1,7 @@
 require 'open-uri'
 
 class Player < ActiveRecord::Base
+  include Skill, EHP
   
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
             "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
@@ -213,17 +214,6 @@ class Player < ActiveRecord::Base
     
     update_attribute(:combat_lvl, combat)
   end
-
-  def get_ehp_type
-    case player_acc_type
-    when "Reg"
-      ehp = F2POSRSRanks::Application.config.ehp_reg
-    when "HCIM", "IM"
-      ehp = F2POSRSRanks::Application.config.ehp_iron
-    when "UIM"
-      ehp = F2POSRSRanks::Application.config.ehp_uim
-    end
-  end
   
   def remove_cutoff(stats_hash)
     if stats_hash["overall_ehp"] < 1
@@ -322,7 +312,7 @@ class Player < ActiveRecord::Base
   end
   
   def time_to_max(stats_hash, lvl_or_xp)
-    ehp = get_ehp_type
+    ehp = get_ehp_type(player_acc_type)
     ttm = 0
     F2POSRSRanks::Application.config.skills.each do |skill|
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
@@ -420,7 +410,7 @@ class Player < ActiveRecord::Base
   end
   
   def calc_ehp(stats_hash)
-    ehp = get_ehp_type
+    ehp = get_ehp_type(player_acc_type)
     total_ehp = 0.0
     total_lvl = 8
     total_xp = 0
@@ -451,7 +441,7 @@ class Player < ActiveRecord::Base
   end
   
   def adjust_bonus_xp(stats_hash, bonus_xp)
-    ehp = get_ehp_type
+    ehp = get_ehp_type(player_acc_type)
     bonus_xp_list = get_bonus_xp
     bonus_xp.keys.each do |bonus_for|
       if bonus_for == "magic"
@@ -586,7 +576,7 @@ class Player < ActiveRecord::Base
       xp_start = xp_start.merge({"#{skill}_xp_#{time}_start" => xps["#{skill}_xp"].to_i})
     end
     
-    ehp = get_ehp_type
+    ehp = get_ehp_type(player_acc_type)
     ehp_start = {}
     (SKILLS - ["overall"]).each do |skill|
       skill_ehp = calc_skill_ehp(xps["#{skill}_xp"].to_i, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
@@ -636,7 +626,7 @@ class Player < ActiveRecord::Base
       return
     end
     
-    ehp = get_ehp_type
+    ehp = get_ehp_type(player_acc_type)
     ehp_recs = {}
     (TIMES - ["year"]).each do |time|
       time_recs = {}
@@ -660,7 +650,7 @@ class Player < ActiveRecord::Base
 
   def recalculate_ehp
     skill_hash = {}
-    ehp = get_ehp_type
+    ehp = get_ehp_type(player_acc_type)
     TIMES.each do |time|
       start_stats_hash = {}
       SKILLS.each do |skill|

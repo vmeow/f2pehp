@@ -44,8 +44,8 @@ List is in order of priority, with time estimates and the following tags.
     * move stuff out of config/initializers/assets.rb
     * separate out API/parsing from Player
     * separate out algorithms from Player
-    * remove deprecrated code from players_controller.rb
-    * do not allow player creation unless F2P
+    * ~~remove deprecrated code from players_controller.rb~~
+    * ~~do not allow player creation unless F2P~~
   * READMEs
 
 ## Done
