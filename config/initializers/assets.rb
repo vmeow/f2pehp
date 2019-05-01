@@ -87,7 +87,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish (Erie fishing)"
     config.ehp_iron['firemaking_method'] = "Best tree until willows, during woodcutting, bonus xp from Erie fishing"
     config.ehp_iron['crafting_method'] = "Leather, then symbols, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
-    config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, mining guild and falador tele iron platebodies and 0-time silver smelting"
+    config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_iron['mining_method'] = "0 time during crafting, smithing, runecraft"
     config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with varrock tele"
     
@@ -103,7 +103,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish (Erie fishing)"
     config.ehp_uim['firemaking_method'] = "Best tree until willows, during woodcutting, bonus xp from Erie fishing"
     config.ehp_uim['crafting_method'] = "Leather, then symbols, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
-    config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, varrock west and falador tele iron platebodies and 0-time silver smelting"
+    config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_uim['mining_method'] = "0 time during crafting, smithing, runecraft"
     config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with varrock tele"
   

@@ -30,12 +30,17 @@ TODO
 git clone https://github.com/vmeow/f2pehp.git
 ```
 
-3. Run database migrations.
+3. Install ruby gems.
+```
+bundle install
+```
+
+4. Run database migrations.
 ```
 bundle exec rake db:migrate
 ```
 
-4. Verify installation.
+5. Verify installation.
 ```
 rails s
 ```
