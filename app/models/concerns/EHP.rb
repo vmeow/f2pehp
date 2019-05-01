@@ -321,4 +321,15 @@ module EHP
       return EHP_UIM
     end
   end
+  
+  def get_bonus_xp(acc_type)
+    case acc_type
+    when "Reg"
+      return BONUS_XP_REG
+    when "HCIM", "IM"
+      return BONUS_XP_IRON
+    when "UIM"
+      return BONUS_XP_UIM
+    end
+  end
 end

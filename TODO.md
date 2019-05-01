@@ -6,12 +6,15 @@ List is in order of priority, with time estimates and the following tags.
 * [CALC] calculators
 * [DATA] database and data storage
 * [TEST] testing, QA
-* [ALGO] algorithms, EHP, other backend
-* [DVPS] devops and misc
+* [ALGO] algorithms, EHP
+* [DVPS] devops
+* [BACK] backend development
 * [FRNT] web development, frontend
 
 ## Backlog
 
+* [BACK] Create backups for tracking and records. (4h)
+* [BACK] Refactor tracking/records to use a single update statement (2h)
 * [DATA] Display players' ranks on F2P.wiki only (8h)
 * [FRNT] FAQs page (8h)
 * [ALGO] Fix time-to-max to include bonus xp (4h)
@@ -19,10 +22,11 @@ List is in order of priority, with time estimates and the following tags.
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
 * [FRNT] Create new pages to compare gains and records (2h)
 * [TEST] Create unit test suite (24h)
+* [BACK] Improve name search (2h)
 * [DVPS] Explore migrating away from Heroku (40h)
 * [DATA] Explore options to improve datapoint storage (12h)
   * AWS EC2, DigitalOcean
-* [DVPS] Allow upload of content (flairs, news, etc) (24h)
+* [BACK] Allow upload of content (flairs, news, etc) (24h)
   * Create admin user(s)?
 * [DATA] Add and display player created_at/updated_at timestamps (2h)
 * [ALGO] Improve HC death, de-iron, and de-UIM detection (4h)

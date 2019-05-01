@@ -1,14 +1,14 @@
 module Skill
   # skills in order of appearance from the hiscores "API"
   # https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=PLAYER_NAME
-  SKILLS = ["overall", "attack", "defence", "strength", "hitpoints",
-            "ranged", "prayer", "magic", "cooking", "woodcutting",
-            "p2p", "fishing", "firemaking", "crafting", "smithing",
-            "mining", "p2p", "p2p", "p2p", "p2p",
-            "p2p", "runecraft", "p2p", "p2p", "p2p_minigame",
-            "p2p_minigame", "lms", "clues_all", "clues_beginner", "p2p_minigame",
-            "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame"
-            ]
+  API_SKILLS = ["overall", "attack", "defence", "strength", "hitpoints",
+                "ranged", "prayer", "magic", "cooking", "woodcutting",
+                "p2p", "fishing", "firemaking", "crafting", "smithing",
+                "mining", "p2p", "p2p", "p2p", "p2p",
+                "p2p", "runecraft", "p2p", "p2p", "p2p_minigame",
+                "p2p_minigame", "lms", "clues_all", "clues_beginner", "p2p_minigame",
+                "p2p_minigame", "p2p_minigame", "p2p_minigame", "p2p_minigame"
+                ]
     
   F2P_SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged",
                 "prayer", "magic", "cooking", "woodcutting", "fishing",
@@ -53,11 +53,15 @@ module Skill
       599587276, 6691780497, 746793716, 833298010, 929719392, 1037185013, 1156949388, 1290408669
       ]
 
-  def skills
-    SKILLS
+  def get_api_skills
+    API_SKILLS
   end
 
-  def f2p_skills
+  def get_skills
+    F2P_SKILLS + ["overall"]
+  end
+
+  def get_f2p_skills
     F2P_SKILLS
   end
 end
