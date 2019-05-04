@@ -21,8 +21,20 @@ To contribute a code change, please create a separate branch and submit a pull r
 (work in progress)
 
 1. Install git, ruby, and bundler.
+
+1a. Git
 ```
 TODO
+```
+
+1b. Ruby: We recommend version 2.6.3, but any version above 2.5 is probably fine
+```
+TODO
+```
+
+1c. Bundler: Once you have installed ruby, run
+```
+gem install bundler
 ```
 
 2. Fork or clone the repository.
