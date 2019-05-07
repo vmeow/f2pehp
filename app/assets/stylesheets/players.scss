@@ -820,6 +820,12 @@ a[href$="/ColdFingers3"]:after {
   vertical-align: -8px;
 }
 
+a[href$="/i_drink_fiji"]:after {  
+  padding: 3px;
+  content: image-url("flairs/blue_cape.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
