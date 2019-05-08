@@ -12,6 +12,7 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Backlog
 
+* [ALGO] Fix repair_records tool and records in general (8h)
 * [DATA] Display players' ranks on F2P.wiki only (8h)
 * [FRNT] FAQs page (8h)
 * [ALGO] Fix time-to-max to include bonus xp (4h)
@@ -39,13 +40,14 @@ List is in order of priority, with time estimates and the following tags.
 
 ## In Progress
 
+* [DVPS] Debug Windows dev environment setup (4h)
 * [DVPS] Complete open sourcing (8h)
   * refactoring to improve readability
     * move stuff out of config/initializers/assets.rb
     * separate out API/parsing from Player
     * separate out algorithms from Player
-    * remove deprecrated code from players_controller.rb
-    * do not allow player creation unless F2P
+    * ~~remove deprecrated code from players_controller.rb~~
+    * ~~do not allow player creation unless F2P~~
   * READMEs
 
 ## Done
