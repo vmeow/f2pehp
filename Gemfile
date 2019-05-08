@@ -44,14 +44,15 @@ group :development, :test do
 	gem 'guard-rspec'
 
 	# Use sqlite3 as the database for Active Record
-	gem 'sqlite3', '~> 1.3.6'
+	gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
+    gem 'tzinfo-data'
 
 	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 	gem 'spring'
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 1.1.4'
 end
 
 group :development do
