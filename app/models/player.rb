@@ -328,6 +328,13 @@ class Player < ActiveRecord::Base
     ttm = 0
     F2POSRSRanks::Application.config.skills.each do |skill|
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
+        skill_xp = stats_hash["#{skill}_xp"]
+        if lvl_or_xp == "lvl" and skill_xp >= 13034431
+          next
+        elsif lvl_or_xp == "xp" and skill_xp == 200000000
+          next
+        end
+
         skill_ehp = stats_hash["#{skill}_ehp"]
         if lvl_or_xp == "lvl"
           max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
