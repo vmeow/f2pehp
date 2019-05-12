@@ -12,11 +12,12 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Backlog
 
+* [ALGO] Fix time-to-max to include bonus xp (4h)
+  * Reg ttm should be <2400h
+  * Sofacanlazy/Freckled Kid should have 0 ttm 99s
 * [ALGO] Fix repair_records tool and records in general (8h)
 * [DATA] Display players' ranks on F2P.wiki only (8h)
 * [FRNT] FAQs page (8h)
-* [ALGO] Fix time-to-max to include bonus xp (4h)
-  * Reg ttm should be <2400h
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
 * [FRNT] Create new pages to compare gains and records (2h)
 * [TEST] Create unit test suite (24h)
