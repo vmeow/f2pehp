@@ -336,6 +336,7 @@ class Player < ActiveRecord::Base
         end
 
         skill_ehp = stats_hash["#{skill}_ehp"]
+        adjusted_skill_ehp = calc_skill_ehp(skill_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
         if lvl_or_xp == "lvl"
           max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
         else
@@ -344,8 +345,8 @@ class Player < ActiveRecord::Base
         
         max_ehp = (max_ehp*100).floor/100.0
 
-        if max_ehp > skill_ehp
-          ttm += max_ehp - skill_ehp
+        if max_ehp > adjusted_skill_ehp
+          ttm += max_ehp - adjusted_skill_ehp
         end
       end
     end
