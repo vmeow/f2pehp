@@ -97,7 +97,9 @@ class Player < ActiveRecord::Base
                 "the f2p uim",
                 "ColdFingers3",
                 "i drink fiji",
-                "Kill the Ego"]
+                "Kill the Ego",
+                "BALN",
+                "Steel Afro"]
 
   def self.skills()
     SKILLS
