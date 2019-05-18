@@ -12,9 +12,6 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Backlog
 
-* [ALGO] Fix time-to-max to include bonus xp (4h)
-  * Reg ttm should be <2400h
-  * Sofacanlazy/Freckled Kid should have 0 ttm 99s
 * [ALGO] Fix repair_records tool and records in general (8h)
 * [DATA] Display players' ranks on F2P.wiki only (8h)
 * [FRNT] FAQs page (8h)
@@ -53,6 +50,9 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Done
 
+* [ALGO] Fix time-to-max to include bonus xp (4h)
+  * Reg ttm should be <2400h
+  * Sofacanlazy/Freckled Kid should have 0 ttm 99s
 * [DVPS] Upgrade to Rails 5.2 (4h)
   * remove unused gems
 * [DATA] Remove deprecated columns from competitions (30m)
