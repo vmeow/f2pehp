@@ -884,6 +884,28 @@ class Player < ActiveRecord::Base
     return player
   end
 
+  # Compute the players rank within the f2p hiscores in a category.
+  # score_col: Column containing the players score (generally EHP) in this category
+  # rank_col: Column containing the players rank in this category according to the
+  #           official hiscores. Used as a tiebreaker
+  def f2p_rank(score_col, rank_col)
+    1 + Player.where("#{score_col} > :score OR (#{score_col} = :score AND #{rank_col} < :rank)",
+                     {score: self[score_col], rank: self[rank_col]}).count
+  end
+
+  # Specializes f2p_rank for finding rank in a specific skill. This method
+  # assumes that a skills EHP and rank are stored in standard column names.
+  def f2p_skill_rank(skill)
+    f2p_rank("#{skill}_ehp", "#{skill}_rank")
+  end
+
+  # Specializes f2p_rank for finding rank in a clues scroll category. This
+  # method assumes that number of clues completed and overall rank in clues
+  # are stored in standard column names.
+  def f2p_clues_rank(clue_type)
+    f2p_rank("clues_#{clue_type}", "clues_#{clue_type}_rank")
+  end
+
   def count_99
     count = 0
 
