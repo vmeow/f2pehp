@@ -826,6 +826,12 @@ a[href$="/i_drink_fiji"]:after {
   vertical-align: -8px;
 }
 
+a[href$="/Brim_haven"]:after {  
+  padding: 3px;
+  content: image-url("flairs/ceres.png");
+  vertical-align: -1px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
