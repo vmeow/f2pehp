@@ -99,7 +99,8 @@ class Player < ActiveRecord::Base
                 "i drink fiji",
                 "Kill the Ego",
                 "BALN",
-                "Steel Afro"]
+                "Steel Afro",
+                "Brim haven"]
 
   def self.skills()
     SKILLS
