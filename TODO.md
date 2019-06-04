@@ -14,9 +14,12 @@ List is in order of priority, with time estimates and the following tags.
 
 * [ALGO] Fix repair_records tool and records in general (8h)
 * [DATA] Display players' ranks on F2P.wiki only (8h)
+  * [FRNT] Link personal page skills to hiscores (2h)
 * [FRNT] FAQs page (8h)
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
 * [FRNT] Create new pages to compare gains and records (2h)
+* [FRNT] CSS color outlines for different account types (2h)
+  * grey - irons, red - hc, white - uim
 * [TEST] Create unit test suite (24h)
 * [DVPS] Explore migrating away from Heroku (40h)
 * [DATA] Explore options to improve datapoint storage (12h)
