@@ -100,7 +100,9 @@ class Player < ActiveRecord::Base
                 "Kill the Ego",
                 "BALN",
                 "Steel Afro",
-                "Brim haven"]
+                "Brim haven",
+                "Your Bearr",
+                "GOLB f2p"]
 
   def self.skills()
     SKILLS
