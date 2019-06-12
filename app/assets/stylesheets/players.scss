@@ -832,6 +832,12 @@ a[href$="/Brim_haven"]:after {
   vertical-align: -1px;
 }
 
+a[href$="/GOLB_f2p"]:after {  
+  padding: 3px;
+  content: image-url("flairs/golb_f2p.png");
+  vertical-align: -8px;
+}
+
 a[href$="/Your_Bearr"]:after {  
   padding: 3px;
   content: image-url("flairs/Bear_feet.png");
