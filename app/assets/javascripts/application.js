@@ -446,8 +446,8 @@ function ready() {
                 break;
         }
     	// Effective str
-    	var rangedA = ranged;
-    	var rangedEffA = ranged;
+    	var rangedA = Number(ranged);
+    	var rangedEffA = Number(ranged);
 
     	switch(rangedPrayer){
     		case "Sharp Eye (+5%)":
@@ -672,7 +672,7 @@ function ready() {
                 break;
         }
 
-        var magicEffA = magic;
+        var magicEffA = Number(magic);
     	switch(magicPrayer){
     		case "Mystic Will (+5%)":
     			magicEffA *= 1.05;
