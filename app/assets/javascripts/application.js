@@ -73,6 +73,18 @@ function ready() {
                 meleeTicks = 4;
                 meleeAttStyle = "Stab";
                 break;
+            case "Rune longsword":
+                attBonus += 47;
+                strBonus += 49;
+                meleeTicks = 5;
+                meleeAttStyle = "Slash";
+                break;
+            case "Rune battleaxe":
+                attBonus += 48;
+                strBonus += 64;
+                meleeTicks = 6;
+                meleeAttStyle = "Slash";
+                break;
             case "Rune 2h sword":
                 attBonus += 69;
                 strBonus += 70;
@@ -245,6 +257,20 @@ function ready() {
     		        enemyArm = 14;
     		    }
     			break;
+    		case "Obor":
+    		    enemyDef = 60;
+    		    enemyHP = 120;
+    		    if(meleeAttStyle == "Stab"){
+    		    	enemyArm = 35;
+    		    } else if(meleeAttStyle == "Slash"){
+    		    	enemyArm = 40;
+    		    } else{
+    		    	enemyArm = 45;
+    		    }
+    		case "Bryophyta":
+    		    enemyDef = 100;
+    		    enemyHP = 115;
+    		    enemyArm = 0;
     		case "Lesser demon":
     		    enemyDef = 71;
     		    enemyHP = 81;
@@ -509,6 +535,16 @@ function ready() {
     		    enemyHP = 82;
     		    enemyArm = 8;
     			break;
+    		case "Obor":
+    		    enemyDef = 60;
+    		    enemyHP = 120;
+    		    enemyArm = 20;
+    		    break;
+    		case "Bryophyta":
+    		    enemyDef = 100;
+    		    enemyHP = 115;
+    		    enemyArm = 0;
+    		    break;
     		case "Lesser demon":
     		    enemyDef = 71;
     		    enemyHP = 81;
@@ -712,6 +748,14 @@ function ready() {
     		    enemyHP = 82;
     		    enemyArm = 16;
     			break;
+    		case "Obor":
+    		    enemyDef = 60;
+    		    enemyHP = 120;
+    		    enemyArm = 20;
+    		case "Bryophyta":
+    		    enemyDef = 100;
+    		    enemyHP = 115;
+    		    enemyArm = 0;
     		case "Lesser demon":
     		    enemyDef = 1;
     		    enemyHP = 81;
