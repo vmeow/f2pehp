@@ -102,7 +102,8 @@ class Player < ActiveRecord::Base
                 "Steel Afro",
                 "Brim haven",
                 "Your Bearr",
-                "GOLB f2p"]
+                "GOLB f2p",
+                "Kristelee"]
 
   def self.skills()
     SKILLS
