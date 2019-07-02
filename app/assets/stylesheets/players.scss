@@ -844,6 +844,12 @@ a[href$="/Your_Bearr"]:after {
   vertical-align: -5px;
 }
 
+a[href$="/Politiken"]:after {
+  padding: 3px;
+  content: image-url("flairs/danish_flag.png");
+  vertical-align: -2px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;

@@ -103,7 +103,8 @@ class Player < ActiveRecord::Base
                 "Brim haven",
                 "Your Bearr",
                 "GOLB f2p",
-                "Kristelee"]
+                "Kristelee",
+                "Politiken"]
 
   def self.skills()
     SKILLS
