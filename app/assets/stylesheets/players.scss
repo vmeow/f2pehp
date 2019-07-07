@@ -850,6 +850,12 @@ a[href$="/Politiken"]:after {
   vertical-align: -2px;
 }
 
+a[href$="/Ticket_Farm"]:after {
+  padding: 3px;
+  content: image-url("flairs/genie_head.png");
+  vertical-align: -8px;
+}
+
 /* FONT CHANGES */
 a[href$="/Obor"] { /* For Obor*/
   //color: #FFD700;
