@@ -180,7 +180,7 @@ class Player < ActiveRecord::Base
     return all_stats
   end
   
-  def check_hc_death
+  def check_hc_death(stats_hash)
     if player_acc_type == "HCIM"
       begin
         im_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{self.player_name}")
@@ -190,7 +190,7 @@ class Player < ActiveRecord::Base
         hc_stats = hc_uri.read.split(" ")
         hc_xp = hc_stats[0].split(",")[2].to_f
         if hc_xp < (im_xp - 1000000) or (im_xp - hc_xp).to_f/hc_xp > 0.05
-          update_attribute(:player_acc_type, "IM")
+          stats_hash["player_acc_type"] = "IM"
         end
       rescue Exception => e   
         puts e.message 
@@ -221,7 +221,7 @@ class Player < ActiveRecord::Base
       combat = 3.4
     end
     
-    update_attribute(:combat_lvl, combat)
+    stats_hash["combat_lvl"] = combat
   end
 
   def get_ehp_type
@@ -257,26 +257,28 @@ class Player < ActiveRecord::Base
     stats_hash = calc_ehp(stats_hash)
     stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
 
-    check_hc_death
+    check_hc_death(stats_hash)
     calc_combat(stats_hash)
     
     stats_hash["ttm_lvl"] = time_to_max(stats_hash, "lvl")
     stats_hash["ttm_xp"] = time_to_max(stats_hash, "xp")
-    update_attributes(stats_hash)
-    
+
     if stats_hash["overall_ehp"] > 250 or Player.supporters.include?(player_name)
       TIMES.each do |time|
         xp = self.read_attribute("overall_xp_#{time}_start")
         if xp.nil? or xp == 0
-          update_player_start_stats(time)
+          update_player_start_stats(time, stats_hash)
         end
       end
       
-      check_record_gains
+      check_record_gains(stats_hash)
     end
+
+    self.attributes = stats_hash
+    self.save :validate => false
   end
   
-  def check_record_gains
+  def check_record_gains(stats_hash)
     SKILLS.each do |skill|
       xp = self.read_attribute("#{skill}_xp")
       ehp = self.read_attribute("#{skill}_ehp")
@@ -289,21 +291,21 @@ class Player < ActiveRecord::Base
           next
         end
         if max_xp.nil? or xp - start_xp > max_xp
-          update_attributes("#{skill}_xp_#{time}_max" => xp - start_xp)
+          stats_hash["#{skill}_xp_#{time}_max"] = xp - start_xp
         end
         if max_ehp.nil? or ehp - start_ehp > max_ehp
-          update_attributes("#{skill}_ehp_#{time}_max" => ehp - start_ehp)
+          stats_hash["#{skill}_ehp_#{time}_max"] = ehp - start_ehp
         end
       end
     end
   end
   
-  def update_player_start_stats(time)
+  def update_player_start_stats(time, stats_hash)
     SKILLS.each do |skill|
       xp = self.read_attribute("#{skill}_xp")
       ehp = self.read_attribute("#{skill}_ehp")
-      update_attributes("#{skill}_xp_#{time}_start" => xp)
-      update_attributes("#{skill}_ehp_#{time}_start" => ehp)
+      stats_hash["#{skill}_xp_#{time}_start"] = xp
+      stats_hash["#{skill}_ehp_#{time}_start"] = ehp
     end
   end
   
