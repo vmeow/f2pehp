@@ -29,6 +29,12 @@
 - elsif @skill == "no_combats"
   - title = "F2P Overall (no combats) Hiscores"
   - skill_icon = ""
+- elsif @skill == "99_count"
+  - title = "F2P 99 Count"
+  - skill_icon = ""
+- elsif @skill == "200m_count"
+  - title = "F2P 200m Count"
+  - skill_icon = ""
 - elsif @skill == "clues_all"
   - title = "F2P Clue (all) Hiscores"
   - skill_icon = "skills/clue.png"
@@ -49,6 +55,14 @@
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/time.png", style: "vertical-align: -6px;"
       = link_to "Time to all 200m", :controller => "players", :action => "ranks", :skill => "ttm_xp"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+      = link_to "99 Count", :controller => "players", :action => "ranks", :skill => "99_count"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+      = link_to "200m Count", :controller => "players", :action => "ranks", :skill => "200m_count"
       %br
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/overall.png", style: "vertical-align: -6px;"
@@ -97,6 +111,8 @@
             %th Time to Max (Hours)
           - elsif @skill.include?("clues")
             %th Clues Score
+          - elsif @skill.include?("count")
+            %th Count
           - else
             - if @sort_by == "lvl"
               %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
@@ -133,6 +149,10 @@
               - no_combats_ehp = number_with_precision(player["overall_ehp"] - player["attack_ehp"] - player["strength_ehp"] - player["defence_ehp"] - player["ranged_ehp"] - player["magic_ehp"] - player["prayer_ehp"], precision: 2)
               %td= number_with_delimiter(no_combats_xp.to_i, :delimiter => ",") 
               %td= number_with_delimiter(no_combats_ehp.to_f, :delimiter => ",", :separator => ".") 
+            - elsif @skill.include?("99_count")
+              %td= player.count_99
+            - elsif @skill.include?("200m_count")
+              %td= player.count_200m
             - else
               %td= player["#{@skill}_lvl"]
               - if @skill != "combat"

@@ -776,4 +776,24 @@ class Player < ActiveRecord::Base
     result = player.update_player
     return player
   end
+
+  def count_99
+    count = 0
+
+    (SKILLS - ["overall"]).each do |skill|
+      count += 1 if self.read_attribute("#{skill}_lvl") >= 99
+    end
+
+    return count
+  end
+
+  def count_200m
+    count = 0
+
+    (SKILLS - ["overall"]).each do |skill|
+      count += 1 if self.read_attribute("#{skill}_xp") >= 200000000
+    end
+
+    return count
+  end
 end

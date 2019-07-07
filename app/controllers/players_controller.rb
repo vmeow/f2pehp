@@ -2,6 +2,7 @@ require 'net/https'
 require 'uri'
 require "open-uri"
 require 'nokogiri'
+require 'will_paginate/array'
 
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[show edit update destroy]
@@ -299,6 +300,13 @@ class PlayersController < ApplicationController
       when "xp"
         ordering = "overall_xp - hitpoints_xp - attack_xp - strength_xp - defence_xp - ranged_xp - magic_xp - prayer_xp DESC, overall_ehp - attack_ehp - strength_ehp - defence_ehp - ranged_ehp - magic_ehp - prayer_ehp DESC, overall_lvl - hitpoints_lvl - attack_lvl - strength_lvl - defence_lvl - ranged_lvl - magic_lvl - prayer_lvl DESC"
       end
+    elsif @skill.include?("count")
+      case @skill
+      when "99_count"
+        ordering = "overall_ehp DESC"
+      when "200m_count"
+        ordering = "overall_ehp DESC"
+      end
     else
       case @sort_by
       when "ehp"
@@ -337,6 +345,12 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl IS NOT NULL")
     end
     @players = @players.where("potential_p2p <= 0")
+
+    if @skill.include?("99_count")
+      @players = @players.sort_by {|player| player.count_99 }.reverse
+    elsif @skill.include?("200m_count")
+      @players = @players.sort_by {|player| player.count_200m }.reverse
+    end
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
