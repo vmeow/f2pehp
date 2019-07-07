@@ -301,7 +301,7 @@ class PlayersController < ApplicationController
         ordering = "overall_xp - hitpoints_xp - attack_xp - strength_xp - defence_xp - ranged_xp - magic_xp - prayer_xp DESC, overall_ehp - attack_ehp - strength_ehp - defence_ehp - ranged_ehp - magic_ehp - prayer_ehp DESC, overall_lvl - hitpoints_lvl - attack_lvl - strength_lvl - defence_lvl - ranged_lvl - magic_lvl - prayer_lvl DESC"
       end
     elsif @skill.include?("count")
-      ordering = ""
+      ordering = "overall_ehp DESC"
     else
       case @sort_by
       when "ehp"
