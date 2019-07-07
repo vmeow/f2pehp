@@ -341,3 +341,31 @@ form .input { display: table-cell; }
     cursor: pointer;
     text-decoration: underline;
 }
+
+// Generate CSS rules for supporter flair
+
+<% Player.supporters_hashes.each do |supporter| %>
+  <% if supporter[:flair_before] %>
+    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
+      padding: 3px;
+      vertical-align: -25%;
+      content: image-url("<%= supporter[:flair_before] %>");
+    }
+  <% end %>
+
+  <% if supporter[:flair_after] %>
+    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
+      padding: 3px;
+      vertical-align: -25%;
+      content: image-url("<%= supporter[:flair_after] %>");
+    }
+  <% end %>
+
+  <% if supporter[:other_css] %>
+    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]{
+      <% supporter[:other_css].each do |rule| %>
+        <%= rule %>;
+      <% end %>
+    }
+  <% end %>
+<% end %>
