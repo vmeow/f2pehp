@@ -15,7 +15,7 @@ class PlayersController < ApplicationController
         name = @player.player_name.gsub(" ", "_")
         redirect_to "/players/#{name}"
       else
-        redirect_to ranks_path, notice: 'Player not found.'
+        redirect_to ranks_path, notice: "Player '#{name}' not found."
       end
       return
     end 
@@ -363,6 +363,12 @@ class PlayersController < ApplicationController
 
     id = params[:search] || params[:id]
     @player = Player.find_player(id)
+
+    if not @player
+      redirect_to ranks_path, notice: "Player '#{id}' not found."
+      return
+    end
+
     if @player.potential_p2p > 0
       redirect_to ranks_path, notice: "Player '#{@player.player_name}' is not free to play."
       return
@@ -374,8 +380,16 @@ class PlayersController < ApplicationController
   def compare
     @player1 = Player.find_player(params[:player1])
     @player2 = Player.find_player(params[:player2])
-    if @player1 == false or @player2 == false
-      redirect_to ranks_path, notice: "Players not found."
+
+    player_not_found = nil
+    if not @player1
+      player_not_found = params[:player1]
+    elsif not @player2
+      player_not_found = params[:player2]
+    end
+
+    if player_not_found
+      redirect_to ranks_path, notice: "Player '#{player_not_found}' not found."
     end
   end
   
