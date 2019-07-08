@@ -192,10 +192,14 @@ class Player < ActiveRecord::Base
         if hc_xp < (im_xp - 1000000) or (im_xp - hc_xp).to_f/hc_xp > 0.05
           stats_hash["player_acc_type"] = "IM"
         end
-      rescue Exception => e   
-        puts e.message 
+      rescue Exception => e
+        puts e.message
+      ensure
+        return stats_hash
       end
     end
+
+    return stats_hash
   end
   
   def check_p2p(stats_hash)
@@ -222,6 +226,7 @@ class Player < ActiveRecord::Base
     end
     
     stats_hash["combat_lvl"] = combat
+    return stats_hash
   end
 
   def get_ehp_type
@@ -257,8 +262,8 @@ class Player < ActiveRecord::Base
     stats_hash = calc_ehp(stats_hash)
     stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
 
-    check_hc_death(stats_hash)
-    calc_combat(stats_hash)
+    stats_hash = check_hc_death(stats_hash)
+    stats_hash = calc_combat(stats_hash)
     
     stats_hash["ttm_lvl"] = time_to_max(stats_hash, "lvl")
     stats_hash["ttm_xp"] = time_to_max(stats_hash, "xp")
@@ -267,11 +272,11 @@ class Player < ActiveRecord::Base
       TIMES.each do |time|
         xp = self.read_attribute("overall_xp_#{time}_start")
         if xp.nil? or xp == 0
-          update_player_start_stats(time, stats_hash)
+          stats_hash = update_player_start_stats(time, stats_hash)
         end
       end
       
-      check_record_gains(stats_hash)
+      stats_hash = check_record_gains(stats_hash)
     end
 
     self.attributes = stats_hash
@@ -298,6 +303,8 @@ class Player < ActiveRecord::Base
         end
       end
     end
+
+    return stats_hash
   end
   
   def update_player_start_stats(time, stats_hash)
@@ -307,6 +314,8 @@ class Player < ActiveRecord::Base
       stats_hash["#{skill}_xp_#{time}_start"] = xp
       stats_hash["#{skill}_ehp_#{time}_start"] = ehp
     end
+
+    return stats_hash
   end
   
   def calc_skill_ehp(xp, tiers, xphrs)
