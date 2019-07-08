@@ -285,13 +285,17 @@ div {
   padding: 5px;
   margin-bottom: 20px;
 }
+
 .supporters {
-  text-align:center;
-  line-height: 28px;
   margin: auto;
   margin-top: 0px;
   margin-bottom: 30px;
   padding: 5px;
+}
+
+.supporters a {
+  justify-content: center;
+  height: 28px;
 }
 
 .selected-link {
@@ -348,7 +352,7 @@ form .input { display: table-cell; }
   <% if supporter[:flair_before] %>
     a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
       padding: 3px;
-      vertical-align: -25%;
+      display: flex;
       content: image-url("<%= supporter[:flair_before] %>");
     }
   <% end %>
@@ -356,16 +360,19 @@ form .input { display: table-cell; }
   <% if supporter[:flair_after] %>
     a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
       padding: 3px;
-      vertical-align: -25%;
+      display: flex;
       content: image-url("<%= supporter[:flair_after] %>");
     }
   <% end %>
 
-  <% if supporter[:other_css] %>
-    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]{
+  a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]{
+    <% if supporter[:other_css] %>
       <% supporter[:other_css].each do |rule| %>
         <%= rule %>;
       <% end %>
-    }
-  <% end %>
+    <% end %>
+
+    display: flex;
+    align-items: center;
+  }
 <% end %>
