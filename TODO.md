@@ -29,7 +29,6 @@ List is in order of priority, with time estimates and the following tags.
   * Create admin user(s)?
 * [DATA] Add and display player created_at/updated_at timestamps (2h)
 * [ALGO] Improve HC death, de-iron, and de-UIM detection (4h)
-* [CALC] Fix ranged DPS calculator to use correct attack speed (30m)
 * [CALC] Fix GP/XP calculator to update GE prices once per hour (2h)
 * [CALC] Create general drop rate calculator (2h)
 * [CALC] Create Ogress drops calculator (3h)
@@ -38,7 +37,9 @@ List is in order of priority, with time estimates and the following tags.
 * [FRNT] Fix scrolls to not show small gaps (2h)
 * [FRNT] Fix tables with long rows to not be cut off (1h)
 * [FRNT] Fix names and flairs that spill to two lines long (1h)
-* [FRNT] Consider restructuring Supporters list (2h)
+* [FRNT] Clan affiliation for players, filtering by clan
+* [FRNT] Competitions
+* [FRNT] Improving front page to look more like classic OSRS front page with links
 
 ## In Progress
 
@@ -53,6 +54,8 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Done
 
+* [FRNT] Consider restructuring Supporters list (2h) - Jack
+* [CALC] Fix ranged DPS calculator to use correct attack speed (30m)
 * [ALGO] Fix time-to-max to include bonus xp (4h)
   * Reg ttm should be <2400h
   * Sofacanlazy/Freckled Kid should have 0 ttm 99s

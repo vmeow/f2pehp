@@ -21,7 +21,7 @@ To contribute a code change, please create a separate branch and submit a pull r
 
 ### 1. Install Git, Ruby, and Bundler
 
-Make sure to install Ruby 2.6.3
+We recommend installing Ruby 2.6.3, but other recent versions may suffice.
 
 #### Windows
 
