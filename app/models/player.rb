@@ -7,96 +7,118 @@ class Player < ActiveRecord::Base
             "smithing", "mining", "runecraft", "overall"]
   
   TIMES = ["day", "week", "month", "year"]
-  
-  SUPPORTERS = ["Bargan",
-                "Freckled Kid",
-                "Obor",
-                "Gl4Head",
-                "Ikiji",
-                "Xan So",
-                "Netbook Pro",
-                "F2P Lukie",
-                "Tame My Wild",
-                "FitMC",
-                "Pink skirt",
-                "UIM STK F2P",
-                "MA5ON",
-                "For Ulven",
-                "tannerdino",
-                "Playing Fe",
-                "Pawz",
-                "Yellow bead",
-                "ZINJAN",
-                "Valleyman6",
-                "Snooz Button",
-                "IronMace Din",
-                "HCIM_btw_fev",
-                "citnA",
-                "Lea Sinclair",
-                "lRAIDERSS",
-                "Sofacanlazy",
-                "I love rs",
-                "Say F2p Ult",
-                "Irish Woof",
-                "Faij",
-                "Leftoverover",
-                "DJ9",
-                "Drae",
-                "David BBQ",
-                "Schwifty Bud",
-                "UI Pain",
-                "Fe F2P",
-                "WishengradHC",
-                "n4ckerd",
-                "Tohno1612",
-                "H C Gilrix",
-                "Frogmask",
-                "NoQuestsHCIM",
-                "Adentia",
-                "threewaygang",
-                "5perm sock",
-                "Sir BoJo",
-                "f2p Ello",
-                "Ghost Bloke",
-                "Fe Apes",
-                "Iron of One",
-                "InsurgentF2P",
-                "cwismis noob",
-                "Sad Jesus",
-                "SapphireHam",
-                "Doublessssss",
-                "ColdFingers1",
-                "xmymwf609",
-                "Cas F2P HC",
-                "Onnn",
-                "Shade_Core",
-                "Metan",
-                "F2P UIM OREO",
-                "Crawler",
-                "UIM Dakota",
-                "HCBown",
-                "Dukeddd",
-                "one a time",
-                "Yewsless",
-                "Wizards Foot",
-                "F2P Jords",
-                "a q p IM",
-                "Hardcore VFL",
-                "Pizzarrhea",
-                "bemanisows",
-                "Dusty Lime",
-                "Brantrout",
-                "f2p uim nerd",
-                "Romans ch 12",
-                "Feature",
-                "Arizer Air",
-                "Irondish",
-                "Maze",
-                "P1J",
-                "Earfs",
-                "the f2p uim",
-                "ColdFingers3",
-                "i drink fiji"]
+
+  # This is the canonical list of supporter. It is used to generate the list
+  # of supporters on both home page and the about us page. It also contains
+  # the flair image and other styling applied to supporters names wherever
+  # they appear.
+  # Adding a new supporter:
+  #   1. Add a new entry this list as a hash {name: "supporter_name"}
+  #   2. Add an image after their name by adding the key :flair_after
+  #   3. Add an image before their  name by adding the key :flair_before
+  #   4. Apply arbitrary css by adding the key :other_css
+  #   5. If any new images were required, be sure to add them to app/assests/images
+  SUPPORTERS = [{name: "Bargan"},
+                {name: "Freckled Kid", flair_after: "flairs/burnt_bones.png"},
+                {name: "Obor", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
+                {name: "Gl4Head", flair_after: "flairs/fighting_boots.png"},
+                {name: "Ikiji", flair_after: "flairs/Mystery_box.png"},
+                {name: "Xan So", flair_after: "items/Maple_shortbow.png"},
+                {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
+                {name: "F2P Lukie", flair_after: "flairs/tea.png"},
+                {name: "Tame My Wild", flair_after: "flairs/dog.png"},
+                {name: "FitMC", flair_after: "flairs/anchovy_pizza.png"},
+                {name: "Pink skirt", flair_after: "flairs/pink_skirt.png"},
+                {name: "UIM STK F2P", flair_after: "items/Rune_scimitar.gif"},
+                {name: "MA5ON", flair_after: "items/Diamond.gif"},
+                {name: "For Ulven", flair_after: "flairs/wolf.png"},
+                {name: "tannerdino", flair_after: "items/Mossy_key.png"},
+                {name: "Playing Fe", flair_after: "flairs/salmon.png"},
+                {name: "Pawz", flair_after: "flairs/rs3helm.png"},
+                {name: "Yellow bead", flair_after: "flairs/yellow_bead.png"},
+                {name: "ZINJAN", flair_after: "flairs/ZINJANTHROPI.png"},
+                {name: "Valleyman6", flair_after: "flairs/uk_flag.png"},
+                {name: "Snooz Button", flair_after: "flairs/macaroni.png"},
+                {name: "IronMace Din", flair_after: "flairs/maceblur2.png"},
+                {name: "HCIM_btw_fev", flair_after: "flairs/kitten.png"},
+                {name: "citnA", flair_after: "flairs/bronzehelm.png"},
+                {name: "Lea Sinclair", flair_after: "flairs/cupcake.png"},
+                {name: "lRAIDERSS", flair_after: "flairs/raiders3.png"},
+                {name: "Sofacanlazy", flair_after: "flairs/australia-flag.png"},
+                {name: "I love rs", flair_after: "flairs/tank.png"},
+                {name: "Say F2p Ult", flair_after: "flairs/santa.png"},
+                {name: "Irish Woof", flair_after: "flairs/leprechaun2.png"},
+                {name: "Faij", flair_after: "flairs/frog.png"},
+                {name: "Leftoverover", flair_after: "flairs/rope.png"},
+                {name: "DJ9", flair_after: "flairs/death_rune.png"},
+                {name: "Drae", flair_after: "flairs/rsz_dshield.png"},
+                {name: "David BBQ", flair_after: "flairs/cooked_chicken.png"},
+                {name: "Schwifty Bud", flair_after: "flairs/rick_sanchez.png", other_css: ["font-family: Script", "font-variant: small-caps"]},
+                {name: "UI Pain", flair_after: "flairs/steel_axe.png"},
+                {name: "Fe F2P", flair_after: "flairs/skulled.png"},
+                {name: "WishengradHC", flair_after: "flairs/bowser.png"},
+                {name: "n4ckerd", flair_after: "items/Gilded_med_helm.png"},
+                {name: "Tohno1612", flair_after: "flairs/addy_helm.png"},
+                {name: "H C Gilrix", flair_after: "flairs/HCIM.png"},
+                {name: "Frogmask", flair_after: "flairs/frog.png"},
+                {name: "NoQuestsHCIM", flair_after: "flairs/noquest.png"},
+                {name: "Adentia", flair_after: "flairs/danish_flag.png"},
+                {name: "threewaygang"},
+                {name: "5perm sock"},
+                {name: "Sir BoJo", flair_after: "items/Rune_mace.gif"},
+                {name: "f2p Ello", flair_after: "items/Book_of_knowledge.png"},
+                {name: "Ghost Bloke", flair_after: "flairs/ghost_bloke.png"},
+                {name: "Fe Apes", flair_after: "flairs/fe_apes.jpg"},
+                {name: "Iron of One", flair_after: "items/Dark_cavalier.png"},
+                {name: "InsurgentF2P", flair_after: "skills/defence.png"},
+                {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
+                {name: "Sad Jesus", flair_after: "flairs/sad_jesus.png"},
+                {name: "SapphireHam", flair_after: "items/Coal.gif"},
+                {name: "Doublessssss"},
+                {name: "ColdFingers1", flair_after: "flairs/ColdFingers1.png"},
+                {name: "xmymwf609"},
+                {name: "Cas F2P HC", flair_after: "items/Big_bones.gif"},
+                {name: "Onnn", flair_after: "flairs/canada-flag.png"},
+                {name: "Shade_Core", flair_after: "flairs/shade_core.png"},
+                {name: "Metan"},
+                {name: "F2P UIM OREO", flair_after: "flairs/f2p_uim_oreo.jpg"},
+                {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
+                {name: "UIM Dakota", flair_after: "flairs/Cadava_berries.png"},
+                {name: "HCBown"},
+                {name: "Dukeddd"},
+                {name: "one a time"},
+                {name: "Yewsless", flair_after: "items/Yew_logs.gif"},
+                {name: "Wizards Foot", flair_after: "flairs/Wizards_Foot_flair.png"},
+                {name: "F2P Jords", flair_after: "flairs/Druidic_wreath.png"},
+                {name: "a q p IM"},
+                {name: "Hardcore VFL", flair_after: "HCIM.png"},
+                {name: "Pizzarrhea", flair_after: "flairs/pizzarrhea.gif"},
+                {name: "bemanisows", flair_after: "flairs/vannaka.png"},
+                {name: "Dusty Lime", flair_after: "items/Rune_chainbody.gif"},
+                {name: "Brantrout", flair_after: "items/Trout.gif"},
+                {name: "f2p uim nerd"},
+                {name: "Romans ch 12"},
+                {name: "Feature", flair_after: "flairs/camel.png"},
+                {name: "Arizer Air", flair_after: "flairs/chicken_wing.png"},
+                {name: "Irondish", flair_after: "flairs/egg.png"},
+                {name: "Maze", flair_after: "flairs/mysterious.png"},
+                {name: "P1J"},
+                {name: "Earfs"},
+                {name: "the f2p uim", flair_after: "flairs/Green_partyhat.png"},
+                {name: "ColdFingers3", flair_after: "flairs/Snow_imp_gloves.png"},
+                {name: "i drink fiji", flair_after: "flairs/blue_cape.png"},
+                {name: "Kill the Ego"},
+                {name: "BALN"},
+                {name: "Steel Afro"},
+                {name: "minlvlskilla", flair_after: "flairs/3.png"},
+                {name: "DansPotatoe", flair_after: "items/Potato.png"},
+                {name: "UncleTomas", flair_after: "flairs/shade_robe.png"},
+                {name: "Brim haven", flair_after: "flairs/ceres.png"},
+                {name: "Your Bearr", flair_after: "flairs/Bear_feet.png"},
+                {name: "GOLB f2p", flair_after: "flairs/golb_f2p.png"},
+                {name: "Kristelee"},
+                {name: "Politiken", flair_after: "flairs/danish_flag.png"},
+                {name: "Ticket Farm", flair_after: "flairs/genie_head.png"}]
 
   def self.skills()
     SKILLS
@@ -106,15 +128,19 @@ class Player < ActiveRecord::Base
     TIMES
   end
 
-  def self.supporters()
+  def self.supporters_hashes()
     SUPPORTERS
+  end
+
+  def self.supporters()
+    SUPPORTERS.map{|supporter| supporter[:name]}
   end
   
   def self.sql_supporters()
-    quoted_names = SUPPORTERS.map{ |name| "'#{name}'" }
+    quoted_names = supporters.map{ |name| "'#{name}'" }
     "(#{quoted_names.join(",")})"
   end
-  
+
   # The characters +, _, \s, -, %20 count as the same when doing a lookup on hiscores.
   def self.sanitize_name(str)
     if str.downcase == "_yrak"
@@ -171,7 +197,7 @@ class Player < ActiveRecord::Base
     return all_stats
   end
   
-  def check_hc_death
+  def check_hc_death(stats_hash)
     if player_acc_type == "HCIM"
       begin
         im_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{self.player_name}")
@@ -181,12 +207,16 @@ class Player < ActiveRecord::Base
         hc_stats = hc_uri.read.split(" ")
         hc_xp = hc_stats[0].split(",")[2].to_f
         if hc_xp < (im_xp - 1000000) or (im_xp - hc_xp).to_f/hc_xp > 0.05
-          update_attribute(:player_acc_type, "IM")
+          stats_hash["player_acc_type"] = "IM"
         end
-      rescue Exception => e   
-        puts e.message 
+      rescue Exception => e
+        puts e.message
+      ensure
+        return stats_hash
       end
     end
+
+    return stats_hash
   end
   
   def check_p2p(stats_hash)
@@ -212,7 +242,8 @@ class Player < ActiveRecord::Base
       combat = 3.4
     end
     
-    update_attribute(:combat_lvl, combat)
+    stats_hash["combat_lvl"] = combat
+    return stats_hash
   end
 
   def get_ehp_type
@@ -248,26 +279,28 @@ class Player < ActiveRecord::Base
     stats_hash = calc_ehp(stats_hash)
     stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
 
-    check_hc_death
-    calc_combat(stats_hash)
+    stats_hash = check_hc_death(stats_hash)
+    stats_hash = calc_combat(stats_hash)
     
     stats_hash["ttm_lvl"] = time_to_max(stats_hash, "lvl")
     stats_hash["ttm_xp"] = time_to_max(stats_hash, "xp")
-    update_attributes(stats_hash)
-    
+
     if stats_hash["overall_ehp"] > 250 or Player.supporters.include?(player_name)
       TIMES.each do |time|
         xp = self.read_attribute("overall_xp_#{time}_start")
         if xp.nil? or xp == 0
-          update_player_start_stats(time)
+          stats_hash = update_player_start_stats(time, stats_hash)
         end
       end
       
-      check_record_gains
+      stats_hash = check_record_gains(stats_hash)
     end
+
+    self.attributes = stats_hash
+    self.save :validate => false
   end
   
-  def check_record_gains
+  def check_record_gains(stats_hash)
     SKILLS.each do |skill|
       xp = self.read_attribute("#{skill}_xp")
       ehp = self.read_attribute("#{skill}_ehp")
@@ -280,22 +313,26 @@ class Player < ActiveRecord::Base
           next
         end
         if max_xp.nil? or xp - start_xp > max_xp
-          update_attributes("#{skill}_xp_#{time}_max" => xp - start_xp)
+          stats_hash["#{skill}_xp_#{time}_max"] = xp - start_xp
         end
         if max_ehp.nil? or ehp - start_ehp > max_ehp
-          update_attributes("#{skill}_ehp_#{time}_max" => ehp - start_ehp)
+          stats_hash["#{skill}_ehp_#{time}_max"] = ehp - start_ehp
         end
       end
     end
+
+    return stats_hash
   end
   
-  def update_player_start_stats(time)
+  def update_player_start_stats(time, stats_hash)
     SKILLS.each do |skill|
       xp = self.read_attribute("#{skill}_xp")
       ehp = self.read_attribute("#{skill}_ehp")
-      update_attributes("#{skill}_xp_#{time}_start" => xp)
-      update_attributes("#{skill}_ehp_#{time}_start" => ehp)
+      stats_hash["#{skill}_xp_#{time}_start"] = xp
+      stats_hash["#{skill}_ehp_#{time}_start"] = ehp
     end
+
+    return stats_hash
   end
   
   def calc_skill_ehp(xp, tiers, xphrs)
@@ -327,7 +364,15 @@ class Player < ActiveRecord::Base
     ttm = 0
     F2POSRSRanks::Application.config.skills.each do |skill|
       if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
+        skill_xp = stats_hash["#{skill}_xp"]
+        if lvl_or_xp == "lvl" and skill_xp >= 13034431
+          next
+        elsif lvl_or_xp == "xp" and skill_xp == 200000000
+          next
+        end
+
         skill_ehp = stats_hash["#{skill}_ehp"]
+        adjusted_skill_ehp = calc_skill_ehp(skill_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
         if lvl_or_xp == "lvl"
           max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
         else
@@ -336,8 +381,8 @@ class Player < ActiveRecord::Base
         
         max_ehp = (max_ehp*100).floor/100.0
 
-        if max_ehp > skill_ehp
-          ttm += max_ehp - skill_ehp
+        if max_ehp > adjusted_skill_ehp
+          ttm += max_ehp - adjusted_skill_ehp
         end
       end
     end
@@ -758,5 +803,25 @@ class Player < ActiveRecord::Base
     player = Player.find_player(name)
     result = player.update_player
     return player
+  end
+
+  def count_99
+    count = 0
+
+    (SKILLS - ["overall"]).each do |skill|
+      count += 1 if self.read_attribute("#{skill}_lvl") >= 99
+    end
+
+    return count
+  end
+
+  def count_200m
+    count = 0
+
+    (SKILLS - ["overall"]).each do |skill|
+      count += 1 if self.read_attribute("#{skill}_xp") >= 200000000
+    end
+
+    return count
   end
 end

@@ -2,6 +2,7 @@ require 'net/https'
 require 'uri'
 require "open-uri"
 require 'nokogiri'
+require 'will_paginate/array'
 
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[show edit update destroy]
@@ -14,7 +15,7 @@ class PlayersController < ApplicationController
         name = @player.player_name.gsub(" ", "_")
         redirect_to "/players/#{name}"
       else
-        redirect_to ranks_path, notice: 'Player not found.'
+        redirect_to ranks_path, notice: "Player '#{name}' not found."
       end
       return
     end 
@@ -299,6 +300,8 @@ class PlayersController < ApplicationController
       when "xp"
         ordering = "overall_xp - hitpoints_xp - attack_xp - strength_xp - defence_xp - ranged_xp - magic_xp - prayer_xp DESC, overall_ehp - attack_ehp - strength_ehp - defence_ehp - ranged_ehp - magic_ehp - prayer_ehp DESC, overall_lvl - hitpoints_lvl - attack_lvl - strength_lvl - defence_lvl - ranged_lvl - magic_lvl - prayer_lvl DESC"
       end
+    elsif @skill.include?("count")
+      ordering = "overall_ehp DESC"
     else
       case @sort_by
       when "ehp"
@@ -337,6 +340,12 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl IS NOT NULL")
     end
     @players = @players.where("potential_p2p <= 0")
+
+    if @skill.include?("99_count")
+      @players = @players.sort_by {|player| [player.count_99, player.overall_ehp] }.reverse
+    elsif @skill.include?("200m_count")
+      @players = @players.sort_by {|player| [player.count_200m, player.overall_ehp] }.reverse
+    end
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
@@ -354,6 +363,12 @@ class PlayersController < ApplicationController
 
     id = params[:search] || params[:id]
     @player = Player.find_player(id)
+
+    if not @player
+      redirect_to ranks_path, notice: "Player '#{id}' not found."
+      return
+    end
+
     if @player.potential_p2p > 0
       redirect_to ranks_path, notice: "Player '#{@player.player_name}' is not free to play."
       return
@@ -365,8 +380,16 @@ class PlayersController < ApplicationController
   def compare
     @player1 = Player.find_player(params[:player1])
     @player2 = Player.find_player(params[:player2])
-    if @player1 == false or @player2 == false
-      redirect_to ranks_path, notice: "Players not found."
+
+    player_not_found = nil
+    if not @player1
+      player_not_found = params[:player1]
+    elsif not @player2
+      player_not_found = params[:player2]
+    end
+
+    if player_not_found
+      redirect_to ranks_path, notice: "Player '#{player_not_found}' not found."
     end
   end
   

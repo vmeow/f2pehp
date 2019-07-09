@@ -1,0 +1,14 @@
+= content_tag(:div, nil, class: "container", style: "width: 760px;") do
+  = content_tag(:div, class: "supporters") do
+    %h1
+      = link_to "F2P Supporters", donate_path
+
+    - supporters_columns = 3
+    - supporters_column_width = 100 / Float(supporters_columns)
+    - supporters_column_size = (Player.supporters.length / Float(supporters_columns)).ceil
+    - Player.supporters.in_groups_of(supporters_column_size, false).each do |column|
+      = content_tag(:div, nil, class: "container", style: "float:left; width:#{supporters_column_width}%;") do
+        %br
+        - column.each do |supporter|
+          = link_to supporter, "players/#{supporter.gsub(' ', '_')}"
+          %br

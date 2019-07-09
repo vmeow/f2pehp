@@ -1,0 +1,378 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  color: white; 
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 10pt;
+  width: 100%;
+  height: 100%;
+  
+  text-align: center;
+  background: black;
+  background-image: image-url("original_bg2.jpg");
+  background-position: top center;
+  background-repeat: repeat-y;
+  overflow-x: hidden;
+}
+
+html {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  color: #90c040;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  color: white;
+  font-family: 'Arial';
+  font-size: 150%;
+  font-style: bold;
+  display: block;
+  width: 100%;
+}
+
+h3 {
+  color: white;
+  font-family: 'Arial';
+  font-style: bold;
+  display: block;
+  width: 100%;
+}
+
+h4 {
+  color: #d9c27e;
+  line-height: 1;
+}
+
+h5 {
+  font-size: 14px;
+  color: white;
+  font-family: 'Arial';
+  font-style: bold;
+  display: block;
+  width: 100%;
+  line-height: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+h6 {
+  font-family: 'Arial';
+  font-size: 14px;
+  color: #969696;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+table, th, td {
+  padding: 4px;
+}
+
+table th.hilite {
+  background-color: none; //#5B1D76;
+}
+
+table a {
+  color: black; //#90c040;
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  overflow-x: auto;
+  color: black;
+  background: image-url("scroll_middle_379.gif");
+  //background-color: #C2AB79;
+  background-size: 100% auto;
+}
+
+table.compare {
+  background: image-url("scroll_middle_745.gif");
+  width: 720px;
+}
+
+.blank {
+  color:#969696;
+  background: none;
+}
+
+#headerHiscores {
+    background: image-url("scroll_top_379.gif") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
+
+}
+
+#footerHiscores {
+    background: image-url("scroll_bottom_379.gif") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
+}
+
+#headerCompare {
+    background: image-url("scroll_top_765.png") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
+
+}
+
+#footerCompare {
+    background: image-url("scroll_bottom_765.png") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    background-size: 100% auto;
+}
+
+.skills {
+  background: image-url("banner_middle2.gif");
+  background-size: 100% auto;
+  text-align: left;
+  margin-left: 666px;
+}
+
+.skills a { color: #d9c27e; }
+
+#headerSkills {
+  background: image-url("banner_top2.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+}
+
+#footerSkills {
+  background: image-url("banner_bottom2.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+}
+
+
+
+/*SEARCH BAR STYLING*/
+#search input[type="text"]{
+    color: black;
+    background-color: white;
+    font-family: 'Arial';
+}
+
+.search {
+  background: image-url("search_box.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+  font-weight: bold;
+  line-height: 25px;
+  padding-top: 5px;
+  color: #d9c27e;
+}
+
+.filter {
+  background: image-url("compare_users.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+  font-weight: bold;
+  line-height: 25px;
+  padding-top: 5px;
+  color: #d9c27e;
+}
+
+.compare-wide {
+  background: image-url("compare_button_wide.gif") no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: 100% auto;
+  font-weight: bold;
+  line-height: 25px;
+  padding-top: 5px;
+  color: #d9c27e;
+}
+
+.title {
+  text-align: center;
+  width: 240px;
+  padding: 5px;
+  margin: auto;
+}
+
+.subtitle {
+  font-style: italic;
+  color: white;
+  font-weight: bold;
+  width: 200px;
+}
+
+div {
+  margin-bottom: 5px;
+  color: #969696;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.75);
+  border: 3px solid #382418;
+}
+
+.container {
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: none;
+  background-color: transparent;
+  border: none;
+}
+
+.button {
+  color: #90c040;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dropdown {
+  display:none;
+  font-style: italic;
+  margin: 0px;
+  padding: 0px;
+}
+
+.dropdown a{
+  font-size: 12px;
+  display:block;
+}
+
+.left {
+  float: left;
+  margin-right: auto;
+}
+
+.bar {
+  float: left;
+  margin-right: auto;
+  margin-left: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+.ranks {  width: 65px; }
+.ehp {  width: 70px; }
+.calcs {  width: 80px; color: #90c040; }
+.calcs:hover { cursor: pointer; }
+.fake {  width: 80px; }
+.links {  width: 50px; color: #90c040; }
+// .links:hover { cursor: pointer; }
+.changelog {  width: 75px; }
+.donate {  width: 110px; }
+.motd {
+  text-align: center;
+  width: 290px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.supporters {
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  padding: 5px;
+}
+
+.supporters a {
+  justify-content: center;
+  height: 28px;
+}
+
+.selected-link {
+  color: white;
+  font-weight: bold;
+}
+
+.pagination {
+  background: none;
+  border: none;
+  width: 780px;
+  margin: auto;
+  font-size: 16px;
+}
+
+.pagination > * {
+    margin-right: 0.1em;
+    padding: 0.2em 0.3em;
+}
+
+.pagination .current {
+    color: white;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.pagination .disabled {
+    color: white;
+}
+
+.dps {
+  border: 3px solid #382418;
+  background-color: black;
+  width: 750px;
+  margin: auto;
+  text-align: left;
+  line-height: 22px;
+  
+  display: table;
+}
+
+.dps { display: table; }
+form .label { display: table-cell; }
+form .input { display: table-cell; }
+
+.collapse-title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+// Generate CSS rules for supporter flair
+
+<% Player.supporters_hashes.each do |supporter| %>
+  <% if supporter[:flair_before] %>
+    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
+      padding: 3px;
+      display: flex;
+      content: image-url("<%= supporter[:flair_before] %>");
+    }
+  <% end %>
+
+  <% if supporter[:flair_after] %>
+    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
+      padding: 3px;
+      display: flex;
+      content: image-url("<%= supporter[:flair_after] %>");
+    }
+  <% end %>
+
+  a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]{
+    <% if supporter[:other_css] %>
+      <% supporter[:other_css].each do |rule| %>
+        <%= rule %>;
+      <% end %>
+    <% end %>
+
+    display: flex;
+    align-items: center;
+  }
+<% end %>
