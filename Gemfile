@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-ruby '2.6.3'
+# ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.2'
 # Use SCSS for stylesheets
@@ -51,7 +51,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 1.1.4'
 end
 
 group :development do
