@@ -32,7 +32,8 @@ namespace :players do
     Player.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_player_start_stats("day")
+          stats_hash = player.update_player_start_stats("day", {})
+          player.update_attributes(stats_hash)
         rescue
           next
         end
@@ -45,7 +46,8 @@ namespace :players do
     Player.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_player_start_stats("week")
+          stats_hash = player.update_player_start_stats("week", {})
+          player.update_attributes(stats_hash)
         rescue
           next
         end
@@ -58,7 +60,8 @@ namespace :players do
     Player.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_player_start_stats("month")
+          stats_hash = player.update_player_start_stats("month", {})
+          player.update_attributes(stats_hash)
         rescue
           next
         end
@@ -71,7 +74,8 @@ namespace :players do
     Player.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_player_start_stats("year")
+          stats_hash = player.update_player_start_stats("year", {})
+          player.update_attributes(stats_hash)
         rescue
           next
         end
@@ -84,19 +88,21 @@ namespace :players do
     Player.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
-          player.update_player_start_stats("day")
+          stats_hash = player.update_player_start_stats("day", {})
           
           if Time.now.gmtime.wday == 1
-            player.update_player_start_stats("week")
+            stats_hash = player.update_player_start_stats("week", stats_hash)
           end
           
           if Time.now.gmtime.day == 1
-            player.update_player_start_stats("month")
+            stats_hash = player.update_player_start_stats("month", stats_hash)
           end
 
           if Time.now.gmtime.month == 1 and Time.now.gmtime.day == 1
-            player.update_player_start_stats("year")
+            stats_hash = player.update_player_start_stats("year", stats_hash)
           end
+
+          player.update_attributes(stats_hash)
         rescue
           next
         end
