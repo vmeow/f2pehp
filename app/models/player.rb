@@ -118,7 +118,8 @@ class Player < ActiveRecord::Base
                 {name: "GOLB f2p", flair_after: "flairs/golb_f2p.png"},
                 {name: "Kristelee"},
                 {name: "Politiken", flair_after: "flairs/danish_flag.png"},
-                {name: "Ticket Farm", flair_after: "flairs/genie_head.png"}]
+                {name: "Ticket Farm", flair_after: "flairs/genie_head.png"},
+                {name: "UIM TMW"}]
 
   def self.skills()
     SKILLS

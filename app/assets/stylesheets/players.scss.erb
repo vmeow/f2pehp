@@ -352,7 +352,7 @@ form .input { display: table-cell; }
   <% if supporter[:flair_before] %>
     a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
       padding: 3px;
-      display: flex;
+      display: inline-flex;
       content: image-url("<%= supporter[:flair_before] %>");
     }
   <% end %>
@@ -360,7 +360,7 @@ form .input { display: table-cell; }
   <% if supporter[:flair_after] %>
     a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
       padding: 3px;
-      display: flex;
+      display: inline-flex;
       content: image-url("<%= supporter[:flair_after] %>");
     }
   <% end %>
@@ -372,7 +372,7 @@ form .input { display: table-cell; }
       <% end %>
     <% end %>
 
-    display: flex;
+    display: inline-flex;
     align-items: center;
   }
 <% end %>
