@@ -141,8 +141,7 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl < 4")
     end
     
-    @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
-    @players = @players.where("potential_p2p <= 0")
+    @players = @players.where("potential_p2p <= 0").where("#{@skill}_ehp_#{@time}_start > 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def records

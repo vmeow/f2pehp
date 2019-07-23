@@ -303,8 +303,8 @@ class Player < ActiveRecord::Base
   
   def check_record_gains(stats_hash)
     SKILLS.each do |skill|
-      xp = self.read_attribute("#{skill}_xp")
-      ehp = self.read_attribute("#{skill}_ehp")
+      xp = stats_hash["#{skill}_xp"] || self.read_attribute("#{skill}_xp")
+      ehp = stats_hash["#{skill}_ehp"] || self.read_attribute("#{skill}_ehp")
       TIMES.each do |time|
         start_xp = self.read_attribute("#{skill}_xp_#{time}_start")
         start_ehp = self.read_attribute("#{skill}_ehp_#{time}_start")
@@ -327,8 +327,8 @@ class Player < ActiveRecord::Base
   
   def update_player_start_stats(time, stats_hash)
     SKILLS.each do |skill|
-      xp = self.read_attribute("#{skill}_xp")
-      ehp = self.read_attribute("#{skill}_ehp")
+      xp = stats_hash["#{skill}_xp"] || self.read_attribute("#{skill}_xp")
+      ehp = stats_hash["#{skill}_ehp"] || self.read_attribute("#{skill}_ehp")
       stats_hash["#{skill}_xp_#{time}_start"] = xp
       stats_hash["#{skill}_ehp_#{time}_start"] = ehp
     end

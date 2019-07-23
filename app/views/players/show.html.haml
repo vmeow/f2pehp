@@ -63,7 +63,12 @@
           %br
           = "June 2018 EHP Comp"
     - elsif @player.player_name == "DJ9"
-      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: silver;"} 
+          = "2nd Place Team"
+          %br
+          = "July 2019 EHP Comp"
+        %br
         %h5{:style => "color: #CD7F32;"} 
           = "3rd Place Reg"
           %br
@@ -107,6 +112,11 @@
         = image_tag "fe_f2p/13.png"
     - elsif @player.player_name == "Pawz"
       = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: silver;"} 
+          = "2nd Place Team"
+          %br
+          = "July 2019 EHP Comp"
+        %br
         %h5{:style => "color: gold;"} 
           = "1st Place Reg"
           %br
@@ -134,6 +144,11 @@
     - elsif @player.player_name == "Netbook Pro"
       = image_tag "flairs/Netbook_Pro.png"
     - elsif @player.player_name == "tannerdino"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: gold;"} 
+          = "1st Place"
+          %br
+          = "July 2019 EHP Comp"
       = image_tag "flairs/tannerdino.png"
     - elsif @player.player_name == "NoQuestsHCIM"
       = image_tag "flairs/noquestshcim.png"
@@ -150,9 +165,27 @@
       %br
       = image_tag "flairs/canada_large.jpg"
     - elsif @player.player_name == "ColdFingers3"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: gold;"} 
+          = "1st Place"
+          %br
+          = "July 2019 EHP Comp"
+      %br
       = image_tag "flairs/Attack_ColdFingers3.png"
       %br
       = image_tag "flairs/ColdFingers3.png"
+    - elsif @player.player_name == "DansPotatoe"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Team"
+          %br
+          = "July 2019 EHP Comp"
+    - elsif @player.player_name == "Irondish"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Team"
+          %br
+          = "July 2019 EHP Comp"
           
           
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 300px;") do 
