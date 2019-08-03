@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'ranks' => 'players#ranks'
   get 'ehp' => 'players#ehp'
   get 'fake' => 'players#fake'
+  get 'possible_fakes' => 'players#possible_fakes'
   get 'links' => 'players#links'
   get 'changelog' => 'players#changelog'
   get 'oldchangelog' => 'players#oldchangelog'
