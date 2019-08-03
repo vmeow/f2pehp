@@ -1,0 +1,47 @@
+- @title = "Possible F2P Fakes" 
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+%p#notice= notice
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
+    = link_to "Hiscores", ranks_path
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
+    = link_to "Current Top", tracking_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "Records", records_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
+    = link_to "Links", links_path
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, class: ["bar", "donate"]) do 
+    = link_to "About Us/Donate", donate_path
+
+- @players = Player.where("potential_p2p > 0").order("overall_ehp DESC")
+- @players = @players.paginate(:page => params[:page], :per_page => 100.to_i)
+
+= content_tag(:div, nil, class: "container", style: "width: 420px; color: white;") do 
+  = "Players that are no longer on the F2P.wiki hiscores for whatever reason: bans, name changes, P2P stats, bugs or Jagex hiscore API changes, etc."
+
+= content_tag(:div, nil, class: "container", style: "width: 800px;") do 
+  = content_tag(:div, nil, class: ["container"], style: "width: 430px; max-width: 430px; overflow-x: auto; margin-top: 5px;") do 
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 430px; height: 41px;") 
+    = content_tag(:table, nil, style: "text-align: center; width: 430px; padding: 4px; margin-bottom: 0px;") do 
+      %thead
+        %tr
+          %th
+          %th{:align => "left"} Name
+          %th Account Type
+          %th Overall EHP
+
+      %tbody
+        - @players.each.with_index 1 do |player, index|
+          %tr
+            %td{:align => "right"}= index
+            %td{:align => "left"}= player.player_name
+            %td{:align => "center"}= player.player_acc_type
+            %td{:align => "center"}= player.overall_ehp 
+            
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 430px; height: 41px;") 
