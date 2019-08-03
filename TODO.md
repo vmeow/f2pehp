@@ -40,6 +40,7 @@ List is in order of priority, with time estimates and the following tags.
 * [FRNT] Clan affiliation for players, filtering by clan
 * [FRNT] Competitions
 * [FRNT] Improving front page to look more like classic OSRS front page with links
+* [FRNT] Base level rankings (1h)
 
 ## In Progress
 
