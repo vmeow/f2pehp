@@ -319,8 +319,7 @@ class PlayersController < ApplicationController
       end
     end
       
-
-    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
+    @players = Player.where(player_acc_type: @filters.keys).order(ordering)
     
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")
