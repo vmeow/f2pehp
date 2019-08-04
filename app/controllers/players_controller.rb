@@ -415,6 +415,13 @@ class PlayersController < ApplicationController
     @player
   end
 
+  def check_acc_type
+    name = Player.sanitize_name(params[:id])
+    @player = Player.find_player(name)
+    @player.check_acc_type
+    redirect_to player_path(@player.player_name)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
