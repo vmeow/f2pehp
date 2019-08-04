@@ -326,7 +326,7 @@
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 10px; width: 152px; height: 98px; padding-top: 0px;") do 
       %h4 Update Stats
       = link_to "#{@player.player_name}", update_player_path
-        
+
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 5px; width: 152px; height: 98px;") do 
       = "Other Hiscores"
       %br
@@ -372,3 +372,8 @@
             = link_to "Month", player_path(:time => "month")
             &nbsp&nbsp&nbsp
             = link_to "Year", player_path(:time => "year")
+
+    %br
+    = "wrong account type?"
+    %br
+    = link_to "click here", check_acc_type_path

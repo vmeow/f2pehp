@@ -176,6 +176,22 @@ class Player < ActiveRecord::Base
     end
     return player
   end
+
+  def self.get_api_stats(acc_type, player_name)
+    case acc_type
+    when "Reg"
+      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player_name}")
+    when "HCIM"
+      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{player_name}")
+    when "UIM"
+      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{player_name}")
+    when "IM"
+      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{player_name}")
+    end
+
+    all_stats = uri.read.split(" ")
+    return self.parse_raw_stats(all_stats)
+  end
   
   def get_stats
     name = player_name
@@ -222,6 +238,57 @@ class Player < ActiveRecord::Base
     end
 
     return stats_hash
+  end
+
+  def check_acc_type
+    stats_hash = {}
+    if player_acc_type == "UIM"
+      begin
+        reg_stats = Player.get_api_stats("Reg", player_name)
+        reg_xp = reg_stats["overall_xp"]
+        im_stats = Player.get_api_stats("IM", player_name)
+        im_xp = im_stats["overall_xp"]
+        uim_stats = Player.get_api_stats("UIM", player_name)
+        uim_xp = uim_stats["overall_xp"]
+        if uim_xp < im_xp
+          stats_hash["player_acc_type"] = "IM"
+        elsif uim_xp < reg_xp
+          stats_hash["player_acc_type"] = "Reg"
+        end
+      rescue Exception => e
+        puts e.message
+      end
+    elsif player_acc_type == "HCIM"
+      begin
+        reg_stats = Player.get_api_stats("Reg", player_name)
+        reg_xp = reg_stats["overall_xp"]
+        im_stats = Player.get_api_stats("IM", player_name)
+        im_xp = im_stats["overall_xp"]
+        hc_stats = Player.get_api_stats("HCIM", player_name)
+        hc_xp = hc_stats["overall_xp"]
+        if hc_xp < im_xp
+          stats_hash["player_acc_type"] = "IM"
+        elsif hc_xp < reg_xp
+          stats_hash["player_acc_type"] = "Reg"
+        end
+      rescue Exception => e
+        puts e.message
+      end
+    elsif player_acc_type == "IM"
+      begin
+        reg_stats = Player.get_api_stats("Reg", player_name)
+        reg_xp = reg_stats["overall_xp"]
+        im_stats = Player.get_api_stats("IM", player_name)
+        im_xp = im_stats["overall_xp"]
+        if im_xp < reg_xp
+          stats_hash["player_acc_type"] = "Reg"
+        end
+      rescue Exception => e
+        puts e.message
+      end
+    end
+
+    update_attributes(stats_hash)
   end
   
   def check_p2p(stats_hash)
