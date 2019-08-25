@@ -18,7 +18,8 @@ class Player < ActiveRecord::Base
   #   3. Add an image before their  name by adding the key :flair_before
   #   4. Apply arbitrary css by adding the key :other_css
   #   5. If any new images were required, be sure to add them to app/assests/images
-  SUPPORTERS = [{name: "Bargan", amount: 95.99, date: "2018-02-02"},
+  SUPPORTERS = [{name: "Vagae", amount: 100, date: "2019-08-25"},
+                {name: "Bargan", amount: 95.99, date: "2018-02-02"},
                 {name: "Ikiji", amount: 76.59, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "a q p IM"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
@@ -60,8 +61,8 @@ class Player < ActiveRecord::Base
                 {name: "Steel Afro", amount: 10, date: "2019-05-16"},
                 {name: "Your Bearr", amount: 10, date: "2019-06-04", flair_after: "flairs/Bear_feet.png"},
                 {name: "UIM TMW", amount: 10, date: "2019-07-19"},
+                {name: "Iron of One", amount: 9, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
-                {name: "Iron of One", amount: 8, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
                 {name: "Playing Fe", amount: 7, date: "2018-04-26", flair_after: "flairs/salmon.png"},
@@ -118,6 +119,7 @@ class Player < ActiveRecord::Base
                 {name: "GOLB f2p", amount: 5, date: "2019-06-05", flair_after: "flairs/golb_f2p.png", other_css: ["color: #66ffff"]},
                 {name: "Kristelee", amount: 5, date: "2019-06-26"},
                 {name: "Politiken", amount: 5, date: "2019-06-30", flair_after: "flairs/danish_flag.png"},
+                {name: "UIMfreebie", amount: 5, date: "2019-08-24"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
