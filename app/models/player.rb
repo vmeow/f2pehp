@@ -122,7 +122,7 @@ class Player < ActiveRecord::Base
                 {name: "Kristelee", amount: 5, date: "2019-06-26"},
                 {name: "Politiken", amount: 5, date: "2019-06-30", flair_after: "flairs/danish_flag.png"},
                 {name: "UIMfreebie", amount: 5, date: "2019-08-24"},
-                {name: "jane_uwu", amount: 5, date: "2019-08-28", flair_after: "flairs/Dutch_flag.png"},
+                {name: "jane uwu", amount: 5, date: "2019-08-28", flair_after: "flairs/Dutch_flag.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
