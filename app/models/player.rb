@@ -19,7 +19,7 @@ class Player < ActiveRecord::Base
   #   4. Apply arbitrary css by adding the key :other_css
   #   5. If any new images were required, be sure to add them to app/assests/images
   SUPPORTERS = [{name: "Bargan", amount: 145.99, date: "2018-02-02"},
-                {name: "Vagae", amount: 100, date: "2019-08-25"},
+                {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "Ikiji", amount: 86.59, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "a q p IM"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
@@ -121,7 +121,7 @@ class Player < ActiveRecord::Base
                 {name: "GOLB f2p", amount: 5, date: "2019-06-05", flair_after: "flairs/golb_f2p.png", other_css: ["color: #66ffff"]},
                 {name: "Kristelee", amount: 5, date: "2019-06-26"},
                 {name: "Politiken", amount: 5, date: "2019-06-30", flair_after: "flairs/danish_flag.png"},
-                {name: "UIMfreebie", amount: 5, date: "2019-08-24"},
+                {name: "UIMfreebie", amount: 5, date: "2019-08-24", flair_after: "flairs/Fancy_boots.png"},
                 {name: "jane uwu", amount: 5, date: "2019-08-28", flair_after: "flairs/Dutch_flag.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
