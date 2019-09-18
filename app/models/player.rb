@@ -72,6 +72,7 @@ class Player < ActiveRecord::Base
                 {name: "Snooz Button", amount: 6.66, date: "2018-06-03", flair_after: "flairs/macaroni.png"},
                 {name: "Valleyman6", amount: 6.64, date: "2018-06-15", flair_after: "flairs/uk_flag.png"},
                 {name: "i drink fiji", amount: 6, date: "2018-05-06", flair_after: "flairs/blue_cape.png"},
+                {name: "Uxeef", amount: 5.96, date: "2018-09-17"},
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
                 {name: "threewaygang"},                
                 {name: "Yellow bead", amount: 5.38, date: "2018-05-02", flair_after: "flairs/yellow_bead.png"},
