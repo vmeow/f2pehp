@@ -247,7 +247,16 @@ class PlayersController < ApplicationController
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
+    @clear_filters = params[:clear_filters]
     
+    if @clear_filters
+      @sort_by = {}
+      @filters = {}
+      @restrictions = {}
+      @skill = {}
+      @show_limit = 100
+    end
+
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters

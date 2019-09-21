@@ -187,7 +187,11 @@
         = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
         %br
         = submit_tag 'Compare', :id => "compare_submit"
-        
+
+    %br
+    = link_to "Reset filters", ranks_path(:clear_filters => "true")
+    %br
+
     = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
       = form_tag ranks_path, :method => :get, :id => 'filters_form' do
         = "Filter Accounts"
