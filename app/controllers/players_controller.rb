@@ -68,6 +68,16 @@ class PlayersController < ApplicationController
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
+    @clear_filters = params[:clear_filters]
+    
+    if @clear_filters
+      @sort_by = {}
+      @filters = {}
+      @restrictions = {}
+      @skill = {}
+      @show_limit = 100
+    end
+
     case @time
     when "day"
       @time_display = Time.now.gmtime.strftime("%b %d, %Y")
@@ -161,6 +171,17 @@ class PlayersController < ApplicationController
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
+
+    @clear_filters = params[:clear_filters]
+    
+    if @clear_filters
+      @sort_by = {}
+      @filters = {}
+      @restrictions = {}
+      @skill = {}
+      @show_limit = 100
+    end
+
     case @time
     when "day"
       @time_display = Time.zone.now.strftime("%b %d, %Y")
@@ -248,6 +269,7 @@ class PlayersController < ApplicationController
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
     @clear_filters = params[:clear_filters]
+    @filter_inactive = params[:filter_inactive] || session[:filter_inactive] || "false"
     
     if @clear_filters
       @sort_by = {}
@@ -255,6 +277,7 @@ class PlayersController < ApplicationController
       @restrictions = {}
       @skill = {}
       @show_limit = 100
+      @filter_inactive = "false"
     end
 
     if @filters == {}
@@ -277,12 +300,13 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
     
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:filter_inactive] != session[:filter_inactive]
       session[:filters_] = @filters
       session[:restrictions_] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
+      session[:filter_inactive] = @filter_inactive
     end
     
     if @skill.include?("ttm")
@@ -346,6 +370,11 @@ class PlayersController < ApplicationController
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
     end
+
+    if @filter_inactive == "true"
+      @players = @players.where("(overall_xp - overall_xp_month_start) > 0")
+    end
+
     @players = @players.where("potential_p2p <= 0")
 
     if @skill.include?("99_count")

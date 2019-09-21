@@ -216,6 +216,14 @@
             = type
             %br
         = submit_tag 'Filter', :id => "restrictions_submit"
+
+    %br
+    - if @filter_inactive == "true"
+      = link_to "Unfilter inactive?", ranks_path(:filter_inactive => "false")
+    - else
+      = link_to "Filter inactive?", ranks_path(:filter_inactive => "true")
+    %br
+    %br
         
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
       = form_tag ranks_path, :method => :get, :id => 'show_limits_form' do

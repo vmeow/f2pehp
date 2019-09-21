@@ -108,6 +108,10 @@
           = link_to "Month", records_path(:time => "month")
           &nbsp&nbsp&nbsp
           = link_to "Year", records_path(:time => "year")
+
+    %br
+    = link_to "Reset filters", records_path(:clear_filters => "true")
+    %br
   
     = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
       = form_tag records_path, :method => :get, :id => 'filters_form' do

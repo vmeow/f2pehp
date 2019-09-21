@@ -122,6 +122,10 @@
           = link_to "Month", tracking_path(:time => "month")
           &nbsp&nbsp&nbsp
           = link_to "Year", tracking_path(:time => "year")
+
+    %br
+    = link_to "Reset filters", tracking_path(:clear_filters => "true")
+    %br
   
     = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
       = form_tag tracking_path, :method => :get, :id => 'filters_form' do
@@ -147,7 +151,7 @@
             = type
             %br
         = submit_tag 'Filter', :id => "restrictions_submit"
-  
+
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
       = form_tag tracking_path, :method => :get, :id => 'show_limits_form' do
         = "Players Per Page"
