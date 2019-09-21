@@ -334,6 +334,8 @@ class PlayersController < ApplicationController
       end
     elsif @skill.include?("count")
       ordering = "overall_ehp DESC"
+    elsif @skill.include?("lowest_lvl")
+      ordering = "overall_ehp DESC"
     else
       case @sort_by
       when "ehp"
@@ -381,6 +383,8 @@ class PlayersController < ApplicationController
       @players = @players.sort_by {|player| [player.count_99, player.overall_ehp] }.reverse
     elsif @skill.include?("200m_count")
       @players = @players.sort_by {|player| [player.count_200m, player.overall_ehp] }.reverse
+    elsif @skill.include?("lowest_lvl")
+      @players = @players.sort_by {|player| [player.lowest_lvl, player.overall_ehp] }.reverse
     end
     
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)

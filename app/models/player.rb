@@ -901,4 +901,9 @@ class Player < ActiveRecord::Base
 
     return count
   end
+
+  def lowest_lvl
+    skill_lvls = (SKILLS - ["overall"]).each.map { |skill| self.read_attribute("#{skill}_lvl").to_i }
+    return skill_lvls.min
+  end
 end

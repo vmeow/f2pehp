@@ -35,6 +35,9 @@
 - elsif @skill == "200m_count"
   - title = "F2P 200m Count"
   - skill_icon = ""
+- elsif @skill == "lowest_lvl"
+  - title = "F2P Lowest Level"
+  - skill_icon = ""
 - elsif @skill == "clues_all"
   - title = "F2P Clue (all) Hiscores"
   - skill_icon = "skills/clue.png"
@@ -80,6 +83,10 @@
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/combat.png", style: "vertical-align: -6px;"
       = link_to "Combat Level", :controller => "players", :action => "ranks", :skill => "combat", :sort_by => "lvl"
+      %br  
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+      = link_to "Lowest Level", :controller => "players", :action => "ranks", :skill => "lowest_lvl"
       %br
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/clue.png", style: "vertical-align: -6px;"
@@ -113,6 +120,8 @@
             %th Clues Score
           - elsif @skill.include?("count")
             %th Count
+          - elsif @skill.include?("lowest_lvl")
+            %th Lowest Level
           - else
             - if @sort_by == "lvl"
               %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
@@ -153,6 +162,8 @@
               %td= player.count_99
             - elsif @skill.include?("200m_count")
               %td= player.count_200m
+            - elsif @skill.include?("lowest_lvl")
+              %td= player.lowest_lvl
             - else
               %td= player["#{@skill}_lvl"]
               - if @skill != "combat"
