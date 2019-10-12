@@ -133,7 +133,7 @@ class PlayersController < ApplicationController
     case @sort_by
     when "ehp"
       @player_ehp_header = 'hilite'
-      ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp DESC"
+      ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC"
     when "xp"
       @player_xp_header = 'hilite'
       ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp DESC"
@@ -237,7 +237,7 @@ class PlayersController < ApplicationController
     case @sort_by
     when "ehp"
       @player_ehp_header = 'hilite'
-      ordering = "#{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp DESC"
+      ordering = "#{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC"
     when "xp"
       @player_xp_header = 'hilite'
       ordering = "#{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp DESC"

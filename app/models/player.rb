@@ -889,7 +889,9 @@ class Player < ActiveRecord::Base
   # rank_criteria: A list of [criteria, order] pairs that describe how rank should
   #               be determined. Lower index pairs are used first. Other pairs
   #               are only used in the case of a tie.
-  def f2p_rank(rank_criteria)
+  # filter: SQL clause used to restrict which accounts are included in the ranking
+  #         curently used to exclude low ehp accounts in gains and record ranks.
+  def f2p_rank(rank_criteria, filter=nil)
     # Construct where clause used to rank players according to provided columns
     where_clause = (1..rank_criteria.length).map do |i|
       columns = rank_criteria.take(i)
@@ -905,6 +907,7 @@ class Player < ActiveRecord::Base
 
       "(#{secondary_clauses} #{primary_clause})"
     end.join(" OR ")
+    where_clause = "(potential_p2p <= 0) AND (#{where_clause}) #{"AND (#{filter})" if filter}"
 
     # Construct parameter list to fill holes in constructed where clause
     where_parameters = (1..rank_criteria.length).map do |i|
@@ -933,14 +936,18 @@ class Player < ActiveRecord::Base
   def f2p_gains_rank(skill, time)
     f2p_rank [["(#{skill}_ehp - #{skill}_ehp_#{time}_start)", :DESC],
               ["(#{skill}_xp - #{skill}_xp_#{time}_start)", :DESC],
-              ["#{skill}_ehp", :DESC]]
+              ["#{skill}_ehp", :DESC],
+              ["#{skill}_xp", :DESC]],
+              "overall_ehp > 250 OR player_name IN #{Player.sql_supporters}"
   end
 
   # Specializes f2p_rank for finding rank in record gains
   def f2p_record_rank(skill, time)
     f2p_rank [["#{skill}_ehp_#{time}_max", :DESC],
               ["#{skill}_xp_#{time}_max", :DESC],
-              ["#{skill}_ehp", :DESC]]
+              ["#{skill}_ehp", :DESC],
+              ["#{skill}_xp", :DESC]],
+              "overall_ehp > 250 OR player_name IN #{Player.sql_supporters}"
   end
 
   def count_99
