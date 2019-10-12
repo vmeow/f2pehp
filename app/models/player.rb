@@ -924,12 +924,17 @@ class Player < ActiveRecord::Base
 
   # Specializes f2p_rank for finding rank in a specific skill.
   def f2p_skill_rank(skill)
-    f2p_rank [["#{skill}_ehp", :DESC], ["#{skill}_rank", :ASC]]
+    f2p_rank [["#{skill}_ehp", :DESC],
+              ["#{skill}_lvl", :DESC],
+              ["#{skill}_xp", :DESC],
+              ["#{skill}_rank", :ASC],
+              ["id", :ASC]]
   end
 
   # Specializes f2p_rank for finding rank in a clues scroll category.
   def f2p_clues_rank(clue_type)
-    f2p_rank [["clues_#{clue_type}", :DESC], ["clues_#{clue_type}_rank", :ASC]]
+    f2p_rank [["clues_#{clue_type}", :DESC],
+              ["id", :ASC]]
   end
 
   # Specializes f2p_rank for finding rank in current gains
@@ -937,8 +942,10 @@ class Player < ActiveRecord::Base
     f2p_rank [["(#{skill}_ehp - #{skill}_ehp_#{time}_start)", :DESC],
               ["(#{skill}_xp - #{skill}_xp_#{time}_start)", :DESC],
               ["#{skill}_ehp", :DESC],
-              ["#{skill}_xp", :DESC]],
-              "overall_ehp > 250 OR player_name IN #{Player.sql_supporters}"
+              ["#{skill}_xp", :DESC],
+              ["id", :ASC]],
+              "overall_ehp_day_start > 0 AND (overall_ehp > 250 OR player_name IN #{Player.sql_supporters})"
+
   end
 
   # Specializes f2p_rank for finding rank in record gains
@@ -946,8 +953,9 @@ class Player < ActiveRecord::Base
     f2p_rank [["#{skill}_ehp_#{time}_max", :DESC],
               ["#{skill}_xp_#{time}_max", :DESC],
               ["#{skill}_ehp", :DESC],
-              ["#{skill}_xp", :DESC]],
-              "overall_ehp > 250 OR player_name IN #{Player.sql_supporters}"
+              ["#{skill}_xp", :DESC],
+              ["id", :ASC]],
+              "overall_ehp_day_max > 0 AND (overall_ehp > 250 OR player_name IN #{Player.sql_supporters})"
   end
 
   def count_99
