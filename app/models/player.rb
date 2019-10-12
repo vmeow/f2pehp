@@ -884,26 +884,63 @@ class Player < ActiveRecord::Base
     return player
   end
 
-  # Compute the players rank within the f2p hiscores in a category.
-  # score_col: Column containing the players score (generally EHP) in this category
-  # rank_col: Column containing the players rank in this category according to the
-  #           official hiscores. Used as a tiebreaker
-  def f2p_rank(score_col, rank_col)
-    1 + Player.where("#{score_col} > :score OR (#{score_col} = :score AND #{rank_col} < :rank)",
-                     {score: self[score_col], rank: self[rank_col]}).count
+  # Find the players rank in the database by same arbitrary set of criteria
+  # See f2p_skill_rank, f2p_clues_rank, etc. for example usage
+  # rank_criteria: A list of [criteria, order] pairs that describe how rank should
+  #               be determined. Lower index pairs are used first. Other pairs
+  #               are only used in the case of a tie.
+  def f2p_rank(rank_criteria)
+    # Construct where clause used to rank players according to provided columns
+    where_clause = (1..rank_criteria.length).map do |i|
+      columns = rank_criteria.take(i)
+      primary, ord = columns.last
+      secondary = columns.take(columns.length - 1)
+
+      secondary_clauses = secondary.map do |col,_|
+        "(#{col} = ?)"
+      end.join(" AND ")
+      secondary_clauses += " AND" unless secondary_clauses.empty?
+
+      primary_clause = "(#{primary} #{if ord == :DESC then ">" else "<" end} ?)"
+
+      "(#{secondary_clauses} #{primary_clause})"
+    end.join(" OR ")
+
+    # Construct parameter list to fill holes in constructed where clause
+    where_parameters = (1..rank_criteria.length).map do |i|
+      rank_criteria.take(i).map do |col,_|
+        # Using eval is definitely a bit of a hack but, I need it to make this
+        # method generalize to gains rank
+        eval(col)
+      end
+    end.flatten
+
+    # Rank is the number of records that satisfy the where clause
+    1 + Player.where(where_clause, *where_parameters).count
   end
 
-  # Specializes f2p_rank for finding rank in a specific skill. This method
-  # assumes that a skills EHP and rank are stored in standard column names.
+  # Specializes f2p_rank for finding rank in a specific skill.
   def f2p_skill_rank(skill)
-    f2p_rank("#{skill}_ehp", "#{skill}_rank")
+    f2p_rank [["#{skill}_ehp", :DESC], ["#{skill}_rank", :ASC]]
   end
 
-  # Specializes f2p_rank for finding rank in a clues scroll category. This
-  # method assumes that number of clues completed and overall rank in clues
-  # are stored in standard column names.
+  # Specializes f2p_rank for finding rank in a clues scroll category.
   def f2p_clues_rank(clue_type)
-    f2p_rank("clues_#{clue_type}", "clues_#{clue_type}_rank")
+    f2p_rank [["clues_#{clue_type}", :DESC], ["clues_#{clue_type}_rank", :ASC]]
+  end
+
+  # Specializes f2p_rank for finding rank in current gains
+  def f2p_gains_rank(skill, time)
+    f2p_rank [["(#{skill}_ehp - #{skill}_ehp_#{time}_start)", :DESC],
+              ["(#{skill}_xp - #{skill}_xp_#{time}_start)", :DESC],
+              ["#{skill}_ehp", :DESC]]
+  end
+
+  # Specializes f2p_rank for finding rank in record gains
+  def f2p_record_rank(skill, time)
+    f2p_rank [["#{skill}_ehp_#{time}_max", :DESC],
+              ["#{skill}_xp_#{time}_max", :DESC],
+              ["#{skill}_ehp", :DESC]]
   end
 
   def count_99
