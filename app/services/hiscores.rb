@@ -1,0 +1,114 @@
+require 'open-uri'
+
+class Hiscores
+  class << self
+    def api_url(account_type, player_name)
+      unless account_type.in? Player.account_types
+        raise ArgumentError, 'account type not recognized'
+      end
+
+      path_suffix = {
+        HCIM: '_hardcore_ironman',
+        UIM: '_ultimate',
+        IM: '_ironman'
+      }
+
+      URI.join(
+        'https://services.runescape.com',
+        "m=hiscore_oldschool#{path_suffix[account_type.to_sym]}/index_lite.ws",
+        "?player=#{player_name}"
+      )
+    end
+
+    def parse_stats(data, restrict_fields = [])
+      stats = { potential_p2p: 0 }
+
+      fields = F2POSRSRanks::Application.config.skills.map.with_index
+      if restrict_fields.any?
+        fields = fields.select { |f, i| f.in? restrict_fields }
+      end
+
+      fields.each do |skill, skill_idx|
+        rank, lvl, xp = data[skill_idx].split(',').map { |x| [x.to_i, 0].max }
+
+        case skill
+        when 'p2p'
+          stats[:potential_p2p] += xp
+        when 'p2p_minigame'
+          stats[:potential_p2p] += lvl
+        when 'lms'
+          next
+        when 'clues_all', 'clues_beginner'
+          stats[skill] = lvl
+          stats["#{skill}_rank"] = rank
+        when 'hitpoints'
+          stats["#{skill}_lvl"] = [lvl, 10].max
+          stats["#{skill}_xp"] = [xp, 1154].max
+        else
+          stats["#{skill}_lvl"] = lvl
+          stats["#{skill}_xp"] = xp
+          stats["#{skill}_rank"] = rank
+        end
+      end
+
+      stats
+    end
+
+    def player_exists?(player_name)
+      fetch_stats('Reg', player_name)
+      true
+    rescue
+      false
+    end
+
+    def fetch_stats(account_type, player_name, parse: false, parse_fields: [])
+      uri = api_url(account_type, player_name)
+      res = uri.read
+      data = res.split("\n")
+
+      return data unless parse
+      parse_fields = [parse_fields] unless Array === parse_fields
+      parse_stats(data, parse_fields)
+    rescue OpenURI::HTTPError
+      raise RuntimeError, "player #{player_name} is not a(n) #{account_type}"
+    end
+
+    def verify_account_type(account_type, player_name)
+      unless account_type.in? Player.account_types
+        raise ArgumentError, 'account type not recognized'
+      end
+
+      if account_type == 'Reg'
+        return false unless player_exists?(player_name)
+        return 'Reg'
+      end
+
+      ancestors = Player.account_type_ancestors[account_type.to_sym]
+      modes = [account_type] + ancestors
+      overall_xp_each_mode = modes.map do |mode|
+        stats = fetch_stats(mode, player_name, parse: true, parse_fields: 'overall')
+        stats['overall_xp']
+      end
+
+      _, idx = overall_xp_each_mode
+        .map.with_index.sort_by { |xp, idx| [-xp, idx] }
+        .first
+
+      modes[idx]
+    end
+
+    def determine_account_type(player_name)
+      return false unless player_exists?(player_name)
+
+      %w[UIM HCIM IM].each do |type|
+        begin
+          return verify_account_type(type, player_name)
+        rescue
+          next
+        end
+      end
+
+      return 'Reg'
+    end
+  end
+end

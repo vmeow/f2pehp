@@ -1,12 +1,19 @@
 require 'open-uri'
 
 class Player < ActiveRecord::Base
-  
+
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
             "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
             "smithing", "mining", "runecraft", "overall"]
-  
+
   TIMES = ["day", "week", "month", "year"]
+
+  ACCOUNT_TYPES = %w[Reg IM HCIM UIM]
+  ACCOUNT_TYPE_ANCESTORS = {
+    UIM: %w[IM Reg],
+    HCIM: %w[IM Reg],
+    IM: %w[Reg]
+  }
 
   # This is the canonical list of supporter. It is used to generate the list
   # of supporters on both home page and the about us page. It also contains
@@ -26,7 +33,7 @@ class Player < ActiveRecord::Base
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
                 {name: "Anonymous", amount: 60, date: "2018-01-31", no_link: true},
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
-                {name: "Pawz", amount: 55.5, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},                
+                {name: "Pawz", amount: 55.5, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Romans ch 12", amount: 30, date: "2019-04-13"},
@@ -75,7 +82,7 @@ class Player < ActiveRecord::Base
                 {name: "i drink fiji", amount: 6, date: "2018-05-06", flair_after: "flairs/blue_cape.png"},
                 {name: "Uxeef", amount: 5.96, date: "2018-09-17"},
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
-                {name: "threewaygang"},                
+                {name: "threewaygang"},
                 {name: "Yellow bead", amount: 5.38, date: "2018-05-02", flair_after: "flairs/yellow_bead.png"},
                 {name: "IronMace Din", amount: 5, date: "2018-02-18", flair_after: "flairs/maceblur2.png"},
                 {name: "HCIM_btw_fev", amount: 5, date: "2018-02-05", flair_after: "flairs/kitten.png"},
@@ -149,7 +156,15 @@ class Player < ActiveRecord::Base
   def self.supporters()
     SUPPORTERS.map{|supporter| supporter[:name]}
   end
-  
+
+  def self.account_types
+    ACCOUNT_TYPES
+  end
+
+  def self.account_type_ancestors
+    ACCOUNT_TYPE_ANCESTORS
+  end
+
   def self.sql_supporters()
     quoted_names = supporters.map{ |name| "'#{name}'" }
     "(#{quoted_names.join(",")})"
@@ -164,7 +179,7 @@ class Player < ActiveRecord::Base
       return str.gsub(/\A[^A-z0-9]+|[^A-z0-9\s\_-]+|[^A-z0-9]+\z/, "")
     end
   end
-  
+
   def self.find_player(id)
     id = self.sanitize_name(id)
     player = Player.where('lower(player_name) = ?', id.downcase).first
@@ -186,120 +201,8 @@ class Player < ActiveRecord::Base
     return player
   end
 
-  def self.get_api_stats(acc_type, player_name)
-    case acc_type
-    when "Reg"
-      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{player_name}")
-    when "HCIM"
-      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{player_name}")
-    when "UIM"
-      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{player_name}")
-    when "IM"
-      uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{player_name}")
-    end
-
-    all_stats = uri.read.split(" ")
-    return self.parse_raw_stats(all_stats)
-  end
-  
-  def get_stats
-    name = player_name
-    # if name == "Bargan"
-    #   all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
-    begin
-      case player_acc_type
-      when "Reg"
-        uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-      when "HCIM"
-        uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
-      when "UIM"
-        uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
-      when "IM"
-        uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
-      end
-      all_stats = uri.read.split(" ")
-    rescue Exception => e  
-      puts e.message 
-      return false
-    end
-    return all_stats
-  end
-  
-  def check_hc_death(stats_hash)
-    if player_acc_type == "HCIM"
-      begin
-        im_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{self.player_name}")
-        im_stats = im_uri.read.split(" ")
-        im_xp = im_stats[0].split(",")[2].to_f
-        hc_uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{self.player_name}")
-        hc_stats = hc_uri.read.split(" ")
-        hc_xp = hc_stats[0].split(",")[2].to_f
-        if hc_xp < (im_xp - 1000000) or (im_xp - hc_xp).to_f/hc_xp > 0.05
-          stats_hash["player_acc_type"] = "IM"
-        end
-      rescue Exception => e
-        puts e.message
-      ensure
-        return stats_hash
-      end
-    end
-
-    return stats_hash
-  end
-
-  def check_acc_type
-    stats_hash = {}
-    if player_acc_type == "UIM"
-      begin
-        reg_stats = Player.get_api_stats("Reg", player_name)
-        reg_xp = reg_stats["overall_xp"]
-        im_stats = Player.get_api_stats("IM", player_name)
-        im_xp = im_stats["overall_xp"]
-        uim_stats = Player.get_api_stats("UIM", player_name)
-        uim_xp = uim_stats["overall_xp"]
-        if uim_xp < im_xp
-          stats_hash["player_acc_type"] = "IM"
-        elsif uim_xp < reg_xp
-          stats_hash["player_acc_type"] = "Reg"
-        end
-      rescue Exception => e
-        puts e.message
-      end
-    elsif player_acc_type == "HCIM"
-      begin
-        reg_stats = Player.get_api_stats("Reg", player_name)
-        reg_xp = reg_stats["overall_xp"]
-        im_stats = Player.get_api_stats("IM", player_name)
-        im_xp = im_stats["overall_xp"]
-        hc_stats = Player.get_api_stats("HCIM", player_name)
-        hc_xp = hc_stats["overall_xp"]
-        if hc_xp < im_xp
-          stats_hash["player_acc_type"] = "IM"
-        elsif hc_xp < reg_xp
-          stats_hash["player_acc_type"] = "Reg"
-        end
-      rescue Exception => e
-        puts e.message
-      end
-    elsif player_acc_type == "IM"
-      begin
-        reg_stats = Player.get_api_stats("Reg", player_name)
-        reg_xp = reg_stats["overall_xp"]
-        im_stats = Player.get_api_stats("IM", player_name)
-        im_xp = im_stats["overall_xp"]
-        if im_xp < reg_xp
-          stats_hash["player_acc_type"] = "Reg"
-        end
-      rescue Exception => e
-        puts e.message
-      end
-    end
-
-    update_attributes(stats_hash)
-  end
-  
   def check_p2p(stats_hash)
-    return stats_hash["potential_p2p"].to_f > 0
+    return stats_hash[:potential_p2p] > 0
   end
 
   def calc_combat(stats_hash)
@@ -310,17 +213,17 @@ class Player < ActiveRecord::Base
     ranged = stats_hash["ranged_lvl"]
     magic = stats_hash["magic_lvl"]
     pray = stats_hash["prayer_lvl"]
-    
+
     base = 0.25 * (defence + hp + (pray/2).floor)
     melee = 0.325 * (att + str)
 	  range = 0.325 * ((ranged/2).floor + ranged)
 	  mage = 0.325 * ((magic/2).floor + magic)
     combat = (base + [melee, range, mage].max).round(5)
-    
+
     if combat < 3.4
       combat = 3.4
     end
-    
+
     stats_hash["combat_lvl"] = combat
     return stats_hash
   end
@@ -335,32 +238,39 @@ class Player < ActiveRecord::Base
       ehp = F2POSRSRanks::Application.config.ehp_uim
     end
   end
-  
+
   def remove_cutoff(stats_hash)
     if stats_hash["overall_ehp"] < 1
       Player.where(player_name: player_name).destroy_all
       return true
     end
   end
-  
+
   def update_player
     if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
     end
     puts "updating #{player_name}"
-    all_stats = get_stats
-    if all_stats == false
-      update_attributes(:potential_p2p => 1)
+
+    begin
+      stats_hash = Hiscores.fetch_stats(player_acc_type, player_name, parse: true)
+    rescue
+      update_attributes(potential_p2p: 1)
       return false
     end
-    stats_hash = Player.parse_raw_stats(all_stats)
+
     bonus_xp = calc_bonus_xps(stats_hash)
     stats_hash = calc_ehp(stats_hash)
     stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
 
-    stats_hash = check_hc_death(stats_hash)
+    updated_acc_type = Hiscores.verify_account_type(player_acc_type, player_name)
+
+    if player_acc_type != updated_acc_type
+      stats_hash.merge!(player_acc_type: updated_acc_type)
+    end
+
     stats_hash = calc_combat(stats_hash)
-    
+
     stats_hash["ttm_lvl"] = time_to_max(stats_hash, "lvl")
     stats_hash["ttm_xp"] = time_to_max(stats_hash, "xp")
 
@@ -371,14 +281,14 @@ class Player < ActiveRecord::Base
           stats_hash = update_player_start_stats(time, stats_hash)
         end
       end
-      
+
       stats_hash = check_record_gains(stats_hash)
     end
 
     self.attributes = stats_hash
     self.save :validate => false
   end
-  
+
   def check_record_gains(stats_hash)
     SKILLS.each do |skill|
       xp = stats_hash["#{skill}_xp"] || self.read_attribute("#{skill}_xp")
@@ -402,7 +312,7 @@ class Player < ActiveRecord::Base
 
     return stats_hash
   end
-  
+
   def update_player_start_stats(time, stats_hash)
     SKILLS.each do |skill|
       xp = stats_hash["#{skill}_xp"] || self.read_attribute("#{skill}_xp")
@@ -413,7 +323,7 @@ class Player < ActiveRecord::Base
 
     return stats_hash
   end
-  
+
   def calc_skill_ehp(xp, tiers, xphrs)
     ehp = 0
     tiers.each.with_index do |tier, idx|
@@ -429,15 +339,15 @@ class Player < ActiveRecord::Base
     end
     return ehp
   end
-  
+
   def calc_max_lvl_ehp(tiers, xphrs)
     return calc_skill_ehp(13034431, tiers, xphrs)
   end
-  
+
   def calc_max_xp_ehp(tiers, xphrs)
     return calc_skill_ehp(200000000, tiers, xphrs)
   end
-  
+
   def time_to_max(stats_hash, lvl_or_xp)
     ehp = get_ehp_type
     ttm = 0
@@ -457,7 +367,7 @@ class Player < ActiveRecord::Base
         else
           max_ehp = calc_max_xp_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
         end
-        
+
         max_ehp = (max_ehp*100).floor/100.0
 
         if max_ehp > adjusted_skill_ehp
@@ -467,7 +377,7 @@ class Player < ActiveRecord::Base
     end
     return ttm
   end
-  
+
   def get_bonus_xp
     case player_acc_type
     when "Reg"
@@ -479,8 +389,8 @@ class Player < ActiveRecord::Base
     end
     return bonus_xp
   end
-  
-  # Returns hash in the following format. 
+
+  # Returns hash in the following format.
   # "bonus_for": {bonus_from: expected_xp_in_bonus_for, bonus_from: xp, ...}
   # bonuses: {
   #   "prayer": {"attack": 123, "defence": 12, "strength": 12, ...},
@@ -491,13 +401,13 @@ class Player < ActiveRecord::Base
     bonus_xps = get_bonus_xp
     bonuses = {}
     bonus_xps.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
-      skill_from = stats_hash["#{bonus_from}_xp"]     
+      skill_from = stats_hash["#{bonus_from}_xp"]
       if skill_from <= start_xp.to_i
         next
       end
-      
+
       bonus_xp = [([skill_from, end_xp].min - start_xp.to_i)*ratio.to_f, 200000000].min
-      
+
       if bonuses[bonus_for] and bonuses[bonus_for][bonus_from]
         bonuses[bonus_for][bonus_from] += bonus_xp
       elsif bonuses[bonus_for]
@@ -508,53 +418,18 @@ class Player < ActiveRecord::Base
     end
     return bonuses
   end
-  
-  def self.parse_raw_stats(all_stats)
-    stats_hash = Hash.new
-    stats_hash["potential_p2p"] = 0
-    F2POSRSRanks::Application.config.skills.each.with_index do |skill, skill_idx|
-      skill_lvl = all_stats[skill_idx].split(",")[1].to_f
-      skill_xp = all_stats[skill_idx].split(",")[2].to_i
-      skill_rank = all_stats[skill_idx].split(",")[0].to_i
-      
-      skill_lvl = 0 if skill_lvl < 0
-      skill_xp = 0 if skill_xp < 0
-      skill_rank = 0 if skill_rank < 0
-      
-      if skill == "hitpoints" and skill_lvl < 10
-        skill_lvl = 10
-        skill_xp = 1154
-      end
-      
-      if skill == "p2p" 
-        stats_hash["potential_p2p"] += skill_xp
-      elsif skill == "p2p_minigame"
-        stats_hash["potential_p2p"] += skill_lvl
-      elsif skill == "lms"
-        next
-      elsif skill == "clues_all" or skill == "clues_beginner"
-        stats_hash[skill] = [skill_lvl, 0].max
-        stats_hash["#{skill}_rank"] = skill_rank
-      else
-        stats_hash["#{skill}_lvl"] = skill_lvl
-        stats_hash["#{skill}_xp"] = skill_xp
-        stats_hash["#{skill}_rank"] = skill_rank
-      end
-    end
-    return stats_hash
-  end
-  
+
   def calc_ehp(stats_hash)
     ehp = get_ehp_type
     total_ehp = 0.0
     total_lvl = 8
     total_xp = 0
     stats_list = F2POSRSRanks::Application.config.f2p_skills
-    
+
     stats_list.each.with_index do |skill, skill_idx|
       skill_lvl = stats_hash["#{skill}_lvl"]
       skill_xp = stats_hash["#{skill}_xp"]
-      
+
       skill_tiers = ehp["#{skill}_tiers"]
       skill_xphrs = ehp["#{skill}_xphrs"]
       skill_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
@@ -564,9 +439,9 @@ class Player < ActiveRecord::Base
       total_xp += skill_xp
       total_lvl += skill_lvl
     end
-    
+
     stats_hash["overall_ehp"] = total_ehp.round(2)
-    
+
     if stats_hash["overall_lvl"] < 34
       stats_hash["overall_lvl"] = total_lvl
       stats_hash["overall_xp"] = total_xp
@@ -574,7 +449,7 @@ class Player < ActiveRecord::Base
 
     return stats_hash
   end
-  
+
   def adjust_bonus_xp(stats_hash, bonus_xp)
     ehp = get_ehp_type
     bonus_xp_list = get_bonus_xp
@@ -641,7 +516,7 @@ class Player < ActiveRecord::Base
     end
     return stats_hash
   end
-  
+
   def calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
     skill_ehp = 0.0
     skill_tiers.each.with_index do |skill_tier, tier_idx|
@@ -662,14 +537,14 @@ class Player < ActiveRecord::Base
     today = DateTime.now
     month = today.month
     year = today.year
-    
+
     if time == "year"
       time_diff = (today - DateTime.new(year, 1, 1)).to_i
     elsif time == "month"
       time_diff = (today - DateTime.new(year, month, 1)).to_i
     end
     time_string = "#{time_diff}d"
-    
+
     uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=datapoints&player=#{player_name}&time=#{time_string}")
     begin
       retries ||= 0
@@ -681,7 +556,7 @@ class Player < ActiveRecord::Base
     end
     return parse_cml_xps(xps)
   end
-  
+
   def parse_cml_xps(xps)
     xps = xps.split(",")
     return {"overall_xp" => xps[0],
@@ -702,15 +577,15 @@ class Player < ActiveRecord::Base
             "runecraft_xp" => xps[21]
             }
   end
-  
+
   def repair_tracking(time)
     xps = get_cml_xp(time)
     xp_start = {}
-    
+
     SKILLS.each do |skill|
       xp_start = xp_start.merge({"#{skill}_xp_#{time}_start" => xps["#{skill}_xp"].to_i})
     end
-    
+
     ehp = get_ehp_type
     ehp_start = {}
     (SKILLS - ["overall"]).each do |skill|
@@ -722,7 +597,7 @@ class Player < ActiveRecord::Base
     update_attributes(xp_start.merge(ehp_start))
     return xp_start, ehp_start
   end
-  
+
   def get_cml_records
     uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=recordsofplayer&player=#{player_name}")
     begin
@@ -736,7 +611,7 @@ class Player < ActiveRecord::Base
     end
     return parse_cml_records(player_records)
   end
-  
+
   def parse_cml_records(player_records)
     player_records = player_records.split("\n")
     recs = {}
@@ -754,13 +629,13 @@ class Player < ActiveRecord::Base
     puts recs
     return recs
   end
-  
+
   def repair_records
     recs = get_cml_records
     unless recs
       return
     end
-    
+
     ehp = get_ehp_type
     ehp_recs = {}
     (TIMES - ["year"]).each do |time|
@@ -777,7 +652,7 @@ class Player < ActiveRecord::Base
       ehp_recs = ehp_recs.merge(time_recs)
       ehp_recs["overall_ehp_#{time}_max"] = time_recs.values.max
     end
-    
+
     recs_hash = recs.merge(ehp_recs)
     update_attributes(recs_hash)
     return recs_hash
@@ -803,61 +678,12 @@ class Player < ActiveRecord::Base
     end
     update_attributes(skill_hash)
   end
-  
-  def self.get_stats(name, acc_type)
-    if name == "Bargan"
-      all_stats = "-1,1410,143408971 -1,99,13078967 -1,99,13068172 -1,99,13069431 -1,99,14171944 -1,85,3338143 -1,82,2458698 -1,99,13065371 -1,99,14018193 -1,91,6111148 -1,-1,0 -1,92,6557350 -1,99,14021572 -1,99,13074360 -1,99,13182234 -1,81,2195415 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,-1,0 -1,80,1997973 -1,-1,0 -1,-1,0 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1 -1,-1".split(" ")
-    else
-      begin
-        case acc_type
-        when "Reg"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=#{name}")
-        when "HCIM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws?player=#{name}")
-        when "UIM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws?player=#{name}")
-        when "IM"
-          uri = URI.parse("https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws?player=#{name}")
-        end
-        all_stats = uri.read.split(" ")
-      rescue Exception => e  
-        puts e.message 
-        return false
-      end
-    end
-    return all_stats
-  end
-  
-  def self.acc_type_xp(name, acc_type)
-    stats = self.get_stats(name, acc_type)
-    return 0 if not stats
-    return stats[0].split(",")[2].to_f
-  end
-  
-  def self.determine_acc_type(name)
-    uim_xp = acc_type_xp(name, "UIM")
-    hcim_xp = acc_type_xp(name, "HCIM")
-    im_xp = acc_type_xp(name, "IM")
-    reg_xp = acc_type_xp(name, "Reg")
-    if uim_xp > 0 and uim_xp >= reg_xp and uim_xp >= im_xp
-      return "UIM"
-    elsif hcim_xp > 0 and hcim_xp >= reg_xp and hcim_xp >= im_xp
-      return "HCIM"
-    elsif im_xp > 0 and im_xp >= reg_xp
-      return "IM"
-    elsif reg_xp > 0 
-      return "Reg"
-    else
-      return nil
-      # raise "Account type cannot be determined."
-    end
-  end
 
   def self.check_p2p(stats)
-    return stats["potential_p2p"] > 0
+    return stats[:potential_p2p] > 0
   end
 
-  def self.create_new(name)  
+  def self.create_new(name)
     name = self.sanitize_name(name)
     found = self.find_player(name)
     if found
@@ -866,14 +692,11 @@ class Player < ActiveRecord::Base
       return "p2p"
     end
 
-    acc_type = self.determine_acc_type(name)
-    if acc_type.nil?
-      return nil
-    end
+    acc_type = Hiscores.determine_account_type(name)
+    return unless acc_type
 
-    stats = self.get_stats(name, acc_type)
-    stats = self.parse_raw_stats(stats)
-    
+    stats = Hiscores.fetch_stats(acc_type, name, parse: true)
+
     if self.check_p2p(stats)
       return "p2p"
     end
