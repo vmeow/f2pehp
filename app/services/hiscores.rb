@@ -24,6 +24,9 @@ class Hiscores
       stats = { potential_p2p: 0 }
 
       fields = F2POSRSRanks::Application.config.skills.map.with_index
+
+      # Select field names and indices that need to be parsed in compliance
+      #  with optional whitelist from `restrict_fields`.
       if restrict_fields.any?
         fields = fields.select { |f, i| f.in? restrict_fields }
       end
@@ -55,6 +58,7 @@ class Hiscores
     end
 
     def player_exists?(player_name)
+      # A player does not exist if the player does not have 'Reg' hiscores.
       fetch_stats('Reg', player_name)
       true
     rescue
@@ -67,29 +71,38 @@ class Hiscores
       data = res.split("\n")
 
       return data unless parse
+
       parse_fields = [parse_fields] unless Array === parse_fields
       parse_stats(data, parse_fields)
     rescue OpenURI::HTTPError
       raise RuntimeError, "player #{player_name} is not a(n) #{account_type}"
     end
 
+    # Checks if given `account_type` for `player_name` is still valid.
     def verify_account_type(account_type, player_name)
       unless account_type.in? Player.account_types
         raise ArgumentError, 'account type not recognized'
       end
 
       if account_type == 'Reg'
+        # Confirm that player still exists in hiscores.
         return false unless player_exists?(player_name)
         return 'Reg'
       end
 
+      # Retrieve a `modes` list of hierarchy to check total exps in order.
+      # For UIM: [UIM, IM, Reg]
+      # For HCIM: [HCIM, IM, Reg]
+      # For IM: [IM, Reg]
       ancestors = Player.account_type_ancestors[account_type.to_sym]
       modes = [account_type] + ancestors
+
       overall_xp_each_mode = modes.map do |mode|
         stats = fetch_stats(mode, player_name, parse: true, parse_fields: 'overall')
         stats['overall_xp']
       end
 
+      # Find the mode with the highest amount of total exp.
       _, idx = overall_xp_each_mode
         .map.with_index.sort_by { |xp, idx| [-xp, idx] }
         .first
@@ -103,7 +116,8 @@ class Hiscores
       %w[UIM HCIM IM].each do |type|
         begin
           return verify_account_type(type, player_name)
-        rescue
+        rescue  # Non-existent hiscores lookup for a mode raises exception.
+          # Attempt to retrieve hiscores for next mode.
           next
         end
       end
