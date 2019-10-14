@@ -20,6 +20,13 @@ class Hiscores
       )
     end
 
+    def hcim_table_url(player_name)
+      URI.join(
+        'https://secure.runescape.com/m=hiscore_oldschool_hardcore_ironman/overall.ws',
+        "?user=#{player_name}"
+      )
+    end
+
     def parse_stats(data, restrict_fields = [])
       stats = { potential_p2p: 0 }
 
@@ -93,6 +100,14 @@ class Hiscores
         sleep 2
         retry if attempt < max_attempts
       end
+    end
+
+    def hcim_dead?(player_name)
+      uri = hcim_table_url(player_name)
+      page = Nokogiri::HTML(open(uri))
+      page.xpath('//*[@id="contentHiscores"]/table/tbody/tr[contains(@class, "--dead")]/td/a/span')
+          .first
+          .present?
     end
 
     # Checks if given `account_type` for `player_name` is still valid.
