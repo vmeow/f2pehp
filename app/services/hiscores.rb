@@ -74,15 +74,32 @@ class Hiscores
 
     def fetch_stats(account_type, player_name, parse: false, parse_fields: [])
       uri = api_url(account_type, player_name)
-      res = uri.read
-      data = res.split("\n")
 
-      return data unless parse
+      openuri_params = {
+        # Timeout durations for HTTP connection.
+        # 5 seconds should be max for opening and reading a connection.
+        open_timeout: 5,
+        read_timeout: 5
+      }
 
-      parse_fields = [parse_fields] unless Array === parse_fields
-      parse_stats(data, parse_fields)
-    rescue OpenURI::HTTPError
-      raise RuntimeError, "player #{player_name} is not a(n) #{account_type}"
+      max_attempts = 3
+      attempt = 0
+
+      begin
+        res = uri.read
+        data = res.split("\n")
+
+        return data unless parse
+
+        parse_fields = [parse_fields] unless Array === parse_fields
+        return parse_stats(data, parse_fields)
+      rescue OpenURI::HTTPError => e
+        raise RuntimeError, "player #{player_name} is not a(n) #{account_type}"
+      rescue SocketError, Net::ReadTimeout => e
+        Rails.logger.warn "Runescape Hiscores cannot be reached: #{e}"
+        sleep 2
+        retry if attempt < max_attempts
+      end
     end
 
     def hcim_dead?(player_name)
