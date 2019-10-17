@@ -86,7 +86,10 @@ class Hiscores
 
     def hcim_dead?(player_name)
       uri = hcim_table_url(player_name)
-      page = Nokogiri::HTML(open(uri))
+      content = fetch(uri)
+      return false unless content
+
+      page = Nokogiri::HTML(content)
       page.xpath('//*[@id="contentHiscores"]/table/tbody/tr[contains(@class, "--dead")]/td/a/span')
           .first
           .present?
