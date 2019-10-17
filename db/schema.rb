@@ -354,7 +354,7 @@ ActiveRecord::Schema.define(version: 2019_10_17_031022) do
     t.integer "clues_all_rank"
     t.integer "clues_beginner_rank"
     t.boolean "hcim_has_died", default: false
-    t.datetime "hcim_has_died_registrered_at"
+    t.datetime "hcim_has_died_registered_at"
   end
 
   create_table "users", force: :cascade do |t|

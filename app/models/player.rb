@@ -916,6 +916,6 @@ class Player < ActiveRecord::Base
 
   def register_hcim_death
     self.hcim_has_died = true
-    self.hcim_has_died_registrered_at = DateTime.now
+    self.hcim_has_died_registered_at = DateTime.now
   end
 end
