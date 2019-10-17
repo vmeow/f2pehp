@@ -2,9 +2,34 @@ require 'open-uri'
 
 class CML
   extend Base
+  CML_BASE_URL = 'https://crystalmathlabs.com/tracker/api.php'
 
   class << self
-    CML_BASE_URL = 'https://crystalmathlabs.com/tracker/api.php'
+    def fetch_records(player_name)
+      uri = records_api_url(player_name)
+      records = fetch(uri)
+      parse_records(records)
+    end
+
+    def fetch_exp(player_name, time_back)
+      now = DateTime.now
+
+      timedelta =
+        case time_back
+        when 'year'
+          (now - DateTime.new(now.year, 1, 1)).to_i
+        when 'month'
+          time_diff = (now - DateTime.new(now.year, now.month, 1)).to_i
+        else
+          raise ArgumentError, "time_back must be either 'year' or 'month'"
+        end
+
+      uri = datapoints_api_url(player_name, "#{timedelta}d")
+      records = fetch(uri)
+      parse_exp(records)
+    end
+
+    private
 
     def records_api_url(player_name)
       URI.join(
@@ -18,12 +43,6 @@ class CML
         CML_BASE_URL,
         "?type=datapoints&player=#{player_name}&time=#{time}"
       )
-    end
-
-    def fetch_records(player_name)
-      uri = records_api_url(player_name)
-      records = fetch(uri)
-      parse_records(records)
     end
 
     def parse_records(records)
@@ -47,24 +66,6 @@ class CML
       end
 
       extracted_records
-    end
-
-    def fetch_exp(player_name, time_back)
-      now = DateTime.now
-
-      timedelta =
-        case time_back
-        when 'year'
-          (now - DateTime.new(now.year, 1, 1)).to_i
-        when 'month'
-          time_diff = (now - DateTime.new(now.year, now.month, 1)).to_i
-        else
-          raise ArgumentError, "time_back must be either 'year' or 'month'"
-        end
-
-      uri = datapoints_api_url(player_name, "#{timedelta}d")
-      records = fetch(uri)
-      parse_exp(records)
     end
 
     def parse_exp(records)

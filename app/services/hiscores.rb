@@ -4,24 +4,6 @@ class Hiscores
   extend Base
 
   class << self
-    def api_url(account_type, player_name)
-      unless account_type.in? Player.account_types
-        raise ArgumentError, 'account type not recognized'
-      end
-
-      path_suffix = {
-        HCIM: '_hardcore_ironman',
-        UIM: '_ultimate',
-        IM: '_ironman'
-      }
-
-      URI.join(
-        'https://services.runescape.com',
-        "m=hiscore_oldschool#{path_suffix[account_type.to_sym]}/index_lite.ws",
-        "?player=#{player_name}"
-      )
-    end
-
     def fetch_stats(player_name, account_type: nil)
       parse_fields = [parse_fields] unless Array === parse_fields
 
@@ -74,6 +56,24 @@ class Hiscores
     end
 
     private
+
+    def api_url(account_type, player_name)
+      unless account_type.in? Player.account_types
+        raise ArgumentError, 'account type not recognized'
+      end
+
+      path_suffix = {
+        HCIM: '_hardcore_ironman',
+        UIM: '_ultimate',
+        IM: '_ironman'
+      }
+
+      URI.join(
+        'https://services.runescape.com',
+        "m=hiscore_oldschool#{path_suffix[account_type.to_sym]}/index_lite.ws",
+        "?player=#{player_name}"
+      )
+    end
 
     def parse_stats(data, restrict_fields = [])
       stats = { potential_p2p: 0 }
