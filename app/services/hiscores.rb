@@ -118,11 +118,11 @@ class Hiscores
       end
 
       # Find the mode with the highest amount of total exp.
-      _, idx = overall_xp_each_mode
+      _, most_exp_idx = overall_xp_each_mode
         .map.with_index.sort_by { |xp, idx| [-xp, idx] }
         .first
 
-      modes[idx]
+      modes[most_exp_idx]
     end
 
     def determine_account_type(player_name)
@@ -132,7 +132,7 @@ class Hiscores
         begin
           return verify_account_type(type, player_name)
         rescue  # Non-existent hiscores lookup for a mode raises exception.
-          # Attempt to retrieve hiscores for next mode.
+          # Proceed to attempt to retrieve hiscores for next mode.
           next
         end
       end
