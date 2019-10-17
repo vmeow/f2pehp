@@ -14,17 +14,17 @@ class CML
     def fetch_exp(player_name, time_back)
       now = DateTime.now
 
-      timedelta =
+      deltatime =
         case time_back
         when 'year'
-          (now - DateTime.new(now.year, 1, 1)).to_i
+          now - DateTime.new(now.year, 1, 1)
         when 'month'
-          time_diff = (now - DateTime.new(now.year, now.month, 1)).to_i
+          now - DateTime.new(now.year, now.month, 1)
         else
           raise ArgumentError, "time_back must be either 'year' or 'month'"
         end
 
-      uri = datapoints_api_url(player_name, "#{timedelta}d")
+      uri = datapoints_api_url(player_name, "#{deltatime.to_i}d")
       records = fetch(uri)
       parse_exp(records)
     end
