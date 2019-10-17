@@ -246,47 +246,55 @@ class Player < ActiveRecord::Base
     end
   end
 
-  def update_player
+  def update_player(stats: nil)
     if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
     end
     Rails.logger.info "Updating #{player_name}"
 
-    begin
-      stats_hash = Hiscores.fetch_stats(player_acc_type, player_name, parse: true)
-    rescue
-      update_attributes(potential_p2p: 1)
-      return false
+    # Stats are provided in parameters. Skip fetching from hiscores.
+    unless stats
+      stats, account_type = Hiscores
+        .fetch_stats(player_name, account_type: player_acc_type)
+
+      unless stats
+        update_attributes(potential_p2p: 1)
+        return false
+      end
+
+      if player_acc_type != account_type
+        stats.merge!(player_acc_type: account_type)
+      end
     end
 
-    bonus_xp = calc_bonus_xps(stats_hash)
-    stats_hash = calc_ehp(stats_hash)
-    stats_hash = adjust_bonus_xp(stats_hash, bonus_xp)
+    stats = calculate_virtual_stats(stats)
 
-    updated_acc_type = Hiscores.verify_account_type(player_acc_type, player_name)
+    self.attributes = stats
+    self.save(validate: false)
+  end
 
-    if player_acc_type != updated_acc_type
-      stats_hash.merge!(player_acc_type: updated_acc_type)
-    end
+  def calculate_virtual_stats(stats)
+    bonus_xp = calc_bonus_xps(stats)
+    stats = calc_ehp(stats)
+    stats = adjust_bonus_xp(stats, bonus_xp)
 
-    stats_hash = calc_combat(stats_hash)
+    stats = calc_combat(stats)
 
-    stats_hash["ttm_lvl"] = time_to_max(stats_hash, "lvl")
-    stats_hash["ttm_xp"] = time_to_max(stats_hash, "xp")
+    stats["ttm_lvl"] = time_to_max(stats, "lvl")
+    stats["ttm_xp"] = time_to_max(stats, "xp")
 
-    if stats_hash["overall_ehp"] > 250 or Player.supporters.include?(player_name)
+    if stats["overall_ehp"] > 250 or Player.supporters.include?(player_name)
       TIMES.each do |time|
         xp = self.read_attribute("overall_xp_#{time}_start")
         if xp.nil? or xp == 0
-          stats_hash = update_player_start_stats(time, stats_hash)
+          stats = update_player_start_stats(time, stats)
         end
       end
 
-      stats_hash = check_record_gains(stats_hash)
+      stats = check_record_gains(stats)
     end
 
-    self.attributes = stats_hash
-    self.save :validate => false
+    stats
   end
 
   def check_record_gains(stats_hash)
@@ -606,26 +614,22 @@ class Player < ActiveRecord::Base
 
   def self.create_new(name)
     name = self.sanitize_name(name)
-    found = self.find_player(name)
-    if found
-      return "exists"
+    is_found = self.find_player(name)
+
+    if is_found
+      return 'exists'
     elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
-      return "p2p"
+      return 'p2p'
     end
 
-    acc_type = Hiscores.determine_account_type(name)
-    return unless acc_type
+    stats, account_type = Hiscores.fetch_stats(name)
+    return unless stats  # Player does not exist if return value is nil
 
-    stats = Hiscores.fetch_stats(acc_type, name, parse: true)
+    return 'p2p' if check_p2p(stats)
 
-    if self.check_p2p(stats)
-      return "p2p"
-    end
-
-    Player.create!({"player_name" => name, "player_acc_type" => acc_type})
-    player = Player.find_player(name)
-    result = player.update_player
-    return player
+    player = Player.create!(player_name: name, player_acc_type: account_type)
+    player.update_player(stats: stats)
+    player
   end
 
   def count_99
