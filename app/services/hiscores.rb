@@ -1,6 +1,8 @@
 require 'open-uri'
 
 class Hiscores
+  extend Base
+
   class << self
     def api_url(account_type, player_name)
       unless account_type.in? Player.account_types
@@ -59,40 +61,20 @@ class Hiscores
 
     def player_exists?(player_name)
       # A player does not exist if the player does not have 'Reg' hiscores.
-      fetch_stats('Reg', player_name)
-      true
-    rescue
-      false
+      fetch_stats('Reg', player_name).present?
     end
 
     def fetch_stats(account_type, player_name, parse: false, parse_fields: [])
       uri = api_url(account_type, player_name)
 
-      openuri_params = {
-        # Timeout durations for HTTP connection.
-        # 5 seconds should be max for opening and reading a connection.
-        open_timeout: 5,
-        read_timeout: 5
-      }
+      res = fetch(uri)
+      return unless res
 
-      max_attempts = 3
-      attempt = 0
+      data = res.split("\n")
+      return data unless parse
 
-      begin
-        res = uri.read
-        data = res.split("\n")
-
-        return data unless parse
-
-        parse_fields = [parse_fields] unless Array === parse_fields
-        return parse_stats(data, parse_fields)
-      rescue OpenURI::HTTPError => e
-        raise RuntimeError, "player #{player_name} is not a(n) #{account_type}"
-      rescue SocketError, Net::ReadTimeout => e
-        Rails.logger.warn "Runescape Hiscores cannot be reached: #{e}"
-        sleep 2
-        retry if attempt < max_attempts
-      end
+      parse_fields = [parse_fields] unless Array === parse_fields
+      return parse_stats(data, parse_fields)
     end
 
     # Checks if given `account_type` for `player_name` is still valid.
@@ -116,6 +98,7 @@ class Hiscores
 
       overall_xp_each_mode = modes.map do |mode|
         stats = fetch_stats(mode, player_name, parse: true, parse_fields: 'overall')
+        raise RuntimeError, "#{player_name} is not a(n) #{mode}" unless stats
         stats['overall_xp']
       end
 
