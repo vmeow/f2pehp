@@ -257,7 +257,7 @@ class Player < ActiveRecord::Base
     if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
     end
-    puts "updating #{player_name}"
+    Rails.logger.info "Updating #{player_name}"
 
     begin
       stats_hash = Hiscores.fetch_stats(player_acc_type, player_name, parse: true)
@@ -547,53 +547,8 @@ class Player < ActiveRecord::Base
     return skill_ehp
   end
 
-  def get_cml_xp(time)
-    today = DateTime.now
-    month = today.month
-    year = today.year
-
-    if time == "year"
-      time_diff = (today - DateTime.new(year, 1, 1)).to_i
-    elsif time == "month"
-      time_diff = (today - DateTime.new(year, month, 1)).to_i
-    end
-    time_string = "#{time_diff}d"
-
-    uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=datapoints&player=#{player_name}&time=#{time_string}")
-    begin
-      retries ||= 0
-      xps = uri.read.split(" ")[1]
-    rescue
-      sleep(10)
-      retry if (retries += 1) < 5
-      raise "CML API unresponsive."
-    end
-    return parse_cml_xps(xps)
-  end
-
-  def parse_cml_xps(xps)
-    xps = xps.split(",")
-    return {"overall_xp" => xps[0],
-            "attack_xp" => xps[1],
-            "defence_xp" => xps[2],
-            "strength_xp" => xps[3],
-            "hitpoints_xp" => xps[4],
-            "ranged_xp" => xps[5],
-            "prayer_xp" => xps[6],
-            "magic_xp" => xps[7],
-            "cooking_xp" => xps[8],
-            "woodcutting_xp" => xps[9],
-            "fishing_xp" => xps[11],
-            "firemaking_xp" => xps[12],
-            "crafting_xp" => xps[13],
-            "smithing_xp" => xps[14],
-            "mining_xp" => xps[15],
-            "runecraft_xp" => xps[21]
-            }
-  end
-
   def repair_tracking(time)
-    xps = get_cml_xp(time)
+    xps = CML.fetch_exp(player_name, time)
     xp_start = {}
 
     SKILLS.each do |skill|
@@ -612,43 +567,9 @@ class Player < ActiveRecord::Base
     return xp_start, ehp_start
   end
 
-  def get_cml_records
-    uri = URI.parse("https://crystalmathlabs.com/tracker/api.php?type=recordsofplayer&player=#{player_name}")
-    begin
-      retries ||= 0
-      player_records = uri.read
-    rescue
-      sleep(10)
-      retry if (retries += 1) < 5
-      puts "CML API unresponsive."
-      return false
-    end
-    return parse_cml_records(player_records)
-  end
-
-  def parse_cml_records(player_records)
-    player_records = player_records.split("\n")
-    recs = {}
-    player_records.each.with_index do |rec, idx|
-      skill = F2POSRSRanks::Application.config.skills[idx]
-      if SKILLS.include?(skill)
-        skill_recs = rec.split(",")
-        skill_recs_hash = {"#{skill}_xp_day_max" => skill_recs[0],
-                           "#{skill}_xp_week_max" => skill_recs[2],
-                           "#{skill}_xp_month_max" => skill_recs[4]
-                          }
-        recs = recs.merge(skill_recs_hash)
-      end
-    end
-    puts recs
-    return recs
-  end
-
   def repair_records
-    recs = get_cml_records
-    unless recs
-      return
-    end
+    recs = CML.fetch_records(player_name)
+    return unless recs
 
     ehp = get_ehp_type
     ehp_recs = {}
