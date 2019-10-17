@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_205756) do
+ActiveRecord::Schema.define(version: 2019_10_17_031022) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_205756) do
     t.integer "runecraft_xp"
     t.integer "runecraft_lvl"
     t.float "runecraft_ehp"
-    t.integer "potential_p2p"
+    t.float "potential_p2p"
     t.integer "overall_rank"
     t.integer "attack_rank"
     t.integer "defence_rank"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_205756) do
     t.integer "smithing_rank"
     t.integer "mining_rank"
     t.integer "runecraft_rank"
+    t.float "combat_lvl"
     t.integer "attack_xp_day_start"
     t.integer "attack_xp_day_max"
     t.float "attack_ehp_day_start"
@@ -352,7 +353,8 @@ ActiveRecord::Schema.define(version: 2019_04_28_205756) do
     t.integer "clues_beginner"
     t.integer "clues_all_rank"
     t.integer "clues_beginner_rank"
-    t.float "combat_lvl"
+    t.boolean "hcim_has_died", default: false
+    t.datetime "hcim_has_died_registrered_at"
   end
 
   create_table "users", force: :cascade do |t|
