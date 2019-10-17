@@ -29,6 +29,70 @@ class Hiscores
       )
     end
 
+    def fetch_stats(player_name, account_type: nil)
+      parse_fields = [parse_fields] unless Array === parse_fields
+
+      modes =
+        if account_type
+          # Retrieve a `modes` list of hierarchy to check total exps in order.
+          # For UIM:  [UIM, IM, Reg]
+          # For HCIM: [HCIM, IM, Reg]
+          # For IM:   [IM, Reg]
+          # For Reg:  [Reg]
+          case account_type
+          when 'Reg'
+            ['Reg']
+          when *%w[UIM HCIM IM]
+            ancestors = Player.account_type_ancestors[account_type.to_sym]
+            [account_type] + ancestors
+          else
+            raise ArgumentError, 'account type not recognized'
+          end
+        else
+          %w[UIM HCIM IM Reg]
+        end
+
+      stats = []
+      threads = []
+      stats_mutex = Mutex.new
+      uri_per_mode = modes.map { |mode| api_url(mode, player_name) }
+
+      uri_per_mode.each_with_index do |uri, mode_idx|
+        threads << Thread.new(uri, mode_idx, stats) do |uri, mode_idx, stats|
+          res = fetch(uri)
+          next unless res
+
+          data = res.split("\n")
+          parsed_data = parse_stats(data, parse_fields)
+          stats_mutex.synchronize { stats << [parsed_data, mode_idx] }
+        end
+      end
+
+      threads.each(&:join)
+      return if stats.empty?
+
+      # Find the mode with the highest amount of total exp.
+      actual_stats, mode_idx = stats.sort_by do |mode_stats_idx|
+        mode_stats, idx = mode_stats_idx
+        [-mode_stats['overall_xp'], idx]
+      end.first
+
+      [actual_stats, modes[mode_idx]]
+    end
+
+    def hcim_dead?(player_name)
+      uri = hcim_table_url(player_name)
+      content = fetch(uri)
+      return false unless content
+
+      page = Nokogiri::HTML(content)
+      page.xpath('//*[@id="contentHiscores"]/table/tbody/tr[contains(@class, "--dead")]/td/a/span')
+          .first
+          .present?
+    end
+
+    private
+
     def parse_stats(data, restrict_fields = [])
       stats = { potential_p2p: 0 }
 
@@ -64,83 +128,6 @@ class Hiscores
       end
 
       stats
-    end
-
-    def player_exists?(player_name)
-      # A player does not exist if the player does not have 'Reg' hiscores.
-      fetch_stats('Reg', player_name).present?
-    end
-
-    def fetch_stats(account_type, player_name, parse: false, parse_fields: [])
-      uri = api_url(account_type, player_name)
-
-      res = fetch(uri)
-      return unless res
-
-      data = res.split("\n")
-      return data unless parse
-
-      parse_fields = [parse_fields] unless Array === parse_fields
-      return parse_stats(data, parse_fields)
-    end
-
-    def hcim_dead?(player_name)
-      uri = hcim_table_url(player_name)
-      content = fetch(uri)
-      return false unless content
-
-      page = Nokogiri::HTML(content)
-      page.xpath('//*[@id="contentHiscores"]/table/tbody/tr[contains(@class, "--dead")]/td/a/span')
-          .first
-          .present?
-    end
-
-    # Checks if given `account_type` for `player_name` is still valid.
-    def verify_account_type(account_type, player_name)
-      unless account_type.in? Player.account_types
-        raise ArgumentError, 'account type not recognized'
-      end
-
-      if account_type == 'Reg'
-        # Confirm that player still exists in hiscores.
-        return false unless player_exists?(player_name)
-        return 'Reg'
-      end
-
-      # Retrieve a `modes` list of hierarchy to check total exps in order.
-      # For UIM: [UIM, IM, Reg]
-      # For HCIM: [HCIM, IM, Reg]
-      # For IM: [IM, Reg]
-      ancestors = Player.account_type_ancestors[account_type.to_sym]
-      modes = [account_type] + ancestors
-
-      overall_xp_each_mode = modes.map do |mode|
-        stats = fetch_stats(mode, player_name, parse: true, parse_fields: 'overall')
-        raise RuntimeError, "#{player_name} is not a(n) #{mode}" unless stats
-        stats['overall_xp']
-      end
-
-      # Find the mode with the highest amount of total exp.
-      _, most_exp_idx = overall_xp_each_mode
-        .map.with_index.sort_by { |xp, idx| [-xp, idx] }
-        .first
-
-      modes[most_exp_idx]
-    end
-
-    def determine_account_type(player_name)
-      return false unless player_exists?(player_name)
-
-      %w[UIM HCIM IM].each do |type|
-        begin
-          return verify_account_type(type, player_name)
-        rescue  # Non-existent hiscores lookup for a mode raises exception.
-          # Proceed to attempt to retrieve hiscores for next mode.
-          next
-        end
-      end
-
-      return 'Reg'
     end
   end
 end
