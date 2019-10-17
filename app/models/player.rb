@@ -259,7 +259,7 @@ class Player < ActiveRecord::Base
     end
     Rails.logger.info "Updating #{player_name}"
 
-    # Stats are provided in parameters. Skip fetching from hiscores.
+    # Skip fetching from hiscores if stats are provided in parameters.
     unless stats
       stats, account_type = Hiscores
         .fetch_stats(player_name, account_type: player_acc_type)
