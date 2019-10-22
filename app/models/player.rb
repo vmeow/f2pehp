@@ -1,6 +1,9 @@
 require 'open-uri'
 
 class Player < ActiveRecord::Base
+  before_update :register_hcim_death,
+    if: Proc.new { |player| player.player_acc_type_was == 'HCIM' \
+                            && player.player_acc_type == 'IM' }
 
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
             "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
@@ -655,5 +658,12 @@ class Player < ActiveRecord::Base
   def lowest_lvl
     skill_lvls = (SKILLS - ["overall"]).each.map { |skill| self.read_attribute("#{skill}_lvl").to_i }
     return skill_lvls.min
+  end
+
+  private
+
+  def register_hcim_death
+    self.hcim_has_died = true
+    self.hcim_has_died_registered_at = DateTime.now
   end
 end
