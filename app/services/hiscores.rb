@@ -55,6 +55,17 @@ class Hiscores
       [actual_stats, modes[mode_idx]]
     end
 
+    def hcim_dead?(player_name)
+      uri = hcim_table_url(player_name)
+      content = fetch(uri)
+      return false unless content
+
+      page = Nokogiri::HTML(content)
+      page.xpath('//*[@id="contentHiscores"]/table/tbody/tr[contains(@class, "--dead")]/td/a/span')
+          .first
+          .present?
+    end
+
     private
 
     def api_url(account_type, player_name)
@@ -72,6 +83,13 @@ class Hiscores
         'https://services.runescape.com',
         "m=hiscore_oldschool#{path_suffix[account_type.to_sym]}/index_lite.ws",
         "?player=#{player_name}"
+      )
+    end
+
+    def hcim_table_url(player_name)
+      URI.join(
+        'https://secure.runescape.com/m=hiscore_oldschool_hardcore_ironman/overall.ws',
+        "?user=#{player_name}"
       )
     end
 

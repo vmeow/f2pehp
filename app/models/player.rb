@@ -206,6 +206,13 @@ class Player < ActiveRecord::Base
     return player
   end
 
+  def hcim_dead?
+    # Skip check for UIMs who can never have been HCIMs.
+    return false if player_acc_type == 'UIM'
+
+    Hiscores.hcim_dead?(player_name)
+  end
+
   def check_p2p(stats_hash)
     return stats_hash[:potential_p2p] > 0
   end
@@ -268,7 +275,12 @@ class Player < ActiveRecord::Base
       end
 
       if player_acc_type != account_type
-        stats.merge!(player_acc_type: account_type)
+        stats[:player_acc_type] = account_type
+      elsif player_acc_type == 'HCIM' && updated_acc_type == 'HCIM' && hcim_dead?
+        # Check if HCIM has died on the overall hiscores table.
+        # Normally this should have been picked up by the `verify_account_type`
+        # call, but this is sometimes not reliable.
+        stash_hash[:player_acc_type] = 'IM'
       end
     end
 
