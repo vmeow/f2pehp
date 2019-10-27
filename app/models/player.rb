@@ -276,11 +276,11 @@ class Player < ActiveRecord::Base
 
       if player_acc_type != account_type
         stats[:player_acc_type] = account_type
-      elsif player_acc_type == 'HCIM' && hcim_dead?
+      elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
         # Check if HCIM has died on the overall hiscores table.
         # Normally this should have been picked up by the `verify_account_type`
         # call, but this is sometimes not reliable.
-        stash_hash[:player_acc_type] = 'IM'
+        stats[:player_acc_type] = 'IM'
       end
     end
 
