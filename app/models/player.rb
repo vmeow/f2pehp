@@ -284,7 +284,7 @@ class Player < ActiveRecord::Base
         stats[:player_acc_type] = account_type
       elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
         # Check if HCIM has died on the overall hiscores table.
-        # Normally this should have been picked up by the `verify_account_type`
+        # Normally this should have been picked up by the `fetch_stats`
         # call, but this is sometimes not reliable.
         stats[:player_acc_type] = 'IM'
       end
@@ -311,7 +311,7 @@ class Player < ActiveRecord::Base
       return update_attribute(:player_acc_type, account_type)
     elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
       # Check if HCIM has died on the overall hiscores table.
-      # Normally this should have been picked up by the `verify_account_type`
+      # Normally this should have been picked up by the `fetch_stats`
       # call, but this is sometimes not reliable.
       return update_attribute(:player_acc_type, 'IM')
     end
