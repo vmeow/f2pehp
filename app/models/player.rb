@@ -266,8 +266,14 @@ class Player < ActiveRecord::Base
 
     # Skip fetching from hiscores if stats are provided in parameters.
     unless stats
-      stats, account_type = Hiscores
-        .fetch_stats(player_name, account_type: player_acc_type)
+      begin
+        stats, account_type = Hiscores
+          .fetch_stats(player_name, account_type: player_acc_type)
+      rescue SocketError, Net::ReadTimeout
+        Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+        # Stats could not be fetched due to inresponsiveness (3 attempts).
+        return false
+      end
 
       unless stats
         update_attributes(potential_p2p: 1)
@@ -288,6 +294,31 @@ class Player < ActiveRecord::Base
 
     self.attributes = stats
     self.save(validate: false)
+  end
+
+  def force_update_acc_type
+    begin
+      _, account_type = Hiscores.fetch_stats(player_name)
+    rescue SocketError, Net::ReadTimeout
+      Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+      # Stats could not be fetched due to inresponsiveness (3 attempts).
+      return false
+    end
+
+    unless account_type
+      return false
+    end
+
+    if player_acc_type != account_type
+      return update_attribute(:player_acc_type, account_type)
+    elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
+      # Check if HCIM has died on the overall hiscores table.
+      # Normally this should have been picked up by the `verify_account_type`
+      # call, but this is sometimes not reliable.
+      return update_attribute(:player_acc_type, 'IM')
+    end
+
+    true
   end
 
   def calculate_virtual_stats(stats)
@@ -639,7 +670,14 @@ class Player < ActiveRecord::Base
       return 'p2p'
     end
 
-    stats, account_type = Hiscores.fetch_stats(name)
+    begin
+      stats, account_type = Hiscores.fetch_stats(name)
+    rescue SocketError, Net::ReadTimeout
+      Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+      # Stats could not be fetched due to inresponsiveness (3 attempts).
+      return 'failed'
+    end
+
     return unless stats  # Player does not exist if return value is nil
 
     return 'p2p' if check_p2p(stats)
