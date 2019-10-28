@@ -305,9 +305,7 @@ class Player < ActiveRecord::Base
       return false
     end
 
-    unless account_type
-      return false
-    end
+    return false unless account_type
 
     if player_acc_type != account_type
       return update_attribute(:player_acc_type, account_type)
