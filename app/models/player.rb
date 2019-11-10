@@ -298,7 +298,7 @@ class Player < ActiveRecord::Base
 
   def force_update_acc_type
     begin
-      _, account_type = Hiscores.fetch_stats(player_name)
+      actual_stats, account_type = Hiscores.fetch_stats(player_name)
     rescue SocketError, Net::ReadTimeout
       Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
       # Stats could not be fetched due to inresponsiveness (3 attempts).
@@ -308,7 +308,9 @@ class Player < ActiveRecord::Base
     return false unless account_type
 
     if player_acc_type != account_type
-      return update_attribute(:player_acc_type, account_type)
+      ehp_diffs = get_gains_ehp_diffs()
+      update_attribute(:player_acc_type, account_type)
+      fix_wrong_acc_type_gains_and_records(actual_stats, ehp_diffs)
     elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
       # Check if HCIM has died on the overall hiscores table.
       # Normally this should have been picked up by the `fetch_stats`
@@ -317,6 +319,42 @@ class Player < ActiveRecord::Base
     end
 
     true
+  end
+
+  def get_gains_ehp_diffs
+    # gains and records are based on current EHP minus start EHP (day/week etc).
+    # make sure that we save this difference, because changed acc type
+    # will very likely result in different current EHP but not the start EHP.
+    ehp_diffs = {}
+    SKILLS.each do |skill|
+      ehp = self.read_attribute("#{skill}_ehp")
+      TIMES.each do |time|
+        start_ehp = self.read_attribute("#{skill}_ehp_#{time}_start")
+        ehp_diff = ehp - start_ehp
+        ehp_diffs["#{skill}_ehp_#{time}"] = [ehp_diff, 0].max
+      end
+    end
+
+    return ehp_diffs
+  end
+
+  def fix_wrong_acc_type_gains_and_records(actual_stats, ehp_diffs)
+    # get the new current EHP after updating the player acc type
+    stats = calculate_virtual_stats(actual_stats)
+
+    # finally, set the correct #{SKILL}_ehp_#{TIME}_start so that gains and
+    # records will display the correct, same amount as before the acc_type update
+    fixed_ehps = {}
+    SKILLS.each do |skill|
+      ehp = stats["#{skill}_ehp"]
+      fixed_ehps["#{skill}_ehp"] = ehp
+      TIMES.each do |time|
+        ehp_gain = ehp_diffs["#{skill}_ehp_#{time}"]
+        fixed_ehps["#{skill}_ehp_#{time}_start"] = ehp - ehp_gain
+      end
+    end
+
+    update_attributes(fixed_ehps)
   end
 
   def calculate_virtual_stats(stats)
