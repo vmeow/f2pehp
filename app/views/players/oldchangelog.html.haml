@@ -1,23 +1,7 @@
 - @title = "F2P Wiki Changelog" 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
-%p#notice= notice
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
+= render :partial => "header.html.haml",  :locals => {notice: notice}
   
 = content_tag(:div, nil, style: "text-align: left; margin: auto; min-width: 600px; max-width:780px; padding: 5px;") do 
   %h1 Pre-v1.0 Changelog
