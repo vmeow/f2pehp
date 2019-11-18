@@ -220,7 +220,7 @@
         %tbody
           %tr
             - overall_f2p_rank = @player.f2p_skill_rank("overall").to_i
-            %th= link_to image_tag("skills/overall.png"), ranks_path(skill: "overall", show_limit: 25, page: 1 + overall_f2p_rank / 25)
+            %th= link_to image_tag("skills/overall.png"), ranks_path(skill: "overall", show_limit: 25, page: (overall_f2p_rank.to_f / 25).ceil)
             %td= @player["overall_lvl"]
             %td= number_with_delimiter(@player["overall_xp"].to_i, :delimiter => ",") 
             %td= number_with_delimiter(@player["overall_ehp"].to_f, :delimiter => ",", :separator => ".") 
@@ -229,7 +229,7 @@
           - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
             %tr
               - skill_f2p_rank = @player.f2p_skill_rank(skill).to_i
-              %th= link_to image_tag("skills/#{skill}.png"), ranks_path(skill: skill, show_limit: 25, page: 1 + skill_f2p_rank / 25)
+              %th= link_to image_tag("skills/#{skill}.png"), ranks_path(skill: skill, show_limit: 25, page: (skill_f2p_rank.to_f / 25).ceil)
               %td= @player["#{skill}_lvl"]
               %td= number_with_delimiter(@player["#{skill}_xp"].to_i, :delimiter => ",") 
               %td= number_with_delimiter(@player["#{skill}_ehp"].to_f, :delimiter => ",", :separator => ".") 
@@ -273,14 +273,14 @@
         %tbody
           %tr
             - clue_all_f2p_rank =  @player.f2p_clues_rank("all")
-            %th= link_to image_tag("skills/clue.png"), ranks_path(skill: "clues_all", show_limit: 25, page: 1 + clue_all_f2p_rank / 25)
+            %th= link_to image_tag("skills/clue.png"), ranks_path(skill: "clues_all", show_limit: 25, page: (clue_all_f2p_rank.to_f / 25).ceil)
             %td= "All"
             %td= @player["clues_all"]
             %td= @player["clues_all_rank"]
             %td= clue_all_f2p_rank
           %tr
             - clue_beginner_f2p_rank =  @player.f2p_clues_rank("beginner")
-            %th= link_to image_tag("skills/clue.png"), ranks_path(skill: "clues_beginner", show_limit: 25, page: 1 + clue_beginner_f2p_rank / 25)
+            %th= link_to image_tag("skills/clue.png"), ranks_path(skill: "clues_beginner", show_limit: 25, page: (clue_beginner_f2p_rank.to_f / 25).ceil)
             %td= "Beginner"
             %td= @player["clues_beginner"]
             %td= @player["clues_beginner_rank"]
@@ -305,14 +305,14 @@
         %tbody
           %tr
             - overall_gains_rank = @player.f2p_gains_rank("overall", @time).to_i
-            %th= link_to image_tag("skills/overall.png"), tracking_path(skill: "overall", show_limit: 25, page: 1 + overall_gains_rank / 25)
+            %th= link_to image_tag("skills/overall.png"), tracking_path(skill: "overall", show_limit: 25, page: (overall_gains_rank.to_f / 25).ceil)
             %td= number_with_delimiter(@player["overall_xp"].to_i - @player["overall_xp_#{@time}_start"].to_i, :delimiter => ",") 
             %td= number_with_delimiter(number_with_precision(@player["overall_ehp"].to_f - @player["overall_ehp_#{@time}_start"], precision: 2), :delimiter => ",", :separator => ".") 
             %td= number_with_delimiter(overall_gains_rank, :delimiter => ',')
           - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
             %tr
               - skill_gains_rank = @player.f2p_gains_rank(skill, @time).to_i
-              %th= link_to image_tag("skills/#{skill}.png"), tracking_path(skill: skill, show_limit: 25, page: 1 + skill_gains_rank / 25)
+              %th= link_to image_tag("skills/#{skill}.png"), tracking_path(skill: skill, show_limit: 25, page: (skill_gains_rank.to_f / 25).ceil)
               %td= number_with_delimiter(@player["#{skill}_xp"].to_i - @player["#{skill}_xp_#{@time}_start"].to_i, :delimiter => ",") 
               %td= number_with_delimiter(number_with_precision(@player["#{skill}_ehp"].to_f - @player["#{skill}_ehp_#{@time}_start"], precision: 2), :delimiter => ",", :separator => ".") 
               %td= number_with_delimiter(skill_gains_rank, :delimiter => ',')
@@ -333,14 +333,14 @@
         %tbody
           %tr
             - overall_record_rank = @player.f2p_record_rank("overall", @time).to_i
-            %th= link_to image_tag("skills/overall.png"), records_path(skill: "overall", show_limit: 25, page: 1 + overall_record_rank / 25)
+            %th= link_to image_tag("skills/overall.png"), records_path(skill: "overall", show_limit: 25, page: (overall_record_rank.to_f / 25).ceil)
             %td= number_with_delimiter(@player["overall_xp_#{@time}_max"].to_i, :delimiter => ",") 
             %td= number_with_delimiter(number_with_precision(@player["overall_ehp_#{@time}_max"].to_f, precision: 2), :delimiter => ",") 
             %td= number_with_delimiter(overall_record_rank, :delimiter => ',')
           - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
             %tr
               - skill_record_rank = @player.f2p_record_rank(skill, @time).to_i
-              %th= link_to image_tag("skills/#{skill}.png"), records_path(skill:skill, show_limit: 25, page: 1 + skill_record_rank / 25)
+              %th= link_to image_tag("skills/#{skill}.png"), records_path(skill:skill, show_limit: 25, page: (skill_record_rank.to_f / 25).ceil)
               %td= number_with_delimiter(@player["#{skill}_xp_#{@time}_max"].to_i, :delimiter => ",") 
               %td= number_with_delimiter(number_with_precision(@player["#{skill}_ehp_#{@time}_max"].to_f, precision: 2), :delimiter => ",") 
               %td= number_with_delimiter(skill_record_rank, :delimiter => ',')
