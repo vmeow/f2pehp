@@ -644,6 +644,9 @@ class Player < ActiveRecord::Base
 
     return 'p2p' if check_p2p(stats)
 
+    name = Hiscores.get_registered_player_name(name)
+    return unless name  # Player does not exist if return value is false
+
     player = Player.create!(player_name: name, player_acc_type: account_type)
     player.update_player(stats: stats)
     player
