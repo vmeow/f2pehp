@@ -3,6 +3,10 @@ require 'open-uri'
 class Hiscores
   extend Base
 
+  REG_MODE = %w[Reg].freeze
+  IRONMAN_MODES = %w[UIM HCIM IM].freeze
+  ALL_MODES = %w[UIM HCIM IM Reg].freeze
+
   class << self
     def fetch_stats(player_name, account_type: nil)
       parse_fields = [parse_fields] unless Array === parse_fields
@@ -15,16 +19,16 @@ class Hiscores
           # For IM:   [IM, Reg]
           # For Reg:  [Reg]
           case account_type
-          when 'Reg'
-            ['Reg']
-          when *%w[UIM HCIM IM]
+          when *REG_MODE
+            REG_MODE
+          when *IRONMAN_MODES
             ancestors = Player.account_type_ancestors[account_type.to_sym]
             [account_type] + ancestors
           else
             raise ArgumentError, 'account type not recognized'
           end
         else
-          %w[UIM HCIM IM Reg]
+          ALL_MODES
         end
 
       stats = []
@@ -34,7 +38,11 @@ class Hiscores
 
       uri_per_mode.each_with_index do |uri, mode_idx|
         threads << Thread.new(uri, mode_idx, stats) do |uri, mode_idx, stats|
+          # Raise exceptions in main thread so they can be caught.
+          Thread.current.abort_on_exception = true
           res = fetch(uri)
+
+          # No hiscores data for this mode, skip.
           next unless res
 
           data = res.split("\n")
@@ -57,7 +65,14 @@ class Hiscores
 
     def hcim_dead?(player_name)
       uri = table_url(player_name, true)
-      content = fetch(uri)
+
+      begin
+        content = fetch(uri)
+      rescue SocketError, Net::ReadTimeout
+        Rails.logger.warn "#{player_name}'s HCIM hiscores retrieval failed"
+        return false
+      end
+
       return false unless content
 
       page = Nokogiri::HTML(content)
@@ -68,8 +83,13 @@ class Hiscores
 
     def get_registered_player_name(player_name)
       uri = table_url(player_name)
-      content = fetch(uri)
-      return false unless content
+
+      begin
+        content = fetch(uri)
+      rescue SocketError, Net::ReadTimeout
+        Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+        return false
+      end
 
       page = Nokogiri::HTML(content)
       el = page.xpath('//*[@id="contentHiscores"]/table/tbody/tr/td/a/span')

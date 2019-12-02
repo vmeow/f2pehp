@@ -30,7 +30,7 @@ class Player < ActiveRecord::Base
   #   5. If any new images were required, be sure to add them to app/assests/images
   SUPPORTERS = [{name: "Bargan", amount: 145.99, date: "2018-02-02"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
-                {name: "Ikiji", amount: 86.59, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
+                {name: "Ikiji", amount: 96.59, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "a q p IM"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
@@ -49,9 +49,14 @@ class Player < ActiveRecord::Base
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "Anonymous", amount: 20, date: "2019-07-19", no_link: true},
+                {name: "Based F2P IM", amount: 20, date: "2019-10-05", flair_after: "IM.png"},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
+                {name: "Metan", amount: 15, date: "2019-02-13", flair_after: "items/Mime_gloves.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
                 {name: "Brim haven", amount: 15, date: "2019-05-31", flair_after: "flairs/ceres.png"},
+                {name: "Anonymous", amount: 15, date: "2019-10-12", no_link: true},
+                {name: "TrustNoBanks", amount: 13, date: "2019-10-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
+                {name: "Iron of One", amount: 12, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Yewsless", amount: 11, date: "2018-03-11", flair_after: "items/Yew_logs.gif"},
                 {name: "F2P Lukie", amount: 10, date: "2018-01-31", flair_after: "flairs/tea.png"},
                 {name: "Tame My Wild", amount: 10, date: "2018-02-06", flair_after: "flairs/dog.png"},
@@ -74,8 +79,8 @@ class Player < ActiveRecord::Base
                 {name: "UIM TMW", amount: 10, date: "2019-07-19"},
                 {name: "Bonk Loot", amount: 10, date: "2019-08-27", flair_after: "flairs/Amulet_of_power.png"},
                 {name: "iron korbah", amount: 10, date: "2019-09-27"},
-                {name: "Based F2P IM", amount: 10, date: "2019-10-05"},
-                {name: "Iron of One", amount: 9, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "ASCMA2828Z", amount: 10, date: "2019-11-16", flair_after: "flairs/Earth_rune.png"},
+                {name: "seid", amount: 10, date: "2019-11-18", flair_after: "skills/magic.png"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -111,7 +116,6 @@ class Player < ActiveRecord::Base
                 {name: "xmymwf609", amount: 5, date: "2019-01-24"},
                 {name: "Onnn", amount: 5, date: "2019-02-03", flair_after: "flairs/canada-flag.png"},
                 {name: "Shade_Core", date: "2019-02-08", amount: 5, flair_after: "flairs/shade_core.png"},
-                {name: "Metan", amount: 5, date: "2019-02-13"},
                 {name: "F2P UIM OREO", amount: 5, date: "2019-02-18", flair_after: "flairs/f2p_uim_oreo.jpg"},
                 {name: "HCBown", amount: 5, date: "2019-03-04"},
                 {name: "Dukeddd", amount: 5, date: "2019-03-06"},
@@ -137,7 +141,9 @@ class Player < ActiveRecord::Base
                 {name: "UIMfreebie", amount: 5, date: "2019-08-24", flair_after: "flairs/Fancy_boots.png"},
                 {name: "jane uwu", amount: 5, date: "2019-08-28", flair_after: "flairs/Dutch_flag.png"},
                 {name: "ginormouskat", amount: 5, date: "2019-09-28"},
-                {name: "TrustNoBanks", amount: 5, date: "2019-10-06", flair_after: "flairs/Disk_of_returning.png"},
+                {name: "Kankahboef", amount: 5, date: "2019-10-18", flair_after: "flairs/thieving.png"},
+                {name: "Aquaruim", amount: 5, date: "2019-10-23"},
+                {name: "sexychocolat", amount: 5, date: "2019-11-04", flair_after: "flairs/Chocolate_bar.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
@@ -266,8 +272,14 @@ class Player < ActiveRecord::Base
 
     # Skip fetching from hiscores if stats are provided in parameters.
     unless stats
-      stats, account_type = Hiscores
-        .fetch_stats(player_name, account_type: player_acc_type)
+      begin
+        stats, account_type = Hiscores
+          .fetch_stats(player_name, account_type: player_acc_type)
+      rescue SocketError, Net::ReadTimeout
+        Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+        # Stats could not be fetched due to inresponsiveness (3 attempts).
+        return false
+      end
 
       unless stats
         update_attributes(potential_p2p: 1)
@@ -276,11 +288,11 @@ class Player < ActiveRecord::Base
 
       if player_acc_type != account_type
         stats[:player_acc_type] = account_type
-      elsif player_acc_type == 'HCIM' && hcim_dead?
+      elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
         # Check if HCIM has died on the overall hiscores table.
-        # Normally this should have been picked up by the `verify_account_type`
+        # Normally this should have been picked up by the `fetch_stats`
         # call, but this is sometimes not reliable.
-        stash_hash[:player_acc_type] = 'IM'
+        stats[:player_acc_type] = 'IM'
       end
     end
 
@@ -288,6 +300,67 @@ class Player < ActiveRecord::Base
 
     self.attributes = stats
     self.save(validate: false)
+  end
+
+  def force_update_acc_type
+    begin
+      actual_stats, account_type = Hiscores.fetch_stats(player_name)
+    rescue SocketError, Net::ReadTimeout
+      Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+      # Stats could not be fetched due to inresponsiveness (3 attempts).
+      return false
+    end
+
+    return false unless account_type
+
+    if player_acc_type != account_type
+      ehp_diffs = get_gains_ehp_diffs()
+      update_attribute(:player_acc_type, account_type)
+      fix_wrong_acc_type_gains_and_records(actual_stats, ehp_diffs)
+    elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
+      # Check if HCIM has died on the overall hiscores table.
+      # Normally this should have been picked up by the `fetch_stats`
+      # call, but this is sometimes not reliable.
+      return update_attribute(:player_acc_type, 'IM')
+    end
+
+    true
+  end
+
+  def get_gains_ehp_diffs
+    # gains and records are based on current EHP minus start EHP (day/week etc).
+    # make sure that we save this difference, because changed acc type
+    # will very likely result in different current EHP but not the start EHP.
+    ehp_diffs = {}
+    SKILLS.each do |skill|
+      ehp = self.read_attribute("#{skill}_ehp")
+      TIMES.each do |time|
+        start_ehp = self.read_attribute("#{skill}_ehp_#{time}_start")
+        ehp_diff = ehp - start_ehp
+        ehp_diffs["#{skill}_ehp_#{time}"] = [ehp_diff, 0].max
+      end
+    end
+
+    return ehp_diffs
+  end
+
+  def fix_wrong_acc_type_gains_and_records(actual_stats, ehp_diffs)
+    # get the new current EHP after updating the player acc type
+    stats = calculate_virtual_stats(actual_stats)
+
+    # finally, set the correct #{SKILL}_ehp_#{TIME}_start so that gains and
+    # records will display the correct, same amount as before the acc_type update
+    fixed_ehps = {}
+    SKILLS.each do |skill|
+      ehp = stats["#{skill}_ehp"]
+      fixed_ehps["#{skill}_ehp"] = ehp
+      TIMES.each do |time|
+        ehp_gain = ehp_diffs["#{skill}_ehp_#{time}"]
+        fixed_ehps["#{skill}_ehp_#{time}_start"] = ehp - ehp_gain
+      end
+    end
+
+    update_attributes(fixed_ehps)
   end
 
   def calculate_virtual_stats(stats)
@@ -639,7 +712,14 @@ class Player < ActiveRecord::Base
       return 'p2p'
     end
 
-    stats, account_type = Hiscores.fetch_stats(name)
+    begin
+      stats, account_type = Hiscores.fetch_stats(name)
+    rescue SocketError, Net::ReadTimeout
+      Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+      # Stats could not be fetched due to inresponsiveness (3 attempts).
+      return 'failed'
+    end
+
     return unless stats  # Player does not exist if return value is nil
 
     return 'p2p' if check_p2p(stats)

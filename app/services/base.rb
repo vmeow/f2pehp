@@ -17,9 +17,10 @@ module Base
     rescue OpenURI::HTTPError => e
       # 404, no content.
     rescue SocketError, Net::ReadTimeout => e
-      Rails.logger.warn "CML cannot be reached: #{e}"
+      Rails.logger.warn "[#{attempt}/#{max_attempts}] #{uri} could not be reached: #{e}"
       sleep 2
       retry if attempt < max_attempts
+      raise e
     end
   end
 end
