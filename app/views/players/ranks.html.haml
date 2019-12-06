@@ -44,6 +44,12 @@
 - elsif @skill == "clues_beginner"
   - title = "F2P Clue (beginner) Hiscores"
   - skill_icon = "skills/clue.png"
+- elsif @skill == "obor_kc"
+  - title = "F2P Obor Kill Count"
+  - skill_icon = "skills/kill_count.png"
+- elsif @skill == "bryo_kc"
+  - title = "F2P Bryophyta Kill Count"
+  - skill_icon = "skills/kill_count.png"
 - else
   - title = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
   - skill_icon = "skills/#{@skill}.png"
@@ -95,6 +101,18 @@
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/clue.png", style: "vertical-align: -6px;"
       = link_to "Clues (beg.)", :controller => "players", :action => "ranks", :skill => "clues_beginner"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/lms.png", style: "vertical-align: -6px;"
+      = link_to "LMS", :controller => "players", :action => "ranks", :skill => "lms"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+      = link_to "Obor Kills", :controller => "players", :action => "ranks", :skill => "obor_kc"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+      = link_to "Bryophyta Kills", :controller => "players", :action => "ranks", :skill => "bryo_kc"
         
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
 
@@ -122,6 +140,12 @@
             %th Count
           - elsif @skill.include?("lowest_lvl")
             %th Lowest Level
+          - elsif @skill.include?("lms")
+            %th Score
+            %th Rank
+          - elsif @skill.include?("_kc")
+            %th Kills
+            %th Rank
           - else
             - if @sort_by == "lvl"
               %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
@@ -164,6 +188,12 @@
               %td= player.count_200m
             - elsif @skill.include?("lowest_lvl")
               %td= player.lowest_lvl
+            - elsif @skill.include?("lms")
+              %td= player["lms_score"]
+              %td= player["lms_rank"]
+            - elsif @skill.include?("_kc")
+              %td= player[@skill]
+              %td= player["#{@skill}_rank"]
             - else
               %td= player["#{@skill}_lvl"]
               - if @skill != "combat"
