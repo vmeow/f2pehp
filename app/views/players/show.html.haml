@@ -275,6 +275,45 @@
             %td= "Beginner"
             %td= @player["clues_beginner"]
             %td= @player["clues_beginner_rank"]
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+        %thead
+          %th{:align => "center"}
+          %th{:align => "center"} Minigame
+          %th{:align => "center"} Score
+          %th{:align => "center"} Rank
+        %tbody
+          %tr
+            %th= image_tag "skills/lms.png"
+            %td= "Last Man Standing"
+            %td= @player["lms_score"]
+            %td= @player["lms_rank"]
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+        %thead
+          %th{:align => "center"}
+          %th{:align => "center"} Boss
+          %th{:align => "center"} Kill Count
+          %th{:align => "center"} Rank
+        %tbody
+          %tr
+            %th= image_tag "skills/kill_count.png"
+            %td= "Obor"
+            %td= @player["obor_kc"]
+            %td= @player["obor_kc_rank"]
+          %tr
+            %th= image_tag "skills/kill_count.png"
+            %td= "Bryophyta"
+            %td= @player["bryo_kc"]
+            %td= @player["bryo_kc_rank"]
       - elsif @player.overall_ehp < 250 and (@display == "gains" or @display == "records") and !Player.supporters.include?(@player.player_name)
         %head
           %th= "This player is not being tracked. This will require 250 EHP or F2P Supporter status."

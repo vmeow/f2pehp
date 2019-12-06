@@ -128,7 +128,14 @@ class Hiscores
         when 'p2p_minigame'
           stats[:potential_p2p] += lvl
         when 'lms'
-          next
+          stats[:lms_score] = lvl
+          stats[:lms_rank] = rank
+        when 'obor_kc'
+          stats[:obor_kc] = lvl
+          stats[:obor_kc_rank] = rank
+        when 'bryophyta_kc'
+          stats[:bryo_kc] = lvl
+          stats[:bryo_kc_rank] = rank
         when 'clues_all', 'clues_beginner'
           stats[skill] = lvl
           stats["#{skill}_rank"] = rank

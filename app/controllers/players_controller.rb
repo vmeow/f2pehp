@@ -335,6 +335,10 @@ class PlayersController < ApplicationController
       ordering = "overall_ehp DESC"
     elsif @skill.include?("lowest_lvl")
       ordering = "overall_ehp DESC"
+    elsif @skill.include?("lms")
+      ordering = "lms_score DESC, lms_rank ASC"
+    elsif @skill.include?("_kc")
+      ordering = "#{@skill} DESC, #{@skill}_rank ASC"
     else
       case @sort_by
       when "ehp"

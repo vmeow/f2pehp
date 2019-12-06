@@ -450,7 +450,7 @@ class Player < ActiveRecord::Base
     ehp = get_ehp_type
     ttm = 0
     F2POSRSRanks::Application.config.skills.each do |skill|
-      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner"
+      if skill != "p2p" and skill != "overall" and skill != "lms" and skill != "p2p_minigame" and skill != "clues_all" and skill != "clues_beginner" and skill != "obor_kc" and skill != "bryophyta_kc"
         skill_xp = stats_hash["#{skill}_xp"]
         if lvl_or_xp == "lvl" and skill_xp >= 13034431
           next
