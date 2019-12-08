@@ -282,7 +282,12 @@ class Player < ActiveRecord::Base
       end
 
       unless stats
-        update_attributes(potential_p2p: 1)
+        if failed_updates.nil? or failed_updates < 1
+          update_attributes(failed_updates: 1)
+        else
+          update_attributes(failed_updates: failed_updates + 1)
+          update_attributes(potential_p2p: 1) if failed_updates > 10
+        end
         return false
       end
 
