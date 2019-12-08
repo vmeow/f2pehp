@@ -301,6 +301,7 @@ class Player < ActiveRecord::Base
       end
     end
 
+    stats[:potential_p2p] = 0
     stats = calculate_virtual_stats(stats)
 
     self.attributes = stats
