@@ -64,7 +64,7 @@ class Hiscores
     end
 
     def hcim_dead?(player_name)
-      uri = hcim_table_url(player_name)
+      uri = table_url(player_name, true)
 
       begin
         content = fetch(uri)
@@ -79,6 +79,24 @@ class Hiscores
       page.xpath('//*[@id="contentHiscores"]/table/tbody/tr[contains(@class, "--dead")]/td/a/span')
           .first
           .present?
+    end
+
+    def get_registered_player_name(player_name)
+      uri = table_url(player_name)
+
+      begin
+        content = fetch(uri)
+      rescue SocketError, Net::ReadTimeout
+        Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+        return false
+      end
+
+      page = Nokogiri::HTML(content)
+      el = page.xpath('//*[@id="contentHiscores"]/table/tbody/tr/td/a/span')
+               .first
+      return el.inner_html.force_encoding('utf-8') if el
+
+      false
     end
 
     private
@@ -101,9 +119,13 @@ class Hiscores
       )
     end
 
-    def hcim_table_url(player_name)
+    def table_url(player_name, hcim = false)
+      path = 'hiscore_oldschool'
+      path += '_hardcore_ironman' if hcim
+
       URI.join(
-        'https://secure.runescape.com/m=hiscore_oldschool_hardcore_ironman/overall.ws',
+        'https://secure.runescape.com',
+        "m=#{path}/overall.ws",
         "?user=#{player_name}"
       )
     end
