@@ -1,0 +1,17 @@
+%p#notice= notice
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
+    = link_to_unless_current "Hiscores", ranks_path
+  = content_tag(:div, nil, class: ["bar", "fake"]) do
+    = link_to_unless_current "Current Top", tracking_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do
+    = link_to_unless_current "Records", records_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do
+    = link_to_unless_current "EHP Rates", ehp_path
+  = content_tag(:div, nil, class: ["bar", "links"]) do
+    = link_to_unless_current "Links", links_path
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do
+    = link_to_unless_current "Changelog", changelog_path
+  = content_tag(:div, nil, class: ["bar", "donate"]) do
+    = link_to_unless_current "About Us/Donate", donate_path
