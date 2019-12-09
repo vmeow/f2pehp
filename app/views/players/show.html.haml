@@ -1,23 +1,7 @@
 - @title = "#{@player.player_name}'s Personal Hiscores"
 = link_to image_tag("f2pwiki_500.png"), players_path
 
-%p#notice= notice
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
+= render :partial => "header.html.haml",  :locals => {notice: notice}
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do
@@ -191,6 +175,8 @@
     - elsif @player.player_name == "jane uwu"
       = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
         = "twitter @izzy_uwu main is mommy"
+    - elsif @player.player_name == "Zubat"
+      = image_tag "flairs/zubat.gif"
           
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 360px;") do
     = "Display:"
@@ -277,6 +263,45 @@
             %td= @player["clues_beginner"]
             %td= @player["clues_beginner_rank"]
             %td= clue_beginner_f2p_rank
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+        %thead
+          %th{:align => "center"}
+          %th{:align => "center"} Minigame
+          %th{:align => "center"} Score
+          %th{:align => "center"} Rank
+        %tbody
+          %tr
+            %th= image_tag "skills/lms.png"
+            %td= "Last Man Standing"
+            %td= @player["lms_score"]
+            %td= @player["lms_rank"]
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+        %thead
+          %th{:align => "center"}
+          %th{:align => "center"} Boss
+          %th{:align => "center"} Kill Count
+          %th{:align => "center"} Rank
+        %tbody
+          %tr
+            %th= image_tag "skills/kill_count.png"
+            %td= "Obor"
+            %td= @player["obor_kc"]
+            %td= @player["obor_kc_rank"]
+          %tr
+            %th= image_tag "skills/kill_count.png"
+            %td= "Bryophyta"
+            %td= @player["bryo_kc"]
+            %td= @player["bryo_kc_rank"]
       - elsif @player.overall_ehp < 250 and (@display == "gains" or @display == "records") and !Player.supporters.include?(@player.player_name)
         %head
           %th= "This player is not being tracked. This will require 250 EHP or F2P Supporter status."

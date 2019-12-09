@@ -1,28 +1,14 @@
 - @title = "F2P OSRS Wiki" 
 = link_to image_tag("birthdayf2pwiki.png"), players_path
 
-%p#notice= notice
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
+= render :partial => "header.html.haml",  :locals => {notice: notice}
   
 = content_tag(:div, nil, class: "container", style: "width: 760px;") do 
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 45%;") do
     = content_tag(:div, nil, class: "motd") do 
       %h1 News
+      %h6
+        = "v1.64 release: LMS hiscores and Obor/Bryophyta kill count hiscores. Ranks will fill in with the next site-wide player updates."
       %h6
         = "v1.63 release: Lowest Level hiscores, ability to reset filters, ability to filter out inactive players, fix to non-combat hiscores"
       %h6

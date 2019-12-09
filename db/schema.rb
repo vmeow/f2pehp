@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_205756) do
+ActiveRecord::Schema.define(version: 2019_12_08_221058) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -353,6 +353,15 @@ ActiveRecord::Schema.define(version: 2019_04_28_205756) do
     t.integer "clues_all_rank"
     t.integer "clues_beginner_rank"
     t.float "combat_lvl"
+    t.boolean "hcim_has_died", default: false
+    t.datetime "hcim_has_died_registered_at"
+    t.integer "obor_kc"
+    t.integer "bryo_kc"
+    t.integer "obor_kc_rank"
+    t.integer "bryo_kc_rank"
+    t.integer "lms_score"
+    t.integer "lms_rank"
+    t.integer "failed_updates", default: 0
   end
 
   create_table "users", force: :cascade do |t|

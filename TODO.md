@@ -12,9 +12,12 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Backlog
 
+* [BUGS] When Jagex hiscores API is unresponsive, don't immediately mark as P2P (2h)
 * [ALGO] Fix repair_records tool and records in general (8h)
 * [DATA] Display players' ranks on F2P.wiki only (8h)
   * [FRNT] Link personal page skills to hiscores (2h)
+* [DATA] LMS ranks (2h)
+* [FRNT] Display time until gains reset (2h)
 * [FRNT] Latest 99 and 200ms (4h)
 * [FRNT] FAQs page (8h)
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
@@ -40,7 +43,6 @@ List is in order of priority, with time estimates and the following tags.
 * [FRNT] Clan affiliation for players, filtering by clan
 * [FRNT] Competitions
 * [FRNT] Improving front page to look more like classic OSRS front page with links
-* [FRNT] Base level rankings (1h)
 
 ## In Progress
 
@@ -66,3 +68,4 @@ List is in order of priority, with time estimates and the following tags.
 * [ALGO] Update Reg EHP from no-alt EHP to alt EHP. (2h)
 * [ALGO] Update IM/HC/UIM EHP to use Ogress EHP. (40h)
 * [ALGO] Implement Bonus XP algorithms (40h)
+* [FRNT] Base level rankings (1h)
