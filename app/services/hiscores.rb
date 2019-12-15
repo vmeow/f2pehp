@@ -64,7 +64,7 @@ class Hiscores
     end
 
     def hcim_dead?(player_name)
-      uri = table_url(player_name, true)
+      uri = table_url("hcim", player_name)
 
       begin
         content = fetch(uri)
@@ -81,8 +81,8 @@ class Hiscores
           .present?
     end
 
-    def get_registered_player_name(player_name)
-      uri = table_url(player_name)
+    def get_registered_player_name(account_type, player_name)
+      uri = table_url(account_type, player_name)
 
       begin
         content = fetch(uri)
@@ -119,13 +119,18 @@ class Hiscores
       )
     end
 
-    def table_url(player_name, hcim = false)
+    def table_url(account_type, player_name)
       path = 'hiscore_oldschool'
-      path += '_hardcore_ironman' if hcim
+
+      path_suffix = {
+        HCIM: '_hardcore_ironman',
+        UIM: '_ultimate',
+        IM: '_ironman'
+      }
 
       URI.join(
         'https://secure.runescape.com',
-        "m=#{path}/overall.ws",
+        "m=#{path}#{path_suffix[account_type.to_sym]}/overall.ws",
         "?user=#{player_name}"
       )
     end
