@@ -1,6 +1,6 @@
 %p#notice= notice
 
-- Player.where("potential_p2p = 0").order("overall_ehp DESC").each do |player|
+- Player.where("potential_p2p = 0 AND (overall_ehp >= 250 OR player_name IN #{Player.sql_supporters()})").order("overall_ehp DESC").each do |player|
   - if not player.player_name.nil?
     - name = player.player_name.gsub(" ", "_")
   - else
