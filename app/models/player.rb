@@ -729,7 +729,7 @@ class Player < ActiveRecord::Base
     begin
       stats, account_type = Hiscores.fetch_stats(name)
     rescue SocketError, Net::ReadTimeout
-      Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
+      Rails.logger.warn "#{name}'s hiscores retrieval failed"
       # Stats could not be fetched due to inresponsiveness (3 attempts).
       return 'failed'
     end

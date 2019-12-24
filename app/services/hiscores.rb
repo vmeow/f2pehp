@@ -95,6 +95,7 @@ class Hiscores
       el = page.xpath('//*[@id="contentHiscores"]/table/tbody/tr/td/a/span')
                .first
       return el.inner_html.force_encoding('utf-8') if el
+      return player_name # player is unranked for overall level
 
       false
     end
