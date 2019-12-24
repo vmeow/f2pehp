@@ -151,7 +151,7 @@ class Player < ActiveRecord::Base
                 {name: "ThaneCore", amount: 5, date: "2019-12-08"},
                 {name: "Hc Eudu", amount: 5, date: "2019-12-15", flair_after: "flairs/hitsplat_zero.png"},
                 {name: "h o k i e s", amount: 5, date: "2019-12-21", flair_after: "flairs/Event_rpg.png"},
-                {name: "Futile Me", amount: 5, date: "2019-12-24", flair_after: "flairs/panda.png"},
+                {name: "Futile_Me", amount: 5, date: "2019-12-24", flair_after: "flairs/panda.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
