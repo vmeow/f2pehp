@@ -28,7 +28,7 @@ class Player < ActiveRecord::Base
   #   3. Add an image before their  name by adding the key :flair_before
   #   4. Apply arbitrary css by adding the key :other_css
   #   5. If any new images were required, be sure to add them to app/assests/images
-  SUPPORTERS = [{name: "Bargan", amount: 145.99, date: "2018-02-02"},
+  SUPPORTERS = [{name: "Bargan", amount: 190.82, date: "2018-02-02"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "Ikiji", amount: 96.59, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "a q p IM"},
@@ -152,6 +152,8 @@ class Player < ActiveRecord::Base
                 {name: "Hc Eudu", amount: 5, date: "2019-12-15", flair_after: "flairs/hitsplat_zero.png"},
                 {name: "h o k i e s", amount: 5, date: "2019-12-21", flair_after: "flairs/Event_rpg.png"},
                 {name: "Futile_Me", amount: 5, date: "2019-12-24", flair_after: "flairs/panda.png"},
+                {name: "Firebolt8xp", amount: 5, date: "2019-12-30", flair_after: "skills/mining.png"},
+                {name: "King Dumile", amount: 5, date: "2020-01-02", flair_after: "flairs/antisanta.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
