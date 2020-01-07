@@ -302,6 +302,8 @@ class Player < ActiveRecord::Base
         return false
       end
 
+      stats[:failed_updates] = 0
+
       if player_acc_type != account_type
         stats[:player_acc_type] = account_type
       elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
