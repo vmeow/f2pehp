@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_08_221058) do
+ActiveRecord::Schema.define(version: 2020_01_12_234749) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -362,6 +362,8 @@ ActiveRecord::Schema.define(version: 2019_12_08_221058) do
     t.integer "lms_score"
     t.integer "lms_rank"
     t.integer "failed_updates", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

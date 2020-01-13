@@ -185,6 +185,9 @@
     = link_to "Gains", player_path(@player.player_name, :display => "gains")
     = " | "
     = link_to "Records", player_path(@player.player_name, :display => "records")
+    %br
+    = "Last Updated: #{@player.updated_at ? time_ago_in_words(@player.updated_at) + ' ago' : 'unknown'}"
+
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
     = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
       - if @display == "stats"

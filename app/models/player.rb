@@ -38,6 +38,7 @@ class Player < ActiveRecord::Base
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
                 {name: "Pawz", amount: 55.5, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
+                {name: "Metan", amount: 35, date: "2019-02-13", flair_after: "flairs/Easter_egg.png"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Romans ch 12", amount: 30, date: "2019-04-13"},
                 {name: "DJ9", amount: 30, date: "2018-04-18", flair_after: "flairs/death_rune.png"},
@@ -49,7 +50,6 @@ class Player < ActiveRecord::Base
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Based F2P IM", amount: 30, date: "2019-10-05", flair_after: "IM.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
-                {name: "Metan", amount: 25, date: "2019-02-13", flair_after: "items/Feather.png"},
                 {name: "Anonymous", amount: 20, date: "2019-07-19", no_link: true},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
@@ -83,6 +83,7 @@ class Player < ActiveRecord::Base
                 {name: "iron korbah", amount: 10, date: "2019-09-27"},
                 {name: "ASCMA2828Z", amount: 10, date: "2019-11-16", flair_after: "flairs/Earth_rune.png"},
                 {name: "Exile Myth", amount: 10, date: "2019-12-23", flair_after: "flairs/cwars_gold_helm.png"},
+                {name: "F2P_Poke_Btw", amount: 10, date: "2020-01-12"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -315,6 +316,7 @@ class Player < ActiveRecord::Base
     end
 
     stats = calculate_virtual_stats(stats)
+    stats[:updated_at] = Time.now
 
     self.attributes = stats
     self.save(validate: false)
@@ -746,6 +748,7 @@ class Player < ActiveRecord::Base
     return unless name  # Player does not exist if return value is false
 
     player = Player.create!(player_name: name, player_acc_type: account_type)
+    stats[:created_at] = Time.now
     player.update_player(stats: stats)
     player
   end
