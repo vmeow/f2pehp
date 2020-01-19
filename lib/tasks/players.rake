@@ -3,7 +3,10 @@ require "open-uri"
 namespace :players do
   desc "Update stats for all players"
   task :update_all => :environment do
-    Player.all.find_in_batches(batch_size: 25) do |batch|
+    # NOTE: disable updating all 8k+ players until official
+    # hiscores stop acting up
+    # Player.all.find_in_batches(batch_size: 25) do |batch|
+    Player.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").find_in_batches(batch_size: 25) do |batch|
       batch.each do |player|
         begin
           player.update_player
