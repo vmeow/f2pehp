@@ -335,9 +335,13 @@ class Player < ActiveRecord::Base
     return false unless account_type
 
     if player_acc_type != account_type
-      ehp_diffs = get_gains_ehp_diffs()
-      update_attribute(:player_acc_type, account_type)
-      fix_wrong_acc_type_gains_and_records(actual_stats, ehp_diffs)
+      if overall_xp_year_start
+        ehp_diffs = get_gains_ehp_diffs()
+        update_attribute(:player_acc_type, account_type)
+        fix_wrong_acc_type_gains_and_records(actual_stats, ehp_diffs)
+      else
+        update_attribute(:player_acc_type, account_type)
+      end
     elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
       # Check if HCIM has died on the overall hiscores table.
       # Normally this should have been picked up by the `fetch_stats`
