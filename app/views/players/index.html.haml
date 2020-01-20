@@ -92,7 +92,7 @@
               - if player.player_name == "Based Chew"
                 %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
               - else
-                %td{:align => "left"}= link_to player.player_name, "players/#{name}"
+                %td{:align => "left"}= link_to player.player_name, "players/#{name.encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}"
               %td{:align => "center"}= player.player_acc_type
               %td= number_with_delimiter(player.overall_ehp.to_f, :delimiter => ",", :separator => ".") 
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-top: 0px;")

@@ -150,7 +150,7 @@
           %tr
             - offset = index + (@players.current_page - 1)*@show_limit.to_i
             %td{:align => "right"}= offset
-            - name = player.player_name.gsub(" ", "_")
+            - name = player.player_name.gsub(" ", "_").encode("ASCII", invalid: :replace, undef: :replace, replace: '_')
             - if player.player_name == "Based Chew"
               %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
             - else
