@@ -206,15 +206,10 @@ class Player < ActiveRecord::Base
 
   def self.find_player(id)
     id = self.sanitize_name(id)
-    player = Player.where('lower(player_name) = ?', id.downcase).first
-    if player.nil?
-      name = id.gsub("_", " ")
-      player = Player.where('lower(player_name) = ?', name.downcase).first
-    end
-    if player.nil?
-      name = id.gsub(" ", "_")
-      player = Player.where('lower(player_name) = ?', name.downcase).first
-    end
+    splits = id.split(/[\s\_]|(%20)/)
+    res = splits.map { |s| "lower(player_name) like '%#{s}%'"}.join(" and ")
+    player = Player.where(res).first
+
     if player.nil?
       begin
         player = Player.find(Float(id))
