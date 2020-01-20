@@ -12,8 +12,7 @@ class PlayersController < ApplicationController
       name = Player.sanitize_name(params[:search])
       @player = Player.find_player(name)
       if @player
-        name = @player.player_name.gsub(" ", "_")
-        redirect_to "/players/#{name}"
+        redirect_to "/players/#{@player.player_name}"
       else
         redirect_to ranks_path, notice: "Player '#{name}' not found."
       end
