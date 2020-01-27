@@ -30,30 +30,40 @@ function ready() {
       level += 8;
       return Math.floor(0.5 + level * (gear+64) / 640);
     }
-    
+	
+	function getAttributeValue(value) {
+		let ele = document.querySelector('[name="' + value + '"]');
+		return ele ? ele.value : 0;
+	}	
+	
+	function getAttributeChecked(value) {
+		let ele = document.querySelector('[name="' + value + '"]');
+		return ele ? ele.checked : 0;
+	}
+
     function dps(){
     	// Scan variables
-    	var att = document.querySelector('[name="att"]').value;
-    	var str = document.querySelector('[name="str"]').value;
-    	var attStyle = document.querySelector('[name="melee_style"]').value;
-    	var attPrayer = document.querySelector('[name="att_pray"]').value;
-    	var strPrayer = document.querySelector('[name="str_pray"]').value;
+    	var att = getAttributeValue("att");
+    	var str = getAttributeValue("str");
+    	var attStyle = getAttributeValue("melee_style");
+    	var attPrayer = getAttributeValue("att_pray");
+    	var strPrayer = getAttributeValue("str_pray");
     	
-    	var strPot = document.querySelector('[name="str_pot"]').checked;
+    	var strPot = getAttributeChecked('str_pot');
 
-    	var meleeWeapon = document.querySelector('[name="melee_weapon"]').value;
-    	var meleeNeck = document.querySelector('[name="melee_neck"]').value;
+    	var meleeWeapon = getAttributeValue("melee_weapon");
+    	var meleeNeck = getAttributeValue("melee_neck");
 
-        var mob = document.querySelector('[name="mob_name"]').value;
-        var customStats = document.querySelector('[name="custom_stats"]').checked;
-        var mobHP = document.querySelector('[name="mob_hp"]').value;
-        var mobDef = document.querySelector('[name="mob_def"]').value;
-        var mobArm = document.querySelector('[name="mob_arm"]').value;
+        var mob = getAttributeValue("mob_name");
+        var customStats = getAttributeChecked('custom_stats');
+        var mobHP = getAttributeValue("mob_hp");
+        var mobDef = getAttributeValue("mob_def");
+        var mobArm = getAttributeValue("mob_arm");
         
-        var customPlayerStats = document.querySelector('[name="custom_stats_melee"]').checked;
-        var customAtt = document.querySelector('[name="att_bonus"]').value;
-        var customStr = document.querySelector('[name="str_bonus"]').value;
-        var customSpeed = document.querySelector('[name="att_speed"]').value;
+        var customPlayerStats = getAttributeChecked('custom_stats_melee');
+        var customAtt = getAttributeValue("att_bonus");
+        var customStr = getAttributeValue("str_bonus");
+        var customSpeed = getAttributeValue("att_speed");
 
         // Equipment bonuses
         var attBonus = 0;
@@ -350,28 +360,28 @@ function ready() {
     
     function rangeddps(){
     	// Scan variables
-    	var ranged = document.querySelector('[name="ranged"]').value;
-    	var rangedStyle = document.querySelector('[name="ranged_style"]').value;
-    	var rangedPrayer = document.querySelector('[name="ranged_pray"]').value;
+    	var ranged = getAttributeValue("ranged");
+    	var rangedStyle = getAttributeValue("ranged_style");
+    	var rangedPrayer = getAttributeValue("ranged_pray");
 
-    	var rangedWeapon = document.querySelector('[name="ranged_weapon"]').value;
-    	var rangedAmmo = document.querySelector('[name="ranged_ammo"]').value;
-    	var rangedNeck = document.querySelector('[name="ranged_neck"]').value;
-    	var rangedHead = document.querySelector('[name="ranged_head"]').value;
-    	var rangedBody = document.querySelector('[name="ranged_body"]').value;
-    	var rangedLegs = document.querySelector('[name="ranged_legs"]').value;
-    	var rangedHand = document.querySelector('[name="ranged_hand"]').value;
+    	var rangedWeapon = getAttributeValue("ranged_weapon");
+    	var rangedAmmo = getAttributeValue("ranged_ammo");
+    	var rangedNeck = getAttributeValue("ranged_neck");
+    	var rangedHead = getAttributeValue("ranged_head");
+    	var rangedBody = getAttributeValue("ranged_body");
+    	var rangedLegs = getAttributeValue("ranged_legs");
+    	var rangedHand = getAttributeValue("ranged_hand");
 
-        var mob = document.querySelector('[name="mob_name"]').value;
-        var customStats = document.querySelector('[name="custom_stats"]').checked;
-        var mobHP = document.querySelector('[name="mob_hp"]').value;
-        var mobDef = document.querySelector('[name="mob_def"]').value;
-        var mobArm = document.querySelector('[name="mob_arm"]').value;
+        var mob = getAttributeValue("mob_name");
+        var customStats = getAttributeChecked("custom_stats");
+        var mobHP = getAttributeValue("mob_hp");
+        var mobDef = getAttributeValue("mob_def");
+        var mobArm = getAttributeValue("mob_arm");
         
-        var customPlayerStats = document.querySelector('[name="custom_stats_ranged"]').checked;
-        var customRangedAtt = document.querySelector('[name="ranged_att_bonus"]').value;
-        var customRangedStr = document.querySelector('[name="ranged_str_bonus"]').value;
-        var customRangedSpeed = document.querySelector('[name="ranged_att_speed"]').value;
+        var customPlayerStats = getAttributeChecked('custom_stats_ranged');
+        var customRangedAtt = getAttributeValue("ranged_att_bonus");
+        var customRangedStr = getAttributeValue("ranged_str_bonus");
+        var customRangedSpeed = getAttributeValue("ranged_att_speed");
 
         // Equipment bonuses
         var rangedBonus = 0;
@@ -618,27 +628,27 @@ function ready() {
 
     function magicdps(){
     	// Scan variables
-    	var magic = document.querySelector('[name="magic"]').value;
-    	var magicPrayer = document.querySelector('[name="magic_pray"]').value;
-    	var magicSpell = document.querySelector('[name="magic_spell"]').value;
+    	var magic = getAttributeValue("magic");
+    	var magicPrayer = getAttributeValue("magic_pray");
+    	var magicSpell = getAttributeValue("magic_spell");
 
-    	var magicWeapon = document.querySelector('[name="magic_weapon"]').value;
-    	var magicNeck = document.querySelector('[name="magic_neck"]').value;
-    	var magicHead = document.querySelector('[name="magic_head"]').value;
-    	var magicBody = document.querySelector('[name="magic_body"]').value;
-    	var magicLegs = document.querySelector('[name="magic_legs"]').value;
+    	var magicWeapon = getAttributeValue("magic_weapon");
+    	var magicNeck = getAttributeValue("magic_neck");
+    	var magicHead = getAttributeValue("magic_head");
+    	var magicBody = getAttributeValue("magic_body");
+    	var magicLegs = getAttributeValue("magic_legs");
 
-        var mob = document.querySelector('[name="mob_name"]').value;
-        var customStats = document.querySelector('[name="custom_stats"]').checked;
-        var pvp = document.querySelector('[name="pvp"]').checked;
-        var mobHP = document.querySelector('[name="mob_hp"]').value;
-        var mobDef = document.querySelector('[name="mob_def"]').value;
-        var mobMagic = document.querySelector('[name="mob_magic"]').value;
-        var mobArm = document.querySelector('[name="mob_arm"]').value;
+        var mob = getAttributeValue("mob_name");
+        var customStats = getAttributeChecked('custom_stats');
+        var pvp = getAttributeChecked("pvp");
+        var mobHP = getAttributeValue("mob_hp");
+        var mobDef = getAttributeValue("mob_def");
+        var mobMagic = getAttributeValue("mob_magic");
+        var mobArm = getAttributeValue("mob_arm");
         
-        var customPlayerStats = document.querySelector('[name="custom_stats_magic"]').checked;
-        var customMagicAtt = document.querySelector('[name="magic_att_bonus"]').value;
-        var customMagicSpeed = document.querySelector('[name="magic_att_speed"]').value;
+        var customPlayerStats = getAttributeChecked('custom_stats_magic');
+        var customMagicAtt = getAttributeValue("magic_att_bonus");
+        var customMagicSpeed = getAttributeValue("magic_att_speed");
 
         
         // Equipment bonuses
@@ -834,13 +844,13 @@ function ready() {
 
     function combat(){
     	// Scan variables
-    	var att = document.querySelector('[name="combat_att"]').value;
-    	var str = document.querySelector('[name="combat_str"]').value;
-    	var def = document.querySelector('[name="combat_def"]').value;
-    	var hp = document.querySelector('[name="combat_hp"]').value;
-    	var pray = document.querySelector('[name="combat_pray"]').value;
-    	var ranged = document.querySelector('[name="combat_ranged"]').value;
-    	var magic = document.querySelector('[name="combat_magic"]').value;
+    	var att = getAttributeValue("combat_att");
+    	var str = getAttributeValue("combat_str");
+    	var def = getAttributeValue("combat_def");
+    	var hp = getAttributeValue("combat_hp");
+    	var pray = getAttributeValue("combat_pray");
+    	var ranged = getAttributeValue("combat_ranged");
+    	var magic = getAttributeValue("combat_magic");
 
         // Calc Combat
         var base = 0.25 * (Number(def) + Number(hp) + Number(Math.floor(pray/2)));
