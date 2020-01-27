@@ -38,10 +38,10 @@ class Player < ActiveRecord::Base
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
                 {name: "Pawz", amount: 55.5, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
+                {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
                 {name: "Based F2P IM", amount: 40, date: "2019-10-05", flair_after: "IM.png"},
                 {name: "Metan", amount: 35, date: "2019-02-13", flair_after: "flairs/Easter_egg.png"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
-                {name: "Romans ch 12", amount: 30, date: "2019-04-13"},
                 {name: "DJ9", amount: 30, date: "2018-04-18", flair_after: "flairs/death_rune.png"},
                 {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
                 {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
@@ -54,10 +54,10 @@ class Player < ActiveRecord::Base
                 {name: "seid", amount: 20, date: "2019-11-18"},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
+                {name: "Iron of One", amount: 15, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
                 {name: "Brim haven", amount: 15, date: "2019-05-31", flair_after: "flairs/ceres.png"},
                 {name: "Anonymous", amount: 15, date: "2019-10-12", no_link: true},
-                {name: "Iron of One", amount: 13, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "TrustNoBanks", amount: 13, date: "2019-10-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
                 {name: "Yewsless", amount: 11, date: "2018-03-11", flair_after: "items/Yew_logs.gif"},
                 {name: "F2P Lukie", amount: 10, date: "2018-01-31", flair_after: "flairs/tea.png"},
@@ -93,6 +93,7 @@ class Player < ActiveRecord::Base
                 {name: "Valleyman6", amount: 6.64, date: "2018-06-15", flair_after: "flairs/uk_flag.png"},
                 {name: "i drink fiji", amount: 6, date: "2018-05-06", flair_after: "flairs/blue_cape.png"},
                 {name: "Uxeef", amount: 5.96, date: "2018-09-17"},
+                {name: "Lilypad19", amount: 5.69, date: "2020-01-23"},
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
                 {name: "threewaygang"},
                 {name: "Yellow bead", amount: 5.38, date: "2018-05-02", flair_after: "flairs/yellow_bead.png"},
@@ -156,12 +157,14 @@ class Player < ActiveRecord::Base
                 {name: "Firebolt8xp", amount: 5, date: "2019-12-30", flair_after: "skills/mining.png"},
                 {name: "King Dumile", amount: 5, date: "2020-01-02", flair_after: "flairs/antisanta.png"},
                 {name: "celastri", amount: 5, date: "2020-01-16"},
+                {name: "Iron Zephrya", amount: 5, date: "2020-01-20"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
                 {name: "Roavar", amount: 1.5, date: "2019-08-14", flair_after: "flairs/roavar.png"},
                 {name: "ColdFingers1", amount: 1, date: "2019-01-15", flair_after: "flairs/ColdFingers1.png"},
                 {name: "Anonymous", amount: 1, date: "2019-12-08", no_link: true},
+                {name: "HCaliaszeven", amount: 1, date: "2020-01-22"},
                 {name: "5perm sock"},
               ]
 
@@ -207,8 +210,8 @@ class Player < ActiveRecord::Base
   def self.find_player(id)
     id = self.sanitize_name(id)
     splits = id.split(/[\s\_]|(%20)/)
-    res = splits.map { |s| "lower(player_name) like '%#{s.downcase}%'"}.join(" and ")
-    player = Player.where(res).first
+    res = splits.join("_") # _ is a wildcard
+    player = Player.where("lower(player_name) like '%#{res}%'").first
 
     if player.nil?
       begin
