@@ -154,7 +154,7 @@
             - if player.player_name == "Based Chew"
               %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
             - else
-              %td{:align => "left"}= link_to player.player_name, "players/#{name}"  
+              %td{:align => "left"}= link_to player.player_name, "players/#{name.encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}"  
             %td{:align => "center"}= player.player_acc_type   
             - if @skill.include?("ttm")
               %td= number_with_delimiter(number_with_precision(player["#{@skill}"].to_f, :precision => 2), :delimiter => ",", :separator => ".") 
