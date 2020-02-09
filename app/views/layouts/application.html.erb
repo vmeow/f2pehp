@@ -6,6 +6,21 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="description" content="<%= @description ? @description : @default_description %>">
+
+  <!-- Facebook OG Tags -->
+  <meta property="og:type" content="website" /> 
+  <meta property="og:title" content="<%= @title %>" />
+  <meta property="og:description" content="<%= @description ? @description : @default_description %>" />
+  <meta property="og:image" content="<%= image_url("f2pwiki_500.png") %>" />
+  <meta property="og:url" content="<%= url_for(only_path: false) %>" />
+  <meta property="og:site_name" content="F2P Wiki" />
+
+  <!-- Twiter Tags -->
+  <meta name="twitter:title" content="<%= @title %>">
+  <meta name="twitter:description" content="<%= @description ? @description : @default_description %>" />
+  <meta name="twitter:image" content="<%= image_url("f2pwiki_500.png") %>" />
+  <meta name="twitter:url" content="<%= url_for(only_path: false) %>" />
 </head>
 <body id="body-<%= action_name %>">
 

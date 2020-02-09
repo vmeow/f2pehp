@@ -7,6 +7,11 @@ require 'will_paginate/array'
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[show edit update destroy]
 
+  def set_default_description
+    @default_description = 'F2P.wiki is an open source Old School RuneScape hiscores for Free-to-play players. It also includes EHP tracking, information about meta changes, and various F2P Old School RuneScape tools.'
+  end
+  before_action :set_default_description
+
   def search_player_if_needed
     if params[:search]
       name = Player.sanitize_name(params[:search])
