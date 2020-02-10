@@ -4,6 +4,8 @@ function ready() {
     //     startup();
     // }
 
+    startup();
+
     function maxhit(level, gear){
     level += 8;
     return Math.floor(0.5 + level * (gear+64) / 640);
