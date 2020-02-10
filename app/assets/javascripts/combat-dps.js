@@ -1,4 +1,4 @@
-function ready() {
+function combatDPS() {
     function maxhit(level, gear){
     level += 8;
     return Math.floor(0.5 + level * (gear+64) / 640);
@@ -918,5 +918,5 @@ function ready() {
     }
 }
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).ready(combatDPS);
+$(document).on('page:load', combatDPS);
