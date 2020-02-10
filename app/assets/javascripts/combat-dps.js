@@ -1,11 +1,4 @@
 function ready() {
-    // Only run on the combat and dps pages
-    // if ($('#body-dps').length || $('#body-combat').length) {
-    //     startup();
-    // }
-
-    startup();
-
     function maxhit(level, gear){
     level += 8;
     return Math.floor(0.5 + level * (gear+64) / 640);
@@ -916,6 +909,12 @@ function ready() {
         rangeddps()
         magicdps()
         combat()
+
+    }
+
+    // Only run on the combat and dps pages
+    if ($('#body-dps').length || $('#body-combat').length) {
+        startup();
     }
 }
 
