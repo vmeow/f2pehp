@@ -10,12 +10,12 @@ function ready() {
     }
 
     function getAttributeValue(value) {
-        let ele = document.querySelector('[name="' + value + '"]');
+        var ele = document.querySelector('[name="' + value + '"]');
         return ele ? ele.value : 0;
     }	
 
     function getAttributeChecked(value) {
-        let ele = document.querySelector('[name="' + value + '"]');
+        var ele = document.querySelector('[name="' + value + '"]');
         return ele ? ele.checked : false;
     }
 
