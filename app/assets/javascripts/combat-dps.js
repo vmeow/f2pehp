@@ -1,8 +1,8 @@
 function ready() {
     // Only run on the combat and dps pages
-    if ($('#body-dps').length || $('#body-combat').length) {
-        startup();
-    }
+    // if ($('#body-dps').length || $('#body-combat').length) {
+    //     startup();
+    // }
 
     function maxhit(level, gear){
     level += 8;
