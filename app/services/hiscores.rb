@@ -43,7 +43,7 @@ class Hiscores
           begin
             res = fetch(uri)
           rescue
-            next
+            raise ArgumentError, 'cannot compare accounts'
           end
 
           # No hiscores data for this mode, skip.
@@ -153,6 +153,9 @@ class Hiscores
 
       fields.each do |skill, skill_idx|
         rank, lvl, xp = data[skill_idx].split(',').map { |x| [x.to_i, 0].max }
+        rank = rank || -1
+        lvl = lvl || 0
+        xp = xp || 0
 
         case skill
         when 'p2p'
