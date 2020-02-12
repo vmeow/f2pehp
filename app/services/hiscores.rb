@@ -40,7 +40,11 @@ class Hiscores
         threads << Thread.new(uri, mode_idx, stats) do |uri, mode_idx, stats|
           # Raise exceptions in main thread so they can be caught.
           Thread.current.abort_on_exception = true
-          res = fetch(uri)
+          begin
+            res = fetch(uri)
+          rescue
+            next
+          end
 
           # No hiscores data for this mode, skip.
           next unless res
