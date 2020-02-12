@@ -211,7 +211,7 @@ class Player < ActiveRecord::Base
     id = self.sanitize_name(id)
     splits = id.split(/[\s\_]|(%20)/)
     res = splits.join("_") # _ is a wildcard
-    player = Player.where("lower(player_name) like '%#{res.downcase}%'").first
+    player = Player.where("lower(player_name) like '%#{res.downcase}%' and length(player_name) = length('#{res.downcase}')").first
 
     if player.nil?
       begin
