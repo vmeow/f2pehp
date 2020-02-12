@@ -308,7 +308,7 @@
     
 <div class="content-container shadow">
 	<div class="head-line secondary-text-color">
-		500
+		503
 	</div>
 	<div class="subheader primary-text-color">
 		Looks like we're having some server issues.
@@ -387,7 +387,7 @@
 
 
      ErrorPage.prototype.handleStatusFetchSuccess = function (pageType, data) {
-       if (pageType == '500') {
+       if (pageType == '503') {
          $('#replace-with-fetched-data').html(data.status.description);
        } else {
          if (!!data.scheduled_maintenances.length) {
@@ -414,7 +414,7 @@
        var url = ''
          , self = this;
 
-       if (pageType == '500') {
+       if (pageType == '503') {
          url = pageUrl + '/api/v2/status.json';
        }
        else {
@@ -433,7 +433,7 @@
        });
 
      };
-     var ep = new ErrorPage('body', "500", "background");
+     var ep = new ErrorPage('body', "503", "background");
      ep.initialize();
 
      // hack to make sure content stays centered >_<
