@@ -6,6 +6,10 @@
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" />
     <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/moment-timezone-with-data.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/jstz.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/localtimes.js"></script>
 
     <style>
      * {
@@ -305,28 +309,24 @@
 
   </head>
   <body class="background error-page-wrapper background-color background-image">
-    
-<div class="content-container shadow">
-	<div class="head-line secondary-text-color">
-		500
-	</div>
-	<div class="subheader primary-text-color">
-		Looks like we're having some server issues.
-	</div>
-	<div class="hr"></div>
-  <div class="context secondary-text-color">
-    
-    <p>
-      Go back to the previous page and try again.
-      If you think something is broken, report a problem.
-    </p>
+    <center>
+  <div class="content-container shadow">
+    <div class="head-line secondary-text-color">
+      Maintenance
+    </div>
+    <div class="subheader primary-text-color">
+      We're undergoing a bit of
+      scheduled maintenance.
+    </div>
+    <div class="hr"></div>
+    <div class="clearfix"></div>
+    <div class="context secondary-text-color">
+      
+    <p>Sorry for the inconvenience. We'll be back up and running as fast as possible.</p>
 
-
+    </div>
   </div>
-	<div class="buttons-container single-button">
-		<a class="button" href="mailto:#" target="_blank"><span class="fa fa-warning"></span> Report a problem</a>
-	</div>
-</div>
+</center>
 
 
     <script>
@@ -387,7 +387,7 @@
 
 
      ErrorPage.prototype.handleStatusFetchSuccess = function (pageType, data) {
-       if (pageType == '500') {
+       if (pageType == '503') {
          $('#replace-with-fetched-data').html(data.status.description);
        } else {
          if (!!data.scheduled_maintenances.length) {
@@ -414,7 +414,7 @@
        var url = ''
          , self = this;
 
-       if (pageType == '500') {
+       if (pageType == '503') {
          url = pageUrl + '/api/v2/status.json';
        }
        else {
@@ -433,7 +433,7 @@
        });
 
      };
-     var ep = new ErrorPage('body', "500", "background");
+     var ep = new ErrorPage('body', "maintenance", "background");
      ep.initialize();
 
      // hack to make sure content stays centered >_<
