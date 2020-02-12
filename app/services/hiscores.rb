@@ -168,8 +168,8 @@ class Hiscores
           stats[skill] = lvl
           stats["#{skill}_rank"] = rank
         when 'hitpoints'
-          stats["#{skill}_lvl"] = [lvl, 10].max
-          stats["#{skill}_xp"] = [xp, 1154].max
+          stats["#{skill}_lvl"] = [lvl || 0, 10].max
+          stats["#{skill}_xp"] = [xp || 0, 1154].max
         else
           stats["#{skill}_lvl"] = lvl
           stats["#{skill}_xp"] = xp
