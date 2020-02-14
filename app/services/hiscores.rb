@@ -153,9 +153,13 @@ class Hiscores
 
       fields.each do |skill, skill_idx|
         rank, lvl, xp = data[skill_idx].split(',').map { |x| [x.to_i, 0].max }
-        rank = rank || -1
-        lvl = lvl || 0
-        xp = xp || 0
+        rank = rank
+        lvl = lvl
+        xp = xp
+
+        if rank.nil? or lvl.nil?
+          raise ArgumentError, "invalid API stats"
+        end
 
         case skill
         when 'p2p'
@@ -175,8 +179,8 @@ class Hiscores
           stats[skill] = lvl
           stats["#{skill}_rank"] = rank
         when 'hitpoints'
-          stats["#{skill}_lvl"] = [lvl || 0, 10].max
-          stats["#{skill}_xp"] = [xp || 0, 1154].max
+          stats["#{skill}_lvl"] = [lvl, 10].max
+          stats["#{skill}_xp"] = [xp, 1154].max
         else
           stats["#{skill}_lvl"] = lvl
           stats["#{skill}_xp"] = xp
