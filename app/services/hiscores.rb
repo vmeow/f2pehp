@@ -40,11 +40,8 @@ class Hiscores
         threads << Thread.new(uri, mode_idx, stats) do |uri, mode_idx, stats|
           # Raise exceptions in main thread so they can be caught.
           Thread.current.abort_on_exception = true
-          begin
-            res = fetch(uri)
-          rescue
-            return
-          end
+
+          res = fetch(uri)
 
           # No hiscores data for this mode, skip.
           next unless res
@@ -56,7 +53,8 @@ class Hiscores
       end
 
       threads.each(&:join)
-      return if stats.empty?
+      # do not compare stats if at least one mode was not found
+      return if stats.empty? or stats.length < modes.length
 
       # Find the mode with the highest amount of total exp.
       actual_stats, mode_idx = stats.sort_by do |mode_stats_idx|
