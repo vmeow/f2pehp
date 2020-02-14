@@ -43,7 +43,7 @@ class Hiscores
           begin
             res = fetch(uri)
           rescue
-            raise ArgumentError, 'cannot compare accounts'
+            return
           end
 
           # No hiscores data for this mode, skip.
