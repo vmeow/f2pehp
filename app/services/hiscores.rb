@@ -8,7 +8,13 @@ class Hiscores
   ALL_MODES = %w[UIM HCIM IM Reg].freeze
 
   class << self
+    def hiscores_down
+      return ActiveRecord::Base.connection.execute("SELECT failed_updates FROM runs")[0]["failed_updates"] > 50
+    end
+
     def fetch_stats(player_name, account_type: nil)
+      return if hiscores_down
+
       parse_fields = [parse_fields] unless Array === parse_fields
 
       modes =
@@ -155,9 +161,7 @@ class Hiscores
         lvl = lvl
         xp = xp
 
-        if rank.nil? or lvl.nil?
-          raise ArgumentError, "invalid API stats"
-        end
+        return if rank.nil? or lvl.nil?
 
         case skill
         when 'p2p'

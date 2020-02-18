@@ -288,6 +288,7 @@ class Player < ActiveRecord::Base
     # Skip fetching from hiscores if stats are provided in parameters.
     unless stats
       begin
+        return false if Hiscores.hiscores_down
         stats, account_type = Hiscores
           .fetch_stats(player_name, account_type: player_acc_type)
       rescue SocketError, Net::ReadTimeout
@@ -297,6 +298,8 @@ class Player < ActiveRecord::Base
       end
 
       unless stats
+        ActiveRecord::Base.connection.execute("UPDATE runs SET failed_updates = failed_updates + 1")
+
         if failed_updates.nil? or failed_updates < 1
           update_attributes(failed_updates: 1)
         else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_234749) do
+ActiveRecord::Schema.define(version: 2020_02_18_172344) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -364,6 +364,11 @@ ActiveRecord::Schema.define(version: 2020_01_12_234749) do
     t.integer "failed_updates", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "runs", force: :cascade do |t|
+    t.datetime "hour"
+    t.integer "failed_updates"
   end
 
   create_table "users", force: :cascade do |t|
