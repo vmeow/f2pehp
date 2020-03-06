@@ -84,7 +84,7 @@ class Player < ActiveRecord::Base
                 {name: "ASCMA2828Z", amount: 10, date: "2019-11-16", flair_after: "flairs/Earth_rune.png"},
                 {name: "Exile Myth", amount: 10, date: "2019-12-23", flair_after: "flairs/cwars_gold_helm.png"},
                 {name: "F2P_Poke_Btw", amount: 10, date: "2020-01-12"},
-                {name: "smellypooo", amount: 10, date: "2020-02-14"},
+                {name: "SmellyPooo", amount: 10, date: "2020-02-14"},
                 {name: "Solo Tricket", amount: 10, flair_after: "flairs/Jester_cape.png"},
                 {name: "Gem Shop", amount: 10, flair_after: "items/Ruby.gif"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},

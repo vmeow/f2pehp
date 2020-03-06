@@ -1,0 +1,15 @@
+- @title = "FAQs"
+- @description = "Frequently asked questions"
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+= render :partial => "header.html.haml",  :locals => {notice: notice}
+
+= content_tag(:div, nil, class: "container", style: "width: 740px;") do 
+  = content_tag(:div, nil, class: "left", style: "margin-left: 30px; text-align: left; width: 640px; padding: 10px;") do 
+    %h1{:align => "center"} Frequently Asked Questions
+    = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+      = "This is an active work in progress. Please visit "
+      = link_to "this reddit post", "https://www.reddit.com/r/W385/comments/fdqw8p/what_is_f2pwiki/"
+      = "for our general site philosophy, specifically on what is F2P, and what this site is meant for."
+      %br
+      %br
