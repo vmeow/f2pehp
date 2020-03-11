@@ -40,11 +40,8 @@ class Hiscores
         threads << Thread.new(uri, mode_idx, stats) do |uri, mode_idx, stats|
           # Raise exceptions in main thread so they can be caught.
           Thread.current.abort_on_exception = true
-          begin
-            res = fetch(uri)
-          rescue
-            next
-          end
+
+          res = fetch(uri)
 
           # No hiscores data for this mode, skip.
           next unless res
@@ -56,7 +53,8 @@ class Hiscores
       end
 
       threads.each(&:join)
-      return if stats.empty?
+      # do not compare stats if at least one mode was not found
+      return if stats.empty? or stats.length < modes.length
 
       # Find the mode with the highest amount of total exp.
       actual_stats, mode_idx = stats.sort_by do |mode_stats_idx|
@@ -153,6 +151,13 @@ class Hiscores
 
       fields.each do |skill, skill_idx|
         rank, lvl, xp = data[skill_idx].split(',').map { |x| [x.to_i, 0].max }
+        rank = rank
+        lvl = lvl
+        xp = xp
+
+        if rank.nil? or lvl.nil?
+          raise ArgumentError, "invalid API stats"
+        end
 
         case skill
         when 'p2p'
@@ -172,8 +177,8 @@ class Hiscores
           stats[skill] = lvl
           stats["#{skill}_rank"] = rank
         when 'hitpoints'
-          stats["#{skill}_lvl"] = [lvl || 0, 10].max
-          stats["#{skill}_xp"] = [xp || 0, 1154].max
+          stats["#{skill}_lvl"] = [lvl, 10].max
+          stats["#{skill}_xp"] = [xp, 1154].max
         else
           stats["#{skill}_lvl"] = lvl
           stats["#{skill}_xp"] = xp

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'competitions' => 'players#competitions'
   get 'tracking' => 'players#tracking'
   get 'records' => 'players#records'
+  get 'faqs' => 'players#faqs'
   put 'players.:id' => 'players#update_player'
   put 'update' => 'players#update_player'
   get 'players/:id/update' => 'players#update', as: :update_player
