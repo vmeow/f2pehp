@@ -747,6 +747,7 @@ class Player < ActiveRecord::Base
     elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
       return 'p2p'
     end
+    puts "not found"
 
     begin
       stats, account_type = Hiscores.fetch_stats(name)

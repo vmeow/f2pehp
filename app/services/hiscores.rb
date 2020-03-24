@@ -53,8 +53,7 @@ class Hiscores
       end
 
       threads.each(&:join)
-      # do not compare stats if at least one mode was not found
-      return if stats.empty? or stats.length < modes.length
+      return if stats.empty?
 
       # Find the mode with the highest amount of total exp.
       actual_stats, mode_idx = stats.sort_by do |mode_stats_idx|
