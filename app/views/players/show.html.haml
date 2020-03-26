@@ -4,7 +4,7 @@
 = render :partial => "header.html.haml",  :locals => {notice: notice}
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 320px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 320px;") do
     - if @player.player_name == "Obor"
       = image_tag "flairs/shamanmask_resized.gif"
     - elsif @player.player_name == "Bargan"
@@ -178,6 +178,10 @@
         = "twitter @izzy_uwu main is mommy"
     - elsif @player.player_name == "Zubat"
       = image_tag "flairs/zubat.gif"
+    - elsif @player.player_name == "Vanity Pride"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 80px;") do
+        %h5
+          The one true ruler of W385 cc, no one can dispute or disprove this. Adds to the wiki from time to time.
           
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 300px;") do 
     = "Display:"
