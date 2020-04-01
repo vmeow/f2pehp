@@ -28,7 +28,7 @@ class Player < ActiveRecord::Base
   #   3. Add an image before their  name by adding the key :flair_before
   #   4. Apply arbitrary css by adding the key :other_css
   #   5. If any new images were required, be sure to add them to app/assests/images
-  SUPPORTERS = [{name: "Bargan", amount: 190.82, date: "2018-02-02"},
+  SUPPORTERS = [{name: "Bargan", amount: 240.82, date: "2018-02-02"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "M00MARCITO", amount: 100, date: "2020-03-24"},
                 {name: "Ikiji", amount: 96.59, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
@@ -51,6 +51,8 @@ class Player < ActiveRecord::Base
                 {name: "Earfs"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
+                {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
+                    {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
                 {name: "Anonymous", amount: 20, date: "2019-07-19", no_link: true},
                 {name: "seid", amount: 20, date: "2019-11-18"},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
@@ -67,7 +69,6 @@ class Player < ActiveRecord::Base
                 {name: "Frogmask", flair_after: "flairs/frog.png"},
                 {name: "FitMC", amount: 10, date: "2018-03-13", flair_after: "flairs/anchovy_pizza.png"},
                 {name: "Pink skirt", amount: 10, date: "2018-05-18", flair_after: "flairs/pink_skirt.png"},
-                {name: "UIM STK F2P", amount: 10, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                 {name: "MA5ON", amount: 10, date: "2018-11-15", flair_after: "items/Diamond.gif"},
                 {name: "NoQuestsHCIM", amount: 10, date: "2018-12-02", flair_after: "flairs/noquest.png"},
                 {name: "Sir BoJo", amount: 10, date: "2018-12-03", flair_after: "items/Rune_mace.gif"},
@@ -98,6 +99,7 @@ class Player < ActiveRecord::Base
                 {name: "Snooz Button", amount: 6.66, date: "2018-06-03", flair_after: "flairs/macaroni.png"},
                 {name: "Valleyman6", amount: 6.64, date: "2018-06-15", flair_after: "flairs/uk_flag.png"},
                 {name: "i drink fiji", amount: 6, date: "2018-05-06", flair_after: "flairs/blue_cape.png"},
+                {name: "5th Teletuby", amount: 6, date: "2020-03-29", flair_after: "flairs/Easter_basket.png"},
                 {name: "Uxeef", amount: 5.96, date: "2018-09-17"},
                 {name: "Lilypad19", amount: 5.69, date: "2020-01-23"},
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
