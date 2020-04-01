@@ -4,6 +4,11 @@
 = "It has been a wonderful 2 years, and I'm extremely grateful for the support and wonderful community. Thanks. - Unkie"
 %br
 
+- if DateTime.now > DateTime.new(2020, 4, 2)
+  %br
+  = "April Fools! You know I would never abandon my lovely people <3 - Unkie"
+  %br
+
 %p#notice= notice
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do
