@@ -177,7 +177,7 @@ class Player < ActiveRecord::Base
                 {name: "thelast lvl", amount: 5, date: "2020-02-29", flair_after: "items/Iron_bar.gif"},
                 {name: "Marrio III", amount: 5, date: "2020-02-29"},
                 {name: "Iron Rwne", amount: 5, date: "2020-03-03", flair_after: "flairs/rwne.png"},
-                {name: "I go by zach", amount: 5, date: "2020-03-12", flair_after: "skills/fishing.png"},
+                {name: "I go by zach", amount: 5, date: "2020-03-12", flair_after: "flairs/Spade.png"},
                 {name: "Prof Zetlin", amount: 5, date: "2020-03-21", flair_after: "flairs/Shoulder_parrot.png"},
                 {name: "Ult Olaf", amount: 5, date: "2020-03-24"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
