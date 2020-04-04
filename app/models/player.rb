@@ -189,6 +189,7 @@ class Player < ActiveRecord::Base
                 {name: "HCaliaszeven", amount: 1, date: "2020-01-22"},
                 {name: "pussyexpert9", amount: 1, date: "2020-02-03"},
                 {name: "5perm sock"},
+                {name: "HC Yiffer"}, # pro bono tracking
               ]
 
   def self.skills()
