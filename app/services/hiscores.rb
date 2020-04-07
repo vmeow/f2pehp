@@ -104,7 +104,7 @@ class Hiscores
     private
 
     def url_friendly_name(player_name)
-      ERB::Util.url_encode(player_name).gsub('%A0', '_').gsub('%C2', '')
+      ERB::Util.url_encode(player_name).gsub(/(%C2)*%A0/, '_')
     end
 
     def api_url(account_type, player_name)
