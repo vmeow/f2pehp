@@ -227,7 +227,7 @@ class Player < ActiveRecord::Base
     if str.downcase == "_yrak"
       return str
     else
-      str = str.gsub(/[-_\\+]|(%20)/, " ")
+      str = ERB::Util.url_encode(str).gsub(/[-_\\+]|(%20)|(%C2%A0)/, " ")
       return str.gsub(/\A[^A-z0-9]+|[^A-z0-9\s\_-]+|[^A-z0-9]+\z/, "")
     end
   end
@@ -246,6 +246,10 @@ class Player < ActiveRecord::Base
       end
     end
     return player
+  end
+
+  def url_friendly_player_name
+    ERB::Util.url_encode(player_name).gsub(/(%C2)*%A0/, '_')
   end
 
   def hcim_dead?

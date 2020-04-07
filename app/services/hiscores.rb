@@ -103,6 +103,10 @@ class Hiscores
 
     private
 
+    def url_friendly_name(player_name)
+      ERB::Util.url_encode(player_name).gsub('%A0', '_').gsub('%C2', '')
+    end
+
     def api_url(account_type, player_name)
       unless account_type.in? Player.account_types
         raise ArgumentError, 'account type not recognized'
@@ -117,7 +121,7 @@ class Hiscores
       URI.join(
         'https://services.runescape.com',
         "m=hiscore_oldschool#{path_suffix[account_type.to_sym]}/index_lite.ws",
-        "?player=#{player_name}"
+        "?player=#{url_friendly_name(player_name)}"
       )
     end
 
