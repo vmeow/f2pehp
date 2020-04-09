@@ -28,13 +28,10 @@ class Player < ActiveRecord::Base
   #   3. Add an image before their  name by adding the key :flair_before
   #   4. Apply arbitrary css by adding the key :other_css
   #   5. If any new images were required, be sure to add them to app/assests/images
-  SUPPORTERS = [{name: "Bargan", amount: 240.82, date: "2018-02-02"},
-	  	# april fools
-	  	{name: "Jingle Bells", amount: 10000.69, date: "2020-04-01", flair_after: "flairs/santa.png"},
-	  	# april fools
+  SUPPORTERS = [{name: "Bargan", amount: 260.82, date: "2018-02-02"},
+                {name: "Ikiji", amount: 107.28, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "M00MARCITO", amount: 100, date: "2020-03-24"},
-                {name: "Ikiji", amount: 96.59, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "a q p IM"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
@@ -95,6 +92,8 @@ class Player < ActiveRecord::Base
                 {name: "I go by zach", amount: 10, date: "2020-03-12", flair_after: "flairs/Spade.png"},
                 {name: "Hagl", amount: 10, date: "2020-03-16"},
                 {name: "Vanity Pride", amount: 10, date: "2020-03-26", flair_after: "flairs/Blue_partyhat.png"},
+                {name: "f2p HClM btw", amount: 10, date: "2020-04-07", flair_after: "flairs/Mole_slippers.png"},
+                {name: "Hnn 40", amount: 10, date: "2020-04-08", flair_after: "items/Rune_scimitar.gif", other_css: ["color: #850000"]},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -191,6 +190,7 @@ class Player < ActiveRecord::Base
                 {name: "pussyexpert9", amount: 1, date: "2020-02-03"},
                 {name: "5perm sock"},
                 {name: "HC Yiffer"}, # pro bono tracking
+                {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
               ]
 
   def self.skills()
