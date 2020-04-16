@@ -60,7 +60,7 @@ class Player < ActiveRecord::Base
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
                 {name: "Brim haven", amount: 15, date: "2019-05-31", flair_after: "flairs/ceres.png"},
-                {name: "GOLB f2p", amount: 15, date: "2019-06-05", flair_after: "flairs/golb.png", other_css: ["color: #66ffff"]},
+                {name: "GOLB f2p", amount: 15, date: "2019-06-05", flair_after: "flairs/golb2.png", other_css: ["color: #66ffff"]},
                 {name: "Anonymous", amount: 15, date: "2019-10-12", no_link: true},
                 {name: "TrustNoBanks", amount: 13, date: "2019-10-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
                 {name: "Yewsless", amount: 11, date: "2018-03-11", flair_after: "items/Yew_logs.gif"},
