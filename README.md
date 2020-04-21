@@ -107,7 +107,13 @@ bundle install
 bundle exec rake db:migrate
 ```
 
-### 6. Verify installation by running server
+### 6. Seed with dummy data
+
+```bash
+bundle exec rake db:seed
+```
+
+### 7. Verify installation by running server
 
 ```bash
 rails s
