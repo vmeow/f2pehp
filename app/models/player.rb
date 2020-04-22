@@ -182,7 +182,7 @@ class Player < ActiveRecord::Base
                 {name: "R E3", amount: 5, date: "2020-03-24"},
                 {name: "Plue", amount: 5, date: "2020-04-06", flair_after: "flairs/Snow_globe.png"},
                 {name: "Solo Dancer", amount: 5, date: "2020-04-15", flair_after: "flairs/Redemption.png"},
-                {name: "TheNutSlush", amount: 5, date: "2020-04-19", flair_after: "flairs/Reward_casket_(beginner).png"},
+                {name: "TheNutSlush", amount: 5, date: "2020-04-19", flair_after: "flairs/Reward_casket_beginner.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
