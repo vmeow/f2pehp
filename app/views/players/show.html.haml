@@ -4,7 +4,7 @@
 = render :partial => "header.html.haml",  :locals => {notice: notice}
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 320px;") do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 235px;") do
     - if @player.player_name == "Obor"
       = image_tag "flairs/shamanmask_resized.gif"
     - elsif @player.player_name == "Bargan"
@@ -187,7 +187,7 @@
     - elsif @player.player_name == "GOLB f2p"
       = image_tag "flairs/golb_banner.png"
           
-  = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 300px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 380px;") do 
     = "Display:"
     = link_to "Stats", player_path(@player.player_name, :display => "stats")
     = " | "
@@ -200,8 +200,8 @@
       %br
       = "recent failed updates: #{@player.failed_updates}"
 
-    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
-    = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 380px; height: 28px; margin-bottom: 0px;") 
+    = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 380px; padding: 5px; margin-bottom: 0px;") do 
       - if @display == "stats"
         %thead
           %th{:colspan => 5}
@@ -364,7 +364,7 @@
               %th= image_tag "skills/#{skill}.png"
               %td= number_with_delimiter(@player["#{skill}_xp_#{@time}_max"].to_i, :delimiter => ",") 
               %td= number_with_delimiter(number_with_precision(@player["#{skill}_ehp_#{@time}_max"].to_f, precision: 2), :delimiter => ",") 
-    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 380px; height:28px; margin-top: 0px;") 
   
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 20px; width: 152px; max-width: 152px; overflow-x: auto; margin-top: 5px;") do 
 
