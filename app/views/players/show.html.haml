@@ -374,7 +374,7 @@
       %h4 Update Stats
       = link_to "#{@player.player_name}", update_player_path
 
-    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 5px; width: 152px; height: 98px;") do 
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-bottom: 5px; width: 152px; height: 126px;") do 
       = "Other Hiscores"
       %br
       - if @player.player_acc_type == "HCIM"
@@ -387,6 +387,7 @@
         = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
       %br
       = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.url_friendly_player_name}"
+      = link_to "TempleOSRS", "https://templeosrs.com/player/overview.php?player=#{@player.url_friendly_player_name}"
         
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 5px; width: 152px; height: 98px;") do 
       = form_tag ranks_path, :method => "get", id: "search-players-form" do
