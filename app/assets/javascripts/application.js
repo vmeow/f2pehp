@@ -25,6 +25,11 @@ function ready() {
         $('#links-list').slideToggle(100);
         event.stopPropagation();
     });
+
+    var containers = document.getElementsByClassName("perfect-scroll");
+    for (var i = 0; i < containers.length; i++) {
+        new PerfectScrollbar(containers.item(i));
+    }
 }
 
 $(document).on("click", function(event){
