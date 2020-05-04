@@ -312,8 +312,6 @@ class Player < ActiveRecord::Base
   end
 
   def update_player(stats: nil)
-    return if player_name == "Freckled Kid"
-
     if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
     end
