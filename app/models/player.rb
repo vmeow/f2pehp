@@ -97,7 +97,7 @@ class Player < ActiveRecord::Base
                 {name: "Hnn 40", amount: 10, date: "2020-04-08", flair_after: "items/Rune_scimitar.gif", other_css: ["color: #850000"]},
                 {name: "Ultimate F2P", amount: 10, date: "2020-04-10", flair_after: "flairs/Mole_slippers.png"},
                 {name: "Don Rinus", amount: 10, date: "2020-04-26", flair_after: "flairs/Shoulder_parrot.png"},
-                {name: "water9", amount: 10, date: "2020-05-01", flair_after: "items/Water_rune.gif", other_css: ["color: #ffd3f7"]},
+                {name: "water9", amount: 10, date: "2020-05-01", flair_after: "items/Water_rune.gif"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -197,6 +197,7 @@ class Player < ActiveRecord::Base
                 {name: "pussyexpert9", amount: 1, date: "2020-02-03"},
                 {name: "5perm sock"},
                 {name: "HC Yiffer"}, # pro bono tracking
+                {name: "Disenthral"}, # pro bono tracking
                 {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
               ]
 
