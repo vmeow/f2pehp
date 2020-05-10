@@ -112,7 +112,7 @@ class Player < ActiveRecord::Base
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
                 {name: "threewaygang"},
                 {name: "Yellow bead", amount: 5.38, date: "2018-05-02", flair_after: "flairs/yellow_bead.png"},
-                {name: "70 Crafting", amount: 5.08, date: "2018-05-06", flair_after: "flairs/Amulet_of_power.png"},
+                {name: "70 Crafting", amount: 5.08, date: "2020-05-06", flair_after: "flairs/diamond_amulet_u.png"},
                 {name: "IronMace Din", amount: 5, date: "2018-02-18", flair_after: "flairs/maceblur2.png"},
                 {name: "HCIM_btw_fev", amount: 5, date: "2018-02-05", flair_after: "flairs/kitten.png"},
                 {name: "citnA", amount: 5, date: "2018-02-06", flair_after: "flairs/bronzehelm.png"},
