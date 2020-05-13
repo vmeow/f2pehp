@@ -57,6 +57,7 @@ class Player < ActiveRecord::Base
                 {name: "Anonymous", amount: 20, date: "2019-07-19", no_link: true},
                 {name: "seid", amount: 20, date: "2019-11-18"},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
+                {name: "Varvali", amount: 20, date: "2020-05-12"},
                 {name: "Iron of One", amount: 18, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
