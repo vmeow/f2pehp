@@ -54,6 +54,7 @@ class Player < ActiveRecord::Base
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                     {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
+                {name: "vpered", amount: 20, date: "2020-05-20", flair_after: "flairs/russia_flag.png"},
                 {name: "Anonymous", amount: 20, date: "2019-07-19", no_link: true},
                 {name: "seid", amount: 20, date: "2019-11-18"},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
