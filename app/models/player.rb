@@ -32,6 +32,7 @@ class Player < ActiveRecord::Base
                 {name: "Ikiji", amount: 107.28, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "M00MARCITO", amount: 100, date: "2020-03-24"},
+                {name: "Tele Crab", amount: 100, date: "2020-05-24", flair_before: "flairs/dark_crab.png", flair_after: "flairs/crab_claw.png"},
                 {name: "a q p IM"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
