@@ -330,7 +330,7 @@ class Player < ActiveRecord::Base
     unless stats
       begin
         stats, account_type = Hiscores
-          .fetch_stats(player_name, account_type: player_acc_type)
+          .fetch_stats_by_acc(player_name, player_acc_type)
       rescue SocketError, Net::ReadTimeout
         Rails.logger.warn "#{player_name}'s hiscores retrieval failed"
         # Stats could not be fetched due to inresponsiveness (3 attempts).
@@ -349,14 +349,17 @@ class Player < ActiveRecord::Base
 
       stats[:failed_updates] = 0
 
-      if player_acc_type != account_type
-        stats[:player_acc_type] = account_type
-      elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
-        # Check if HCIM has died on the overall hiscores table.
-        # Normally this should have been picked up by the `fetch_stats`
-        # call, but this is sometimes not reliable.
-        stats[:player_acc_type] = 'IM'
-      end
+      # Temporarily disable auto account detection due to recent Jagex API outages
+      # which result in false de-irons or other false account type changes.
+      #
+      # if player_acc_type != account_type
+      #   stats[:player_acc_type] = account_type
+      # elsif player_acc_type == 'HCIM' && account_type == 'HCIM' && hcim_dead?
+      #   # Check if HCIM has died on the overall hiscores table.
+      #   # Normally this should have been picked up by the `fetch_stats`
+      #   # call, but this is sometimes not reliable.
+      #   stats[:player_acc_type] = 'IM'
+      # end
     end
 
     stats = calculate_virtual_stats(stats)
