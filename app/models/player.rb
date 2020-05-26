@@ -275,10 +275,6 @@ class Player < ActiveRecord::Base
     Hiscores.hcim_dead?(player_name)
   end
 
-  def check_p2p(stats_hash)
-    return stats_hash[:potential_p2p] > 0
-  end
-
   def calc_combat(stats_hash)
     att = stats_hash["attack_lvl"]
     str = stats_hash["strength_lvl"]
@@ -346,6 +342,8 @@ class Player < ActiveRecord::Base
         end
         return false
       end
+
+      check_p2p_stats(stats)
 
       stats[:failed_updates] = 0
 
@@ -766,8 +764,27 @@ class Player < ActiveRecord::Base
     update_attributes(skill_hash)
   end
 
-  def self.check_p2p(stats)
-    return stats[:potential_p2p] > 0
+  def check_p2p_stats(stats)
+    actual_f2p_lvls = 0
+    (SKILLS - ["overall"]).each do |skill|
+      actual_f2p_lvls += stats["#{skill}_lvl"]
+    end
+
+    if stats["overall_lvl"] > 1493 or (stats["overall_lvl"] - 8) > actual_f2p_lvls
+      update_attributes(:potential_p2p => 1)
+    end
+  end
+
+  def self.initial_p2p_check(stats)
+    return true if stats[:potential_p2p] > 0
+
+    actual_f2p_lvls = 0
+    (SKILLS - ["overall"]).each do |skill|
+      actual_f2p_lvls += (stats["#{skill}_lvl"] or 0)
+    end
+
+    return true if (stats["overall_lvl"] - 8) > actual_f2p_lvls
+    return false
   end
 
   def self.create_new(name)
@@ -791,7 +808,7 @@ class Player < ActiveRecord::Base
 
     return unless stats  # Player does not exist if return value is nil
 
-    return 'p2p' if check_p2p(stats)
+    return 'p2p' if initial_p2p_check(stats)
 
     name = Hiscores.get_registered_player_name(account_type, name)
     return unless name  # Player does not exist if return value is false
