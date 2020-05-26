@@ -137,7 +137,7 @@ class Hiscores
       URI.join(
         'https://secure.runescape.com',
         "m=#{path}#{path_suffix[account_type.to_sym]}/overall.ws",
-        "?user=#{player_name}"
+        "?user=#{url_friendly_name(player_name)}"
       )
     end
 
