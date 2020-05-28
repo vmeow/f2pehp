@@ -195,6 +195,7 @@ class Player < ActiveRecord::Base
                 {name: "Ultw", amount: 5, date: "2020-04-28"},
                 {name: "xxcxzx", amount: 5, date: "2020-05-05"},
                 {name: "iTz a Loner", amount: 5, date: "2020-05-16", flair_after: "flairs/barricade.png"},
+                {name: "Momoka Nishi", amount: 5, date: "2020-05-27", flair_after: "flairs/red_boater.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
