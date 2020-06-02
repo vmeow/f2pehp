@@ -1,21 +1,5 @@
 %p#notice= notice
 
-= content_tag(:div, nil, class: "container", style: "width: 800px;") do
-  = "Good news, everyone!"
-  %br
-  %br
-  = "Please join me in welcoming"
-  = link_to "Say F2p Ult", request.base_url + "/players/Say_F2p_Ult"
-  = "as the new official co-owner of F2P.wiki!"
-  %br
-  %br
-  = "He is a trusted and beloved friend and community member who has already given much of his own free time to contribute to the open source code of this site. There have been several improvements thanks to Say, and I know that with our combined efforts and leadership, we will have an even better site than ever before."
-  %br
-  %br
-  = "If you see him in game, please take the time to say hello and thank him for his work!"
-  %br
-  = "- Unkie"
-
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do
   = content_tag(:div, nil, class: ["bar", "ranks", "selected-link"]) do
     = link_to_unless_current "Hiscores", ranks_path
