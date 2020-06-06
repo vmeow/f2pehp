@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post 'players#names' => 'players#find_new', as: :find_new
   post 'items#update_prices' => 'items#update_prices', as: :update_prices
   post 'items#create_items' => 'items#create_items', as: :create_items
+  post 'admin#add_supporter' => 'admin#add_supporter', as: :add_supporter
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

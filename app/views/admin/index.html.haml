@@ -1,6 +1,8 @@
 - @title = "Admin" 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
+%p#notice= notice
+
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["bar", "ranks"]) do
     = link_to "Hiscores", ranks_path
@@ -19,7 +21,7 @@
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 15px; width: 140px; height: 96px; display: inline-block;") do 
-    = form_tag admin_path, :method => "post", id: "add-supporter-form" do
+    = form_tag add_supporter_path, :method => "post", id: "add-supporter-form" do
       = "Add Supporter"
       %br
       = text_field_tag :player_supporter, params[:player_supporter], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
