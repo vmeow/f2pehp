@@ -29,7 +29,7 @@
       = submit_tag "Add"
       
   = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 15px; width: 140px; height: 96px; display: inline-block;") do 
-    = form_tag admin_path, :method => "post", id: "fix-spaces-form" do
+    = form_tag fix_spaces_path, :method => "post", id: "fix-spaces-form" do
       = "Fix Name Spaces"
       %br
       = text_field_tag :name_spaces, params[:name_spaces], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
@@ -37,7 +37,7 @@
       = submit_tag "Fix"
 
   = content_tag(:div, nil, class: ["container", "filter"], style: "margin-left: 15px; width: 140px; height: 126px; display: inline-block;") do 
-    = form_tag admin_path, :method => "post", id: "change-name-form" do
+    = form_tag change_name_path, :method => "post", id: "change-name-form" do
       = "Change Name"
       %br
       = text_field_tag :name1, params[:name1], placeholder: "Current name", :class => "search-field", style: "width: 100px;"
