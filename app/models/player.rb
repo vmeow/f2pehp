@@ -96,7 +96,7 @@ class Player < ActiveRecord::Base
                 {name: "Solo Tricket", amount: 10, flair_after: "flairs/Jester_cape.png"},
                 {name: "Gem Shop", amount: 10, flair_after: "items/Ruby.gif"},
                 {name: "I go by zach", amount: 10, date: "2020-03-12", flair_after: "flairs/Spade.png"},
-                {name: "Hagl", amount: 10, date: "2020-03-16"},
+                {name: "Hagl", amount: 20, date: "2020-06-15"},
                 {name: "Vanity Pride", amount: 10, date: "2020-03-26", flair_after: "flairs/Blue_partyhat.png"},
                 {name: "f2p HClM btw", amount: 10, date: "2020-04-07", flair_after: "flairs/Mole_slippers.png"},
                 {name: "Hnn 40", amount: 10, date: "2020-04-08", flair_after: "items/Rune_scimitar.gif", other_css: ["color: #850000"]},
