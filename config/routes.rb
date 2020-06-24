@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'tracking' => 'players#tracking'
   get 'records' => 'players#records'
   get 'faqs' => 'players#faqs'
+  get 'admin' => 'admin#index'
   put 'players.:id' => 'players#update_player'
   put 'update' => 'players#update_player'
   get 'players/:id/update' => 'players#update', as: :update_player
@@ -38,6 +39,9 @@ Rails.application.routes.draw do
   post 'players#names' => 'players#find_new', as: :find_new
   post 'items#update_prices' => 'items#update_prices', as: :update_prices
   post 'items#create_items' => 'items#create_items', as: :create_items
+  post 'admin#add_supporter' => 'admin#add_supporter', as: :add_supporter
+  post 'admin#fix_spaces' => 'admin#fix_spaces', as: :fix_spaces
+  post 'admin#change_name' => 'admin#change_name', as: :change_name
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

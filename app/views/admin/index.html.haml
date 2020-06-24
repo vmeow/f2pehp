@@ -1,0 +1,47 @@
+- @title = "Admin" 
+= link_to image_tag("f2pwiki_500.png"), players_path
+
+%p#notice= notice
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["bar", "ranks"]) do
+    = link_to "Hiscores", ranks_path
+  = content_tag(:div, nil, class: ["bar", "fake"]) do 
+    = link_to "Current Top", tracking_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "Records", records_path
+  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
+    = link_to "EHP Rates", ehp_path
+  = content_tag(:div, nil, class: ["bar", "links"]) do 
+    = link_to "Links", links_path
+  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
+    = link_to "Changelog", changelog_path
+  = content_tag(:div, nil, class: ["bar", "donate"]) do 
+    = link_to "About Us/Donate", donate_path
+
+= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
+  = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 15px; width: 140px; height: 96px; display: inline-block;") do 
+    = form_tag add_supporter_path, :method => "post", id: "add-supporter-form" do
+      = "Add Supporter"
+      %br
+      = text_field_tag :player_supporter, params[:player_supporter], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
+      %br
+      = submit_tag "Add"
+      
+  = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 15px; width: 140px; height: 96px; display: inline-block;") do 
+    = form_tag fix_spaces_path, :method => "post", id: "fix-spaces-form" do
+      = "Fix Name Spaces"
+      %br
+      = text_field_tag :name_spaces, params[:name_spaces], placeholder: "Player Name", :class => "add-player-field", style: "width: 100px;"
+      %br
+      = submit_tag "Fix"
+
+  = content_tag(:div, nil, class: ["container", "filter"], style: "margin-left: 15px; width: 140px; height: 126px; display: inline-block;") do 
+    = form_tag change_name_path, :method => "post", id: "change-name-form" do
+      = "Change Name"
+      %br
+      = text_field_tag :name1, params[:name1], placeholder: "Current name", :class => "search-field", style: "width: 100px;"
+      %br
+      = text_field_tag :name2, params[:name2], placeholder: "New name", :class => "search-field", style: "width: 100px;"
+      %br
+      = submit_tag "Change"
