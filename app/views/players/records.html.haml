@@ -1,23 +1,8 @@
 - @title = "Record Gains" 
+- @description = "F2P account XP and EHP records set for Day, Week, Month and Year." 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
-%p#notice= notice
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp", "selected-link"]) do 
-    = "Records"
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
+= render :partial => "header.html.haml",  :locals => {notice: notice}
 
 - skill_name = "#{@skill}".capitalize
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
@@ -108,6 +93,10 @@
           = link_to "Month", records_path(:time => "month")
           &nbsp&nbsp&nbsp
           = link_to "Year", records_path(:time => "year")
+
+    %br
+    = link_to "Reset filters", records_path(:clear_filters => "true")
+    %br
   
     = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
       = form_tag records_path, :method => :get, :id => 'filters_form' do

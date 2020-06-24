@@ -1,0 +1,23 @@
+%p#notice= notice
+
+- Player.where("potential_p2p = 0 AND (overall_ehp >= 250 OR player_name IN #{Player.sql_supporters()})").order("overall_ehp DESC").each do |player|
+  - if not player.player_name.nil?
+    - name = player.player_name.gsub(" ", "_")
+  - else
+    - name = player.player_name
+  - str = "              { 'player_name': '#{player.player_name}', 'player_acc_type': '#{player.player_acc_type}'"
+  - Player.skills().each do |skill|
+    - Player.times().each do |time|
+      - start_xp = player.read_attribute("#{skill}_xp_#{time}_start") || 0
+      - start_ehp = player.read_attribute("#{skill}_ehp_#{time}_start") || 0
+      - max_xp = player.read_attribute("#{skill}_xp_#{time}_max") || 0
+      - max_ehp = player.read_attribute("#{skill}_ehp_#{time}_max") || 0
+
+      - str = str +  ", #{skill}_xp_#{time}_start: #{start_xp}"
+      - str = str +  ", #{skill}_ehp_#{time}_start: #{start_ehp}"
+      - str = str +  ", #{skill}_xp_#{time}_max: #{max_xp}"
+      - str = str +  ", #{skill}_ehp_#{time}_max: #{max_ehp}"
+
+  - str = str +  "},\n"
+  = str
+  %br

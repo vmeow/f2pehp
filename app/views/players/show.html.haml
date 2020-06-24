@@ -1,26 +1,10 @@
 - @title = "#{@player.player_name}'s Personal Hiscores"
 = link_to image_tag("f2pwiki_500.png"), players_path
 
-%p#notice= notice
+= render :partial => "header.html.haml",  :locals => {notice: notice}
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["container", "left"], style: "width: 320px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 235px;") do
     - if @player.player_name == "Obor"
       = image_tag "flairs/shamanmask_resized.gif"
     - elsif @player.player_name == "Bargan"
@@ -63,7 +47,12 @@
           %br
           = "June 2018 EHP Comp"
     - elsif @player.player_name == "DJ9"
-      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: silver;"} 
+          = "2nd Place Team"
+          %br
+          = "July 2019 EHP Comp"
+        %br
         %h5{:style => "color: #CD7F32;"} 
           = "3rd Place Reg"
           %br
@@ -88,6 +77,9 @@
     - elsif @player.player_name == "UI Pain"
       = content_tag(:div, nil, style: "margin: auto; padding: 20px; width: 200px; height: 50px;") do 
         %h5 First F2P UIM lvl 3 skiller to achieve 99 woodcutting
+    - elsif @player.player_name == "Bronze axxe"
+      = content_tag(:div, nil, style: "margin: auto; padding: 20px; width: 200px; height: 50px;") do
+        %h5 First F2P HCIM lvl 3 skiller to achieve 99 woodcutting with a bronze axe
     - elsif @player.player_name == "Fe F2P"
       = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 20px;") do 
         %h5 Fe F2P, the HCIM killer
@@ -107,6 +99,11 @@
         = image_tag "fe_f2p/13.png"
     - elsif @player.player_name == "Pawz"
       = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: silver;"} 
+          = "2nd Place Team"
+          %br
+          = "July 2019 EHP Comp"
+        %br
         %h5{:style => "color: gold;"} 
           = "1st Place Reg"
           %br
@@ -134,11 +131,14 @@
     - elsif @player.player_name == "Netbook Pro"
       = image_tag "flairs/Netbook_Pro.png"
     - elsif @player.player_name == "tannerdino"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: gold;"} 
+          = "1st Place"
+          %br
+          = "July 2019 EHP Comp"
       = image_tag "flairs/tannerdino.png"
     - elsif @player.player_name == "NoQuestsHCIM"
       = image_tag "flairs/noquestshcim.png"
-    - elsif @player.player_name == "f2p Ello"
-      = image_tag "flairs/f2p_Ello.png"
     - elsif @player.player_name == "Adentia"
       = image_tag "flairs/Adentia.png"
     - elsif @player.player_name == "Yewsless"
@@ -150,20 +150,62 @@
       %br
       = image_tag "flairs/canada_large.jpg"
     - elsif @player.player_name == "ColdFingers3"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        %h5{:style => "color: gold;"} 
+          = "1st Place"
+          %br
+          = "July 2019 EHP Comp"
+      %br
       = image_tag "flairs/Attack_ColdFingers3.png"
       %br
       = image_tag "flairs/ColdFingers3.png"
+    - elsif @player.player_name == "DansPotatoe"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Team"
+          %br
+          = "July 2019 EHP Comp"
+    - elsif @player.player_name == "Irondish"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 40px;") do 
+        %h5{:style => "color: #CD7F32;"} 
+          = "3rd Place Team"
+          %br
+          = "July 2019 EHP Comp"
+    - elsif @player.player_name == "Wooper"
+      = image_tag "flairs/wooper_shiny.gif"
+    - elsif @player.player_name == "jane uwu"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px;") do 
+        = "twitter @izzy_uwu main is mommy"
+    - elsif @player.player_name == "Zubat"
+      = image_tag "flairs/zubat.gif"
+    - elsif @player.player_name == "Vanity Pride"
+      = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 80px;") do
+        %h5
+          The one true ruler of W385 cc, no one can dispute or disprove this. Adds to the wiki from time to time.
+    - elsif @player.player_name == "Say F2p Ult"
+      = image_tag "flairs/Say_F2p_Ult.png"
+    - elsif @player.player_name == "GOLB f2p"
+      = image_tag "flairs/golb_banner.png"    
+    - elsif @player.player_name == "Tele Crab"
+      = image_tag "flairs/crab.png"    
+    - elsif @player.player_name == "Hagl"
+      = image_tag "flairs/hagl.png"
           
-          
-  = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 300px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 380px;") do 
     = "Display:"
     = link_to "Stats", player_path(@player.player_name, :display => "stats")
     = " | "
     = link_to "Gains", player_path(@player.player_name, :display => "gains")
     = " | "
     = link_to "Records", player_path(@player.player_name, :display => "records")
-    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 300px; height: 28px; margin-bottom: 0px;") 
-    = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 300px; padding: 5px; margin-bottom: 0px;") do 
+    %br
+    = "Last Updated: #{@player.updated_at ? time_ago_in_words(@player.updated_at) + ' ago' : 'unknown'}"
+    - if @player.failed_updates > 0
+      %br
+      = "recent failed updates: #{@player.failed_updates}"
+
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 380px; height: 28px; margin-bottom: 0px;") 
+    = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 380px; padding: 5px; margin-bottom: 0px;") do 
       - if @display == "stats"
         %thead
           %th{:colspan => 5}
@@ -238,6 +280,45 @@
             %td= "Beginner"
             %td= @player["clues_beginner"]
             %td= @player["clues_beginner_rank"]
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+        %thead
+          %th{:align => "center"}
+          %th{:align => "center"} Minigame
+          %th{:align => "center"} Score
+          %th{:align => "center"} Rank
+        %tbody
+          %tr
+            %th= image_tag "skills/lms.png"
+            %td= "Last Man Standing"
+            %td= @player["lms_score"]
+            %td= @player["lms_rank"]
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+        %thead
+          %th{:align => "center"}
+          %th{:align => "center"} Boss
+          %th{:align => "center"} Kill Count
+          %th{:align => "center"} Rank
+        %tbody
+          %tr
+            %th= image_tag "skills/kill_count.png"
+            %td= "Obor"
+            %td= @player["obor_kc"]
+            %td= @player["obor_kc_rank"]
+          %tr
+            %th= image_tag "skills/kill_count.png"
+            %td= "Bryophyta"
+            %td= @player["bryo_kc"]
+            %td= @player["bryo_kc_rank"]
       - elsif @player.overall_ehp < 250 and (@display == "gains" or @display == "records") and !Player.supporters.include?(@player.player_name)
         %head
           %th= "This player is not being tracked. This will require 250 EHP or F2P Supporter status."
@@ -287,26 +368,30 @@
               %th= image_tag "skills/#{skill}.png"
               %td= number_with_delimiter(@player["#{skill}_xp_#{@time}_max"].to_i, :delimiter => ",") 
               %td= number_with_delimiter(number_with_precision(@player["#{skill}_ehp_#{@time}_max"].to_f, precision: 2), :delimiter => ",") 
-    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 300px; height:28px; margin-top: 0px;") 
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin:auto; width: 380px; height:28px; margin-top: 0px;") 
   
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 20px; width: 152px; max-width: 152px; overflow-x: auto; margin-top: 5px;") do 
+
+    - if @player.player_name == "f2p Ello"
+      = image_tag "flairs/f2p_ello2.png"
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 10px; width: 152px; height: 98px; padding-top: 0px;") do 
       %h4 Update Stats
       = link_to "#{@player.player_name}", update_player_path
-        
-    = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 5px; width: 152px; height: 98px;") do 
+
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-bottom: 5px; width: 152px; height: 126px;") do 
       = "Other Hiscores"
       %br
       - if @player.player_acc_type == "HCIM"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/hiscorepersonal.ws?user1=#{@player.player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
       - elsif @player.player_acc_type == "UIM"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ultimate/hiscorepersonal.ws?user1=#{@player.player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ultimate/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
       - elsif @player.player_acc_type == "IM"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ironman/hiscorepersonal.ws?user1=#{@player.player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ironman/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
       - elsif @player.player_acc_type == "Reg"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
       %br
-      = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.player_name}"
+      = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.url_friendly_player_name}"
+      = link_to "TempleOSRS", "https://templeosrs.com/player/overview.php?player=#{@player.url_friendly_player_name}"
         
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 5px; width: 152px; height: 98px;") do 
       = form_tag ranks_path, :method => "get", id: "search-players-form" do
@@ -339,3 +424,8 @@
             = link_to "Month", player_path(:time => "month")
             &nbsp&nbsp&nbsp
             = link_to "Year", player_path(:time => "year")
+
+    %br
+    = "wrong account type?"
+    %br
+    = link_to "click here", check_acc_type_path

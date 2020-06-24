@@ -1,22 +1,8 @@
 - @title = "About Us" 
+- @description = "Help support F2P.wiki by donating and receive special perks." 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
-%p#notice= notice
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate", "selected-link"]) do 
-    = "About Us/Donate"
+= render :partial => "header.html.haml",  :locals => {notice: notice}
 
 = content_tag(:div, nil, class: "container", style: "width: 740px;") do 
   = content_tag(:div, nil, class: "left", style: "margin-left: 30px; text-align: left; width: 430px; padding: 10px;") do 
@@ -25,6 +11,11 @@
       = "F2P.wiki is an "
       = link_to "open source", "https://github.com/vmeow/f2pehp/"
       = "Old School RuneScape hiscores for Free-to-play players. It is a fan-made passion project started in October 2017. It will always be 100% ad-free and non-profit, and is constantly updated with the help of the F2P OSRS community."
+      %br
+      %br
+      = "Check out our " 
+      = link_to "FAQs", faqs_path
+      = "for more in-depth details about this site and about F2P in general."
       %br
       %br
       = "F2P.wiki works with respected F2P individuals to bring forth EHP balances, information about meta changes, and various F2P Old School RuneScape tools. We also work on new features and additions all the time, and we welcome suggestions and contributors; see " 
@@ -70,6 +61,11 @@
       </form>
     = content_tag(:div, nil, class: "container", style: "text-align: center; width: 430px;") do 
       = "please leave your F2P account name and your request in the note, or coordinate with us at f2posrsranks@gmail.com"
+      %br
+      %br
+      = "Additionally, check out these shirts made by Pawz"
+      = link_to "here.", "https://teespring.com/f2p-wiki"
+      = "F2P.wiki receives half of all proceeds."
       
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 10px; width: 240px;") do 
     = content_tag(:div, nil, style: "text-align:center; width:220px; padding: 5px; margin-bottom: 10px; margin-top: 0px; padding-bottom: 20px;") do 

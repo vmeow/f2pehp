@@ -6,23 +6,27 @@ require 'will_paginate/array'
 
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[show edit update destroy]
-  
+
+  def set_default_description
+    @default_description = 'F2P.wiki is an open source Old School RuneScape hiscores for Free-to-play players. It also includes EHP tracking, information about meta changes, and various F2P Old School RuneScape tools.'
+  end
+  before_action :set_default_description
+
   def search_player_if_needed
     if params[:search]
       name = Player.sanitize_name(params[:search])
       @player = Player.find_player(name)
-      if @player 
-        name = @player.player_name.gsub(" ", "_")
-        redirect_to "/players/#{name}"
+      if @player
+        redirect_to "/players/#{@player.player_name.gsub(" ", "_").encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}"
       else
         redirect_to ranks_path, notice: "Player '#{name}' not found."
       end
       return
-    end 
+    end
   end
 
   def create_player_if_needed
-    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != "" 
+    if !params[:player_to_add_name].nil? and params[:player_to_add_name] != ""
       if params[:player_to_add_name].length > 12
         redirect_to ranks_path, notice: 'Invalid player name.'
         return
@@ -34,24 +38,23 @@ class PlayersController < ApplicationController
 
       result = Player.create_new(name)
 
-      if result.nil?
+      case result
+      when nil
         redirect_to ranks_path, notice: "Player hiscores not found."
-        return
-      elsif result == "exists"
+      when 'exists'
         redirect_to "/players/#{name.gsub(" ", "_")}", notice: "The player you wish to add already exists."
-        return
-      elsif result == "p2p"
+      when 'p2p'
         redirect_to ranks_path, notice: "The player you wish to add is not a free to play account."
-        return
-      elsif result == "cutoff"
+      when 'cutoff'
         redirect_to ranks_path, notice: "The player you wish to add does not meet the EHP requirement."
-        return
+      when 'failed'
+        redirect_to ranks_path, notice: 'Unable to fetch player hiscores.'
+      else
+        redirect_to result, notice: "Player added successfully."
       end
-
-      redirect_to result, notice: "Player added successfully."
     end
   end
-  
+
   def tracking
     search_player_if_needed
     create_player_if_needed
@@ -68,6 +71,16 @@ class PlayersController < ApplicationController
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
+    @clear_filters = params[:clear_filters]
+
+    if @clear_filters
+      @sort_by = {}
+      @filters = {}
+      @restrictions = {}
+      @skill = {}
+      @show_limit = 100
+    end
+
     case @time
     when "day"
       @time_display = Time.now.gmtime.strftime("%b %d, %Y")
@@ -77,40 +90,40 @@ class PlayersController < ApplicationController
       @time_display = Time.now.gmtime.strftime("%b %Y")
     when "year"
       @time_display = Time.now.gmtime.year
-    end  
-      
+    end
+
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters
       session[:filters_] = @filters
     end
-    
+
     if @skill == "combat"
       @skill = "overall"
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-    
+
     if @sort_by == "lvl"
       @sort_by = "ehp"
       params[:sort_by] = "ehp"
       session[:sort_by] = "ehp"
     end
-    
+
     if params[:player1] and params[:player2]
       compare
     end
-    
+
     if @skill == {}
       @skill = "overall"
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-    
+
     if @sort_by == {}
       @sort_by = "ehp"
     end
-    
+
     if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:time] != session[:time]
       session[:filters_] = @filters
       session[:restrictions_] = @restrictions
@@ -119,7 +132,7 @@ class PlayersController < ApplicationController
       session[:show_limit] = @show_limit
       session[:time] = @time
     end
-    
+
     case @sort_by
     when "ehp"
       @player_ehp_header = 'hilite'
@@ -128,9 +141,9 @@ class PlayersController < ApplicationController
       @player_xp_header = 'hilite'
       ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp DESC"
     end
-    
+
     @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(ordering)
-    
+
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10)
     end
@@ -140,9 +153,8 @@ class PlayersController < ApplicationController
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4")
     end
-    
-    @players = @players.where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
-    @players = @players.where("potential_p2p <= 0")
+
+    @players = @players.where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def records
@@ -162,6 +174,17 @@ class PlayersController < ApplicationController
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
+
+    @clear_filters = params[:clear_filters]
+
+    if @clear_filters
+      @sort_by = {}
+      @filters = {}
+      @restrictions = {}
+      @skill = {}
+      @show_limit = 100
+    end
+
     case @time
     when "day"
       @time_display = Time.zone.now.strftime("%b %d, %Y")
@@ -171,40 +194,40 @@ class PlayersController < ApplicationController
       @time_display = Time.zone.now.strftime("%b %Y")
     when "year"
       @time_display = Time.zone.now.year
-    end  
-      
+    end
+
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters
       session[:filters_] = @filters
     end
-    
+
     if @skill == "combat"
       @skill = "overall"
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-    
+
     if @sort_by == "lvl"
       @sort_by = "ehp"
       params[:sort_by] = "ehp"
       session[:sort_by] = "ehp"
     end
-        
+
     if params[:player1] and params[:player2]
       compare
     end
-    
+
     if @skill == {}
       @skill = "overall"
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-        
+
     if @sort_by == {}
       @sort_by = "ehp"
     end
-    
+
     if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:time] != session[:time]
       session[:filters_] = @filters
       session[:restrictions_] = @restrictions
@@ -213,7 +236,7 @@ class PlayersController < ApplicationController
       session[:show_limit] = @show_limit
       session[:time] = @time
     end
-    
+
     case @sort_by
     when "ehp"
       @player_ehp_header = 'hilite'
@@ -222,9 +245,9 @@ class PlayersController < ApplicationController
       @player_xp_header = 'hilite'
       ordering = "#{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp DESC"
     end
-    
+
     @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
-    
+
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10)
     end
@@ -234,7 +257,7 @@ class PlayersController < ApplicationController
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4")
     end
-    
+
     @players = @players.where("overall_ehp > 1 and potential_p2p <= 0").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
@@ -248,60 +271,78 @@ class PlayersController < ApplicationController
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
-    
+    @clear_filters = params[:clear_filters]
+    @filter_inactive = params[:filter_inactive] || session[:filter_inactive] || "false"
+
+    if @clear_filters
+      @sort_by = {}
+      @filters = {}
+      @restrictions = {}
+      @skill = {}
+      @show_limit = 100
+      @filter_inactive = "false"
+    end
+
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters
       session[:filters_] = @filters
     end
-        
+
     if params[:player1] and params[:player2]
       compare
     end
-    
+
     if @skill == {}
       @skill = "overall"
       params[:skill] = "overall"
       session[:skill] = "overall"
     end
-        
+
     if @sort_by == {}
       @sort_by = "ehp"
     end
-    
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_]
+
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:filter_inactive] != session[:filter_inactive]
       session[:filters_] = @filters
       session[:restrictions_] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
+      session[:filter_inactive] = @filter_inactive
     end
-    
+
     if @skill.include?("ttm")
       case @skill
       when "ttm_lvl"
         ordering = "ttm_lvl ASC, overall_ehp DESC"
       when "ttm_xp"
-        ordering = "ttm_xp ASC, overall_ehp DESC"    
+        ordering = "ttm_xp ASC, overall_ehp DESC"
       end
     elsif @skill.include?("clues")
       case @skill
       when "clues_all"
         ordering = "clues_all DESC"
       when "clues_beginner"
-        ordering = "clues_beginner DESC"    
+        ordering = "clues_beginner DESC"
       end
     elsif @skill.include?("no_combats")
       case @sort_by
       when "ehp"
-        ordering = "overall_ehp - attack_ehp - strength_ehp - defence_ehp - ranged_ehp - magic_ehp - prayer_ehp DESC, overall_lvl - hitpoints_lvl - attack_lvl - strength_lvl - defence_lvl - ranged_lvl - magic_lvl - prayer_lvl DESC, overall_xp - hitpoints_xp - attack_xp - strength_xp - defence_xp - ranged_xp - magic_xp - prayer_xp DESC"
+        ordering = "fishing_ehp + cooking_ehp + woodcutting_ehp + firemaking_ehp + mining_ehp + smithing_ehp + crafting_ehp + runecraft_ehp DESC"
       when "lvl"
-        ordering = "overall_lvl - hitpoints_lvl - attack_lvl - strength_lvl - defence_lvl - ranged_lvl - magic_lvl - prayer_lvl DESC, overall_ehp - attack_ehp - strength_ehp - defence_ehp - ranged_ehp - magic_ehp - prayer_ehp DESC, overall_xp - hitpoints_xp - attack_xp - strength_xp - defence_xp - ranged_xp - magic_xp - prayer_xp DESC" 
+        ordering = "fishing_lvl + cooking_lvl + woodcutting_lvl + firemaking_lvl + mining_lvl + smithing_lvl + crafting_lvl + runecraft_lvl DESC, fishing_ehp + cooking_ehp + woodcutting_ehp + firemaking_ehp + mining_ehp + smithing_ehp + crafting_ehp + runecraft_ehp DESC, fishing_xp + cooking_xp + woodcutting_xp + firemaking_xp + mining_xp + smithing_xp + crafting_xp + runecraft_xp DESC"
       when "xp"
-        ordering = "overall_xp - hitpoints_xp - attack_xp - strength_xp - defence_xp - ranged_xp - magic_xp - prayer_xp DESC, overall_ehp - attack_ehp - strength_ehp - defence_ehp - ranged_ehp - magic_ehp - prayer_ehp DESC, overall_lvl - hitpoints_lvl - attack_lvl - strength_lvl - defence_lvl - ranged_lvl - magic_lvl - prayer_lvl DESC"
+        ordering = "fishing_xp + cooking_xp + woodcutting_xp + firemaking_xp + mining_xp + smithing_xp + crafting_xp + runecraft_xp DESC, fishing_ehp + cooking_ehp + woodcutting_ehp + firemaking_ehp + mining_ehp + smithing_ehp + crafting_ehp + runecraft_ehp DESC, fishing_lvl + cooking_lvl + woodcutting_lvl + firemaking_lvl + mining_lvl + smithing_lvl + crafting_lvl + runecraft_lvl DESC"
       end
     elsif @skill.include?("count")
       ordering = "overall_ehp DESC"
+    elsif @skill.include?("lowest_lvl")
+      ordering = "overall_ehp DESC"
+    elsif @skill.include?("lms")
+      ordering = "lms_score DESC, lms_rank ASC"
+    elsif @skill.include?("_kc")
+      ordering = "#{@skill} DESC, #{@skill}_rank ASC"
     else
       case @sort_by
       when "ehp"
@@ -319,10 +360,9 @@ class PlayersController < ApplicationController
         ordering = "#{@skill}_xp DESC, #{@skill}_rank ASC"
       end
     end
-      
 
-    @players = Player.limit(@show_limit.to_i).where(player_acc_type: @filters.keys).order(ordering)
-    
+    @players = Player.where(player_acc_type: @filters.keys).order(ordering)
+
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")
     end
@@ -339,23 +379,30 @@ class PlayersController < ApplicationController
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
     end
+
+    if @filter_inactive == "true"
+      @players = @players.where("(overall_xp - overall_xp_month_start) > 0")
+    end
+
     @players = @players.where("potential_p2p <= 0")
 
     if @skill.include?("99_count")
       @players = @players.sort_by {|player| [player.count_99, player.overall_ehp] }.reverse
     elsif @skill.include?("200m_count")
       @players = @players.sort_by {|player| [player.count_200m, player.overall_ehp] }.reverse
+    elsif @skill.include?("lowest_lvl")
+      @players = @players.sort_by {|player| [player.lowest_lvl, player.overall_ehp] }.reverse
     end
-    
+
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
-  
+
   # GET /players/1
   # GET /players/1.json
   def show
     @display = params[:display] || session[:display] || "stats"
     @time = params[:time] || session[:time] || "week"
-    
+
     if params[:display] != session[:display] || params[:time] != session[:time]
       session[:display] = @display
       session[:time] = @time
@@ -376,7 +423,7 @@ class PlayersController < ApplicationController
 
     @player
   end
-  
+
   def compare
     @player1 = Player.find_player(params[:player1])
     @player2 = Player.find_player(params[:player2])
@@ -392,7 +439,7 @@ class PlayersController < ApplicationController
       redirect_to ranks_path, notice: "Player '#{player_not_found}' not found."
     end
   end
-  
+
   # GET /changelog
   def changelog
   end
@@ -404,17 +451,37 @@ class PlayersController < ApplicationController
     flash[:notice] = 'Player was successfully created.'
     redirect_to players_path
   end
-  
+
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update
-    @player.update_player
-    redirect_to player_path(@player.player_name)
+    # If updated less than a minute ago
+    if (@player.updated_at > 1.minutes.ago)
+      redirect_to player_path(@player.player_name),
+        notice: "Updating too quickly. Please try again in a minute"
+    elsif @player.update_player
+      redirect_to player_path(@player.player_name)
+    else
+      redirect_to player_path(@player.player_name),
+        notice: "Player #{@player.player_name} could not be updated. Please try again."
+    end
   end
-  
+
   def update_player
     @player.update_player
     @player
+  end
+
+  def check_acc_type
+    name = Player.sanitize_name(params[:id])
+    @player = Player.find_player(name)
+
+    if @player.force_update_acc_type
+      redirect_to player_path(@player.player_name)
+    else
+      redirect_to player_path(@player.player_name),
+        notice: "Player #{@player.player_name} could not be updated. Please try again."
+    end
   end
 
   private
@@ -423,78 +490,78 @@ class PlayersController < ApplicationController
   def set_player
     show
   end
-  
+
   def player_params
     params.require(:player).permit(
       :player_name,
       :player_acc_type,
-      :overall_xp, 
-      :overall_lvl, 
-      :overall_ehp, 
-      :overall_rank, 
-      :attack_xp, 
-      :attack_lvl, 
-      :attack_ehp, 
-      :attack_rank, 
-      :strength_xp, 
-      :strength_lvl, 
+      :overall_xp,
+      :overall_lvl,
+      :overall_ehp,
+      :overall_rank,
+      :attack_xp,
+      :attack_lvl,
+      :attack_ehp,
+      :attack_rank,
+      :strength_xp,
+      :strength_lvl,
       :strength_ehp,
-      :strength_rank,  
-      :defence_xp, 
-      :defence_lvl, 
-      :defence_ehp, 
-      :defence_rank,  
-      :hitpoints_xp, 
-      :hitpoints_lvl, 
-      :hitpoints_ehp, 
-      :hitpoints_rank, 
-      :ranged_xp, 
-      :ranged_lvl, 
-      :ranged_ehp, 
-      :ranged_rank, 
-      :prayer_xp, 
-      :prayer_lvl, 
+      :strength_rank,
+      :defence_xp,
+      :defence_lvl,
+      :defence_ehp,
+      :defence_rank,
+      :hitpoints_xp,
+      :hitpoints_lvl,
+      :hitpoints_ehp,
+      :hitpoints_rank,
+      :ranged_xp,
+      :ranged_lvl,
+      :ranged_ehp,
+      :ranged_rank,
+      :prayer_xp,
+      :prayer_lvl,
       :prayer_ehp,
-      :prayer_rank, 
-      :magic_xp, 
-      :magic_lvl, 
-      :magic_ehp, 
-      :magic_rank, 
-      :cooking_xp, 
-      :cooking_lvl, 
-      :cooking_ehp, 
-      :cooking_rank, 
-      :woodcutting_xp, 
-      :woodcutting_lvl, 
-      :woodcutting_ehp, 
-      :woodcutting_rank, 
-      :fishing_xp, 
-      :fishing_lvl, 
-      :fishing_ehp, 
-      :fishing_rank, 
-      :firemaking_xp, 
-      :firemaking_lvl, 
-      :firemaking_ehp, 
-      :firemaking_rank, 
-      :crafting_xp, 
-      :crafting_lvl, 
-      :crafting_ehp, 
-      :crafting_rank, 
-      :smithing_xp, 
-      :smithing_lvl, 
-      :smithing_ehp, 
-      :smithing_rank, 
-      :mining_xp, 
-      :mining_lvl, 
-      :mining_ehp, 
-      :mining_rank, 
-      :runecraft_xp, 
-      :runecraft_lvl, 
+      :prayer_rank,
+      :magic_xp,
+      :magic_lvl,
+      :magic_ehp,
+      :magic_rank,
+      :cooking_xp,
+      :cooking_lvl,
+      :cooking_ehp,
+      :cooking_rank,
+      :woodcutting_xp,
+      :woodcutting_lvl,
+      :woodcutting_ehp,
+      :woodcutting_rank,
+      :fishing_xp,
+      :fishing_lvl,
+      :fishing_ehp,
+      :fishing_rank,
+      :firemaking_xp,
+      :firemaking_lvl,
+      :firemaking_ehp,
+      :firemaking_rank,
+      :crafting_xp,
+      :crafting_lvl,
+      :crafting_ehp,
+      :crafting_rank,
+      :smithing_xp,
+      :smithing_lvl,
+      :smithing_ehp,
+      :smithing_rank,
+      :mining_xp,
+      :mining_lvl,
+      :mining_ehp,
+      :mining_rank,
+      :runecraft_xp,
+      :runecraft_lvl,
       :runecraft_ehp,
       :runecraft_rank,
       :potential_p2p,
       :combat_lvl,
-      
+
       :attack_xp_day_start,
       :attack_xp_day_max,
       :attack_ehp_day_start,

@@ -21,7 +21,7 @@ To contribute a code change, please create a separate branch and submit a pull r
 
 ### 1. Install Git, Ruby, and Bundler
 
-Make sure to install Ruby 2.6.3
+We recommend installing Ruby 2.6.3, but other recent versions may suffice.
 
 #### Windows
 
@@ -107,7 +107,13 @@ bundle install
 bundle exec rake db:migrate
 ```
 
-### 6. Verify installation by running server
+### 6. Seed with dummy data
+
+```bash
+bundle exec rake db:seed
+```
+
+### 7. Verify installation by running server
 
 ```bash
 rails s

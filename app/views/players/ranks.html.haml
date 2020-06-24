@@ -1,23 +1,7 @@
 - @title = "Hiscores" 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
-%p#notice= notice
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks", "selected-link"]) do
-    = "Hiscores"
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
+= render :partial => "header.html.haml",  :locals => {notice: notice}
 
 - skill_name = "#{@skill}".capitalize
 - if @skill == "ttm_lvl"
@@ -35,12 +19,21 @@
 - elsif @skill == "200m_count"
   - title = "F2P 200m Count"
   - skill_icon = ""
+- elsif @skill == "lowest_lvl"
+  - title = "F2P Lowest Level"
+  - skill_icon = ""
 - elsif @skill == "clues_all"
   - title = "F2P Clue (all) Hiscores"
   - skill_icon = "skills/clue.png"
 - elsif @skill == "clues_beginner"
   - title = "F2P Clue (beginner) Hiscores"
   - skill_icon = "skills/clue.png"
+- elsif @skill == "obor_kc"
+  - title = "F2P Obor Kill Count"
+  - skill_icon = "skills/kill_count.png"
+- elsif @skill == "bryo_kc"
+  - title = "F2P Bryophyta Kill Count"
+  - skill_icon = "skills/kill_count.png"
 - else
   - title = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
   - skill_icon = "skills/#{@skill}.png"
@@ -80,6 +73,10 @@
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/combat.png", style: "vertical-align: -6px;"
       = link_to "Combat Level", :controller => "players", :action => "ranks", :skill => "combat", :sort_by => "lvl"
+      %br  
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+      = link_to "Lowest Level", :controller => "players", :action => "ranks", :skill => "lowest_lvl"
       %br
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/clue.png", style: "vertical-align: -6px;"
@@ -88,6 +85,18 @@
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       = image_tag "skills/clue.png", style: "vertical-align: -6px;"
       = link_to "Clues (beg.)", :controller => "players", :action => "ranks", :skill => "clues_beginner"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/lms.png", style: "vertical-align: -6px;"
+      = link_to "LMS", :controller => "players", :action => "ranks", :skill => "lms"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+      = link_to "Obor Kills", :controller => "players", :action => "ranks", :skill => "obor_kc"
+      %br
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+      = link_to "Bryophyta Kills", :controller => "players", :action => "ranks", :skill => "bryo_kc"
         
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
 
@@ -113,6 +122,14 @@
             %th Clues Score
           - elsif @skill.include?("count")
             %th Count
+          - elsif @skill.include?("lowest_lvl")
+            %th Lowest Level
+          - elsif @skill.include?("lms")
+            %th Score
+            %th Rank
+          - elsif @skill.include?("_kc")
+            %th Kills
+            %th Rank
           - else
             - if @sort_by == "lvl"
               %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",ranks_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
@@ -133,26 +150,34 @@
           %tr
             - offset = index + (@players.current_page - 1)*@show_limit.to_i
             %td{:align => "right"}= offset
-            - name = player.player_name.gsub(" ", "_")
+            - name = player.player_name.gsub(" ", "_").encode("ASCII", invalid: :replace, undef: :replace, replace: '_')
             - if player.player_name == "Based Chew"
               %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
             - else
-              %td{:align => "left"}= link_to player.player_name, "players/#{name}"  
+              %td{:align => "left"}= link_to player.player_name, "players/#{name.encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}"  
             %td{:align => "center"}= player.player_acc_type   
             - if @skill.include?("ttm")
               %td= number_with_delimiter(number_with_precision(player["#{@skill}"].to_f, :precision => 2), :delimiter => ",", :separator => ".") 
             - elsif @skill.include?("clues")
               %td= player["#{@skill}"]
             - elsif @skill == "no_combats"
-              %td= player["overall_lvl"] - player["hitpoints_lvl"] - player["attack_lvl"] - player["strength_lvl"] - player["defence_lvl"] - player["ranged_lvl"] - player["magic_lvl"] - player["prayer_lvl"]
-              - no_combats_xp =  player["overall_xp"] - player["hitpoints_xp"] - player["attack_xp"] - player["strength_xp"] - player["defence_xp"] - player["ranged_xp"] - player["magic_xp"] - player["prayer_xp"]
-              - no_combats_ehp = number_with_precision(player["overall_ehp"] - player["attack_ehp"] - player["strength_ehp"] - player["defence_ehp"] - player["ranged_ehp"] - player["magic_ehp"] - player["prayer_ehp"], precision: 2)
+              %td= player["woodcutting_lvl"] + player["firemaking_lvl"] + player["fishing_lvl"] + player["cooking_lvl"] + player["mining_lvl"] + player["smithing_lvl"] + player["crafting_lvl"] + player["runecraft_lvl"]
+              - no_combats_xp = player["woodcutting_xp"] + player["firemaking_xp"] + player["fishing_xp"] + player["cooking_xp"] + player["mining_xp"] + player["smithing_xp"] + player["crafting_xp"] + player["runecraft_xp"]
+              - no_combats_ehp = number_with_precision(player["woodcutting_ehp"] + player["firemaking_ehp"] + player["fishing_ehp"] + player["cooking_ehp"] + player["mining_ehp"] + player["smithing_ehp"] + player["crafting_ehp"] + player["runecraft_ehp"], precision: 2)
               %td= number_with_delimiter(no_combats_xp.to_i, :delimiter => ",") 
               %td= number_with_delimiter(no_combats_ehp.to_f, :delimiter => ",", :separator => ".") 
             - elsif @skill.include?("99_count")
               %td= player.count_99
             - elsif @skill.include?("200m_count")
               %td= player.count_200m
+            - elsif @skill.include?("lowest_lvl")
+              %td= player.lowest_lvl
+            - elsif @skill.include?("lms")
+              %td= player["lms_score"]
+              %td= player["lms_rank"]
+            - elsif @skill.include?("_kc")
+              %td= player[@skill]
+              %td= player["#{@skill}_rank"]
             - else
               %td= player["#{@skill}_lvl"]
               - if @skill != "combat"
@@ -187,7 +212,11 @@
         = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
         %br
         = submit_tag 'Compare', :id => "compare_submit"
-        
+
+    %br
+    = link_to "Reset filters", ranks_path(:clear_filters => "true")
+    %br
+
     = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-left: 15px; width: 140px; height: 126px;") do 
       = form_tag ranks_path, :method => :get, :id => 'filters_form' do
         = "Filter Accounts"
@@ -212,6 +241,14 @@
             = type
             %br
         = submit_tag 'Filter', :id => "restrictions_submit"
+
+    %br
+    - if @filter_inactive == "true"
+      = link_to "Unfilter inactive?", ranks_path(:filter_inactive => "false")
+    - else
+      = link_to "Filter inactive?", ranks_path(:filter_inactive => "true")
+    %br
+    %br
         
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
       = form_tag ranks_path, :method => :get, :id => 'show_limits_form' do

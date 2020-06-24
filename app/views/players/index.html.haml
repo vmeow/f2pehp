@@ -1,69 +1,112 @@
 - @title = "F2P OSRS Wiki" 
 = link_to image_tag("birthdayf2pwiki.png"), players_path
 
-%p#notice= notice
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links"]) do 
-    = link_to "Links", links_path
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
+= render :partial => "header.html.haml",  :locals => {notice: notice}
   
 = content_tag(:div, nil, class: "container", style: "width: 760px;") do 
   = content_tag(:div, nil, class: ["left", "container"], style: "width: 45%;") do
-    = content_tag(:div, nil, class: "motd") do 
+    = content_tag(:div, nil, class: ["motd", "perfect-scroll"]) do 
       %h1 News
       %h6
+        = "May 2, 2020: Please join me in welcoming"
+        = link_to "Say F2p Ult", request.base_url + "/players/Say_F2p_Ult"
+        = "as the new official co-owner of F2P.wiki!"
+      %br
+      %h6
+        = "He is a trusted and beloved friend and community member who has already given much of his own free time to contribute to the open source code of this site. There have been several improvements thanks to Say, and I know that with our combined efforts and leadership, we will have an even better site than ever before."
+      %br
+      %h6
+        = "If you see him in game, please take the time to say hello and thank him for his work!"
+      %br
+      %h6
+        = "- Unkie"
+      %hr
+      %h6
+        = "March 14, 2020: As the official Jagex Hiscores appear to be fixed, we have restored automatic daily player updates."
+      %hr
+      %h6
+        = "March 5, 2020: We have decided to write up a comprehensive guide to F2P.wiki's philosophy of F2P OSRS "
+        = link_to "here.", "https://www.reddit.com/r/W385/comments/fdqw8p/what_is_f2pwiki/"
+        = "Please feel free to comment on this - we more than welcome discourse and discussion."
+      %hr
+      %h6
+        = "Jan 28, 2020: Just to re-iterate, F2P.wiki does NOT treat name changes of any kind as false F2P. Including but not limited to Jagex forced name changes, historical Funorb name changes, bond name changes, etc., and we never will. Yes, even bond name changes."
+      %hr
+      %h6
+        = "Our sincerest apologies for the recent outages on the site. Due to changes to the official Jagex hiscores, all hiscores including F2P.wiki, CML, and even Jagex official hiscores have been experiencing massive issues. For example, the official hiscores has been unresponsive for the past 2 hours as of writing this. As a result, we have unfortunately had to make the decision to no longer automatically update non-supporter players below 250 EHP. Manual updates may still be made."
+      %hr
+      %h6 
+        = "Congratulations to the Cunnilinguists for winning the"
+        = link_to "F2P Team Rumble competition!", "https://docs.google.com/spreadsheets/d/1iQkonWQCp-gNHp7dija630BWsYl-SjUKFQd9SwaE9z8/edit#gid=0"
+      %hr
+      %h6
+        = "v1.64 release: LMS hiscores and Obor/Bryophyta kill count hiscores. Ranks will fill in with the next site-wide player updates."
+      %hr
+      %h6
+        = "v1.63 release: Lowest Level hiscores, ability to reset filters, ability to filter out inactive players, fix to non-combat hiscores"
+      %hr
+      %h6
+        = "Bargan is free."
+      %hr
+      %h6 
+        = "Due to a recent increase in accounts de-ironing or losing hardcore status, we have released a feature to check account type at the bottom right corner of each player's Personal Hiscores page."
+      %hr
+      %h6
+        = "Congratulations to the winners of the Free to Play clan's"
+        = link_to "Buddy-Up Summer Skilling Competition!", "https://www.reddit.com/r/W385/comments/cd8v54/summer_f2p_skilling_competition/"
+        %br
+      %h5{:style => "color: gold;"} 
+        = "First Place Team"
+        %br
+        = link_to "tannerdino", "players/tannerdino"
+        = link_to "ColdFingers3", "players/ColdFingers3"
+      %h5{:style => "color: silver;"} 
+        = "Second Place Team"
+        %br
+        = link_to "DJ9", "players/DJ9"
+        = link_to "Pawz", "players/Pawz"
+      %h5{:style => "color: #CD7F32;"} 
+        = "Third Place Team"
+        %br
+        = link_to "Irondish", "players/Irondish"
+        = link_to "DansPotatoe", "players/DansPotatoe"
+      %hr
+      %h6
         = "v1.62 release: 99 and 200m count have been released on the hiscores."
+      %hr
       %h6
         = "v1.61 release: internal site upgrades and refactoring. Open sourcing of"
         = link_to "our GitHub repo!", "https://github.com/vmeow/f2pehp/"
+      %hr
       %h6
         = "v1.60 release: Major site overhaul with updated EHP, implementation of bonus XP algorithms, and general internal improvements."
+      %hr
       %h6
         = "Our site has encountered multiple issues regarding beginner clues and the official beginner clues hiscores. As a result, many players were deleted, along with tracking and record data. We apologize for the inconvenience, and we are doing our best to resolve the issue. Thanks for your patience."
+      %hr
       %h6
         = "Thanks to"
         = link_to "DansPotatoe", "players/DansPotatoe"
         = "for sharing his"
         = link_to "level 3 UIM guide!", "https://pastebin.com/raw/eh3zwb2a"
+      %hr
       %h6
         = "v1.52 release: Overall (no combats) hiscores has been released!"
+      %hr
       %h6 
         = "v1.51 release: We're happy to announce the Time to Max feature on the hiscores!"
+      %hr
       %h6
         = "Shoutout to Pawz and his new videos on Efficient F2P Maxing: "
         = link_to "Part 1,", "https://www.youtube.com/watch?v=BOSVsLQOXcw"
         = link_to "Part 2", "https://www.youtube.com/watch?v=B7TlGwXalCg"
+      %hr
       %h6 
         = "v1.50 release: The long awaited"
         = link_to "EHP and XP tracking", tracking_path
         = "and"
         = link_to "Record Gains!", records_path
         = "Personal scores page also now displays current gains and records in addition to stats."
-      %h6
-        = "Calculators and Hall of Shame moved to Links."
-      %h6 
-        = "v1.20: Combat level hiscores"
-      %h6 
-        = "v1.19 release: "
-        = link_to "June Gatherers EHP Competition", competitions_path
-      %h6 
-        = "IM/HC/UIM Firemaking EHP has been adjusted from 86000 to 144600 after 101333 XP."
-      %h6
-        = "v1.18: Filter hiscores by most popular combat restrictions"
-      %h6
-        = "Until further notice, the 75 EHP requirement has been lifted to add a player to the hiscores."
 
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; width: 55%;") do
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-bottom: 0px;") 
@@ -86,7 +129,7 @@
               - if player.player_name == "Based Chew"
                 %td{:align => "left"}= link_to "***Retired***", "players/#{name}"
               - else
-                %td{:align => "left"}= link_to player.player_name, "players/#{name}"
+                %td{:align => "left"}= link_to player.player_name, "players/#{name.encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}"
               %td{:align => "center"}= player.player_acc_type
               %td= number_with_delimiter(player.overall_ehp.to_f, :delimiter => ",", :separator => ".") 
     = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin-left: 15px; width: 380px; height: 36px; margin-top: 0px;")

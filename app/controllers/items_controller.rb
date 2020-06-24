@@ -72,9 +72,11 @@ class ItemsController < ApplicationController
       {name: "Yew logs", itemid: 1515},
       {name: "Tiara", itemid: 5525},
       {name: "Air talisman", itemid: 1438},
+      {name: "Water talisman", itemid: 1444},
       {name: "Earth talisman", itemid: 1440},
       {name: "Body talisman", itemid: 1446},
       {name: "Air tiara", itemid: 5527},
+      {name: "Water tiara", itemid: 5531},
       {name: "Earth tiara", itemid: 5535},
       {name: "Body tiara", itemid: 5533},
       {name: "Big bones", itemid: 532},
@@ -204,6 +206,7 @@ class ItemsController < ApplicationController
     @skill_items["Prayer"] = [["Big bones", 15, @prices["Big bones"], 0]]
 
     @skill_items["Runecraft"] = [["Air tiara", 25, @prices["Air talisman"] + @prices["Tiara"], @prices["Air tiara"]],
+                                 ["Water tiara", 30, @prices["Water talisman"] + @prices["Tiara"], @prices["Water tiara"]],
                                  ["Earth tiara", 33, @prices["Earth talisman"] + @prices["Tiara"], @prices["Earth tiara"]],
                                  ["Body tiara", 37.5, @prices["Body talisman"] + @prices["Tiara"], @prices["Body tiara"]]]
 

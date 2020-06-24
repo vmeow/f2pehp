@@ -18,3 +18,7 @@
 .idea/
 coverage/
 .DS_Store
+
+# Ignore .rbenv config.
+/.ruby-version
+config/local_env.yml

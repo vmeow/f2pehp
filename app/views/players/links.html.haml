@@ -1,26 +1,12 @@
 - @title = "Links" 
+- @description = "A catalog of useful links related to F2P OSRS." 
 = link_to image_tag("f2pwiki_500.png"), players_path
 
-%p#notice= notice
-
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["bar", "ranks"]) do
-    = link_to "Hiscores", ranks_path
-  = content_tag(:div, nil, class: ["bar", "fake"]) do 
-    = link_to "Current Top", tracking_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "Records", records_path
-  = content_tag(:div, nil, class: ["bar", "ehp"]) do 
-    = link_to "EHP Rates", ehp_path
-  = content_tag(:div, nil, class: ["bar", "links", "selected-link"]) do 
-    = "Links"
-  = content_tag(:div, nil, class: ["bar", "changelog"]) do 
-    = link_to "Changelog", changelog_path
-  = content_tag(:div, nil, class: ["bar", "donate"]) do 
-    = link_to "About Us/Donate", donate_path
-    
+= render :partial => "header.html.haml",  :locals => {notice: notice}
 
 = link_to "Hall of Shame", fake_path
+%br
+= link_to "Possible Fakes", possible_fakes_path
 %br
 = "Calculators:"
 = link_to "Combat DPS Calc", dps_path
@@ -34,6 +20,8 @@
   = content_tag(:div, nil, class: "left", style: "text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
     %h1 Efficiency
     %h5 Guides
+    = link_to "Advanced F2P Ironman Guide v2.0.2 - Asura Zoma, tannerdino", "https://pastebin.com/raw/ytWpivkL"
+    %br
     = link_to "Advanced F2P Ironman Guide - Asura Zoma", "http://pastebin.com/raw/FuTEC8eB"
     %br
     = link_to "Efficient F2P Maxing Guide Part 1 - Pawz", "https://www.youtube.com/watch?v=BOSVsLQOXcw"
@@ -51,6 +39,8 @@
     = link_to "Lvl 3 UIM Skiller Startup Guide - Turipo", "https://www.reddit.com/r/W385/comments/5uk9ku/f2p_level_3_skiller_ultimate_ironman_startup_guide/"
     %br
     = link_to "Efficient Multiquesting - EZScape", "http://youtu.be/d3zcXf90ODc"
+    %br
+    = link_to "Beginner Clue Guide - Yourice", "https://www.reddit.com/r/W385/comments/btjzik/beginner_clue_f2p_guide/"
     %br
     %br
     
@@ -73,6 +63,10 @@
     %br
     = link_to "Lvl 3 UIM suicide tiara RC - Needfireplz", "http://www.youtube.com/watch?v=4NBsXsOS9tg"
     %br 
+    = link_to "UIM 2-tick earth RC - TrustNoBanks", "https://youtu.be/ySiczjqEO5s"
+    %br
+    = link_to "Adamant pick 2-tick ess - tannerdino", "https://youtu.be/L7HN8U5K7J4"
+    %br
     %br
      
     %h5 Charts
@@ -85,6 +79,8 @@
     = link_to "Loot from 11k Ogresse Kills - W_385", "http://i.redd.it/hbfboi9ia0701.png"
     %br
     = link_to "Ogress Tracker - Yellow bead", "https://docs.google.com/spreadsheets/d/1xP-Z8PYOUhn6oeLvUPFzsRimWSgXbDbqreFs4VwT688/edit?usp=sharing_eip&ts=5aee3525"
+    %br
+    = link_to "F2P Music Guide - fe Kat, F2P IM Clan", "https://docs.google.com/spreadsheets/d/1HfTRxhTgOrfSLS3pveFlnBOGn33knKf4Hmut7EXx1a0/edit?usp=sharing"
     
   = content_tag(:div, nil, class: "left", style: "margin-left: 10px; text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
     %h1 Community
@@ -102,6 +98,9 @@
     = "W_530: clan chat \"W_530\""
     = "|"
     = link_to "Discord", "https://discord.gg/K2b5nM7"
+    %br
+    = "F2P Runners (WIP)"
+    = link_to "Discord", "https://discord.gg/PA4Nax5"
     %br
     %br
     
@@ -129,10 +128,16 @@
           %td{style: "border: none;"}= link_to "F2P UIM OREO", "http://www.youtube.com/channel/UC-ZHd2U9zj7Hemc-IsYucAg", style: "color: #90c040;"
         %tr{style: "border: none;"}
           %td{style: "border: none;"}= link_to "Magnus F2P*", "http://www.youtube.com/channel/UCvE3DoLAECkRvII-MqLhloQ", style: "color: #90c040;"
-          %td{style: "border: none;"}= link_to "Tannerdino", "https://www.youtube.com/channel/UC1h5LVojUftcx-ZU1UqoMbQ", style: "color: #90c040;"
+          %td{style: "border: none;"}= link_to "Tannerdino", "https://www.youtube.com/channel/UC1h5LVojUftcx-ZU1UqoMbQ", style: "color: #90c040;" 
         %tr{style: "border: none;"}
           %td{style: "border: none;"}= link_to "Cephalotaxus*", "http://www.youtube.com/channel/UCFkL5t0ekeqcwwx44r1nLVw", style: "color: #90c040;"
-          
+          %td{style: "border: none;"}= link_to "Ironman260", "https://www.youtube.com/channel/UClfA0vrt_mWI-ui0zvr9QAg", style: "color: #90c040;"
+        %tr{style: "border: none;"}
+          %td{style: "border: none;"}
+          %td{style: "border: none;"}= link_to "Vannaka", "https://www.youtube.com/channel/UCBFIHC0C2roQllCR9bnFX4g", style: "color: #90c040;"        
+        %tr{style: "border: none;"}
+          %td{style: "border: none;"}
+          %td{style: "border: none;"}= link_to "Say F2p Ult", "https://www.youtube.com/channel/UCBRFQXYlDWx_uBrizZbw2SA", style: "color: #90c040;"
     = "* inactive"
     %br
     %br
@@ -142,5 +147,6 @@
     %br
     = link_to "Tannerdino", "https://www.twitch.tv/tannerdino"
     %br
+    = link_to "Aip", "https://www.twitch.tv/onehandedstreams"
     %br
-    
+    %br

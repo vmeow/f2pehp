@@ -9,12 +9,14 @@ Rails.application.routes.draw do
   get 'ranks' => 'players#ranks'
   get 'ehp' => 'players#ehp'
   get 'fake' => 'players#fake'
+  get 'possible_fakes' => 'players#possible_fakes'
   get 'links' => 'players#links'
   get 'changelog' => 'players#changelog'
   get 'oldchangelog' => 'players#oldchangelog'
   get 'donate' => 'players#donate'
   get 'controls' => 'players#controls'
   get 'plaintext' => 'players#plaintext'
+  get 'tracking_plaintext' => 'players#tracking_plaintext'
   get 'names' => 'players#names'
   get 'dps' => 'players#dps'
   get 'combat' => 'players#combat'
@@ -25,15 +27,21 @@ Rails.application.routes.draw do
   get 'competitions' => 'players#competitions'
   get 'tracking' => 'players#tracking'
   get 'records' => 'players#records'
+  get 'faqs' => 'players#faqs'
+  get 'admin' => 'admin#index'
   put 'players.:id' => 'players#update_player'
   put 'update' => 'players#update_player'
   get 'players/:id/update' => 'players#update', as: :update_player
+  get 'players/:id/check_acc_type' => 'players#check_acc_type', as: :check_acc_type
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players
   post 'players#names' => 'players#find_new', as: :find_new
   post 'items#update_prices' => 'items#update_prices', as: :update_prices
   post 'items#create_items' => 'items#create_items', as: :create_items
+  post 'admin#add_supporter' => 'admin#add_supporter', as: :add_supporter
+  post 'admin#fix_spaces' => 'admin#fix_spaces', as: :fix_spaces
+  post 'admin#change_name' => 'admin#change_name', as: :change_name
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -12,9 +12,14 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Backlog
 
+* [FRNT] Display time until gains reset (15m)
+* [DATA] Add and display player created_at/updated_at timestamps (2h)
+* [DATA] Improve handling of or spread out Jagex API calls (8h)
+  * perhaps this could allow for dynamic time tracking???
 * [ALGO] Fix repair_records tool and records in general (8h)
 * [DATA] Display players' ranks on F2P.wiki only (8h)
   * [FRNT] Link personal page skills to hiscores (2h)
+* [DATA] Explore options to improve datapoint storage (12h)
 * [FRNT] Latest 99 and 200ms (4h)
 * [FRNT] FAQs page (8h)
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
@@ -23,13 +28,8 @@ List is in order of priority, with time estimates and the following tags.
   * grey - irons, red - hc, white - uim
 * [TEST] Create unit test suite (24h)
 * [DVPS] Explore migrating away from Heroku (40h)
-* [DATA] Explore options to improve datapoint storage (12h)
-  * AWS EC2, DigitalOcean
 * [DVPS] Allow upload of content (flairs, news, etc) (24h)
   * Create admin user(s)?
-* [DATA] Add and display player created_at/updated_at timestamps (2h)
-* [ALGO] Improve HC death, de-iron, and de-UIM detection (4h)
-* [CALC] Fix ranged DPS calculator to use correct attack speed (30m)
 * [CALC] Fix GP/XP calculator to update GE prices once per hour (2h)
 * [CALC] Create general drop rate calculator (2h)
 * [CALC] Create Ogress drops calculator (3h)
@@ -38,7 +38,9 @@ List is in order of priority, with time estimates and the following tags.
 * [FRNT] Fix scrolls to not show small gaps (2h)
 * [FRNT] Fix tables with long rows to not be cut off (1h)
 * [FRNT] Fix names and flairs that spill to two lines long (1h)
-* [FRNT] Consider restructuring Supporters list (2h)
+* [FRNT] Clan affiliation for players, filtering by clan
+* [FRNT] Competitions
+* [FRNT] Improving front page to look more like classic OSRS front page with links
 
 ## In Progress
 
@@ -53,6 +55,11 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Done
 
+* [ALGO] Improve HC death, de-iron, and de-UIM detection (4h) - Mike
+* [BUGS] When Jagex hiscores API is unresponsive, don't immediately mark as P2P (2h)
+* [DATA] LMS ranks (2h)
+* [FRNT] Consider restructuring Supporters list (2h) - Jack
+* [CALC] Fix ranged DPS calculator to use correct attack speed (30m)
 * [ALGO] Fix time-to-max to include bonus xp (4h)
   * Reg ttm should be <2400h
   * Sofacanlazy/Freckled Kid should have 0 ttm 99s
@@ -62,3 +69,4 @@ List is in order of priority, with time estimates and the following tags.
 * [ALGO] Update Reg EHP from no-alt EHP to alt EHP. (2h)
 * [ALGO] Update IM/HC/UIM EHP to use Ogress EHP. (40h)
 * [ALGO] Implement Bonus XP algorithms (40h)
+* [FRNT] Base level rankings (1h)
