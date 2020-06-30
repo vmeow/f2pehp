@@ -102,7 +102,7 @@ class Player < ActiveRecord::Base
                 {name: "Hnn 40", amount: 10, date: "2020-04-08", flair_after: "items/Rune_scimitar.gif", other_css: ["color: #850000"]},
                 {name: "Ultimate F2P", amount: 10, date: "2020-04-10", flair_after: "flairs/Mole_slippers.png"},
                 {name: "Don Rinus", amount: 10, date: "2020-04-26", flair_after: "flairs/Shoulder_parrot.png"},
-                {name: "water9", amount: 10, date: "2020-05-01", flair_after: "items/Water_rune.gif"},
+                {name: "water9", amount: 10, date: "2020-05-01", flair_after: "flairs/Water_rune.png"},
                 {name: "Laskati", amount: 10, date: "2020-05-16", flair_after: "flairs/wise_old_man.png"},
                 {name: "BigFootTall", amount: 10, date: "2020-06-16", flair_after: "flairs/BigFootTall.png"},
                 {name: "Jato Lava", amount: 10, date: "2020-06-27", flair_after: "flairs/brazil_flag.png"},
