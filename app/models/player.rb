@@ -177,7 +177,7 @@ class Player < ActiveRecord::Base
                 {name: "Anonymous", amount: 5, date: "2019-11-25", no_link: true},
                 {name: "ThaneCore", amount: 5, date: "2019-12-08"},
                 {name: "Hc Eudu", amount: 5, date: "2019-12-15", flair_after: "flairs/hitsplat_zero.png"},
-                {name: "h o k i e s", amount: 5, date: "2019-12-21", flair_after: "flairs/Event_rpg.png"},
+                {name: "a hokie", amount: 5, date: "2019-12-21", flair_after: "flairs/Event_rpg.png"},
                 {name: "Futile_Me", amount: 5, date: "2019-12-24", flair_after: "flairs/panda.png"},
                 {name: "Firebolt8xp", amount: 5, date: "2019-12-30", flair_after: "skills/mining.png"},
                 {name: "King Dumile", amount: 5, date: "2020-01-02", flair_after: "flairs/antisanta.png"},
