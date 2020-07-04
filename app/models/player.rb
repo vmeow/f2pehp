@@ -107,6 +107,7 @@ class Player < ActiveRecord::Base
                 {name: "BigFootTall", amount: 10, date: "2020-06-16", flair_after: "flairs/BigFootTall.png"},
                 {name: "Jato Lava", amount: 10, date: "2020-06-27", flair_after: "flairs/brazil_flag.png"},
                 {name: "Wqve Racer", amount: 10, date: "2020-07-02", flair_after: "flairs/yellow_partyhat.png"},
+                {name: "HC Pimps", amount: 10, date: "2020-07-03", flair_after: "flairs/wizards_mind_bomb.png"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
