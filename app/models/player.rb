@@ -63,7 +63,7 @@ class Player < ActiveRecord::Base
                 {name: "Varvali", amount: 20, date: "2020-05-12"},
                 {name: "Ywal", amount: 20, date: "2020-06-03", flair_after: "flairs/hole.png", other_css: ["color: #C9AD79"]},
                 {name: "I-69-Buddha", amount: 20, date: "2020-07-09", flair_after: "flairs/demon_feet.png"},
-                {name: "Tramali", amount: 20, date: "2020-07-11"},
+                {name: "Tramali", amount: 20, date: "2020-07-11", flair_after: "flairs/fire_strike.png"},
                 {name: "Iron of One", amount: 18, date: "2018-12-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
