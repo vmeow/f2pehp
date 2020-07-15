@@ -8,6 +8,26 @@
     = content_tag(:div, nil, class: ["motd", "perfect-scroll"]) do 
       %h1 News
       %h6
+        = "Congratulations to the winners of the W_385 clan's"
+        = link_to "Teams of 2 EHP Competition!", "https://www.reddit.com/r/W385/comments/cd8v54/summer_f2p_skilling_competition/"
+        %br
+      %h5{:style => "color: gold;"} 
+        = "First Place Team"
+        %br
+        = link_to "Wopski", "players/Wopski"
+      %h5{:style => "color: silver;"} 
+        = "Second Place Team"
+        %br
+        = link_to "DansPotatoe", "players/DansPotatoe"
+        = link_to "Covid 19 V2", "players/Covid_19_V2"
+      %h5{:style => "color: #CD7F32;"} 
+        = "Third Place Team"
+        %br
+        = link_to "Ironkic", "players/Ironkic"
+      %br
+      %hr
+
+      %h6
         = "May 2, 2020: Please join me in welcoming"
         = link_to "Say F2p Ult", request.base_url + "/players/Say_F2p_Ult"
         = "as the new official co-owner of F2P.wiki!"

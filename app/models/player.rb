@@ -154,7 +154,7 @@ class Player < ActiveRecord::Base
                 {name: "HCBown", amount: 5, date: "2019-03-04"},
                 {name: "Dukeddd", amount: 5, date: "2019-03-06"},
                 {name: "one a time", amount: 5, date: "2019-03-06"},
-                {name: "DansPotatoe", date: "2019-03-13", flair_after: "items/Potato.png"},
+                {name: "DansPotatoe", date: "2019-03-13", flair_after: "items/Potato.png", flair_before: "flairs/silver_crown.png"},
                 {name: "Wizards Foot", amount: 5, date: "2019-03-15", flair_after: "flairs/Wizards_Foot_flair.png"},
                 {name: "Hardcore VFL", amount: 5, date: "2019-03-23", flair_after: "HCIM.png"},
                 {name: "Pizzarrhea", amount: 5, date: "2019-03-23", flair_after: "flairs/pizzarrhea.gif"},
@@ -205,7 +205,7 @@ class Player < ActiveRecord::Base
                 {name: "iTz a Loner", amount: 5, date: "2020-05-16", flair_after: "flairs/barricade.png"},
                 {name: "Momoka Nishi", amount: 5, date: "2020-05-27", flair_after: "flairs/red_boater.png"},
                 {name: "HCIM Keeper", amount: 5, date: "2020-05-31"},
-                {name: "Covid 19 V2", amount: 5, date: "2020-06-10", flair_after: "flairs/virus.png"},
+                {name: "Covid 19 V2", amount: 5, date: "2020-06-10", flair_after: "flairs/virus.png", flair_before: "flairs/silver_crown.png"},
                 {name: "Hierro Hero", amount: 5, date: "2020-06-17"},
                 {name: "Raytheons", amount: 5, date: "2020-06-20"},
                 {name: "Cx or xD", amount: 5, date: "2020-06-29", flair_after: "flairs/uncut_ruby.png"},
@@ -222,6 +222,10 @@ class Player < ActiveRecord::Base
                 {name: "HC Yiffer"}, # pro bono tracking
                 {name: "Disenthral"}, # pro bono tracking
                 {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
+
+                # competition winners
+                {name: "Wopski", flair_before: "flairs/gold_crown.png"},
+                {name: "Ironkic", flair_before: "flairs/bronze_crown.png"},
               ]
 
   def self.skills()
