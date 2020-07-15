@@ -207,7 +207,7 @@ class Player < ActiveRecord::Base
                 {name: "iTz a Loner", amount: 5, date: "2020-05-16", flair_after: "flairs/barricade.png"},
                 {name: "Momoka Nishi", amount: 5, date: "2020-05-27", flair_after: "flairs/red_boater.png"},
                 {name: "HCIM Keeper", amount: 5, date: "2020-05-31"},
-                {name: "Covid 19 V2", amount: 5, date: "2020-06-10", flair_after: "flairs/virus.png", flair_before: "flairs/HCIM.png"},
+                {name: "Covid 19 V2", amount: 5, date: "2020-06-10", flair_after: "flairs/virus.png", flair_before: "flairs/HCIM.png", other_css: ["color: #990000"]},
                 {name: "Hierro Hero", amount: 5, date: "2020-06-17"},
                 {name: "Raytheons", amount: 5, date: "2020-06-20"},
                 {name: "Cx or xD", amount: 5, date: "2020-06-29", flair_after: "flairs/uncut_ruby.png"},
