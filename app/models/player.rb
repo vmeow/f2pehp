@@ -28,7 +28,7 @@ class Player < ActiveRecord::Base
   #   3. Add an image before their  name by adding the key :flair_before
   #   4. Apply arbitrary css by adding the key :other_css
   #   5. If any new images were required, be sure to add them to app/assests/images
-  SUPPORTERS = [{name: "Bargan", amount: 260.82, date: "2018-02-02"},
+  SUPPORTERS = [{name: "Bargan", amount: 270.82, date: "2020-07-19"},
                 {name: "Ikiji", amount: 107.28, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "M00MARCITO", amount: 100, date: "2020-03-24"},
