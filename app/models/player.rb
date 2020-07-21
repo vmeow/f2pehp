@@ -48,6 +48,7 @@ class Player < ActiveRecord::Base
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
+                    {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
                 {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
                 {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
                 {name: "Ticket Farm", date: "2019-07-05", flair_after: "flairs/genie_head.png"},
