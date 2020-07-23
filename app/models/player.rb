@@ -113,7 +113,7 @@ class Player < ActiveRecord::Base
                 {name: "Jato Lava", amount: 10, date: "2020-06-27", flair_after: "flairs/brazil_flag.png"},
                 {name: "Wqve Racer", amount: 10, date: "2020-07-02", flair_after: "flairs/yellow_partyhat.png"},
                 {name: "HC Pimps", amount: 10, date: "2020-07-03", flair_after: "flairs/wizards_mind_bomb.png", other_css: ["color: pink"]},
-                {name: "Wopski", amount: 10, date: "2020-07-12", flair_after: "flairs/penguin.png"},
+                {name: "Wopski", amount: 10, date: "2020-07-12", flair_after: "flairs/penguin.png", flair_before: "flairs/gold_crown.png"},
                 {name: "Jambo3547", amount: 10, date: "2020-07-21", flair_after: "flairs/black_cat.png"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
@@ -229,7 +229,6 @@ class Player < ActiveRecord::Base
                 {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
 
                 # competition winners
-                {name: "Wopski", flair_before: "flairs/gold_crown.png"},
                 {name: "Ironkic", flair_before: "flairs/bronze_crown.png"},
               ]
 
