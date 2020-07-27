@@ -145,7 +145,7 @@ class PlayersController < ApplicationController
     @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(ordering)
 
     if @restrictions["10 hitpoints"]
-      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl > 3")
+      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
       @players = @players.where(defence_lvl: 1)
@@ -249,7 +249,7 @@ class PlayersController < ApplicationController
     @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
 
     if @restrictions["10 hitpoints"]
-      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl > 3")
+      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
       @players = @players.where(defence_lvl: 1)
@@ -368,7 +368,7 @@ class PlayersController < ApplicationController
     end
 
     if @restrictions["10 hitpoints"]
-      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl > 3")
+      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
       @players = @players.where(defence_lvl: 1)
