@@ -61,7 +61,7 @@ class PlayersController < ApplicationController
 
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
-    @restrictions = params[:restrictions_] || {}
+    @restrictions = params[:restrictions] || {}
     @skill = params[:skill] || session[:skill] || {}
     unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
       @skill = "overall"
@@ -124,9 +124,9 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
 
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:time] != session[:time]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:time] != session[:time]
       session[:filters_] = @filters
-      session[:restrictions_] = @restrictions
+      session[:restrictions] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
@@ -145,7 +145,7 @@ class PlayersController < ApplicationController
     @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(ordering)
 
     if @restrictions["10 hitpoints"]
-      @players = @players.where(hitpoints_lvl: 10)
+      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
       @players = @players.where(defence_lvl: 1)
@@ -164,7 +164,7 @@ class PlayersController < ApplicationController
     Time.zone = "Pacific Time (US & Canada)"
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
-    @restrictions = params[:restrictions_] || {}
+    @restrictions = params[:restrictions] || {}
     @skill = params[:skill] || session[:skill] || {}
     unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
       @skill = "overall"
@@ -228,9 +228,9 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
 
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:time] != session[:time]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:time] != session[:time]
       session[:filters_] = @filters
-      session[:restrictions_] = @restrictions
+      session[:restrictions] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
@@ -249,7 +249,7 @@ class PlayersController < ApplicationController
     @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
 
     if @restrictions["10 hitpoints"]
-      @players = @players.where(hitpoints_lvl: 10)
+      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
       @players = @players.where(defence_lvl: 1)
@@ -267,7 +267,7 @@ class PlayersController < ApplicationController
 
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @filters = params[:filters_] || session[:filters_] || {}
-    @restrictions = params[:restrictions_] || {}
+    @restrictions = params[:restrictions] || {}
     @skill = params[:skill] || session[:skill] || {}
     @show_limit = params[:show_limit] || session[:show_limit] || 100
     @show_limit = [@show_limit.to_i, 500].min
@@ -303,9 +303,9 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
 
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions_] != session[:restrictions_] || params[:filter_inactive] != session[:filter_inactive]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:filter_inactive] != session[:filter_inactive]
       session[:filters_] = @filters
-      session[:restrictions_] = @restrictions
+      session[:restrictions] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
@@ -368,7 +368,7 @@ class PlayersController < ApplicationController
     end
 
     if @restrictions["10 hitpoints"]
-      @players = @players.where(hitpoints_lvl: 10)
+      @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
       @players = @players.where(defence_lvl: 1)
