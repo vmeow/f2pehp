@@ -80,7 +80,7 @@ class Player < ActiveRecord::Base
                 {name: "Frogmask", flair_after: "flairs/frog.png"},
                 {name: "FitMC", amount: 10, date: "2018-03-13", flair_after: "flairs/anchovy_pizza.png"},
                 {name: "Pink skirt", amount: 10, date: "2018-05-18", flair_after: "flairs/pink_skirt.png"},
-                {name: "MA5ON", amount: 10, date: "2018-11-15", flair_after: "items/Diamond.gif"},
+                {name: "Tagoodness", amount: 10, date: "2018-11-15", flair_after: "items/Diamond.gif"},
                 {name: "NoQuestsHCIM", amount: 10, date: "2018-12-02", flair_after: "flairs/noquest.png"},
                 {name: "Sir BoJo", amount: 10, date: "2018-12-03", flair_after: "items/Rune_mace.gif"},
                 {name: "f2p Ello", amount: 10, date: "2018-12-05", flair_after: "items/Book_of_knowledge.png"},
