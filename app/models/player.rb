@@ -215,6 +215,7 @@ class Player < ActiveRecord::Base
                 {name: "Raytheons", amount: 5, date: "2020-06-20"},
                 {name: "Cx or xD", amount: 5, date: "2020-06-29", flair_after: "flairs/uncut_ruby.png"},
                 {name: "FreeFromBank", amount: 5, date: "2020-07-21", flair_after: "flairs/new_zealand_flag.png"},
+                {name: "xX360n0sc0pe", amount: 5, date: "2020-07-29", flair_after: "flairs/rune_pickaxe.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
