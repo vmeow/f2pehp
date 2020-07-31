@@ -142,7 +142,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['magic_method'] = "Best spell, then curse splashing until 55, 0 time high alch/superheat during other skills"
     config.ehp_reg['cooking_method'] = "Best fish, then wines"
     config.ehp_reg['woodcutting_method'] = "Best tree, then 3-tick willows with double snow"
-    config.ehp_reg['fishing_method'] = "Best fish, then 3-tick leather fly fishing"
+    config.ehp_reg['fishing_method'] = "Best fish, then 3-tick snow and leather fly fishing"
     config.ehp_reg['firemaking_method'] = "Best logs, with 0-time prayer"
     config.ehp_reg['crafting_method'] = "Best leather item, then best gem"
     config.ehp_reg['smithing_method'] = "Best platebody until adamant platebody, with alts to trade"
