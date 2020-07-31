@@ -773,6 +773,7 @@ class Player < ActiveRecord::Base
   end
 
   def recalculate_ehp
+    # actually used to recalculate gains and starting ehp, not actual ehp
     skill_hash = {}
     ehp = get_ehp_type
     TIMES.each do |time|
@@ -791,6 +792,19 @@ class Player < ActiveRecord::Base
       end
     end
     update_attributes(skill_hash)
+  end
+
+  def recalculate_current_ehp
+    # recalculate ehp values using given stats
+    # useful to run after pushing ehp changes
+    stats_hash = {}
+    SKILLS.each do |skill|
+      stats_hash["#{skill}_xp"] = self.read_attribute("#{skill}_xp")
+      stats_hash["#{skill}_lvl"] = self.read_attribute("#{skill}_lvl")
+      stats_hash["#{skill}_rank"] = self.read_attribute("#{skill}_rank")
+    end
+
+    update_player(stats: stats_hash)
   end
 
   def check_p2p_stats(stats)
