@@ -671,8 +671,8 @@ class Player < ActiveRecord::Base
             skill_xphrs = [144600]
             skill_ehp = skill_xp/144600
           elsif bonus_for == "cooking"
-            skill_xphrs = [120000]
-            skill_ehp = skill_xp/120000
+            skill_xphrs = [135000]
+            skill_ehp = skill_xp/135000
           end
         end
         ehp_discrepancy = calc_skill_ehp(skill_xp + xp_discrepancy, skill_tiers, skill_xphrs) - skill_ehp
