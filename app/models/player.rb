@@ -231,6 +231,7 @@ class Player < ActiveRecord::Base
                 {name: "HC Yiffer"}, # pro bono tracking
                 {name: "Disenthral"}, # pro bono tracking
                 {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
+                {name: "Ironman260", flair_after: "skills/defence.png"},
 
                 # competition winners
                 {name: "Ironkic", flair_before: "flairs/bronze_crown.png"},
