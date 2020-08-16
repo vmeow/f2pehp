@@ -116,6 +116,7 @@ class Player < ActiveRecord::Base
                 {name: "HC Pimps", amount: 10, date: "2020-07-03", flair_after: "flairs/wizards_mind_bomb.png", other_css: ["color: pink"]},
                 {name: "Wopski", amount: 10, date: "2020-07-12", flair_after: "flairs/penguin.png", flair_before: "flairs/gold_crown.png"},
                 {name: "Jambo3547", amount: 10, date: "2020-07-21", flair_after: "flairs/black_cat.png"},
+                {name: "Pokebaw", amount: 10, date: "2020-08-14", flair_after: "flairs/pokeball.png"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
