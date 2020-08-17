@@ -114,7 +114,7 @@ class Player < ActiveRecord::Base
                 {name: "Jato Lava", amount: 10, date: "2020-06-27", flair_after: "flairs/brazil_flag.png"},
                 {name: "Wqve Racer", amount: 10, date: "2020-07-02", flair_after: "flairs/yellow_partyhat.png"},
                 {name: "HC Pimps", amount: 10, date: "2020-07-03", flair_after: "flairs/wizards_mind_bomb.png", other_css: ["color: pink"]},
-                {name: "Wopski", amount: 10, date: "2020-07-12", flair_after: "flairs/penguin.png", flair_before: "flairs/gold_crown.png"},
+                {name: "Wopski", amount: 10, date: "2020-07-12", flair_after: "flairs/penguin.png"},
                 {name: "Jambo3547", amount: 10, date: "2020-07-21", flair_after: "flairs/black_cat.png"},
                 {name: "Pokebaw", amount: 10, date: "2020-08-14", flair_after: "flairs/pokeball.png"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
@@ -160,7 +160,7 @@ class Player < ActiveRecord::Base
                 {name: "HCBown", amount: 5, date: "2019-03-04"},
                 {name: "Dukeddd", amount: 5, date: "2019-03-06"},
                 {name: "one a time", amount: 5, date: "2019-03-06"},
-                {name: "DansPotatoe", date: "2019-03-13", flair_after: "items/Potato.png", flair_before: "flairs/silver_crown.png"},
+                {name: "DansPotatoe", date: "2019-03-13", flair_after: "items/Potato.png"},
                 {name: "Wizards Foot", amount: 5, date: "2019-03-15", flair_after: "flairs/Wizards_Foot_flair.png"},
                 {name: "Hardcore VFL", amount: 5, date: "2019-03-23", flair_after: "HCIM.png"},
                 {name: "Pizzarrhea", amount: 5, date: "2019-03-23", flair_after: "flairs/pizzarrhea.gif"},
@@ -234,9 +234,6 @@ class Player < ActiveRecord::Base
                 {name: "Disenthral"}, # pro bono tracking
                 {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
                 {name: "Ironman260", flair_after: "skills/defence.png"},
-
-                # competition winners
-                {name: "Ironkic", flair_before: "flairs/bronze_crown.png"},
               ]
 
   def self.skills()
