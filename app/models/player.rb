@@ -56,6 +56,7 @@ class Player < ActiveRecord::Base
                 {name: "Earfs"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
+                {name: "UIM Gloo", amount: 25, date: "2020-08-18"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                     {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
                 {name: "vpered", amount: 20, date: "2020-05-20", flair_after: "flairs/russia_flag.png"},
