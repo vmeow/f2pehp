@@ -119,6 +119,8 @@ class Player < ActiveRecord::Base
                 {name: "Jambo3547", amount: 10, date: "2020-07-21", flair_after: "flairs/black_cat.png"},
                 {name: "Pokebaw", amount: 10, date: "2020-08-14", flair_after: "flairs/pokeball.png"},
                 {name: "BlueGainz", amount: 10, date: "2020-08-17", flair_after: "flairs/BlueGainz.png"},
+                {name: "BTW F2P HCIM", amount: 10, date: "2020-08-25", flair_before: "HCIM.png", flair_after: "flairs/horus.png"},
+                    {name: "FE F2P PURE", amount: 10, date: "2020-08-25", flair_after: "flairs/Stale_baguette.png"}, # same request as BTW F2P HCIM
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},

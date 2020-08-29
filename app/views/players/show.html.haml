@@ -214,6 +214,10 @@
           = "3rd Place Team"
           %br
           = "July 2020 EHP Comp"
+    - elsif @player.player_name == "BTW F2P HCIM"
+      = image_tag "flairs/btw_f2p_hcim.png"
+    - elsif @player.player_name == "FE F2P PURE"
+      = image_tag "flairs/fe_f2p_pure.png"
 
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 380px;") do 
     = "Display:"
