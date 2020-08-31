@@ -224,6 +224,8 @@ class Player < ActiveRecord::Base
                 {name: "Wildy willy", amount: 5, date: "2020-07-30", flair_after: "flairs/skull.png"},
                 {name: "Mini Catable", amount: 5, date: "2020-08-02", flair_after: "flairs/Reindeer_hat.png"},
                 {name: "Break My Ego", amount: 5, date: "2020-08-18"},
+                {name: "Evangelion", amount: 5, date: "2020-08-27", flair_after: "flairs/team-cape-40.png"},
+                {name: "SkyraHC", amount: 5, date: "2020-08-29"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
