@@ -121,6 +121,7 @@ class Player < ActiveRecord::Base
                 {name: "BlueGainz", amount: 10, date: "2020-08-17", flair_after: "flairs/BlueGainz.png"},
                 {name: "BTW F2P HCIM", amount: 10, date: "2020-08-25", flair_before: "HCIM.png", flair_after: "flairs/horus.png", other_css: ["color: #850000"]},
                     {name: "FE F2P PURE", amount: 10, date: "2020-08-25", flair_before: "IM.png", flair_after: "flairs/Stale_baguette.png", other_css: ["color: #969696"]}, # same request as BTW F2P HCIM
+                {name: "GameboyMicro", amount: 10, date: "2020-08-31"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -226,6 +227,7 @@ class Player < ActiveRecord::Base
                 {name: "Break My Ego", amount: 5, date: "2020-08-18"},
                 {name: "Evangelion", amount: 5, date: "2020-08-27", flair_after: "flairs/team-cape-40.png"},
                 {name: "SkyraHC", amount: 5, date: "2020-08-29"},
+                {name: "PlNKlE", amount: 5, date: "2020-09-01", flair_after: "flairs/bunny_ears.png", other_css: ["color: #DF06B5"]},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
