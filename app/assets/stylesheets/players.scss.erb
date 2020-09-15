@@ -362,6 +362,11 @@ form .input { display: table-cell; }
       padding: 3px;
       display: inline-flex;
       content: image-url("<%= supporter[:flair_before] %>");
+      <% if supporter[:before_css] %>
+        <% supporter[:before_css].each do |rule| %>
+          <%= rule %>;
+        <% end %>
+      <% end %>
     }
   <% end %>
 
@@ -370,6 +375,11 @@ form .input { display: table-cell; }
       padding: 3px;
       display: inline-flex;
       content: image-url("<%= supporter[:flair_after] %>");
+      <% if supporter[:after_css] %>
+        <% supporter[:after_css].each do |rule| %>
+          <%= rule %>;
+        <% end %>
+      <% end %>
     }
   <% end %>
 
@@ -385,6 +395,21 @@ form .input { display: table-cell; }
   }
 <% end %>
 
+<% if supporter[:before_css] && !supporter[:flair_before] %>
+  a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
+    <% supporter[:before_css].each do |rule| %>
+      <%= rule %>;
+    <% end %>
+  }
+<% end %>
+
+<% if supporter[:after_css] && !supporter[:flair_after] %>
+  a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
+    <% supporter[:after_css].each do |rule| %>
+      <%= rule %>;
+    <% end %>
+  }
+<% end %>
 // test code to force css files to be re-compiled?
 
 // ccc
