@@ -393,22 +393,22 @@ form .input { display: table-cell; }
     display: inline-flex;
     align-items: center;
   }
-<% end %>
 
-<% if supporter[:before_css] && !supporter[:flair_before] %>
-  a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
-    <% supporter[:before_css].each do |rule| %>
-      <%= rule %>;
-    <% end %>
-  }
-<% end %>
+  <% if supporter[:before_css] && !supporter[:flair_before] %>
+    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
+      <% supporter[:before_css].each do |rule| %>
+        <%= rule %>;
+      <% end %>
+    }
+  <% end %>
 
-<% if supporter[:after_css] && !supporter[:flair_after] %>
-  a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
-    <% supporter[:after_css].each do |rule| %>
-      <%= rule %>;
-    <% end %>
-  }
+  <% if supporter[:after_css] && !supporter[:flair_after] %>
+    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
+      <% supporter[:after_css].each do |rule| %>
+        <%= rule %>;
+      <% end %>
+    }
+  <% end %>
 <% end %>
 // test code to force css files to be re-compiled?
 
