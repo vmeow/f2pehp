@@ -208,6 +208,8 @@ class Player < ActiveRecord::Base
                 {name: "Prof Zetlin", amount: 5, date: "2020-03-21", flair_after: "flairs/Shoulder_parrot.png"},
                 {name: "R E3", amount: 5, date: "2020-03-24"},
                 {name: "Plue", amount: 5, date: "2020-04-06", flair_after: "flairs/Snow_globe.png"},
+                    # plue
+                    {name: "Fixif", amount: 0, date: "2020-04-06"},
                 {name: "Solo Dancer", amount: 5, date: "2020-04-15", flair_after: "flairs/Redemption.png"},
                 {name: "TheNutSlush", amount: 5, date: "2020-04-19", flair_after: "flairs/Reward_casket_beginner.png"},
                 {name: "maddiefsna5", amount: 5, date: "2020-04-23", no_link: true},
