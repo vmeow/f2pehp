@@ -49,6 +49,7 @@ class Player < ActiveRecord::Base
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
+                {name: "GameboyMicro", amount: 30, date: "2020-10-08", flair_after: "flairs/antisanta_mask.png"},
                 {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
                 {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
                 {name: "Ticket Farm", date: "2019-07-05", flair_after: "flairs/genie_head.png"},
@@ -121,7 +122,6 @@ class Player < ActiveRecord::Base
                 {name: "BlueGainz", amount: 10, date: "2020-08-17", flair_after: "flairs/BlueGainz.png"},
                 {name: "BTW F2P HCIM", amount: 10, date: "2020-08-25", flair_before: "HCIM.png", flair_after: "flairs/horus.png", other_css: ["color: #850000"]},
                     {name: "FE F2P PURE", amount: 10, date: "2020-08-25", flair_before: "IM.png", flair_after: "flairs/Stale_baguette.png", other_css: ["color: #969696"]}, # same request as BTW F2P HCIM
-                {name: "GameboyMicro", amount: 15, date: "2020-09-02", flair_after: "flairs/antisanta_mask.png"},
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
