@@ -100,6 +100,11 @@ table.compare {
   width: 720px;
 }
 
+.wide-scroll-middle {
+  background: image-url("scroll_middle_745.gif");
+  width: 745px;
+}
+
 .blank {
   color:#969696;
   background: none;
@@ -410,5 +415,37 @@ form .input { display: table-cell; }
     }
   <% end %>
 <% end %>
+
+
+.scroll {
+  h1 {
+    color: black;
+  }
+  p {
+    color: black;
+  }
+  a {
+    color: #7B4F17;
+  }
+  details {
+    color: black;
+    margin-bottom: 20px;
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+    summary {
+      font-size: 18px;
+      font-weight: bold;
+      color: #000000;
+      text-shadow: 1px 1px #c0c0c0;
+      cursor: pointer;
+      margin-bottom: 10px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
 
 // Making a comment forces the SCSS to recompile.

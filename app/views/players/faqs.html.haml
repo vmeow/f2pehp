@@ -4,12 +4,20 @@
 
 = render :partial => "header.html.haml",  :locals => {notice: notice}
 
-= content_tag(:div, nil, class: "container", style: "width: 740px;") do 
-  = content_tag(:div, nil, class: "left", style: "margin-left: 30px; text-align: left; width: 640px; padding: 10px;") do 
+= content_tag(:div, nil, class: "container", id: "headerCompare", style: "margin: auto; width: 765px; height: 46px; margin-bottom: 0px;")
+= content_tag(:div, nil, class: ["container", "scroll", "wide-scroll-middle"], style: "margin-bottom: 0px;") do
+  = content_tag(:div, nil, class: "container", style: "width: 420px; text-align: left;") do
     %h1{:align => "center"} Frequently Asked Questions
-    = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
-      = "This is an active work in progress. Please visit "
+    = content_tag(:p, nil, style: "text-align:center; margin: auto; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+      = "Please visit "
       = link_to "this reddit post", "https://www.reddit.com/r/W385/comments/fdqw8p/what_is_f2pwiki/"
       = "for our general site philosophy, specifically on what is F2P, and what this site is meant for."
       %br
       %br
+
+    %details
+      %summary
+        = "Sample Question?"
+      = "Sample answer"
+
+= content_tag(:div, nil, class: "container", id: "footerCompare", style: "margin:auto; width: 765px; height: 50px; margin-top: 0px;") 
