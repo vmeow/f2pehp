@@ -4,12 +4,193 @@
 
 = render :partial => "header.html.haml",  :locals => {notice: notice}
 
-= content_tag(:div, nil, class: "container", style: "width: 740px;") do 
-  = content_tag(:div, nil, class: "left", style: "margin-left: 30px; text-align: left; width: 640px; padding: 10px;") do 
+= content_tag(:div, nil, class: "container", id: "headerCompare", style: "margin: auto; width: 765px; height: 46px; margin-bottom: 0px;")
+= content_tag(:div, nil, class: ["container", "scroll", "wide-scroll-middle"], style: "margin-bottom: 0px;") do
+  = content_tag(:div, nil, class: "container", style: "width: 460px; text-align: left;") do
     %h1{:align => "center"} Frequently Asked Questions
-    = content_tag(:div, nil, style: "text-align:center; margin: auto; width: 420px; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
-      = "This is an active work in progress. Please visit "
+    = content_tag(:p, nil, style: "text-align:center; margin: auto; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+      = "Please visit "
       = link_to "this reddit post", "https://www.reddit.com/r/W385/comments/fdqw8p/what_is_f2pwiki/"
       = "for our general site philosophy, specifically on what is F2P, and what this site is meant for."
       %br
       %br
+
+    %h2
+      = "F2P Wiki"
+    %details
+      %summary
+        = "How can I submit a question for the FAQ?"
+      = "You can submit a question by contacting us "
+      = link_to_unless_current "here.", donate_path
+    %details
+      %summary
+        = "Why does F2P Wiki sometimes show a 500 error?"
+      = "F2P Wiki collects data by making requests to the official Oldschool Runescape Hiscores. These Hiscores are inconsistant in uptime and response time which makes it difficult for F2P Wiki."
+      %br
+      %br
+      = "We are currently working on improving this by migrating the server and improving the request handling code."
+    %details
+      %summary
+        = "Why are gains/records not working?"
+      = "Gains and records are only available for players with 250 EHP or more, or players who have "
+      = link_to_unless_current "supported the wiki.", donate_path
+    %details
+      %summary
+        = "When does F2P Wiki get updated?"
+      = "F2P Wiki is currently run by two developers with full time jobs and other life responsibilities. We release updates when we have time to work on the Wiki but anyone can contribute through "
+      = link_to "open source on GitHub.", "https://github.com/vmeow/f2pehp"
+    %h2
+      = "Combat"
+    %details
+      %summary
+        = "Can I do Dragon Slayer at level _?"
+      = "Base 40 melees are a good goal before facing Elvarg however if you flinch (attacking in delays to prevent taking damage) you can kill Elvarg at significantly lower stats."
+    %details
+      %summary
+        = "Can I kill Obor at level _?"
+      = "Despite what strategy you use, we highly recommend 40 Prayer for Protect from Missiles to reduce the max hit from 26 to 22 (melee)."
+      %br
+      %br
+      = "The minimum Ranged or Magic level we recommend is 50 while using the Bind/Snare strategy."
+      %br
+      %br
+      = "As the Melee strategy requires you to face tank Obor directly, we recommend a minimum of base 70 melees."
+
+    %details
+      %summary
+        = "Can I kill Bryophyta at level _?"
+      = "Similar to Obor, despite what strategy you use, we highly recommend having at least 37 Prayer for Protect from Magic."
+      %br
+      %br
+      = "For the Ranged strategy, we recommend a minimum of 60 Ranged and 40 Defence."
+      %br
+      %br
+      = "For the Melee strategy, we recommend a minimum of 65 Attack and Strength, and 40 Defence."
+
+    %details
+      %summary
+        = "Can I kill Ogresses at level _?"
+      = "We recommend either level 50 Ranged, level 50 Magic (or 55 for Ultimates) or base 80s for Melee (75 if Prayer flicking)."
+    %details
+      %summary
+        = "What arrows should I use at Ogresses?"
+      = "If you are casting High Level Alchemy on the Rune drops from Ogresses, you will easily cover the cost of using adamant arrows. We recommend buying a maximum of 50 adamant arrows per world from Lowe's Archery Emporium in Varrock."
+      %br
+      %br
+      = "If you are curious about arrow consumption, you can "
+      = link_to "view Tannerdino's Arrow Consumption Spreadsheet.", "https://docs.google.com/spreadsheets/d/1TsPH2rPa2B5WF7TeWj2elH5PktrKpKHiA9SFLnW36Vc/edit#gid=0"
+    %details
+      %summary
+        = "If I die to Obor/Bryophyta will I lose my stuff?"
+      = "As of the "
+      = link_to "Death Mechanics Update", "https://secure.runescape.com/m=news/death-changes?oldschool=1"
+      = " on the 25th June 2020, if you die to either Obor or Bryophyta your items will show as a pile (if an ultimate ironman) or a gravestone outside the instance."
+    %details
+      %summary
+        = "How do I get a Rune Scimitar?"
+      = "Unfortunately, no monster in F2P drops the rune scimitar. The only way to receive one as an ironman is to smith one at 90 smithing (or 89 with a +1 Dwarven stout boost). The best alternative is a Rune (short) sword which you can purchase from Scavvo in the Champions guild for 20,800 coins."
+    %details
+      %summary
+        = "Rune short or long?"
+      = "The Rune short sword always amounts to a higher number of DPS on any monster in F2P, however a Rune longsword does have use as a flinching (attacking in delays to prevent taking damage) weapon."
+      %br
+      %br
+      = "You can play around with the DPS of different weapons using our "
+      = link_to "Combat DPS Calc.", dps_path
+    %details
+      %summary
+        = "Are the Snare and Entangle spells now F2P?"
+      = "The Snare spell was added to F2P on the 5th of September 2019 but Entangle remains P2P."
+    %details
+      %summary
+        = "Where should I kill Imps?"
+      = "South of Falador and around the Karamja volcano are the best places to kill Imps."
+    %details
+      %summary
+        = "What is the best way to get level 55 Magic?"
+      = "Curse splashing is a fast and affordable way to hit level 55 Magic."
+
+    %h2
+      = "Skilling"
+    %details
+      %summary
+        = "Can I get a better axe than steel without smithing?"
+      = "There is a 1/805 chance of receiving a black axe from beginner clues. You will need to smith the Mithril, Adamant and Rune axes."
+    %details
+      %summary
+        = "Is the Ring of Forging (rof) F2P?"
+      = "Yes. As of the 21st of February 2019, Rings of Forging can be created in F2P by paying Murkey Matt at the Grand Exchange 250 coins and a ruby ring."
+    %details
+      %summary
+        = "How do I get rubies?"
+      = "The most common ways to obtain rubies are to "
+      %br
+      %br
+      = "- Kill monsters with access to the rare drop table"
+      %br
+      %br
+      = "- Complete random events (Pinball can reward 5 noted, Prison Pete can reward 2-5 noted and the Mysterious Old Man and Rick Turpentine can reward a single ruby)"
+      %br
+      %br
+      = "- Randomly find them while mining ore"
+
+    %details
+      %summary
+        = "Best place to mine iron?"
+      = "As a regular or hardcore ironman, the best place to mine iron is the Mining Guild at level 60. Prior to this, the best place to mine iron is the Rimmington Mine and bank at the Port Sarim deposit box."
+    %details
+      %summary
+        = "Tiaras or symbols?"
+      = "Unstrung symbols grant 50 experience when crafted and sell for 80 coins to a general store. Tiaras grant 52.5 experience when crafting and sell for 40 coins in a general store."
+      %br
+      %br
+      = "Generally tiaras are seen as the better option as you get enough coins from killing Ogresses."
+    %details
+      %summary
+        = "Where do I get a brown apron?"
+      = "You can buy a brown apron for 2 coins from Thessalia's Fine Clothes in the center of Varrock."
+    %details
+      %summary
+        = "Where can I get a Earth talisman?"
+      = "It is recommended to kill either Men/Woman or the Earth Wizard south of Falador to get a earth talisman."
+    %details
+      %summary
+        = "Where can I get a Body talisman?"
+      = "You can kill Guards or Hill Giants to get a body talisman."
+      
+    %h2
+      = "Miscellaneous"
+    %details
+      %summary
+        = "What is the fastest way to get clues?"
+      = "Dark Wizards, Minotaurs and Goblins are the best monsters to kill for clues."
+      %br
+      %br
+      = "Regular accounts are advised to kill Dark Wizards as they are technically the fastest (most clues per HP) and will be able to buy sceptre pieces from the Grand Exchange."
+      %br
+      %br
+      = "Regular and hardcore ironmen are advised to kill Minotaurs they also have a high droprate and it allows them to bank sceptre pieces."
+      %br
+      %br
+      = "Ultimate ironmen are advised to kill Goblins who have a slightly higher droprate than Minotaurs but you don't get the sceptre pieces as you can't bank them."
+    %details
+      %summary
+        = "How much does _ sell for? How many should I sell per world?"
+      = "When selling to a General Store, it will sell at the Low Level Alchemy value of that item and will decrease by 7.5% per additional item sold. The minimum price will be reached after you sell 10 items."
+      %br
+      %br
+      = "When selling to a specialty store or the Wilderness Bandit Camp, it will sell at the High Level Alchemy value of that item and will decrease by 7.5% per additional item sold. The minimum price will be reached after you sell 17 items."
+    %details
+      %summary
+        = "What is the fastest way to make money?"
+      = "The fastest way to make money as an ironman is to kill Ogresses and cast High Level Alchemy on the Rune drops."
+    %details
+      %summary
+        = "Quickest way to get a Cosmic rune?"
+      = "Dark Wizards, Hill Giants, or Ogresses are the best way to get a Cosmic rune. If you are up for it, you could instead venture to the most northwestern point of the Wilderness as there is a Cosmic rune spawn."
+    %details
+      %summary
+        = "Can I get an iron bar without 15 smithing?"
+      = "You can find an iron bar west of the Graveyard of Shadows which is next to some bears in trees in level 18 Wilderness."
+
+= content_tag(:div, nil, class: "container", id: "footerCompare", style: "margin:auto; width: 765px; height: 50px; margin-top: 0px;") 
