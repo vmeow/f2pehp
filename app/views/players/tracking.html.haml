@@ -73,7 +73,7 @@
       = form_tag tracking_path, :method => "get", id: "search-players-form" do
         = "Search by name"
         %br
-        = text_field_tag :search, params[:search], placeholder: "", :class => "search-field", style: "width: 100px;"
+        = text_field_tag :search, params[:search], placeholder: "Player Name", :class => "search-field", style: "width: 100px;"
         %br
         = submit_tag "Search"
         
@@ -88,9 +88,9 @@
       = form_tag compare_path, :method => :get, :id => 'filters_form' do
         = "Compare Users"
         %br
-        = text_field_tag :player1, params[:player1], placeholder: "", :class => "search-field", style: "width: 100px;"
+        = text_field_tag :player1, params[:player1], placeholder: "First Player", :class => "search-field", style: "width: 100px;"
         %br
-        = text_field_tag :player2, params[:player2], placeholder: "", :class => "search-field", style: "width: 100px;"
+        = text_field_tag :player2, params[:player2], placeholder: "Second Player", :class => "search-field", style: "width: 100px;"
         %br
         = submit_tag 'Compare', :id => "compare_submit"
   
