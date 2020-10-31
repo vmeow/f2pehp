@@ -19,7 +19,7 @@
       = content_tag(:div, nil, style: "margin: auto; padding: 15px; width: 180px; height: 100px;") do 
         %h5 Gone but never forgotten
         %h5 
-          = link_to "RIP Unkie", "https://i.imgur.com/EE28q9w.png"
+          = link_to "RIP Unkie", "https://i.imgur.com/EE28q9w.png", target: "_blank", rel: "noopener noreferrer"
         %br
         %h5{:style => "color: #CD7F32;"} 
           = "3rd Place Ironman"
@@ -413,16 +413,16 @@
       = "Other Hiscores"
       %br
       - if @player.player_acc_type == "HCIM"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
       - elsif @player.player_acc_type == "UIM"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ultimate/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ultimate/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
       - elsif @player.player_acc_type == "IM"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ironman/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool_ironman/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
       - elsif @player.player_acc_type == "Reg"
-        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}"
+        = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
       %br
-      = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.url_friendly_player_name}"
-      = link_to "TempleOSRS", "https://templeosrs.com/player/overview.php?player=#{@player.url_friendly_player_name}"
+      = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
+      = link_to "TempleOSRS", "https://templeosrs.com/player/overview.php?player=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
         
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 5px; width: 152px; height: 98px;") do 
       = form_tag ranks_path, :method => "get", id: "search-players-form" do
