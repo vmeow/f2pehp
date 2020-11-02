@@ -105,7 +105,7 @@ class Player < ActiveRecord::Base
                 {name: "I go by zach", amount: 15, date: "2020-03-12", flair_after: "flairs/Spade.png"},
                       {name: "hey earth", amount: 15, date: "2020-07-09", flair_after: "flairs/Bowl_of_water.png"}, # request from zach
                 {name: "Hagl", amount: 20, date: "2020-06-15"},
-                {name: "Vanity Pride", amount: 10, date: "2020-03-26", flair_after: "flairs/Blue_partyhat.png"},
+                {name: "Vanity Pride", amount: 15, date: "2020-10-30", flair_after: "flairs/Blue_partyhat.png"},
                 {name: "f2p HClM btw", amount: 10, date: "2020-04-07", flair_after: "flairs/Mole_slippers.png"},
                 {name: "Hnn 40", amount: 10, date: "2020-04-08", flair_after: "items/Rune_scimitar.gif", other_css: ["color: #850000"]},
                 {name: "Ultimate F2P", amount: 10, date: "2020-04-10", flair_after: "flairs/Mole_slippers.png"},
