@@ -69,6 +69,7 @@ class Player < ActiveRecord::Base
                 {name: "Ywal", amount: 20, date: "2020-06-03", flair_after: "flairs/hole.png", other_css: ["color: #C9AD79"]},
                 {name: "I-69-Buddha", amount: 20, date: "2020-07-09", flair_after: "flairs/demon_feet.png"},
                 {name: "Tramali", amount: 20, date: "2020-07-11", flair_after: "flairs/fire_strike.png"},
+                {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
                 {name: "Brim haven", amount: 15, date: "2019-05-31", flair_after: "flairs/ceres.png"},
@@ -122,6 +123,11 @@ class Player < ActiveRecord::Base
                 {name: "BlueGainz", amount: 10, date: "2020-08-17", flair_after: "flairs/BlueGainz.png"},
                 {name: "BTW F2P HCIM", amount: 10, date: "2020-08-25", flair_before: "HCIM.png", flair_after: "flairs/horus.png", other_css: ["color: #850000"]},
                     {name: "FE F2P PURE", amount: 10, date: "2020-08-25", flair_before: "IM.png", flair_after: "flairs/Stale_baguette.png", other_css: ["color: #969696"]}, # same request as BTW F2P HCIM
+
+                # i don't really know how much is "50% of proceeds goes to F2P.wiki" via Pawz's F2P.wiki merch
+                # but let's just call it a $10 donation and put those requests here
+                {name: "Pinai", amount: 10, date: "2020-11-04", other_css: ["color: #00ff00"]},
+
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
