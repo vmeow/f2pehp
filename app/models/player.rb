@@ -123,6 +123,7 @@ class Player < ActiveRecord::Base
                 {name: "BTW F2P HCIM", amount: 10, date: "2020-08-25", flair_before: "HCIM.png", flair_after: "flairs/horus.png", other_css: ["color: #850000"]},
                     {name: "FE F2P PURE", amount: 10, date: "2020-08-25", flair_before: "IM.png", flair_after: "flairs/Stale_baguette.png", other_css: ["color: #969696"]}, # same request as BTW F2P HCIM
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
+                {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
                 {name: "Im Ronin BTW", amount: 7.5, date: "2020-05-17"},
