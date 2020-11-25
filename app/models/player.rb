@@ -241,7 +241,7 @@ class Player < ActiveRecord::Base
                 {name: "Mr Leong", amount: 5, date: "2020-09-11", flair_after: "flairs/sloth.png"},
                 {name: "doug 1634", amount: 5, date: "2020-10-15", flair_after: "flairs/beer.png", other_css: ["color: #0078ff"]},
                 {name: "sevelius", amount: 5, date: "2020-11-13"},
-                {name: "hard_d0ng", amount: 5, date: "2020-11-25" lair_after: "flairs/rune_med_helm.png"},
+                {name: "hard_d0ng", amount: 5, date: "2020-11-25" flair_after: "flairs/rune_med_helm.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
