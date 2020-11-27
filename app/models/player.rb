@@ -50,6 +50,7 @@ class Player < ActiveRecord::Base
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
                 {name: "GameboyMicro", amount: 30, date: "2020-10-08", flair_after: "flairs/antisanta_mask.png"},
+                {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
                 {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
                 {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
                 {name: "Ticket Farm", date: "2019-07-05", flair_after: "flairs/genie_head.png"},
@@ -67,7 +68,6 @@ class Player < ActiveRecord::Base
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
                 {name: "Varvali", amount: 20, date: "2020-05-12"},
                 {name: "Ywal", amount: 20, date: "2020-06-03", flair_after: "flairs/hole.png", other_css: ["color: #C9AD79"]},
-                {name: "I-69-Buddha", amount: 20, date: "2020-07-09", flair_after: "flairs/demon_feet.png"},
                 {name: "Tramali", amount: 20, date: "2020-07-11", flair_after: "flairs/fire_strike.png"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
