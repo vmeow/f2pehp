@@ -59,7 +59,7 @@ class Player < ActiveRecord::Base
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "UIM Gloo", amount: 25, date: "2020-08-18"},
-                {name: "Iron of One", amount: 23, date: "2020-10-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "Iron of One", amount: 24, date: "2020-11-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                     {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
                 {name: "vpered", amount: 20, date: "2020-05-20", flair_after: "flairs/russia_flag.png"},
@@ -242,6 +242,7 @@ class Player < ActiveRecord::Base
                 {name: "doug 1634", amount: 5, date: "2020-10-15", flair_after: "flairs/beer.png", other_css: ["color: #0078ff"]},
                 {name: "sevelius", amount: 5, date: "2020-11-13"},
                 {name: "hard_d0ng", amount: 5, date: "2020-11-25", flair_after: "flairs/rune_med_helm.png"},
+                {name: "DopeAssF2p", amount: 5, date: "2020-11-28", flair_after: "flairs/Amulet_of_power.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
