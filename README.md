@@ -1,4 +1,4 @@
-![F2P Wiki Banner Logo](app/assets/images/f2pwiki_500.png)
+![F2P Wiki Banner Logo](app/assets/images/f2pwiki.png)
 
 # F2P.wiki
 
