@@ -26,6 +26,7 @@ function combatDPS() {
 
         var meleeWeapon = getAttributeValue("melee_weapon");
         var meleeNeck = getAttributeValue("melee_neck");
+        var meleeBoots = getAttributeChecked("melee_boots");
 
         var mob = getAttributeValue("mob_name");
         var customStats = getAttributeChecked('custom_stats');
@@ -125,6 +126,10 @@ function combatDPS() {
                 break;
             default:
                 break;
+        }
+
+        if (meleeBoots) {
+            strBonus += 1;
         }
         
         // Effective str
@@ -846,6 +851,7 @@ function combatDPS() {
         $('#melee_style').change(dps);
         $('#melee_weapon').change(dps);
         $('#melee_neck').change(dps);
+        $('#melee_boots').change(dps);
         $('#mob_name').change(dps);
         $('#custom_stats').change(dps);
         $('#pvp').change(dps);

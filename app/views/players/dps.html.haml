@@ -32,20 +32,15 @@
         %td= ""
       %tr
         %td= ""
-      %tr
-        %td= ""
-      %tr
-        %td= ""
-      %tr
-        %td= ""
-      %tr
-        %td= ""
       %tr 
         %td= label_tag "Weapon"
         %td= select_tag "melee_weapon", options_for_select(["Rune scimitar", "Rune sword", "Rune longsword", "Rune battleaxe", "Rune 2h sword", "Hill giant club", "Adamant scimitar", "Adamant sword", "Adamant 2h sword", "Event rpg", "None"], "Rune scimitar"), style: "width: 135px;", :include_blank => true
       %tr
         %td= label_tag "Neck Slot"
         %td= select_tag "melee_neck", options_for_select(["Amulet of power", "Amulet of strength", "Amulet of accuracy"]), style: "width: 135px;", :include_blank => true
+      %tr
+        %td= label_tag "Gold boots?"
+        %td= check_box_tag "melee_boots", 1
       %tr
         %td= ""
       %tr
