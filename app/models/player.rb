@@ -30,6 +30,7 @@ class Player < ActiveRecord::Base
   #   5. If any new images were required, be sure to add them to app/assests/images
   SUPPORTERS = [{name: "Bargan", amount: 270.82, date: "2020-07-19"},
                 {name: "Ikiji", amount: 107.28, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
+                {name: "Iron Rwne", amount: 105, date: "2020-12-10", flair_after: "flairs/rwne.png"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "M00MARCITO", amount: 100, date: "2020-03-24"},
                 {name: "Tele Crab", amount: 100, date: "2020-05-24", flair_before: "flairs/dark_crab.png", flair_after: "flairs/crab_claw.png"},
@@ -104,7 +105,7 @@ class Player < ActiveRecord::Base
                 {name: "Solo Tricket", amount: 10, flair_after: "flairs/Jester_cape.png"},
                 {name: "Gem Shop", amount: 10, flair_after: "items/Ruby.gif"},
                 {name: "I go by zach", amount: 15, date: "2020-03-12", flair_after: "flairs/Spade.png"},
-                      {name: "hey earth", amount: 15, date: "2020-07-09", flair_after: "flairs/Bowl_of_water.png"}, # request from zach
+                      {name: "hey earth", amount: 15, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
                 {name: "Hagl", amount: 20, date: "2020-06-15"},
                 {name: "Vanity Pride", amount: 15, date: "2020-10-30", flair_after: "flairs/Blue_partyhat.png"},
                 {name: "f2p HClM btw", amount: 10, date: "2020-04-07", flair_after: "flairs/Mole_slippers.png"},
@@ -212,7 +213,6 @@ class Player < ActiveRecord::Base
                 {name: "ironwind397", amount: 5, date: "2020-02-13"},
                 {name: "thelast lvl", amount: 5, date: "2020-02-29", flair_after: "items/Iron_bar.gif"},
                 {name: "Marrio III", amount: 5, date: "2020-02-29"},
-                {name: "Iron Rwne", amount: 5, date: "2020-03-03", flair_after: "flairs/rwne.png"},
                 {name: "Prof Zetlin", amount: 5, date: "2020-03-21", flair_after: "flairs/Shoulder_parrot.png"},
                 {name: "R E3", amount: 5, date: "2020-03-24"},
                 {name: "Plue", amount: 5, date: "2020-04-06", flair_after: "flairs/Snow_globe.png"},
