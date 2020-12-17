@@ -129,6 +129,9 @@ class Player < ActiveRecord::Base
                 # but let's just call it a $10 donation and put those requests here
                 {name: "Pinai", amount: 10, date: "2020-11-04", other_css: ["color: #00ff00"]},
 
+                {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/Unstrung_symbol.png"},
+
+
                 {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
