@@ -41,6 +41,7 @@ class Player < ActiveRecord::Base
                 {name: "Anonymous", amount: 60, date: "2018-01-31", no_link: true},
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
                 {name: "Pawz", amount: 55.5, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
+                {name: "GameboyMicro", amount: 55, date: "2020-12-10", flair_after: "flairs/antisanta_mask.png"},
                 {name: "DJ9", amount: 50, date: "2018-04-18", flair_after: "flairs/73_hitsplat.png"},
                 {name: "Metan", amount: 50, date: "2019-02-13", flair_after: "flairs/Rune_essence.png"},
                 {name: "Xliff", amount: 50, date: "2020-05-30", flair_after: "flairs/Air_tiara.gif"},
@@ -50,7 +51,6 @@ class Player < ActiveRecord::Base
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
-                {name: "GameboyMicro", amount: 30, date: "2020-10-08", flair_after: "flairs/antisanta_mask.png"},
                 {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
                 {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
                 {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
