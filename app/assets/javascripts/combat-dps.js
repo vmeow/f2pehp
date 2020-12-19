@@ -281,6 +281,21 @@ function combatDPS() {
                 enemyHP = 25;
                 enemyArm = 15;
                 break;
+            case "Ice Giant":
+                enemyDef = 40;
+                enemyHP = 70;
+                if(meleeAttStyle == "Stab"){
+                    enemyArm = 0;
+                } else if(meleeAttStyle == "Slash"){
+                    enemyArm = 3;
+                } else{
+                    enemyArm = 2;
+                }
+                break;
+            case "Dark Wizard (Level 20)":
+                enemyDef = 14;
+                enemyHP = 24;
+                break;
             default:
                 break;
         }
@@ -555,6 +570,14 @@ function combatDPS() {
                 enemyHP = 25;
                 enemyArm = 15;
                 break;
+            case "Ice Giant":
+                enemyDef = 40;
+                enemyHP = 70;
+                break;
+            case "Dark Wizard (Level 20)":
+                enemyDef = 14;
+                enemyHP = 24;
+                break;
             default:
                 break;
         }
@@ -766,6 +789,15 @@ function combatDPS() {
                 enemyDef = 1;
                 enemyHP = 25;
                 enemyArm = 15;
+                break;
+            case "Ice Giant":
+                enemyDef = 1;
+                enemyHP = 70;
+                break;
+            case "Dark Wizard (Level 20)":
+                enemyDef = 22;
+                enemyHP = 24;
+                enemyArm = 3;
                 break;
             default:
                 break;
