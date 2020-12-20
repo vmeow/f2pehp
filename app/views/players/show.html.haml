@@ -1,5 +1,8 @@
 - @title = "#{@player.player_name}'s Personal Hiscores"
-= link_to image_tag("f2pwiki.png"), players_path
+- if @player.player_name == "f2p Ello"
+  = link_to image_tag("f2p_ello_banner.png", :height => "300px", :width => "800px"), players_path
+- else
+  = link_to image_tag("f2pwiki.png"), players_path
 
 = render :partial => "header.html.haml",  :locals => {notice: notice}
 
