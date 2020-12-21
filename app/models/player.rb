@@ -45,6 +45,7 @@ class Player < ActiveRecord::Base
                 {name: "DJ9", amount: 50, date: "2018-04-18", flair_after: "flairs/73_hitsplat.png"},
                 {name: "Metan", amount: 50, date: "2019-02-13", flair_after: "flairs/Rune_essence.png"},
                 {name: "Xliff", amount: 50, date: "2020-05-30", flair_after: "flairs/Air_tiara.gif"},
+                {name: "XaTaRaX", amount: 50, date: "2020-12-21", flair_after: "flairs/Snare.png"},
                 {name: "GOLB f2p", amount: 45, date: "2019-06-05", flair_after: "flairs/golb2.png", other_css: ["color: #66ffff"]},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
