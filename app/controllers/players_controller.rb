@@ -297,11 +297,7 @@ class PlayersController < ApplicationController
       @skill = "overall"
       params[:skill] = "overall"
       session[:skill] = "overall"
-    end
-
-    if @sort_by == {}
-      @sort_by = "ehp"
-    end
+    end 
 
     if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:filter_inactive] != session[:filter_inactive]
       session[:filters_] = @filters
@@ -310,6 +306,14 @@ class PlayersController < ApplicationController
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
       session[:filter_inactive] = @filter_inactive
+    end
+
+    # Sort some skills by xp not ehp as ehp is mostly 0
+    @skills_by_xp = ['magic', 'mining']
+    if @sort_by == {} && @skills_by_xp.include?(@skill)
+      @sort_by = "xp"
+    elsif @sort_by == {}
+      @sort_by = "ehp"
     end
 
     if @skill.include?("ttm")
