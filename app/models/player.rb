@@ -38,7 +38,7 @@ class Player < ActiveRecord::Base
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
                 {name: "Based F2P IM", amount: 70, date: "2019-10-05", flair_after: "IM.png"},
-                {name: "GOLB f2p", amount: 65, date: "2020-12-26", flair_after: "flairs/golb2.png", other_css: ["color: #66ffff"]},
+                {name: "GOLB f2p", amount: 65, date: "2020-12-26", flair_before: "flairs/golb_flair1.png", flair_after: "flairs/golb_flair2.png", other_css: ["color: #66ffff"]},
                 {name: "Anonymous", amount: 60, date: "2018-01-31", no_link: true},
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
                 {name: "Pawz", amount: 55.5, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
