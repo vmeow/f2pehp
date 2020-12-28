@@ -249,6 +249,7 @@ class Player < ActiveRecord::Base
                 {name: "hard_d0ng", amount: 5, date: "2020-11-25", flair_after: "flairs/rune_med_helm.png"},
                 {name: "DopeAssF2p", amount: 5, date: "2020-11-28", flair_after: "flairs/Amulet_of_power.png"},
                 {name: "Ironthokk", amount: 5, date: "2020-12-01", flair_after: "flairs/Maple_shortbow.png"},
+                {name: "Kev F2P", amount: 5, date: "2020-12-28", flair_after: "flairs/bunny_ears.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
