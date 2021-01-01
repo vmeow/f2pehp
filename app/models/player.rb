@@ -234,7 +234,7 @@ class Player < ActiveRecord::Base
                 {name: "Covid 19 V2", amount: 5, date: "2020-06-10", flair_after: "flairs/virus_small.png", flair_before: "flairs/HCIM.png", other_css: ["color: #990000"]},
                 {name: "Hierro Hero", amount: 5, date: "2020-06-17"},
                 {name: "Raytheons", amount: 5, date: "2020-06-20"},
-                {name: "Cx or xD", amount: 5, date: "2020-06-29", flair_after: "flairs/uncut_ruby.png"},
+                {name: "Cx or xD", amount: 5, date: "2020-06-29", flair_after: "flairs/finland_flag.png"},
                 {name: "FreeFromBank", amount: 5, date: "2020-07-21", flair_after: "flairs/new_zealand_flag.png"},
                 {name: "xX360n0sc0pe", amount: 5, date: "2020-07-29", flair_after: "flairs/rune_pickaxe.png"},
                 {name: "Wildy willy", amount: 5, date: "2020-07-30", flair_after: "flairs/skull.png"},
