@@ -225,6 +225,8 @@
       = image_tag "flairs/btw_f2p_hcim.png"
     - elsif @player.player_name == "FE F2P PURE"
       = image_tag "flairs/fe_f2p_pure.png"
+    - elsif @player.player_name == "f2p Ello"
+      = image_tag "flairs/ello.png"
 
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 380px;") do 
     = "Display:"
@@ -408,7 +410,7 @@
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 20px; width: 152px; max-width: 152px; overflow-x: auto; margin-top: 5px;") do 
 
     - if @player.player_name == "f2p Ello"
-      = image_tag "flairs/ello.png"
+      = image_tag "flairs/f2p_ello2.png"
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 10px; width: 152px; height: 98px; padding-top: 0px;") do 
       %h4 Update Stats
       = link_to "#{@player.player_name}", update_player_path
