@@ -91,7 +91,7 @@ class Player < ActiveRecord::Base
                 {name: "Tagoodness", amount: 10, date: "2018-11-15", flair_after: "items/Diamond.gif"},
                 {name: "NoQuestsHCIM", amount: 10, date: "2018-12-02", flair_after: "flairs/noquest.png"},
                 {name: "Sir BoJo", amount: 10, date: "2018-12-03", flair_after: "items/Rune_mace.gif"},
-                {name: "f2p Ello", amount: 10, date: "2018-12-05", flair_after: "items/ello_flag.png"},
+                {name: "f2p Ello", amount: 10, date: "2018-12-05", flair_after: "flairs/ello_flag.png"},
                 {name: "Sad Jesus", amount: 10, date: "2019-01-19", flair_after: "flairs/sad_jesus.png"},
                 {name: "Cas F2P HC", amount: 10, date: "2019-01-30", flair_after: "items/Big_bones.gif"},
                 {name: "UIM Dakota", amount: 10, date: "2019-02-26", flair_after: "flairs/Cadava_berries.png"},
