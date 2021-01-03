@@ -142,6 +142,7 @@ class Player < ActiveRecord::Base
                 {name: "Playing Fe", amount: 7, date: "2018-04-26", flair_after: "flairs/salmon.png"},
                 {name: "ZINJAN", amount: 6.66, date: "2018-05-18", flair_after: "flairs/ZINJANTHROPI.png"},
                 {name: "Snooz Button", amount: 6.66, date: "2018-06-03", flair_after: "flairs/macaroni.png"},
+                {name: "Ir0n K0b0ld", amount: 6.66, date: "2021-01-02", flair_after: "flairs/Red_salamander.png"},
                 {name: "Valleyman6", amount: 6.64, date: "2018-06-15", flair_after: "flairs/uk_flag.png"},
                 {name: "i drink fiji", amount: 6, date: "2018-05-06", flair_after: "flairs/blue_cape.png"},
                 {name: "5th Teletuby", amount: 6, date: "2020-03-29", flair_after: "flairs/Easter_basket.png"},
