@@ -13,21 +13,18 @@ List is in order of priority, with time estimates and the following tags.
 ## Backlog
 
 * [FRNT] Display time until gains reset (15m)
-* [DATA] Add and display player created_at/updated_at timestamps (2h)
 * [DATA] Improve handling of or spread out Jagex API calls (8h)
   * perhaps this could allow for dynamic time tracking???
 * [ALGO] Fix repair_records tool and records in general (8h)
-* [DATA] Display players' ranks on F2P.wiki only (8h)
-  * [FRNT] Link personal page skills to hiscores (2h)
+* [FRNT] Link personal page skills to hiscores (2h)
 * [DATA] Explore options to improve datapoint storage (12h)
 * [FRNT] Latest 99 and 200ms (4h)
-* [FRNT] FAQs page (8h)
+* [FRNT] Firsts to 99, 200ms (4h)
 * [BUGS] Fix cache issues where users must use private mode to use site (2h)
 * [FRNT] Create new pages to compare gains and records (2h)
 * [FRNT] CSS color outlines for different account types (2h)
   * grey - irons, red - hc, white - uim
 * [TEST] Create unit test suite (24h)
-* [DVPS] Explore migrating away from Heroku (40h)
 * [DVPS] Allow upload of content (flairs, news, etc) (24h)
   * Create admin user(s)?
 * [CALC] Fix GP/XP calculator to update GE prices once per hour (2h)
@@ -44,6 +41,7 @@ List is in order of priority, with time estimates and the following tags.
 
 ## In Progress
 
+* [DVPS] Explore migrating away from Heroku (40h)
 * [DVPS] Debug Windows dev environment setup (4h)
 * [DVPS] Complete open sourcing (8h)
   * refactoring to improve readability
@@ -55,6 +53,9 @@ List is in order of priority, with time estimates and the following tags.
 
 ## Done
 
+* [FRNT] FAQs page (8h)
+* [DATA] Display players' ranks on F2P.wiki only (8h)
+* [DATA] Add and display player created_at/updated_at timestamps (2h)
 * [ALGO] Improve HC death, de-iron, and de-UIM detection (4h) - Mike
 * [BUGS] When Jagex hiscores API is unresponsive, don't immediately mark as P2P (2h)
 * [DATA] LMS ranks (2h)
