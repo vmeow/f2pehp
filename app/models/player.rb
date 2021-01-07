@@ -37,7 +37,7 @@ class Player < ActiveRecord::Base
                 {name: "a q p IM"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
-		{name: "Pawz", amount: 79.25, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
+                {name: "Pawz", amount: 79.25, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
                 {name: "Based F2P IM", amount: 70, date: "2019-10-05", flair_after: "IM.png"},
                 {name: "GOLB f2p", amount: 65, date: "2020-12-26", flair_before: "flairs/golb_flair1.png", flair_after: "flairs/golb_flair2.png", other_css: ["color: #66ffff"]},
                 {name: "Anonymous", amount: 60, date: "2018-01-31", no_link: true},
@@ -253,7 +253,7 @@ class Player < ActiveRecord::Base
                 {name: "Kev F2P", amount: 5, date: "2020-12-28", flair_after: "flairs/bunny_ears.png"},
                 {name: "F2P Verf", amount: 5, date: "2020-12-30", flair_after: "flairs/Dutch_flag.png"},
                 {name: "dhbs", amount: 5, date: "2021-01-04", flair_after: "flairs/white_partyhat.png"},
-	        {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
+                {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
                 {name: "Hratli", amount: 2.5, date: "2020-07-29"},
@@ -346,8 +346,8 @@ class Player < ActiveRecord::Base
 
     base = 0.25 * (defence + hp + (pray/2).floor)
     melee = 0.325 * (att + str)
-	  range = 0.325 * ((ranged/2).floor + ranged)
-	  mage = 0.325 * ((magic/2).floor + magic)
+    range = 0.325 * ((ranged/2).floor + ranged)
+    mage = 0.325 * ((magic/2).floor + magic)
     combat = (base + [melee, range, mage].max).round(5)
 
     if combat < 3.4
@@ -381,6 +381,9 @@ class Player < ActiveRecord::Base
       Player.where(player_name: player_name).destroy_all
     end
     Rails.logger.info "Updating #{player_name}"
+
+    # save this value first, because any changes to a record will update Rails models' "updated_at"
+    last_updated = self.read_attribute("updated_at")
 
     # Skip fetching from hiscores if stats are provided in parameters.
     unless stats
@@ -420,7 +423,7 @@ class Player < ActiveRecord::Base
       # end
     end
 
-    stats = calculate_virtual_stats(stats)
+    stats = calculate_virtual_stats(stats, last_updated=last_updated)
     stats[:updated_at] = Time.now
 
     self.attributes = stats
@@ -492,7 +495,24 @@ class Player < ActiveRecord::Base
     update_attributes(fixed_ehps)
   end
 
-  def calculate_virtual_stats(stats)
+  def out_of_date(time, last_updated)
+    return true unless last_updated
+
+    case time
+    when "day"
+      out_of_date = last_updated < Time.now.gmtime.beginning_of_day
+    when "week"
+      out_of_date = last_updated < Time.now.gmtime.beginning_of_week
+    when "month"
+      out_of_date = last_updated < Time.now.gmtime.beginning_of_month
+    when "year"
+      out_of_date = last_updated < Time.now.gmtime.beginning_of_year
+    end
+
+    return out_of_date
+  end
+
+  def calculate_virtual_stats(stats, last_updated=nil)
     bonus_xp = calc_bonus_xps(stats)
     stats = calc_ehp(stats)
     stats = adjust_bonus_xp(stats, bonus_xp)
@@ -505,7 +525,8 @@ class Player < ActiveRecord::Base
     if stats["overall_ehp"] > 250 or Player.supporters.include?(player_name)
       TIMES.each do |time|
         xp = self.read_attribute("overall_xp_#{time}_start")
-        if xp.nil? or xp == 0
+
+        if xp.nil? or xp == 0 or self.out_of_date(time, last_updated)
           stats = update_player_start_stats(time, stats)
         end
       end
