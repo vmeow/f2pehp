@@ -255,6 +255,7 @@ class Player < ActiveRecord::Base
                 {name: "dhbs", amount: 5, date: "2021-01-04", flair_after: "flairs/white_partyhat.png"},
                 {name: "Yvn", amount: 5, date: "2021-01-08", flair_after: "flairs/willow.png"},
                 {name: "mythiclime", amount: 5, date: "2021-01-10", flair_after: "items/Adamantite_bar.gif"},
+                {name: "Reviloekul", amount: 5, date: "2021-01-13", flair_after: "flairs/Black_hween_mask.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
