@@ -74,6 +74,7 @@ class Player < ActiveRecord::Base
                 {name: "Tramali", amount: 20, date: "2020-07-11", flair_after: "flairs/fire_strike.png"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                 {name: "Laskati", amount: 20, date: "2020-12-27", flair_after: "flairs/wise_old_man.png"},
+                {name: "FishToBond", amount: 20, date: "2021-01-16", flair_after: "flairs/Raw_swordfish.png"},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
                 {name: "Brim haven", amount: 15, date: "2019-05-31", flair_after: "flairs/ceres.png"},
