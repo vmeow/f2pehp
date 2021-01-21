@@ -63,6 +63,7 @@ class Player < ActiveRecord::Base
                 {name: "UIM Gloo", amount: 25, date: "2020-08-18"},
                 {name: "Nun", amount: 25, date: "2020-12-24", flair_after: "skills/prayer.png"},
                 {name: "Iron of One", amount: 24, date: "2020-11-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "f2p Ello", amount: 22, date: "2021-01-21", flair_after: "flairs/ello_flag.png"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                     {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
                 {name: "vpered", amount: 20, date: "2020-05-20", flair_after: "flairs/russia_flag.png"},
@@ -92,7 +93,6 @@ class Player < ActiveRecord::Base
                 {name: "Tagoodness", amount: 10, date: "2018-11-15", flair_after: "items/Diamond.gif"},
                 {name: "NoQuestsHCIM", amount: 10, date: "2018-12-02", flair_after: "flairs/noquest.png"},
                 {name: "Sir BoJo", amount: 10, date: "2018-12-03", flair_after: "items/Rune_mace.gif"},
-                {name: "f2p Ello", amount: 10, date: "2018-12-05", flair_after: "flairs/ello_flag.png"},
                 {name: "Sad Jesus", amount: 10, date: "2019-01-19", flair_after: "flairs/sad_jesus.png"},
                 {name: "Cas F2P HC", amount: 10, date: "2019-01-30", flair_after: "items/Big_bones.gif"},
                 {name: "UIM Dakota", amount: 10, date: "2019-02-26", flair_after: "flairs/Cadava_berries.png"},
