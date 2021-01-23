@@ -40,7 +40,7 @@ class Player < ActiveRecord::Base
                 {name: "Pawz", amount: 79.25, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
                 {name: "Based F2P IM", amount: 70, date: "2019-10-05", flair_after: "IM.png"},
                 {name: "GOLB f2p", amount: 75, date: "2021-01-22", flair_before: "flairs/golb_flair1.png", flair_after: "flairs/golb_flair2.png", other_css: ["color: #66ffff"]},
-                    {name: "XP go Dididi", amount: 75, date: "2020-12-26", flair_before: "flairs/golb_flair3.jpeg"}, # request of GOLB f2p
+                    {name: "XP go Dididi", amount: 0, date: "2020-12-26", flair_before: "flairs/golb_flair3.jpeg"}, # request of GOLB f2p
                 {name: "Anonymous", amount: 60, date: "2018-01-31", no_link: true},
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
                 {name: "XaTaRaX", amount: 60, date: "2020-12-27", flair_after: "flairs/Snare.png"},
