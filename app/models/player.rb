@@ -137,7 +137,8 @@ class Player < ActiveRecord::Base
                 {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/Unstrung_symbol.png"},
 
 
-                {name: "Ghost Bloke", amount: 15, date: "2021-02-03", flair_after: "flairs/ghost_bloke.png"},
+                {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
+                    {name: "Aus Flash", amount: 5, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
