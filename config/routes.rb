@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   post 'admin#add_supporter' => 'admin#add_supporter', as: :add_supporter
   post 'admin#fix_spaces' => 'admin#fix_spaces', as: :fix_spaces
   post 'admin#change_name' => 'admin#change_name', as: :change_name
+  post 'admin#update_clan' => 'admin#update_clan', as: :update_clan
+  post 'admin#update_many_clans' => 'admin#update_many_clans', as: :update_many_clans
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

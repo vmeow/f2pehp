@@ -72,6 +72,7 @@ class PlayersController < ApplicationController
     @show_limit = [@show_limit.to_i, 500].min
     @time = params[:time] || session[:time] || "week"
     @clear_filters = params[:clear_filters]
+    @clan_filters = params[:clans_] || session[:clans_] || {}
 
     if @clear_filters
       @sort_by = {}
@@ -79,6 +80,7 @@ class PlayersController < ApplicationController
       @restrictions = {}
       @skill = {}
       @show_limit = 100
+      @clan_filters = {}
     end
 
     case @time
@@ -96,6 +98,12 @@ class PlayersController < ApplicationController
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters
       session[:filters_] = @filters
+    end
+
+    if @clan_filters == {}
+      @clan_filters = Clan.all.map{ |c| {"#{c.name}": 1} }.reduce(:merge)
+      params[:clans_] = @clan_filters
+      session[:clans_] = @clan_filters
     end
 
     if @skill == "combat"
@@ -124,13 +132,14 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
 
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:time] != session[:time]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:time] != session[:time] || params[:clans_] != session[:clans_]
       session[:filters_] = @filters
       session[:restrictions] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
       session[:time] = @time
+      session[:clans_] = @clan_filters
     end
 
     case @sort_by
@@ -154,7 +163,7 @@ class PlayersController < ApplicationController
       @players = @players.where("combat_lvl < 4")
     end
 
-    @players = @players.where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.joins(:clan).merge(Clan.where(name: @clan_filters.keys)).where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def records
@@ -176,6 +185,7 @@ class PlayersController < ApplicationController
     @time = params[:time] || session[:time] || "week"
 
     @clear_filters = params[:clear_filters]
+    @clan_filters = params[:clans_] || session[:clans_] || {}
 
     if @clear_filters
       @sort_by = {}
@@ -183,6 +193,7 @@ class PlayersController < ApplicationController
       @restrictions = {}
       @skill = {}
       @show_limit = 100
+      @clan_filters = {}
     end
 
     case @time
@@ -200,6 +211,12 @@ class PlayersController < ApplicationController
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters
       session[:filters_] = @filters
+    end
+
+    if @clan_filters == {}
+      @clan_filters = Clan.all.map{ |c| {"#{c.name}": 1} }.reduce(:merge)
+      params[:clans_] = @clan_filters
+      session[:clans_] = @clan_filters
     end
 
     if @skill == "combat"
@@ -228,13 +245,14 @@ class PlayersController < ApplicationController
       @sort_by = "ehp"
     end
 
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:time] != session[:time]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:time] != session[:time] || params[:clans_] != session[:clans_]
       session[:filters_] = @filters
       session[:restrictions] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
       session[:time] = @time
+      session[:clans_] = @clan_filters
     end
 
     case @sort_by
@@ -246,7 +264,7 @@ class PlayersController < ApplicationController
       ordering = "#{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp DESC"
     end
 
-    @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
+    @players = Player.limit(@show_limit.to_i).joins(:clan).merge(Clan.where(name: @clan_filters.keys)).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
 
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
@@ -273,6 +291,7 @@ class PlayersController < ApplicationController
     @show_limit = [@show_limit.to_i, 500].min
     @clear_filters = params[:clear_filters]
     @filter_inactive = params[:filter_inactive] || session[:filter_inactive] || "false"
+    @clan_filters = params[:clans_] || session[:clans_] || {}
 
     if @clear_filters
       @sort_by = {}
@@ -281,12 +300,19 @@ class PlayersController < ApplicationController
       @skill = {}
       @show_limit = 100
       @filter_inactive = "false"
+      @clan_filters = {}
     end
 
     if @filters == {}
       @filters = {"Reg": 1, "IM": 1, "UIM": 1, "HCIM": 1}
       params[:filters_] = @filters
       session[:filters_] = @filters
+    end
+
+    if @clan_filters == {}
+      @clan_filters = Clan.all.map{ |c| {"#{c.name}": 1} }.reduce(:merge)
+      params[:clans_] = @clan_filters
+      session[:clans_] = @clan_filters
     end
 
     if params[:player1] and params[:player2]
@@ -299,13 +325,14 @@ class PlayersController < ApplicationController
       session[:skill] = "overall"
     end 
 
-    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:filter_inactive] != session[:filter_inactive]
+    if params[:filters_] != session[:filters_] || params[:sort_by] != session[:sort_by] || params[:skill] != session[:skill] || params[:show_limit] != session[:show_limit] || params[:restrictions] != session[:restrictions] || params[:filter_inactive] != session[:filter_inactive] || params[:clans_] != session[:clans_]
       session[:filters_] = @filters
       session[:restrictions] = @restrictions
       session[:skill] = @skill
       session[:sort_by] = @sort_by
       session[:show_limit] = @show_limit
       session[:filter_inactive] = @filter_inactive
+      session[:clans_] = @clan_filters
     end
 
     # Sort some skills by xp not ehp as ehp is mostly 0
@@ -365,7 +392,7 @@ class PlayersController < ApplicationController
       end
     end
 
-    @players = Player.where(player_acc_type: @filters.keys).order(ordering)
+    @players = Player.joins(:clan).merge(Clan.where(name: @clan_filters.keys)).where(player_acc_type: @filters.keys).order(ordering)
 
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")

@@ -59,4 +59,30 @@ class AdminController < ApplicationController
             redirect_to admin_path, notice: "Could not find player #{@name}."
         end
     end
+
+    def update_clan
+        player = Player.find_player(params[:player_name])
+        clan_id = Clan.where(name: params[:clan_name]).first.id
+        if player
+            player.update_attributes(:clan_id=>clan_id)
+            redirect_to admin_path, notice: "#{player.player_name}'s clan has been updated to #{params[:clan_name]}."
+        else
+            redirect_to admin_path, notice: "Could not find player #{@name}."
+        end
+    end
+
+    def update_many_clans
+        updated_players = []
+        params[:player_names].split(",").each do |player_name|
+            player = Player.find_player(player_name)
+            clan_id = Clan.where(name: params[:clan_name]).first.id
+            if player
+                player.update_attributes(:clan_id=>clan_id)
+                updated_players += [player.player_name]
+            else
+                redirect_to admin_path, notice: "Could not find player #{@name}."
+            end
+        end
+        redirect_to admin_path, notice: "All players have their clan updated to #{params[:clan_name]}: #{updated_players}"
+    end
 end

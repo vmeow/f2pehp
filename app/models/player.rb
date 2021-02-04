@@ -5,6 +5,8 @@ class Player < ActiveRecord::Base
     if: Proc.new { |player| player.player_acc_type_was == 'HCIM' \
                             && player.player_acc_type == 'IM' }
 
+  belongs_to :clan
+
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
             "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
             "smithing", "mining", "runecraft", "overall"]
