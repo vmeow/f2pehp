@@ -134,6 +134,9 @@
             = check_box_tag "clans_[#{clan.name}]", 1, @clan_filters.include?(clan.name), :id => "clans_#{clan.name}"
             = clan.name
             %br
+          &nbsp
+          = check_box_tag "clans_[None]", 1, @clan_filters.include?("None"), :id => "clans_None"
+          = "None"
         = submit_tag 'Filter', :id => "clans_submit"
 
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
