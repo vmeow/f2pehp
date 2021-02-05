@@ -1,0 +1,40 @@
+- @title = "Hiscores" 
+= link_to image_tag("f2pwiki.png"), players_path
+
+= render :partial => "header.html.haml",  :locals => {notice: notice}
+= content_tag(:div, nil, class: "container", style: "width: 650px;") do 
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 630px; max-width: 630px; overflow-x: auto; margin-top: 5px;") do
+
+    = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; margin-bottom: 0px; width: 630px; height: 60px;") 
+    = content_tag(:table, nil, style: "text-align: center; width: 630px; padding: 4px; margin-bottom: 0px;") do 
+      %thead
+        %tr
+          %th{:align => "center", :colspan => 10}
+            = "F2P Clans"
+      %thead
+        %tr
+          %th
+          %th{:align => "left"} Name
+          %th{:align => "left"} # Members
+          %th{:align => "left"} Total XP
+          %th{:align => "left"} Total EHP
+          %th{:align => "left"} Average XP
+          %th{:align => "left"} Average EHP
+  
+      %tbody
+        - Clan.all.each do |clan|
+          %tr
+            - player_count = clan.players.count
+            - sum_xp = clan.players.pluck(:overall_xp).sum
+            - sum_ehp = clan.players.pluck(:overall_ehp).sum
+            - avg_xp = sum_xp/player_count
+            - avg_ehp = sum_ehp/player_count
+            %td= image_tag clan.symbol_link, size: "30x30"
+            %td{:align => "left"}= link_to clan.name, "clans/#{clan.name.gsub(" ", "_")}"
+            %td{:align => "left"}= clan.players.count
+            %td{:align => "left"}= number_with_delimiter(sum_xp, :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_xp, :precision => 0), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+            
+    = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; margin-top: 0px; width: 630px; height: 61px;")

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :players, :items
+  resources :players, :items, :clans
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   put 'update' => 'players#update_player'
   get 'players/:id/update' => 'players#update', as: :update_player
   get 'players/:id/check_acc_type' => 'players#check_acc_type', as: :check_acc_type
+  get 'clans/index' => 'clans#index'
+  get 'clans' => 'clans#index'
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players

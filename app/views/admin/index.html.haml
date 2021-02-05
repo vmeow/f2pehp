@@ -58,9 +58,11 @@
       = submit_tag "Update"
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["container"], style: "margin-left: 15px; width: 200px; height: 186px; display: inline-block;") do 
+  = content_tag(:div, nil, class: ["container"], style: "margin-left: 15px; width: 240px; height: 186px; display: inline-block;") do 
     = form_tag update_many_clans_path, :method => "post", id: "update-many-clans-form" do
       = "Update Multiple Players' Clan"
+      %br
+      = "(up to 100 comma separated names)"
       %br
       = text_field_tag :player_names, params[:player_names], placeholder: "comma separated names", :class => "search-field", style: "width: 180px; height: 100px;"
       %br

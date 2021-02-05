@@ -73,16 +73,28 @@ class AdminController < ApplicationController
 
     def update_many_clans
         updated_players = []
-        params[:player_names].split(",").each do |player_name|
+        failed_players = []
+
+        player_names = params[:player_names].split(",")
+        if player_names.size > 100
+            redirect_to(admin_path, notice: "Too many players. Please try again with fewer than 100 players.")
+            return
+        end
+
+        player_names.each do |player_name|
             player = Player.find_player(player_name)
             clan_id = Clan.where(name: params[:clan_name]).first.id
             if player
                 player.update_attributes(:clan_id=>clan_id)
                 updated_players += [player.player_name]
             else
-                redirect_to admin_path, notice: "Could not find player #{@name}."
+                failed_players += [player_name]
             end
         end
-        redirect_to admin_path, notice: "All players have their clan updated to #{params[:clan_name]}: #{updated_players}"
+
+        notice_msg =  "The following players have their clan updated to #{params[:clan_name]}: #{updated_players}"
+        notice_msg += "\nPlayers failed to be found: #{failed_players}"
+
+        redirect_to admin_path, notice: notice_msg
     end
 end

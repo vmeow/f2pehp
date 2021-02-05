@@ -1,0 +1,27 @@
+= content_tag(:div, nil, class: "container", style: "width: 760px;") do
+  = content_tag(:div, class: "supporters") do
+    %h1
+      = link_to "Recent Donations", donate_path
+
+    - supporters_columns = 3
+    - supporters_column_width = 100 / Float(supporters_columns)
+    - Player.supporters_hashes.sort_by{|h| h[:date] or '2000-01-01'}.reverse[0..2].in_groups_of(supporters_columns).transpose.each do |column|
+      = content_tag(:div, nil, class: "container", style: "float:left; width:#{supporters_column_width}%;") do
+        %br
+        - column.each do |supporter|
+          = "#{supporter[:name]}" if supporter and supporter[:no_link]
+          = link_to supporter[:name], "players/#{supporter[:name].gsub(' ', '_')}" if supporter and not supporter[:no_link]
+          %br
+  = content_tag(:div, class: "supporters") do
+    %h1
+      = link_to "F2P Supporters", donate_path
+
+    - supporters_columns = 3
+    - supporters_column_width = 100 / Float(supporters_columns)
+    - Player.supporters_hashes.in_groups_of(supporters_columns).transpose.each do |column|
+      = content_tag(:div, nil, class: "container", style: "float:left; width:#{supporters_column_width}%;") do
+        %br
+        - column.each do |supporter|
+          = "#{supporter[:name]}" if supporter and supporter[:no_link]
+          = link_to supporter[:name], "players/#{supporter[:name].gsub(' ', '_')}" if supporter and not supporter[:no_link]
+          %br
