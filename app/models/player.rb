@@ -154,6 +154,7 @@ class Player < ActiveRecord::Base
                 {name: "Lilypad19", amount: 5.69, date: "2020-01-23"},
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
                 {name: "threewaygang"},
+                {name: "hardcorerf2p", amount: 5.55, date: "2021-02-06", flair_after: "flairs/goblin.png", other_css: ["color: #E59E1C"]},
                 {name: "Yellow bead", amount: 5.38, date: "2018-05-02", flair_after: "flairs/yellow_bead.png"},
                 {name: "Borads f2p", amount: 5.10, date: "2020-11-14", flair_after: "flairs/ruby_ring.png"},
                 {name: "70 Crafting", amount: 5.08, date: "2020-05-06", flair_after: "flairs/diamond_amulet_u.png"},
