@@ -139,7 +139,8 @@ class Player < ActiveRecord::Base
                 {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/Unstrung_symbol.png"},
 
 
-                {name: "Ghost Bloke", amount: 15, date: "2021-02-03", flair_after: "flairs/ghost_bloke.png"},
+                {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
+                    {name: "Aus Flash", amount: 5, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -155,6 +156,7 @@ class Player < ActiveRecord::Base
                 {name: "Lilypad19", amount: 5.69, date: "2020-01-23"},
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
                 {name: "threewaygang"},
+                {name: "hardcorerf2p", amount: 5.55, date: "2021-02-06", flair_after: "flairs/goblin.png", other_css: ["color: #E59E1C"]},
                 {name: "Yellow bead", amount: 5.38, date: "2018-05-02", flair_after: "flairs/yellow_bead.png"},
                 {name: "Borads f2p", amount: 5.10, date: "2020-11-14", flair_after: "flairs/ruby_ring.png"},
                 {name: "70 Crafting", amount: 5.08, date: "2020-05-06", flair_after: "flairs/diamond_amulet_u.png"},
@@ -264,6 +266,7 @@ class Player < ActiveRecord::Base
                 {name: "SYNTHETlX", amount: 5, date: "2021-01-22", flair_after: "flairs/SYNTHETlX.png", other_css: ["color: #01D1FE"]},
                 {name: "WeldingIM", amount: 5, date: "2021-01-26", flair_after: "flairs/estonia_flag.png"},
                 {name: "Swiss Ebola", amount: 5, date: "2021-01-30", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FFFFFF"]},
+                {name: "8copper69", amount: 5, date: "2021-02-06", flair_after: "flairs/hammer.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
