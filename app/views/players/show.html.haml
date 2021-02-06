@@ -255,8 +255,8 @@
               = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
             = " #{@player.player_name}"
             - if @player.clan
-              = image_tag(@player.clan.symbol_link, style: "vertical-align: -6px;", :size => "30x30", :title => @player.clan.name)
-              / = link_to image_tag(@player.clan.symbol_link, style: "vertical-align: -6px;", :size => "30x30", :title => @player.clan.name), ranks_path(:clans_ => {"#{@player.clan.name}": 1})
+              / = image_tag(@player.clan.symbol_link, style: "vertical-align: -6px;", :size => "30x30", :title => @player.clan.name)
+              = link_to image_tag(@player.clan.symbol_link, style: "vertical-align: -6px;", :size => "30x30", :title => @player.clan.name), clan_path("#{@player.clan.name.gsub(" ", "_")}")
         %thead
           %th{:align => "center"}  
           %th{:align => "center"}  Level

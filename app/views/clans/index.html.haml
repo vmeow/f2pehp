@@ -30,7 +30,7 @@
             - avg_xp = sum_xp/player_count
             - avg_ehp = sum_ehp/player_count
             %td= image_tag clan.symbol_link, size: "30x30"
-            %td{:align => "left"}= link_to clan.name, "clans/#{clan.name.gsub(" ", "_")}"
+            %td{:align => "left"}= link_to clan.name, clan_path("#{clan.name.gsub(" ", "_")}")
             %td{:align => "left"}= clan.players.count
             %td{:align => "left"}= number_with_delimiter(sum_xp, :delimiter => ",", :separator => ".")
             %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_ehp, :precision => 2), :delimiter => ",", :separator => ".")

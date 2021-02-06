@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   get 'players/:id/check_acc_type' => 'players#check_acc_type', as: :check_acc_type
   get 'clans/index' => 'clans#index'
   get 'clans' => 'clans#index'
+  get 'clans/:id/admin' => 'clans#admin', as: :clan_admin
+  post 'clans/:id/add_player_to_clan' => 'clans#add_player_to_clan', as: :add_player_to_clan
+  post 'clans/:id/add_many_players_to_clan' => 'clans#add_many_players_to_clan', as: :add_many_players_to_clan
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players

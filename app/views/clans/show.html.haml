@@ -104,6 +104,8 @@
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 540px;") do 
     = "Back to "
     = link_to "all clans?", clans_path
+    %br
+    = link_to "Admin Page", clan_admin_path
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 530px; height: 50px; margin-bottom: 0px;") 
     = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 530px; padding: 5px; margin-bottom: 0px;") do 
       - player_count = @clan.players.count
@@ -173,7 +175,7 @@
             - if @sort_by == "lvl"
               %th{:class => @player_lvl_header, :style => "text-decoration: underline;"}= link_to "Level",clan_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
             - else
-              %th{:class => @player_lvl_header}= link_to "Level",clan_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
+              %th{:class => @player_lvl_header}= link_to "Level", clan_path(:sort_by => 'lvl', :skill => @skill), :id => 'player_lvl_header'
             - if @skill != "combat"
               - if @sort_by == "xp"
                 %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "XP", clan_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
@@ -189,7 +191,7 @@
             - name = player.player_name.gsub(" ", "_").encode("ASCII", invalid: :replace, undef: :replace, replace: '_')
             %tr
               %td{:align => "right"}= index + 1
-              %td{:align => "left"}= link_to player.player_name, "players/#{name.encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}"
+              %td{:align => "left"}= link_to player.player_name, player_path("#{name.encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}")
               - if @skill.include?("ttm")
                 %td= number_with_delimiter(number_with_precision(player["#{@skill}"].to_f, :precision => 2), :delimiter => ",", :separator => ".") 
               - elsif @skill.include?("clues")
