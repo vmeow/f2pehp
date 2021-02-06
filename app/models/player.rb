@@ -264,6 +264,7 @@ class Player < ActiveRecord::Base
                 {name: "SYNTHETlX", amount: 5, date: "2021-01-22", flair_after: "flairs/SYNTHETlX.png", other_css: ["color: #01D1FE"]},
                 {name: "WeldingIM", amount: 5, date: "2021-01-26", flair_after: "flairs/estonia_flag.png"},
                 {name: "Swiss Ebola", amount: 5, date: "2021-01-30", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FFFFFF"]},
+                {name: "8copper69", amount: 5, date: "2021-02-06", flair_after: "flairs/hammer.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
