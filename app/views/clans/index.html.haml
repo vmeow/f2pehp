@@ -27,8 +27,8 @@
             - player_count = clan.players.count
             - sum_xp = clan.players.pluck(:overall_xp).sum
             - sum_ehp = clan.players.pluck(:overall_ehp).sum
-            - avg_xp = sum_xp/player_count
-            - avg_ehp = sum_ehp/player_count
+            - avg_xp = player_count == 0 ? 0 : sum_xp/player_count
+            - avg_ehp = player_count == 0 ? 0 : sum_ehp/player_count
             %td= image_tag clan.symbol_link, size: "30x30"
             %td{:align => "left"}= link_to clan.name, clan_path("#{clan.name.gsub(" ", "_")}")
             %td{:align => "left"}= clan.players.count

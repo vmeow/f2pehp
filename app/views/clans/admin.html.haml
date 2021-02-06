@@ -1,4 +1,4 @@
-- @title = "#{@clan} Admin" 
+- @title = "#{@clan.gsub("_", " ")} Admin" 
 = link_to image_tag("f2pwiki.png"), players_path
 
 %p#notice= notice
@@ -19,7 +19,7 @@
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
 
-= "#{@clan} Admin Page"
+= "#{@clan.gsub("_", " ")} Admin Page"
 %br
 = link_to "Back to Clan Page", clan_path
 %br

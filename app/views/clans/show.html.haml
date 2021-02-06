@@ -107,11 +107,11 @@
     %br
 
     = "Display:"
-    = link_to "Stats", player_path(@player.player_name, :display => "stats")
+    = link_to "Stats", clan_path(@clan.name, :display => "stats")
     = " | "
-    = link_to "Gains", player_path(@player.player_name, :display => "gains")
+    = link_to "Gains", clan_path(@clan.name, :display => "gains")
     = " | "
-    = link_to "Records", player_path(@player.player_name, :display => "records")
+    = link_to "Records", clan_path(@clan.name, :display => "records")
     %br
 
     = link_to "Admin Page", clan_admin_path
@@ -120,8 +120,8 @@
       - player_count = @clan.players.count
       - sum_xp = @players.pluck(:overall_xp).sum
       - sum_ehp = @players.pluck(:overall_ehp).sum
-      - avg_xp = sum_xp/player_count
-      - avg_ehp = sum_ehp/player_count
+      - avg_xp = player_count == 0 ? 0 : sum_xp/player_count
+      - avg_ehp = player_count == 0 ? 0 : sum_ehp/player_count
       - if @display == "stats"
         %thead
           %th{:colspan => 12}

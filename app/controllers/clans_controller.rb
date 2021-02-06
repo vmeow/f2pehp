@@ -6,33 +6,37 @@ require 'will_paginate/array'
 
 class ClansController < ApplicationController
   before_action :set_clan, only: %i[show edit update destroy]
-  before_action :http_basic_auth, only: [:admin, :add_player_to_clan, :add_many_players_to_clan]
+  # before_action :http_basic_auth, only: [:admin, :add_player_to_clan, :add_many_players_to_clan]
 
   def http_basic_auth
-    if ENV['HTTP_AUTH_USER'] && ENV['HTTP_AUTH_PASS']
-      self.class.http_basic_authenticate_with name: ENV['HTTP_AUTH_USER'], password: ENV['HTTP_AUTH_PASS']
+    clan = Clan.find_clan(params[:id])
+    if clan and clan.pass
+      self.class.http_basic_authenticate_with :name => "admin", password: clan.pass
     else
       self.class.http_basic_authenticate_with :name => "admin", :password => "admin"
     end
   end
 
   def admin
+    http_basic_auth
     @clan = params[:id]
   end
 
   def add_player_to_clan
+    http_basic_auth
     player = Player.find_player(params[:player_name])
     clan_name = params[:id]
     clan_id = Clan.find_clan(clan_name).id
     if player
         player.update_attributes(:clan_id=>clan_id)
-        redirect_to clan_admin_path, notice: "#{player.player_name}'s clan has been updated to #{clan_name}."
+        redirect_to clan_admin_path, notice: "#{player.player_name}'s clan has been updated to #{clan_name.gsub("_", " ")}."
     else
         redirect_to clan_admin_path, notice: "Could not find player #{@name}."
     end
   end
 
   def add_many_players_to_clan
+    http_basic_auth
     clan_name = params[:id]
     clan_id = Clan.find_clan(clan_name).id
 
@@ -55,25 +59,27 @@ class ClansController < ApplicationController
         end
     end
 
-    notice_msg =  "The following players have their clan updated to #{clan_name}: #{updated_players}"
+    notice_msg =  "The following players have their clan updated to #{clan_name.gsub("_", " ")}: #{updated_players}"
     notice_msg += "\nPlayers failed to be found: #{failed_players}"
 
     redirect_to clan_admin_path, notice: notice_msg
   end
 
   def remove_player_from_clan
+    http_basic_auth
     player = Player.find_player(params[:player_name])
     clan_name = params[:id]
     clan_id = Clan.find_clan(clan_name).id
     if player and player.clan_id == clan_id
         player.update_attributes(:clan_id=>nil)
-        redirect_to clan_admin_path, notice: "#{player.player_name} removed from #{clan_name}."
+        redirect_to clan_admin_path, notice: "#{player.player_name} removed from #{clan_name.gsub("_", " ")}."
     else
-        redirect_to clan_admin_path, notice: "Could not find player #{@name} in #{clan_name}."
+        redirect_to clan_admin_path, notice: "Could not find player #{@name} in #{clan_name.gsub("_", " ")}."
     end
   end
 
   def remove_many_players_from_clan
+    http_basic_auth
     clan_name = params[:id]
     clan_id = Clan.find_clan(clan_name).id
 
@@ -96,7 +102,7 @@ class ClansController < ApplicationController
         end
     end
 
-    notice_msg =  "The following players been removed from #{clan_name}: #{updated_players}"
+    notice_msg =  "The following players been removed from #{clan_name.gsub("_", " ")}: #{updated_players}"
     notice_msg += "\nPlayers failed to be found or are not in the clan: #{failed_players}"
 
     redirect_to clan_admin_path, notice: notice_msg
