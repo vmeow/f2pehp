@@ -17,11 +17,10 @@ class ClansController < ApplicationController
   end
 
   def admin
-    @clan = params[:name]
+    @clan = params[:id]
   end
 
   def add_player_to_clan
-
     player = Player.find_player(params[:player_name])
     clan_name = params[:id]
     clan_id = Clan.find_clan(clan_name).id
@@ -34,12 +33,6 @@ class ClansController < ApplicationController
   end
 
   def add_many_players_to_clan
-    if ENV['HTTP_AUTH_USER'] && ENV['HTTP_AUTH_PASS']
-      self.class.http_basic_authenticate_with name: ENV['HTTP_AUTH_USER'], password: ENV['HTTP_AUTH_PASS']
-    else
-      self.class.http_basic_authenticate_with :name => "admin", :password => "admin"
-    end
-
     clan_name = params[:id]
     clan_id = Clan.find_clan(clan_name).id
 
@@ -64,6 +57,47 @@ class ClansController < ApplicationController
 
     notice_msg =  "The following players have their clan updated to #{clan_name}: #{updated_players}"
     notice_msg += "\nPlayers failed to be found: #{failed_players}"
+
+    redirect_to clan_admin_path, notice: notice_msg
+  end
+
+  def remove_player_from_clan
+    player = Player.find_player(params[:player_name])
+    clan_name = params[:id]
+    clan_id = Clan.find_clan(clan_name).id
+    if player and player.clan_id == clan_id
+        player.update_attributes(:clan_id=>nil)
+        redirect_to clan_admin_path, notice: "#{player.player_name} removed from #{clan_name}."
+    else
+        redirect_to clan_admin_path, notice: "Could not find player #{@name} in #{clan_name}."
+    end
+  end
+
+  def remove_many_players_from_clan
+    clan_name = params[:id]
+    clan_id = Clan.find_clan(clan_name).id
+
+    updated_players = []
+    failed_players = []
+
+    player_names = params[:player_names].split(",")
+    if player_names.size > 100
+        redirect_to(clan_admin_path, notice: "Too many players. Please try again with fewer than 100 players.")
+        return
+    end
+
+    player_names.each do |player_name|
+        player = Player.find_player(player_name)
+        if player and player.clan_id == clan_id
+            player.update_attributes(:clan_id=>nil)
+            updated_players += [player.player_name]
+        else
+            failed_players += [player_name]
+        end
+    end
+
+    notice_msg =  "The following players been removed from #{clan_name}: #{updated_players}"
+    notice_msg += "\nPlayers failed to be found or are not in the clan: #{failed_players}"
 
     redirect_to clan_admin_path, notice: notice_msg
   end

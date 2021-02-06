@@ -19,8 +19,14 @@
   = content_tag(:div, nil, class: ["bar", "donate"]) do 
     = link_to "About Us/Donate", donate_path
 
+= "#{@clan} Admin Page"
+%br
+= link_to "Back to Clan Page", clan_path
+%br
+%br
+
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do 
-  = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 15px; width: 140px; height: 86px; display: inline-block;") do 
+  = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 15px; width: 140px; height: 146px; display: inline-block;") do 
     = form_tag add_player_to_clan_path, :method => "post", id: "update-clan-form" do
       = "Add to Clan"
       %br
@@ -28,13 +34,32 @@
       %br
       = submit_tag "Add"
 
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do 
   = content_tag(:div, nil, class: ["container"], style: "margin-left: 15px; width: 240px; height: 186px; display: inline-block;") do 
     = form_tag add_many_players_to_clan_path, :method => "post", id: "update-many-clans-form" do
-      = "Update Multiple Players' Clan"
+      = "Add Multiple Players"
       %br
       = "(up to 100 comma separated names)"
       %br
       = text_field_tag :player_names, params[:player_names], placeholder: "comma separated names", :class => "search-field", style: "width: 180px; height: 100px;"
       %br
       = submit_tag "Add"
+
+= content_tag(:div, nil, class: "container", style: "width: 520px;") do 
+
+  = content_tag(:div, nil, class: ["container", "search"], style: "margin-left: 15px; width: 140px; height: 146px; display: inline-block;") do 
+    = form_tag remove_player_from_clan_path, :method => "post", id: "update-clan-form" do
+      = "Remove from Clan"
+      %br
+      = text_field_tag :player_name, params[:player_name], placeholder: "Player Name", :class => "search-field", style: "width: 100px;"
+      %br
+      = submit_tag "Remove"
+
+  = content_tag(:div, nil, class: ["container"], style: "margin-left: 15px; width: 240px; height: 186px; display: inline-block;") do 
+    = form_tag remove_many_players_from_clan_path, :method => "post", id: "update-many-clans-form" do
+      = "Remove Multiple Players"
+      %br
+      = "(up to 100 comma separated names)"
+      %br
+      = text_field_tag :player_names, params[:player_names], placeholder: "comma separated names", :class => "search-field", style: "width: 180px; height: 100px;"
+      %br
+      = submit_tag "Remove"

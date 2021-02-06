@@ -105,6 +105,15 @@
     = "Back to "
     = link_to "all clans?", clans_path
     %br
+
+    = "Display:"
+    = link_to "Stats", player_path(@player.player_name, :display => "stats")
+    = " | "
+    = link_to "Gains", player_path(@player.player_name, :display => "gains")
+    = " | "
+    = link_to "Records", player_path(@player.player_name, :display => "records")
+    %br
+
     = link_to "Admin Page", clan_admin_path
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 530px; height: 50px; margin-bottom: 0px;") 
     = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 530px; padding: 5px; margin-bottom: 0px;") do 
