@@ -6,104 +6,107 @@ require 'will_paginate/array'
 
 class ClansController < ApplicationController
   before_action :set_clan, only: %i[show edit update destroy]
-  # before_action :http_basic_auth, only: [:admin, :add_player_to_clan, :add_many_players_to_clan]
-
-  def http_basic_auth
-    clan = Clan.find_clan(params[:id])
-    if clan and clan.pass
-      self.class.http_basic_authenticate_with :name => "admin", password: clan.pass
-    else
-      self.class.http_basic_authenticate_with :name => "admin", :password => "admin"
-    end
-  end
 
   def admin
-    http_basic_auth
     @clan = params[:id]
   end
 
   def add_player_to_clan
-    http_basic_auth
-    player = Player.find_player(params[:player_name])
     clan_name = params[:id]
-    clan_id = Clan.find_clan(clan_name).id
-    if player
-        player.update_attributes(:clan_id=>clan_id)
-        redirect_to clan_admin_path, notice: "#{player.player_name}'s clan has been updated to #{clan_name.gsub("_", " ")}."
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    player = Player.find_player(params[:player_name])
+
+    if clan.pass != params[:pass]
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif player
+      player.update_attributes(:clan_id=>clan_id)
+      redirect_to clan_admin_path, notice: "#{player.player_name} added to #{clan_name.gsub("_", " ")}."
     else
-        redirect_to clan_admin_path, notice: "Could not find player #{@name}."
+      redirect_to clan_admin_path, notice: "Could not find player #{@name}."
     end
   end
 
   def add_many_players_to_clan
-    http_basic_auth
     clan_name = params[:id]
-    clan_id = Clan.find_clan(clan_name).id
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
 
     updated_players = []
     failed_players = []
 
     player_names = params[:player_names].split(",")
-    if player_names.size > 100
-        redirect_to(clan_admin_path, notice: "Too many players. Please try again with fewer than 100 players.")
-        return
+    if clan.pass != params[:pass]
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+      return
+    elsif player_names.size > 100
+      redirect_to(clan_admin_path, notice: "Too many players. Please try again with fewer than 100 players.")
+      return
     end
 
     player_names.each do |player_name|
-        player = Player.find_player(player_name)
-        if player
-            player.update_attributes(:clan_id=>clan_id)
-            updated_players += [player.player_name]
-        else
-            failed_players += [player_name]
-        end
+      player = Player.find_player(player_name)
+      if player
+        player.update_attributes(:clan_id=>clan_id)
+        updated_players += [player.player_name]
+      else
+        failed_players += [player_name]
+      end
     end
 
-    notice_msg =  "The following players have their clan updated to #{clan_name.gsub("_", " ")}: #{updated_players}"
-    notice_msg += "\nPlayers failed to be found: #{failed_players}"
+    notice_msg =  "Players added to #{clan_name.gsub("_", " ")}: #{updated_players}"
+    notice_msg += "\nPlayers not found: #{failed_players}"
 
     redirect_to clan_admin_path, notice: notice_msg
   end
 
   def remove_player_from_clan
-    http_basic_auth
-    player = Player.find_player(params[:player_name])
     clan_name = params[:id]
-    clan_id = Clan.find_clan(clan_name).id
-    if player and player.clan_id == clan_id
-        player.update_attributes(:clan_id=>nil)
-        redirect_to clan_admin_path, notice: "#{player.player_name} removed from #{clan_name.gsub("_", " ")}."
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    player = Player.find_player(params[:player_name])
+
+    if clan.pass != params[:pass]
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif player and player.clan_id == clan_id
+      player.update_attributes(:clan_id=>nil)
+      redirect_to clan_admin_path, notice: "#{player.player_name} removed from #{clan_name.gsub("_", " ")}."
     else
-        redirect_to clan_admin_path, notice: "Could not find player #{@name} in #{clan_name.gsub("_", " ")}."
+      redirect_to clan_admin_path, notice: "Player #{@name} not found, or not in #{clan_name.gsub("_", " ")}."
     end
   end
 
   def remove_many_players_from_clan
-    http_basic_auth
     clan_name = params[:id]
-    clan_id = Clan.find_clan(clan_name).id
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
 
     updated_players = []
     failed_players = []
 
     player_names = params[:player_names].split(",")
-    if player_names.size > 100
-        redirect_to(clan_admin_path, notice: "Too many players. Please try again with fewer than 100 players.")
-        return
+    if clan.pass != params[:pass]
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+      return
+    elsif player_names.size > 100
+      redirect_to(clan_admin_path, notice: "Too many players. Please try again with fewer than 100 players.")
+      return
     end
 
     player_names.each do |player_name|
-        player = Player.find_player(player_name)
-        if player and player.clan_id == clan_id
-            player.update_attributes(:clan_id=>nil)
-            updated_players += [player.player_name]
-        else
-            failed_players += [player_name]
-        end
+      player = Player.find_player(player_name)
+      if player and player.clan_id == clan_id
+        player.update_attributes(:clan_id=>nil)
+        updated_players += [player.player_name]
+      else
+        failed_players += [player_name]
+      end
     end
 
-    notice_msg =  "The following players been removed from #{clan_name.gsub("_", " ")}: #{updated_players}"
-    notice_msg += "\nPlayers failed to be found or are not in the clan: #{failed_players}"
+    notice_msg =  "Players been removed from #{clan_name.gsub("_", " ")}: #{updated_players}"
+    notice_msg += "\nPlayers not found, or are not in the clan: #{failed_players}"
 
     redirect_to clan_admin_path, notice: notice_msg
   end
