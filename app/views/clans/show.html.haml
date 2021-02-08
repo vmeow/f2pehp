@@ -173,8 +173,8 @@
           - elsif @skill.include?("_kc") or @skill.include?("clues")
             - sum_skill = @players.pluck(@skill.to_sym).sum
             - avg_skill = player_count == 0 ? 0 : sum_skill.to_f/player_count
-            %td{:align => "left"}= sum_skill
-            %td{:align => "left"}= avg_skill
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_skill, :precision => 2), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_skill, :precision => 2), :delimiter => ",", :separator => ".")
           - elsif @skill.include?("ttm")
             - sum_skill = @players.map(&:"#{@skill}").sum
             - avg_skill = player_count == 0 ? 0 : sum_skill.to_f/player_count
