@@ -20,11 +20,13 @@ class ClansController < ApplicationController
 
     if clan.pass != params[:pass]
       redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif player and clan.players.pluck(:player_id).include?(player.id)
+      redirect_to clan_admin_path, notice: "#{player.player_name} is already in #{clan_name.gsub("_", " ")}."
     elsif player
       clan.add_player(player)
       redirect_to clan_admin_path, notice: "#{player.player_name} added to #{clan_name.gsub("_", " ")}."
     else
-      redirect_to clan_admin_path, notice: "Could not find player #{@name}."
+      redirect_to clan_admin_path, notice: "Could not find player #{params[:player_name]}."
     end
   end
 
@@ -35,6 +37,7 @@ class ClansController < ApplicationController
 
     updated_players = []
     failed_players = []
+    redundant_players = []
 
     player_names = params[:player_names].split(",")
     if clan.pass != params[:pass]
@@ -47,7 +50,9 @@ class ClansController < ApplicationController
 
     player_names.each do |player_name|
       player = Player.find_player(player_name)
-      if player
+      if player and clan.players.pluck(:player_id).include?(player.id)
+        redundant_players += [player.player_name]
+      elsif player
         clan.add_player(player)
         updated_players += [player.player_name]
       else
@@ -57,6 +62,7 @@ class ClansController < ApplicationController
 
     notice_msg =  "Players added to #{clan_name.gsub("_", " ")}: #{updated_players}"
     notice_msg += "\nPlayers not found: #{failed_players}"
+    notice_msg += "\nPlayers already in #{clan_name.gsub("_", " ")}: #{redundant_players}"
 
     redirect_to clan_admin_path, notice: notice_msg
   end
@@ -70,11 +76,14 @@ class ClansController < ApplicationController
 
     if clan.pass != params[:pass]
       redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
-    elsif player and player.clan_id == clan_id
-      player.update_attributes(:clan_id=>nil)
+    elsif player and clan.players.pluck(:player_id).include?(player.id)
+      puts clan
+      puts clan.id
+      puts clan.name
+      clan.remove_player(player)
       redirect_to clan_admin_path, notice: "#{player.player_name} removed from #{clan_name.gsub("_", " ")}."
     else
-      redirect_to clan_admin_path, notice: "Player #{@name} not found, or not in #{clan_name.gsub("_", " ")}."
+      redirect_to clan_admin_path, notice: "Player #{params[:player_name]} not found, or not in #{clan_name.gsub("_", " ")}."
     end
   end
 
@@ -97,8 +106,8 @@ class ClansController < ApplicationController
 
     player_names.each do |player_name|
       player = Player.find_player(player_name)
-      if player and player.clan_id == clan_id
-        player.update_attributes(:clan_id=>nil)
+      if player and clan.players.pluck(:player_id).include?(player.id)
+        clan.remove_player(player)
         updated_players += [player.player_name]
       else
         failed_players += [player_name]
@@ -195,9 +204,9 @@ class ClansController < ApplicationController
       elsif @skill.include?("clues")
         case @skill
         when "clues_all"
-          ordering = "clues_all DESC, id ASC"
+          ordering = "clues_all DESC, players.id ASC"
         when "clues_beginner"
-          ordering = "clues_beginner DESC, id ASC"
+          ordering = "clues_beginner DESC, players.id ASC"
         end
       elsif @skill.include?("no_combats")
         case @sort_by
@@ -220,7 +229,7 @@ class ClansController < ApplicationController
         case @sort_by
         when "ehp"
           @player_ehp_header = 'hilite'
-          ordering = "#{@skill}_ehp DESC, #{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC, id ASC"
+          ordering = "#{@skill}_ehp DESC, #{@skill}_lvl DESC, #{@skill}_xp DESC, #{@skill}_rank ASC, players.id ASC"
         when "lvl"
           @player_lvl_header = 'hilite'
           if @skill == "combat"
@@ -244,7 +253,7 @@ class ClansController < ApplicationController
       when "ehp", "lvl"
         @sort_by = "ehp"
         @player_ehp_header = 'hilite'
-        ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, id ASC"
+        ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
       when "xp"
         @player_xp_header = 'hilite'
         ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp DESC"
@@ -260,7 +269,7 @@ class ClansController < ApplicationController
       when "ehp", "lvl"
         @sort_by = "ehp"
         @player_ehp_header = 'hilite'
-        ordering = "#{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, id ASC"
+        ordering = "#{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
       when "xp"
         @player_xp_header = 'hilite'
         ordering = "#{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp DESC"

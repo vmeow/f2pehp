@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_073129) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "player_clan_links", id: false, force: :cascade do |t|
+  create_table "player_clan_links", force: :cascade do |t|
     t.integer "player_id"
     t.integer "clan_id"
     t.datetime "created_at", null: false

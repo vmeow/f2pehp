@@ -157,8 +157,8 @@
           %td{:align => "left"}
           %td{:align => "left"}= @players.count
           - if (["overall"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
-            - sum_xp = @players.pluck("#{@skill}_#{@sort_by}".to_sym).sum
-            - sum_ehp = @players.pluck("#{@skill}_#{@sort_by}".to_sym).sum
+            - sum_xp = @players.pluck("#{@skill}_xp".to_sym).sum
+            - sum_ehp = @players.pluck("#{@skill}_ehp".to_sym).sum
             - avg_xp = player_count == 0 ? 0 : sum_xp/player_count
             - avg_ehp = player_count == 0 ? 0 : sum_ehp/player_count
             %td{:align => "left"}= number_with_delimiter(sum_xp, :delimiter => ",", :separator => ".")

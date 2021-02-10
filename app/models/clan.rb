@@ -28,6 +28,6 @@ class Clan < ActiveRecord::Base
   end
 
   def remove_player(player)
-    PlayerClanLink.where("player_id = #{player.id} and clan_id = #{self.id}").destroy!
+    PlayerClanLink.where("player_id = #{player.id} and clan_id = #{self.id}").destroy_all
   end
 end
