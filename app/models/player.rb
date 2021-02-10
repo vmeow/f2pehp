@@ -110,8 +110,9 @@ class Player < ActiveRecord::Base
                 {name: "SmellyPooo", amount: 10, date: "2020-02-14"},
                 {name: "Solo Tricket", amount: 10, flair_after: "flairs/Jester_cape.png"},
                 {name: "Gem Shop", amount: 10, flair_after: "items/Ruby.gif"},
-                {name: "I go by zach", amount: 15, date: "2020-03-12", flair_after: "flairs/Spade.png"},
-                      {name: "hey earth", amount: 15, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
+                {name: "I go by zach", amount: 20, date: "2020-03-12", flair_after: "flairs/Spade.png"},
+                      {name: "hey earth", amount: 20, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
+                      {name: "regular zach", amount: 20, date: "2021-02-09", flair_after: "flairs/Reindeer_hat"}, # request from zach
                 {name: "Hagl", amount: 20, date: "2020-06-15"},
                 {name: "Vanity Pride", amount: 15, date: "2020-10-30", flair_after: "flairs/Blue_partyhat.png"},
                 {name: "f2p HClM btw", amount: 10, date: "2020-04-07", flair_after: "flairs/Mole_slippers.png"},
@@ -264,10 +265,11 @@ class Player < ActiveRecord::Base
                 {name: "SYNTHETlX", amount: 5, date: "2021-01-22", flair_after: "flairs/SYNTHETlX.png", other_css: ["color: #01D1FE"]},
                 {name: "WeldingIM", amount: 5, date: "2021-01-26", flair_after: "flairs/estonia_flag.png"},
                 {name: "Swiss Ebola", amount: 5, date: "2021-01-30", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FFFFFF"]},
+                {name: "8copper69", amount: 5, date: "2021-02-06", flair_after: "flairs/hammer.png"},
 
                 # gift of UFCFAN47 in w_385 discord
                 {name: "GratisSpil", amount: 5, date: "2021-02-08", flair_after: "skills/mining.png"},
-                {name: "8copper69", amount: 5, date: "2021-02-06", flair_after: "flairs/hammer.png"},
+
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
