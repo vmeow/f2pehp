@@ -30,11 +30,11 @@ class Player < ActiveRecord::Base
   #   5. If any new images were required, be sure to add them to app/assests/images
   SUPPORTERS = [{name: "Bargan", amount: 270.82, date: "2020-07-19"},
                 {name: "Ikiji", amount: 107.28, date: "2018-09-12", flair_after: "flairs/Mystery_box.png"},
+                    {name: "a q p IM"},
                 {name: "Iron Rwne", amount: 105, date: "2020-12-10", flair_after: "flairs/rwne.png"},
                 {name: "Vagae", amount: 100, date: "2019-08-25", flair_after: "flairs/Strange_skull.png"},
                 {name: "M00MARCITO", amount: 100, date: "2020-03-24"},
                 {name: "Tele Crab", amount: 100, date: "2020-05-24", flair_before: "flairs/dark_crab.png", flair_after: "flairs/crab_claw.png"},
-                {name: "a q p IM"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
                 {name: "Pawz", amount: 79.25, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
@@ -46,6 +46,11 @@ class Player < ActiveRecord::Base
                 {name: "XaTaRaX", amount: 60, date: "2020-12-27", flair_after: "flairs/Snare.png"},
                 {name: "GameboyMicro", amount: 55, date: "2020-12-10", flair_after: "flairs/antisanta_mask.png"},
                 {name: "DJ9", amount: 50, date: "2018-04-18", flair_after: "flairs/73_hitsplat.png"},
+                    {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
+                    {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
+                    {name: "Ticket Farm", date: "2019-07-05", flair_after: "flairs/genie_head.png"},
+                    {name: "Wooper", flair_after: "flairs/wooper.png"},
+                    {name: "Earfs"},
                 {name: "Metan", amount: 50, date: "2019-02-13", flair_after: "flairs/Rune_essence.png"},
                 {name: "Xliff", amount: 50, date: "2020-05-30", flair_after: "flairs/Air_tiara.gif"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
@@ -54,11 +59,6 @@ class Player < ActiveRecord::Base
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
                 {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
-                {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
-                {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
-                {name: "Ticket Farm", date: "2019-07-05", flair_after: "flairs/genie_head.png"},
-                {name: "Wooper", flair_after: "flairs/wooper.png"},
-                {name: "Earfs"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "UIM Gloo", amount: 25, date: "2020-08-18"},
@@ -72,17 +72,23 @@ class Player < ActiveRecord::Base
                 {name: "Anonymous", amount: 20, date: "2019-07-19", no_link: true},
                 {name: "seid", amount: 20, date: "2019-11-18"},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
+                {name: "I go by zach", amount: 20, date: "2020-03-12", flair_after: "flairs/Spade.png"},
+                      {name: "hey earth", amount: 20, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
+                      {name: "regular zach", amount: 20, date: "2021-02-09", flair_after: "flairs/Reindeer_hat"}, # request from zach
                 {name: "Varvali", amount: 20, date: "2020-05-12"},
                 {name: "Ywal", amount: 20, date: "2020-06-03", flair_after: "flairs/hole.png", other_css: ["color: #C9AD79"]},
                 {name: "Tramali", amount: 20, date: "2020-07-11", flair_after: "flairs/fire_strike.png"},
-                {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                 {name: "Laskati", amount: 20, date: "2020-12-27", flair_after: "flairs/wise_old_man.png"},
                 {name: "FishToBond", amount: 20, date: "2021-01-16", flair_after: "flairs/Raw_swordfish.png"},
+                {name: "Hagl", amount: 20, date: "2020-06-15"},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
                 {name: "Brim haven", amount: 15, date: "2019-05-31", flair_after: "flairs/ceres.png"},
                 {name: "Anonymous", amount: 15, date: "2019-10-12", no_link: true},
                 {name: "HCIM_btw_fev", amount: 15, date: "2020-08-01", flair_after: "flairs/kitten.png", other_css: ["color: #800080"]},
+                {name: "Vanity Pride", amount: 15, date: "2020-10-30", flair_after: "flairs/Blue_partyhat.png"},
+                {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
+                    {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "TrustNoBanks", amount: 13, date: "2019-10-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
                 {name: "Yewsless", amount: 11, date: "2018-03-11", flair_after: "items/Yew_logs.gif"},
@@ -110,11 +116,6 @@ class Player < ActiveRecord::Base
                 {name: "SmellyPooo", amount: 10, date: "2020-02-14"},
                 {name: "Solo Tricket", amount: 10, flair_after: "flairs/Jester_cape.png"},
                 {name: "Gem Shop", amount: 10, flair_after: "items/Ruby.gif"},
-                {name: "I go by zach", amount: 20, date: "2020-03-12", flair_after: "flairs/Spade.png"},
-                      {name: "hey earth", amount: 20, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
-                      {name: "regular zach", amount: 20, date: "2021-02-09", flair_after: "flairs/Reindeer_hat"}, # request from zach
-                {name: "Hagl", amount: 20, date: "2020-06-15"},
-                {name: "Vanity Pride", amount: 15, date: "2020-10-30", flair_after: "flairs/Blue_partyhat.png"},
                 {name: "f2p HClM btw", amount: 10, date: "2020-04-07", flair_after: "flairs/Mole_slippers.png"},
                 {name: "Hnn 40", amount: 10, date: "2020-04-08", flair_after: "items/Rune_scimitar.gif", other_css: ["color: #850000"]},
                 {name: "Ultimate F2P", amount: 10, date: "2020-04-10", flair_after: "flairs/Mole_slippers.png"},
@@ -136,10 +137,6 @@ class Player < ActiveRecord::Base
                 {name: "Pinai", amount: 10, date: "2020-11-04", other_css: ["color: #00ff00"]},
 
                 {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/Unstrung_symbol.png"},
-
-
-                {name: "Ghost Bloke", amount: 8, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
-                    {name: "Aus Flash", amount: 5, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
