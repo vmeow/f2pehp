@@ -167,7 +167,7 @@ class PlayersController < ApplicationController
     clan_filter_clause = @clan_filters.keys
     clan_filter_clause += [nil] if @clan_filters["None"]
 
-    @players = @players.left_joins(:clan).merge(Clan.where(name: clan_filter_clause)).where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def records
@@ -272,7 +272,7 @@ class PlayersController < ApplicationController
     clan_filter_clause = @clan_filters.keys
     clan_filter_clause += [nil] if @clan_filters["None"]
 
-    @players = Player.limit(@show_limit.to_i).left_joins(:clan).merge(Clan.where(name: clan_filter_clause)).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
+    @players = Player.limit(@show_limit.to_i).left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
 
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
@@ -404,7 +404,7 @@ class PlayersController < ApplicationController
     clan_filter_clause = @clan_filters.keys
     clan_filter_clause += [nil] if @clan_filters["None"]
 
-    @players = Player.left_joins(:clan).merge(Clan.where(name: clan_filter_clause)).where(player_acc_type: @filters.keys).order(ordering)
+    @players = Player.left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where(player_acc_type: @filters.keys).order(ordering)
 
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")

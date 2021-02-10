@@ -21,7 +21,7 @@ class ClansController < ApplicationController
     if clan.pass != params[:pass]
       redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
     elsif player
-      player.update_attributes(:clan_id=>clan_id)
+      clan.add_player(player)
       redirect_to clan_admin_path, notice: "#{player.player_name} added to #{clan_name.gsub("_", " ")}."
     else
       redirect_to clan_admin_path, notice: "Could not find player #{@name}."
@@ -48,7 +48,7 @@ class ClansController < ApplicationController
     player_names.each do |player_name|
       player = Player.find_player(player_name)
       if player
-        player.update_attributes(:clan_id=>clan_id)
+        clan.add_player(player)
         updated_players += [player.player_name]
       else
         failed_players += [player_name]

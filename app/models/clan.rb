@@ -1,5 +1,6 @@
 class Clan < ActiveRecord::Base
-  has_many :players
+  has_many :player_clan_links
+  has_many :players, through: :player_clan_links
 
   def self.sanitize_name(str)
     str = ERB::Util.url_encode(str).gsub(/[-_\\+]|(%20)|(%C2%A0)/, " ")
@@ -20,5 +21,13 @@ class Clan < ActiveRecord::Base
       end
     end
     return clan
+  end
+
+  def add_player(player)
+    PlayerClanLink.create({:player_id => player.id, :clan_id => self.id})
+  end
+
+  def remove_player(player)
+    PlayerClanLink.where("player_id = #{player.id} and clan_id = #{self.id}").destroy!
   end
 end

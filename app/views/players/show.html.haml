@@ -254,6 +254,8 @@
             - else
               = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
             = " #{@player.player_name}"
+            - @player.clans.each do |clan|
+              = link_to image_tag(clan.symbol_link, style: "vertical-align: -6px;", :size => "30x30", :title => clan.name), clan_path("#{clan.name.gsub(" ", "_")}")
         %thead
           %th{:align => "center"}  
           %th{:align => "center"}  Level
