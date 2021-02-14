@@ -65,6 +65,7 @@ class Player < ActiveRecord::Base
                 {name: "Nun", amount: 25, date: "2020-12-24", flair_after: "skills/prayer.png"},
                 {name: "Fordly", amount: 25, date: "2021-01-29", flair_after: "flairs/map.png"},
                 {name: "Iron of One", amount: 25, date: "2020-01-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "Hc Eudu", amount: 25, date: "2021-02-13", flair_after: "flairs/Lamp.png"},
                 {name: "f2p Ello", amount: 22, date: "2021-01-21", flair_after: "flairs/ello_flag.png"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                     {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
@@ -137,6 +138,8 @@ class Player < ActiveRecord::Base
                 {name: "Pinai", amount: 10, date: "2020-11-04", other_css: ["color: #00ff00"]},
 
                 {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/Unstrung_symbol.png"},
+                {name: "re-fine", amount: 10, date: "2021-02-12", flair_after: "flairs/Mask_of_balance.png"},
+                {name: "Astrodeo", amount: 10, date: "2021-02-12", flair_after: "flairs/NASA-logo.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -209,7 +212,6 @@ class Player < ActiveRecord::Base
                 {name: "thejinjoking", amount: 5, date: "2019-11-20"},
                 {name: "Anonymous", amount: 5, date: "2019-11-25", no_link: true},
                 {name: "ThaneCore", amount: 5, date: "2019-12-08"},
-                {name: "Hc Eudu", amount: 5, date: "2019-12-15", flair_after: "flairs/hitsplat_zero.png"},
                 {name: "a hokie", amount: 5, date: "2019-12-21", flair_after: "flairs/hokie.png"},
                 {name: "Futile_Me", amount: 5, date: "2019-12-24", flair_after: "flairs/panda.png"},
                 {name: "Firebolt8xp", amount: 5, date: "2019-12-30", flair_after: "skills/mining.png"},
