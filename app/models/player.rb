@@ -270,6 +270,7 @@ class Player < ActiveRecord::Base
                 {name: "GratisSpil", amount: 5, date: "2021-02-08", flair_after: "skills/mining.png"},
 
                 {name: "Reclinant", amount: 5, date: "2021-02-09", flair_after: "flairs/UIM.png", other_css: ["color: white"]},
+                {name: "IronMan4Free", amount: 5, date: "2021-02-15", flair_after: "flairs/flippa.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
