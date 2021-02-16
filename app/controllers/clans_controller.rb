@@ -18,7 +18,7 @@ class ClansController < ApplicationController
 
     player = Player.find_player(params[:player_name])
 
-    if clan.pass != params[:pass]
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
       redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
     elsif player and clan.players.pluck(:player_id).include?(player.id)
       redirect_to clan_admin_path, notice: "#{player.player_name} is already in #{clan_name.gsub("_", " ")}."
@@ -40,7 +40,7 @@ class ClansController < ApplicationController
     redundant_players = []
 
     player_names = params[:player_names].split(",")
-    if clan.pass != params[:pass]
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
       redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
       return
     elsif player_names.size > 100
@@ -74,12 +74,9 @@ class ClansController < ApplicationController
 
     player = Player.find_player(params[:player_name])
 
-    if clan.pass != params[:pass]
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
       redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
     elsif player and clan.players.pluck(:player_id).include?(player.id)
-      puts clan
-      puts clan.id
-      puts clan.name
       clan.remove_player(player)
       redirect_to clan_admin_path, notice: "#{player.player_name} removed from #{clan_name.gsub("_", " ")}."
     else
@@ -96,7 +93,7 @@ class ClansController < ApplicationController
     failed_players = []
 
     player_names = params[:player_names].split(",")
-    if clan.pass != params[:pass]
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
       redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
       return
     elsif player_names.size > 100

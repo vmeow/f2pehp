@@ -243,8 +243,9 @@
         = submit_tag 'Filter', :id => "restrictions_submit"
 
     %br
-        
-    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "line-height: 18px; margin-left: 15px; width: 140px; height: 126px;") do 
+
+    - container_height = 126 + (18 * [Clan.all.count - 2, 0].max)
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "line-height: 18px; margin-left: 15px; width: 140px; height: #{container_height}px; background-size: 100% 100%;") do 
       = form_tag ranks_path, :method => :get, :id => 'clans_form' do
         = "Clans"
         %br
