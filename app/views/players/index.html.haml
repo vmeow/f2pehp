@@ -8,6 +8,15 @@
     = content_tag(:div, nil, class: ["motd", "perfect-scroll"]) do 
       %h1 News
       %h6
+        = "Congratulations to"
+        = link_to "DansPotatoe", "players/DansPotatoe"
+        = "for becoming the"
+        = link_to "first F2P UIM to 99 Runecrafting!", "https://www.reddit.com/r/2007scape/comments/ljgf4r/first_f2p_uim_to_99_runecrafting/", target: "_blank", rel: "noopener noreferrer"
+        = "A truly remarkable achievement."
+      %br
+      %hr
+
+      %h6
         = "Happy Holidays from the F2P Wiki team! Remember to take some time out from those EHP gains to spend time with your family!"
       %br
         = image_tag("sled.png")
