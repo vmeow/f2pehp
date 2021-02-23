@@ -1,14 +1,16 @@
 %p#notice= notice
 
-= content_tag(:div, nil, class: "container", style: "width: 820px;") do
+= content_tag(:div, nil, class: "container", style: "width: 840px;") do
   = content_tag(:div, nil, class: ["bar", "ranks", "selected-link"]) do
     = link_to_unless_current "Hiscores", ranks_path
   = content_tag(:div, nil, class: ["bar", "fake", "selected-link"]) do
-    = link_to_unless_current "Current Top", tracking_path
+    = link_to_unless_current "Current", tracking_path
   = content_tag(:div, nil, class: ["bar", "ehp", "selected-link"]) do
     = link_to_unless_current "Records", records_path
   = content_tag(:div, nil, class: ["bar", "ehp", "selected-link"]) do
     = link_to_unless_current "EHP", ehp_path
+  = content_tag(:div, nil, class: ["bar", "links", "selected-link"]) do
+    = link_to_unless_current "Clans", clans_path
   = content_tag(:div, nil, class: ["bar", "links", "selected-link"]) do
     = link_to_unless_current "Links", links_path
   = content_tag(:div, nil, class: ["bar", "changelog", "selected-link"]) do
@@ -17,8 +19,3 @@
     = link_to_unless_current "About Us/Donate", donate_path
   = content_tag(:div, nil, class: ["bar", "faqs", "selected-link"]) do
     = link_to_unless_current "FAQs", faqs_path
-
-= "Looking for "
-= link_to "clans?", clans_path
-= "until we find a better place"
-%br

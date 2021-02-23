@@ -34,6 +34,9 @@
 - elsif @skill == "bryo_kc"
   - title = "Bryophyta Kill Count"
   - skill_icon = "skills/kill_count.png"
+- elsif @skill == "lms"
+  - title = "LMS Score"
+  - skill_icon = "skills/lms.png"
 - else
   - title = "#{skill_name} #{@sort_by.upcase}"
   - skill_icon = "skills/#{@skill}.png"
@@ -42,63 +45,73 @@
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; margin-right: 5px; width: 200px;") do 
     = content_tag(:div, nil, class: "container", id: "headerSkills", style: "margin: auto; margin-bottom: 0px; width: 200px; height: 103px;") 
     = content_tag(:div, nil, class: ["container", "skills"], style: "width: 200px; margin-bottom: 0px; line-height: 28px;") do 
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/time.png", style: "vertical-align: -6px;"
-      = link_to "Time to all 99s", :controller => "clans", :action => "show", :skill => "ttm_lvl"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/time.png", style: "vertical-align: -6px;"
-      = link_to "Time to all 200m", :controller => "clans", :action => "show", :skill => "ttm_xp"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "99 Count", :controller => "clans", :action => "show", :skill => "99_count"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "200m Count", :controller => "clans", :action => "show", :skill => "200m_count"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "Overall", :controller => "clans", :action => "show", :skill => "overall"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "Non-combats", :controller => "clans", :action => "show", :skill => "no_combats"
-      - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+      - if @display == "stats"
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/time.png", style: "vertical-align: -6px;"
+        = link_to "Time to all 99s", :controller => "clans", :action => "show", :skill => "ttm_lvl"
         %br
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        = image_tag "skills/#{skill}.png", style: "vertical-align: -6px;"
-        = link_to "#{skill.capitalize}", :controller => "clans", :action => "show", :skill => "#{skill}"
-      %br  
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/combat.png", style: "vertical-align: -6px;"
-      = link_to "Combat Level", :controller => "clans", :action => "show", :skill => "combat", :sort_by => "lvl"
-      %br  
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "Lowest Level", :controller => "clans", :action => "show", :skill => "lowest_lvl"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/clue.png", style: "vertical-align: -6px;"
-      = link_to "Clues (all)", :controller => "clans", :action => "show", :skill => "clues_all"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/clue.png", style: "vertical-align: -6px;"
-      = link_to "Clues (beg.)", :controller => "clans", :action => "show", :skill => "clues_beginner"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/lms.png", style: "vertical-align: -6px;"
-      = link_to "LMS", :controller => "clans", :action => "show", :skill => "lms"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
-      = link_to "Obor Kills", :controller => "clans", :action => "show", :skill => "obor_kc"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
-      = link_to "Bryophyta Kills", :controller => "clans", :action => "show", :skill => "bryo_kc"
-        
+        = image_tag "skills/time.png", style: "vertical-align: -6px;"
+        = link_to "Time to all 200m", :controller => "clans", :action => "show", :skill => "ttm_xp"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+        = link_to "99 Count", :controller => "clans", :action => "show", :skill => "99_count"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+        = link_to "200m Count", :controller => "clans", :action => "show", :skill => "200m_count"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+        = link_to "Overall", :controller => "clans", :action => "show", :skill => "overall"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+        = link_to "Non-combats", :controller => "clans", :action => "show", :skill => "no_combats"
+        - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+          %br
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          = image_tag "skills/#{skill}.png", style: "vertical-align: -6px;"
+          = link_to "#{skill.capitalize}", :controller => "clans", :action => "show", :skill => "#{skill}"
+        %br  
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/combat.png", style: "vertical-align: -6px;"
+        = link_to "Combat Level", :controller => "clans", :action => "show", :skill => "combat", :sort_by => "lvl"
+        %br  
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+        = link_to "Lowest Level", :controller => "clans", :action => "show", :skill => "lowest_lvl"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/clue.png", style: "vertical-align: -6px;"
+        = link_to "Clues (all)", :controller => "clans", :action => "show", :skill => "clues_all"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/clue.png", style: "vertical-align: -6px;"
+        = link_to "Clues (beg.)", :controller => "clans", :action => "show", :skill => "clues_beginner"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/lms.png", style: "vertical-align: -6px;"
+        = link_to "LMS", :controller => "clans", :action => "show", :skill => "lms"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+        = link_to "Obor Kills", :controller => "clans", :action => "show", :skill => "obor_kc"
+        %br
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+        = link_to "Bryophyta Kills", :controller => "clans", :action => "show", :skill => "bryo_kc"
+
+      - else
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        = image_tag "skills/overall.png", style: "vertical-align: -6px;"
+        = link_to "Overall", :controller => "clans", :action => "show", :skill => "overall"
+        - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+          %br
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          = image_tag "skills/#{skill}.png", style: "vertical-align: -6px;"
+          = link_to "#{skill.capitalize}", :controller => "clans", :action => "show", :skill => "#{skill}"
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
 
   = content_tag(:div, nil, class: ["container", "left"], style: "margin: auto; width: 540px;") do
@@ -141,11 +154,11 @@
           %th{:colspan => 12}
             = image_tag skill_icon, style: "vertical-align: -6px;"
             = "Total #{title} Clan Statistics for #{@clan.name}"
-            = image_tag @clan.symbol_link, size: "30x30", style: "vertical-align: -6px;"
+            = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
         %thead
           %th{:align => "left"}
-          %th{:align => "left"}  Member Count
-          - if (["overall"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
+          %th{:align => "center"}  Member Count
+          - if (["overall", "no_combats"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
             %th{:align => "left"}  Total XP
             %th{:align => "left"}  Total EHP
             %th{:align => "left"}  Average XP
@@ -155,10 +168,20 @@
             %th{:align => "left"}= "Average #{title}"
         %tbody
           %td{:align => "left"}
-          %td{:align => "left"}= @players.count
+          %td{:align => "center"}= @players.count
           - if (["overall"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
             - sum_xp = @players.pluck("#{@skill}_xp".to_sym).sum
             - sum_ehp = @players.pluck("#{@skill}_ehp".to_sym).sum
+            - avg_xp = player_count == 0 ? 0 : sum_xp/player_count
+            - avg_ehp = player_count == 0 ? 0 : sum_ehp/player_count
+            %td{:align => "left"}= number_with_delimiter(sum_xp, :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_xp, :precision => 0), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+          - elsif @skill.include?("no_combats")
+            - noncombats = ["woodcutting", "firemaking", "fishing", "cooking", "mining", "smithing", "crafting", "runecraft"]
+            - sum_xp = noncombats.each.map { |skill| @players.pluck("#{skill}_xp".to_sym).sum }.sum
+            - sum_ehp = noncombats.each.map { |skill| @players.pluck("#{skill}_ehp".to_sym).sum }.sum
             - avg_xp = player_count == 0 ? 0 : sum_xp/player_count
             - avg_ehp = player_count == 0 ? 0 : sum_ehp/player_count
             %td{:align => "left"}= number_with_delimiter(sum_xp, :delimiter => ",", :separator => ".")
@@ -190,25 +213,22 @@
             - avg_skill = player_count == 0 ? 0 : sum_skill.to_f/player_count
             %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_skill, :precision => 2), :delimiter => ",", :separator => ".")
             %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_skill, :precision => 2), :delimiter => ",", :separator => ".")
-          %tr
-            %td= ""
-          %tr
-            %td= ""
-          %tr
-            %td= ""
-          %tr
-            %td= ""
-          %tr
-            %td= ""
-          %tr
-            %td= ""
-
+          - elsif @skill.include?("lms")
+            - sum_skill = @players.pluck(:lms_score).sum
+            - avg_skill = player_count == 0 ? 0 : sum_skill.to_f/player_count
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_skill, :precision => 2), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_skill, :precision => 2), :delimiter => ",", :separator => ".")
+          - elsif @skill.include?("lowest_lvl")
+            - sum_skill = @players.map(&:lowest_lvl).sum
+            - avg_skill = player_count == 0 ? 0 : sum_skill.to_f/player_count
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_skill, :precision => 2), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_skill, :precision => 2), :delimiter => ",", :separator => ".")
         %thead
           %th{:colspan => 12}
             = image_tag skill_icon, style: "vertical-align: -6px;"
             = title
             = " for #{@clan.name}"
-            = image_tag @clan.symbol_link, size: "30x30", style: "vertical-align: -6px;"
+            = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
         %thead
           %th{:align => "right"} Rank
           %th{:align => "left"} Player Name
@@ -276,16 +296,61 @@
                 %td= number_with_delimiter(lvl, :delimiter => ",", :separator => ".")
                 %td= number_with_delimiter(xp, :delimiter => ",", :separator => ".")
                 %td= number_with_delimiter(number_with_precision(ehp, :precision => 2), :delimiter => ",", :separator => ".")
-              %td= "TBD"
+              - if (["overall"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
+                - skill_f2p_rank = player.f2p_skill_rank(@skill).to_i
+              - else
+                - skill_f2p_rank = "???"
+              %td{:align => "left"}= skill_f2p_rank
 
       - elsif @display == "gains"
+        - player_count = @clan.players.count
         %thead
-          %th{:colspan => 5}
+          %th{:colspan => 12}
+            = image_tag skill_icon, style: "vertical-align: -6px;"
+            = "Total Current Gains #{skill_name} #{@sort_by.upcase}, #{@time.capitalize} of #{@time_display}"
+            = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
+        %thead
+          %th{:align => "center"}  Member Count
+          - if (["overall", "no_combats"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
+            %th{:align => "left"}  Total XP
+            %th{:align => "left"}  Total EHP
+            %th{:align => "left"}  Average XP
+            %th{:align => "left"}  Average EHP
+          - else
+            %th{:align => "left"}= "Total #{title}"
+            %th{:align => "left"}= "Average #{title}"
+        %tbody
+          %td{:align => "center"}= @players.count
+          - if (["overall"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
+            - tracked_players = @players.where("#{@skill}_xp_#{@time}_start is not null")
+            - sum_xp = tracked_players.pluck("#{@skill}_xp".to_sym).sum - tracked_players.pluck("#{@skill}_xp_#{@time}_start".to_sym).sum
+            - sum_ehp = tracked_players.pluck("#{@skill}_ehp".to_sym).sum - tracked_players.pluck("#{@skill}_ehp_#{@time}_start".to_sym).sum
+            - avg_xp = player_count == 0 ? 0 : sum_xp/player_count
+            - avg_ehp = player_count == 0 ? 0 : sum_ehp/player_count
+            %td{:align => "left"}= number_with_delimiter(sum_xp, :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_xp, :precision => 0), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+
+        %thead
+          %th{:colspan => 12}
             = image_tag skill_icon, style: "vertical-align: -6px;"
             = "Current Top #{skill_name} #{@sort_by.upcase} for #{@clan.name}, #{@time.capitalize} of #{@time_display}"
-            = image_tag @clan.symbol_link, size: "30x30", style: "vertical-align: -6px;"
+            = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
         %thead
-          %th{:align => "right"} Rank
+          %th{:align => "center"} Rank
           %th{:align => "left"} Player Name
           - if @sort_by == "xp"
             %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "#{@time.capitalize} XP", clan_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
@@ -313,13 +378,54 @@
                 %td= "???"
                 %td= "???"
       - else
+        - player_count = @clan.players.count
+        %thead
+          %th{:colspan => 12}
+            = image_tag skill_icon, style: "vertical-align: -6px;"
+            = "Total #{@time.capitalize} #{title} Records, Clan Statistics for #{@clan.name}"
+            = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
+        %thead
+          %th{:align => "center"}  Member Count
+          - if (["overall", "no_combats"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
+            %th{:align => "left"}  Total XP
+            %th{:align => "left"}  Total EHP
+            %th{:align => "left"}  Average XP
+            %th{:align => "left"}  Average EHP
+          - else
+            %th{:align => "left"}= "Total #{title}"
+            %th{:align => "left"}= "Average #{title}"
+        %tbody
+          %td{:align => "center"}= @players.count
+          - if (["overall"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
+            - tracked_players = @players.where("#{@skill}_xp_#{@time}_max is not null")
+            - sum_xp = tracked_players.pluck("#{@skill}_xp_#{@time}_max".to_sym).sum
+            - sum_ehp = tracked_players.pluck("#{@skill}_ehp_#{@time}_max".to_sym).sum
+            - avg_xp = player_count == 0 ? 0 : sum_xp/player_count
+            - avg_ehp = player_count == 0 ? 0 : sum_ehp/player_count
+            %td{:align => "left"}= number_with_delimiter(sum_xp, :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(sum_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_xp, :precision => 0), :delimiter => ",", :separator => ".")
+            %td{:align => "left"}= number_with_delimiter(number_with_precision(avg_ehp, :precision => 2), :delimiter => ",", :separator => ".")
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+          %tr
+            %td= ""
+
         %thead
           %th{:colspan => 5}
             = image_tag skill_icon, style: "vertical-align: -6px;"
             = "#{skill_name} #{@sort_by.upcase} #{@time.capitalize} Records for #{@clan.name}"
-            = image_tag @clan.symbol_link, size: "30x30", style: "vertical-align: -6px;"
+            = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
         %thead
-          %th{:align => "right"} Rank
+          %th{:align => "center"} Rank
           %th{:align => "left"} Player Name
           - if @sort_by == "xp"
             %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "#{@time.capitalize} XP", clan_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
