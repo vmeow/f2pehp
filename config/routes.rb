@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :players, :items
+  resources :players, :items, :clans
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -33,6 +33,13 @@ Rails.application.routes.draw do
   put 'update' => 'players#update_player'
   get 'players/:id/update' => 'players#update', as: :update_player
   get 'players/:id/check_acc_type' => 'players#check_acc_type', as: :check_acc_type
+  get 'clans/index' => 'clans#index'
+  get 'clans' => 'clans#index'
+  get 'clans/:id/admin' => 'clans#admin', as: :clan_admin
+  post 'clans/:id/add_player_to_clan' => 'clans#add_player_to_clan', as: :add_player_to_clan
+  post 'clans/:id/add_many_players_to_clan' => 'clans#add_many_players_to_clan', as: :add_many_players_to_clan
+  post 'clans/:id/remove_player_from_clan' => 'clans#remove_player_from_clan', as: :remove_player_from_clan
+  post 'clans/:id/remove_many_players_from_clan' => 'clans#remove_many_players_from_clan', as: :remove_many_players_from_clan
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players

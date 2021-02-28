@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_234749) do
+ActiveRecord::Schema.define(version: 2021_02_10_073129) do
+
+  create_table "clans", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "pass"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -18,6 +26,13 @@ ActiveRecord::Schema.define(version: 2020_01_12_234749) do
     t.string "icon"
     t.integer "alch"
     t.integer "current"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "player_clan_links", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "clan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

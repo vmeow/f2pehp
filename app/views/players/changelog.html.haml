@@ -313,20 +313,26 @@
     
   = content_tag(:div, nil, class: "left", style: "margin-left: 10px; text-align: left; width: 340px; padding: 10px;") do 
     %h3 F2P Wiki Changelog
-    %h5 v1.68 December 6th, 2020
+    %h5 v1.7.0 February 25, 2021
+    = link_to "Clans", clans_path
+    = "released"
+    %br
+    %br
+
+    %h5 v1.6.8 December 6th, 2020
     = "New F2P Wiki logo and Christmas banner created and designed by"
     = link_to "F2p Ello", "https://twitter.com/f2p_ello", target: "_blank", rel: "noopener noreferrer"
     %br
     %br
 
-    %h5 v1.67 October 31, 2020
+    %h5 v1.6.7 October 31, 2020
     = link_to "FAQs", faqs_path
     %br
     = "Upgrade to Rails 5.2.4.4"
     %br
     %br
 
-    %h5 v1.66 August 1, 2020
+    %h5 v1.6.6 August 1, 2020
     = "New EHP rates released: "
     = link_to "Regs", "https://www.reddit.com/r/W385/comments/i0hwhs/f2pwiki_reg_ehp_changes/", target: "_blank", rel: "noopener noreferrer"
     = " and "
@@ -334,17 +340,17 @@
     %br
     %br
 
-    %h5 v1.65 July 18, 2020
+    %h5 v1.6.5 July 18, 2020
     = "F2P-only ranks"
     %br
     %br
 
-    %h5 v1.64 December 5, 2019
+    %h5 v1.6.4 December 5, 2019
     = "LMS and Obor/Bryophyta KC hiscores"
     %br
     %br
 
-    %h5 v1.63 September 21, 2019
+    %h5 v1.6.3 September 21, 2019
     = "- Non-combats hiscores fixed to be additive instead of subtractive from overall xp/lvl/ehp, which is actually buggy for some accounts."
     %br
     = "- New feature to reset filters for ranks, tracking, and records"
@@ -355,21 +361,21 @@
     %br
     %br
 
-    %h5 v1.62 July 6, 2019
+    %h5 v1.6.2 July 6, 2019
     = "99 and 200m count added to hiscores."
     %br
     %br
 
-    %h5 v1.61 April 28, 2019
+    %h5 v1.6.1 April 28, 2019
     = "- Upgrade to Rails 5.2.2"
     %br
-    = "- Various bug fixes from v1.60"
+    = "- Various bug fixes from v1.6.0"
     %br
     = "- Further code refactoring and prep for open-sourcing"
     %br
     %br
 
-    %h5 v1.60 April 27, 2019
+    %h5 v1.6.0 April 27, 2019
     = "- EHP updates and bonus XP released, found"
     = link_to "here", "https://www.reddit.com/r/W385/comments/bdal19/finalized_f2pwiki_ehp_and_bonus_xp_updates/", target: "_blank", rel: "noopener noreferrer"
     %br
@@ -379,24 +385,24 @@
     %br
     %br
 
-    %h5 v1.53 April 13, 2019
+    %h5 v1.5.3 April 13, 2019
     = "- Compatibility with beginner clues hiscores."
     %br
     = "- Internal tool for restoring tracking and records data for players from CrystalMathLabs."
     %br
     %br
     
-    %h5 v1.52 March 17, 2019
+    %h5 v1.5.2 March 17, 2019
     = "Release of Overall (no combats) hiscores"
     %br
     %br
 
-    %h5 v1.51 February 16, 2019
+    %h5 v1.5.1 February 16, 2019
     = "Release of Time to Max hiscores"
     %br
     %br
 
-    %h5 v1.50 December 2, 2018
+    %h5 v1.5.0 December 2, 2018
     = "Release of XP and EHP tracking and records"
     %br
     = "Various bug fixes, refactoring, and QoL"
@@ -407,13 +413,13 @@
     %br
     %br
     
-    %h5 v1.23 ???
+    %h5 v1.2.3 ???
     = "Minor fixes and refactoring: "
     = "Do not display null combat levels"
     %br
     %br
     
-    %h5 v1.22 July 14, 2018
+    %h5 v1.2.2 July 14, 2018
     = "Adding a player to hiscores only requires a name, and automatically finds the account type."
     %br
     = "Searching should no longer redirect to URLs with IDs instead of player name."
@@ -424,41 +430,41 @@
     %br
     %br
     
-    %h5 v1.21 July 7, 2018
+    %h5 v1.2.1 July 7, 2018
     = "Fixes: Negative xp, level 1 HP for certain people leading to level 1 combat"
     %br
     = "Updated skill icons"
     %br
     %br
     
-    %h5 v1.20 June 21, 2018
+    %h5 v1.2.0 June 21, 2018
     = "Combat Level hiscores"
     %br
     %br
     
-    %h5 v1.19 June 20, 2018
+    %h5 v1.1.9 June 20, 2018
     = "June Gatherers EHP Competition framework"
     %br
     %br
     
-    %h5 v1.18 June 10, 2018
+    %h5 v1.1.8 June 10, 2018
     = "Filter accounts by popular combat restrictions"
     %br
     %br
     
-    %h5 v1.17 Apr 27, 2018
+    %h5 v1.1.7 Apr 27, 2018
     = "EHP Competition framework"
     %br
     %br
     
-    %h5 v1.16 Apr 12, 2018
+    %h5 v1.1.6 Apr 12, 2018
     = "Update: DPS calcs now have custom attack and str bonus input"
     %br
     = "Fix: GP/XP calc will no longer split the comma for inactive items above 999 gp"
     %br
     %br
     
-    %h5 v1.15 Mar 20, 2018
+    %h5 v1.1.5 Mar 20, 2018
     = "Players tied for 200m XP will now break ties using their official hiscores rank."
     %br
     = "Player personal hiscores page layouts have been refactored and updated for those with custom images/text on their page."
@@ -467,32 +473,32 @@
     %br
     %br
     
-    %h5 v1.14 Mar 19, 2018
+    %h5 v1.1.4 Mar 19, 2018
     = "Links to official OSRS hiscores and Crystalmathlabs now on each player's personal hiscores."
     %br
     %br 
     
-    %h5 v1.13 Mar 12, 2018
+    %h5 v1.1.3 Mar 12, 2018
     = "Feature complete: High alch calc"
     %br
     %br
     
-    %h5 v1.12 Mar 12, 2018
+    %h5 v1.1.2 Mar 12, 2018
     = "Feature complete: GP/XP calc"
     %br
     %br
     
-    %h5 v1.11 Mar 10, 2018
+    %h5 v1.1.1 Mar 10, 2018
     = "Feature complete: Combat level calc"
     %br
     %br
     
-    %h5 v1.10 Mar 10, 2018
+    %h5 v1.1.0 Mar 10, 2018
     = "Feature complete: Compare users"
     %br
     %br
     
-    %h5 v1.09 Mar 5, 2018
+    %h5 v1.0.9 Mar 5, 2018
     = "Feature complete: EHP methods located below EHP rates"
     %br
     = "Fix: P2P minigames/clue scrolls are now accounted for."
@@ -501,7 +507,7 @@
     %br
     %br
     
-    %h5 v1.08 Mar 4, 2018
+    %h5 v1.0.8 Mar 4, 2018
     = "Feature complete: Ranks on personal hiscore page (for each account type, from official OSRS hiscores)"
     %br
     = link_to "No alt F2P EHP for regs", "http://www.reddit.com/r/CrystalMathLabs/comments/7wn8m7/updated_f2pehp_rates/", target: "_blank", rel: "noopener noreferrer"
@@ -509,21 +515,21 @@
     %br
     %br
     
-    %h5 v1.07 Mar 3, 2018
+    %h5 v1.0.7 Mar 3, 2018
     = "Feature complete: DPS Calculators for melee, ranged, and magic with PvP option"
     %br
     = "Feature complete: automatically refresh players with >500 EHP daily at midnight PST"
     %br
     %br
     
-    %h5 v1.06 Feb 27, 2018
+    %h5 v1.0.6 Feb 27, 2018
     = "Fix: Search function fixed for names with \"_\", correct redirect for invalid names"
     %br
     = "Fix: Add player function fixed for invalid names"
     %br
     %br
       
-    %h5 v1.05 Feb 20, 2018
+    %h5 v1.0.5 Feb 20, 2018
     = "In order to optimize site performance, we have limited our hiscores to players with 75+ EHP."
     %br
     = "Feature complete: Add Player to database"
@@ -534,12 +540,12 @@
     %br
     %br
       
-    %h5 v1.04 Feb 18, 2018
+    %h5 v1.0.4 Feb 18, 2018
     = "Feature in progress: Mimick official OSRS hiscores"
     %br
     %br
     
-    %h5 v1.03 Feb 12, 2018
+    %h5 v1.0.3 Feb 12, 2018
     = "Feature complete: limit # of players shown per page: 25, 50, 100, 250, or 500"
     %br
     = "Search player is now case-insensitive."
@@ -550,7 +556,7 @@
     %br
     %br
     
-    %h5 v1.02 Feb 8, 2018
+    %h5 v1.0.2 Feb 8, 2018
     = "EHP updated for IM/HC/UIM due to ogresses and mining guild. View the full changes "
     = link_to "here.", "http://www.reddit.com/r/W385/comments/7vaq1m/new_f2p_imhcuim_ehp/", target: "_blank", rel: "noopener noreferrer"
     %br
@@ -560,15 +566,15 @@
     %br
     %br
     
-    %h5 v1.01 Feb 4, 2018
+    %h5 v1.0.1 Feb 4, 2018
     = "Layout changed: added Homepage, Useful Links, F2P Changelog, general styling"
     %br
     %br
     
-    %h5 v1.0 Jan 30, 2018
+    %h5 v1.0.0 Jan 30, 2018
     = "Site publicly released"
     %br
     = "Feature added: About Us/Donations page, flairs for supporters"
     %br
     %br
-    = link_to "Old Changelog (before v1.0 public release)", oldchangelog_path
+    = link_to "Old Changelog (before v1.0.0 public release)", oldchangelog_path

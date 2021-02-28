@@ -136,6 +136,23 @@
             %br
         = submit_tag 'Filter', :id => "restrictions_submit"
 
+    %br
+    - container_height = 126 + (18 * [Clan.all.count - 2, 0].max)
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "line-height: 18px; margin-left: 15px; width: 140px; height: #{container_height}px; background-size: 100% 100%;") do
+      = form_tag tracking_path, :method => :get, :id => 'clans_form' do
+        = "Clans"
+        %br
+        = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
+          - Clan.all.each do |clan|
+            &nbsp
+            = check_box_tag "clans_[#{clan.name}]", 1, @clan_filters.include?(clan.name), :id => "clans_#{clan.name}"
+            = clan.name
+            %br
+          &nbsp
+          = check_box_tag "clans_[None]", 1, @clan_filters.include?("None"), :id => "clans_None"
+          = "None"
+        = submit_tag 'Filter', :id => "clans_submit"
+
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-left: 15px; width: 140px; height: 96px;") do 
       = form_tag tracking_path, :method => :get, :id => 'show_limits_form' do
         = "Players Per Page"
