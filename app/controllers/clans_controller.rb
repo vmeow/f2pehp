@@ -273,6 +273,10 @@ class ClansController < ApplicationController
       end
     end
 
+    if @sort_by == "player_name"
+      ordering = "player_name ASC"
+    end
+
     @players = @clan.players
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")

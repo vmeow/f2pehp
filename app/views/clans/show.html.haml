@@ -38,8 +38,11 @@
   - title = "LMS Score"
   - skill_icon = "skills/lms.png"
 - else
-  - title = "#{skill_name} #{@sort_by.upcase}"
+  - title = "#{skill_name} #{@sort_by.upcase unless @sort_by == "player_name"}"
   - skill_icon = "skills/#{@skill}.png"
+
+- if @sort_by == "player_name"
+  - title = title + " Alphabetical"
 
 = content_tag(:div, nil, class: "container", style: "width: 820px;") do
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; margin-right: 5px; width: 200px;") do 
@@ -231,7 +234,10 @@
             = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
         %thead
           %th{:align => "right"} Rank
-          %th{:align => "left"} Player Name
+          - if @sort_by == "player_name"
+            %th{:class => @player_name_header, :style => "text-decoration: underline;"}= link_to "Player Name",clan_path(:sort_by => 'player_name', :skill => @skill), :id => 'player_name_header'
+          - else
+            %th{:class => @player_name_header}= link_to "Player Name", clan_path(:sort_by => 'player_name', :skill => @skill), :id => 'player_name_header'
           - if @skill.include?("ttm")
             %th Time to Max (Hours)
           - elsif @skill.include?("clues")
@@ -265,7 +271,10 @@
           - @players.each_with_index do |player, index|
             - name = player.player_name.gsub(" ", "_").encode("ASCII", invalid: :replace, undef: :replace, replace: '_')
             %tr
-              %td{:align => "right"}= index + 1
+              - if @sort_by == "player_name"
+                %td
+              - else
+                %td{:align => "right"}= index + 1
               %td{:align => "left"}= link_to player.player_name, player_path("#{name.encode("ASCII", invalid: :replace, undef: :replace, replace: '_')}")
               - if @skill.include?("ttm")
                 %td= number_with_delimiter(number_with_precision(player["#{@skill}"].to_f, :precision => 2), :delimiter => ",", :separator => ".") 
@@ -347,11 +356,18 @@
         %thead
           %th{:colspan => 12}
             = image_tag skill_icon, style: "vertical-align: -6px;"
-            = "Current Top #{skill_name} #{@sort_by.upcase} for #{@clan.name}, #{@time.capitalize} of #{@time_display}"
+            - if @sort_by == "player_name"
+              - sort_string = "Alphabetical"
+            - else
+              - sort_string = @sort_by.upcase
+            = "Current Top #{skill_name} #{sort_string} for #{@clan.name}, #{@time.capitalize} of #{@time_display}"
             = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
         %thead
           %th{:align => "center"} Rank
-          %th{:align => "left"} Player Name
+          - if @sort_by == "player_name"
+            %th{:align => "left", :class => @player_name_header, :style => "text-decoration: underline;"}= link_to "Player Name",clan_path(:sort_by => 'player_name', :skill => @skill), :id => 'player_name_header'
+          - else
+            %th{:class => @player_name_header}= link_to "Player Name", clan_path(:sort_by => 'player_name', :skill => @skill), :id => 'player_name_header'
           - if @sort_by == "xp"
             %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "#{@time.capitalize} XP", clan_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
           - else
@@ -366,13 +382,19 @@
             %tr
               - if player["#{@skill}_xp_#{@time}_start"]
                 - skill_gains_rank = player.f2p_gains_rank(@skill, @time).to_i
-                %td= index + 1
+                - if @sort_by == "player_name"
+                  %td
+                - else
+                  %td{:align => "right"}= index + 1
                 %td{:align => "left"}= link_to player.player_name, player_path(player.player_name.gsub(" ", "_"))
                 %td= number_with_delimiter(player["#{@skill}_xp"].to_i - player["#{@skill}_xp_#{@time}_start"].to_i, :delimiter => ",") 
                 %td= number_with_delimiter(number_with_precision(player["#{@skill}_ehp"].to_f - player["#{@skill}_ehp_#{@time}_start"], precision: 2), :delimiter => ",", :separator => ".") 
                 %td= number_with_delimiter(skill_gains_rank, :delimiter => ',')
               - else
-                %td= index + 1
+                - if @sort_by == "player_name"
+                  %td
+                - else
+                  %td{:align => "right"}= index + 1
                 %td{:align => "left"}= link_to player.player_name, player_path(player.player_name.gsub(" ", "_"))
                 %td= "???"
                 %td= "???"
@@ -422,11 +444,18 @@
         %thead
           %th{:colspan => 5}
             = image_tag skill_icon, style: "vertical-align: -6px;"
-            = "#{skill_name} #{@sort_by.upcase} #{@time.capitalize} Records for #{@clan.name}"
+            - if @sort_by == "player_name"
+              - sort_string = "Alphabetical"
+            - else
+              - sort_string = @sort_by.upcase
+            = "#{skill_name} #{sort_string} #{@time.capitalize} Records for #{@clan.name}"
             = image_tag @clan.symbol_link, size: "35x35", style: "vertical-align: -6px;"
         %thead
           %th{:align => "center"} Rank
-          %th{:align => "left"} Player Name
+          - if @sort_by == "player_name"
+            %th{:align => "left", :class => @player_name_header, :style => "text-decoration: underline;"}= link_to "Player Name",clan_path(:sort_by => 'player_name', :skill => @skill), :id => 'player_name_header'
+          - else
+            %th{:class => @player_name_header}= link_to "Player Name", clan_path(:sort_by => 'player_name', :skill => @skill), :id => 'player_name_header'
           - if @sort_by == "xp"
             %th{:class => @player_xp_header, :style => "text-decoration: underline;"}= link_to "#{@time.capitalize} XP", clan_path(:sort_by => 'xp', :skill => @skill), :id => 'player_xp_header'
           - else
@@ -441,13 +470,19 @@
             %tr
               - if player["#{@skill}_xp_#{@time}_max"]
                 - skill_record_rank = player.f2p_record_rank(@skill, @time).to_i
-                %td= index + 1
+                - if @sort_by == "player_name"
+                  %td
+                - else
+                  %td{:align => "right"}= index + 1
                 %td{:align => "left"}= link_to player.player_name, player_path(player.player_name.gsub(" ", "_"))
                 %td= number_with_delimiter(player["#{@skill}_xp_#{@time}_max"].to_i, :delimiter => ",") 
                 %td= number_with_delimiter(number_with_precision(player["#{@skill}_ehp_#{@time}_max"].to_f, precision: 2), :delimiter => ",") 
                 %td= number_with_delimiter(skill_record_rank, :delimiter => ',')
               - else
-                %td= index + 1
+                - if @sort_by == "player_name"
+                  %td
+                - else
+                  %td{:align => "right"}= index + 1
                 %td{:align => "left"}= link_to player.player_name, player_path(player.player_name.gsub(" ", "_"))
                 %td= "???"
                 %td= "???"
