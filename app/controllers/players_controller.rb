@@ -167,7 +167,10 @@ class PlayersController < ApplicationController
     clan_filter_clause = @clan_filters.keys
     clan_filter_clause += [nil] if @clan_filters["None"]
 
-    @players = @players.left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+
+    # clan filter breaks page for some reason
+    #@players = @players.left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
+    @players = @players.where("potential_p2p <= 0").where("overall_ehp > 1").paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
   def records
