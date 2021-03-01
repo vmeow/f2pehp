@@ -250,10 +250,10 @@ class ClansController < ApplicationController
       when "ehp", "lvl"
         @sort_by = "ehp"
         @player_ehp_header = 'hilite'
-        ordering = "#{@skill}_ehp - IFNULL(#{@skill}_ehp_#{@time}_start, 100000) DESC, #{@skill}_xp - IFNULL(#{@skill}_xp_#{@time}_start, 1000000000) DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
+        ordering = "#{@skill}_ehp - COALESCE(#{@skill}_ehp_#{@time}_start, 100000) DESC, #{@skill}_xp - COALESCE(#{@skill}_xp_#{@time}_start, 1000000000) DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
       when "xp"
         @player_xp_header = 'hilite'
-        ordering = "#{@skill}_xp - IFNULL(#{@skill}_xp_#{@time}_start, 1000000000) DESC, #{@skill}_ehp - IFNULL(#{@skill}_ehp_#{@time}_start, 100000) DESC, #{@skill}_xp DESC"
+        ordering = "#{@skill}_xp - COALESCE(#{@skill}_xp_#{@time}_start, 1000000000) DESC, #{@skill}_ehp - COALESCE(#{@skill}_ehp_#{@time}_start, 100000) DESC, #{@skill}_xp DESC"
       end
     elsif @display == "records"
       unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
@@ -266,10 +266,10 @@ class ClansController < ApplicationController
       when "ehp", "lvl"
         @sort_by = "ehp"
         @player_ehp_header = 'hilite'
-        ordering = "IFNULL(#{@skill}_ehp_#{@time}_max, -100000) DESC, IFNULL(#{@skill}_xp_#{@time}_max, -1000000000) DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
+        ordering = "COALESCE(#{@skill}_ehp_#{@time}_max, -100000) DESC, COALESCE(#{@skill}_xp_#{@time}_max, -1000000000) DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
       when "xp"
         @player_xp_header = 'hilite'
-        ordering = "IFNULL(#{@skill}_xp_#{@time}_max, -1000000000) DESC, IFNULL(#{@skill}_ehp_#{@time}_max, -100000) DESC, #{@skill}_xp DESC"
+        ordering = "COALESCE(#{@skill}_xp_#{@time}_max, -1000000000) DESC, COALESCE(#{@skill}_ehp_#{@time}_max, -100000) DESC, #{@skill}_xp DESC"
       end
     end
 
