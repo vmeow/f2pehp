@@ -162,10 +162,10 @@
       = @clan.description
       - if @clan.link1 and @clan.link1_name
         %br
-        = link_to @clan.link1_name, @clan.link1
+        = link_to @clan.link1_name, "#{@clan.link1}"
         - if @clan.link2 and @clan.link2_name
           = "|"
-          = link_to @clan.link2_name, @clan.link2
+          = link_to @clan.link2_name, "#{@clan.link2}"
 
     %br
 

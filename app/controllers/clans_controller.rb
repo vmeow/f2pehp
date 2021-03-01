@@ -305,6 +305,59 @@ class ClansController < ApplicationController
     @clan
   end
 
+  def update_clan_description
+    clan_name = params[:id]
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif params[:clan_description].size > 1000
+      redirect_to clan_admin_path, notice: "Description is too long. Please limit to 1000 characters."
+    else
+      clan.update_attributes(:description => ActiveRecord::Base.sanitize_sql(params[:clan_description]))
+      redirect_to clan_admin_path, notice: "Clan description updated successfully."
+    end
+  end
+
+  def update_clan_link1
+    clan_name = params[:id]
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif params[:link1].empty? or params[:link1_name].empty?
+      redirect_to clan_admin_path, notice: "Link URL and label must not be empty."
+    elsif !params[:link1].include?("http")
+      redirect_to clan_admin_path, notice: "Sorry, the link URL must start with 'http' or 'https'."
+    elsif params[:link1].size > 500 or params[:link1_name].size > 500
+      redirect_to clan_admin_path, notice: "Link URL or label are invalid (too long). Please limit to 500 characters."
+    else
+      clan.update_attributes(:link1 => ActiveRecord::Base.sanitize_sql(params[:link1]), :link1_name => ActiveRecord::Base.sanitize_sql(params[:link1_name]))
+      redirect_to clan_admin_path, notice: "Clan link updated successfully."
+    end
+  end
+
+  def update_clan_link2
+    clan_name = params[:id]
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif params[:link2].empty? or params[:link2_name].empty?
+      redirect_to clan_admin_path, notice: "Link URL and label must not be empty."
+    elsif !params[:link2].include?("http")
+      redirect_to clan_admin_path, notice: "Sorry, the link URL must start with 'http' or 'https'."
+    elsif params[:link2].size > 500 or params[:link2_name].size > 500
+      redirect_to clan_admin_path, notice: "Link URL or label are invalid (too long). Please limit to 500 characters."
+    else
+      clan.update_attributes(:link2 => ActiveRecord::Base.sanitize_sql(params[:link2]), :link2_name => ActiveRecord::Base.sanitize_sql(params[:link2_name]))
+      redirect_to clan_admin_path, notice: "Clan link updated successfully."
+    end
+  end
+
   def create
   end
 

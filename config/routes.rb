@@ -40,6 +40,9 @@ Rails.application.routes.draw do
   post 'clans/:id/add_many_players_to_clan' => 'clans#add_many_players_to_clan', as: :add_many_players_to_clan
   post 'clans/:id/remove_player_from_clan' => 'clans#remove_player_from_clan', as: :remove_player_from_clan
   post 'clans/:id/remove_many_players_from_clan' => 'clans#remove_many_players_from_clan', as: :remove_many_players_from_clan
+  post 'clans/:id/update_clan_description' => 'clans#update_clan_description', as: :update_clan_description
+  post 'clans/:id/update_clan_link1' => 'clans#update_clan_link1', as: :update_clan_link1
+  post 'clans/:id/update_clan_link2' => 'clans#update_clan_link2', as: :update_clan_link2
   post 'players#index' => 'players#refresh_250', as: :refresh_250
   post 'players#index' => 'players#refresh_players', as: :refresh_players
   post 'players#secretpage' => 'players#export_players', as: :export_players
