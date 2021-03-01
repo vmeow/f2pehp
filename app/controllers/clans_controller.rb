@@ -145,11 +145,13 @@ class ClansController < ApplicationController
 
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @skill = params[:skill] || session[:skill] || {}
+    @filter_inactive = params[:filter_inactive] || session[:filter_inactive] || "false"
     @clear_filters = params[:clear_filters]
 
     if @clear_filters
       @sort_by = {}
       @skill = {}
+      @filter_inactive = "false"
     end
 
     if @skill == {}
@@ -161,9 +163,10 @@ class ClansController < ApplicationController
     @display = params[:display] || session[:display] || "stats"
     @time = params[:time] || session[:time] || "week"
 
-    if params[:display] != session[:display] || params[:time] != session[:time]
+    if params[:display] != session[:display] || params[:time] != session[:time] || params[:filter_inactive] != session[:filter_inactive]
       session[:display] = @display
       session[:time] = @time
+      session[:filter_inactive] = @filter_inactive
     end
 
     case @time
@@ -250,10 +253,10 @@ class ClansController < ApplicationController
       when "ehp", "lvl"
         @sort_by = "ehp"
         @player_ehp_header = 'hilite'
-        ordering = "#{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
+        ordering = "#{@skill}_ehp - COALESCE(#{@skill}_ehp_#{@time}_start, 100000) DESC, #{@skill}_xp - COALESCE(#{@skill}_xp_#{@time}_start, 1000000000) DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
       when "xp"
         @player_xp_header = 'hilite'
-        ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp DESC"
+        ordering = "#{@skill}_xp - COALESCE(#{@skill}_xp_#{@time}_start, 1000000000) DESC, #{@skill}_ehp - COALESCE(#{@skill}_ehp_#{@time}_start, 100000) DESC, #{@skill}_xp DESC"
       end
     elsif @display == "records"
       unless F2POSRSRanks::Application.config.f2p_skills.include?(@skill)
@@ -266,10 +269,10 @@ class ClansController < ApplicationController
       when "ehp", "lvl"
         @sort_by = "ehp"
         @player_ehp_header = 'hilite'
-        ordering = "#{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
+        ordering = "COALESCE(#{@skill}_ehp_#{@time}_max, -100000) DESC, COALESCE(#{@skill}_xp_#{@time}_max, -1000000000) DESC, #{@skill}_ehp DESC, #{@skill}_xp DESC, players.id ASC"
       when "xp"
         @player_xp_header = 'hilite'
-        ordering = "#{@skill}_xp_#{@time}_max DESC, #{@skill}_ehp_#{@time}_max DESC, #{@skill}_xp DESC"
+        ordering = "COALESCE(#{@skill}_xp_#{@time}_max, -1000000000) DESC, COALESCE(#{@skill}_ehp_#{@time}_max, -100000) DESC, #{@skill}_xp DESC"
       end
     end
 
@@ -278,6 +281,11 @@ class ClansController < ApplicationController
     end
 
     @players = @clan.players
+
+    if @filter_inactive == "true"
+      @players = @players.where("(overall_xp - overall_xp_month_start) > 0")
+    end
+
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")
     end
@@ -295,6 +303,59 @@ class ClansController < ApplicationController
     end
 
     @clan
+  end
+
+  def update_clan_description
+    clan_name = params[:id]
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif params[:clan_description].size > 1000
+      redirect_to clan_admin_path, notice: "Description is too long. Please limit to 1000 characters."
+    else
+      clan.update_attributes(:description => ActiveRecord::Base.sanitize_sql(params[:clan_description]))
+      redirect_to clan_admin_path, notice: "Clan description updated successfully."
+    end
+  end
+
+  def update_clan_link1
+    clan_name = params[:id]
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif params[:link1].empty? or params[:link1_name].empty?
+      redirect_to clan_admin_path, notice: "Link URL and label must not be empty."
+    elsif !params[:link1].include?("http")
+      redirect_to clan_admin_path, notice: "Sorry, the link URL must start with 'http' or 'https'."
+    elsif params[:link1].size > 500 or params[:link1_name].size > 500
+      redirect_to clan_admin_path, notice: "Link URL or label are invalid (too long). Please limit to 500 characters."
+    else
+      clan.update_attributes(:link1 => ActiveRecord::Base.sanitize_sql(params[:link1]), :link1_name => ActiveRecord::Base.sanitize_sql(params[:link1_name]))
+      redirect_to clan_admin_path, notice: "Clan link updated successfully."
+    end
+  end
+
+  def update_clan_link2
+    clan_name = params[:id]
+    clan = Clan.find_clan(clan_name)
+    clan_id = clan.id
+
+    if clan.pass != Digest::MD5.hexdigest(params[:pass])
+      redirect_to(clan_admin_path, notice: "Incorrect password. Please try again.")
+    elsif params[:link2].empty? or params[:link2_name].empty?
+      redirect_to clan_admin_path, notice: "Link URL and label must not be empty."
+    elsif !params[:link2].include?("http")
+      redirect_to clan_admin_path, notice: "Sorry, the link URL must start with 'http' or 'https'."
+    elsif params[:link2].size > 500 or params[:link2_name].size > 500
+      redirect_to clan_admin_path, notice: "Link URL or label are invalid (too long). Please limit to 500 characters."
+    else
+      clan.update_attributes(:link2 => ActiveRecord::Base.sanitize_sql(params[:link2]), :link2_name => ActiveRecord::Base.sanitize_sql(params[:link2_name]))
+      redirect_to clan_admin_path, notice: "Clan link updated successfully."
+    end
   end
 
   def create
