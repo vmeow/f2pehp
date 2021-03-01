@@ -145,11 +145,13 @@ class ClansController < ApplicationController
 
     @sort_by = params[:sort_by] || session[:sort_by] || {}
     @skill = params[:skill] || session[:skill] || {}
+    @filter_inactive = params[:filter_inactive] || session[:filter_inactive] || "false"
     @clear_filters = params[:clear_filters]
 
     if @clear_filters
       @sort_by = {}
       @skill = {}
+      @filter_inactive = "false"
     end
 
     if @skill == {}
@@ -161,9 +163,10 @@ class ClansController < ApplicationController
     @display = params[:display] || session[:display] || "stats"
     @time = params[:time] || session[:time] || "week"
 
-    if params[:display] != session[:display] || params[:time] != session[:time]
+    if params[:display] != session[:display] || params[:time] != session[:time] || params[:filter_inactive] != session[:filter_inactive]
       session[:display] = @display
       session[:time] = @time
+      session[:filter_inactive] = @filter_inactive
     end
 
     case @time
@@ -278,6 +281,11 @@ class ClansController < ApplicationController
     end
 
     @players = @clan.players
+
+    if @filter_inactive == "true"
+      @players = @players.where("(overall_xp - overall_xp_month_start) > 0")
+    end
+
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")
     end

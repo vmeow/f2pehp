@@ -149,6 +149,14 @@
           = link_to "Year", clan_path(:time => "year")
 
     %br
+    - if @filter_inactive == "true"
+      = link_to "Unfilter inactive?", clan_path(:filter_inactive => "false")
+    - else
+      = link_to "Filter inactive?", clan_path(:filter_inactive => "true")
+
+    = "|"
+    = link_to "Reset filters", clan_path(:clear_filters => "true")
+    %br
 
     = content_tag(:div, nil, class: ["container"], style: "margin: auto; width: 540px;") do
       = @clan.description
