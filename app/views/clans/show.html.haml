@@ -149,6 +149,18 @@
           = link_to "Year", clan_path(:time => "year")
 
     %br
+
+    = content_tag(:div, nil, class: ["container"], style: "margin: auto; width: 540px;") do
+      = @clan.description
+      - if @clan.link1 and @clan.link1_name
+        %br
+        = link_to @clan.link1_name, @clan.link1
+        - if @clan.link2 and @clan.link2_name
+          = "|"
+          = link_to @clan.link2_name, @clan.link2
+
+    %br
+
     = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 530px; height: 50px; margin-bottom: 0px;")
     = content_tag(:table, nil, style: "text-align: center; margin: auto; min-width: 530px; padding: 5px; margin-bottom: 0px;") do
       - if @display == "stats"

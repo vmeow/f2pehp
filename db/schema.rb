@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_073129) do
+ActiveRecord::Schema.define(version: 2021_03_01_034457) do
 
   create_table "clans", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,11 @@ ActiveRecord::Schema.define(version: 2021_02_10_073129) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "pass"
+    t.string "description"
+    t.string "link1"
+    t.string "link2"
+    t.string "link1_name"
+    t.string "link2_name"
   end
 
   create_table "items", force: :cascade do |t|
