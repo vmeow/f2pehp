@@ -8,6 +8,14 @@
     = content_tag(:div, nil, class: ["motd", "perfect-scroll"]) do 
       %h1 News
       %h6
+        = "Please enjoy this"
+        = link_to "thoughtful write-up", a_new_meta_path
+        = "regarding F2P community behavior and proposing a new F2P meta, written by"
+        = link_to "IM Smelt.", "players/IM_Smelt"
+      %br
+      %hr
+
+      %h6
         = link_to "Clans", clans_path
         = "have now been released! Please contact us at"
         = link_to "f2posrsranks@gmail.com", "mailto:f2posrsranks@gmail.com"

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'tracking' => 'players#tracking'
   get 'records' => 'players#records'
   get 'faqs' => 'players#faqs'
+  get 'a_new_meta' => 'players#a_new_meta'
   get 'admin' => 'admin#index'
   put 'players.:id' => 'players#update_player'
   put 'update' => 'players#update_player'
