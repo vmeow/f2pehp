@@ -56,6 +56,7 @@ class Player < ActiveRecord::Base
                     {name: "Earfs"},
                 {name: "Metan", amount: 50, date: "2019-02-13", flair_after: "flairs/Rune_essence.png"},
                 {name: "Xliff", amount: 50, date: "2020-05-30", flair_after: "flairs/Air_tiara.gif"},
+                {name: "UIM Gloo", amount: 25, date: "2021-03-02"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
@@ -64,7 +65,6 @@ class Player < ActiveRecord::Base
                 {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
-                {name: "UIM Gloo", amount: 25, date: "2020-08-18"},
                 {name: "Nun", amount: 25, date: "2020-12-24", flair_after: "skills/prayer.png"},
                 {name: "Fordly", amount: 25, date: "2021-01-29", flair_after: "flairs/map.png"},
                 {name: "Iron of One", amount: 25, date: "2020-01-24", flair_after: "items/Dark_cavalier.png"},
@@ -274,6 +274,7 @@ class Player < ActiveRecord::Base
                 {name: "GratisSpil", amount: 5, date: "2021-02-08", flair_after: "skills/mining.png"},
 
                 {name: "Reclinant", amount: 5, date: "2021-02-09", flair_after: "flairs/UIM.png", other_css: ["color: white"]},
+                {name: "azn rick", amount: 5, date: "2021-03-02", flair_after: "flairs/3030.png"},
                 {name: "IronMan4Free", amount: 5, date: "2021-02-15", flair_after: "flairs/flippa.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
