@@ -86,6 +86,7 @@ class Player < ActiveRecord::Base
                 {name: "Laskati", amount: 20, date: "2020-12-27", flair_after: "flairs/wise_old_man.png"},
                 {name: "FishToBond", amount: 20, date: "2021-01-16", flair_after: "flairs/Raw_swordfish.png"},
                 {name: "Hagl", amount: 20, date: "2020-06-15"},
+                {name: "TrustNoBanks", amount: 18, date: "2021-03-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
                 {name: "Brim haven", amount: 15, date: "2019-05-31", flair_after: "flairs/ceres.png"},
@@ -94,7 +95,6 @@ class Player < ActiveRecord::Base
                 {name: "Vanity Pride", amount: 15, date: "2020-10-30", flair_after: "flairs/Blue_partyhat.png"},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
-                {name: "TrustNoBanks", amount: 13, date: "2019-10-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
                 {name: "Yewsless", amount: 11, date: "2018-03-11", flair_after: "items/Yew_logs.gif"},
                 {name: "F2P Lukie", amount: 10, date: "2018-01-31", flair_after: "flairs/tea.png"},
