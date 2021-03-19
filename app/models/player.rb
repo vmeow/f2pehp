@@ -86,6 +86,7 @@ class Player < ActiveRecord::Base
                 {name: "Laskati", amount: 20, date: "2020-12-27", flair_after: "flairs/wise_old_man.png"},
                 {name: "FishToBond", amount: 20, date: "2021-01-16", flair_after: "flairs/Raw_swordfish.png"},
                 {name: "Hagl", amount: 20, date: "2020-06-15"},
+                {name: "PeteyMcFly", amount: 20, date: "2021-02-10", flair_after: "flairs/PeteyMcFly.png"},
                 {name: "TrustNoBanks", amount: 18, date: "2021-03-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
