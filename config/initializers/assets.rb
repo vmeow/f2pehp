@@ -92,6 +92,7 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame",
                      "p2p_minigame",
                      "p2p_minigame",
+                     "p2p_minigame",
                      "p2p_minigame"
                  ]
     
