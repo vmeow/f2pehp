@@ -67,7 +67,7 @@ class Player < ActiveRecord::Base
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "Nun", amount: 25, date: "2020-12-24", flair_after: "skills/prayer.png"},
                 {name: "Fordly", amount: 25, date: "2021-01-29", flair_after: "flairs/map.png"},
-                {name: "Iron of One", amount: 25, date: "2020-01-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "Iron of One", amount: 27, date: "2020-03-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Hc Eudu", amount: 25, date: "2021-02-13", flair_after: "flairs/Lamp.png"},
                 {name: "Reichsheini", amount: 25, date: "2021-03-02", flair_after: "flairs/Fire_talisman.png"},
                 {name: "f2p Ello", amount: 22, date: "2021-01-21", flair_after: "flairs/ello_flag.png"},
