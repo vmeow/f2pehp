@@ -284,6 +284,7 @@ class Player < ActiveRecord::Base
                 {name: "boneyghost", amount: 5, date: "2021-03-25", flair_after: "flairs/Bones.png"},
                 {name: "Rykkirs", amount: 5, date: "2021-03-26", flair_after: "flairs/Inverted_santa_hat.png"},
                 {name: "Rooie UIM", amount: 5, date: "2021-03-27"},
+                {name: "RuneOrWalk", amount: 5, date: "2021-04-01", flair_after: "flairs/Runecraft_icon.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
