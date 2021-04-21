@@ -47,7 +47,7 @@ class Player < ActiveRecord::Base
                 {name: "Anonymous", amount: 60, date: "2018-01-31", no_link: true},
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
                 {name: "XaTaRaX", amount: 60, date: "2020-12-27", flair_after: "flairs/Snare.png"},
-                {name: "GameboyMicro", amount: 55, date: "2020-12-10", flair_after: "flairs/antisanta_mask.png"},
+                {name: "GameboyMicro", amount: 55, date: "2020-12-10", flair_after: "flairs/Spookier_hood.png"},
                 {name: "DJ9", amount: 50, date: "2018-04-18", flair_after: "flairs/73_hitsplat.png"},
                     {name: "cwismis noob", flair_after: "flairs/christmas_tree.png"},
                     {name: "Crawler", flair_after: "flairs/flesh_crawler.png"},
