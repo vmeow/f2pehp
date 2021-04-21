@@ -410,7 +410,7 @@ class Player < ActiveRecord::Base
   end
 
   def update_player(stats: nil)
-    if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase)
+    if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase) || F2POSRSRanks::Application.config.downcase_banned.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
     end
     Rails.logger.info "Updating #{player_name}"
@@ -926,6 +926,8 @@ class Player < ActiveRecord::Base
       return 'exists'
     elsif F2POSRSRanks::Application.config.downcase_fakes.include?(name.downcase)
       return 'p2p'
+    elsif F2POSRSRanks::Application.config.downcase_banned.include?(name.downcase)
+      return 'banned'
     end
     puts "not found"
 
