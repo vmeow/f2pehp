@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.7.3' # required for Heroku, but feel free to comment this out for dev use
 
-ruby '2.7.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.1.3.1'
 # Use SCSS for stylesheets
