@@ -64,7 +64,7 @@ class Player < ActiveRecord::Base
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
                 {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
-                {name: "Iron of One", amount: 28, date: "2020-04-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "Iron of One", amount: 28, date: "2021-04-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "Nun", amount: 25, date: "2020-12-24", flair_after: "skills/prayer.png"},
                 {name: "Fordly", amount: 25, date: "2021-01-29", flair_after: "flairs/map.png"},
@@ -288,7 +288,7 @@ class Player < ActiveRecord::Base
                 {name: "UIM Lag", amount: 5, date: "2021-04-04", flair_after: "flairs/rune_scimitar_zamorak.png"},
                 {name: "Survender", amount: 5, date: "2021-04-22", flair_after: "flairs/Survender.png"},
                 {name: "FE Kaitios", amount: 5, date: "2021-04-22", flair_after: "flairs/FE_Kaitios.png"},
-                {name: "Kenneth760", amount: 5, date: "2021-04-25"},
+                {name: "Kenneth760", amount: 5, date: "2021-04-25", flair_after: "flairs/white_partyhat.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
