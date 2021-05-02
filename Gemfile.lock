@@ -231,7 +231,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
+    sqlite3 (1.4.2)
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
@@ -269,10 +269,13 @@ DEPENDENCIES
   scout_apm
   sdoc (~> 0.4.0)
   spring
-  sqlite3 (~> 1.3.6)
+  sqlite3 (~> 1.4)
   uglifier (>= 1.3.0)
   web-console (~> 3.7)
   will_paginate (~> 3.1.0)
+
+RUBY VERSION
+   ruby 2.7.3p183
 
 BUNDLED WITH
    1.17.3
