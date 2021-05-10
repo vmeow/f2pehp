@@ -147,6 +147,7 @@ class Player < ActiveRecord::Base
                 {name: "re-fine", amount: 10, date: "2021-02-12", flair_after: "flairs/Mask_of_balance.png"},
                 {name: "Astrodeo", amount: 10, date: "2021-02-12", flair_after: "flairs/NASA-logo.png"},
                 {name: "f meinen", amount: 10, date: "2021-03-13", flair_after: "flairs/gengar.png"},
+                {name: "TheNutSlush", amount: 10, date: "2021-05-09", flair_after: "flairs/Body_rune.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
@@ -237,7 +238,6 @@ class Player < ActiveRecord::Base
                     # plue
                     {name: "Fixif", amount: 0, date: "2020-04-06"},
                 {name: "Solo Dancer", amount: 5, date: "2020-04-15", flair_after: "flairs/Redemption.png"},
-                {name: "TheNutSlush", amount: 5, date: "2020-04-19", flair_after: "flairs/Reward_casket_beginner.png"},
                 {name: "maddiefsna5", amount: 5, date: "2020-04-23", no_link: true},
                 {name: "Ultw", amount: 5, date: "2020-04-28"},
                 {name: "xxcxzx", amount: 5, date: "2020-05-05"},
