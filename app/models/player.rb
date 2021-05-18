@@ -70,7 +70,7 @@ class Player < ActiveRecord::Base
                 {name: "Fordly", amount: 25, date: "2021-01-29", flair_after: "flairs/map.png"},
                 {name: "Hc Eudu", amount: 25, date: "2021-02-13", flair_after: "flairs/Lamp.png"},
                 {name: "Reichsheini", amount: 25, date: "2021-03-02", flair_after: "flairs/Fire_talisman.png"},
-                {name: "Flee2Pray", amount: 25, date: "2021-05-18", flair_after: "flairs/f2pbtw.png"},
+                {name: "Flee2Pray", amount: 25, date: "2021-05-18", flair_after: "flairs/f2pbtw.png", other_css: ["color: #ffc03a"]},
                 {name: "f2p Ello", amount: 22, date: "2021-01-21", flair_after: "flairs/ello_flag.png"},
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                     {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
