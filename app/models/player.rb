@@ -149,7 +149,7 @@ class Player < ActiveRecord::Base
                 {name: "Astrodeo", amount: 10, date: "2021-02-12", flair_after: "flairs/NASA-logo.png"},
                 {name: "f meinen", amount: 10, date: "2021-03-13", flair_after: "flairs/gengar.png"},
                 {name: "TheNutSlush", amount: 10, date: "2021-05-09", flair_after: "flairs/Body_rune.png"},
-                {name: "Arceus HC", amount: 10, date: "2021-05-20", flair_after: "flairs/Amulet_of_defence_(t).png"},
+                {name: "Arceus HC", amount: 10, date: "2021-05-20", flair_after: "flairs/Amulet_of_defence_t.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
