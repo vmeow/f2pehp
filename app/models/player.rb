@@ -293,7 +293,7 @@ class Player < ActiveRecord::Base
                 {name: "Kenneth760", amount: 5, date: "2021-04-25", flair_after: "flairs/white_partyhat.png"},
                 {name: "tneuqolitluM", amount: 5, date: "2021-05-19", flair_after: "flairs/Burnt_meat.png"},
                 {name: "IownFarah", amount: 5, date: "2021-05-22"},
-                {name: "Twink Skills", amount: 5, date: "2021-05-27", flair_after: "flairs/Strength_amulet_(t).png"},
+                {name: "Twink Skills", amount: 5, date: "2021-05-27", flair_after: "flairs/Strength_amulet_t.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
