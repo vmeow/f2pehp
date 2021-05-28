@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.7.3' # required for Heroku, but feel free to comment this out for dev use
+# ruby '2.7.3' # required for Heroku, but feel free to comment this out for dev use
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.1.3.1'
@@ -44,7 +44,7 @@ group :development, :test do
 	gem 'guard-rspec'
 
 	# Use sqlite3 as the database for Active Record
-	gem 'sqlite3', '~> 1.3.6'
+	gem 'sqlite3', '~> 1.4'
 
 	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 	gem 'spring'
