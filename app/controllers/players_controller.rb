@@ -321,7 +321,10 @@ class PlayersController < ApplicationController
     end
 
     if @clan_filters == {}
-      @clan_filters = Clan.all.map{ |c| {"#{c.name}": 1} }.reduce(:merge) || {}
+      @clan_filters = Clan.all.map{ |c| {"#{c.name}": 1} }.reduce(:merge)
+      if @clan_filters == nil
+        @clan_filters = {}
+      end
       @clan_filters["None"] = 1
       params[:clans_] = @clan_filters
       session[:clans_] = @clan_filters
