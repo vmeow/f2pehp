@@ -152,7 +152,7 @@ class PlayersController < ApplicationController
       ordering = "#{@skill}_xp - #{@skill}_xp_#{@time}_start DESC, #{@skill}_ehp - #{@skill}_ehp_#{@time}_start DESC, #{@skill}_xp DESC"
     end
 
-    @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(ordering)
+    @players = Player.limit(@show_limit.to_i).where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_start > 0").order(Arel.sql(ordering))
 
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
@@ -275,7 +275,7 @@ class PlayersController < ApplicationController
     clan_filter_clause = @clan_filters.keys
     clan_filter_clause += [nil] if @clan_filters["None"]
 
-    @players = Player.limit(@show_limit.to_i).left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(ordering)
+    @players = Player.limit(@show_limit.to_i).left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where("overall_ehp > 250 OR player_name IN #{Player.sql_supporters}").where(player_acc_type: @filters.keys).where("overall_ehp_day_max > 0").order(Arel.sql(ordering))
 
     if @restrictions["10 hitpoints"]
       @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
@@ -322,6 +322,9 @@ class PlayersController < ApplicationController
 
     if @clan_filters == {}
       @clan_filters = Clan.all.map{ |c| {"#{c.name}": 1} }.reduce(:merge)
+      if @clan_filters == nil
+        @clan_filters = {}
+      end
       @clan_filters["None"] = 1
       params[:clans_] = @clan_filters
       session[:clans_] = @clan_filters
@@ -407,7 +410,7 @@ class PlayersController < ApplicationController
     clan_filter_clause = @clan_filters.keys
     clan_filter_clause += [nil] if @clan_filters["None"]
 
-    @players = Player.left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where(player_acc_type: @filters.keys).order(ordering)
+    @players = Player.left_joins(:clans).merge(Clan.where(name: clan_filter_clause)).distinct.where(player_acc_type: @filters.keys).order(Arel.sql(ordering))
 
     if @skill.include?("ttm")
       @players = @players.where("ttm_lvl != 0 or ttm_xp != 0 or overall_ehp > 1000")
