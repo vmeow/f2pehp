@@ -295,7 +295,7 @@ class Player < ActiveRecord::Base
                 {name: "IownFarah", amount: 5, date: "2021-05-22"},
                 {name: "Twink Skills", amount: 5, date: "2021-05-27", flair_after: "flairs/Strength_amulet_t.png"},
                 {name: "reubengonz", amount: 5, date: "2021-05-30", flair_after: "flairs/Pet_cat_grey_and_blue.png"},
-                {name: "F2PUIM MKoll", amount: 5, date: "2021-05-31", flair_after: "flairs/Killers_knife.png"},
+                {name: "F2PUIM Mkoll", amount: 5, date: "2021-05-31", flair_after: "flairs/Killers_knife.png"},
                 {name: "Zaadkameraad", amount: 5, date: "2021-06-02", flair_after: "flairs/white_pick.png", other_css: ["color: white"]},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
