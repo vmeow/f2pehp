@@ -72,15 +72,16 @@ class Player < ActiveRecord::Base
                 {name: "Reichsheini", amount: 25, date: "2021-03-02", flair_after: "flairs/Fire_talisman.png"},
                 {name: "Flee2Pray", amount: 25, date: "2021-05-18", flair_after: "flairs/f2pbtw.png", other_css: ["color: #ffc03a"]},
                 {name: "f2p Ello", amount: 22, date: "2021-01-21", flair_after: "flairs/ello_flag.png"},
+                {name: "I go by zach", amount: 21, date: "2020-03-12", flair_after: "flairs/Spade.png"},
+                    {name: "hey earth", amount: 21, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
+                    {name: "regular zach", amount: 21, date: "2021-02-09", flair_after: "flairs/Reindeer_hat"}, # request from zach
+                    {name: "zach gathers", amount: 21, date: "2021-06-21", flair_after: "flairs/Gilded_pickaxe.png"}, # request from zach
                 {name: "UIM STK F2P", amount: 20, date: "2018-09-20", flair_after: "items/Rune_scimitar.gif"},
                     {name: "IM 73 COMBAT", amount: 20, date: "2018-09-20", flair_after: "flairs/skulled.png"}, # request of UIM STK F2P
                 {name: "vpered", amount: 20, date: "2020-05-20", flair_after: "flairs/russia_flag.png"},
                 {name: "Anonymous", amount: 20, date: "2019-07-19", no_link: true},
                 {name: "seid", amount: 20, date: "2019-11-18"},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
-                {name: "I go by zach", amount: 20, date: "2020-03-12", flair_after: "flairs/Spade.png"},
-                      {name: "hey earth", amount: 20, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
-                      {name: "regular zach", amount: 20, date: "2021-02-09", flair_after: "flairs/Reindeer_hat"}, # request from zach
                 {name: "Varvali", amount: 20, date: "2020-05-12"},
                 {name: "Ywal", amount: 20, date: "2020-06-03", flair_after: "flairs/hole.png", other_css: ["color: #C9AD79"]},
                 {name: "Tramali", amount: 20, date: "2020-07-11", flair_after: "flairs/fire_strike.png"},
