@@ -64,7 +64,7 @@ class Player < ActiveRecord::Base
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
                 {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
-                {name: "Iron of One", amount: 29, date: "2021-05-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "Iron of One", amount: 30, date: "2021-06-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "Nun", amount: 25, date: "2020-12-24", flair_after: "skills/prayer.png"},
                 {name: "Fordly", amount: 25, date: "2021-01-29", flair_after: "flairs/map.png"},
@@ -151,6 +151,7 @@ class Player < ActiveRecord::Base
                 {name: "f meinen", amount: 10, date: "2021-03-13", flair_after: "flairs/gengar.png"},
                 {name: "TheNutSlush", amount: 10, date: "2021-05-09", flair_after: "flairs/Body_rune.png"},
                 {name: "Arceus HC", amount: 10, date: "2021-05-20", flair_after: "flairs/Amulet_of_defence_t.png"},
+                {name: "F2p_MrStark", amount: 10, date: "2021-06-25", flair_after: "flairs/LFC.png"},
                 {name: "n0neshine", amount: 5, date: "2021-06-12", flair_after: "flairs/n0neshine.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
