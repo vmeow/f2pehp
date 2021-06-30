@@ -315,7 +315,7 @@ class ClansController < ApplicationController
     elsif params[:clan_description].size > 1000
       redirect_to clan_admin_path, notice: "Description is too long. Please limit to 1000 characters."
     else
-      clan.update_attributes(:description => ActiveRecord::Base.sanitize_sql(params[:clan_description]))
+      clan.update(:description => ActiveRecord::Base.sanitize_sql(params[:clan_description]))
       redirect_to clan_admin_path, notice: "Clan description updated successfully."
     end
   end
@@ -334,7 +334,7 @@ class ClansController < ApplicationController
     elsif params[:link1].size > 500 or params[:link1_name].size > 500
       redirect_to clan_admin_path, notice: "Link URL or label are invalid (too long). Please limit to 500 characters."
     else
-      clan.update_attributes(:link1 => ActiveRecord::Base.sanitize_sql(params[:link1]), :link1_name => ActiveRecord::Base.sanitize_sql(params[:link1_name]))
+      clan.update(:link1 => ActiveRecord::Base.sanitize_sql(params[:link1]), :link1_name => ActiveRecord::Base.sanitize_sql(params[:link1_name]))
       redirect_to clan_admin_path, notice: "Clan link updated successfully."
     end
   end
@@ -353,7 +353,7 @@ class ClansController < ApplicationController
     elsif params[:link2].size > 500 or params[:link2_name].size > 500
       redirect_to clan_admin_path, notice: "Link URL or label are invalid (too long). Please limit to 500 characters."
     else
-      clan.update_attributes(:link2 => ActiveRecord::Base.sanitize_sql(params[:link2]), :link2_name => ActiveRecord::Base.sanitize_sql(params[:link2_name]))
+      clan.update(:link2 => ActiveRecord::Base.sanitize_sql(params[:link2]), :link2_name => ActiveRecord::Base.sanitize_sql(params[:link2_name]))
       redirect_to clan_admin_path, notice: "Clan link updated successfully."
     end
   end

@@ -38,7 +38,7 @@ class AdminController < ApplicationController
             @name_spaces = x.player_name.force_encoding('ascii')
             @fixed_spaces = @name_spaces.gsub! '\xC2\xA0', ' '
             if (@fixed_spaces)
-                x.update_attributes(:player_name=>@fixed_spaces)
+                x.update(:player_name=>@fixed_spaces)
                 redirect_to admin_path, notice: "Player #{@fixed_spaces} has had whitespaces fixed."
             else
                 redirect_to admin_path, notice: "Player #{@name_spaces} had no whitespace issues."
@@ -53,7 +53,7 @@ class AdminController < ApplicationController
         @name2 = params[:name2]
         x = Player.find_player @name1
         if x
-            x.update_attributes(:player_name=>@name2)
+            x.update(:player_name=>@name2)
             redirect_to admin_path, notice: "Name has been updated to #{@name2}."
         else
             redirect_to admin_path, notice: "Could not find player #{@name}."

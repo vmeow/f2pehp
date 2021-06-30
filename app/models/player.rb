@@ -446,10 +446,10 @@ class Player < ActiveRecord::Base
 
       unless stats
         if failed_updates.nil? or failed_updates < 1
-          update_attributes(failed_updates: 1)
+          update(failed_updates: 1)
         else
-          update_attributes(failed_updates: failed_updates + 1)
-          update_attributes(potential_p2p: 1) if failed_updates > 10
+          update(failed_updates: failed_updates + 1)
+          update(potential_p2p: 1) if failed_updates > 10
         end
         return false
       end
@@ -540,7 +540,7 @@ class Player < ActiveRecord::Base
       end
     end
 
-    update_attributes(fixed_ehps)
+    update(fixed_ehps)
   end
 
   def out_of_date(time, last_updated)
@@ -845,7 +845,7 @@ class Player < ActiveRecord::Base
     end
     ehp_start["overall_ehp_#{time}_start"] = ehp_start.values.sum
 
-    update_attributes(xp_start.merge(ehp_start))
+    update(xp_start.merge(ehp_start))
     return xp_start, ehp_start
   end
 
@@ -871,7 +871,7 @@ class Player < ActiveRecord::Base
     end
 
     recs_hash = recs.merge(ehp_recs)
-    update_attributes(recs_hash)
+    update(recs_hash)
     return recs_hash
   end
 
@@ -894,7 +894,7 @@ class Player < ActiveRecord::Base
         skill_hash["#{skill}_ehp_#{time}_start"] = start_stats_hash["#{skill}_ehp"]
       end
     end
-    update_attributes(skill_hash)
+    update(skill_hash)
   end
 
   def recalculate_current_ehp
@@ -917,7 +917,7 @@ class Player < ActiveRecord::Base
     end
 
     if stats["overall_lvl"] > 1493 or (stats["overall_lvl"] - 8) > actual_f2p_lvls
-      update_attributes(:potential_p2p => 1)
+      update(:potential_p2p => 1)
     end
   end
 
