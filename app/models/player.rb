@@ -301,6 +301,7 @@ class Player < ActiveRecord::Base
                 {name: "F2PUIM Mkoll", amount: 5, date: "2021-05-31", flair_after: "flairs/Killers_knife.png"},
                 {name: "Zaadkameraad", amount: 5, date: "2021-06-02", flair_after: "flairs/white_pick.png", other_css: ["color: white"]},
                 {name: "i Picard", amount: 5, date: "2021-06-07", flair_after: "flairs/i_Picard.png"},
+                {name: "TexWasabi", amount: 5, date: "2021-07-04"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
