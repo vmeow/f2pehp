@@ -299,7 +299,7 @@ class ClansController < ApplicationController
     elsif @skill.include?("lowest_lvl")
       @players = @players.sort_by {|player| [player.lowest_lvl, player.overall_ehp] }.reverse
     else
-      @players = @players.order(ordering)
+      @players = @players.order(Arel.sql(ordering))
     end
 
     @clan
