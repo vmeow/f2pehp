@@ -304,6 +304,7 @@ class Player < ActiveRecord::Base
                 {name: "TexWasabi", amount: 5, date: "2021-07-04"},
                 {name: "MoleSlippers", amount: 5, date: "2021-07-12", flair_after: "flairs/Mole_slippers.png"},
                 {name: "W indow", amount: 5, date: "2021-07-15", flair_after: "flairs/Adamant_axe.png", other_css: ["color: #0072ff"]},
+                {name: "Grumpy Ag", amount: 5, date: "2021-07-25"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
