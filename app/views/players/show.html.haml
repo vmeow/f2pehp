@@ -270,7 +270,7 @@
           %th{:align => "center"}  EHP
           %th{:align => "center"}  Rank
           %th{:align => "center"}  F2P Rank
-        %tbody
+        %tbody{:class => "table-right-text"}
           - (["overall"] + F2POSRSRanks::Application.config.f2p_skills).each do |skill|
             %tr
               - skill_f2p_rank = @player.f2p_skill_rank(skill).to_i

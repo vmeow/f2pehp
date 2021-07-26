@@ -117,6 +117,16 @@ table.compare {
   width: 745px;
 }
 
+.table-right-text {
+  text-align: right;
+}
+.table-right-text tr th, .table-right-text tr td:nth-child(2)
+  text-align: center;
+}
+tbody.table-right-text tr td:last-child {
+  padding-right: 15px;
+}
+
 .blank {
   color:#969696;
   background: none;
@@ -461,5 +471,6 @@ form .input { display: table-cell; }
 }
 
 // Making a comment forces the SCSS to recompile.
+// Therefore, this is a comment to recompile the SCSS.
 // Therefore, this is a comment to recompile the SCSS.
 // Therefore, this is a comment to recompile the SCSS.
