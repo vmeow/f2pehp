@@ -8,6 +8,17 @@
     = content_tag(:div, nil, class: ["motd", "perfect-scroll"]) do 
       %h1 News
       %h6
+        = "Thanks to "
+        = link_to "Schwifty Bud", "players/Schwifty_Bud"
+        = "for organizing a new friends chat 'ftp family' for all F2P players to hang out, clan-less or not. Click the image below to see what he has to say about it!"
+        %br
+        %br
+        = link_to image_tag("ftp_family.png", size: "280x120"), image_path("ftp_family.png"), :title => "click to open full image"
+        %br
+        %br
+        %hr
+
+      %h6
         %s
           = "Due to database concerns, players who do not gain experience every week will be removed from the Wiki."
         %br
