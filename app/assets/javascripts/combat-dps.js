@@ -345,12 +345,10 @@ function combatDPS() {
             enemyArm = Number(mobArm);
         }
 
-        if((isGolem && meleeWeapon == "Barronite mace") || customPlayerStats){
-            maxHit = Math.floor(maxHit * dmgMult);
-        }
-
-        if(customPlayerStats){
+        if (customPlayerStats){
             maxHit = Math.floor(maxHit * customDmgMult);
+        } else if (isGolem && meleeWeapon == "Barronite mace") {
+            maxHit = Math.floor(maxHit * dmgMult);
         }
 
         var effD = enemyDef + 9;
