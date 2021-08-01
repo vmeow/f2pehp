@@ -40,63 +40,53 @@
 = content_tag(:div, nil, class: "container", style: "width: 800px;") do 
   = content_tag(:div, nil, class: ["container", "left"], style: "margin-left: 0px; margin-right: 5px; width: 200px;") do 
     = content_tag(:div, nil, class: "container", id: "headerSkills", style: "margin: auto; margin-bottom: 0px; width: 200px; height: 103px;") 
-    = content_tag(:div, nil, class: ["container", "skills"], style: "width: 200px; margin-bottom: 0px; line-height: 28px;") do 
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/time.png", style: "vertical-align: -6px;"
-      = link_to "Time to all 99s", :controller => "players", :action => "ranks", :skill => "ttm_lvl"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/time.png", style: "vertical-align: -6px;"
-      = link_to "Time to all 200m", :controller => "players", :action => "ranks", :skill => "ttm_xp"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "99 Count", :controller => "players", :action => "ranks", :skill => "99_count"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "200m Count", :controller => "players", :action => "ranks", :skill => "200m_count"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "Overall", :controller => "players", :action => "ranks", :skill => "overall"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "Non-combats", :controller => "players", :action => "ranks", :skill => "no_combats"
-      - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
-        %br
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        = image_tag "skills/#{skill}.png", style: "vertical-align: -6px;"
-        = link_to "#{skill.capitalize}", :controller => "players", :action => "ranks", :skill => "#{skill}"
-      %br  
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/combat.png", style: "vertical-align: -6px;"
-      = link_to "Combat Level", :controller => "players", :action => "ranks", :skill => "combat", :sort_by => "lvl"
-      %br  
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/overall.png", style: "vertical-align: -6px;"
-      = link_to "Lowest Level", :controller => "players", :action => "ranks", :skill => "lowest_lvl"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/clue.png", style: "vertical-align: -6px;"
-      = link_to "Clues (all)", :controller => "players", :action => "ranks", :skill => "clues_all"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/clue.png", style: "vertical-align: -6px;"
-      = link_to "Clues (beg.)", :controller => "players", :action => "ranks", :skill => "clues_beginner"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/lms.png", style: "vertical-align: -6px;"
-      = link_to "LMS", :controller => "players", :action => "ranks", :skill => "lms"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
-      = link_to "Obor Kills", :controller => "players", :action => "ranks", :skill => "obor_kc"
-      %br
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      = image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
-      = link_to "Bryophyta Kills", :controller => "players", :action => "ranks", :skill => "bryo_kc"
+    = content_tag(:div, nil, class: ["container", "skills"], style: "width: 200px; margin-bottom: 0px; line-height: 28px;") do
+      = content_tag(:div, nil, class: ["container"], style: "margin-left: 33px; margin-bottom: 0px;") do
+        %table{class: "no-format"}
+          %tbody
+            %tr
+              %td{:align => "center"}= image_tag "skills/time.png", style: "vertical-align: -6px;"
+              %td= link_to "Time to all 99s", :controller => "players", :action => "ranks", :skill => "ttm_lvl"
+            %tr
+              %td{:align => "center"}= image_tag "skills/time.png", style: "vertical-align: -6px;"
+              %td= link_to "Time to all 200m", :controller => "players", :action => "ranks", :skill => "ttm_xp"
+            %tr
+              %td{:align => "center"}= image_tag "skills/overall.png", style: "vertical-align: -6px;"
+              %td= link_to "99 Count", :controller => "players", :action => "ranks", :skill => "99_count"
+            %tr
+              %td{:align => "center"}= image_tag "skills/overall.png", style: "vertical-align: -6px;"
+              %td= link_to "200m Count", :controller => "players", :action => "ranks", :skill => "200m_count"
+            %tr
+              %td{:align => "center"}= image_tag "skills/overall.png", style: "vertical-align: -6px;"
+              %td= link_to "Overall", :controller => "players", :action => "ranks", :skill => "overall"
+            %tr
+              %td{:align => "center"}= image_tag "skills/overall.png", style: "vertical-align: -6px;"
+              %td= link_to "Non-combats", :controller => "players", :action => "ranks", :skill => "no_combats"
+            - F2POSRSRanks::Application.config.f2p_skills.each do |skill|
+              %tr
+                %td{:align => "center"}= image_tag "skills/#{skill}.png", style: "vertical-align: -6px;"
+                %td= link_to "#{skill.capitalize}", :controller => "players", :action => "ranks", :skill => "#{skill}"
+            %tr
+              %td{:align => "center"}= image_tag "skills/combat.png", style: "vertical-align: -6px;"
+              %td= link_to "Combat Level", :controller => "players", :action => "ranks", :skill => "combat", :sort_by => "lvl"
+            %tr
+              %td{:align => "center"}= image_tag "skills/overall.png", style: "vertical-align: -6px;"
+              %td= link_to "Lowest Level", :controller => "players", :action => "ranks", :skill => "lowest_lvl"
+            %tr
+              %td{:align => "center"}= image_tag "skills/clue.png", style: "vertical-align: -6px;"
+              %td= link_to "Clues (all)", :controller => "players", :action => "ranks", :skill => "clues_all"
+            %tr
+              %td{:align => "center"}= image_tag "skills/clue.png", style: "vertical-align: -6px;"
+              %td= link_to "Clues (beg.)", :controller => "players", :action => "ranks", :skill => "clues_beginner"
+            %tr
+              %td{:align => "center"}= image_tag "skills/lms.png", style: "vertical-align: -6px;"
+              %td= link_to "LMS", :controller => "players", :action => "ranks", :skill => "lms"
+            %tr
+              %td{:align => "center"}= image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+              %td= link_to "Obor Kills", :controller => "players", :action => "ranks", :skill => "obor_kc"
+            %tr
+              %td{:align => "center"}= image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+              %td= link_to "Bryophyta Kills", :controller => "players", :action => "ranks", :skill => "bryo_kc"
         
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
 
