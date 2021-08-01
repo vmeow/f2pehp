@@ -38,12 +38,14 @@ function combatDPS() {
         var customAtt = getAttributeValue("att_bonus");
         var customStr = getAttributeValue("str_bonus");
         var customSpeed = getAttributeValue("att_speed");
+        var customDmgMult = getAttributeValue("dmg_mult");
 
         // Equipment bonuses
         var attBonus = 0;
         var strBonus = 0;
         var meleeTicks = 4;
         var meleeAttStyle = "";
+        var dmgMult = 1;
         switch(meleeWeapon){
             case "Rune scimitar":
                 attBonus += 45;
@@ -56,6 +58,13 @@ function combatDPS() {
                 strBonus += 39;
                 meleeTicks = 4;
                 meleeAttStyle = "Stab";
+                break;
+            case "Barronite mace":
+                attBonus += 40;
+                strBonus += 40;
+                meleeTicks = 4;
+                meleeAttStyle = "Crush";
+                dmgMult = 1.15;
                 break;
             case "Rune longsword":
                 attBonus += 47;
@@ -225,8 +234,39 @@ function combatDPS() {
         var enemyDef = 0;
         var enemyHP = 0;
         var enemyArm = 0;
+        var isGolem = false;
         
         switch(mob){
+            case "Flawed Golem":
+                enemyDef = 6;
+                enemyHP = 25;
+                if(meleeAttStyle == "Crush"){
+                    enemyArm = 0;
+                } else {
+                    enemyArm = 5;
+                }
+                isGolem = true;
+                break;
+            case "Mind Golem":
+                enemyDef = 25;
+                enemyHP = 40;
+                if(meleeAttStyle == "Crush"){
+                    enemyArm = 0;
+                } else {
+                    enemyArm = 5;
+                }
+                isGolem = true;
+                break;
+            case "Body Golem":
+                enemyDef = 45;
+                enemyHP = 60;
+                if(meleeAttStyle == "Crush"){
+                    enemyArm = 0;
+                } else {
+                    enemyArm = 5;
+                }
+                isGolem = true;
+                break;
             case "Ogress Warrior":
                 enemyDef = 82;
                 enemyHP = 82;
@@ -304,7 +344,15 @@ function combatDPS() {
             enemyHP = Number(mobHP);
             enemyArm = Number(mobArm);
         }
-        
+
+        if((isGolem && meleeWeapon == "Barronite mace") || customPlayerStats){
+            maxHit = Math.floor(maxHit * dmgMult);
+        }
+
+        if(customPlayerStats){
+            maxHit = Math.floor(maxHit * customDmgMult);
+        }
+
         var effD = enemyDef + 9;
         var defRoll = effD * (enemyArm+64);
 
@@ -375,6 +423,7 @@ function combatDPS() {
         var customRangedAtt = getAttributeValue("ranged_att_bonus");
         var customRangedStr = getAttributeValue("ranged_str_bonus");
         var customRangedSpeed = getAttributeValue("ranged_att_speed");
+        var customDmgMult = getAttributeValue("ranged_dmg_mult");
 
         // Equipment bonuses
         var rangedBonus = 0;
@@ -538,6 +587,21 @@ function combatDPS() {
                 enemyHP = 82;
                 enemyArm = 8;
                 break;
+            case "Flawed Golem":
+                enemyDef = 6;
+                enemyHP = 25;
+                enemyArm = 10;
+                break;
+            case "Mind Golem":
+                enemyDef = 25;
+                enemyHP = 40;
+                enemyArm = 10;
+                break;
+            case "Body Golem":
+                enemyDef = 45;
+                enemyHP = 60;
+                enemyArm = 10;
+                break;
             case "Obor":
                 enemyDef = 60;
                 enemyHP = 120;
@@ -585,6 +649,10 @@ function combatDPS() {
             enemyDef = Number(mobDef);
             enemyHP = Number(mobHP);
             enemyArm = Number(mobArm);
+        }
+
+        if(customPlayerStats){
+            rangedMaxHit = Math.floor(rangedMaxHit * customDmgMult);
         }
         
         var effD = enemyDef + 9;
@@ -650,6 +718,7 @@ function combatDPS() {
         var customPlayerStats = getAttributeChecked('custom_stats_magic');
         var customMagicAtt = getAttributeValue("magic_att_bonus");
         var customMagicSpeed = getAttributeValue("magic_att_speed");
+        var customDmgMult = getAttributeValue("magic_dmg_mult");
 
         
         // Equipment bonuses
@@ -759,6 +828,21 @@ function combatDPS() {
                 enemyHP = 82;
                 enemyArm = 16;
                 break;
+            case "Flawed Golem":
+                enemyDef = 6;
+                enemyHP = 25;
+                enemyArm = 2;
+                break;
+            case "Mind Golem":
+                enemyDef = 25;
+                enemyHP = 40;
+                enemyArm = 2;
+                break;
+            case "Body Golem":
+                enemyDef = 45;
+                enemyHP = 60;
+                enemyArm = 2;
+                break;
             case "Obor":
                 enemyDef = 60;
                 enemyHP = 120;
@@ -810,6 +894,10 @@ function combatDPS() {
             }
             enemyHP = Number(mobHP);
             enemyArm = Number(mobArm);
+        }
+
+        if(customPlayerStats){
+            magicMaxHit = Math.floor(magicMaxHit * customDmgMult);
         }
         
         var effD = enemyDef + 9;
@@ -894,6 +982,7 @@ function combatDPS() {
         $('#att_bonus').change(dps);
         $('#str_bonus').change(dps);
         $('#att_speed').change(dps);
+        $('#dmg_mult').change(dps);
         
         $('#ranged').change(rangeddps);
         $('#ranged_pray').change(rangeddps);
@@ -915,6 +1004,7 @@ function combatDPS() {
         $('#ranged_att_bonus').change(rangeddps);
         $('#ranged_str_bonus').change(rangeddps);
         $('#ranged_att_speed').change(rangeddps);
+        $('#ranged_dmg_mult').change(rangeddps);
         
         $('#magic').change(magicdps);
         $('#magic_pray').change(magicdps);
@@ -934,6 +1024,7 @@ function combatDPS() {
         $('#custom_stats_magic').change(magicdps);
         $('#magic_att_bonus').change(magicdps);
         $('#magic_att_speed').change(magicdps);
+        $('#magic_dmg_mult').change(magicdps);
         
         $('#combat_att').change(combat);
         $('#combat_str').change(combat);
