@@ -34,7 +34,7 @@
         %td= ""
       %tr 
         %td= label_tag "Weapon"
-        %td= select_tag "melee_weapon", options_for_select(["Rune scimitar", "Rune sword", "Rune longsword", "Rune battleaxe", "Rune 2h sword", "Hill giant club", "Adamant scimitar", "Adamant sword", "Adamant 2h sword", "Event rpg", "None"], "Rune scimitar"), style: "width: 135px;", :include_blank => true
+        %td= select_tag "melee_weapon", options_for_select(["Rune scimitar", "Rune sword", "Barronite mace", "Rune longsword", "Rune battleaxe", "Rune 2h sword", "Hill giant club", "Adamant scimitar", "Adamant sword", "Adamant 2h sword", "Event rpg", "None"], "Rune scimitar"), style: "width: 135px;", :include_blank => true
       %tr
         %td= label_tag "Neck Slot"
         %td= select_tag "melee_neck", options_for_select(["Amulet of power", "Amulet of strength", "Amulet of accuracy"]), style: "width: 135px;", :include_blank => true
@@ -57,6 +57,9 @@
       %tr
         %td= label_tag "Att Speed (ticks)"
         %td= number_field_tag "att_speed", 4, {min: 1, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Dmg Multiplier"
+        %td= number_field_tag "dmg_mult", 1, {min: 0, max: 999, step: 0.05, size: 6, maxlength: 3, style: "width:60px", remote: true}
         
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
@@ -107,6 +110,9 @@
       %tr
         %td= label_tag "Att Speed (ticks)"
         %td= number_field_tag "ranged_att_speed", 4, {min: 1, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Dmg Multiplier"
+        %td= number_field_tag "ranged_dmg_mult", 1, {min: 0, max: 999, step: 0.05, size: 6, maxlength: 3, style: "width:60px", remote: true}
         
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
@@ -162,11 +168,14 @@
       %tr
         %td= label_tag "Att Speed (ticks)"
         %td= number_field_tag "magic_att_speed", 4, {min: 1, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true}
+      %tr
+        %td= label_tag "Dmg Multiplier"
+        %td= number_field_tag "magic_dmg_mult", 1, {min: 0, max: 999, step: 0.05, size: 6, maxlength: 3, style: "width:60px", remote: true}
 
 = field_set_tag 'Enemy Stats', class: "dps", style: "width: 240px;" do
   = content_tag(:div, nil, class: ["container", "left"], style: "text-align: center; width: 240px;") do 
     %h5 Mob Name
-    = select_tag "mob_name", options_for_select(["Ogress Warrior", "Ogress Shaman", "Obor", "Bryophyta", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)"]), style: "width: 135px;", :include_blank => true
+    = select_tag "mob_name", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Obor", "Bryophyta", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)"]), style: "width: 135px;", :include_blank => true
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
       %h5 Custom Stats
