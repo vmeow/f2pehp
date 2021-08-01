@@ -209,14 +209,7 @@ class ClansController < ApplicationController
           ordering = "clues_beginner DESC, players.id ASC"
         end
       elsif @skill.include?("no_combats")
-        case @sort_by
-        when "ehp"
-          ordering = "fishing_ehp + cooking_ehp + woodcutting_ehp + firemaking_ehp + mining_ehp + smithing_ehp + crafting_ehp + runecraft_ehp DESC"
-        when "lvl"
-          ordering = "fishing_lvl + cooking_lvl + woodcutting_lvl + firemaking_lvl + mining_lvl + smithing_lvl + crafting_lvl + runecraft_lvl DESC, fishing_ehp + cooking_ehp + woodcutting_ehp + firemaking_ehp + mining_ehp + smithing_ehp + crafting_ehp + runecraft_ehp DESC, fishing_xp + cooking_xp + woodcutting_xp + firemaking_xp + mining_xp + smithing_xp + crafting_xp + runecraft_xp DESC"
-        when "xp"
-          ordering = "fishing_xp + cooking_xp + woodcutting_xp + firemaking_xp + mining_xp + smithing_xp + crafting_xp + runecraft_xp DESC, fishing_ehp + cooking_ehp + woodcutting_ehp + firemaking_ehp + mining_ehp + smithing_ehp + crafting_ehp + runecraft_ehp DESC, fishing_lvl + cooking_lvl + woodcutting_lvl + firemaking_lvl + mining_lvl + smithing_lvl + crafting_lvl + runecraft_lvl DESC"
-        end
+        ordering = "overall_ehp DESC"
       elsif @skill.include?("count")
         ordering = "overall_ehp DESC"
       elsif @skill.include?("lowest_lvl")
@@ -298,6 +291,15 @@ class ClansController < ApplicationController
       @players = @players.sort_by {|player| [player.count_200m, player.overall_ehp] }.reverse
     elsif @skill.include?("lowest_lvl")
       @players = @players.sort_by {|player| [player.lowest_lvl, player.overall_ehp] }.reverse
+    elsif @skill.include?("no_combats")
+      case @sort_by
+      when "ehp"
+        @players = @players.sort_by {|player| [player.fishing_ehp + player.cooking_ehp + player.woodcutting_ehp + player.firemaking_ehp + player.mining_ehp + player.smithing_ehp + player.crafting_ehp + player.runecraft_ehp, player.overall_ehp] }.reverse
+      when "lvl"
+        @players = @players.sort_by {|player| [player.fishing_lvl + player.cooking_lvl + player.woodcutting_lvl + player.firemaking_lvl + player.mining_lvl + player.smithing_lvl + player.crafting_lvl + player.runecraft_lvl, player.fishing_ehp + player.cooking_ehp + player.woodcutting_ehp + player.firemaking_ehp + player.mining_ehp + player.smithing_ehp + player.crafting_ehp + player.runecraft_ehp, player.overall_ehp] }.reverse
+      when "xp"
+        @players = @players.sort_by {|player| [player.fishing_xp + player.cooking_xp + player.woodcutting_xp + player.firemaking_xp + player.mining_xp + player.smithing_xp + player.crafting_xp + player.runecraft_xp, player.fishing_ehp + player.cooking_ehp + player.woodcutting_ehp + player.firemaking_ehp + player.mining_ehp + player.smithing_ehp + player.crafting_ehp + player.runecraft_ehp, player.overall_ehp] }.reverse
+      end
     else
       @players = @players.order(Arel.sql(ordering))
     end
