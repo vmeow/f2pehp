@@ -21,7 +21,7 @@ To contribute a code change, please create a separate branch and submit a pull r
 
 ### 1. Install Git, Ruby, and Bundler
 
-We recommend installing Ruby 2.6.3, but other recent versions may suffice.
+We recommend installing Ruby 2.7.3, but other recent versions may suffice.
 
 #### Windows
 
@@ -99,6 +99,12 @@ git remote set-url origin --push https://github.com/USERNAME/f2pehp.git
 
 ```bash
 bundle install
+```
+
+If bundler fails to install/locate pg, try installing `libpq-dev` first.
+
+```
+sudo apt-get install libpq-dev
 ```
 
 ### 5. Run database migrations
