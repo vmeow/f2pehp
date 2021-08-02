@@ -792,11 +792,11 @@ class Player < ActiveRecord::Base
       if bonus_xp[bonus_for].size > 1
         bonus_for_ehp = stats_hash["#{bonus_for}_ehp"]
         if bonus_for_ehp < ehp_discrepancy
-          # puts "1 Subtracting #{ehp_discrepancy} ehp discrepancy and #{bonus_for_ehp} #{bonus_for} from overall_ehp."
-          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy - bonus_for_ehp).round(2)
+          # puts "1 Subtracting #{ehp_discrepancy} ehp discrepancy and #{bonus_for_ehp} #{bonus_for} from #{stats_hash["overall_ehp"]} overall_ehp."
+          stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy).round(2)
           stats_hash["#{bonus_for}_ehp"] = 0
         else
-          # puts "2 Subtracting #{ehp_discrepancy} from #{bonus_for} ehp."
+          # puts "2 Subtracting #{ehp_discrepancy} from #{bonus_for} ehp and #{ehp_discrepancy} from #{stats_hash["overall_ehp"]} overall_ehp."
           stats_hash["#{bonus_for}_ehp"] = (stats_hash["#{bonus_for}_ehp"] - ehp_discrepancy).round(2)
           stats_hash["overall_ehp"] = (stats_hash["overall_ehp"] - ehp_discrepancy).round(2)
         end
