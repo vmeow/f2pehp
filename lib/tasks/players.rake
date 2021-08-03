@@ -33,7 +33,7 @@ namespace :players do
       batch.each do |player|
         begin
           stats_hash = player.update_player_start_stats("day", {})
-          player.update_attributes(stats_hash)
+          player.update(stats_hash)
         rescue
           next
         end
@@ -47,7 +47,7 @@ namespace :players do
       batch.each do |player|
         begin
           stats_hash = player.update_player_start_stats("week", {})
-          player.update_attributes(stats_hash)
+          player.update(stats_hash)
         rescue
           next
         end
@@ -61,7 +61,7 @@ namespace :players do
       batch.each do |player|
         begin
           stats_hash = player.update_player_start_stats("month", {})
-          player.update_attributes(stats_hash)
+          player.update(stats_hash)
         rescue
           next
         end
@@ -75,7 +75,7 @@ namespace :players do
       batch.each do |player|
         begin
           stats_hash = player.update_player_start_stats("year", {})
-          player.update_attributes(stats_hash)
+          player.update(stats_hash)
         rescue
           next
         end
@@ -102,7 +102,7 @@ namespace :players do
             stats_hash = player.update_player_start_stats("year", stats_hash)
           end
 
-          player.update_attributes(stats_hash)
+          player.update(stats_hash)
         rescue
           next
         end
