@@ -97,6 +97,7 @@ class Player < ActiveRecord::Base
                 {name: "HCIM_btw_fev", amount: 15, date: "2020-08-01", flair_after: "flairs/kitten.png", other_css: ["color: #800080"]},
                 {name: "Vanity Pride", amount: 15, date: "2020-10-30", flair_after: "flairs/Blue_partyhat.png"},
                 {name: "MrSoda70", amount: 15, date: "2021-03-28", flair_after: "flairs/Potion.png"},
+                {name: "Schwifty Bud", amount: 15, date: "2021-08-06", flair_after: "flairs/rick_sanchez.png", other_css: ["font-family: Script", "font-variant: small-caps"]},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
@@ -185,7 +186,6 @@ class Player < ActiveRecord::Base
                 {name: "Leftoverover", amount: 5, date: "2018-04-04", flair_after: "flairs/rope.png"},
                 {name: "Drae", amount: 5, date: "2018-05-08", flair_after: "flairs/rsz_dshield.png"},
                 {name: "David BBQ", amount: 5, date: "2018-05-18", flair_after: "flairs/cooked_chicken.png"},
-                {name: "Schwifty Bud", amount: 5, date: "2018-05-26", flair_after: "flairs/rick_sanchez.png", other_css: ["font-family: Script", "font-variant: small-caps"]},
                 {name: "UI Pain", amount: 5, date: "2018-06-10", flair_after: "flairs/steel_axe.png"},
                 {name: "Bronze axxe", amount: 5, date: "2020-03-12", flair_after: "flairs/Bronze_axe.png"},
                 {name: "oLd Sko0l", amount: 5, date: "2018-09-16"},
