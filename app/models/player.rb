@@ -44,6 +44,7 @@ class Player < ActiveRecord::Base
                 {name: "Based F2P IM", amount: 70, date: "2019-10-05", flair_after: "IM.png"},
                 {name: "GOLB f2p", amount: 75, date: "2021-01-22", flair_before: "flairs/golb_flair1.png", flair_after: "flairs/golb_flair2.png", other_css: ["color: #66ffff"]},
                     {name: "XP go Dididi", amount: 0, date: "2020-12-26", flair_before: "flairs/golb_flair3.jpeg"}, # request of GOLB f2p
+                {name: "UIM Gloo", amount: 70, date: "2021-09-02"},
                 {name: "Anonymous", amount: 60, date: "2018-01-31", no_link: true},
                 {name: "Obor", amount: 60, date: "2018-01-31", flair_before: "flairs/shamanmask.png", flair_after: "flairs/oborclub.png"},
                 {name: "XaTaRaX", amount: 60, date: "2020-12-27", flair_after: "flairs/Snare.png"},
@@ -56,7 +57,6 @@ class Player < ActiveRecord::Base
                     {name: "Earfs"},
                 {name: "Metan", amount: 50, date: "2019-02-13", flair_after: "flairs/Rune_essence.png"},
                 {name: "Xliff", amount: 50, date: "2020-05-30", flair_after: "flairs/Air_tiara.gif"},
-                {name: "UIM Gloo", amount: 25, date: "2021-03-02"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
