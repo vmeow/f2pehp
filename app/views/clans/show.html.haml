@@ -30,10 +30,10 @@
   - skill_icon = "skills/clue.png"
 - elsif @skill == "obor_kc"
   - title = "Obor Kill Count"
-  - skill_icon = "skills/kill_count.png"
+  - skill_icon = "skills/obor.png"
 - elsif @skill == "bryo_kc"
   - title = "Bryophyta Kill Count"
-  - skill_icon = "skills/kill_count.png"
+  - skill_icon = "skills/bryo.png"
 - elsif @skill == "lms"
   - title = "LMS Score"
   - skill_icon = "skills/lms.png"
@@ -90,10 +90,10 @@
                 %td{:align => "center"}= image_tag "skills/lms.png", style: "vertical-align: -6px;"
                 %td= link_to "LMS", :controller => "clans", :action => "show", :skill => "lms"
               %tr
-                %td{:align => "center"}= image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+                %td{:align => "center"}= image_tag "skills/obor.png", style: "vertical-align: -6px;"
                 %td= link_to "Obor Kills", :controller => "clans", :action => "show", :skill => "obor_kc"
               %tr
-                %td{:align => "center"}= image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+                %td{:align => "center"}= image_tag "skills/bryo.png", style: "vertical-align: -6px;"
                 %td= link_to "Bryophyta Kills", :controller => "clans", :action => "show", :skill => "bryo_kc"
 
       - else

@@ -30,10 +30,10 @@
   - skill_icon = "skills/clue.png"
 - elsif @skill == "obor_kc"
   - title = "F2P Obor Kill Count"
-  - skill_icon = "skills/kill_count.png"
+  - skill_icon = "skills/obor.png"
 - elsif @skill == "bryo_kc"
   - title = "F2P Bryophyta Kill Count"
-  - skill_icon = "skills/kill_count.png"
+  - skill_icon = "skills/bryo.png"
 - else
   - title = "F2P #{skill_name} #{@sort_by.upcase} Hiscores"
   - skill_icon = "skills/#{@skill}.png"
@@ -82,10 +82,10 @@
               %td{:align => "center"}= image_tag "skills/lms.png", style: "vertical-align: -6px;"
               %td= link_to "LMS", :controller => "players", :action => "ranks", :skill => "lms"
             %tr
-              %td{:align => "center"}= image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+              %td{:align => "center"}= image_tag "skills/obor.png", style: "vertical-align: -6px;"
               %td= link_to "Obor Kills", :controller => "players", :action => "ranks", :skill => "obor_kc"
             %tr
-              %td{:align => "center"}= image_tag "skills/kill_count.png", style: "vertical-align: -6px;"
+              %td{:align => "center"}= image_tag "skills/bryo.png", style: "vertical-align: -6px;"
               %td= link_to "Bryophyta Kills", :controller => "players", :action => "ranks", :skill => "bryo_kc"
         
     = content_tag(:div, nil, class: "container", id: "footerSkills", style: "margin: auto; margin-top: 0px; width: 200px; height: 60px;") 
