@@ -445,6 +445,12 @@ class PlayersController < ApplicationController
       end
     end
 
+    if @skill == "obor_kc"
+      @players = @players.where("obor_kc > 0")
+    elsif @skill == "bryo_kc"
+      @players = @players.where("bryo_kc > 0")
+    end
+
     @players = @players.paginate(:page => params[:page], :per_page => @show_limit.to_i)
   end
 
