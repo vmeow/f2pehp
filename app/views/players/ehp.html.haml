@@ -18,6 +18,8 @@
 = "|"
 = link_to "Bonus XP", "#bonus-xp"
 = "|"
+= link_to "Contributors", "#contributors"
+= "|"
 = link_to "F2P Skilling Methods Discord", "https://discord.gg/bD282Xu"
 %br
 = content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
@@ -112,4 +114,31 @@
     - bonus_xp_uim.each do |ratio, bonus_for, bonus_from, start_xp, end_xp|
       %tr
         %td{:style => "padding-left: 140px;"}= "#{ratio} #{bonus_for.capitalize}:#{bonus_from.capitalize} from #{start_xp} #{bonus_from.capitalize} XP to #{end_xp}"
+= content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
+
+%br
+%br
+%br
+
+= content_tag(:div, nil, class: "container", id: "headerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
+= content_tag(:div, nil, class: "container", id: "contributors", style: "text-align: left; margin: auto; width: 660px; min-width: 660px; padding: 5px; margin-bottom: 0px;") do 
+  %h2{:align => "center"} Contributors
+  = content_tag(:p, nil, style: "text-align:center; margin: auto; margin-top: 0px; margin-bottom: 0px; color: none; background-color: transparent; border: none") do 
+    = "We would like to thank the frequent contributors of the"
+    = link_to "F2P Skilling Methods Discord", "https://discord.gg/bD282Xu", target: "_blank", rel: "noopener noreferrer"
+    = "who help calculate and decide these EHP rates, we couldn't do it without you."
+    %br
+    %br
+
+  - contributor_columns = 3
+  - contributor_column_width = 100 / Float(contributor_columns)
+  - Player.contributors_hashes.in_groups_of(contributor_columns).transpose.each do |column|
+    = content_tag(:div, nil, class: "container", style: "text-align: center; float:left; width:#{contributor_column_width}%;") do
+      %br
+      - column.each do |contributor|
+        = "#{contributor[:name]}" if contributor and contributor[:no_link]
+        = link_to contributor[:name], "players/#{contributor[:name].gsub(' ', '_')}" if contributor and not contributor[:no_link]
+        %br
+
+
 = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
