@@ -158,7 +158,7 @@ class PlayersController < ApplicationController
       @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
-      @players = @players.where(defence_lvl: 1)
+      @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4")
@@ -281,7 +281,7 @@ class PlayersController < ApplicationController
       @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
-      @players = @players.where(defence_lvl: 1)
+      @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4")
@@ -413,7 +413,7 @@ class PlayersController < ApplicationController
       @players = @players.where(hitpoints_lvl: 10).where("combat_lvl >= 4")
     end
     if @restrictions["1 defence"]
-      @players = @players.where(defence_lvl: 1)
+      @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4")
