@@ -328,6 +328,16 @@ class Player < ActiveRecord::Base
                 {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
                 {name: "Ironman260", flair_after: "skills/defence.png"},
               ]
+    
+  CONTRIBUTORS = [{name: "Tannerdino"},
+                {name: "Pawz"},
+                {name: "Freckled Dad"},
+                {name: "Terrathrone"},
+                {name: "UncleTomas"},
+                {name: "oooosonasty"},
+                {name: "Quadrant Dub"},
+              ]
+
 
   def self.skills()
     SKILLS
@@ -345,6 +355,14 @@ class Player < ActiveRecord::Base
     SUPPORTERS.map{|supporter| supporter[:name]}
   end
 
+  def self.contributors_hashes()
+    CONTRIBUTORS
+  end
+
+  def self.contributors()
+    CONTRIBUTORS.map{|contributor| contributor[:name]}
+  end
+
   def self.account_types
     ACCOUNT_TYPES
   end
@@ -355,6 +373,11 @@ class Player < ActiveRecord::Base
 
   def self.sql_supporters()
     quoted_names = supporters.map{ |name| "'#{name}'" }
+    "(#{quoted_names.join(",")})"
+  end
+
+  def self.sql_contributors()
+    quoted_names = contributors.map{ |name| "'#{name}'" }
     "(#{quoted_names.join(",")})"
   end
 
