@@ -203,8 +203,8 @@ class ClansController < ApplicationController
         end
       elsif @skill.include?("clues")
         case @skill
-        when "clues_all"
-          ordering = "clues_all DESC, players.id ASC"
+        # when "clues_all"
+          # ordering = "clues_all DESC, players.id ASC"
         when "clues_beginner"
           ordering = "clues_beginner DESC, players.id ASC"
         end
