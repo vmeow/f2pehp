@@ -102,6 +102,7 @@ class Player < ActiveRecord::Base
                 {name: "MrSoda70", amount: 15, date: "2021-03-28", flair_after: "flairs/Potion.png"},
                 {name: "Schwifty Bud", amount: 15, date: "2021-08-06", flair_after: "flairs/rick_sanchez.png", other_css: ["font-family: Script", "font-variant: small-caps"]},
                 {name: "Iron Gige", amount: 15, date: "2021-09-01", flair_after: "items/Rune_battleaxe.gif"},
+                {name: "Solo Emperor", amount: 15, date: "2021-09-08", flair_after: "flairs/Bucket_of_milk.png"},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
