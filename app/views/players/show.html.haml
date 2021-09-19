@@ -320,13 +320,13 @@
           %th{:align => "center"} Rank
           %th{:align => "center"} F2P Rank
         %tbody
-          %tr
-            - clue_all_f2p_rank =  @player.f2p_clues_rank("all")
-            %th= link_to image_tag("skills/clue.png"), ranks_path(skill: "clues_all", show_limit: 25, page: (clue_all_f2p_rank.to_f / 25).ceil)
-            %td= "All"
-            %td= @player["clues_all"]
-            %td= @player["clues_all_rank"]
-            %td= clue_all_f2p_rank
+          -# %tr
+          -#   - clue_all_f2p_rank =  @player.f2p_clues_rank("all")
+          -#   %th= link_to image_tag("skills/clue.png"), ranks_path(skill: "clues_all", show_limit: 25, page: (clue_all_f2p_rank.to_f / 25).ceil)
+          -#   %td= "All"
+          -#   %td= @player["clues_all"]
+          -#   %td= @player["clues_all_rank"]
+          -#   %td= clue_all_f2p_rank
           %tr
             - clue_beginner_f2p_rank =  @player.f2p_clues_rank("beginner")
             %th= link_to image_tag("skills/clue.png"), ranks_path(skill: "clues_beginner", show_limit: 25, page: (clue_beginner_f2p_rank.to_f / 25).ceil)
