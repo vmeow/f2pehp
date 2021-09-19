@@ -314,6 +314,7 @@ class Player < ActiveRecord::Base
                 {name: "Grumpy Ag", amount: 5, date: "2021-07-25"},
                 {name: "W00H000", amount: 5, date: "2021-09-04",other_css: ["color: #9933ff"]},
                 {name: "railwayspike", amount: 5, date: "2021-09-14", flair_after: "flairs/Steel_nails.png"},
+                {name: "chiri uwu", amount: 5, date: "2021-09-19", flair_after: "flairs/Orange_cape.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
