@@ -160,6 +160,7 @@ class Player < ActiveRecord::Base
                 {name: "Arceus HC", amount: 10, date: "2021-05-20", flair_after: "flairs/Amulet_of_defence_t.png"},
                 {name: "F2p_MrStark", amount: 10, date: "2021-06-25", flair_after: "flairs/LFC.png"},
                 {name: "Whypay2play", amount: 10, date: "2021-08-02", flair_after: "flairs/bunny_ears.png"},
+                {name: "S1lentSpirit", amount: 10, date: "2021-08-23", flair_after: "flairs/Black_partyhat.png"},
                 {name: "EyeUrnZek", amount: 10, date: "2021-09-25"},
                 {name: "n0neshine", amount: 5, date: "2021-06-12", flair_after: "flairs/n0neshine.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
