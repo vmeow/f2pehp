@@ -59,12 +59,12 @@ class Player < ActiveRecord::Base
                 {name: "Xliff", amount: 50, date: "2020-05-30", flair_after: "flairs/Air_tiara.gif"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
+                {name: "Iron of One", amount: 31, date: "2021-07-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
                 {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
-                {name: "Iron of One", amount: 30, date: "2021-06-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Hagl", amount: 30, date: "2021-09-26"},
                 {name: "Fe F2P", amount: 25, date: "2018-06-21", flair_after: "flairs/skulled.png"},
                 {name: "Nun", amount: 25, date: "2020-12-24", flair_after: "skills/prayer.png"},
