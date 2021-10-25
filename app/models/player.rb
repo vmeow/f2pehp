@@ -59,7 +59,7 @@ class Player < ActiveRecord::Base
                 {name: "Xliff", amount: 50, date: "2020-05-30", flair_after: "flairs/Air_tiara.gif"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
-                {name: "Iron of One", amount: 31, date: "2021-07-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "Iron of One", amount: 34, date: "2021-10-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
@@ -103,6 +103,7 @@ class Player < ActiveRecord::Base
                 {name: "Schwifty Bud", amount: 15, date: "2021-08-06", flair_after: "flairs/rick_sanchez.png", other_css: ["font-family: Script", "font-variant: small-caps"]},
                 {name: "Iron Gige", amount: 15, date: "2021-09-01", flair_after: "items/Rune_battleaxe.gif"},
                 {name: "Solo Emperor", amount: 15, date: "2021-09-08", flair_after: "flairs/Bucket_of_milk.png"},
+                {name: "AKPigsley", amount: 15, date: "2021-10-25"},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
