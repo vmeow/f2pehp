@@ -264,7 +264,10 @@
               = " (Reg)"
             - else
               = image_tag "#{@player.player_acc_type}.png", style: "vertical-align: -6px;"
-            = " #{@player.player_name}"
+            - if @player.player_name == "PlNKlE"
+              %span{:style => "color: #DF06B5"} PlNKlE
+            - else
+              = " #{@player.player_name}"
             - @player.clans.each do |clan|
               = link_to image_tag(clan.symbol_link, style: "vertical-align: -9px;", :size => "35x35", :title => clan.name), clan_path("#{clan.name.gsub(" ", "_")}")
         %thead
