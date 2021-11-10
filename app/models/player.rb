@@ -179,6 +179,7 @@ class Player < ActiveRecord::Base
                 {name: "5th Teletuby", amount: 6, date: "2020-03-29", flair_after: "flairs/Easter_basket.png"},
                 {name: "Uxeef", amount: 5.96, date: "2018-09-17"},
                 {name: "Lilypad19", amount: 5.69, date: "2020-01-23"},
+                {name: "UltLoser BTW", amount: 5.69, date: "2021-11-10", flair_after: "flairs/Max_cape.png"},
                 {name: "Adentia", amount: 5.55, date: "2018-12-03", flair_after: "flairs/danish_flag.png"},
                 {name: "threewaygang"},
                 {name: "hardcorerf2p", amount: 5.55, date: "2021-02-06", flair_after: "flairs/goblin.png", other_css: ["color: #E59E1C"]},
