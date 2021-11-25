@@ -165,7 +165,7 @@ class Player < ActiveRecord::Base
                 {name: "EyeUrnZek", amount: 10, date: "2021-09-25"},
                 {name: "PlNKlE", amount: 10, date: "2021-10-29", flair_after: "flairs/bunny_ears.png", other_css: ["color: #DF06B5"]},
                 {name: "cest parti", amount: 10, date: "2021-11-08", flair_after: "flairs/Hitpoints_icon.png"},
-                {name: "Kotsumi", amount: 10, date: "2021-11-25"},
+                {name: "Kotsumi", amount: 10, date: "2021-11-25", flair_after: "flairs/Black_hween_mask.png"},
                 {name: "n0neshine", amount: 5, date: "2021-06-12", flair_after: "flairs/n0neshine.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
