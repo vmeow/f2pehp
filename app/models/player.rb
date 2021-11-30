@@ -326,6 +326,7 @@ class Player < ActiveRecord::Base
                 {name: "f2fish", amount: 5, date: "2021-11-08", flair_after: "flairs/f2fish.png"},
                 {name: "All La Glory", amount: 5, date: "2021-11-21", flair_after: "flairs/All_La_Glory.png"},
                 {name: "MuddyStreets", amount: 5, date: "2021-11-28"},
+                {name: "im fe f2p", amount: 5, date: "2021-11-30", flair_after: "flairs/im_fe_f2p.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
