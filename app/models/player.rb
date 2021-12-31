@@ -169,7 +169,7 @@ class Player < ActiveRecord::Base
                 {name: "Kotsumi", amount: 10, date: "2021-11-25", flair_after: "flairs/kotsumi.png"},
                 {name: "F2p Menacing", amount: 10, date: "2021-12-08", flair_after: "flairs/30x30cro.png"},
                 {name: "Zaadkameraad", amount: 10, date: "2021-12-18", flair_after: "flairs/Black_santa_hat.png", other_css: ["color: rgb(232, 232, 229)"]},
-                {name: "Jazzwagons", amount: 10, date: "2021-12-31", flair_after: "flairs/jasswagons.jpg"},
+                {name: "Jazzwagons", amount: 10, date: "2021-12-31", flair_after: "flairs/Music.png"},
                 {name: "n0neshine", amount: 5, date: "2021-06-12", flair_after: "flairs/n0neshine.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
