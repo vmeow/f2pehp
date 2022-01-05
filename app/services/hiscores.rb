@@ -11,10 +11,13 @@ class Hiscores
     def fetch_stats_by_acc(player_name, account_type)
       stats_uri = api_url(account_type, player_name)
       res = fetch(stats_uri)
-      data = res.split("\n")
-      parsed_data = parse_stats(data)
-
-      return parsed_data
+      if res
+        data = res.split("\n")
+        parsed_data = parse_stats(data)
+        return parsed_data
+      else
+        return false
+      end
     end
 
     def fetch_stats(player_name, account_type: nil)

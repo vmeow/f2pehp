@@ -510,6 +510,10 @@ class Player < ActiveRecord::Base
         return false
       end
 
+      if stats === false
+        return false
+      end
+
       check_p2p_stats(stats)
 
       stats[:failed_updates] = 0
