@@ -176,6 +176,7 @@ class Player < ActiveRecord::Base
                 {name: "Fe Apes", amount: 7.69, date: "2018-12-14", flair_after: "flairs/fe_apes.jpg"},
                 {name: "Im Ronin BTW", amount: 7.5, date: "2020-05-17"},
                 {name: "Playing Fe", amount: 7, date: "2018-04-26", flair_after: "flairs/salmon.png"},
+                {name: "MOL3 M4STER", amount: 6.90, date: "2022-01-18", flair_after: "flairs/Ring_of_kinship.png"},
                 {name: "ZINJAN", amount: 6.66, date: "2018-05-18", flair_after: "flairs/ZINJANTHROPI.png"},
                 {name: "Snooz Button", amount: 6.66, date: "2018-06-03", flair_after: "flairs/macaroni.png"},
                 {name: "Ir0n K0b0ld", amount: 6.66, date: "2021-01-02", flair_after: "flairs/Red_salamander.png"},
