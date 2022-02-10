@@ -84,7 +84,7 @@ class Player < ActiveRecord::Base
                 {name: "seid", amount: 20, date: "2019-11-18"},
                 {name: "Zubat", amount: 20, date: "2019-12-02", flair_after: "flairs/zubat.png", other_css: ["color: #8BB4EE"]},
                 {name: "Varvali", amount: 20, date: "2020-05-12"},
-                {name: "Ywal", amount: 20, date: "2020-06-03", flair_after: "flairs/hole.png", other_css: ["color: #C9AD79"]},
+                {name: "Ywal", amount: 20, date: "2020-06-03", flair_after: "flairs/ywal.png", other_css: ["color: #C9AD79"]},
                 {name: "Tramali", amount: 20, date: "2020-07-11", flair_after: "flairs/fire_strike.png"},
                 {name: "Laskati", amount: 20, date: "2020-12-27", flair_after: "flairs/wise_old_man.png"},
                 {name: "FishToBond", amount: 20, date: "2021-01-16", flair_after: "flairs/Raw_swordfish.png"},
