@@ -72,6 +72,7 @@ class Player < ActiveRecord::Base
                 {name: "Hc Eudu", amount: 25, date: "2021-02-13", flair_after: "flairs/Lamp.png"},
                 {name: "Reichsheini", amount: 25, date: "2021-03-02", flair_after: "flairs/Fire_talisman.png"},
                 {name: "Flee2Pray", amount: 25, date: "2021-05-18", flair_after: "flairs/f2pbtw.png", other_css: ["color: #ffc03a"]},
+                {name: "uimevan", amount: 25, date: "2022-02-15", flair_after: "flairs/uim_helm.png"},
                 {name: "f2p Ello", amount: 22, date: "2021-01-21", flair_after: "flairs/ello_flag.png"},
                 {name: "I go by zach", amount: 21, date: "2020-03-12", flair_after: "flairs/Spade.png"},
                     {name: "hey earth", amount: 21, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
@@ -333,6 +334,7 @@ class Player < ActiveRecord::Base
                 {name: "im fe f2p", amount: 5, date: "2021-11-30", flair_after: "flairs/im_fe_f2p.png"},
                 {name: "Pxri", amount: 5, date: "2021-12-31", flair_after: "flairs/Zombie_head.png"},
                 {name: "IM nicaddict", amount: 5, date: "2022-02-03"},
+                {name: "Nqgo", amount: 5, date: "2022-02-15", flair_after: "flairs/juggernaut.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
