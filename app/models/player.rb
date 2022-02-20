@@ -94,6 +94,7 @@ class Player < ActiveRecord::Base
                 {name: "C00MQUEEN", amount: 20, date: "2021-09-02"},
                 {name: "7x420", amount: 20, date: "2021-09-04", flair_after: "flairs/flag_estonia.gif"},
                 {name: "Gocelin", amount: 20, date: "2021-12-31", flair_after: "flairs/genie.png", "other_css": ["color: #2E96FB"]},
+                {name: "Halcyon Seed", amount: 20, date: "2022-02-20", flair_after: "flairs/strange_plant.png"},
                 {name: "TrustNoBanks", amount: 18, date: "2021-03-06", flair_after: "flairs/Green_halloween_mask.png", other_css: ["color: #0e7912"]},
                 {name: "Xan So", amount: 15, date: "2018-11-13", flair_after: "items/Maple_shortbow.png"},
                 {name: "ColdFingers3", amount: 15, date: "2019-04-29", flair_after: "flairs/Snow_imp_gloves.png"},
