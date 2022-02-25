@@ -337,6 +337,7 @@ class Player < ActiveRecord::Base
                 {name: "Pxri", amount: 5, date: "2021-12-31", flair_after: "flairs/Zombie_head.png"},
                 {name: "IM nicaddict", amount: 5, date: "2022-02-03"},
                 {name: "Nqgo", amount: 5, date: "2022-02-15", flair_after: "flairs/juggernaut.png", other_css: ["color: white"]},
+                {name: "njitnelav91", amount: 5, date: "2022-02-25", flair_after: "flairs/anvil.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
