@@ -60,6 +60,7 @@ class Player < ActiveRecord::Base
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
                 {name: "Iron of One", amount: 37, date: "2022-01-24", flair_after: "items/Dark_cavalier.png"},
+                {name: "53 Rune 1729", amount: 33.33, date: "2022-02-26", flair_after: "flairs/law_rune.png", other_css: ["color: rgb(0,0,255)"]}},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
                     {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
