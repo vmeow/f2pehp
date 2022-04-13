@@ -51,6 +51,7 @@ F2POSRSRanks::Application.configure do
                      "lms",
                      "p2p_minigame",
                      "p2p_minigame",
+                     "p2p_minigame", #rifts closed 13-04-2022
                      "p2p_minigame",
                      "p2p_minigame",
                      "bryophyta_kc",
