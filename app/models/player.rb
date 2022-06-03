@@ -58,8 +58,8 @@ class Player < ActiveRecord::Base
                     {name: "Earfs"},
                 {name: "Metan", amount: 50, date: "2019-02-13", flair_after: "flairs/Rune_essence.png"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
+                {name: "Iron of One", amount: 41, date: "2022-05-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
-                {name: "Iron of One", amount: 40, date: "2022-04-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "53 Rune 1729", amount: 33.33, date: "2022-02-26", flair_after: "flairs/law_rune.png", other_css: ["color: rgb(0,0,255)"]},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
                 {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
@@ -108,6 +108,7 @@ class Player < ActiveRecord::Base
                 {name: "Iron Gige", amount: 15, date: "2021-09-01", flair_after: "items/Rune_battleaxe.gif"},
                 {name: "Solo Emperor", amount: 15, date: "2021-09-08", flair_after: "flairs/Bucket_of_milk.png"},
                 {name: "AKPigsley", amount: 15, date: "2021-10-25"},
+                {name: "TheNutSlush", amount: 15, date: "2022-06-02", flair_after: "flairs/chips.png"},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
@@ -161,7 +162,6 @@ class Player < ActiveRecord::Base
                 {name: "re-fine", amount: 10, date: "2021-02-12", flair_after: "flairs/Mask_of_balance.png"},
                 {name: "Astrodeo", amount: 10, date: "2021-02-12", flair_after: "flairs/NASA-logo.png"},
                 {name: "f meinen", amount: 10, date: "2021-03-13", flair_after: "flairs/gengar.png"},
-                {name: "TheNutSlush", amount: 10, date: "2021-05-09", flair_after: "flairs/Body_rune.png"},
                 {name: "Arceus HC", amount: 10, date: "2021-05-20", flair_after: "flairs/Amulet_of_defence_t.png"},
                 {name: "F2p_MrStark", amount: 10, date: "2021-06-25", flair_after: "flairs/LFC.png"},
                 {name: "Whypay2play", amount: 10, date: "2021-08-02", flair_after: "flairs/bunny_ears.png"},
