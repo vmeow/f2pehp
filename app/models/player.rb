@@ -57,6 +57,7 @@ class Player < ActiveRecord::Base
                     {name: "Wooper", flair_after: "flairs/wooper.png"},
                     {name: "Earfs"},
                 {name: "Metan", amount: 50, date: "2019-02-13", flair_after: "flairs/Rune_essence.png"},
+                {name: "Gorillaz810", amount: 50, date: "2022-06-08", flair_after: "flairs/coins.png"},
                 {name: "Freckled Kid", amount: 41.85, flair_after: "flairs/burnt_bones.png"},
                 {name: "Iron of One", amount: 41, date: "2022-05-24", flair_after: "items/Dark_cavalier.png"},
                 {name: "Romans ch 12", amount: 40, date: "2019-04-13"},
