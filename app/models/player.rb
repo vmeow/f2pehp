@@ -180,7 +180,7 @@ class Player < ActiveRecord::Base
                 {name: "Poor Methods", amount: 10, date: "2022-03-29", flair_after: "flairs/Fly_fishing_rod.png"},
                 {name: "Vile Skillin", amount: 10, date: "2022-04-07"},
                 {name: "11R15", amount: 10, date: "2022-04-17", other_css: ["color: #990000"]},
-                {name: "Noble Strive", amount: 10, date: "2022-06-13", flair_after: "flairs/decorative_boots_gold.png"},
+                {name: "Noble Strive", amount: 10, date: "2022-07-13", flair_after: "flairs/decorative_boots_gold.png"},
                 {name: "n0neshine", amount: 5, date: "2021-06-12", flair_after: "flairs/n0neshine.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
