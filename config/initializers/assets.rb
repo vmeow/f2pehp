@@ -48,6 +48,7 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame",
                      "p2p_minigame",
                      "p2p_minigame",
+                     "p2p_minigame", # somewhere around here pvp arena added here fuck you jagex 2022-07-13
                      "lms",
                      "p2p_minigame",
                      "p2p_minigame",
@@ -63,7 +64,6 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame",
                      "p2p_minigame",
                      "p2p_minigame",
-                     "p2p_minigame", # somewhere around here pvp arena added here fuck you jagex 2022-07-13
                      "p2p_minigame",
                      "p2p_minigame",
                      "p2p_minigame",
