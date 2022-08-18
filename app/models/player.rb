@@ -359,6 +359,7 @@ class Player < ActiveRecord::Base
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
                 {name: "Anonymous", amount: 2.5, date: "2018-07-26", no_link: true},
                 {name: "Hratli", amount: 2.5, date: "2020-07-29"},
+                {name: "nobankskilla", amount: 2, date: "2022-08-18"},
                 {name: "Roavar", amount: 1.5, date: "2019-08-14", flair_after: "flairs/roavar.png"},
                 {name: "ColdFingers1", amount: 1, date: "2019-01-15", flair_after: "flairs/ColdFingers1.png"},
                 {name: "Anonymous", amount: 1, date: "2019-12-08", no_link: true},
