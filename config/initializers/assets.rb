@@ -161,34 +161,34 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['attack_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
     config.ehp_iron['strength_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
     config.ehp_iron['defence_method'] = "1-40 questing xp and cows, 40-99+ ogresses and hill giants (all with prayer flicking)"
-    config.ehp_iron['ranged_method'] = "1-20 minotaurs, 20-40 hill giants, 40-50 moss giants, 50-99 ogresses, 99+ ogresses and obor with pray flicking, using best arrows"
+    config.ehp_iron['ranged_method'] = "1-40 minotaurs, 40-50 hill giants, 50-99 ogresses, 99+ ogresses and obor (all with pray flicking, using best arrows)"
     config.ehp_iron['hitpoints_method'] = "0 time during combats"
     config.ehp_iron['prayer_method'] = "Boneyard and 0-time big bones from giants/ogresses"
-    config.ehp_iron['magic_method'] = "Best spell, then 0-time teleport/superheat/telegrab/high alch during other skills"
-    config.ehp_iron['cooking_method'] = "Best fish until trout/salmon, 0 tick while fishing"
-    config.ehp_iron['woodcutting_method'] = "Best tree until willows, 3-ticked with snow"
-    config.ehp_iron['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish"
-    config.ehp_iron['firemaking_method'] = "Best tree until willows, during woodcutting"
-    config.ehp_iron['crafting_method'] = "Leather, then symbols, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
-    config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, 0-time silver smelting"
+    config.ehp_iron['magic_method'] = "0-time teleport/superheat/telegrab/high alch during other skills"
+    config.ehp_iron['cooking_method'] = "Shrimp, sardines and herring, then trout/salmon 0-tick while fishing (erie fish)"
+    config.ehp_iron['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, 2.66-tick willow trees, also train alongside runecrafting"
+    config.ehp_iron['fishing_method'] = "Shrimp, sardines and herring, then trout/salmon 3-ticked with snow/cooked fish (erie fish)"
+    config.ehp_iron['firemaking_method'] = "Logs, oak logs, then willow logs, during woodcutting"
+    config.ehp_iron['crafting_method'] = "Leather, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
+    config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron with snow after telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_iron['mining_method'] = "0 time during crafting, smithing, runecraft"
-    config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with varrock tele"
+    config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with chronicle tele, training woodcutting and firemaking alongside"
     
-    config.ehp_uim['attack_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
-    config.ehp_uim['strength_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
-    config.ehp_uim['defence_method'] = "1-20 cows/chickens/minotaurs, 20-40 hill giants, 40-70 moss giants, 70-99 ogresses with pray flicking"
-    config.ehp_uim['ranged_method'] = "1-20 minotaurs, 20-40 hill giants, 40-50 moss giants, 50-99 ogresses, with pray flicking, using best arrows"
+    config.ehp_uim['attack_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_uim['strength_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_uim['defence_method'] = "1-40 questing xp and cows, 40-99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_uim['ranged_method'] = "1-40 minotaurs, 40-50 hill giants, 50-99 ogresses, 99+ ogresses and obor (all with pray flicking, using best arrows)"
     config.ehp_uim['hitpoints_method'] = "0 time during combats"
     config.ehp_uim['prayer_method'] = "Boneyard and 0-time big bones from giants/ogresses"
-    config.ehp_uim['magic_method'] = "Best spell, then 0-time teleport/superheat/high alch during other skills"
-    config.ehp_uim['cooking_method'] = "Best fish until trout/salmon, 3.5-tick while fishing"
-    config.ehp_uim['woodcutting_method'] = "Best tree until willows, 3-ticked with snow"
-    config.ehp_uim['fishing_method'] = "Best fish until trout/salmon, 3-ticked with snow/cooked fish"
-    config.ehp_uim['firemaking_method'] = "Best tree until willows, during woodcutting"
-    config.ehp_uim['crafting_method'] = "Leather, then symbols, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
-    config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron after telegrabbing wildy nats, 0-time silver smelting"
+    config.ehp_uim['magic_method'] = "0-time teleport/superheat/telegrab/high alch during other skills"
+    config.ehp_uim['cooking_method'] = "Shrimp, sardines and herring, then trout/salmon 0-tick while fishing (erie fish)"
+    config.ehp_uim['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, 2.66-tick willow trees, also train alongside runecrafting"
+    config.ehp_uim['fishing_method'] = "Shrimp, sardines and herring, then trout/salmon 3-ticked with snow/cooked fish (erie fish)"
+    config.ehp_uim['firemaking_method'] = "Logs, oak logs, then willow logs, during woodcutting"
+    config.ehp_uim['crafting_method'] = "Leather, then Varrock SW chronicle teleport tiaras and 0 time gems from ogresses"
+    config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron with snow after telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_uim['mining_method'] = "0 time during crafting, smithing, runecraft"
-    config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with varrock tele"
+    config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with chronicle tele, training woodcutting and firemaking alongside"
   
     # config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
     # config.ehp_reg['attack_xphrs'] = [5300, 25450, 29500, 37900, 44800, 46900, 50800, 53500]
@@ -259,130 +259,127 @@ F2POSRSRanks::Application.configure do
   
   
   
-    config.ehp_iron['attack_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_iron['attack_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
+    config.ehp_iron['attack_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 13034431]
+    config.ehp_iron['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49000]
   
-    config.ehp_iron['strength_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431] 
-    config.ehp_iron['strength_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
+    config.ehp_iron['strength_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 11805606, 13034431] 
+    config.ehp_iron['strength_xphrs'] = [5000, 24900, 28400, 33000, 36500, 37500, 38900, 40450, 41900, 42900, 44200, 45900, 49900, 49800]
   
-    config.ehp_iron['defence_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_iron['defence_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
+    config.ehp_iron['defence_tiers'] = [0, 37224]
+    config.ehp_iron['defence_xphrs'] = [5000, 49500]
   
     config.ehp_iron['hitpoints_tiers'] = [0]
     config.ehp_iron['hitpoints_xphrs'] = [0]
   
     config.ehp_iron['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
-    config.ehp_iron['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 46550]
+    config.ehp_iron['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 45100]
   
     config.ehp_iron['prayer_tiers'] = [0]
-    config.ehp_iron['prayer_xphrs'] = [11000]
+    config.ehp_iron['prayer_xphrs'] = [14000]
   
     # config.ehp_iron['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_iron['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
-    config.ehp_iron['magic_tiers'] = [0, 174, 3973, 7842]
-    config.ehp_iron['magic_xphrs'] = [5000, 15600, 34800, 0]
+    config.ehp_iron['magic_tiers'] = [0]
+    config.ehp_iron['magic_xphrs'] = [0]
   
     # config.ehp_iron['cooking_tiers'] = [0, 101333]
     # config.ehp_iron['cooking_xphrs'] = [40000, 120000]
   
     config.ehp_iron['cooking_tiers'] = [0]
-    config.ehp_iron['cooking_xphrs'] = [0]
+    config.ehp_iron['cooking_xphrs'] = [2052000]
 
-    config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
-    config.ehp_iron['woodcutting_xphrs'] = [4000, 8500, 16000, 22800, 28500, 34300, 40000, 42850, 85000]
+    config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
+    config.ehp_iron['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 95000]
   
     # config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
   
-    config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
-    config.ehp_iron['fishing_xphrs'] = [8300, 15900, 19800, 22500, 31200, 36800, 39500, 42500, 85000]
+    config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2421087, 5902831, 13034431]
+    config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35250, 60350, 71000, 76250, 81000, 90000]
   
     # config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_iron['firemaking_tiers'] = [0]
-    config.ehp_iron['firemaking_xphrs'] = [0]
+    config.ehp_iron['firemaking_tiers'] = [0, 13363]
+    config.ehp_iron['firemaking_xphrs'] = [45000, 130500]
   
     config.ehp_iron['crafting_tiers'] = [0]
-    config.ehp_iron['crafting_xphrs'] = [19500]
+    config.ehp_iron['crafting_xphrs'] = [20000]
   
     # config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
     config.ehp_iron['smithing_tiers'] = [0]
-    config.ehp_iron['smithing_xphrs'] = [19700]
+    config.ehp_iron['smithing_xphrs'] = [22700]
   
     config.ehp_iron['mining_tiers'] = [0]
     config.ehp_iron['mining_xphrs'] = [0]
   
     config.ehp_iron['runecraft_tiers'] = [0]
-    config.ehp_iron['runecraft_xphrs'] = [3820]
+    config.ehp_iron['runecraft_xphrs'] = [4500]
   
   
   
-    config.ehp_uim['attack_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_uim['attack_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
+    config.ehp_uim['attack_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 13034431]
+    config.ehp_uim['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49000]
   
-    config.ehp_uim['strength_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431] 
-    config.ehp_uim['strength_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
+    config.ehp_uim['strength_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 11805606, 13034431] 
+    config.ehp_uim['strength_xphrs'] = [5000, 24900, 28400, 33000, 36500, 37500, 38900, 40450, 41900, 42900, 44200, 45900, 49900, 49800]
   
-    config.ehp_uim['defence_tiers'] = [0, 37224, 100000, 273742, 737627, 1210421, 1986068, 3258594, 6517253, 13034431]
-    config.ehp_uim['defence_xphrs'] = [5000, 23900, 28900, 35600, 30400, 33000, 35550, 37900, 42250, 47400]
+    config.ehp_uim['defence_tiers'] = [0, 37224]
+    config.ehp_uim['defence_xphrs'] = [5000, 49500]
   
     config.ehp_uim['hitpoints_tiers'] = [0]
     config.ehp_uim['hitpoints_xphrs'] = [0]
   
     config.ehp_uim['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
-    config.ehp_uim['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 46550]
-    
+    config.ehp_uim['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 45100]
+  
     config.ehp_uim['prayer_tiers'] = [0]
-    config.ehp_uim['prayer_xphrs'] = [11000]
+    config.ehp_uim['prayer_xphrs'] = [14000]
   
     # config.ehp_uim['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_uim['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
-    config.ehp_uim['magic_tiers'] = [0, 174, 3973, 7842]
-    config.ehp_uim['magic_xphrs'] = [5000, 15600, 34800, 0]
-
+    config.ehp_uim['magic_tiers'] = [0]
+    config.ehp_uim['magic_xphrs'] = [0]
+  
     # config.ehp_uim['cooking_tiers'] = [0, 101333]
     # config.ehp_uim['cooking_xphrs'] = [40000, 120000]
   
     config.ehp_uim['cooking_tiers'] = [0]
-    config.ehp_uim['cooking_xphrs'] = [0]
-  
-    # config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
-    # config.ehp_uim['woodcutting_xphrs'] = [7000, 15000, 28000, 40000, 50000, 60000, 70000, 75000, 78500]
-  
-    config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431, 150000000]
-    config.ehp_uim['woodcutting_xphrs'] = [4000, 8500, 16000, 22800, 28500, 34300, 40000, 42850, 85000]
+    config.ehp_uim['cooking_xphrs'] = [2052000]
+
+    config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
+    config.ehp_uim['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 95000]
   
     # config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
   
-    config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
-    config.ehp_uim['fishing_xphrs'] = [8300, 15900, 19800, 22500, 31200, 36800, 39500, 42500, 85000]
+    config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2421087, 5902831, 13034431]
+    config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35250, 60350, 71000, 76250, 81000, 90000]
   
     # config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_uim['firemaking_tiers'] = [0]
-    config.ehp_uim['firemaking_xphrs'] = [0]
+    config.ehp_uim['firemaking_tiers'] = [0, 13363]
+    config.ehp_uim['firemaking_xphrs'] = [45000, 130500]
   
-    config.ehp_uim['crafting_tiers'] = [0] 
-    config.ehp_uim['crafting_xphrs'] = [19500]
+    config.ehp_uim['crafting_tiers'] = [0]
+    config.ehp_uim['crafting_xphrs'] = [20000]
   
-    # config.ehp_uim['smithing_tiers'] = [0, 10092000, 13034000, 154850000]
-    # config.ehp_uim['smithing_xphrs'] = [7650, 2942000, 7650, 45150000]
+    # config.ehp_uim['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
+    # config.ehp_uim['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
     config.ehp_uim['smithing_tiers'] = [0]
-    config.ehp_uim['smithing_xphrs'] = [19700]
+    config.ehp_uim['smithing_xphrs'] = [22700]
   
-    config.ehp_uim['mining_tiers'] = [0] 
-    config.ehp_uim['mining_xphrs'] =[0]
+    config.ehp_uim['mining_tiers'] = [0]
+    config.ehp_uim['mining_xphrs'] = [0]
   
-    config.ehp_uim['runecraft_tiers'] = [0] 
-    config.ehp_uim['runecraft_xphrs'] = [3820]
+    config.ehp_uim['runecraft_tiers'] = [0]
+    config.ehp_uim['runecraft_xphrs'] = [4500]
     
     # Bonus XP (End): 
     # 0.2500 Smithing:Mining from 0 to 200000000 Mining xp 
