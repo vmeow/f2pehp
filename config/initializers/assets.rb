@@ -400,49 +400,126 @@ F2POSRSRanks::Application.configure do
                            [0.0741, "prayer", "firemaking", 273742, 200000000],
                            ]
                            
-    config.bonus_xp_iron = [[0.1071, "prayer", "attack", 4470, 37224],
-                            [0.0625, "prayer", "attack", 37224, 737627],
-                            [0.0457, "prayer", "attack", 737627, 200000000],
-                            [0.1071, "prayer", "strength", 4470, 37224],
-                            [0.0625, "prayer", "strength", 37224, 737627],
-                            [0.0457, "prayer", "strength", 737627, 200000000],
-                            [0.1071, "prayer", "defence", 4470, 37224],
-                            [0.0625, "prayer", "defence", 37224, 737627],
-                            [0.0457, "prayer", "defence", 737627, 200000000],
-                            [0.1071, "prayer", "ranged", 4470, 37224],
-                            [0.0625, "prayer", "ranged", 37224, 101333],
-                            [0.0457, "prayer", "ranged", 101333, 200000000],
-                            # [0.0992, "runecraft", "crafting", 4470, 200000000],
-                            [0.2610, "smithing", "crafting", 4470, 200000000],
-                            [1.3425, "cooking", "fishing", 0, 200000000],
-                            # [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            # [0.0500, "firemaking", "fishing", 4470, 200000000],
-                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
-                            [1.4133, "magic", "smithing", 0, 200000000],
-                            [0.0381, "magic", "crafting", 0, 200000000],
-                            [0.2154, "magic", "runecraft", 0, 200000000]
+    config.bonus_xp_iron = [
+                            # Attack
+                            [0.1267, "prayer", "attack", 37224, 101333],
+                            [0.1244, "prayer", "attack", 101333, 273742],
+                            [0.1240, "prayer", "attack", 273742, 737627],
+                            [0.1237, "prayer", "attack", 737627, 1210421],
+                            [0.1236, "prayer", "attack", 1210421, 1629200],
+                            [0.1235, "prayer", "attack", 1629200, 2192818],
+                            [0.1234, "prayer", "attack", 2192818, 3258594],
+                            [0.1234, "prayer", "attack", 3258594, 3972294],
+                            [0.1233, "prayer", "attack", 3972294, 5346332],
+                            [0.1233, "prayer", "attack", 5346332, 7944614],
+                            [0.1232, "prayer", "attack", 7944614, 13034431],
+                            [0.1151, "prayer", "attack", 13034431, 200000000],
+                            [0.0071, "crafting", "attack", 37224, 13034431],
+                            [0.0107, "crafting", "attack", 13034431, 200000000],
+                            [0.0086, "smithing", "attack", 37224, 13034431],
+                            [0.0101, "smithing", "attack", 13034431, 200000000],
+
+                            # Strength
+                            [0.1394, "prayer", "strength", 37224, 101333],
+                            [0.1354, "prayer", "strength", 101333, 273742],
+                            [0.1315, "prayer", "strength", 273742, 737627],
+                            [0.1291, "prayer", "strength", 737627, 1210421],
+                            [0.1285, "prayer", "strength", 1210421, 1629200],
+                            [0.1278, "prayer", "strength", 1629200, 2192818],
+                            [0.1270, "prayer", "strength", 2192818, 3258594],
+                            [0.1263, "prayer", "strength", 3258594, 3972294],
+                            [0.1259, "prayer", "strength", 3972294, 5346332],
+                            [0.1252, "prayer", "strength", 5346332, 7944614],
+                            [0.1246, "prayer", "strength", 7944614, 11805606],
+                            [0.1232, "prayer", "strength", 11805606, 13034431],
+                            [0.1151, "prayer", "strength", 13034431, 200000000],
+                            [0.0071, "crafting", "strength", 37224, 13034431],
+                            [0.0107, "crafting", "strength", 13034431, 200000000],
+                            [0.0086, "smithing", "strength", 37224, 13034431],
+                            [0.0101, "smithing", "strength", 13034431, 200000000],
+
+                            # Defence
+                            [0.1151, "prayer", "defence", 37224, 200000000],
+                            [0.0107, "crafting", "defence", 37224, 200000000],
+                            [0.0101, "smithing", "defence", 37224, 200000000],
+
+                            # Ranged
+                            [0.1416, "prayer", "ranged", 37224, 101333],
+                            [0.0457, "prayer", "ranged", 101333, 13034431],
+                            [0.0418, "prayer", "ranged", 13034431, 200000000],
+                            [0.0071, "crafting", "ranged", 37224, 101333],
+                            [0.0326, "crafting", "ranged", 101333, 13034431],
+                            [0.0298, "crafting", "ranged", 13034431, 200000000],
+                            [0.0086, "smithing", "ranged", 37224, 101333],
+                            [0.01967, "smithing", "ranged", 101333, 13034431],
+                            [0.0176, "smithing", "ranged", 13034431, 200000000],
+
+                            # Crafting
+                            [0.2610, "smithing", "crafting", 6291, 200000000],
+
+                            # Runecrafting
+                            [0.4273, "woodcutting", "runecraft", 0, 200000000]
                            ]
-                           
-    config.bonus_xp_uim = [[0.1071, "prayer", "attack", 4470, 37224],
-                            [0.0625, "prayer", "attack", 37224, 737627],
-                            [0.0457, "prayer", "attack", 737627, 200000000],
-                            [0.1071, "prayer", "strength", 4470, 37224],
-                            [0.0625, "prayer", "strength", 37224, 737627],
-                            [0.0457, "prayer", "strength", 737627, 200000000],
-                            [0.1071, "prayer", "defence", 4470, 37224],
-                            [0.0625, "prayer", "defence", 37224, 737627],
-                            [0.0457, "prayer", "defence", 737627, 200000000],
-                            [0.1071, "prayer", "ranged", 4470, 37224],
-                            [0.0625, "prayer", "ranged", 37224, 101333],
-                            [0.0457, "prayer", "ranged", 101333, 200000000],
-                            [0.2610, "smithing", "crafting", 4470, 200000000],
-                            [1.3425, "cooking", "fishing", 0, 200000000],
-                            # [0.0274, "woodcutting", "fishing", 4470, 200000000],
-                            # [0.0500, "firemaking", "fishing", 4470, 200000000],
-                            [1.3333, "firemaking", "woodcutting", 0, 200000000],
-                            [1.4133, "magic", "smithing", 0, 200000000],
-                            [0.0381, "magic", "crafting", 0, 200000000],
-                            [0.2154, "magic", "runecraft", 0, 200000000]
+
+    config.bonus_xp_uim = [
+                            # Attack
+                            [0.1267, "prayer", "attack", 37224, 101333],
+                            [0.1244, "prayer", "attack", 101333, 273742],
+                            [0.1240, "prayer", "attack", 273742, 737627],
+                            [0.1237, "prayer", "attack", 737627, 1210421],
+                            [0.1236, "prayer", "attack", 1210421, 1629200],
+                            [0.1235, "prayer", "attack", 1629200, 2192818],
+                            [0.1234, "prayer", "attack", 2192818, 3258594],
+                            [0.1234, "prayer", "attack", 3258594, 3972294],
+                            [0.1233, "prayer", "attack", 3972294, 5346332],
+                            [0.1233, "prayer", "attack", 5346332, 7944614],
+                            [0.1232, "prayer", "attack", 7944614, 13034431],
+                            [0.1151, "prayer", "attack", 13034431, 200000000],
+                            [0.0071, "crafting", "attack", 37224, 13034431],
+                            [0.0107, "crafting", "attack", 13034431, 200000000],
+                            [0.0086, "smithing", "attack", 37224, 13034431],
+                            [0.0101, "smithing", "attack", 13034431, 200000000],
+
+                            # Strength
+                            [0.1394, "prayer", "strength", 37224, 101333],
+                            [0.1354, "prayer", "strength", 101333, 273742],
+                            [0.1315, "prayer", "strength", 273742, 737627],
+                            [0.1291, "prayer", "strength", 737627, 1210421],
+                            [0.1285, "prayer", "strength", 1210421, 1629200],
+                            [0.1278, "prayer", "strength", 1629200, 2192818],
+                            [0.1270, "prayer", "strength", 2192818, 3258594],
+                            [0.1263, "prayer", "strength", 3258594, 3972294],
+                            [0.1259, "prayer", "strength", 3972294, 5346332],
+                            [0.1252, "prayer", "strength", 5346332, 7944614],
+                            [0.1246, "prayer", "strength", 7944614, 11805606],
+                            [0.1232, "prayer", "strength", 11805606, 13034431],
+                            [0.1151, "prayer", "strength", 13034431, 200000000],
+                            [0.0071, "crafting", "strength", 37224, 13034431],
+                            [0.0107, "crafting", "strength", 13034431, 200000000],
+                            [0.0086, "smithing", "strength", 37224, 13034431],
+                            [0.0101, "smithing", "strength", 13034431, 200000000],
+
+                            # Defence
+                            [0.1151, "prayer", "defence", 37224, 200000000],
+                            [0.0107, "crafting", "defence", 37224, 200000000],
+                            [0.0101, "smithing", "defence", 37224, 200000000],
+
+                            # Ranged
+                            [0.1416, "prayer", "ranged", 37224, 101333],
+                            [0.0457, "prayer", "ranged", 101333, 13034431],
+                            [0.0418, "prayer", "ranged", 13034431, 200000000],
+                            [0.0071, "crafting", "ranged", 37224, 101333],
+                            [0.0326, "crafting", "ranged", 101333, 13034431],
+                            [0.0298, "crafting", "ranged", 13034431, 200000000],
+                            [0.0086, "smithing", "ranged", 37224, 101333],
+                            [0.01967, "smithing", "ranged", 101333, 13034431],
+                            [0.0176, "smithing", "ranged", 13034431, 200000000],
+
+                            # Crafting
+                            [0.2610, "smithing", "crafting", 6291, 200000000],
+
+                            # Runecrafting
+                            [0.4273, "woodcutting", "runecraft", 0, 200000000]
                            ]
 end
 
