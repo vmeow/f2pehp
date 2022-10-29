@@ -116,6 +116,7 @@ namespace :players do
       batch.each do |player|
         begin
           player.recalculate_ehp
+          player.recalculate_current_ehp
         rescue
           next
         end
