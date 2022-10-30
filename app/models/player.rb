@@ -358,6 +358,7 @@ class Player < ActiveRecord::Base
                 {name: "HCIM Cob", amount: 5, date: "2022-10-14", flair_after: "flairs/turnip.png"},
                 {name: "IAmMicrobe", amount: 5, date: "2022-09-01", flair_after: "flairs/american_samoa.png"},
                 {name: "Occltghxst", amount: 5, date: "2022-10-25", flair_after: "flairs/pumpkin.png", other_css: ["color: #FF9100"]},
+                {name: "omega primus", amount: 5, date: "2022-10-30", flair_after: "flairs/omega.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
