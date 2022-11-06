@@ -142,21 +142,21 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron = Hash.new
     config.ehp_uim = Hash.new
     
-    config.ehp_reg['attack_method'] = "1 defence clan wars alts"
-    config.ehp_reg['strength_method'] = "1 defence clan wars alts"
-    config.ehp_reg['defence_method'] = "1 defence clan wars alts after 99 att/str"
-    config.ehp_reg['ranged_method'] = "1 defence clan wars alts"
+    config.ehp_reg['attack_method'] = "1 defence castle wars alts, after 40 attack it assumes you will train to 99 str first"
+    config.ehp_reg['strength_method'] = "1 defence castle wars alts"
+    config.ehp_reg['defence_method'] = "1 defence castle wars alts after 99 att/str"
+    config.ehp_reg['ranged_method'] = "1 defence castle wars alts"
     config.ehp_reg['hitpoints_method'] = "0 time during combats"
-    config.ehp_reg['prayer_method'] = "Big bones (some 0-time during fire-bury)"
-    config.ehp_reg['magic_method'] = "Best spell, then curse splashing until 55, 0 time high alch/superheat during other skills"
-    config.ehp_reg['cooking_method'] = "Best fish, then wines"
-    config.ehp_reg['woodcutting_method'] = "Best tree, then 3-tick willows with double snow"
+    config.ehp_reg['prayer_method'] = "Scatter-bury (some 0-time during other skills)"
+    config.ehp_reg['magic_method'] = "Best spell, low alch, superheat, alch + fally tele + fire blast, then alch + teleblock (some 0-time during other skills)"
+    config.ehp_reg['cooking_method'] = "1-tick beef then wines"
+    config.ehp_reg['woodcutting_method'] = "4-tick trees, then 2-tick oaks while alching"
     config.ehp_reg['fishing_method'] = "Best fish, then 3-tick snow and leather fly fishing"
     config.ehp_reg['firemaking_method'] = "Best logs, with 0-time prayer"
     config.ehp_reg['crafting_method'] = "Best leather item, then best gem"
     config.ehp_reg['smithing_method'] = "Best platebody until adamant platebody, with alts to trade"
-    config.ehp_reg['mining_method'] = "Best rock until iron, 3-tick empty shortbow on wildy kick alt iron at 51"
-    config.ehp_reg['runecraft_method'] = "Suicide body tiara alts"
+    config.ehp_reg['mining_method'] = "Best rock until iron, 3-tick cake iron at Mining guild while scattering ashes"
+    config.ehp_reg['runecraft_method'] = "Solo body talismans"
     
     config.ehp_iron['attack_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
     config.ehp_iron['strength_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
@@ -204,41 +204,41 @@ F2POSRSRanks::Application.configure do
   
     # config.ehp_reg['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
     # config.ehp_reg['ranged_xphrs'] = [4900, 24650, 30500, 44800, 45900, 46100, 49200, 55000]
-    config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_reg['attack_xphrs'] = [7200, 14400, 28900, 43000, 51000, 57800, 63000, 68000]
+    config.ehp_reg['attack_tiers'] = [0, 37224]
+    config.ehp_reg['attack_xphrs'] = [8000, 90000]
   
-    config.ehp_reg['strength_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_reg['strength_xphrs'] = [7200, 14400, 28900, 43000, 51000, 57800, 63000, 68000]
+    config.ehp_reg['strength_tiers'] = [0, 37224, 50339, 75127, 123660, 166636, 273742, 407015, 547953, 899257, 1336443, 1986068, 2951373, 4385776, 7195629, 9684577]
+    config.ehp_reg['strength_xphrs'] = [8000, 40500, 43500, 49000, 52000, 55000, 58000, 61000, 66500, 69500, 72500, 75500, 78500. 84000, 87000, 90000]
   
     config.ehp_reg['defence_tiers'] = [0]
-    config.ehp_reg['defence_xphrs'] = [68000]
+    config.ehp_reg['defence_xphrs'] = [90000]
   
     config.ehp_reg['hitpoints_tiers'] = [0]
     config.ehp_reg['hitpoints_xphrs'] = [0]
   
-    config.ehp_reg['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
-    config.ehp_reg['ranged_xphrs'] = [7000, 14000, 28000, 42500, 49000, 56500, 61200, 66000]
+    config.ehp_reg['ranged_tiers'] = [0, 13363, 20224, 33648, 55649, 91721, 150872, 273742, 449428, 737627, 1210421, 1986068, 3258594, 5346332, 8771558, 13034431]
+    config.ehp_reg['ranged_xphrs'] = [8000, 30000, 34000, 40500, 44500, 48500, 52500, 56500, 63000, 66500, 70500, 74500, 78500. 85500, 89500, 90000]
   
     config.ehp_reg['prayer_tiers'] = [0]
-    config.ehp_reg['prayer_xphrs'] =[43000]
+    config.ehp_reg['prayer_xphrs'] = [105000]
   
-    config.ehp_reg['magic_tiers'] = [0, 174, 1358, 3973, 5018]
-    config.ehp_reg['magic_xphrs'] = [5000, 15600, 25200, 34800, 0]
+    config.ehp_reg['magic_tiers'] = [0, 5018, 50339, 166636, 3258594]
+    config.ehp_reg['magic_xphrs'] = [15000, 60000, 100000, 165000, 180000]
   
-    config.ehp_reg['cooking_tiers'] = [0, 7842, 37224, 737627]
-    config.ehp_reg['cooking_xphrs'] = [40000, 130000, 175000, 480000]
+    config.ehp_reg['cooking_tiers'] = [0, 22406, 605032]
+    config.ehp_reg['cooking_xphrs'] = [100000, 450000, 480000]
   
-    config.ehp_reg['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
-    config.ehp_reg['woodcutting_xphrs'] = [7000, 15000, 28000, 43300, 54100, 65000, 75800, 85000]
+    config.ehp_reg['woodcutting_tiers'] = [0, 5018, 14833, 41171, 101333, 302288]
+    config.ehp_reg['woodcutting_xphrs'] = [29500, 40000, 55500, 73500, 81500, 90000]
   
-    config.ehp_reg['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431]
-    config.ehp_reg['fishing_xphrs'] = [14000, 26700, 33300, 57000, 67000, 72000, 76500, 85000]
+    config.ehp_reg['fishing_tiers'] = [0, 4470, 13363, 101333, 273742, 73627, 1986068, 5902831, 8771558, 13034431]
+    config.ehp_reg['fishing_xphrs'] = [14000, 28000, 40000, 55500, 61500, 68000, 74250, 79750, 82500, 90000]
 
     config.ehp_reg['firemaking_tiers'] = [0, 13363, 61512, 273742]
     config.ehp_reg['firemaking_xphrs'] = [45000, 132660, 198990, 298485]
   
-    config.ehp_reg['crafting_tiers'] = [0, 4470, 50339]
-    config.ehp_reg['crafting_xphrs'] = [57000, 135000, 290000]
+    config.ehp_reg['crafting_tiers'] = [0, 4470, 9730, 20224, 50339]
+    config.ehp_reg['crafting_xphrs'] = [37000, 137200, 185220, 233240, 290000]
   
     # config.ehp_reg['smithing_tiers'] = [0, 37224, 605032, 4385776, 170000000]
     # config.ehp_reg['smithing_xphrs'] = [40000, 129000, 200000, 250000, 30000000]
@@ -248,11 +248,11 @@ F2POSRSRanks::Application.configure do
   
     # config.ehp_reg['runecraft_tiers'] = [0]
     # config.ehp_reg['runecraft_xphrs'] = [26000]
-    config.ehp_reg['smithing_tiers'] = [0, 37224, 605032, 2783114, 4385776]
-    config.ehp_reg['smithing_xphrs'] = [40000, 129000, 200000, 212000, 265000]
+    config.ehp_reg['smithing_tiers'] = [0, 12725, 18247, 83014, 605032, 4385776]
+    config.ehp_reg['smithing_xphrs'] = [12725, 58000, 116000, 174000, 232000, 290000]
   
-    config.ehp_reg['mining_tiers'] = [0, 14833, 41171, 111945, 737627] 
-    config.ehp_reg['mining_xphrs'] = [4000, 12000, 25000, 57000, 65000]
+    config.ehp_reg['mining_tiers'] = [0, 2411, 5018, 14833, 41171, 302288]
+    config.ehp_reg['mining_xphrs'] = [4000, 46250, 49000, 52500, 55000, 57000]
   
     config.ehp_reg['runecraft_tiers'] = [0]
     config.ehp_reg['runecraft_xphrs'] = [55000]
@@ -317,7 +317,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['mining_xphrs'] = [0]
   
     config.ehp_iron['runecraft_tiers'] = [0]
-    config.ehp_iron['runecraft_xphrs'] = [4500]
+    config.ehp_iron['runecraft_xphrs'] = [4650]
   
   
   
@@ -379,7 +379,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['mining_xphrs'] = [0]
   
     config.ehp_uim['runecraft_tiers'] = [0]
-    config.ehp_uim['runecraft_xphrs'] = [4500]
+    config.ehp_uim['runecraft_xphrs'] = [4650]
     
     # Bonus XP (End): 
     # 0.2500 Smithing:Mining from 0 to 200000000 Mining xp 
@@ -391,15 +391,19 @@ F2POSRSRanks::Application.configure do
     # 0.1071 Prayer:Cooking from 61512 to 200000000 Cooking xp   
     
     # ratio, bonus_for, bonus_from, start_xp, end_xp
-    config.bonus_xp_reg = [[0.25, "smithing", "mining", 0, 200000000],
-                           [1.135, "magic", "mining", 0, 200000000],
-                           [0.138, "magic", "woodcutting", 0, 200000000],
-                           [0.138, "magic", "fishing", 0, 200000000],
-                           [0.1666, "prayer", "firemaking", 13363, 61512],
-                           [0.1111, "prayer", "firemaking", 61512, 273742],
-                           [0.0741, "prayer", "firemaking", 273742, 200000000],
+    config.bonus_xp_reg = [[1.35, "magic", "woodcutting", 5018, 14833],
+                           [0.972972973, "magic", "woodcutting", 14833, 41171],
+                           [0.7346938776, "magic", "woodcutting", 41171, 101333],
+                           [0.6625766871, "magic", "woodcutting", 101333, 302288],
+                           [0.6, "magic", "woodcutting", 302288, 200000000],
+                           [0.4245283019, "smithing", "magic", 50339, 166636],
+                           [0.5636363636, "prayer", "mining", 41171, 302288],
+                           [0.5438596491, "prayer", "mining", 302288, 200000000],
+                           [0.2666, "prayer", "firemaking", 13363, 61512],
+                           [0.1777, "prayer", "firemaking", 61512, 	273742],
+                           [0.125, "prayer", "firemaking", 273742, 200000000],
                            ]
-                           
+
     config.bonus_xp_iron = [
                             # Attack
                             [0.1267, "prayer", "attack", 37224, 101333],
@@ -458,7 +462,8 @@ F2POSRSRanks::Application.configure do
                             [0.2610, "smithing", "crafting", 6291, 200000000],
 
                             # Runecrafting
-                            [0.4273, "woodcutting", "runecraft", 0, 200000000]
+                            # Woodcutting caps at 50m woodcutting
+                            [0.3403, "woodcutting", "runecraft", 0, 146924946]
                            ]
 
     config.bonus_xp_uim = [
@@ -519,7 +524,8 @@ F2POSRSRanks::Application.configure do
                             [0.2610, "smithing", "crafting", 6291, 200000000],
 
                             # Runecrafting
-                            [0.4273, "woodcutting", "runecraft", 0, 200000000]
+                            # Woodcutting caps at 50m woodcutting
+                            [0.3403, "woodcutting", "runecraft", 0, 146924946]
                            ]
 end
 
