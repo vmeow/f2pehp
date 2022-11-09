@@ -859,15 +859,15 @@ class Player < ActiveRecord::Base
       # calc ehp discrepancy
       if actual_xp < 0
         xp_discrepancy = -actual_xp
-        if skill_xphrs == [0]
-          if bonus_for == "firemaking"
-            skill_xphrs = [144600]
-            skill_ehp = skill_xp/144600
-          elsif bonus_for == "cooking"
-            skill_xphrs = [135000]
-            skill_ehp = skill_xp/135000
-          end
-        end
+        # if skill_xphrs == [0]
+        #   if bonus_for == "firemaking"
+        #     skill_xphrs = [144600]
+        #     skill_ehp = skill_xp/144600
+        #   elsif bonus_for == "cooking"
+        #     skill_xphrs = [135000]
+        #     skill_ehp = skill_xp/135000
+        #   end
+        # end
         ehp_discrepancy = calc_skill_ehp(skill_xp + xp_discrepancy, skill_tiers, skill_xphrs) - skill_ehp
       else
         xp_discrepancy = 0
