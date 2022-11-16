@@ -80,10 +80,22 @@
         %td= image_tag "skills/#{skill}.png"
         %td{:align => "center"}
           = ehp_reg["#{skill}_method"]
+          - if ehp_reg["#{skill}_method_video"]
+            %br
+            %br
+            = link_to "Link to video", ehp_reg["#{skill}_method_video"], target: "_blank", rel: "noopener noreferrer"
         %td{:align => "center"}
           = ehp_iron["#{skill}_method"]
+          - if ehp_iron["#{skill}_method_video"]
+            %br
+            %br
+            = link_to "Link to video", ehp_iron["#{skill}_method_video"], target: "_blank", rel: "noopener noreferrer"
         %td{:align => "center"}
           = ehp_uim["#{skill}_method"]
+          - if ehp_uim["#{skill}_method_video"]
+            %br
+            %br
+            = link_to "Link to video", ehp_uim["#{skill}_method_video"], target: "_blank", rel: "noopener noreferrer"
 = content_tag(:div, nil, class: "container", id: "footerHiscores", style: "margin: auto; width: 660px; height: 63px; margin-bottom: 0px;") 
 %br
 %br
