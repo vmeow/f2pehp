@@ -184,6 +184,7 @@ class Player < ActiveRecord::Base
                 {name: "Zyafer", amount: 10, date: "2022-09-10", flair_after: "flairs/woodcutting_icon.png"},
                 {name: "W00H000", amount: 10, date: "2021-09-04", other_css: ["color: #9933ff"]},
                   {name: "gluee9", amount: 10, date: "2022-11-07", flair_after: "flairs/S.png"},
+                {name: "Held Items", amount: 10, date: "2022-11-15", flair_after: "flairs/leek.png"},
                 {name: "n0neshine", amount: 5, date: "2021-06-12", flair_after: "flairs/n0neshine.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
