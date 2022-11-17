@@ -143,52 +143,90 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim = Hash.new
     
     config.ehp_reg['attack_method'] = "1 defence castle wars alts, after 40 attack it assumes you will train to 99 str first"
+    config.ehp_reg['attack_method_video'] = "https://www.youtube.com/watch?v=xY_Ej74Muz8";
     config.ehp_reg['strength_method'] = "1 defence castle wars alts"
+    config.ehp_reg['strength_method_video'] = "https://www.youtube.com/watch?v=xY_Ej74Muz8";
     config.ehp_reg['defence_method'] = "1 defence castle wars alts after 99 att/str"
+    config.ehp_reg['defence_method_video'] = "https://www.youtube.com/watch?v=xY_Ej74Muz8";
     config.ehp_reg['ranged_method'] = "1 defence castle wars alts"
+    config.ehp_reg['ranged_method_video'] = "https://www.youtube.com/watch?v=xY_Ej74Muz8";
     config.ehp_reg['hitpoints_method'] = "0 time during combats"
     config.ehp_reg['prayer_method'] = "Scatter-bury (some 0-time during other skills)"
+    config.ehp_reg['prayer_method_video'] = "https://www.youtube.com/watch?v=0eJU_ED3tkE";
     config.ehp_reg['magic_method'] = "Best spell, low alch, superheat, alch + fally tele + fire blast, then alch + teleblock (some 0-time during other skills)"
+    config.ehp_reg['magic_method_video'] = "https://i.imgur.com/UTMN13p.gif";
     config.ehp_reg['cooking_method'] = "1-tick beef then wines"
+    config.ehp_reg['cooking_method_video'] = "https://www.youtube.com/watch?v=KCXXLQi5i-8";
     config.ehp_reg['woodcutting_method'] = "4-tick trees, then 2-tick oaks while alching"
+    config.ehp_reg['woodcutting_method_video'] = "https://www.youtube.com/watch?v=CNvCUzFNkCg";
     config.ehp_reg['fishing_method'] = "Best fish, then 3-tick snow and leather fly fishing"
+    config.ehp_reg['fishing_method_video'] = "https://www.youtube.com/watch?v=lPcuhfQlOGs";
     config.ehp_reg['firemaking_method'] = "Best logs, with 0-time prayer"
+    config.ehp_reg['firemaking_method_video'] = "https://www.youtube.com/watch?v=97ABCow8Xys";
     config.ehp_reg['crafting_method'] = "Best leather item, then best gem"
+    config.ehp_reg['crafting_method_video'] = "https://www.youtube.com/watch?v=QyKlFC6sabE"
     config.ehp_reg['smithing_method'] = "Best platebody until adamant platebody, with alts to trade"
+    config.ehp_reg['smithing_method_video'] = "https://www.youtube.com/watch?v=zYLfUIkqFw4"
     config.ehp_reg['mining_method'] = "Best rock until iron, 3-tick cake iron at Mining guild while scattering ashes"
+    config.ehp_reg['mining_method_video'] = "https://www.youtube.com/watch?v=0aV7A1E7eOE"
     config.ehp_reg['runecraft_method'] = "Solo body talismans"
+    config.ehp_reg['runecraft_method_video'] = "https://www.youtube.com/watch?v=zEL1JO-uYKU"
     
     config.ehp_iron['attack_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_iron['attack_method_video'] = "https://www.youtube.com/watch?v=iKgigzN7r7c"
     config.ehp_iron['strength_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_iron['strength_method_video'] = "https://www.youtube.com/watch?v=iKgigzN7r7c"
     config.ehp_iron['defence_method'] = "1-40 questing xp and cows, 40-99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_iron['defence_method_video'] = "https://www.youtube.com/watch?v=iKgigzN7r7c"
     config.ehp_iron['ranged_method'] = "1-40 minotaurs, 40-50 hill giants, 50-99 ogresses, 99+ ogresses and obor (all with pray flicking, using best arrows)"
+    config.ehp_iron['ranged_method_video'] = "https://www.youtube.com/watch?v=o6_Iw67RVbE"
     config.ehp_iron['hitpoints_method'] = "0 time during combats"
     config.ehp_iron['prayer_method'] = "Double hop boneyard and 0-time big bones from giants/ogresses"
+    config.ehp_iron['prayer_method_video'] = "https://www.youtube.com/watch?v=yikJBIhriH4"
     config.ehp_iron['magic_method'] = "0-time teleport/superheat/telegrab/high alch during other skills"
     config.ehp_iron['cooking_method'] = "Shrimp, sardines and herring, then trout/salmon 0-tick while fishing (erie fish)"
+    config.ehp_iron['cooking_method_video'] = "https://www.youtube.com/watch?v=21CYgZBqoVk"
     config.ehp_iron['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, 2.66-tick willow trees, also train alongside runecrafting"
+    config.ehp_iron['woodcutting_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
     config.ehp_iron['fishing_method'] = "Shrimp, sardines and herring, then trout/salmon 3-ticked with snow/cooked fish (erie fish)"
+    config.ehp_iron['fishing_method_video'] = "https://www.youtube.com/watch?v=T-vxflWVH6s"
     config.ehp_iron['firemaking_method'] = "Logs, oak logs, then willow logs, during woodcutting"
+    config.ehp_iron['firemaking_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
     config.ehp_iron['crafting_method'] = "Leather, then double hop Varrock SW chronicle teleport tiaras with tick manip and 0 time gems from ogresses"
+    config.ehp_iron['crafting_method_video'] = "https://www.youtube.com/watch?v=txoHCe8Jplk"
     config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron with snow after double hop telegrabbing wildy nats, 0-time silver smelting"
+    config.ehp_iron['smithing_method_video'] = "https://www.youtube.com/watch?v=7JuJjTjx_bE"
     config.ehp_iron['mining_method'] = "0 time during crafting, smithing, runecraft"
     config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with chronicle tele, training woodcutting alongside"
+    config.ehp_iron['runecraft_method_video'] = "https://www.youtube.com/watch?v=uJsL3jN_gD8"
     
     config.ehp_uim['attack_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_uim['attack_method_video'] = "https://www.youtube.com/watch?v=iKgigzN7r7c"
     config.ehp_uim['strength_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_uim['strength_method_video'] = "https://www.youtube.com/watch?v=iKgigzN7r7c"
     config.ehp_uim['defence_method'] = "1-40 questing xp and cows, 40-99+ ogresses and hill giants (all with prayer flicking)"
+    config.ehp_uim['defence_method_video'] = "https://www.youtube.com/watch?v=iKgigzN7r7c"
     config.ehp_uim['ranged_method'] = "1-40 minotaurs, 40-50 hill giants, 50-99 ogresses, 99+ ogresses and obor (all with pray flicking, using best arrows)"
+    config.ehp_uim['ranged_method_video'] = "https://www.youtube.com/watch?v=o6_Iw67RVbE"
     config.ehp_uim['hitpoints_method'] = "0 time during combats"
     config.ehp_uim['prayer_method'] = "Double hop boneyard and 0-time big bones from giants/ogresses"
+    config.ehp_uim['prayer_method_video'] = "https://www.youtube.com/watch?v=yikJBIhriH4"
     config.ehp_uim['magic_method'] = "0-time teleport/superheat/telegrab/high alch during other skills"
     config.ehp_uim['cooking_method'] = "Shrimp, sardines and herring, then trout/salmon 0-tick while fishing (erie fish)"
+    config.ehp_uim['cooking_method_video'] = "https://www.youtube.com/watch?v=21CYgZBqoVk"
     config.ehp_uim['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, 2.66-tick willow trees, also train alongside runecrafting"
+    config.ehp_uim['woodcutting_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
     config.ehp_uim['fishing_method'] = "Shrimp, sardines and herring, then trout/salmon 3-ticked with snow/cooked fish (erie fish)"
+    config.ehp_uim['fishing_method_video'] = "https://www.youtube.com/watch?v=T-vxflWVH6s"
     config.ehp_uim['firemaking_method'] = "Logs, oak logs, then willow logs, during woodcutting"
+    config.ehp_uim['firemaking_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
     config.ehp_uim['crafting_method'] = "Leather, then double hop Varrock SW chronicle teleport tiaras with tick manip and 0 time gems from ogresses"
+    config.ehp_uim['crafting_method_video'] = "https://www.youtube.com/watch?v=txoHCe8Jplk"
     config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron with snow after double hop telegrabbing wildy nats, 0-time silver smelting"
+    config.ehp_uim['smithing_method_video'] = "https://www.youtube.com/watch?v=7JuJjTjx_bE"
     config.ehp_uim['mining_method'] = "0 time during crafting, smithing, runecraft"
     config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with chronicle tele, training woodcutting alongside"
+    config.ehp_uim['runecraft_method_video'] = "https://www.youtube.com/watch?v=uJsL3jN_gD8"
   
     # config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
     # config.ehp_reg['attack_xphrs'] = [5300, 25450, 29500, 37900, 44800, 46900, 50800, 53500]
