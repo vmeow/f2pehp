@@ -185,7 +185,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['prayer_method_video'] = "https://www.youtube.com/watch?v=yikJBIhriH4"
     config.ehp_iron['magic_method'] = "0-time teleport/superheat/telegrab/high alch during other skills"
     config.ehp_iron['cooking_method'] = "Shrimp, sardines and herring, then trout/salmon 0-tick while fishing (erie fish)"
-    config.ehp_iron['cooking_method_video'] = "https://www.youtube.com/watch?v=21CYgZBqoVk"
+    config.ehp_iron['cooking_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
     config.ehp_iron['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, 2.66-tick willow trees, also train alongside runecrafting"
     config.ehp_iron['woodcutting_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
     config.ehp_iron['fishing_method'] = "Shrimp, sardines and herring, then trout/salmon 3-ticked with snow/cooked fish (erie fish)"
