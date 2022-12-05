@@ -104,7 +104,7 @@
       = form_tag records_path, :method => :get, :id => 'filters_form' do
         = "Filter Accounts"
         %br
-        = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
+        = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 138px; margin-bottom: 0px;") do
           - ["Reg", "IM", "UIM", "HCIM"].each do |type|
             &nbsp
             = check_box_tag "filters_[#{type}]", 1, @filters.include?(type), :id => "filters_#{type}"
