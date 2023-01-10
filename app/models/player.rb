@@ -654,9 +654,9 @@ class Player < ActiveRecord::Base
   end
 
   def calculate_virtual_stats(stats, last_updated=nil)
-    bonus_xp = calc_bonus_xps(stats)
+    # bonus_xp = calc_bonus_xps(stats)
     stats = calc_ehp(stats)
-    stats = adjust_bonus_xp(stats, bonus_xp)
+    # stats = adjust_bonus_xp(stats, bonus_xp)
 
     stats = calc_combat(stats)
 
@@ -713,11 +713,12 @@ class Player < ActiveRecord::Base
     return stats_hash
   end
 
-  def calc_skill_ehp(xp, tiers, xphrs)
+  def calc_skill_ehp(xp, tiers, divisors, xphrs)
     ehp = 0
     tiers.each.with_index do |tier, idx|
       tier = tier.to_f
-      xphr = xphrs[idx].to_f
+      divisor = divisors[idx].to_f
+      xphr = xphrs[idx].to_f/divisor
       if xphr != 0 and tier < xp
         if (idx+1) < tiers.length and xp >=  tiers[idx+1]
           ehp += (tiers[idx+1].to_f - tier)/xphr
@@ -729,12 +730,12 @@ class Player < ActiveRecord::Base
     return ehp
   end
 
-  def calc_max_lvl_ehp(tiers, xphrs)
-    return calc_skill_ehp(13034431, tiers, xphrs)
+  def calc_max_lvl_ehp(tiers, divisors, xphrs)
+    return calc_skill_ehp(13034431, tiers, divisors, xphrs)
   end
 
-  def calc_max_xp_ehp(tiers, xphrs)
-    return calc_skill_ehp(200000000, tiers, xphrs)
+  def calc_max_xp_ehp(tiers, divisors, xphrs)
+    return calc_skill_ehp(200000000, tiers, divisors, xphrs)
   end
 
   def time_to_max(stats_hash, lvl_or_xp)
@@ -750,11 +751,11 @@ class Player < ActiveRecord::Base
         end
 
         skill_ehp = stats_hash["#{skill}_ehp"]
-        adjusted_skill_ehp = calc_skill_ehp(skill_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        adjusted_skill_ehp = calc_skill_ehp(skill_xp, ehp["#{skill}_tiers"], ehp["#{skill}_effective_ehp_rate_divisors"],ehp["#{skill}_xphrs"])
         if lvl_or_xp == "lvl"
-          max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+          max_ehp = calc_max_lvl_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_effective_ehp_rate_divisors"], ehp["#{skill}_xphrs"])
         else
-          max_ehp = calc_max_xp_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+          max_ehp = calc_max_xp_ehp(ehp["#{skill}_tiers"], ehp["#{skill}_effective_ehp_rate_divisors"], ehp["#{skill}_xphrs"])
         end
 
         max_ehp = (max_ehp*100).floor/100.0
@@ -807,7 +808,7 @@ class Player < ActiveRecord::Base
     end
     return bonuses
   end
-
+    
   def calc_ehp(stats_hash)
     ehp = get_ehp_type
     total_ehp = 0.0
@@ -821,7 +822,8 @@ class Player < ActiveRecord::Base
 
       skill_tiers = ehp["#{skill}_tiers"]
       skill_xphrs = ehp["#{skill}_xphrs"]
-      skill_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
+      skill_effective_ehp_rate_divisors = ehp["#{skill}_effective_ehp_rate_divisors"]
+      skill_ehp = calc_tiered_ehp(skill_tiers, skill_xphrs, skill_effective_ehp_rate_divisors, skill_xp)
 
       stats_hash["#{skill}_ehp"] = skill_ehp.round(2)
       total_ehp += skill_ehp.round(2)
@@ -906,11 +908,12 @@ class Player < ActiveRecord::Base
     return stats_hash
   end
 
-  def calc_tiered_ehp(skill_tiers, skill_xphrs, skill_xp)
+  def calc_tiered_ehp(skill_tiers, skill_xphrs, skill_effective_ehp_rate_divisors, skill_xp)
     skill_ehp = 0.0
     skill_tiers.each.with_index do |skill_tier, tier_idx|
       skill_tier = skill_tier.to_f
-      skill_xphr = skill_xphrs[tier_idx].to_f
+      skill_effective_ehp_rate_divisor = skill_effective_ehp_rate_divisors[tier_idx].to_f
+      skill_xphr = skill_xphrs[tier_idx].to_f/skill_effective_ehp_rate_divisor
       if skill_xphr != 0 and skill_tier < skill_xp
         if (tier_idx + 1) < skill_tiers.length and skill_xp >=  skill_tiers[tier_idx + 1]
           skill_ehp += (skill_tiers[tier_idx+1].to_f - skill_tier)/skill_xphr
@@ -933,7 +936,7 @@ class Player < ActiveRecord::Base
     ehp = get_ehp_type
     ehp_start = {}
     (SKILLS - ["overall"]).each do |skill|
-      skill_ehp = calc_skill_ehp(xps["#{skill}_xp"].to_i, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+      skill_ehp = calc_skill_ehp(xps["#{skill}_xp"].to_i, ehp["#{skill}_tiers"], ehp["#{skill}_effective_ehp_rate_divisors"], ehp["#{skill}_xphrs"])
       ehp_start = ehp_start.merge({"#{skill}_ehp_#{time}_start" => skill_ehp})
     end
     ehp_start["overall_ehp_#{time}_start"] = ehp_start.values.sum
@@ -954,8 +957,8 @@ class Player < ActiveRecord::Base
         xp_gain = recs["#{skill}_xp_#{time}_max"].to_i
         curr_xp = self.read_attribute("#{skill}_xp")
         before_xp = curr_xp - xp_gain
-        before_ehp = calc_skill_ehp(before_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
-        curr_ehp = calc_skill_ehp(curr_xp, ehp["#{skill}_tiers"], ehp["#{skill}_xphrs"])
+        before_ehp = calc_skill_ehp(before_xp, ehp["#{skill}_tiers"], ehp["#{skill}_effective_ehp_rate_divisors"], ehp["#{skill}_xphrs"])
+        curr_ehp = calc_skill_ehp(curr_xp, ehp["#{skill}_tiers"], ehp["#{skill}_effective_ehp_rate_divisors"], ehp["#{skill}_xphrs"])
         ehp_gain = (curr_ehp - before_ehp).round(2)
         time_recs = time_recs.merge({"#{skill}_ehp_#{time}_max" => ehp_gain})
       end
@@ -979,10 +982,7 @@ class Player < ActiveRecord::Base
         start_stats_hash["#{skill}_xp"] = start_xp
         start_stats_hash["#{skill}_lvl"] = 1
       end
-      bonus_xp = calc_bonus_xps(start_stats_hash)
       start_stats_hash = calc_ehp(start_stats_hash)
-      start_stats_hash = adjust_bonus_xp(start_stats_hash, bonus_xp)
-
       SKILLS.each do |skill|
         skill_hash["#{skill}_ehp_#{time}_start"] = start_stats_hash["#{skill}_ehp"]
       end

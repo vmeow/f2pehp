@@ -141,7 +141,10 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg = Hash.new
     config.ehp_iron = Hash.new
     config.ehp_uim = Hash.new
-    
+
+    # Bonus xp formula for each tier: 
+    # effective_ehp_rate_divisors = sum(bonus_skill1/bonus_skill_xphr1 + bonus_skill2/bonus_skill_xphr2 + ...)
+    # multiplier = 1/(1 - main_skill_ehprate * effective_ehp_rate_divisors)
     config.ehp_reg['attack_method'] = "1 defence castle wars alts, after 40 attack it assumes you will train to 99 str first"
     config.ehp_reg['attack_method_video'] = "https://www.youtube.com/watch?v=xY_Ej74Muz8";
     config.ehp_reg['strength_method'] = "1 defence castle wars alts"
@@ -244,39 +247,51 @@ F2POSRSRanks::Application.configure do
     # config.ehp_reg['ranged_xphrs'] = [4900, 24650, 30500, 44800, 45900, 46100, 49200, 55000]
     config.ehp_reg['attack_tiers'] = [0, 37224]
     config.ehp_reg['attack_xphrs'] = [8000, 90000]
-  
+    config.ehp_reg['attack_effective_ehp_rate_divisors'] = [1, 1]
+
     config.ehp_reg['strength_tiers'] = [0, 37224, 50339, 75127, 123660, 166636, 273742, 407015, 547953, 899257, 1336443, 1986068, 2951373, 4385776, 7195629, 9684577]
     config.ehp_reg['strength_xphrs'] = [8000, 40500, 43500, 49000, 52000, 55000, 58000, 61000, 66500, 69500, 72500, 75500, 78500, 84000, 87000, 90000]
+    config.ehp_reg['strength_effective_ehp_rate_divisors'] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   
     config.ehp_reg['defence_tiers'] = [0]
     config.ehp_reg['defence_xphrs'] = [90000]
+    config.ehp_reg['defence_effective_ehp_rate_divisors'] = [1]
   
     config.ehp_reg['hitpoints_tiers'] = [0]
     config.ehp_reg['hitpoints_xphrs'] = [0]
+    config.ehp_reg['hitpoints_effective_ehp_rate_divisors'] = [1]
   
     config.ehp_reg['ranged_tiers'] = [0, 13363, 20224, 33648, 55649, 91721, 150872, 273742, 449428, 737627, 1210421, 1986068, 3258594, 5346332, 8771558, 13034431]
     config.ehp_reg['ranged_xphrs'] = [8000, 30000, 34000, 40500, 44500, 48500, 52500, 56500, 63000, 66500, 70500, 74500, 78500, 85500, 89500, 90000]
+    config.ehp_reg['ranged_effective_ehp_rate_divisors'] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   
     config.ehp_reg['prayer_tiers'] = [0]
     config.ehp_reg['prayer_xphrs'] = [105000]
+    config.ehp_reg['prayer_effective_ehp_rate_divisors'] = [1]
   
     config.ehp_reg['magic_tiers'] = [0, 5018, 50339, 166636, 3258594]
     config.ehp_reg['magic_xphrs'] = [15000, 60000, 100000, 165000, 180000]
+    config.ehp_reg['magic_effective_ehp_rate_divisors'] = [1, 1, 0.853621, 1, 1]
   
     config.ehp_reg['cooking_tiers'] = [0, 22406, 605032]
     config.ehp_reg['cooking_xphrs'] = [100000, 450000, 480000]
+    config.ehp_reg['cooking_effective_ehp_rate_divisors'] = [1, 1, 1]
   
     config.ehp_reg['woodcutting_tiers'] = [0, 5018, 14833, 41171, 101333, 302288]
     config.ehp_reg['woodcutting_xphrs'] = [29500, 40000, 55500, 73500, 81500, 90000]
+    config.ehp_reg['woodcutting_effective_ehp_rate_divisors'] = [1, 0.7, 0.7, 0.7, 0.7, 0.7]
   
     config.ehp_reg['fishing_tiers'] = [0, 4470, 13363, 101333, 273742, 73627, 1986068, 5902831, 8771558, 13034431]
     config.ehp_reg['fishing_xphrs'] = [14000, 28000, 40000, 55500, 61500, 68000, 74250, 79750, 82500, 90000]
+    config.ehp_reg['fishing_effective_ehp_rate_divisors'] = [1, 0.7619, 0.7619, 0.7619, 0.7619, 0.7619, 0.7619, 0.7619, 0.7619, 0.7619]
 
     config.ehp_reg['firemaking_tiers'] = [0, 13363, 61512, 273742]
     config.ehp_reg['firemaking_xphrs'] = [45000, 132660, 198990, 298485]
+    config.ehp_reg['firemaking_effective_ehp_rate_divisors'] = [1, 0.668654, 0.668716, 0.650446]
   
     config.ehp_reg['crafting_tiers'] = [0, 4470, 9730, 20224, 50339]
     config.ehp_reg['crafting_xphrs'] = [37000, 137200, 185220, 233240, 290000]
+    config.ehp_reg['crafting_effective_ehp_rate_divisors'] = [1, 1, 1, 1, 1]
   
     # config.ehp_reg['smithing_tiers'] = [0, 37224, 605032, 4385776, 170000000]
     # config.ehp_reg['smithing_xphrs'] = [40000, 129000, 200000, 250000, 30000000]
@@ -288,136 +303,169 @@ F2POSRSRanks::Application.configure do
     # config.ehp_reg['runecraft_xphrs'] = [26000]
     config.ehp_reg['smithing_tiers'] = [0, 12725, 18247, 83014, 605032, 4385776]
     config.ehp_reg['smithing_xphrs'] = [12725, 58000, 116000, 174000, 232000, 290000]
+    config.ehp_reg['smithing_effective_ehp_rate_divisors'] = [1, 1, 1, 1, 1, 1]
   
     config.ehp_reg['mining_tiers'] = [0, 2411, 5018, 14833, 41171, 302288]
-    config.ehp_reg['mining_xphrs'] = [4000, 46250, 49000, 52500, 55000, 57000]
+    config.ehp_reg['mining_xphrs'] = [4000, 40500, 45500, 48000, 54000, 56000, 57000]
+    config.ehp_reg['mining_effective_ehp_rate_divisors'] = [1, 1, 1, 1, 1, 0.7048]
   
     config.ehp_reg['runecraft_tiers'] = [0]
     config.ehp_reg['runecraft_xphrs'] = [55000]
+    config.ehp_reg['runecraft_effective_ehp_rate_divisors'] = [0.877778]
   
   
   
     config.ehp_iron['attack_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 13034431]
-    config.ehp_iron['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49000]
+    config.ehp_iron['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49600]
+    config.ehp_iron['attack_effective_ehp_rate_divisors'] = [1, 0.602029, 0.558332, 0.548269, 0.541714, 0.538276, 0.536733, 0.535194, 0.533304, 0.532713, 0.531297, 0.529765, 0.549546]
   
     config.ehp_iron['strength_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 11805606, 13034431] 
     config.ehp_iron['strength_xphrs'] = [5000, 24900, 28400, 33000, 36500, 37500, 38900, 40450, 41900, 42900, 44200, 45900, 49900, 49800]
-  
+    config.ehp_iron['strength_effective_ehp_rate_divisors'] = [1, 0.736306, 0.707355, 0.669147, 0.640314, 0.632067, 0.620275, 0.607456, 0.59548, 0.587051, 0.576748, 0.562436, 0.529294, 0.547731]
+
     config.ehp_iron['defence_tiers'] = [0, 37224]
     config.ehp_iron['defence_xphrs'] = [5000, 49500]
+    config.ehp_iron['defence_effective_ehp_rate_divisors'] = [1, 0.550517]
   
     config.ehp_iron['hitpoints_tiers'] = [0]
     config.ehp_iron['hitpoints_xphrs'] = [0]
+    config.ehp_iron['hitpoints_effective_ehp_rate_divisors'] = [1]
   
     config.ehp_iron['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
     config.ehp_iron['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 45100]
+    config.ehp_iron['ranged_effective_ehp_rate_divisors'] = [1, 0.754425, 0.889981, 0.87068, 0.865441, 0.850827, 0.834007, 0.831526, 0.816636, 0.8125, 0.796507, 0.794301, 0.777757, 0.775827, 0.760661, 0.744393, 0.773074]
   
     config.ehp_iron['prayer_tiers'] = [0]
     config.ehp_iron['prayer_xphrs'] = [14000]
+    config.ehp_iron['prayer_effective_ehp_rate_divisors'] = [1]
   
     # config.ehp_iron['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_iron['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
     config.ehp_iron['magic_tiers'] = [0]
     config.ehp_iron['magic_xphrs'] = [0]
+    config.ehp_iron['magic_effective_ehp_rate_divisors'] = [1]
   
     # config.ehp_iron['cooking_tiers'] = [0, 101333]
     # config.ehp_iron['cooking_xphrs'] = [40000, 120000]
   
     config.ehp_iron['cooking_tiers'] = [0]
     config.ehp_iron['cooking_xphrs'] = [2052000]
+    config.ehp_iron['cooking_effective_ehp_rate_divisors'] = [1]
 
-    config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
-    config.ehp_iron['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 95000]
+    config.ehp_iron['woodcutting_tiers'] = [0, 8740, 203254]
+    config.ehp_iron['woodcutting_xphrs'] = [26000, 40000, 95000]
+    config.ehp_iron['woodcutting_effective_ehp_rate_divisors'] = [1, 1, 1]
   
     # config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
   
     config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2421087, 5902831, 13034431]
     config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35250, 60350, 71000, 76250, 81000, 90000]
+    config.ehp_iron['fishing_effective_ehp_rate_divisors'] = [1, 1, 1, 1, 1, 1, 1, 1]
   
     # config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
     config.ehp_iron['firemaking_tiers'] = [0, 13363]
     config.ehp_iron['firemaking_xphrs'] = [45000, 130500]
-  
+    config.ehp_iron['firemaking_effective_ehp_rate_divisors'] = [1, 1]
+
     config.ehp_iron['crafting_tiers'] = [0]
     config.ehp_iron['crafting_xphrs'] = [20000]
+    config.ehp_iron['crafting_effective_ehp_rate_divisors'] = [0.770044]
   
     # config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
     config.ehp_iron['smithing_tiers'] = [0]
     config.ehp_iron['smithing_xphrs'] = [22700]
+    config.ehp_iron['smithing_effective_ehp_rate_divisors'] = [1]
   
     config.ehp_iron['mining_tiers'] = [0]
     config.ehp_iron['mining_xphrs'] = [0]
-  
+    config.ehp_iron['mining_effective_ehp_rate_divisors'] = [1]
+
     config.ehp_iron['runecraft_tiers'] = [0]
     config.ehp_iron['runecraft_xphrs'] = [4650]
+    config.ehp_iron['runecraft_effective_ehp_rate_divisors'] = [0.987763]
   
   
   
     config.ehp_uim['attack_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 13034431]
-    config.ehp_uim['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49000]
+    config.ehp_uim['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49600]
+    config.ehp_uim['attack_effective_ehp_rate_divisors'] = [1, 0.602029, 0.558332, 0.548269, 0.541714, 0.538276, 0.536733, 0.535194, 0.533304, 0.532713, 0.531297, 0.529765, 0.549546]
   
     config.ehp_uim['strength_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 11805606, 13034431] 
     config.ehp_uim['strength_xphrs'] = [5000, 24900, 28400, 33000, 36500, 37500, 38900, 40450, 41900, 42900, 44200, 45900, 49900, 49800]
-  
+    config.ehp_uim['strength_effective_ehp_rate_divisors'] = [1, 0.736306, 0.707355, 0.669147, 0.640314, 0.632067, 0.620275, 0.607456, 0.59548, 0.587051, 0.576748, 0.562436, 0.529294, 0.547731]
+
     config.ehp_uim['defence_tiers'] = [0, 37224]
     config.ehp_uim['defence_xphrs'] = [5000, 49500]
+    config.ehp_uim['defence_effective_ehp_rate_divisors'] = [1, 0.550517]
   
     config.ehp_uim['hitpoints_tiers'] = [0]
     config.ehp_uim['hitpoints_xphrs'] = [0]
+    config.ehp_uim['hitpoints_effective_ehp_rate_divisors'] = [1]
   
     config.ehp_uim['ranged_tiers'] = [0, 37224, 101333, 184040, 273742, 368599, 547953, 737627, 992895, 1475581, 1986068, 2673114, 3972294, 5346332, 7944614, 10692629, 13034431] 
     config.ehp_uim['ranged_xphrs'] = [4000, 22850, 19950, 23450, 24400, 27050, 30100, 30550, 33250, 34000, 36900, 37300, 40300, 40650, 43400, 46350, 45100]
+    config.ehp_uim['ranged_effective_ehp_rate_divisors'] = [1, 0.754425, 0.889981, 0.87068, 0.865441, 0.850827, 0.834007, 0.831526, 0.816636, 0.8125, 0.796507, 0.794301, 0.777757, 0.775827, 0.760661, 0.744393, 0.773074]
   
     config.ehp_uim['prayer_tiers'] = [0]
     config.ehp_uim['prayer_xphrs'] = [14000]
+    config.ehp_uim['prayer_effective_ehp_rate_divisors'] = [1]
   
     # config.ehp_uim['magic_tiers'] = [0, 3973, 247886, 3500000, 13034000, 53700000]
     # config.ehp_uim['magic_xphrs'] = [5000, 34800, 51700, 9534000, 51700, 146300000]
   
     config.ehp_uim['magic_tiers'] = [0]
     config.ehp_uim['magic_xphrs'] = [0]
+    config.ehp_uim['magic_effective_ehp_rate_divisors'] = [1]
   
     # config.ehp_uim['cooking_tiers'] = [0, 101333]
     # config.ehp_uim['cooking_xphrs'] = [40000, 120000]
   
     config.ehp_uim['cooking_tiers'] = [0]
     config.ehp_uim['cooking_xphrs'] = [2052000]
+    config.ehp_uim['cooking_effective_ehp_rate_divisors'] = [1]
 
-    config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
-    config.ehp_uim['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 95000]
+    config.ehp_uim['woodcutting_tiers'] = [0, 8740, 203254]
+    config.ehp_uim['woodcutting_xphrs'] = [26000, 40000, 95000]
+    config.ehp_uim['woodcutting_effective_ehp_rate_divisors'] = [1, 1, 1]
   
     # config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
   
     config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2421087, 5902831, 13034431]
     config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35250, 60350, 71000, 76250, 81000, 90000]
+    config.ehp_uim['fishing_effective_ehp_rate_divisors'] = [1, 1, 1, 1, 1, 1, 1, 1]
   
     # config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
     config.ehp_uim['firemaking_tiers'] = [0, 13363]
     config.ehp_uim['firemaking_xphrs'] = [45000, 130500]
-  
+    config.ehp_uim['firemaking_effective_ehp_rate_divisors'] = [1, 1]
+
     config.ehp_uim['crafting_tiers'] = [0]
     config.ehp_uim['crafting_xphrs'] = [20000]
+    config.ehp_uim['crafting_effective_ehp_rate_divisors'] = [0.770044]
   
     # config.ehp_uim['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_uim['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
     config.ehp_uim['smithing_tiers'] = [0]
     config.ehp_uim['smithing_xphrs'] = [22700]
+    config.ehp_uim['smithing_effective_ehp_rate_divisors'] = [1]
   
     config.ehp_uim['mining_tiers'] = [0]
     config.ehp_uim['mining_xphrs'] = [0]
-  
+    config.ehp_uim['mining_effective_ehp_rate_divisors'] = [1]
+
     config.ehp_uim['runecraft_tiers'] = [0]
     config.ehp_uim['runecraft_xphrs'] = [4650]
+    config.ehp_uim['runecraft_effective_ehp_rate_divisors'] = [0.987763]
     
     # Bonus XP (End): 
     # 0.2500 Smithing:Mining from 0 to 200000000 Mining xp 
