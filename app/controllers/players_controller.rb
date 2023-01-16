@@ -161,7 +161,7 @@ class PlayersController < ApplicationController
       @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
-      @players = @players.where("combat_lvl < 4")
+      @players = @players.where("combat_lvl < 4").where("total_lvl <= 816")
     end
 
     clan_filter_clause = @clan_filters.keys
@@ -416,7 +416,7 @@ class PlayersController < ApplicationController
       @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
-      @players = @players.where("combat_lvl < 4")
+      @players = @players.where("combat_lvl < 4").where("total_lvl <= 816")
     end
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
