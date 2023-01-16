@@ -161,7 +161,7 @@ class PlayersController < ApplicationController
       @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
-      @players = @players.where("combat_lvl < 4").where("total_lvl <= 816")
+      @players = @players.where("combat_lvl < 4").where("overall_lvl <= 816")
     end
 
     clan_filter_clause = @clan_filters.keys
@@ -284,7 +284,7 @@ class PlayersController < ApplicationController
       @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
-      @players = @players.where("combat_lvl < 4").where("total_lvl <= 816")
+      @players = @players.where("combat_lvl < 4").where("overall_lvl <= 816")
     end
 
     @players = @players.where("overall_ehp > 1 and potential_p2p <= 0").paginate(:page => params[:page], :per_page => @show_limit.to_i)
@@ -416,7 +416,7 @@ class PlayersController < ApplicationController
       @players = @players.where(defence_lvl: 1).where("combat_lvl >= 4")
     end
     if @restrictions["3 combat"]
-      @players = @players.where("combat_lvl < 4").where("total_lvl <= 816")
+      @players = @players.where("combat_lvl < 4").where("overall_lvl <= 816")
     end
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")
