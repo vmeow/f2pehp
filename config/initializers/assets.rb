@@ -242,11 +242,11 @@ F2POSRSRanks::Application.configure do
   
     # config.ehp_reg['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
     # config.ehp_reg['ranged_xphrs'] = [4900, 24650, 30500, 44800, 45900, 46100, 49200, 55000]
-    config.ehp_reg['attack_tiers'] = [0, 37224]
-    config.ehp_reg['attack_xphrs'] = [8000, 90000]
+    config.ehp_reg['attack_tiers'] = [0, 4825, 37224]
+    config.ehp_reg['attack_xphrs'] = [12000, 30000, 90000]
   
-    config.ehp_reg['strength_tiers'] = [0, 37224, 50339, 75127, 123660, 166636, 273742, 407015, 547953, 899257, 1336443, 1986068, 2951373, 4385776, 7195629, 9684577]
-    config.ehp_reg['strength_xphrs'] = [8000, 40500, 43500, 49000, 52000, 55000, 58000, 61000, 66500, 69500, 72500, 75500, 78500, 84000, 87000, 90000]
+    config.ehp_reg['strength_tiers'] = [0, 18650, 37224, 50339, 75127, 123660, 166636, 273742, 407015, 547953, 899257, 1336443, 1986068, 2951373, 4385776, 7195629, 9684577]
+    config.ehp_reg['strength_xphrs'] = [12000, 25000, 40500, 43500, 49000, 52000, 55000, 58000, 61000, 66500, 69500, 72500, 75500, 78500, 84000, 87000, 90000]
   
     config.ehp_reg['defence_tiers'] = [0]
     config.ehp_reg['defence_xphrs'] = [90000]
