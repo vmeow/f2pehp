@@ -192,7 +192,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['fishing_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
     config.ehp_iron['firemaking_method'] = "Logs, oak logs, then willow logs, during woodcutting"
     config.ehp_iron['firemaking_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
-    config.ehp_iron['crafting_method'] = "Leather, then double hop Varrock SW chronicle teleport tiaras with tick manip and 0 time gems from ogresses"
+    config.ehp_iron['crafting_method'] = "Leather, unstrung symbols, then double hop Varrock SW chronicle teleport tiaras with tick manip and 0 time gems from ogresses"
     config.ehp_iron['crafting_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
     config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron with snow after double hop telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_iron['smithing_method_video'] = "https://www.youtube.com/watch?v=7JuJjTjx_bE"
@@ -220,7 +220,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['fishing_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
     config.ehp_uim['firemaking_method'] = "Logs, oak logs, then willow logs, during woodcutting"
     config.ehp_uim['firemaking_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
-    config.ehp_uim['crafting_method'] = "Leather, then double hop Varrock SW chronicle teleport tiaras with tick manip and 0 time gems from ogresses"
+    config.ehp_uim['crafting_method'] = "Leather, unstrung symbols, then double hop Varrock SW chronicle teleport tiaras with tick manip and 0 time gems from ogresses"
     config.ehp_uim['crafting_method_video'] = "https://www.youtube.com/watch?v=txoHCe8Jplk"
     config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron with snow after double hop telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_uim['smithing_method_video'] = "https://www.youtube.com/watch?v=7JuJjTjx_bE"
@@ -242,11 +242,11 @@ F2POSRSRanks::Application.configure do
   
     # config.ehp_reg['ranged_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
     # config.ehp_reg['ranged_xphrs'] = [4900, 24650, 30500, 44800, 45900, 46100, 49200, 55000]
-    config.ehp_reg['attack_tiers'] = [0, 37224]
-    config.ehp_reg['attack_xphrs'] = [8000, 90000]
+    config.ehp_reg['attack_tiers'] = [0, 4825, 37224]
+    config.ehp_reg['attack_xphrs'] = [12000, 30000, 90000]
   
-    config.ehp_reg['strength_tiers'] = [0, 37224, 50339, 75127, 123660, 166636, 273742, 407015, 547953, 899257, 1336443, 1986068, 2951373, 4385776, 7195629, 9684577]
-    config.ehp_reg['strength_xphrs'] = [8000, 40500, 43500, 49000, 52000, 55000, 58000, 61000, 66500, 69500, 72500, 75500, 78500, 84000, 87000, 90000]
+    config.ehp_reg['strength_tiers'] = [0, 18650, 37224, 50339, 75127, 123660, 166636, 273742, 407015, 547953, 899257, 1336443, 1986068, 2951373, 4385776, 7195629, 9684577]
+    config.ehp_reg['strength_xphrs'] = [12000, 25000, 40500, 43500, 49000, 52000, 55000, 58000, 61000, 66500, 69500, 72500, 75500, 78500, 84000, 87000, 90000]
   
     config.ehp_reg['defence_tiers'] = [0]
     config.ehp_reg['defence_xphrs'] = [90000]
@@ -339,11 +339,11 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_iron['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_iron['firemaking_tiers'] = [0, 13363]
-    config.ehp_iron['firemaking_xphrs'] = [45000, 130500]
+    config.ehp_iron['firemaking_tiers'] = [0, 2411, 13363, 50339]
+    config.ehp_iron['firemaking_xphrs'] = [15000, 45000, 120000, 130500]
   
-    config.ehp_iron['crafting_tiers'] = [0]
-    config.ehp_iron['crafting_xphrs'] = [20000]
+    config.ehp_iron['crafting_tiers'] = [0, 2746, 6291]
+    config.ehp_iron['crafting_xphrs'] = [15000, 19000, 20000]
   
     # config.ehp_iron['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
@@ -401,11 +401,11 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['firemaking_tiers'] = [0, 3858, 21381, 101333]
     # config.ehp_uim['firemaking_xphrs'] = [30700, 46100, 69100, 144600]
   
-    config.ehp_uim['firemaking_tiers'] = [0, 13363]
-    config.ehp_uim['firemaking_xphrs'] = [45000, 130500]
+    config.ehp_uim['firemaking_tiers'] = [0, 2411, 13363, 50339]
+    config.ehp_uim['firemaking_xphrs'] = [15000, 45000, 120000, 130500]
   
-    config.ehp_uim['crafting_tiers'] = [0]
-    config.ehp_uim['crafting_xphrs'] = [20000]
+    config.ehp_uim['crafting_tiers'] = [0, 2746, 6291]
+    config.ehp_uim['crafting_xphrs'] = [15000, 19000, 20000]
   
     # config.ehp_uim['smithing_tiers'] = [0, 10050000, 13034000, 154200000]
     # config.ehp_uim['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
