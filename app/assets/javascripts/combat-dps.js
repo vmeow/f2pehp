@@ -727,6 +727,9 @@ function combatDPS() {
             case "Staff of (element)":
                 magicBonus += 10;
                 break;
+            case "Bryophyta's staff":
+                magicBonus += 15;
+                break;
         }
         
         switch(magicNeck){

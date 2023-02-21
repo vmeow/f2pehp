@@ -312,7 +312,7 @@
                 - lvl = player["#{@skill}_lvl"]
                 - xp = player["#{@skill}_xp"]
                 - ehp = player["#{@skill}_ehp"]
-                %td= number_with_delimiter(lvl, :delimiter => ",", :separator => ".")
+                %td= lvl
                 %td= number_with_delimiter(xp, :delimiter => ",", :separator => ".")
                 %td= number_with_delimiter(number_with_precision(ehp, :precision => 2), :delimiter => ",", :separator => ".")
               - if (["overall"] + F2POSRSRanks::Application.config.f2p_skills).include?(@skill)
