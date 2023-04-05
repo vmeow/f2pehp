@@ -60,8 +60,8 @@ function monster_ratio() {
         console.log("bottom:", bottom);
 
 
-        let x = Math.max(top / bottom, 0);
-        let findperc = 0;
+        var x = Math.max(top / bottom, 0);
+        var findperc = 0;
         if (x == 0 && Math.max(top, bottom) == top) {
           findperc = 1;
         } else if (x != 0) {
