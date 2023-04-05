@@ -1,0 +1,189 @@
+- @title = "Calcs"
+- @description = "Calculate the monster ratio for combat training."
+
+= link_to players_path do
+  = image_tag "f2pwiki.png"
+
+= render partial: "header.html.haml", locals: { notice: notice }
+
+= field_set_tag 'Monster Ratio Calc', class: ["calc"] do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 335px;") do
+    = content_tag(:table, nil, class: ["blank", "left"]) do
+      %h5 XP Needed
+      %tr
+        %td= ""
+        %td= label_tag "Start"
+        %td= label_tag "End"
+      %tr
+        %td= label_tag "Combat XP"
+        %td= number_field_tag "start_combat_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+        %td= number_field_tag "end_combat_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+      %tr
+        %td= label_tag "Smithing XP"
+        %td= number_field_tag "start_smithing_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+        %td= number_field_tag "end_smithing_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+      %tr
+        %td= label_tag "Crafting XP"
+        %td= number_field_tag "start_crafting_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+        %td= number_field_tag "end_crafting_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+      %tr
+        %td= label_tag "Runecraft XP"
+        %td= number_field_tag "start_runecraft_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+        %td= number_field_tag "end_runecraft_xp", 1, size: 15, class: "form-control", step: 1, :remote => true
+      %tr
+        %td= label_tag "Laws"
+        %td= number_field_tag "start_laws", 1, size: 10, class: "form-control", step: 1, :remote => true
+        %td= ""
+      %tr
+        %td= label_tag "Nats"
+        %td= number_field_tag "start_nats", 1, size: 10, class: "form-control", step: 1, :remote => true
+        %td= ""
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 220px;") do
+    = content_tag(:table, nil, class: ["blank", "left"]) do
+      %h5 Methods
+      %tr
+        %td= label_tag "Mob 1"
+        %td= select_tag "monster1", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Minotaur", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)", "Custom Mob 1", "Custom Mob 2"]), style: "width: 125px;", :include_blank => false, :onchange => "changeMonsters(this)", :remote => true
+      %tr
+        %td= label_tag "Mob 2"
+        %td= select_tag "monster2", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Minotaur", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)", "Custom Mob 1", "Custom Mob 2"]), style: "width: 125px;", :include_blank => false, :onchange => "changeMonsters(this)", :remote => true
+      %tr
+        %td= label_tag "Smithing"
+        %td= select_tag "smithmethod", options_for_select(["Telegrab Nats", "No Tele ROF", "Disk of Returning ROF", "Double Tele ROF", "No Laws Method", "Custom Smithing Method"]), style: "width: 125px;", :include_blank => false, :remote => true
+      %tr
+        %td= label_tag "Crafting"
+        %td= select_tag "craftmethod", options_for_select(["Craft guild/vsw", "Craft guild/vsw (21 inv)", "Craft guild w/ air runes", "Air Tiaras (UIM)", "Air Tiaras (Bank)", "Custom Crafting Method"]), style: "width: 125px;", :include_blank => false, :remote => true
+      %tr
+        %td= label_tag "Runecraft"
+        %td= select_tag "runecraftmethod", options_for_select(["Earth Runes", "Varrock Tele Earths", "Suicide Bodies", "Fally Pub Earths", "Custom Runecraft Method"]), style: "width: 125px;", :include_blank => false, :remote => true
+      
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 180px;") do
+    = content_tag(:table, nil, class: ["blank", "left"]) do
+      %h5 Settings
+      %tr
+        %td= label_tag "Include boss kc"
+        %td= check_box_tag "boss_setting", 1, false, :remote => true
+      %tr
+        %td= label_tag "Wilderness Giant Keys"
+        %td= check_box_tag "wildy_hill_setting", 1, false, :remote => true
+      %tr
+        %td= label_tag "Wilderness Mossy Keys"
+        %td= check_box_tag "wildy_moss_setting", 1, false, :remote => true
+      %tr
+        %td= label_tag "Bryophyta Staff"
+        %td= check_box_tag "bryo_staff_setting", 1, false, :remote => true
+      %tr
+        %td= label_tag "Custom Smith xp per nat"
+        %td= check_box_tag "smith_nat_setting", 1, false, :remote => true
+             
+= field_set_tag 'Custom', class: ["calc"] do        
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 220px; padding-left: 10px; padding-right: 10px;") do
+    = content_tag(:table, nil, class: ["blank", "left"]) do
+      %h5 Custom Methods
+      %tr
+        %td= label_tag "Smith xp per law"
+        %td= number_field_tag "smith_xp_per_law", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Craft xp per law"
+        %td= number_field_tag "craft_xp_per_law", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Runecraft xp per law"
+        %td= number_field_tag "runecraft_xp_per_law", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Smith xp per nat"
+        %td= number_field_tag "smith_xp_per_nat", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 220px; padding-left: 10px; padding-right: 10px") do
+    = content_tag(:table, nil, class: ["blank", "right"]) do
+      %h5 Custom Mob 1
+      %tr
+        %td= label_tag "Hit points"
+        %td= number_field_tag "custom1hp", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Laws per kill"
+        %td= number_field_tag "custom1laws", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Nats per kill"
+        %td= number_field_tag "custom1nats", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Craft XP per kill"
+        %td= number_field_tag "custom1craft", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Smith XP per kill"
+        %td= number_field_tag "custom1smith", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Runecraft XP per kill"
+        %td= number_field_tag "custom1runecraft", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 220px; padding-left: 10px; padding-right: 10px") do
+    = content_tag(:table, nil, class: ["blank", "right"]) do
+      %h5 Custom Mob 2
+      %tr
+        %td= label_tag "Hit points"
+        %td= number_field_tag "custom2hp", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Laws per kill"
+        %td= number_field_tag "custom2laws", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Nats per kill"
+        %td= number_field_tag "custom2nats", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Craft XP per kill"
+        %td= number_field_tag "custom2craft", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Smith XP per kill"
+        %td= number_field_tag "custom2smith", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+      %tr
+        %td= label_tag "Runecraft XP per kill"
+        %td= number_field_tag "custom2runecraft", 1, size: 10, class: ["form-control", "no-spinner"], :remote => true
+        
+= field_set_tag 'Results', class: ["calc"] do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 350px;") do
+    = content_tag(:table, nil, class: ["blank", "left"]) do
+      %h5 Ratios
+      %tr
+        %td= ""
+        %td= select_tag "monster1b", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Minotaur", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)", "Custom Mob 1", "Custom Mob 2"]), style: "width: 125px;", :include_blank => false, :onchange => "changeMonsters(this)", :remote => true
+        %td= select_tag "monster2b", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Minotaur", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)", "Custom Mob 1", "Custom Mob 2"]), style: "width: 125px;", :include_blank => false, :onchange => "changeMonsters(this)", :remote => true
+      %tr
+        %td= label_tag "Ratio"
+        %td= text_field_tag "monster_ratio1", "", :disabled => true, :remote => true, style: "width: 105px"
+        %td= text_field_tag "monster_ratio2", "", :disabled => true, :remote => true, style: "width: 105px"
+      %tr
+        %td= label_tag "Combat XP"
+        %td= text_field_tag "combatxp1", "", :disabled => true, :remote => true, style: "width: 105px"
+        %td= text_field_tag "combatxp2", "", :disabled => true, :remote => true, style: "width: 105px"
+      %tr
+        %td= label_tag "Kills"
+        %td= text_field_tag "monster1_kills", "", :disabled => true, :remote => true, style: "width: 105px"
+        %td= text_field_tag "monster2_kills", "", :disabled => true, :remote => true, style: "width: 105px"
+      %tr
+        %td= label_tag "Boss Kills"
+        %td= text_field_tag "bosskc1", "", :disabled => true, :remote => true, style: "width: 105px"
+        %td= text_field_tag "bosskc2", "", :disabled => true, :remote => true, style: "width: 105px"
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 400px;") do
+    = content_tag(:table, nil, class: ["blank", "right"]) do
+      %h5 Loot And XP Gain
+      %tr
+        %td= label_tag "Laws Gained"
+        %td= text_field_tag "lawsgained", "", :disabled => true, :remote => true, style: "width: 64px"
+        %td= label_tag "Nats Gained"
+        %td= text_field_tag "natsgained", "", :disabled => true, :remote => true, style: "width: 64px"
+      %tr
+        %td= label_tag "Laws for smithing"
+        %td= text_field_tag "laws_for_smith", "", :disabled => true, :remote => true, style: "width: 64px"
+        %td= label_tag "0 time smithing xp"
+        %td= text_field_tag "zero_time_smith", "", :disabled => true, :remote => true, style: "width: 64px"
+      %tr
+        %td= label_tag "Laws for crafting"
+        %td= text_field_tag "laws_for_craft", "", :disabled => true, :remote => true, style: "width: 64px"
+        %td= label_tag "0 time crafting xp"
+        %td= text_field_tag "zero_time_craft", "", :disabled => true, :remote => true, style: "width: 64px"
+      %tr
+        %td= label_tag "Laws for runecraft"
+        %td= text_field_tag "laws_for_runecraft", "", :disabled => true, :remote => true, style: "width: 64px"
+        %td= label_tag "0 time runecraft xp"
+        %td= text_field_tag "zero_time_runecraft", "", :disabled => true, :remote => true, style: "width: 64px"
+      %tr 
+        %td= label_tag "Laws needed"
+        %td= text_field_tag "excess_laws", "", :disabled => true, :remote => true, style: "width: 64px"
+        

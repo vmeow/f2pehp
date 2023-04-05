@@ -21,7 +21,7 @@
 
 = link_to "High Alchemy Calculator", "#alch"
   
-= field_set_tag 'GP/XP', class: ["dps"], style: "width: 480px; margin: auto;" do
+= field_set_tag 'GP/XP', class: ["calc"], style: "width: 480px; margin: auto;" do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 480px; border-right:") do 
     - ["Prayer", "Cooking", "Firemaking", "Crafting", "Smithing", "Runecraft"].each do |skill|
       %h5 #{skill}
@@ -47,7 +47,7 @@
       %br
     = "all item values from OSBuddy; inactive prices from OSRS GE"
     
-= field_set_tag 'High Alch', class: ["dps"], id: "alch", style: "width: 560px; margin: auto;" do
+= field_set_tag 'High Alch', class: ["calc"], id: "alch", style: "width: 560px; margin: auto;" do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 560px; border-right:") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 560px; line-height: 15px; padding: 1px;") do 
       %tr

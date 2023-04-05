@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'plaintext' => 'players#plaintext'
   get 'tracking_plaintext' => 'players#tracking_plaintext'
   get 'names' => 'players#names'
+  get 'monster_ratio' => 'players#monster_ratio'
   get 'dps' => 'players#dps'
   get 'combat' => 'players#combat'
   get 'calcs' => 'players#calcs'
