@@ -18,26 +18,26 @@ function monster_ratio() {
          
         var smithxp = smithxp - (start_nats*smithpernat);
         
-        const monster1_zero_time_crafting = Math.max(1 - craftper1 / (4 * hpper1) * (combatxp / craftxp), 0);
-        const monster1_zero_time_smithing = 1 - (1 - (craftxp / smithxp) * monster1_zero_time_crafting * 13.7 / 52.5);
-        const monster1_zero_time_runecraft = Math.max(1 - craftxp/runecraftxp * monster1_zero_time_crafting * runecraftpercraft, 0);
+        var monster1_zero_time_crafting = Math.max(1 - craftper1 / (4 * hpper1) * (combatxp / craftxp), 0);
+        var monster1_zero_time_smithing = 1 - (1 - (craftxp / smithxp) * monster1_zero_time_crafting * 13.7 / 52.5);
+        var monster1_zero_time_runecraft = Math.max(1 - craftxp/runecraftxp * monster1_zero_time_crafting * runecraftpercraft, 0);
         
         
 
-        const monster1_laws_for_craft = craftxp * monster1_zero_time_crafting / craftperlaw;
-        const monster1_laws_for_smith = Math.max(((smithxp - combatxp * (natsper1 / (4 * hpper1) * smithpernat)) - smithxp * monster1_zero_time_smithing) / smithperlaw, 0);
-        const monster1_laws_for_runecraft = Math.max((runecraftxp * monster1_zero_time_runecraft - combatxp * (hpper1*4*runecraftper1)),0) / runecraftperlaw;
-        const monster1_laws_gained = combatxp * lawsper1 / (4 * hpper1);
+        var monster1_laws_for_craft = craftxp * monster1_zero_time_crafting / craftperlaw;
+        var monster1_laws_for_smith = Math.max(((smithxp - combatxp * (natsper1 / (4 * hpper1) * smithpernat)) - smithxp * monster1_zero_time_smithing) / smithperlaw, 0);
+        var monster1_laws_for_runecraft = Math.max((runecraftxp * monster1_zero_time_runecraft - combatxp * (hpper1*4*runecraftper1)),0) / runecraftperlaw;
+        var monster1_laws_gained = combatxp * lawsper1 / (4 * hpper1);
         
-        const monster2_zero_time_crafting = Math.max(1 - craftper2 / (4 * hpper2) * (combatxp / craftxp), 0);
-        const monster2_zero_time_smithing = 1 - (1 - (craftxp / smithxp) * monster2_zero_time_crafting * 13.7 / 52.5);
-        const monster2_zero_time_runecraft = Math.max(1 - craftxp/runecraftxp * monster2_zero_time_crafting * runecraftpercraft, 0);
+        var monster2_zero_time_crafting = Math.max(1 - craftper2 / (4 * hpper2) * (combatxp / craftxp), 0);
+        var monster2_zero_time_smithing = 1 - (1 - (craftxp / smithxp) * monster2_zero_time_crafting * 13.7 / 52.5);
+        var monster2_zero_time_runecraft = Math.max(1 - craftxp/runecraftxp * monster2_zero_time_crafting * runecraftpercraft, 0);
 
-        const monster2_laws_for_craft = craftxp * monster2_zero_time_crafting / craftperlaw;
-        const monster2_laws_for_smith = Math.max(((smithxp - combatxp * (natsper2 / (4 * hpper2) * smithpernat)) - smithxp * monster2_zero_time_smithing) / smithperlaw, 0);
-        const monster2_laws_for_runecraft = Math.max((runecraftxp * monster2_zero_time_runecraft - combatxp * (hpper2*4*runecraftper2)),0) / runecraftperlaw;
+        var monster2_laws_for_craft = craftxp * monster2_zero_time_crafting / craftperlaw;
+        var monster2_laws_for_smith = Math.max(((smithxp - combatxp * (natsper2 / (4 * hpper2) * smithpernat)) - smithxp * monster2_zero_time_smithing) / smithperlaw, 0);
+        var monster2_laws_for_runecraft = Math.max((runecraftxp * monster2_zero_time_runecraft - combatxp * (hpper2*4*runecraftper2)),0) / runecraftperlaw;
         
-        const monster2_laws_gained = combatxp * lawsper2 / (4 * hpper2);
+        var monster2_laws_gained = combatxp * lawsper2 / (4 * hpper2);
 
         var top = monster1_laws_for_craft + monster1_laws_for_smith + monster1_laws_for_runecraft - start_laws - monster1_laws_gained;
         var bottom = monster2_laws_gained - (monster2_laws_for_craft + monster2_laws_for_smith + monster2_laws_for_runecraft - start_laws);     
