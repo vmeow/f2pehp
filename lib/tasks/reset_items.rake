@@ -1,4 +1,5 @@
-desc "Reset items table"
-task :reset_items => :environment do
-     ActiveRecord::Base.connection.reset_pk_sequence!("Items")
+desc "Update item prices"
+task :update_prices => :environment do
+  load Rails.root.join('update_prices.rb')
 end
+

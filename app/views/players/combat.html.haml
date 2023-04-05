@@ -4,7 +4,7 @@
 
 = render :partial => "header.html.haml",  :locals => {notice: notice}
 
-= field_set_tag 'Combat Calc', class: "dps" do
+= field_set_tag 'Combat Calc', class: "calc" do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px; border-right:") do 
     = content_tag(:table, nil, class: ["blank"], style: "width: 240px;") do 
       %tr
