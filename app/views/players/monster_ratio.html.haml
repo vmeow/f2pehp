@@ -6,6 +6,17 @@
 
 = render partial: "header.html.haml", locals: { notice: notice }
 
+- if flash[:error].present?
+  %br= flash[:error]
+  %br
+  
+= field_set_tag 'Player Search', class: ["calc"], style: "width: 175px;" do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+    = form_tag monster_ratio_path, method: :get, id: "search-players-form" do
+      %tr 
+        %td= text_field_tag :search, params[:search], placeholder: "Player Name", class: "search-field", style: "width: 100px;"
+        %td= submit_tag "Search"
+
 = field_set_tag 'Monster Ratio Calc', class: ["calc"] do
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 335px;") do
     = content_tag(:table, nil, class: ["blank", "left"]) do
@@ -16,27 +27,27 @@
         %td= label_tag "End"
       %tr
         %td= label_tag "Combat XP"
-        %td= number_field_tag "start_combat_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
-        %td= number_field_tag "end_combat_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "start_combat_xp", @combatxp, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "end_combat_xp", 800000000, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
       %tr
         %td= label_tag "Smithing XP"
-        %td= number_field_tag "start_smithing_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
-        %td= number_field_tag "end_smithing_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "start_smithing_xp", @smithxp, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "end_smithing_xp", 200000000, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
       %tr
         %td= label_tag "Crafting XP"
-        %td= number_field_tag "start_crafting_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
-        %td= number_field_tag "end_crafting_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "start_crafting_xp", @craftxp, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "end_crafting_xp", 200000000, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
       %tr
         %td= label_tag "Runecraft XP"
-        %td= number_field_tag "start_runecraft_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
-        %td= number_field_tag "end_runecraft_xp", 1, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "start_runecraft_xp", @runecraftxp, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
+        %td= number_field_tag "end_runecraft_xp", 200000000, size: 15, class: "form-control", step: 1, style: "width:105px", :remote => true
       %tr
         %td= label_tag "Laws"
-        %td= number_field_tag "start_laws", 1, size: 10, class: "form-control", step: 1, style: "width:75px", :remote => true
+        %td= number_field_tag "start_laws", 0, size: 10, class: "form-control", step: 1, style: "width:75px", :remote => true
         %td= ""
       %tr
         %td= label_tag "Nats"
-        %td= number_field_tag "start_nats", 1, size: 10, class: "form-control", step: 1, style: "width:75px", :remote => true
+        %td= number_field_tag "start_nats", 0, size: 10, class: "form-control", step: 1, style: "width:75px", :remote => true
         %td= ""
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 220px;") do
     = content_tag(:table, nil, class: ["blank", "left"]) do

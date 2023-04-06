@@ -7,7 +7,6 @@ class Player < ActiveRecord::Base
 
   has_many :player_clan_links
   has_many :clans, through: :player_clan_links
-
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
             "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
             "smithing", "mining", "runecraft", "overall"]
