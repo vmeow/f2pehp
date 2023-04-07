@@ -540,6 +540,32 @@ class PlayersController < ApplicationController
         notice: "Player #{@player.player_name} could not be updated. Please try again."
     end
   end
+  
+def monster_ratio
+  name = params[:id] || params[:search] # retrieve the player name from the request parameters
+  if name.nil?
+    # if no player name was specified, set @player to a default value
+    @player = Player.new(id: "notrealaccount", attack_xp: 0, strength_xp: 0, defence_xp: 0, ranged_xp: 0, smithing_xp: 0, crafting_xp: 0, runecraft_xp: 0)
+  else
+    # if a player name was specified, look it up in the database
+    @player = Player.find_player(name)
+  end
+
+  if @player.nil?
+    flash[:error] = "Player not found"
+    redirect_to monster_ratio_path
+  elsif !@player.is_a?(Player)
+    flash[:error] = "Player not found"
+    redirect_to monster_ratio_path
+  else
+    @combatxp = @player.attack_xp + @player.strength_xp + @player.defence_xp + @player.ranged_xp
+    @smithxp = @player.smithing_xp
+    @craftxp = @player.crafting_xp
+    @runecraftxp = @player.runecraft_xp
+  end
+end
+
+    
 
   private
 

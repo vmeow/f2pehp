@@ -41,24 +41,6 @@ function monster_ratio() {
 
         var top = monster1_laws_for_craft + monster1_laws_for_smith + monster1_laws_for_runecraft - start_laws - monster1_laws_gained;
         var bottom = monster2_laws_gained - (monster2_laws_for_craft + monster2_laws_for_smith + monster2_laws_for_runecraft - start_laws);     
-        
-        console.log("monster1_zero_time_crafting:", monster1_zero_time_crafting);
-        console.log("monster1_zero_time_smithing:", monster1_zero_time_smithing);
-        console.log("monster1_zero_time_runecraft:", monster1_zero_time_runecraft);
-        console.log("monster1_laws_for_craft:", monster1_laws_for_craft);
-        console.log("monster1_laws_for_runecraft:", monster1_laws_for_runecraft);
-        console.log("monster1_laws_for_smith:", monster1_laws_for_smith);
-        console.log("monster1_laws_gained:", monster1_laws_gained);
-        console.log("monster2_zero_time_crafting:", monster2_zero_time_crafting);
-        console.log("monster2_zero_time_smithing:", monster2_zero_time_smithing);
-        console.log("monster2_zero_time_runecraft:", monster2_zero_time_runecraft);
-        console.log("monster2_laws_for_craft:", monster2_laws_for_craft);
-        console.log("monster2_laws_for_runecraft:", monster2_laws_for_runecraft);
-        console.log("monster2_laws_for_smith:", monster2_laws_for_smith);
-        console.log("monster2_laws_gained:", monster2_laws_gained);
-        console.log("Top:", top);
-        console.log("bottom:", bottom);
-
 
         var x = Math.max(top / bottom, 0);
         var findperc = 0;
@@ -73,7 +55,6 @@ function monster_ratio() {
     
     function monster_ratio_results() {
         //xp needed
-        console.log('Not monster_ratio_results');
         var start_combat_xp = getAttributeValue("start_combat_xp");
         var end_combat_xp = getAttributeValue("end_combat_xp");
         var start_smithing_xp = getAttributeValue("start_smithing_xp");
@@ -299,7 +280,6 @@ function monster_ratio() {
                 break;
             case "Hill giant":
                 craftper1 = 0.654597604 + obor_craft; // 50 * 1/170.67 + 67.5 * 1/341.33 + 85 * 1/682.67 + 107.5 * 1/2730.67
-                console.log("OBOR: ", obor_nats);
                 natsper1 = 0.09375 + obor_nats; // 6 * 2/128
                 lawsper1 = 0.046875 + obor_laws; // 2 * 3/128
                 hpper1 = 35 + obor_combat / 4; // divide by 4 because formula uses hp instead of combat xp per kill
@@ -471,9 +451,6 @@ function monster_ratio() {
             
             var ratio1 = calcRatio(combatxp, smithxp, craftxp, runecraftxp, smithper1, craftper1, runecraftper1, natsper1, lawsper1, hpper1, smithper2, craftper2, runecraftper2, natsper2, lawsper2, hpper2, smithperlaw, craftperlaw, runecraftperlaw, smithpernat, runecraftpercraft, start_laws, start_nats, runecraft_setting);
             var ratio2 = 1 - ratio1;
-            
-            console.log(combatxp, smithxp, craftxp, runecraftxp, smithper1, craftper1, runecraftper1, natsper1, lawsper1, hpper1, smithper2, craftper2, runecraftper2, natsper2, lawsper2, hpper2, smithperlaw, craftperlaw, runecraftperlaw, smithpernat, start_laws, start_nats, "combatxp, smithxp, craftxp, runecraftxp, smithper1, craftper1, runecraftper1, natsper1, lawsper1, hpper1, smithper2, craftper2, runecraftper2, natsper2, lawsper2, hpper2, smithperlaw, craftperlaw, runecraftperlaw, smithpernat, start_laws, start_nats");
-            
             var monster1_kills = ratio1 * combatxp / (4 * hpper1);
             var monster2_kills = ratio2 * combatxp / (4 * hpper2);
             var laws_gained = monster1_kills * lawsper1 + monster2_kills * lawsper2;
@@ -487,9 +464,6 @@ function monster_ratio() {
             var laws_for_smith = Math.max(smithxp - zero_time_smith - nats_gained * smithpernat, 0)/smithperlaw;
             var laws_for_runecraft = Math.max(runecraftxp - zero_time_runecraft, 0)/runecraftperlaw;
             var excess_laws_needed = (laws_for_craft + laws_for_runecraft + laws_for_smith) - laws_gained - start_laws - start_nats/smithperlaw*smithpernat;
-            console.log("Laws needed: ", excess_laws_needed, laws_for_craft, laws_for_runecraft, laws_for_smith, laws_gained, start_nats, Number(start_nats)/3.5, start_nats/smithperlaw*smithpernat);
-            
-            console.log("Current debug: ", smith_nat_setting, custom_smith_xp_per_nat, smithpernat);
             if (monster1 == "Hill giant"&& boss_setting){
               var monster1_boss_kc = monster1_kills * giant_key_rate;
             } else if (monster1 == "Moss giant"&& boss_setting){
@@ -551,7 +525,6 @@ function monster_ratio() {
             $("#natsgained").val(nats_gained);
 }
 function startup() {
-    console.log('Not startup');
     // run the update on every input change and on startup
     $('#start_combat_xp').change(monster_ratio_results);
     $('#end_combat_xp').change(monster_ratio_results);
@@ -603,7 +576,6 @@ function startup() {
     }
 }
 function changeMonsters(selectElement) {
-    console.log("GHLEFKASJKF")
     var selectedValue = selectElement.value;
     var selectTags = document.getElementsByTagName("select");
     for (var i = 0; i < selectTags.length; i++) {
