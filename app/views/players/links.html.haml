@@ -1,5 +1,5 @@
-- @title = "Links" 
-- @description = "A catalog of useful links related to F2P OSRS." 
+- @title = "Links"
+- @description = "A catalog of useful links related to F2P OSRS."
 = link_to image_tag("f2pwiki.png"), players_path
 
 = render :partial => "header.html.haml",  :locals => {notice: notice}
@@ -8,10 +8,10 @@
 %br
 = link_to "Possible Fakes", possible_fakes_path
 %br
-= content_tag(:div, nil, class: "container", style: "width: 650px; margin-top: 15px;") do 
-  = content_tag(:div, nil, class: "left", style: "text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
+= content_tag(:div, nil, class: "container", style: "width: 650px; margin-top: 15px;") do
+  = content_tag(:div, nil, class: "left", style: "text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do
     %h1 Efficiency
-    %h5 
+    %h5
       = link_to "F2P Skilling Methods Discord", "https://discord.gg/bD282Xu"
       %br
       %br
@@ -41,31 +41,12 @@
     %br
     = link_to "Hardcore Ironman Efficiency Guides - FE Kaitios", "https://www.youtube.com/playlist?list=PLvmG5iKV-Y22vZQjMfdjQRX2xd2vpyDgg", target: "_blank", rel: "noopener noreferrer"
     %br
+    = link_to "Erie Fishing Guide - Terrathrone", "https://docs.google.com/document/d/1p5xclvOtEJh0PKL7C5jb30tU8-GMkDzday4laH0l0EI/edit?usp=sharing", target: "_blank", rel: "noopener noreferrer"
     %br
-    
-    %h5 Skilling Videos
-    = link_to "3-tick wc - Faij", "http://www.youtube.com/watch?time_continue=6&v=GTEDU2KLjqE", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "3-tick fish & 3.5-tick cook - Say F2p Ult", "http://www.youtube.com/watch?v=lwq0tdQ9zbg", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "3-tick fish & 0-tick cook - Eirerie", "http://youtu.be/Bt5BlieARmU", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Efficient boneyard pray - ColdFingers3", "http://www.youtube.com/watch?v=85lJ9_uxuKc", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Lvl 3 UIM suicide tiara RC - Needfireplz", "http://www.youtube.com/watch?v=4NBsXsOS9tg", target: "_blank", rel: "noopener noreferrer"
-    %br 
-    = link_to "UIM 2-tick earth RC - TrustNoBanks", "https://youtu.be/ySiczjqEO5s", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Adamant pick 2-tick ess - tannerdino", "https://youtu.be/L7HN8U5K7J4", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "2-tick Chronicle Willow/Oak Split 0-time FM-Walk - Quadrant Dub", "https://www.youtube.com/watch?v=mqbU_l5uFcQ", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Firebury Pathing (Firemaking and Prayer Training) - OrangeC", "https://www.youtube.com/watch?v=_fw6CXffVtc&ab_channel=OrangeCclip", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "How to Telegrab Nature runes - ColdFingers3", "https://www.youtube.com/watch?v=uMEBNl8-XAE", target: "_blank", rel: "noopener noreferrer"
+    = link_to "2.66t willows Guide - Terrathrone", "https://bit.ly/3jnKePf", target: "_blank", rel: "noopener noreferrer"
     %br
     %br
-     
+
     %h5 Charts
     = link_to "Best Arrows at Each Level - UncleTomas", "http://i.redd.it/wbvbp88s4ycy.png", target: "_blank", rel: "noopener noreferrer"
     %br
@@ -73,11 +54,9 @@
     %br
     = link_to "Power Ammy vs Strength Ammy - UncleTomas", "http://i.imgur.com/cNeN6Xd.png", target: "_blank", rel: "noopener noreferrer"
     %br
-    = link_to "Loot from 11k Ogresse Kills - W_385", "http://i.redd.it/hbfboi9ia0701.png", target: "_blank", rel: "noopener noreferrer"
     %br
-    %br
-    
-    %h5 Calculators
+
+    %h5 F2P Wiki Calculators
     = link_to "Combat DPS Calc", dps_path
     %br
     = link_to "Combat Level Calc", combat_path
@@ -87,8 +66,8 @@
     = link_to "Monster Ratio Calc", monster_ratio_path
     %br
     %br
-    
-  = content_tag(:div, nil, class: "left", style: "margin-left: 10px; text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do 
+
+  = content_tag(:div, nil, class: "left", style: "margin-left: 10px; text-align: center; width:300px; padding: 5px; padding-bottom: 10px;") do
     %h1 Community
     %h5 Clans
     = link_to "W_385", "http://www.reddit.com/r/W385/", target: "_blank", rel: "noopener noreferrer"
@@ -99,102 +78,321 @@
     = "|"
     = link_to "Discord", "https://discord.gg/CNA8VED", target: "_blank", rel: "noopener noreferrer"
     %br
+    = link_to "F2P Paradise", "clans/F2p_Paradise", target: "_blank", rel: "noopener noreferrer"
+    = "|"
+    = "PM IM Smelt or Iron Grae in-game"
+    %br
     = link_to "F2P IM Clan", "http://services.runescape.com/m=forum/a=13/c=hFxc-hGw-pk/forums.ws?320,321,979,66075606", target: "_blank", rel: "noopener noreferrer"
+    %br
+    = link_to "Mellow", "clans/Mellow", target: "_blank", rel: "noopener noreferrer"
+    = "|"
+    = link_to "Discord", "https://discord.gg/VMHFNVwkka", target: "_blank", rel: "noopener noreferrer"
     %br
     = "W_530: clan chat \"W_530\""
     = "|"
     = link_to "Discord", "https://discord.gg/ZJ49ufC", target: "_blank", rel: "noopener noreferrer"
     %br
     = "F2P Runners"
+    = "|"
     = link_to "Discord", "https://discord.gg/PA4Nax5", target: "_blank", rel: "noopener noreferrer"
     %br
     = "ftp family: friends chat \"ftp family\""
     %br
     = "W383 Hub (F2P Castle Wars)"
+    = "|"
     = link_to "Discord", "https://discord.gg/UhJfFgmpaf", target: "_blank", rel: "noopener noreferrer"
     %br
     %br
-    
+
     %h5 Youtube Channels
-    = content_tag(:table, nil, style: "color: white; line-height: 12px; text-align: center; margin: auto; width: 240px; min-width: 240px; padding: 0px; margin-bottom: 10px; background: none; border: none;") do 
-      %thead{style: "border: none;"}
-        %tr{style: "border: none;"}
-          %th{style: "border: none;"} Regs
-          %th{style: "border: none;"} Ironmen
-      %tbody{style: "border: none;"}
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Pawz", "https://www.youtube.com/channel/UC_fgZS0tDWhEPYuRRREralw/featured", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-          %td{style: "border: none;"}= link_to "Tame My Wild*", "http://www.youtube.com/channel/UCbmXIJdVqV4uR3C_0kATbbg", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Faij", "http://www.youtube.com/channel/UC1Sy5U05d0VUAQq9Jfn89-A", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-          %td{style: "border: none;"}= link_to "F2P HCIM MrG", "http://www.youtube.com/user/MrGraumanChannel", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Wide Abdomen*", "http://www.youtube.com/channel/UC1M0Uj-Yojtfq-Gf6OZ0U8g", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-          %td{style: "border: none;"}= link_to "DIY Qweef*", "http://www.youtube.com/channel/UCHA4bEo-ZJ8wBDrEH1iyPMA", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Dagah", "http://www.youtube.com/channel/UCARtI9MaSPX3rytNcDm-gpQ", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-          %td{style: "border: none;"}= link_to "Terrathrone", "http://www.youtube.com/watch?v=Yz23Mb1ABB4&list=PLyEAkC8t_JfVG0s6ps2yEZjk-E594uB0c", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Freckled Kid", "http://www.youtube.com/channel/UCQnAzLbpqsS_8bP2KAiBzjg", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-          %td{style: "border: none;"}= link_to "F2P UIM OREO", "http://www.youtube.com/channel/UC-ZHd2U9zj7Hemc-IsYucAg", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Magnus F2P*", "http://www.youtube.com/channel/UCvE3DoLAECkRvII-MqLhloQ", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-          %td{style: "border: none;"}= link_to "Tannerdino", "https://www.youtube.com/channel/UC1h5LVojUftcx-ZU1UqoMbQ", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Cephalotaxus*", "http://www.youtube.com/channel/UCFkL5t0ekeqcwwx44r1nLVw", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-          %td{style: "border: none;"}= link_to "Ironman260", "https://www.youtube.com/channel/UClfA0vrt_mWI-ui0zvr9QAg", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "OrangeC", "https://www.youtube.com/channel/UCwiP60_ckIkJeIutnvaAgnw", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"     
-          %td{style: "border: none;"}= link_to "Vannaka", "https://www.youtube.com/channel/UCBFIHC0C2roQllCR9bnFX4g", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"     
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Ben3143", "https://www.youtube.com/channel/UCJLp0uIyZ_bW_mYFzhkWcJQ", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"     
-          %td{style: "border: none;"}= link_to "Say F2p Ult", "https://www.youtube.com/channel/UCBRFQXYlDWx_uBrizZbw2SA", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "i go by zach", "https://www.youtube.com/channel/UCPDpXhIpGcZF9Sr9k6aVIRA", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "FE Kaitios", "https://www.youtube.com/channel/UC-c9P5n9UEH9YDi_lPzsnrw", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "iTz a Loner", "https://www.youtube.com/channel/UCUyOVTCfpv69fLvxjulGWNg/videos", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "Danger Dance", "https://youtube.com/channel/UCxva7eBy2j3u31_tc9zCdBg", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-        %tr{style: "border: none;"}
-          %td{style: "border: none;"}
-          %td{style: "border: none;"}= link_to "oooosonasty", "https://www.youtube.com/channel/UC09VzYglsbtzFh04pbgo7zw", style: "color: #90c040;", target: "_blank", rel: "noopener noreferrer"
-    = "* inactive"
-    %br
-    %br
-    
+    = content_tag(:div, nil, class: ["container", "center"], style: "color: white; text-align: center; width: 240px; min-width: 240px;margin-bottom: 10px;") do
+      = content_tag(:div, nil, class: ["container", "left"], style: "color: white; text-align: center; width: 120px; min-width: 120px; margin-bottom: 10px;") do
+        %h5 Regs
+        = link_to "Pawz", "https://www.youtube.com/channel/UC_fgZS0tDWhEPYuRRREralw/featured", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Faij", "http://www.youtube.com/channel/UC1Sy5U05d0VUAQq9Jfn89-A", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Dagah", "http://www.youtube.com/channel/UCARtI9MaSPX3rytNcDm-gpQ", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Freckled Kid", "http://www.youtube.com/channel/UCQnAzLbpqsS_8bP2KAiBzjg", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "OrangeC", "https://www.youtube.com/channel/UCwiP60_ckIkJeIutnvaAgnw", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Kotsumi", "https://www.youtube.com/@f2pkotsumi", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Magnus F2P*", "http://www.youtube.com/channel/UCvE3DoLAECkRvII-MqLhloQ", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Cephalotaxus*", "http://www.youtube.com/channel/UCFkL5t0ekeqcwwx44r1nLVw", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Ben3143*", "https://www.youtube.com/channel/UCJLp0uIyZ_bW_mYFzhkWcJQ", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Wide Abdomen*", "http://www.youtube.com/channel/UC1M0Uj-Yojtfq-Gf6OZ0U8g", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+
+      = content_tag(:div, nil, class: ["container", "left"], style: "color: white; text-align: center; width: 120px; min-width: 120px; margin-bottom: 10px;") do
+        %h5 Ironmen
+        = link_to "Terrathrone", "http://www.youtube.com/watch?v=Yz23Mb1ABB4&list=PLyEAkC8t_JfVG0s6ps2yEZjk-E594uB0c", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Tannerdino", "https://www.youtube.com/@Tannerdino", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Vannaka", "https://www.youtube.com/channel/UCBFIHC0C2roQllCR9bnFX4g", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Say F2p Ult", "https://www.youtube.com/channel/UCBRFQXYlDWx_uBrizZbw2SA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "i go by zach", "https://www.youtube.com/channel/UCPDpXhIpGcZF9Sr9k6aVIRA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "FE Kaitios", "https://www.youtube.com/channel/UC-c9P5n9UEH9YDi_lPzsnrw", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "iTz a Loner", "https://www.youtube.com/channel/UCUyOVTCfpv69fLvxjulGWNg/videos", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Danger Dance", "https://youtube.com/channel/UCxva7eBy2j3u31_tc9zCdBg", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "oooosonasty", "https://www.youtube.com/channel/UC09VzYglsbtzFh04pbgo7zw", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Tame My Wild*", "http://www.youtube.com/channel/UCbmXIJdVqV4uR3C_0kATbbg", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "F2P HCIM MrG*", "http://www.youtube.com/user/MrGraumanChannel", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "DIY Qweef*", "http://www.youtube.com/channel/UCHA4bEo-ZJ8wBDrEH1iyPMA", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "F2P UIM OREO*", "http://www.youtube.com/channel/UC-ZHd2U9zj7Hemc-IsYucAg", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Ironman260*", "https://www.youtube.com/channel/UClfA0vrt_mWI-ui0zvr9QAg", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+
     %h5 Streamers
-    = link_to "Pawz", "http://www.twitch.tv/pawzrs", target: "_blank", rel: "noopener noreferrer"
+    = content_tag(:div, nil, class: ["container", "center"], style: "color: white; text-align: center; width: 240px; min-width: 240px;margin-bottom: 10px;") do
+      = content_tag(:div, nil, class: ["container", "left"], style: "color: white; text-align: center; width: 120px; min-width: 120px; margin-bottom: 10px;") do
+        %h5 Regs
+        = link_to "Pawz", "http://www.twitch.tv/pawzrs", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Freckled Dad", "https://www.twitch.tv/freckled_dad", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Kotsumi", "https://www.twitch.tv/kemsrs", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "DJ9", "https://www.twitch.tv/dj_nine", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Janne Ahonen", "https://www.twitch.tv/bartoszowe", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "color: white; text-align: center; width: 120px; min-width: 120px; margin-bottom: 10px;") do
+        %h5 Ironmen
+        = link_to "Tannerdino", "https://www.twitch.tv/tannerdino", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "FE Kaitios", "https://www.twitch.tv/kaitios", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "boneyghost", "https://www.twitch.tv/engeerik", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Terrathrone", "https://www.twitch.tv/autumnelegy", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "UIM iodiin", "https://www.twitch.tv/iodiin1", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Zyafer", "https://www.twitch.tv/zyafer1", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "UI Pain", "https://www.twitch.tv/ui_pain", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "W indow*", "https://www.twitch.tv/f2pw_indow", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Plue*", "https://www.twitch.tv/one_handed_streams", class: "burnt", target: "_blank", rel: "noopener noreferrer"
+    = "inactive*"
     %br
-    = link_to "Tannerdino", "https://www.twitch.tv/tannerdino", target: "_blank", rel: "noopener noreferrer"
     %br
-    = link_to "Plue", "https://www.twitch.tv/one_handed_streams", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Natekay", "https://www.twitch.tv/uim_natekay", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "F D M P", "https://www.twitch.tv/skillingstream", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "FE Kaitios", "https://www.twitch.tv/kaitios", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "boneyghost", "https://www.twitch.tv/engeerik", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "W indow", "https://www.twitch.tv/f2pw_indow", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Terrathrone", "https://www.twitch.tv/autumnelegy", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "UIM iodiin", "https://www.twitch.tv/iodiin1", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Zyafer", "https://www.twitch.tv/zyafer1", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "Freckled Dad", "https://www.twitch.tv/freckled_dad", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "UI Pain", "https://www.twitch.tv/ui_pain", target: "_blank", rel: "noopener noreferrer"
-    %br
-    = link_to "KemsRS", "https://www.twitch.tv/kemsrs", target: "_blank", rel: "noopener noreferrer"
-    %br
-    %br
+= content_tag(:div, nil, class: "container", style: "width: 720px; margin-top: 15px;") do
+  = content_tag(:div, nil, class: "left", style: "text-align: center; width:700px; padding: 5px; padding-bottom: 10px;") do
+    %h1 Regular Skilling Videos
+    = content_tag(:div, nil, class: ["container", "left"], style: "text-align: center; width:700px; padding: 5px; padding-bottom: 10px;") do
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Combats
+        = link_to "AFK Fleshies/spiders", "https://youtu.be/-_Pr6FwlvNo", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Castle Wars alts", "https://youtu.be/xY_Ej74Muz8", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Banana Alch Splashing", "https://youtu.be/RrfGauObfmA", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Woodcutting
+        = link_to "2t oaks & alching", "https://youtu.be/gKIxCxB0xYc", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3t farmer willows", "https://youtu.be/WpGYhNvoIX4", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Cake-Scatter willows", "https://youtu.be/E7IuA9mK6qs", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Better 2.66t willows", "https://youtu.be/QCjgSde42MA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard 2.66t willows", "https://youtu.be/keXs4dT1GgY", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3t double snow willows", "https://youtu.be/7T-ZGGv4G84", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Old Snow willows", "https://youtu.be/GTEDU2KLjqE", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Fishing
+        = link_to "~3t Cake Ash Fishing", "https://youtu.be/xM-wQ9BBtRI", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "~3t Cake Fishing", "https://youtu.be/dY620OFfL4c", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.056t fish", "https://youtu.be/nr8UwDVPEP4", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.15t fish 0t cook", "https://youtu.be/8m0hV8KtTYs", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "~3t fish 0t cook", "https://youtu.be/kDLMjgd2NjY", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.11t fish with low alch", "https://youtu.be/Z_n8n3CkJao", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Firemaking
+        = link_to "Fire-Scatter", "https://youtu.be/DjCh9IoV1Gk", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Dbl Fire-Scatter", "https://youtu.be/Fv3Y7Jd2uCk", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard GE Firemaking", "https://youtu.be/wJi_i3llaXI", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Low Effort GE Firemaking", "https://youtu.be/MTE-zlcpGEs", target: "_blank", rel: "noopener noreferrer"
+        %br
+    = content_tag(:div, nil, class: ["container", "left"], style: "text-align: center; width:700px; padding: 5px; padding-bottom: 10px;") do
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Mining
+        = link_to "~3t Cake Ash Mining", "https://youtu.be/0aV7A1E7eOE", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "~3t Cake Iron", "https://youtu.be/0aV7A1E7eOE", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.33t Iron", "https://youtu.be/P8jM8utX7HU", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.5t Iron Superheat", "https://youtu.be/35XEVbYB0qc", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.5t Iron No Superheat", "https://youtu.be/0aV7A1E7eOE", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Runecraft
+        = link_to "0+1 Body Tiaras", "https://youtu.be/SS8Z8DeDXuA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Solo Body Tiaras", "https://youtu.be/zEL1JO-uYKU", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "1+1 Body Tiaras", "https://youtu.be/VGUR0gQAO4s", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Suicide Alt Body Tiaras", "https://youtu.be/AePjvbaci6Y", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "0+2 No Hop Earth Tiaras", "https://youtu.be/y76yc-cqa94", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "0+2 P2P Hop Earth Tiaras", "https://youtu.be/_ffmz52Dzjg", target: "_blank", rel: "noopener noreferrer"
+        %br
+
+= content_tag(:div, nil, class: "container", style: "width: 720px; margin-top: 15px;") do
+  = content_tag(:div, nil, class: "left", style: "text-align: center; width:700px; padding: 5px; padding-bottom: 10px;") do
+    %h1 Ironman Skilling Videos
+    = content_tag(:div, nil, class: ["container", "left"], style: "text-align: center; width:700px; padding: 5px; padding-bottom: 10px;") do
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Combats
+        = link_to "Safespot Ogresses", "https://youtu.be/o6_Iw67RVbE", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Pray flick Ogress", "https://youtu.be/aCvFG8d5KKA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "AFK Ogress", "https://youtu.be/BTs1bYIqeIQ", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Pray flick Hill Giants", "https://youtu.be/IxYY0Viem-w", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "AFK Flesh Crawlers", "https://youtu.be/-_Pr6FwlvNo", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Minotaurs", "https://youtu.be/Gusfi-0lss0", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "AFK Sewer Moss Giants", "https://youtu.be/Gusfi-0lss0", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Prayer
+        = link_to "No Hop Limit Boneyard", "https://youtu.be/85lJ9_uxuKc", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Dblhop Boneyard (Steam)", "https://youtu.be/RZ2BGcOUu-M", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Dblhop Boneyard (Non-Steam)", "https://youtu.be/yikJBIhriH4", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard Boneyard", "https://youtu.be/rXhytriTEaI", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Giant Frogs", "https://youtu.be/1YftCGcvUHA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Camdozaal Fishing", "https://youtu.be/tvyU2GDPa1k", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Fishing & Cooking
+        = link_to "~3t fish 0t cook", "https://youtu.be/kDLMjgd2NjY", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.15t fish 0t cook", "https://youtu.be/8m0hV8KtTYs", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "4t fish 0t cook", "https://youtu.be/xhih08XUCrA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "5t fish 0t cook", "https://youtu.be/tsNmJmbyyDQ", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3t fish 2t cook", "https://youtu.be/Ou9LgbVn5XA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3t fish 3.5t cook", "https://youtu.be/CezOjmpDTtk", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3.056t fish", "https://youtu.be/nr8UwDVPEP4", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Woodcutting & Firemaking
+        = link_to "Better 2.66t willows", "https://youtu.be/QCjgSde42MA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard 2.66t willows", "https://youtu.be/keXs4dT1GgY", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "3t double snow willows", "https://youtu.be/oSJfCZt9VeU", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Old Snow willows", "https://youtu.be/GTEDU2KLjqE", target: "_blank", rel: "noopener noreferrer"
+        = link_to "3t willows & banking", "https://youtu.be/D0XVGzF4HJA", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "0 time fm - banking ess", "https://youtu.be/nMWaCBjtLb4", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "0 time fm - banking iron", "https://youtu.be/Z7W_y4brT8A", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "2t oaks", "https://youtu.be/gKIxCxB0xYc", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "AFK Yews", "https://youtu.be/9at2MOjq51g", target: "_blank", rel: "noopener noreferrer"
+        %br
+    = content_tag(:div, nil, class: ["container", "left"], style: "text-align: center; width:700px; padding: 5px; padding-bottom: 10px;") do
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Crafting
+        = link_to "Dblhop VSW", "https://youtu.be/txoHCe8Jplk", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard VSW", "https://youtu.be/OFpEO9bUcRk", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard Craft Guild", "https://youtu.be/H6KrOvVf1yE", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Dblhop wildy gold", "https://youtu.be/vvG3ZxDnCoE", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Smithing
+        = link_to "Dblhop Telegrab", "https://youtu.be/9-E3ShHNfkY", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard Telegrab", "https://youtu.be/uMEBNl8-XAE", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "5t snow superheat iron", "https://youtu.be/gzUafeO4fm0", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Standard superheat iron", "https://youtu.be/YRCgXysiKMM", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Banking iron (ROF)", "https://youtu.be/A-3T31pqwiw", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Smelting iron (ROF)", "https://youtu.be/iWP_by-g8_I", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Smithing iron plates (ROF)", "https://youtu.be/iaVyxdkC3jI", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "UIM ROF", "https://youtu.be/GQnddCpPAnI", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Disk of returning UIM ROF", "https://youtu.be/G-1p6SFUrK4", target: "_blank", rel: "noopener noreferrer"
+        %br
+      = content_tag(:div, nil, class: ["container", "left"], style: "width: 175px;") do
+        %h5 Runecraft
+        = link_to "Suicide Bodies", "https://youtu.be/aHi7qXiaW8c", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Suicide Bodies (graves)", "https://youtu.be/9JHpOoIN8Qg", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Sceptre Bodies", "https://youtu.be/fIzeT9WWusw", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Addy 2t Banking Ess With Canoes", "https://youtu.be/UdqvjBUq25k", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Chron Earths with canoes", "https://youtu.be/dRKKV8B3VM0", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Chron Earths & 0 time wc/fm", "https://youtu.be/un1VIlcuoSs", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Fally Pub Earths", "https://youtu.be/hJeDOP0TaqI", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Varrock Tele Earths", "https://youtu.be/Np1T3UPCGro", target: "_blank", rel: "noopener noreferrer"
+        %br
+        = link_to "Chron Earths no canoes", "https://youtu.be/8Zu0bDA-AtQ", target: "_blank", rel: "noopener noreferrer"
+        %br

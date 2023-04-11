@@ -387,7 +387,7 @@ class Player < ActiveRecord::Base
                 {name: "Jingle Bells", flair_after: "flairs/santa.png"}, # devs are allowed their own customizations
                 {name: "Ironman260", flair_after: "skills/defence.png"},
               ]
-    
+
   CONTRIBUTORS = [{name: "Tannerdino"},
                 {name: "Pawz"},
                 {name: "Freckled Dad"},
