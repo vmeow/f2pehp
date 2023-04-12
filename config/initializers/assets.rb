@@ -55,6 +55,7 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame", #rifts closed 13-04-2022
                      "p2p_minigame",
                      "p2p_minigame",
+                     "p2p_minigame", # 2023-04-13
                      "bryophyta_kc",
                      "p2p_minigame",
                      "p2p_minigame",
@@ -82,6 +83,7 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame",
                      "p2p_minigame", # phosani's nightmare new on 2021-06-30, fuck you jagex
                      "p2p_minigame", # nex 2021-01-05
+                     "p2p_minigame", # 2023-04-13
                      "obor_kc",
                      "p2p_minigame",
                      "p2p_minigame",
