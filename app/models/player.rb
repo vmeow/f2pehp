@@ -116,6 +116,7 @@ class Player < ActiveRecord::Base
                 {name: "Ll0y d", amount: 11.79, date: "2021-08-16", other_css: ["color: #FCCD12"]},
                 {name: "Yewsless", amount: 11, date: "2018-03-11", flair_after: "items/Yew_logs.gif"},
                 {name: "Les Crevaux", donation: "20m", date: "2022-06-22", flair_after: "flairs/pet_cat_black.png"},
+                  {name: "High above", donation: "20m", date: "2022-06-22", flair_after: "flairs/white_partyhat.png"},
                 {name: "F2P Lukie", amount: 10, date: "2018-01-31", flair_after: "flairs/tea.png"},
                 {name: "Tame My Wild", amount: 10, date: "2018-02-06", flair_after: "flairs/dog.png"},
                 {name: "Faij", amount: 10, date: "2018-03-06", flair_after: "flairs/frog.png"},
