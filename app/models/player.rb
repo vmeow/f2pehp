@@ -382,6 +382,7 @@ class Player < ActiveRecord::Base
                 {name: "pussyexpert9", amount: 1, date: "2020-02-03"},
                 {name: "goyard purse", amount: 1, date: "2021-09-12"},
                 {name: "Useless Knob", amount: 1, date: "2021-11-11"},
+                {name: "k0mad0zer0", amount: 1, date: "2023-05-23"},
                 {name: "5perm sock"},
                 {name: "HC Yiffer"}, # pro bono tracking
                 {name: "Disenthral"}, # pro bono tracking
