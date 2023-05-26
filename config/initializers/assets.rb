@@ -41,6 +41,8 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame",
                      "p2p_minigame",
                      "p2p_minigame",
+                     "p2p_minigame", # Some bounty hunter shit 26/05/2023
+                     "p2p_minigame", # Some bounty hunter shit 26/05/2023
                      "clues_all",
                      "clues_beginner",
                      "p2p_minigame",
