@@ -107,12 +107,20 @@ function melee_order() {
         var custom_health = getAttributeValue("target_health");
         var custom_defence_level = getAttributeValue("target_defence_level");
         var custom_defence_bonus = getAttributeValue("target_defence_bonus");
+        custom_health = Number(custom_health);
+        custom_defence_level = Number(custom_defence_level);
+        custom_defence_bonus = Number(custom_defence_bonus);
 
         var custom_player_stats = getAttributeChecked('custom_player_stats');
         var custom_attack_bonus = getAttributeValue("custom_attack_bonus");
         var custom_strength_bonus = getAttributeValue("custom_strength_bonus");
         var custom_attack_speed = getAttributeValue("custom_attack_speed");
         var customDmgMult = getAttributeValue("dmg_mult");
+        custom_attack_bonus = Number(custom_attack_bonus);
+        custom_strength_bonus = Number(custom_strength_bonus);
+        custom_attack_speed = Number(custom_attack_speed);
+        customDmgMult = Number(customDmgMult);
+
         console.log("prayers");
         // Prayers
         var attack_prayer = 1;
@@ -204,7 +212,6 @@ function melee_order() {
                     strength_bonus += 40;
                     attack_speed = 4;
                     attack_style = "Crush";
-                    dmgMult = 1.15;
                     break;
                 case "Rune longsword":
                     attack_requirement = 40;
@@ -300,6 +307,7 @@ function melee_order() {
             attack_speed = custom_attack_speed;
             dmgMult = customDmgMult;
         }
+        console.log(attack_bonus, strength_bonus, attack_speed, dmgMult);
         console.log("target stats");
         // Target stats
         var target_defence_level = 0;
@@ -417,9 +425,14 @@ function melee_order() {
             target_health = custom_health;
             target_defence_bonus = custom_defence_bonus;
         }
+        // apply bonus multiplier if its golem, and wep is mace
+        if (isGolem && !custom_player_stats && onhand_slot == "Barronite mace"){
+            dmgMult = 1.15;
+        }
         console.log("calc_time_to_next_level");
         function calc_time_to_next_level(attack_level, strength_level, focus) {
             console.log("calc_time_to_next_level");
+            console.log("BONUSES", attack_bonus, strength_bonus);
             var effective_attack_level = attack_level;
             var effective_strength_level = strength_level;
             var attack_level_addend = 0;
@@ -439,10 +452,11 @@ function melee_order() {
             // accuracy
             var accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
             // max hit
-            var max_hit = calc_max_hit(effective_strength_level, strength_bonus);
+            var max_hit = calc_max_hit(effective_strength_level, strength_bonus)*dmgMult;
             // check for best time to use skill boosts
             var strength_boost_length = Math.abs(Math.floor(strength_level * (1 + strength_boost_factor) + strength_boost_addend) - strength_level);
-            var attack_boost_length = Math.abs(Math.floor(attack_level * (1 + attack_boost_factor) + attack_boost_addend) - attack_level);
+            var attack_boost_length = Math.floor(attack_level * (1 + attack_boost_factor) + attack_boost_addend) - attack_level;
+            //console.log("attackboost", attack_boost_length);
             var max_boost_length = Math.max(strength_boost_length, attack_boost_length);
 
             // calc xp rate, for initialization. Also just incase theres no boost used i think this is required
@@ -456,6 +470,7 @@ function melee_order() {
                 // only recalc accuracy if attack boost is used
                 // only recalc max hit if strength boost is used (future proofing xd)
                 // i need these if statements since strength and attack boost length's wont always be the same
+                // doesnt handle debuffs (for now) 2023-6-16
                 if (x < attack_boost_length) {
                     effective_attack_level = calc_effective_level(attack_level, attack_prayer, attack_boost_factor, attack_boost_addend);
                     accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
@@ -465,11 +480,12 @@ function melee_order() {
                 }
                 if (x < strength_boost_length) {
                     effective_strength_level = calc_effective_level(strength_level, strength_prayer, strength_boost_factor, strength_boost_addend);
-                    max_hit = calc_max_hit(effective_strength_level, strength_bonus);
+                    max_hit = calc_max_hit(effective_strength_level, strength_bonus)*dmgMult;
                 } else {
                     effective_strength_level = calc_effective_level(strength_level-x, strength_prayer, strength_boost_factor, strength_boost_addend);
-                    max_hit = calc_max_hit(effective_strength_level, strength_bonus);
+                    max_hit = calc_max_hit(effective_strength_level, strength_bonus)*dmgMult;
                 }
+                //console.log(Math.abs(x), x, effective_attack_level, effective_strength_level);
                 // recalc ticks to kill
                 var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
                 // recalc xp per hour
@@ -477,9 +493,10 @@ function melee_order() {
                 if (xp_per_hour > best_xp_per_hour) {
                     best_xp_per_hour = xp_per_hour;
                 }
+                //console.log(xp_per_hour);
             }
             var time_to_next_level = xp_needed / best_xp_per_hour;
-            console.log(time_to_next_level, effective_attack_level, effective_strength_level, max_hit, accuracy, best_xp_per_hour, ticks_to_kill, max_boost_length);
+//            console.log(time_to_next_level, effective_attack_level, effective_strength_level, max_hit, accuracy, best_xp_per_hour, ticks_to_kill, max_boost_length);
             return time_to_next_level;
         }
 
@@ -564,14 +581,14 @@ function melee_order() {
                 var prev_prev_node = order[Math.max(index-2,0)].split(',');
                 var prev_prev_attack_level = Number(prev_prev_node[0]);
                 var prev_prev_strength_level = Number(prev_prev_node[1]);
-                console.log(current_attack_level, current_strength_level, prev_attack_level, prev_strength_level, prev_prev_attack_level, prev_prev_strength_level);
+                //console.log(current_attack_level, current_strength_level, prev_attack_level, prev_strength_level, prev_prev_attack_level, prev_prev_strength_level);
                 if (current_attack_level != prev_attack_level && prev_strength_level != prev_prev_strength_level) {
                     first_attack_level = prev_attack_level;
                     formatted_order.push(`${first_strength_level} - ${current_strength_level} Strength`);
                     hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
                     total_hours = total_hours + hours;
                     total_hours = Math.round(total_hours*1000)/1000;
-                    console.log(hours, "HOURS");
+                    //console.log(hours, "HOURS");
                     formatted_order.push(`${total_hours} Hours`);
                 } else if (current_strength_level != prev_strength_level && prev_attack_level != prev_prev_attack_level) {
                     first_strength_level = prev_strength_level;
@@ -579,21 +596,21 @@ function melee_order() {
                     hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
                     total_hours = total_hours + hours;
                     total_hours = Math.round(total_hours*1000)/1000;
-                    console.log(hours, "HOURS");
+                    //console.log(hours, "HOURS");
                     formatted_order.push(`${total_hours} Hours`);
                 } else if (prev_attack_level == end_attack_level && current_strength_level == end_strength_level) {
                     formatted_order.push(`${first_strength_level} - ${current_strength_level} Strength`);
                     hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
                     total_hours = total_hours + hours;
                     total_hours = Math.round(total_hours*1000)/1000;
-                    console.log(hours, "HOURS");
+                    //console.log(hours, "HOURS");
                     formatted_order.push(`${total_hours} Hours`);
                 } else if (prev_strength_level == end_strength_level && current_attack_level == end_attack_level) {
                     formatted_order.push(`${first_attack_level} - ${current_attack_level} Attack`);
                     hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
                     total_hours = total_hours + hours;
                     total_hours = Math.round(total_hours*1000)/1000;
-                    console.log(hours, "HOURS");
+                    //console.log(hours, "HOURS");
                     formatted_order.push(`${total_hours} Hours`);
                 }
 
