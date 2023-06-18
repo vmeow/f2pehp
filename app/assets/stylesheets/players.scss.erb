@@ -398,6 +398,44 @@ form .input { display: table-cell; }
   appearance: textfield;
 }
 
+/* Tab Styles */
+ul.tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.tabs li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+ul.tabs li a {
+  display: block;
+  padding: 2px 10px;
+  background-color: #382418;
+  color: #969696;
+  text-decoration: none;
+}
+
+ul.tabs li a.active {
+  background-color: #4C382C; /* Set the active tab background color */
+  color: white;
+}
+
+.tab-content {
+  margin-top: 10px;
+}
+
+.tab-pane {
+  display: none;
+  border: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
 // Generate CSS rules for supporter flair
 
 <% Player.supporters_hashes.each do |supporter| %>

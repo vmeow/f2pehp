@@ -102,6 +102,37 @@
         = submit_tag "Calculate", id: "calculate-button"
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 300px; margin-right: 8px") do
     = field_set_tag 'Results', class: ["calc"], style: "width: 258px; display: inline-block;" do
-      = content_tag(:div, nil, class: ["container", "left"], style: "width: 240px;") do
-        %table#results-table.blank{ style: "width: 240px;" }
+      %ul.tabs
+        %li.tab
+          %a.tab-link.active{ href: "#overview", style: "padding: 5px 8px;" } Overview
+        %li.tab
+          %a.tab-link{ href: "#detailed", style: "padding: 5px 8px;" } Detailed
+        %li.tab
+          %a.tab-link{ href: "#boosts", style: "padding: 5px 8px;" } Skill Boosts
+
+      .tab-content
+        .tab-pane#overview.active
+          %table#results-table.blank{ style: "width: 240px;" }
+            %thead
+              %tr
+                %th Levels
+                %th Hours
+            %tbody
+            // Content for Tab 1
+
+        .tab-pane#detailed
+          %table#results-table.blank{ style: "width: 240px;" }
+            %thead
+              %tr
+                %th Levels
+                %th XP Rate
+          %tbody
+          // Content for Tab 2
+
+        .tab-pane#boosts
+          %table#results-table.blank{ style: "width: 240px;" }
+            %thead
+              %tr
+                %th Strength Levels
+                %th Best Drink Level
           %tbody

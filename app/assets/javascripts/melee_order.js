@@ -1,65 +1,6 @@
+//= require dps-utils
+
 function melee_order() {
-    function calculate_factorial(n) {
-        if (n === 0 || n === 1) {
-            return 1;
-        } else {
-            var factorial = 1;
-            for (var i = 2; i <= n; i++) {
-                factorial *= i;
-            }
-            return factorial;
-        }
-    }
-    // function to calc the accurate hits (damage above 0) needed to kill a monster.
-    // This function is based on a formula by GeChallengeM
-    // https://twitter.com/GeChallengeM/status/1155239680578859009
-    function calc_hits_to_kill(target_health, max_hit) {
-        var sum = 0;
-        var floorValue = Math.floor(target_health / (max_hit + 1));
-
-        for (var n = 0; n <= floorValue; n++) {
-            var product = 1;
-
-            for (var i = 0; i <= n - 1; i++) {
-                product *= n - (target_health + i) / (max_hit + 1);
-            }
-
-          var factorial = calculate_factorial(n);
-          var exponent = target_health - n * max_hit;
-          var base = (max_hit + 1) / max_hit;
-
-          sum += Math.pow(base, exponent) * (1 / factorial) * product;
-        }
-
-        return sum;
-    }
-
-    function calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed) {
-        return (calc_hits_to_kill(target_health, max_hit)/accuracy * attack_speed);
-    }
-
-    function calc_max_hit(effective_strength_level, strength_bonus) {
-        var max_hit = Math.floor(0.5 + (effective_strength_level + 8) * (strength_bonus + 64) / 640);
-        return max_hit;
-    }
-
-    function calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus) {
-        var attack_roll = (effective_attack_level + 8) * (attack_bonus + 64);
-        var defence_roll = (target_defence_level + 9) * (target_defence_bonus + 64);
-        var accuracy = 0;
-
-        if (attack_roll > defence_roll) {
-            accuracy = 1 - (defence_roll + 2)/(2 * (attack_roll + 1));
-        } else {
-            accuracy = attack_roll/(2 * (defence_roll + 1));
-        }
-        return accuracy;
-    }
-
-    function calc_effective_level(level, prayer, skill_boost_factor, skill_boost_addend) {
-        var effective_level = Math.floor(Math.floor(level * (1 + skill_boost_factor) + skill_boost_addend) * prayer);
-        return effective_level;
-    }
     var xp_diff_table = [
         0, 83, 91, 102, 112, 124, 138, 151, 168, 185, 204, 226, 249, 274, 304,
         335, 369, 408, 450, 497, 548, 606, 667, 737, 814, 898, 990, 1094, 1207,
@@ -83,14 +24,10 @@ function melee_order() {
       console.log("melee_order_results");
     function melee_order_results() {
         console.log("getattributes");
-        var start_attack_level = getAttributeValue("start_attack_level");
-        var start_strength_level = getAttributeValue("start_strength_level");
-        var end_attack_level = getAttributeValue("end_attack_level");
-        var end_strength_level = getAttributeValue("end_strength_level");
-        start_attack_level = Number(start_attack_level);
-        start_strength_level = Number(start_strength_level);
-        end_attack_level = Number(end_attack_level);
-        end_strength_level = Number(end_strength_level);
+        var start_attack_level = Number(getAttributeValue("start_attack_level"));
+        var start_strength_level = Number(getAttributeValue("start_strength_level"));
+        var end_attack_level = Number(getAttributeValue("end_attack_level"));
+        var end_strength_level = Number(getAttributeValue("end_strength_level"));
 
         var attack_prayer_name = getAttributeValue("attack_prayer");
         var strength_prayer_name = getAttributeValue("strength_prayer");
@@ -104,22 +41,15 @@ function melee_order() {
 
         var target_name = getAttributeValue("target_name");
         var custom_target_stats = getAttributeChecked('custom_target_stats');
-        var custom_health = getAttributeValue("target_health");
-        var custom_defence_level = getAttributeValue("target_defence_level");
-        var custom_defence_bonus = getAttributeValue("target_defence_bonus");
-        custom_health = Number(custom_health);
-        custom_defence_level = Number(custom_defence_level);
-        custom_defence_bonus = Number(custom_defence_bonus);
+        var custom_health = Number(getAttributeValue("target_health"));
+        var custom_defence_level = Number(getAttributeValue("target_defence_level"));
+        var custom_defence_bonus = Number(getAttributeValue("target_defence_bonus"));
 
         var custom_player_stats = getAttributeChecked('custom_player_stats');
-        var custom_attack_bonus = getAttributeValue("custom_attack_bonus");
-        var custom_strength_bonus = getAttributeValue("custom_strength_bonus");
-        var custom_attack_speed = getAttributeValue("custom_attack_speed");
-        var customDmgMult = getAttributeValue("dmg_mult");
-        custom_attack_bonus = Number(custom_attack_bonus);
-        custom_strength_bonus = Number(custom_strength_bonus);
-        custom_attack_speed = Number(custom_attack_speed);
-        customDmgMult = Number(customDmgMult);
+        var custom_attack_bonus = Number(getAttributeValue("custom_attack_bonus"));
+        var custom_strength_bonus = Number(getAttributeValue("custom_strength_bonus"));
+        var custom_attack_speed = Number(getAttributeValue("custom_attack_speed"));
+        var customDmgMult = Number(getAttributeValue("dmg_mult"));
 
         console.log("prayers");
         // Prayers
@@ -543,6 +473,7 @@ function melee_order() {
                 visited.add(current_node);
 
                 // Update distances to neighboring nodes
+                console.log(current_node);
                 graph[current_node].forEach((neighbor) => {
                     var { node, weight } = neighbor;
                     var distance = distances[current_node] + weight;
@@ -689,5 +620,30 @@ function melee_order() {
     });
 
 }
+document.addEventListener("DOMContentLoaded", function() {
+  const tabs = document.querySelectorAll(".tab-link");
+  const tabContents = document.querySelectorAll(".tab-pane");
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener("click", function(e) {
+      e.preventDefault();
+
+      const target = tab.getAttribute("href");
+
+      tabs.forEach(function(t) {
+        t.classList.remove("active");
+      });
+
+      tabContents.forEach(function(content) {
+        content.classList.remove("active");
+      });
+
+      document.querySelector(target).classList.add("active");
+      tab.classList.add("active");
+    });
+  });
+});
+
+
 $(document).ready(melee_order);
 $(document).on('page:load', melee_order);
