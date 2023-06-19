@@ -14,12 +14,12 @@
         %td= label_tag "End"
       %tr
         %td= label_tag "Attack"
-        %td= number_field_tag "start_attack_level", 1, { min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
-        %td= number_field_tag "end_attack_level", 99, { min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+        %td= number_field_tag "start_attack_level", 40, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+        %td= number_field_tag "end_attack_level", 99, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
       %tr
         %td= label_tag "Strength"
-        %td= number_field_tag "start_strength_level", 1, { min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
-        %td= number_field_tag "end_strength_level", 99, { min: 1, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+        %td= number_field_tag "start_strength_level", 40, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+        %td= number_field_tag "end_strength_level", 99, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
 
   = content_tag(:div, nil, class: ["container", "left"], style: "width: 250px; padding-left: 15px; padding-right: 15px;") do
     = content_tag(:table, nil, class: ["blank", "left"]) do
@@ -39,9 +39,6 @@
         %td
       %tr
         %td
-      %tr
-        %td= label_tag "Progression"
-        %td= check_box_tag "weapon_progression_setting", 1, true
       %tr
         %td= label_tag "Weapon"
         %td= select_tag "onhand_slot", options_for_select(["None", "Rune scimitar", "Rune sword", "Barronite mace", "Rune longsword", "Rune battleaxe", "Rune 2h sword", "Hill giant club", "Adamant scimitar", "Adamant sword", "Adamant 2h sword", "Event rpg", "None"], "None"), style: "width: 135px;", include_blank: true

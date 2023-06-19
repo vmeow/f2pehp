@@ -11,7 +11,7 @@ function melee_order() {
         114143, 126022, 139138, 153619, 169608, 187260, 206750, 228269, 252027,
         278259, 307221, 339198, 374502, 413482, 456519, 504037, 556499, 614422,
         678376, 748985, 826944, 913019, 1008052, 1112977, 1228825, 0
-    ]
+    ];
     function getAttributeValue(value) {
         var ele = document.querySelector('[name="' + value + '"]');
         return ele ? ele.value : 0;
@@ -21,9 +21,8 @@ function melee_order() {
         var ele = document.querySelector('[name="' + value + '"]');
         return ele ? ele.checked : false;
     }
-      console.log("melee_order_results");
+
     function melee_order_results() {
-        console.log("getattributes");
         var start_attack_level = Number(getAttributeValue("start_attack_level"));
         var start_strength_level = Number(getAttributeValue("start_strength_level"));
         var end_attack_level = Number(getAttributeValue("end_attack_level"));
@@ -37,7 +36,7 @@ function melee_order() {
         var onhand_slot = getAttributeValue("onhand_slot");
         var neck_slot = getAttributeValue("neck_slot");
         var feet_slot = getAttributeValue("feet_slot");
-        var weapon_progression_setting = getAttributeChecked("weapon_progression_setting");
+        //var weapon_progression_setting = getAttributeChecked("weapon_progression_setting");
 
         var target_name = getAttributeValue("target_name");
         var custom_target_stats = getAttributeChecked('custom_target_stats');
@@ -51,37 +50,22 @@ function melee_order() {
         var custom_attack_speed = Number(getAttributeValue("custom_attack_speed"));
         var customDmgMult = Number(getAttributeValue("dmg_mult"));
 
-        console.log("prayers");
         // Prayers
-        var attack_prayer = 1;
-        switch(attack_prayer_name){
-            case "Clarity of Thought (+5%)":
-                attack_prayer = 1.05;
-                break;
-            case "Improved Reflexes (+10%)":
-                attack_prayer = 1.10;
-                break;
-            case "Incredible Reflexes (+15%)":
-                attack_prayer = 1.15;
-                break;
-            default:
-                break;
-        }
-        var strength_prayer = 1;
-        switch(strength_prayer_name) {
-            case "Burst of Strength (+5%)":
-                strength_prayer = 1.05;
-                break;
-            case "Superhuman Strength (+10%)":
-                strength_prayer = 1.10;
-                break;
-            case "Ultimate Strength (+15%)":
-                strength_prayer = 1.15;
-                break;
-            default:
-                break;
-        }
-        console.log("skill boost");
+        var attackPrayerBonuses = {
+          "Clarity of Thought (+5%)": 1.05,
+          "Improved Reflexes (+10%)": 1.10,
+          "Incredible Reflexes (+15%)": 1.15,
+        };
+
+        var strengthPrayerBonuses = {
+          "Burst of Strength (+5%)": 1.05,
+          "Superhuman Strength (+10%)": 1.10,
+          "Ultimate Strength (+15%)": 1.15,
+        };
+
+        var attack_prayer = attackPrayerBonuses[attack_prayer_name] || 1;
+        var strength_prayer = strengthPrayerBonuses[strength_prayer_name] || 1;
+
         // Skill boosts
         var strength_boost_factor = 0;
         var strength_boost_addend = 0;
@@ -117,252 +101,243 @@ function melee_order() {
         var attack_bonus = 0;
         var strength_bonus = 0;
         var attack_speed = 4;
-        var attack_style = "Slash";
+        var attack_style = "Crush";
         var dmgMult = 1;
-        console.log("equip bonus");
+
         if (!custom_player_stats) {
-            switch(onhand_slot) {
-                case "Rune scimitar":
-                    attack_requirement = 40;
-                    attack_bonus += 45;
-                    strength_bonus += 44;
-                    attack_speed = 4;
-                    attack_style = "Slash";
-                    break;
-                case "Rune sword":
-                    attack_requirement = 40;
-                    attack_bonus += 38;
-                    strength_bonus += 39;
-                    attack_speed = 4;
-                    attack_style = "Stab";
-                    break;
-                case "Barronite mace":
-                    attack_requirement = 40;
-                    attack_bonus += 40;
-                    strength_bonus += 40;
-                    attack_speed = 4;
-                    attack_style = "Crush";
-                    break;
-                case "Rune longsword":
-                    attack_requirement = 40;
-                    attack_bonus += 47;
-                    strength_bonus += 49;
-                    attack_speed = 5;
-                    attack_style = "Slash";
-                    break;
-                case "Rune battleaxe":
-                    attack_requirement = 40;
-                    attack_bonus += 48;
-                    strength_bonus += 64;
-                    attack_speed = 6;
-                    attack_style = "Slash";
-                    break;
-                case "Rune 2h sword":
-                    attack_requirement = 40;
-                    attack_bonus += 69;
-                    strength_bonus += 70;
-                    attack_speed = 7;
-                    attack_style = "Slash";
-                    break;
-                case "Hill giant club":
-                    attack_requirement = 40;
-                    attack_bonus += 65;
-                    strength_bonus += 70;
-                    attack_speed = 7;
-                    attack_style = "Crush";
-                    break;
-                case "Adamant scimitar":
-                    attack_requirement = 30;
-                    attack_bonus += 29;
-                    strength_bonus += 28;
-                    attack_speed = 4;
-                    attack_style = "Slash";
-                    break;
-                case "Adamant sword":
-                    attack_requirement = 30;
-                    attack_bonus += 23;
-                    strength_bonus += 24;
-                    attack_speed = 4;
-                    attack_style = "Stab";
-                    break;
-                case "Adamant 2h sword":
-                    attack_requirement = 30;
-                    attack_bonus += 43;
-                    strength_bonus += 44;
-                    attack_speed = 7;
-                    attack_style = "Slash";
-                    break;
-                case "None":
-                    attack_requirement = 1;
-                    attack_speed = 4;
-                    attack_style = "Crush";
-                    break;
-                case "Event rpg":
-                    attack_requirement = 1;
-                    attack_speed = 3;
-                    attack_style = "Crush";
-                    break;
-                default:
-                    attack_requirement = 1;
-                    attack_speed = 4;
-                    attack_style = "Crush";
-                    break;
-            }
+          var equipmentBonuses = {
+            "Rune scimitar": {
+              attack_requirement: 40,
+              attack_bonus: 45,
+              strength_bonus: 44,
+              attack_speed: 4,
+              attack_style: "Slash",
+            },
+            "Rune sword": {
+              attack_requirement: 40,
+              attack_bonus: 38,
+              strength_bonus: 39,
+              attack_speed: 4,
+              attack_style: "Stab",
+            },
+            "Barronite mace": {
+              attack_requirement: 40,
+              attack_bonus: 40,
+              strength_bonus: 40,
+              attack_speed: 4,
+              attack_style: "Crush",
+            },
+            "Rune longsword": {
+              attack_requirement: 40,
+              attack_bonus: 47,
+              strength_bonus: 49,
+              attack_speed: 5,
+              attack_style: "Slash",
+            },
+            "Rune battleaxe": {
+              attack_requirement: 40,
+              attack_bonus: 48,
+              strength_bonus: 64,
+              attack_speed: 6,
+              attack_style: "Slash",
+            },
+            "Rune 2h sword": {
+              attack_requirement: 40,
+              attack_bonus: 69,
+              strength_bonus: 70,
+              attack_speed: 7,
+              attack_style: "Slash",
+            },
+            "Hill giant club": {
+              attack_requirement: 40,
+              attack_bonus: 65,
+              strength_bonus: 70,
+              attack_speed: 7,
+              attack_style: "Crush",
+            },
+            "Adamant scimitar": {
+              attack_requirement: 30,
+              attack_bonus: 29,
+              strength_bonus: 28,
+              attack_speed: 4,
+              attack_style: "Slash",
+            },
+            "Adamant sword": {
+              attack_requirement: 30,
+              attack_bonus: 23,
+              strength_bonus: 24,
+              attack_speed: 4,
+              attack_style: "Stab",
+            },
+            "Adamant 2h sword": {
+              attack_requirement: 30,
+              attack_bonus: 43,
+              strength_bonus: 44,
+              attack_speed: 7,
+              attack_style: "Slash",
+            },
+          };
 
-            switch(neck_slot) {
-                case "Amulet of power":
-                    attack_bonus += 6;
-                    strength_bonus += 6;
-                    break;
-                case "Amulet of strength":
-                    strength_bonus += 10;
-                    break;
-                case "Amulet of accuracy":
-                    attack_bonus += 4;
-                    break;
-                default:
-                    break;
-            }
+          var neckBonuses = {
+            "Amulet of power": {
+              attack_bonus: 6,
+              strength_bonus: 6,
+            },
+            "Amulet of strength": {
+              strength_bonus: 10,
+            },
+            "Amulet of accuracy": {
+              attack_bonus: 4,
+            },
+            // Add other neck bonuses here...
+          };
 
-            switch(feet_slot) {
-                case "Decorative boots (gold)":
-                    strength_bonus += 1;
-                    break;
-                default:
-                    break;
-            }
+          var feetBonuses = {
+            "Decorative boots (gold)": {
+              strength_bonus: 1,
+            },
+            // Add other feet bonuses here...
+          };
+          // Retrieve the bonuses for a specific onhand slot
+          function getEquipmentBonuses(equipment) {
+            return equipmentBonuses[equipment] || {
+              attack_requirement: 1,
+              attack_bonus: 0,
+              strength_bonus: 0,
+              attack_speed: 4,
+              attack_style: "Crush",
+            };
+          }
+
+          // Retrieve the bonuses for a specific neck slot
+          function getNeckBonuses(neckItem) {
+            return neckBonuses[neckItem] || {};
+          }
+
+          // Retrieve the bonuses for a specific feet slot
+          function getFeetBonuses(feetItem) {
+            return feetBonuses[feetItem] || {};
+          }
+          var onhandEquipment = getEquipmentBonuses(onhand_slot);
+          attack_requirement = onhandEquipment.attack_requirement;
+          attack_bonus += onhandEquipment.attack_bonus;
+          strength_bonus += onhandEquipment.strength_bonus;
+          attack_speed = onhandEquipment.attack_speed;
+          attack_style = onhandEquipment.attack_style;
+
+          var neckEquipment = getNeckBonuses(neck_slot);
+          attack_bonus += neckEquipment.attack_bonus || 0;
+          strength_bonus += neckEquipment.strength_bonus || 0;
+
+          var feetEquipment = getFeetBonuses(feet_slot);
+          strength_bonus += feetEquipment.strength_bonus || 0;
         } else if (custom_player_stats) {
             attack_bonus = custom_attack_bonus;
             strength_bonus = custom_strength_bonus;
             attack_speed = custom_attack_speed;
             dmgMult = customDmgMult;
         }
-        console.log(attack_bonus, strength_bonus, attack_speed, dmgMult);
-        console.log("target stats");
         // Target stats
         var target_defence_level = 0;
         var target_health = 0;
         var target_defence_bonus = 0;
         var isGolem = false;
+
         if (!custom_target_stats) {
-            switch(target_name){
-                case "Flawed Golem":
-                    target_defence_level = 6;
-                    target_health = 25;
-                    if(attack_style == "Crush") {
-                        target_defence_bonus = 0;
-                    } else {
-                        target_defence_bonus = 5;
-                    }
-                    isGolem = true;
-                    break;
-                case "Mind Golem":
-                    target_defence_level = 25;
-                    target_health = 40;
-                    if(attack_style == "Crush"){
-                        target_defence_bonus = 0;
-                    } else {
-                        target_defence_bonus = 5;
-                    }
-                    isGolem = true;
-                    break;
-                case "Body Golem":
-                    target_defence_level = 45;
-                    target_health = 60;
-                    if(attack_style == "Crush") {
-                        target_defence_bonus = 0;
-                    } else {
-                        target_defence_bonus = 5;
-                    }
-                    isGolem = true;
-                    break;
-                case "Ogress Warrior":
-                    target_defence_level = 82;
-                    target_health = 82;
-                    if(attack_style == "Stab") {
-                        target_defence_bonus = 10;
-                    } else {
-                        target_defence_bonus = 12;
-                    }
-                    break;
-                case "Ogress Shaman":
-                    target_defence_level = 82;
-                    target_health = 82;
-                    if(attack_style == "Stab") {
-                        target_defence_bonus = 12;
-                    } else {
-                        target_defence_bonus = 14;
-                    }
-                    break;
-                case "Obor":
-                    target_defence_level = 60;
-                    target_health = 120;
-                    if(attack_style == "Stab") {
-                        target_defence_bonus = 35;
-                    } else if(attack_style == "Slash") {
-                        target_defence_bonus = 40;
-                    } else{
-                        target_defence_bonus = 45;
-                    }
-                    break;
-                case "Bryophyta":
-                    target_defence_level = 100;
-                    target_health = 115;
-                    target_defence_bonus = 0;
-                    break;
-                case "Lesser demon":
-                    target_defence_level = 71;
-                    target_health = 81;
-                    break;
-                case "Moss giant":
-                    target_defence_level = 30;
-                    target_health = 60;
-                    break;
-                case "Hill giant":
-                    target_defence_level = 26;
-                    target_health = 35;
-                    break;
-                case "Giant spider":
-                    target_defence_level = 31;
-                    target_health = 50;
-                    target_defence_bonus = 10;
-                    break;
-                case "Flesh crawler":
-                    target_defence_level = 10;
-                    target_health = 25;
-                    target_defence_bonus = 15;
-                    break;
-                case "Ice Giant":
-                    target_defence_level = 40;
-                    target_health = 70;
-                    if(attack_style == "Stab"){
-                        target_defence_bonus = 0;
-                    } else if(attack_style == "Slash"){
-                        target_defence_bonus = 3;
-                    } else{
-                        target_defence_bonus = 2;
-                    }
-                    break;
-                case "Dark Wizard (Level 20)":
-                    target_defence_level = 14;
-                    target_health = 24;
-                    break;
-                default:
-                    break;
+          var targetStats = {
+            "Flawed Golem": {
+              defence_level: 6,
+              health: 25,
+              defence_bonus: (attack_style === "Crush" ? 0 : 5),
+              isGolem: true,
+            },
+            "Mind Golem": {
+              defence_level: 25,
+              health: 40,
+              defence_bonus: (attack_style === "Crush" ? 0 : 5),
+              isGolem: true,
+            },
+            "Body Golem": {
+              defence_level: 45,
+              health: 60,
+              defence_bonus: (attack_style === "Crush" ? 0 : 5),
+              isGolem: true,
+            },
+            "Ogress Warrior": {
+              defence_level: 82,
+              health: 82,
+              defence_bonus: (attack_style === "Stab" ? 10 : 12),
+            },
+            "Ogress Shaman": {
+              defence_level: 82,
+              health: 82,
+              defence_bonus: (attack_style === "Stab" ? 12 : 14),
+            },
+            "Obor": {
+              defence_level: 60,
+              health: 120,
+              defence_bonus:
+                attack_style === "Stab" ? 35 : attack_style === "Slash" ? 40 : 45,
+            },
+            "Bryophyta": {
+              defence_level: 100,
+              health: 115,
+              defence_bonus: 0,
+            },
+            "Lesser demon": {
+              defence_level: 71,
+              health: 81,
+            },
+            "Moss giant": {
+              defence_level: 30,
+              health: 60,
+            },
+            "Hill giant": {
+              defence_level: 26,
+              health: 35,
+            },
+            "Giant spider": {
+              defence_level: 31,
+              health: 50,
+              defence_bonus: 10,
+            },
+            "Flesh crawler": {
+              defence_level: 10,
+              health: 25,
+              defence_bonus: 15,
+            },
+            "Ice Giant": {
+              defence_level: 40,
+              health: 70,
+              defence_bonus:
+                attack_style === "Stab" ? 0 : attack_style === "Slash" ? 3 : 2,
+            },
+            "Dark Wizard (Level 20)": {
+              defence_level: 14,
+              health: 24,
             }
+          };
+          function getTargetStats(targetName) {
+            return targetStats[targetName] || null;
+          }
+          var targetStats = getTargetStats(target_name);
+          if (targetStats) {
+            target_defence_level = targetStats.defence_level;
+            target_health = targetStats.health;
+            target_defence_bonus = targetStats.defence_bonus || 0;
+            isGolem = targetStats.isGolem || false;
+          }
         } else if (custom_target_stats) {
-            target_defence_level = custom_defence_level;
-            target_health = custom_health;
-            target_defence_bonus = custom_defence_bonus;
+          target_defence_level = custom_defence_level;
+          target_health = custom_health;
+          target_defence_bonus = custom_defence_bonus;
         }
+
         // apply bonus multiplier if its golem, and wep is mace
         if (isGolem && !custom_player_stats && onhand_slot == "Barronite mace"){
             dmgMult = 1.15;
         }
-        console.log("calc_time_to_next_level");
         function calc_time_to_next_level(attack_level, strength_level, focus) {
-            console.log("calc_time_to_next_level");
-            console.log("BONUSES", attack_bonus, strength_bonus);
             var effective_attack_level = attack_level;
             var effective_strength_level = strength_level;
             var attack_level_addend = 0;
@@ -386,12 +361,10 @@ function melee_order() {
             // check for best time to use skill boosts
             var strength_boost_length = Math.abs(Math.floor(strength_level * (1 + strength_boost_factor) + strength_boost_addend) - strength_level);
             var attack_boost_length = Math.floor(attack_level * (1 + attack_boost_factor) + attack_boost_addend) - attack_level;
-            //console.log("attackboost", attack_boost_length);
             var max_boost_length = Math.max(strength_boost_length, attack_boost_length);
 
             // calc xp rate, for initialization. Also just incase theres no boost used i think this is required
             var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
-            //console.log(strength_boost_length, attack_boost_length, max_boost_length);
             var xp_per_hour = 6000/ ticks_to_kill * target_health * 4;
 
             var best_xp_per_hour = xp_per_hour;
@@ -415,141 +388,70 @@ function melee_order() {
                     effective_strength_level = calc_effective_level(strength_level-x, strength_prayer, strength_boost_factor, strength_boost_addend);
                     max_hit = calc_max_hit(effective_strength_level, strength_bonus)*dmgMult;
                 }
-                //console.log(Math.abs(x), x, effective_attack_level, effective_strength_level);
                 // recalc ticks to kill
-                var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
+                ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
                 // recalc xp per hour
-                var xp_per_hour = 6000/ ticks_to_kill * target_health * 4 * (1-60/(4*x)/(boost_collection_rate));
+                xp_per_hour = 6000/ ticks_to_kill * target_health * 4 * (1-60/(4*x)/(boost_collection_rate));
                 if (xp_per_hour > best_xp_per_hour) {
                     best_xp_per_hour = xp_per_hour;
                 }
-                //console.log(xp_per_hour);
             }
             var time_to_next_level = xp_needed / best_xp_per_hour;
-//            console.log(time_to_next_level, effective_attack_level, effective_strength_level, max_hit, accuracy, best_xp_per_hour, ticks_to_kill, max_boost_length);
             return time_to_next_level;
         }
-
-        // Function to add an edge between two nodes in the graph
-        console.log("addEdge");
-        var graph = {};
-        function addEdge(nodeA, nodeB, weight) {
-            console.log("addEdge");
-            if (!graph[nodeA]) {
-                graph[nodeA] = [];
-            }
-            if (!graph[nodeB]) {
-                graph[nodeB] = [];
-            }
-            graph[nodeA].push({ node: nodeB, weight });
-            graph[nodeB].push({ node: nodeA, weight });
-        }
-
-        // Function to calculate the shortest Order using Dijkstra's algorithm
-        console.log("shortestOrder");
-        function shortest_order(start_node, target_node) {
-            var distances = {};
-            var visited = new Set();
-            var previous = {};
-
-            Object.keys(graph).forEach((node) => {
-                distances[node] = Infinity;
-            });
-
-            distances[start_node] = 0;
-
-            while (visited.size < Object.keys(graph).length) {
-                var current_node = null;
-                var shortest_distance = Infinity;
-
-                // Find the node with the shortest distance
-                Object.keys(graph).forEach((node) => {
-                    if (!visited.has(node) && distances[node] < shortest_distance) {
-                        current_node = node;
-                        shortest_distance = distances[node];
-                    }
-                });
-                // Mark the current node as visited
-                visited.add(current_node);
-
-                // Update distances to neighboring nodes
-                console.log(current_node);
-                graph[current_node].forEach((neighbor) => {
-                    var { node, weight } = neighbor;
-                    var distance = distances[current_node] + weight;
-                    if (distance < distances[node]) {
-                        distances[node] = distance;
-                        previous[node] = current_node;
-                    }
-                });
-                console.log(`Visited Node: ${current_node}`);
-            }
-            // Revarruct the shortest Order
-            var Order = [];
-            var current_node = target_node;
-            while (current_node !== start_node) {
-                Order.unshift(current_node);
-                current_node = previous[current_node];
-            }
-            Order.unshift(start_node);
-
-            return Order;
-        }
-        console.log("format_order");
         function format_order(order) {
-            var prev_attack_level = Number(start_attack_level);
-            var prev_strength_level = Number(start_strength_level);
-            var first_attack_level = start_attack_level;
-            var first_strength_level = start_strength_level;
-            var formatted_order = [];
+          var prev_attack_level = Number(start_attack_level);
+          var prev_strength_level = Number(start_strength_level);
+          var first_attack_level = start_attack_level;
+          var first_strength_level = start_strength_level;
+          var formatted_order = [];
+          var total_hours = 0;
+
+          for (var index = 0; index < order.length; index++) {
+            var node = order[index].split(',');
+            var current_attack_level = Number(node[0]);
+            var current_strength_level = Number(node[1]);
+
+            var prev_prev_node = order[Math.max(index - 2, 0)].split(',');
+            var prev_prev_attack_level = Number(prev_prev_node[0]);
+            var prev_prev_strength_level = Number(prev_prev_node[1]);
+
+            var progression = '';
             var hours = 0;
-            var total_hours = 0;
-            for (var index = 0; index < order.length; index++) {
-                var node = order[index].split(',');
-                var current_attack_level = Number(node[0]);
-                var current_strength_level = Number(node[1]);
 
-                var prev_prev_node = order[Math.max(index-2,0)].split(',');
-                var prev_prev_attack_level = Number(prev_prev_node[0]);
-                var prev_prev_strength_level = Number(prev_prev_node[1]);
-                //console.log(current_attack_level, current_strength_level, prev_attack_level, prev_strength_level, prev_prev_attack_level, prev_prev_strength_level);
-                if (current_attack_level != prev_attack_level && prev_strength_level != prev_prev_strength_level) {
-                    first_attack_level = prev_attack_level;
-                    formatted_order.push(`${first_strength_level} - ${current_strength_level} Strength`);
-                    hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
-                    total_hours = total_hours + hours;
-                    total_hours = Math.round(total_hours*1000)/1000;
-                    //console.log(hours, "HOURS");
-                    formatted_order.push(`${total_hours} Hours`);
-                } else if (current_strength_level != prev_strength_level && prev_attack_level != prev_prev_attack_level) {
-                    first_strength_level = prev_strength_level;
-                    formatted_order.push(`${first_attack_level} - ${current_attack_level} Attack`);
-                    hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
-                    total_hours = total_hours + hours;
-                    total_hours = Math.round(total_hours*1000)/1000;
-                    //console.log(hours, "HOURS");
-                    formatted_order.push(`${total_hours} Hours`);
-                } else if (prev_attack_level == end_attack_level && current_strength_level == end_strength_level) {
-                    formatted_order.push(`${first_strength_level} - ${current_strength_level} Strength`);
-                    hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
-                    total_hours = total_hours + hours;
-                    total_hours = Math.round(total_hours*1000)/1000;
-                    //console.log(hours, "HOURS");
-                    formatted_order.push(`${total_hours} Hours`);
-                } else if (prev_strength_level == end_strength_level && current_attack_level == end_attack_level) {
-                    formatted_order.push(`${first_attack_level} - ${current_attack_level} Attack`);
-                    hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
-                    total_hours = total_hours + hours;
-                    total_hours = Math.round(total_hours*1000)/1000;
-                    //console.log(hours, "HOURS");
-                    formatted_order.push(`${total_hours} Hours`);
-                }
-
-                prev_attack_level = current_attack_level;
-                prev_strength_level = current_strength_level;
+            if (current_attack_level !== prev_attack_level && prev_strength_level !== prev_prev_strength_level) {
+              first_attack_level = prev_attack_level;
+              progression = first_strength_level + ' - ' + current_strength_level + ' Strength';
+              hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+            } else if (current_strength_level !== prev_strength_level && prev_attack_level !== prev_prev_attack_level) {
+              first_strength_level = prev_strength_level;
+              progression = first_attack_level + ' - ' + current_attack_level + ' Attack';
+              hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
+            } else if (prev_attack_level === end_attack_level && current_strength_level === end_strength_level) {
+              progression = first_strength_level + ' - ' + current_strength_level + ' Strength';
+              hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+            } else if (prev_strength_level === end_strength_level && current_attack_level === end_attack_level) {
+              progression = first_attack_level + ' - ' + current_attack_level + ' Attack';
+              hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
             }
-            return formatted_order;
+
+            total_hours += hours;
+            total_hours = Math.round(total_hours * 1000) / 1000;
+
+            if (progression) {
+              formatted_order.push(progression);
+              formatted_order.push(total_hours + ' Hours');
+            }
+
+            prev_attack_level = current_attack_level;
+            prev_strength_level = current_strength_level;
+          }
+
+          return formatted_order;
         }
+
+
+
         // calc the hours between 2 attack levels
         function calc_attack_hours(start_attack_level, end_attack_level, strength_level) {
             var total_hours = 0;
@@ -569,34 +471,103 @@ function melee_order() {
             return total_hours;
         }
 
-        // Create graph
-        console.log("graph");
-//        console.log(start_attack_level, end_attack_level, start_strength_level, end_strength_level);
-        for (var attack_level = start_attack_level; attack_level <= end_attack_level; attack_level++) {
-            console.log("graph1");
-            for (var strength_level = start_strength_level; strength_level <= end_strength_level; strength_level++) {
-                var node = `${attack_level},${strength_level}`;
-//                console.log(attack_level, strength_level, node);
+        function createGraph(start_attack_level, end_attack_level, start_strength_level, end_strength_level) {
+          var graph = {};
 
-                if (attack_level < end_attack_level) {
-                    var next_attack_node = `${attack_level + 1},${strength_level}`;
-                    var attack_level_time = calc_time_to_next_level(attack_level, strength_level, 1);
-                    addEdge(node, next_attack_node, attack_level_time);
-                }
-
-                if (strength_level < end_strength_level) {
-                    var next_strength_node = `${attack_level},${strength_level + 1}`;
-                    var strength_level_time = calc_time_to_next_level(attack_level, strength_level, 2);
-                    addEdge(node, next_strength_node, strength_level_time);
-                }
+          function addEdge(nodeA, nodeB, weight) {
+            if (!graph[nodeA]) {
+              graph[nodeA] = [];
             }
+            if (!graph[nodeB]) {
+              graph[nodeB] = [];
+            }
+            graph[nodeA].push({ node: nodeB, weight: weight });
+						graph[nodeB].push({ node: nodeA, weight: weight });
+          }
+
+          for (var attack_level = start_attack_level; attack_level <= end_attack_level; attack_level++) {
+            for (var strength_level = start_strength_level; strength_level <= end_strength_level; strength_level++) {
+              var node = attack_level + ',' + strength_level;
+
+              if (attack_level < end_attack_level) {
+                var next_attack_node = (attack_level + 1) + ',' + strength_level;
+                var attack_level_time = calc_time_to_next_level(attack_level, strength_level, 1);
+                addEdge(node, next_attack_node, attack_level_time);
+              }
+
+              if (strength_level < end_strength_level) {
+                var next_strength_node = attack_level + ',' + (strength_level + 1);
+                var strength_level_time = calc_time_to_next_level(attack_level, strength_level, 2);
+                addEdge(node, next_strength_node, strength_level_time);
+              }
+            }
+          }
+
+          return graph;
         }
-        console.log("shortest order");
-        var shortestOrderNodes = shortest_order(`${start_attack_level},${start_strength_level}`, `${end_attack_level},${end_strength_level}`);
-        var formatted_order = format_order(shortestOrderNodes);
-        console.log(...formatted_order);
-        console.log(formatted_order[1], formatted_order[0]);
-        console.log (shortestOrderNodes[1], shortestOrderNodes[0]);
+
+        function calculateShortestOrder(graph, start_node, target_node) {
+          var distances = {};
+          var previous = {};
+          var unvisited = Object.keys(graph);
+
+          unvisited.forEach(function(node) {
+            distances[node] = Infinity;
+          });
+
+          distances[start_node] = 0;
+
+          while (unvisited.length > 0) {
+            var current_node = null;
+            var shortest_distance = Infinity;
+
+            for (var i = 0; i < unvisited.length; i++) {
+              var node = unvisited[i];
+              if (distances[node] < shortest_distance) {
+                current_node = node;
+                shortest_distance = distances[node];
+              }
+            }
+
+            var index = -1;
+            for (var j = 0; j < unvisited.length; j++) {
+              if (unvisited[j] === current_node) {
+                index = j;
+                break;
+              }
+            }
+
+            unvisited.splice(index, 1);
+
+            graph[current_node].forEach(function(neighbor) {
+              var node = neighbor.node;
+              var weight = neighbor.weight;
+              var distance = distances[current_node] + weight;
+              if (distance < distances[node]) {
+                distances[node] = distance;
+                previous[node] = current_node;
+              }
+            });
+          }
+
+          var order = [];
+          var current_node = target_node;
+
+          while (current_node !== start_node) {
+            order.unshift(current_node);
+            current_node = previous[current_node];
+          }
+          order.unshift(start_node);
+
+          return order;
+        }
+
+
+
+
+        var graph = createGraph(start_attack_level, end_attack_level, start_strength_level, end_strength_level);
+        var shortestOrder = calculateShortestOrder(graph, start_attack_level + ',' + start_strength_level, end_attack_level + ',' + end_strength_level);
+        var formatted_order = format_order(shortestOrder);
         var table = document.getElementById("results-table");
         var tableBody = table.getElementsByTagName("tbody")[0];
         tableBody.innerHTML = ""; // Clear the table body before populating with new data
@@ -613,36 +584,32 @@ function melee_order() {
 
 
     }
-    document.getElementById("calculate-button").addEventListener("click", function(event) {
+    if ($('#body-melee_order').length) {
+      $("#calculate-button").on("click", function(event) {
         event.preventDefault();
-        // Call the `melee_order_results()` function
         melee_order_results();
+      });
+
+      $(document).ready(function() {
+      $(".tab-link").on("click", function(e) {
+        e.preventDefault();
+
+        var target = $(this).attr("href");
+
+        $(".tab-link").removeClass("active");
+        $(".tab-pane").removeClass("active");
+
+        $(target).addClass("active");
+        $(this).addClass("active");
+
+        console.log("Added 'active' class to target content and clicked tab.");
+      });
     });
+
+
+    }
 
 }
-document.addEventListener("DOMContentLoaded", function() {
-  const tabs = document.querySelectorAll(".tab-link");
-  const tabContents = document.querySelectorAll(".tab-pane");
-
-  tabs.forEach(function(tab) {
-    tab.addEventListener("click", function(e) {
-      e.preventDefault();
-
-      const target = tab.getAttribute("href");
-
-      tabs.forEach(function(t) {
-        t.classList.remove("active");
-      });
-
-      tabContents.forEach(function(content) {
-        content.classList.remove("active");
-      });
-
-      document.querySelector(target).classList.add("active");
-      tab.classList.add("active");
-    });
-  });
-});
 
 
 $(document).ready(melee_order);
