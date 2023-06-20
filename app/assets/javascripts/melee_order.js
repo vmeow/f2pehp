@@ -40,7 +40,7 @@ function melee_order() {
 
         var target_name = getAttributeValue("target_name");
         var custom_target_stats = getAttributeChecked('custom_target_stats');
-        var pvp_setting = getAttributeChecked('pvp')
+        var pvp_setting = getAttributeChecked('pvp');
 
         var custom_health = Number(getAttributeValue("target_health"));
         var custom_defence_level = Number(getAttributeValue("target_defence_level"));
