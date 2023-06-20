@@ -20,7 +20,7 @@ function ready() {
         $('#calcs-list').slideToggle(100);
         event.stopPropagation();
     });
-    
+
     $('#links').click(function(event) {
         $('#links-list').slideToggle(100);
         event.stopPropagation();
