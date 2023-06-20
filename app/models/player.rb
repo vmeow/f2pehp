@@ -7,7 +7,6 @@ class Player < ActiveRecord::Base
 
   has_many :player_clan_links
   has_many :clans, through: :player_clan_links
-
   SKILLS = ["attack", "strength", "defence", "hitpoints", "ranged", "prayer",
             "magic", "cooking", "woodcutting", "fishing", "firemaking", "crafting",
             "smithing", "mining", "runecraft", "overall"]
@@ -117,6 +116,7 @@ class Player < ActiveRecord::Base
                 {name: "Ll0y d", amount: 11.79, date: "2021-08-16", other_css: ["color: #FCCD12"]},
                 {name: "Yewsless", amount: 11, date: "2018-03-11", flair_after: "items/Yew_logs.gif"},
                 {name: "Les Crevaux", donation: "20m", date: "2022-06-22", flair_after: "flairs/pet_cat_black.png"},
+                  {name: "High above", donation: "20m", date: "2022-06-22", flair_after: "flairs/white_partyhat.png"},
                 {name: "F2P Lukie", amount: 10, date: "2018-01-31", flair_after: "flairs/tea.png"},
                 {name: "Tame My Wild", amount: 10, date: "2018-02-06", flair_after: "flairs/dog.png"},
                 {name: "Faij", amount: 10, date: "2018-03-06", flair_after: "flairs/frog.png"},
@@ -161,7 +161,7 @@ class Player < ActiveRecord::Base
                 # but let's just call it a $10 donation and put those requests here
                 {name: "Pinai", amount: 10, date: "2020-11-04", other_css: ["color: #00ff00"]},
 
-                {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/Unstrung_symbol.png"},
+                {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/asura_zoma.png"},
                 {name: "re-fine", amount: 10, date: "2021-02-12", flair_after: "flairs/Mask_of_balance.png"},
                 {name: "Astrodeo", amount: 10, date: "2021-02-12", flair_after: "flairs/NASA-logo.png"},
                 {name: "f meinen", amount: 10, date: "2021-03-13", flair_after: "flairs/gengar.png"},
@@ -187,6 +187,7 @@ class Player < ActiveRecord::Base
                   {name: "gluee9", amount: 10, date: "2022-11-07", flair_after: "flairs/S.png"},
                 {name: "Held Items", amount: 10, date: "2022-11-15", flair_after: "flairs/leek.png"},
                 {name: "Crazy Gadget", amount: 10, date: "2023-01-20", flair_after: "flairs/sonic.png"},
+                {name: "Defbone", amount: 10, date: "2023-05-09", flair_after: "flairs/cwars_white_plate.png"},
                 {name: "n0neshine", amount: 5, date: "2021-06-12", flair_after: "flairs/n0neshine.png"},
                 {name: "Swiss Corona", amount: 8, date: "2020-11-06", flair_after: "flairs/switzerland_flag.png", other_css: ["color: #FF0000"]},
                 {name: "For Ulven", amount: 7.77, date: "2018-03-11", flair_after: "flairs/wolf.png"},
@@ -381,6 +382,7 @@ class Player < ActiveRecord::Base
                 {name: "pussyexpert9", amount: 1, date: "2020-02-03"},
                 {name: "goyard purse", amount: 1, date: "2021-09-12"},
                 {name: "Useless Knob", amount: 1, date: "2021-11-11"},
+                {name: "k0mad0zer0", amount: 1, date: "2023-05-23"},
                 {name: "5perm sock"},
                 {name: "HC Yiffer"}, # pro bono tracking
                 {name: "Disenthral"}, # pro bono tracking
