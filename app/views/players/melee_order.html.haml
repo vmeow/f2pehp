@@ -74,7 +74,7 @@
       = field_set_tag 'Enemy Stats', class: "calc", style: "width: 220px; display: inline-block;" do
         = content_tag(:div, nil, class: ["container", "center"], style: "text-align: center; width: 220px;") do
           %h5 Mob Name
-          = select_tag "target_name", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Obor", "Bryophyta", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)"], "None"), style: "width: 135px;", include_blank: true
+          = select_tag "target_name", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Obor", "Bryophyta", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)"], "None"), style: "width: 135px;", include_blank: false
         = content_tag(:div, nil, class: ["container", "center"], style: "width: 220px;") do
           = content_tag(:table, nil, class: ["blank"], style: "width: 220px;") do
             %h5 Custom Stats
