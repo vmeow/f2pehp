@@ -1,0 +1,127 @@
+- @title = "Calcs"
+- @description = "Melee order calculator"
+= link_to image_tag("f2pwiki.png"), players_path
+
+= render partial: "header.html.haml", locals: { notice: notice }
+= content_tag(:div, nil, class: ["container", "center"], style: "width: 850px;") do
+  = content_tag(:div, nil, class: ["container", "left"], style: "width: 566px;") do
+    = content_tag(:div, nil, class: ["container", "left"], style: "width: 276px; padding-left: 10px") do
+      = field_set_tag 'Player Stats', class: ["calc"], style: "width: 240px" do
+        = content_tag(:div, nil, class: ["container", "left"], style: "width: 250px;") do
+          = content_tag(:table, nil, class: ["blank"], style: "width: 200px;") do
+            %h5 Levels
+            %tr
+              %td= ""
+              %td= label_tag "Start"
+              %td= label_tag "End"
+            %tr
+              %td= label_tag "Attack"
+              %td= number_field_tag "start_attack_level", 40, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+              %td= number_field_tag "end_attack_level", 99, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+            %tr
+              %td= label_tag "Strength"
+              %td= number_field_tag "start_strength_level", 40, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+              %td= number_field_tag "end_strength_level", 99, { min: 20, max: 99, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+        = content_tag(:div, nil, class: ["container", "center"], style: "width: 250px;") do
+          = content_tag(:table, nil, class: ["blank", "left"]) do
+            %h5 Settings
+            %tr
+              %td= label_tag "Attack Prayer"
+              %td= select_tag "attack_prayer", options_for_select(["None", "Clarity of Thought (+5%)", "Improved Reflexes (+10%)", "Incredible Reflexes (+15%)"], "None"), style: "width: 135px;", include_blank: false
+            %tr
+              %td= label_tag "Str Prayer"
+              %td= select_tag "strength_prayer", options_for_select(["None", "Burst of Strength (+5%)", "Superhuman Strength (+10%)", "Ultimate Strength (+15%)"], "None"), style: "width: 135px;", include_blank: false
+            %tr
+              %td= label_tag "Skill Boost"
+              %td= select_tag "skill_boost", options_for_select(["None", "Strength potion", "Castlewars brew"], "None"), style: "width: 135px;", include_blank: false
+            %tr
+              %td
+            %tr
+              %td
+            %tr
+              %td
+            %tr
+              %td= label_tag "Weapon"
+              %td= select_tag "onhand_slot", options_for_select(["None", "Rune scimitar", "Rune sword", "Barronite mace", "Rune longsword", "Rune battleaxe", "Rune 2h sword", "Hill giant club", "Adamant scimitar", "Adamant sword", "Adamant 2h sword", "Event rpg"], "None"), style: "width: 135px;", include_blank: false
+            %tr
+              %td= label_tag "Neck Slot"
+              %td= select_tag "neck_slot", options_for_select(["None", "Amulet of power", "Amulet of strength", "Amulet of accuracy"], "None"), style: "width: 135px;", include_blank: false
+            %tr
+              %td= label_tag "Feet Slot"
+              %td= select_tag "feet_slot", options_for_select(["None", "Decorative boots (gold)"], "None"), style: "width: 135px;", include_blank: false
+            %tr
+              %td
+          = content_tag(:div, nil, class: ["container", "left"], style: "width: 180px;") do
+            = content_tag(:table, nil, class: ["blank", "left"]) do
+              %h5 Custom
+              %tr
+                %td= label_tag "Custom Stats?"
+                %td= check_box_tag "custom_player_stats", 1
+              %tr
+                %td= label_tag "Attack Bonus"
+                %td= number_field_tag "custom_attack_bonus", 0, { min: -999, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+              %tr
+                %td= label_tag "Str Bonus"
+                %td= number_field_tag "custom_strength_bonus", 0, { min: 0, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+              %tr
+                %td= label_tag "Att Speed (ticks)"
+                %td= number_field_tag "custom_attack_speed", 4, { min: 1, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px", remote: true }
+              %tr
+                %td= label_tag "Dmg Multiplier"
+                %td= number_field_tag "dmg_mult", 1, { min: 0, max: 999, step: 0.05, size: 6, maxlength: 3, style: "width:60px", remote: true }
+
+    = content_tag(:div, nil, class: ["container", "left"], style: "width: 250px; padding-left: 15px") do
+      = field_set_tag 'Enemy Stats', class: "calc", style: "width: 220px; display: inline-block;" do
+        = content_tag(:div, nil, class: ["container", "center"], style: "text-align: center; width: 220px;") do
+          %h5 Mob Name
+          = select_tag "target_name", options_for_select(["Ogress Warrior", "Ogress Shaman", "Flawed Golem", "Mind Golem", "Body Golem", "Obor", "Bryophyta", "Lesser demon", "Moss giant", "Hill giant", "Giant spider", "Flesh crawler", "Ice Giant", "Dark Wizard (Level 20)"], "None"), style: "width: 135px;", include_blank: false
+        = content_tag(:div, nil, class: ["container", "center"], style: "width: 220px;") do
+          = content_tag(:table, nil, class: ["blank"], style: "width: 220px;") do
+            %h5 Custom Stats
+            %tr
+              %td= label_tag "Custom Stats?"
+              %td= check_box_tag "custom_target_stats", 1
+            %tr
+              %td= label_tag "PvP?"
+              %td= check_box_tag "pvp", 1
+            %tr
+              %td= label_tag "Cmb lvl"
+              %td= number_field_tag "combat_level", 1, { min: 1, max: 9999, step: 1, size: 6, maxlength: 3, style: "width:60px" }
+            %tr
+              %td= label_tag "Enemy HP"
+              %td= number_field_tag "target_health", 1, { min: 1, max: 9999, step: 1, size: 6, maxlength: 3, style: "width:60px" }
+            %tr
+              %td= label_tag "Enemy Defence Level"
+              %td= number_field_tag "target_defence_level", 1, { min: 1, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px" }
+            %tr
+              %td= label_tag "Enemy Armor Bonus"
+              %td= number_field_tag "target_defence_bonus", 0, { min: 0, max: 999, step: 1, size: 6, maxlength: 3, style: "width:60px" }
+  = content_tag(:div, nil, class: ["container", "center"], style: "width: 284px; margin-right: 8px") do
+    = field_set_tag 'Results', class: ["calc"], style: "width: 258px; display: inline-block;" do
+      = content_tag(:div, nil, class: ["container", "center", "filter"], style: "width: 90px;") do
+        = content_tag(:div, nil, class: ["container", "center"], style: "text-align: center; width: 90px; height: 60px") do
+          = submit_tag "Calculate", id: "calculate-button", style: "margin-top: 22px;"
+      %ul.tabs
+        %li.tab
+          %a.tab-link.active{ href: "#overview", style: "padding: 5px 8px;" } Overview
+        %li.tab
+          %a.tab-link{ href: "#detailed", style: "padding: 5px 8px;" } Detailed
+
+      .tab-content
+        .tab-pane#overview.active
+          %table#overview-table.blank{ style: "width: 240px;" }
+            %thead
+              %tr
+                %th Levels
+                %th Hours
+            %tbody
+
+        .tab-pane#detailed
+          %table#detailed-table.blank{ style: "width: 240px;" }
+            %thead
+              %tr
+                %th Attack
+                %th Strength
+                %th XP Rate
+                %th Drink lvl
+            %tbody

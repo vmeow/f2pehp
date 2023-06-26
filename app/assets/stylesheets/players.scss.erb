@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
-  color: white; 
+  color: white;
   font-family: Arial,Helvetica,sans-serif;
   font-size: 10pt;
   width: 100%;
   height: 100%;
-  
+
   text-align: center;
   background: black;
   background-image: image-url("original_bg2.jpg");
@@ -28,7 +28,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
+.burnt {
+  color: #969696; //gray: #969696 camel: #C09440
+  text-decoration: none;
+}
 
 p {
   font-family: 'Calibri';
@@ -377,7 +380,7 @@ div {
   margin: auto;
   text-align: left;
   line-height: 22px;
-  
+
   display: table;
 }
 
@@ -395,11 +398,49 @@ form .input { display: table-cell; }
   appearance: textfield;
 }
 
+/* Tab Styles */
+ul.tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.tabs li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+ul.tabs li a {
+  display: block;
+  padding: 2px 10px;
+  background-color: #382418;
+  color: #969696;
+  text-decoration: none;
+}
+
+ul.tabs li a.active {
+  background-color: #4C382C; /* Set the active tab background color */
+  color: white;
+}
+
+.tab-content {
+  margin-top: 10px;
+}
+
+.tab-pane {
+  display: none;
+  border: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
 // Generate CSS rules for supporter flair
 
 <% Player.supporters_hashes.each do |supporter| %>
   <% if supporter[:flair_before] %>
-    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
+    a[href$="players/<%= supporter[:name].gsub(' ', '_') %>" i]:before{
       padding: 3px;
       display: inline-flex;
       content: image-url("<%= supporter[:flair_before] %>");
@@ -412,7 +453,7 @@ form .input { display: table-cell; }
   <% end %>
 
   <% if supporter[:flair_after] %>
-    a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
+    a[href$="players/<%= supporter[:name].gsub(' ', '_') %>" i]:after{
       padding: 3px;
       display: inline-flex;
       content: image-url("<%= supporter[:flair_after] %>");
@@ -424,13 +465,13 @@ form .input { display: table-cell; }
     }
   <% end %>
 
-  a[href$="/<%= supporter[:name].gsub(' ', '_') %>" i]{
+  a[href$="players/<%= supporter[:name].gsub(' ', '_') %>" i]{
     <% if supporter[:other_css] %>
       <% supporter[:other_css].each do |rule| %>
         <%= rule %>;
       <% end %>
     <% end %>
-    
+
     display: inline-flex;
     align-items: center;
   }
@@ -466,9 +507,9 @@ form .input { display: table-cell; }
   details {
     color: black;
     margin-bottom: 20px;
-    -webkit-user-select: none;  
-    -moz-user-select: none;    
-    -ms-user-select: none;      
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     summary {
       font-size: 18px;

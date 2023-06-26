@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'tracking_plaintext' => 'players#tracking_plaintext'
   get 'names' => 'players#names'
   get 'monster_ratio' => 'players#monster_ratio'
+  get 'melee_order' => 'players#melee_order'
   get 'dps' => 'players#dps'
   get 'combat' => 'players#combat'
   get 'calcs' => 'players#calcs'
