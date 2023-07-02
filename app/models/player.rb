@@ -110,6 +110,8 @@ class Player < ActiveRecord::Base
                 {name: "Solo Emperor", amount: 15, date: "2021-09-08", flair_after: "flairs/Bucket_of_milk.png"},
                 {name: "AKPigsley", amount: 15, date: "2021-10-25"},
                 {name: "TheNutSlush", amount: 15, date: "2022-06-02", flair_after: "flairs/chips.png"},
+                {name: "Asura Zoma", amount: 15, date: "2020-12-17", flair_after: "flairs/asura_zoma.png"},
+                  {name: "Charzard 687", amount: 15, date: "2023-07-02", flair_after: "flairs/charzard_687.png"},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
@@ -161,7 +163,6 @@ class Player < ActiveRecord::Base
                 # but let's just call it a $10 donation and put those requests here
                 {name: "Pinai", amount: 10, date: "2020-11-04", other_css: ["color: #00ff00"]},
 
-                {name: "Asura Zoma", amount: 10, date: "2020-12-17", flair_after: "flairs/asura_zoma.png"},
                 {name: "re-fine", amount: 10, date: "2021-02-12", flair_after: "flairs/Mask_of_balance.png"},
                 {name: "Astrodeo", amount: 10, date: "2021-02-12", flair_after: "flairs/NASA-logo.png"},
                 {name: "f meinen", amount: 10, date: "2021-03-13", flair_after: "flairs/gengar.png"},
