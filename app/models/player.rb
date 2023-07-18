@@ -370,7 +370,7 @@ class Player < ActiveRecord::Base
                 {name: "Tiergan_2", amount: 5, date: "2023-01-01", flair_after: "flairs/bryo_essence.png"},
                 {name: "Olexiu", amount: 5, date: "2023-01-28", flair_after: "flairs/olexiu_cat.jpg"},
                 {name: "Danger Dance", amount: 5, date: "2023-01-29", flair_after: "flairs/youtube.png"},
-                {name: "NugsAndHugss", amount: 5, date: "2023-07-11", flair_after: "flairs/NugsAndHugss.jpg"},
+                {name: "NugsAndHugss", amount: 5, date: "2023-07-11", flair_after: "flairs/NugsAndHugss.jpg", other_css: ["color: #004209"]},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
