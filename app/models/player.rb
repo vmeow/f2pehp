@@ -40,6 +40,9 @@ class Player < ActiveRecord::Base
                 {name: "Xliff", amount: 100, date: "2022-02-01", flair_after: "flairs/Air_tiara.gif"},
                 {name: "Netbook Pro", flair_after: "flairs/malta_flag.png"},
                 {name: "tannerdino", amount: 7.69, date: "2018-11-14", flair_after: "items/Mossy_key.png"},
+                {name: "Your Bearr", amount: 80, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
+                    {name: "Bearrable", amount: 80, date: "2020-07-21"}, # request of Your Bearr
+                    {name: "Laughter", amount: 80, date: "2023-07-25", flair_after: "flairs/laugh.png"},
                 {name: "Pawz", amount: 79.25, date: "2018-02-01", flair_after: "flairs/rs3helm.png"},
                 {name: "Based F2P IM", amount: 70, date: "2019-10-05", flair_after: "IM.png"},
                 {name: "GOLB f2p", amount: 75, date: "2021-01-22", flair_before: "flairs/golb_flair1.png", flair_after: "flairs/golb_flair2.png", other_css: ["color: #66ffff"]},
@@ -63,8 +66,6 @@ class Player < ActiveRecord::Base
                 {name: "Laskati", amount: 40, date: "2022-11-11", flair_after: "flairs/wise_old_man.png"},
                 {name: "53 Rune 1729", amount: 33.33, date: "2022-02-26", flair_after: "flairs/law_rune.png", other_css: ["color: rgb(0,0,255)"]},
                 {name: "Gl4Head", amount: 30, flair_after: "flairs/fighting_boots.png"},
-                {name: "Your Bearr", amount: 30, date: "2020-07-21", flair_after: "flairs/Bear_feet.png"},
-                    {name: "Bearrable", amount: 30, date: "2020-07-21"}, # request of Your Bearr
                 {name: "I-69-Buddha", amount: 30, date: "2020-11-26", flair_before: "flairs/clue_scroll_beginner.png", flair_after: "flairs/demon_feet.png"},
                 {name: "minlvlskilla", flair_after: "flairs/3.png"},
                 {name: "Hagl", amount: 30, date: "2021-09-26"},
