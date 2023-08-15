@@ -373,6 +373,8 @@ class Player < ActiveRecord::Base
                 {name: "Danger Dance", amount: 5, date: "2023-01-29", flair_after: "flairs/youtube.png"},
                 {name: "NugsAndHugss", amount: 5, date: "2023-07-11", flair_after: "flairs/NugsAndHugss.jpg", other_css: ["color: #004209"]},
                 {name: "30 99 30", amount: 5, date: "2023-07-27", flair_after: "flairs/bryo_charged.png"},
+                {name: "selastri", amount: 5, date: "2023-08-09", flair_after: "flairs/Telekinetic_Grab.png"},
+                {name: "dumb manlet", amount: 5, date: "2023-08-12", flair_after: "flairs/broken_rune_axe.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
