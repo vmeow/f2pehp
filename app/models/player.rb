@@ -376,7 +376,7 @@ class Player < ActiveRecord::Base
                 {name: "selastri", amount: 5, date: "2023-08-09", flair_after: "flairs/Telekinetic_Grab.png"},
                 {name: "dumb manlet", amount: 5, date: "2023-08-12", flair_after: "flairs/broken_rune_axe.png"},
                 {name: "CheF2P", amount: 5, date: "2023-08-16", flair_after: "flairs/chef2p.png", other_css: ["color: #00FFFF"]},
-                {name: "King Lauri", amount: 5, date: "2023-08-12", flair_after: "flairs/kinglauri.png"},
+                {name: "King Lauri", amount: 5, date: "2023-09-12", flair_after: "flairs/kinglauri.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
