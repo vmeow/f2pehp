@@ -437,7 +437,7 @@
       %h4 Update Stats
       = link_to "#{@player.player_name}", update_player_path
 
-    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-bottom: 5px; width: 152px; height: 126px;") do 
+    = content_tag(:div, nil, class: ["container", "left", "filter"], style: "margin-bottom: 5px; width: 152px; height: 126px; line-height: 22px;") do 
       = "Other Hiscores"
       %br
       - if @player.player_acc_type == "HCIM"
