@@ -494,13 +494,8 @@ ul.tabs li a.active {
 <% end %>
 
 // Links going outside f2p wiki shouldn't have flairs
-a[target="_blank"] {
-  :before {
-    content: none !important;
-  }
-  :after{
-    content: none !important;
-  }
+a[target="_blank"]::before, a[target="_blank"]::after {
+  content: none !important;
 }
 
 .scroll {
