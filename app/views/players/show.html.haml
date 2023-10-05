@@ -450,7 +450,9 @@
         = link_to "OSRS Hiscores", "http://services.runescape.com/m=hiscore_oldschool/hiscorepersonal.ws?user1=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
       %br
       = link_to "Crystal Math Labs", "http://crystalmathlabs.com/tracker/track.php?player=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
+      %br
       = link_to "TempleOSRS", "https://templeosrs.com/player/overview.php?player=#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
+      %br
       = link_to "Wise Old Man", "https://wiseoldman.net/players/#{@player.url_friendly_player_name}", target: "_blank", rel: "noopener noreferrer"
         
     = content_tag(:div, nil, class: ["container", "left", "search"], style: "margin-bottom: 5px; width: 152px; height: 98px;") do 
