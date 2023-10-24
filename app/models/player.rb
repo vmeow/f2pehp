@@ -333,7 +333,7 @@ class Player < ActiveRecord::Base
                 {name: "RuneOrWalk", amount: 5, date: "2021-04-01", flair_after: "flairs/Runecraft_icon.png"},
                 {name: "UIM Lag", amount: 5, date: "2021-04-04", flair_after: "flairs/rune_scimitar_zamorak.png"},
                 {name: "Survender", amount: 5, date: "2021-04-22", flair_after: "flairs/Survender.png"},
-                {name: "FE Kaitios", amount: 5, date: "2021-04-22", flair_after: "flairs/FE_Kaitios.png"},
+                {name: "FE Kaitios", amount: 5, date: "2021-04-22", flair_after: "flairs/tiff.png"},
                 {name: "Kenneth760", amount: 5, date: "2021-04-25", flair_after: "flairs/white_partyhat.png"},
                 {name: "tneuqolitluM", amount: 5, date: "2021-05-19", flair_after: "flairs/Burnt_meat.png"},
                 {name: "IownFarah", amount: 5, date: "2021-05-22"},
