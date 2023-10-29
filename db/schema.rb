@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_034457) do
+ActiveRecord::Schema.define(version: 2023_10_29_042415) do
 
   create_table "clans", force: :cascade do |t|
     t.string "name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_03_01_034457) do
   create_table "players", force: :cascade do |t|
     t.string "player_name"
     t.string "player_acc_type"
-    t.integer "overall_xp"
+    t.bigint "overall_xp"
     t.integer "overall_lvl"
     t.float "overall_ehp"
     t.integer "attack_xp"
