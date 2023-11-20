@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_20_080237) do
+ActiveRecord::Schema.define(version: 2023_11_20_083125) do
 
   create_table "clans", force: :cascade do |t|
     t.string "name"
@@ -351,7 +351,7 @@ ActiveRecord::Schema.define(version: 2023_11_20_080237) do
     t.integer "runecraft_xp_year_max"
     t.float "runecraft_ehp_year_start"
     t.float "runecraft_ehp_year_max"
-    t.integer "overall_xp_day_start"
+    t.bigint "overall_xp_day_start"
     t.integer "overall_xp_day_max"
     t.float "overall_ehp_day_start"
     t.float "overall_ehp_day_max"
@@ -363,7 +363,7 @@ ActiveRecord::Schema.define(version: 2023_11_20_080237) do
     t.integer "overall_xp_month_max"
     t.float "overall_ehp_month_start"
     t.float "overall_ehp_month_max"
-    t.bigint "overall_xp_year_start"
+    t.integer "overall_xp_year_start"
     t.integer "overall_xp_year_max"
     t.float "overall_ehp_year_start"
     t.float "overall_ehp_year_max"
