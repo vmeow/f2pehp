@@ -113,6 +113,7 @@ class Player < ActiveRecord::Base
                 {name: "TheNutSlush", amount: 15, date: "2022-06-02", flair_after: "flairs/chips.png"},
                 {name: "Asura Zoma", amount: 15, date: "2020-12-17", flair_after: "flairs/asura_zoma.png"},
                   {name: "Charzard 687", amount: 15, date: "2023-07-02", flair_after: "flairs/charzard_687.png"},
+                {name: "Zaadkameraad", amount: 15, date: "2023-11-23", flair_after: "flairs/Black_santa_hat.png", other_css: ["color: rgb(232, 232, 229)"]},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
@@ -177,7 +178,6 @@ class Player < ActiveRecord::Base
                 {name: "cest parti", amount: 10, date: "2021-11-08", flair_after: "flairs/cest_parti.png"},
                 {name: "Kotsumi", amount: 10, date: "2021-11-25", flair_after: "flairs/kotsumi.png"},
                 {name: "F2p Menacing", amount: 10, date: "2021-12-08", flair_after: "flairs/30x30cro.png"},
-                {name: "Zaadkameraad", amount: 10, date: "2021-12-18", flair_after: "flairs/Black_santa_hat.png", other_css: ["color: rgb(232, 232, 229)"]},
                 {name: "Jazzwagons", amount: 10, date: "2021-12-31", flair_after: "flairs/Music.png"},
                 {name: "Kebab Norsu", amount: 10, date: "2022-02-21", flair_before: "flairs/Kebab.png", flair_after: "UIM.png"},
                 {name: "Poor Methods", amount: 10, date: "2022-03-29", flair_after: "flairs/Fly_fishing_rod.png"},
