@@ -532,6 +532,10 @@ class Player < ActiveRecord::Base
   end
 
   def update_player(stats: nil)
+    # If the player has been false banned and is frozen, do not update stats otherwise they will get marked as p2p
+    if F2POSRSRanks::Application.config.downcase_false_banned.include?(player_name.downcase)
+      return false
+    end
     if F2POSRSRanks::Application.config.downcase_fakes.include?(player_name.downcase) || F2POSRSRanks::Application.config.downcase_banned.include?(player_name.downcase)
       Player.where(player_name: player_name).destroy_all
     end

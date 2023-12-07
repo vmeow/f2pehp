@@ -12,6 +12,8 @@ F2POSRSRanks::Application.configure do
    config.downcase_fakes = config.fakes.map(&:downcase)
    config.banned = ["F2Prod", "Sharply Stab", "Wachbirne", "Nanitronic", "Hc Tppk", "iron s4v4gez", "Mr J Valeska", "atwilburn92"]
    config.downcase_banned = config.banned.map(&:downcase)
+   config.false_banned = ["Nociel", "ChaoticalF2P", "cacapoopoo71", "RuneWzrd", "meatbols", "090909090909"]
+   config.downcase_false_banned = config.false_banned.map(&:downcase)
 
     #ORDER OF SKILLS ON http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=NAME
     config.skills = ["overall",
