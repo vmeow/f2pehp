@@ -380,7 +380,7 @@ class Player < ActiveRecord::Base
                 {name: "King Lauri", amount: 5, date: "2023-09-12", flair_after: "flairs/kinglauri.png"},
                 {name: "Two of Clubs", amount: 5, date: "2023-10-02", flair_after: "flairs/2club.png"},
                 {name: "Umbral Death", amount: 5, date: "2023-10-18", flair_after: "flairs/regular_bones.png", other_css: ["color: #FFFFFF"]},
-                {name: "FFive", amount: 5, date: "2023-11-14", flair_after: "flairs/Decorative_boots_gold.png"},
+                {name: "FFive", amount: 5, date: "2023-12-14", flair_after: "flairs/Decorative_boots_gold.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
