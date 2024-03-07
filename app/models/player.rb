@@ -383,6 +383,7 @@ class Player < ActiveRecord::Base
                 {name: "FFive", amount: 5, date: "2023-12-14", flair_after: "flairs/Mole_slippers.png"},
                 {name: "5O29", amount: 5, date: "2023-12-23", flair_after: "flairs/5O29.png"},
                 {name: "tes stickle", amount: 5, date: "2024-01-21", flair_after: "flairs/strawberry.png"},
+                {name: "DAN F2P PVP", amount: 5, date: "2024-03-06", flair_after: "flairs/pvp_skull.png", other_css: ["color: #ff0000"]},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
