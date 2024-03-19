@@ -76,6 +76,7 @@ class Player < ActiveRecord::Base
                 {name: "Reichsheini", amount: 25, date: "2021-03-02", flair_after: "flairs/Fire_talisman.png"},
                 {name: "Flee2Pray", amount: 25, date: "2021-05-18", flair_after: "flairs/f2pbtw.png", other_css: ["color: #ffc03a"]},
                 {name: "uimevan", amount: 25, date: "2022-02-15", flair_after: "flairs/uim_helm.png"},
+                {name: "UI Sewer Rat", amount: 25, date: "2024-03-19", flair_after: "flairs/giant_rat.png"},
                 {name: "f2p Ello", amount: 22, date: "2021-01-21", flair_after: "flairs/ello_flag.png"},
                 {name: "I go by zach", amount: 21, date: "2020-03-12", flair_after: "flairs/Spade.png"},
                     {name: "hey earth", amount: 21, date: "2020-07-09", flair_after: "flairs/yellow_partyhat.png"}, # request from zach
