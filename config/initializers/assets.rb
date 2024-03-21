@@ -61,6 +61,7 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame",
                      "p2p_minigame",
                      "p2p_minigame", # 2023-04-13
+                     "p2p_minigame", # 2024-03-21
                      "bryophyta_kc",
                      "p2p_minigame",
                      "p2p_minigame",
@@ -90,6 +91,7 @@ F2POSRSRanks::Application.configure do
                      "p2p_minigame", # nex 2021-01-05
                      "p2p_minigame", # 2023-04-13
                      "p2p_minigame", # 2023-07-27
+                     "p2p_minigame", # 2024-03-21
                      "obor_kc",
                      "p2p_minigame",
                      "p2p_minigame",
