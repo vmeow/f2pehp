@@ -100,13 +100,13 @@ function melee_order() {
             case "Strength potion":
                 strength_boost_factor = 0.1;
                 strength_boost_addend = 3;
-                boost_collection_rate = 350;
+                boost_collection_rate = Infinity;
                 boost_sips = 4;
                 break;
             case "Strength potion (IM)":
                 strength_boost_factor = 0.1;
                 strength_boost_addend = 3;
-                boost_collection_rate = Infinity;
+                boost_collection_rate = 350;
                 boost_sips = 4;
                 break;
             case "Strength potion (UIM)":
