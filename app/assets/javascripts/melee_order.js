@@ -406,27 +406,19 @@ function melee_order() {
                 var xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * xp_multiplier;
             }
             var best_xp_per_hour = xp_per_hour;
+            var prev_xp_per_hour = xp_per_hour;
             for (x = 1; x <= max_boost_length; x++) {
                 // define effective levels
                 // only recalc accuracy if attack boost is used
                 // only recalc max hit if strength boost is used (future proofing xd)
                 // i need these if statements since strength and attack boost length's wont always be the same
                 // doesnt handle debuffs (for now) 2023-6-16
-                if (x < attack_boost_length) {
-                    effective_attack_level = calc_effective_level(attack_level, attack_prayer, attack_boost_factor, attack_boost_addend);
-                    accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
-                } else {
-                    effective_attack_level = calc_effective_level(Math.max(attack_level - x, attack_level), attack_prayer, attack_boost_factor, attack_boost_addend);
-                    accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
-                }
-                if (x < strength_boost_length) {
-                    effective_strength_level = calc_effective_level(strength_level, strength_prayer, strength_boost_factor, strength_boost_addend);
-                    max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
-                } else {
-                    effective_strength_level = calc_effective_level(Math.max(strength_level - x, strength_level), strength_prayer, strength_boost_factor, strength_boost_addend);
-                    max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
-                }
+                effective_attack_level = calc_effective_level(attack_level, attack_prayer, attack_boost_factor, attack_boost_addend - Math.min(x, attack_boost_length));
+                accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
 
+                effective_strength_level = calc_effective_level(strength_level, strength_prayer, strength_boost_factor, strength_boost_addend - Math.min(x, strength_boost_length));
+                max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
+                //console.log(x);
                 if (!pvp_setting) {
                     // recalc ticks to kill
                     var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
@@ -442,14 +434,17 @@ function melee_order() {
                     }
                     var xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * (1 - 60 / (4 * x) / boost_collection_rate) * xp_multiplier;
                 }
+                xp_per_hour = (xp_per_hour + prev_xp_per_hour)/2;
 
                 if (xp_per_hour > best_xp_per_hour) {
                     best_xp_per_hour = xp_per_hour;
                     best_wait = x;
                 }
+                console.log(strength_level + ": " + xp_per_hour + ": " + (strength_level + Math.floor(strength_level * strength_boost_factor) + strength_boost_addend - Math.min(x, strength_boost_length)));
+                prev_xp_per_hour = xp_per_hour;
             }
             var time_to_next_level = xp_needed / best_xp_per_hour;
-            return [time_to_next_level, best_xp_per_hour, strength_level + max_boost_length - best_wait];
+            return [time_to_next_level, best_xp_per_hour, strength_level + strength_boost_length - best_wait];
         }
 
         function format_overview(order) {
