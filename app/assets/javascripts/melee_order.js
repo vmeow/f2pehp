@@ -364,12 +364,10 @@ function melee_order() {
         }
 
         function calc_time_to_next_level(attack_level, strength_level, focus) {
-            var effective_attack_level = attack_level;
-            var effective_strength_level = strength_level;
+            // check focus
             var attack_level_addend = 0;
             var strength_level_addend = 0;
             var xp_needed = 0;
-            // check focus
             switch (focus) {
                 case 1:
                     xp_needed = xp_diff_table[Number(attack_level)];
@@ -381,47 +379,27 @@ function melee_order() {
                     break;
             }
 
-            // accuracy
-            var accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
-            // max hit
-            var max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
-            // check for best time to use skill boosts
-            var strength_boost_length = Math.abs(Math.floor(strength_level * (1 + strength_boost_factor) + strength_boost_addend) - strength_level);
-            var attack_boost_length = Math.floor(attack_level * (1 + attack_boost_factor) + attack_boost_addend) - attack_level;
-            var max_boost_length = Math.max(strength_boost_length, attack_boost_length);
-            var best_wait = 0;
+            var accuracy = 0;
+            var max_hit = 0;
+            var effective_attack_level = 0;
+            var effective_strength_level = 0;
+            var ticks_to_kill = 0;
 
-            // calc xp rate, for initialization. Also just incase theres no boost used i think this is required
-            if (!pvp_setting) {
-                var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
-                var xp_per_hour = 6000 / ticks_to_kill * target_health * 4;
-            } else {
-                attack_roll = (effective_attack_level + 8) * (attack_bonus + 64);
-                defence_roll = (target_defence_level) * (target_defence_bonus + 64);
-                if (attack_roll > defence_roll) {
-                    accuracy = 1 - (defence_roll + 2) / (2 * (attack_roll + 1));
-                } else {
-                    accuracy = attack_roll / (2 * (defence_roll + 1));
-                }
-                var xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * xp_multiplier;
-            }
-            var best_xp_per_hour = xp_per_hour;
-            var prev_xp_per_hour = xp_per_hour;
-            for (x = 1; x <= max_boost_length; x++) {
-                // define effective levels
-                // doesnt handle debuffs (for now) 2023-6-16
-                effective_attack_level = calc_effective_level(attack_level, attack_prayer, attack_boost_factor, attack_boost_addend - Math.min(x, attack_boost_length));
+            var xp_per_hour = 0;
+            var best_xp_per_hour = 0;
+            var prev_xp_per_hour = 0;
+            var best_drink_level = strength_level;
+            var temp_strength_level = Math.floor(strength_level * (1 + strength_boost_factor) + strength_boost_addend);
+            var temp_attack_level = Math.floor(attack_level * (1 + attack_boost_factor) + attack_boost_addend);
+
+            var boost_minutes = 1;
+            do {
+                effective_attack_level = calc_effective_level(Math.max(temp_attack_level, attack_level), attack_prayer, 0, 0, attack_level_addend);
+                effective_strength_level = calc_effective_level(Math.max(temp_strength_level, strength_level), strength_prayer, 0, 0, strength_level_addend);
+                max_hit = calc_max_hit(effective_strength_level, strength_bonus);
                 accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
-
-                effective_strength_level = calc_effective_level(strength_level, strength_prayer, strength_boost_factor, strength_boost_addend - Math.min(x, strength_boost_length));
-                max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
-                //console.log(x);
-                if (!pvp_setting) {
-                    // recalc ticks to kill
-                    var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
-                    // recalc xp per hour
-                    var xp_per_hour = 6000 / ticks_to_kill * target_health * 4 * (1 - 60 / (4 * x) / (boost_collection_rate));
-                } else {
+                
+                if (pvp_setting) {
                     attack_roll = (effective_attack_level + 8) * (attack_bonus + 64);
                     defence_roll = (target_defence_level) * (target_defence_bonus + 64);
                     if (attack_roll > defence_roll) {
@@ -429,19 +407,29 @@ function melee_order() {
                     } else {
                         accuracy = attack_roll / (2 * (defence_roll + 1));
                     }
-                    var xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * (1 - 60 / (4 * x) / boost_collection_rate) * xp_multiplier;
+                    xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * (1 - 60 / (4 * boost_minutes) / boost_collection_rate) * xp_multiplier;
+                } else {
+                    ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
+                    xp_per_hour = 6000 / ticks_to_kill * target_health * 4 * (1 - 60 / (4 * boost_minutes) / (boost_collection_rate));
                 }
-                xp_per_hour = (xp_per_hour + prev_xp_per_hour)/2;
+
+                if (prev_xp_per_hour != 0) {
+                    xp_per_hour = (prev_xp_per_hour + xp_per_hour)/2 // average all the previous loops
+                }
+                prev_xp_per_hour = xp_per_hour;
 
                 if (xp_per_hour > best_xp_per_hour) {
                     best_xp_per_hour = xp_per_hour;
-                    best_wait = x;
+                    best_drink_level = temp_strength_level - 1; // only str for now
                 }
-                // console.log(strength_level + ": " + xp_per_hour + ": " + (strength_level + Math.floor(strength_level * strength_boost_factor) + strength_boost_addend - Math.min(x, strength_boost_length)));
-                prev_xp_per_hour = xp_per_hour;
-            }
+
+                // console.log(style + attack_level + ": " + strength_level + ": " + xp_per_hour + ": " + temp_strength_level + ": " + max_hit);
+                boost_minutes += 1;
+                temp_strength_level -= 1;
+                temp_attack_level -= 1;
+            } while ((strength_level < temp_strength_level || attack_level < temp_attack_level) && boost_minutes < 30);
             var time_to_next_level = xp_needed / best_xp_per_hour;
-            return [time_to_next_level, best_xp_per_hour, strength_level + strength_boost_length - best_wait];
+            return [time_to_next_level, best_xp_per_hour, best_drink_level];
         }
 
         function format_overview(order) {
