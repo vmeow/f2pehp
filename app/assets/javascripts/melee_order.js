@@ -409,9 +409,6 @@ function melee_order() {
             var prev_xp_per_hour = xp_per_hour;
             for (x = 1; x <= max_boost_length; x++) {
                 // define effective levels
-                // only recalc accuracy if attack boost is used
-                // only recalc max hit if strength boost is used (future proofing xd)
-                // i need these if statements since strength and attack boost length's wont always be the same
                 // doesnt handle debuffs (for now) 2023-6-16
                 effective_attack_level = calc_effective_level(attack_level, attack_prayer, attack_boost_factor, attack_boost_addend - Math.min(x, attack_boost_length));
                 accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
