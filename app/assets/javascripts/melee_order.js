@@ -437,7 +437,7 @@ function melee_order() {
                     best_xp_per_hour = xp_per_hour;
                     best_wait = x;
                 }
-                console.log(strength_level + ": " + xp_per_hour + ": " + (strength_level + Math.floor(strength_level * strength_boost_factor) + strength_boost_addend - Math.min(x, strength_boost_length)));
+                // console.log(strength_level + ": " + xp_per_hour + ": " + (strength_level + Math.floor(strength_level * strength_boost_factor) + strength_boost_addend - Math.min(x, strength_boost_length)));
                 prev_xp_per_hour = xp_per_hour;
             }
             var time_to_next_level = xp_needed / best_xp_per_hour;
