@@ -175,7 +175,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['magic_method_video'] = "https://i.imgur.com/UTMN13p.gif";
     config.ehp_reg['cooking_method'] = "1-tick beef then wines"
     config.ehp_reg['cooking_method_video'] = "https://www.youtube.com/watch?v=KCXXLQi5i-8";
-    config.ehp_reg['woodcutting_method'] = "4-tick trees, then 2-tick oaks while alching"
+    config.ehp_reg['woodcutting_method'] = "4-tick trees, then forestry 2-tick oaks while alching"
     config.ehp_reg['woodcutting_method_video'] = "https://www.youtube.com/watch?v=CNvCUzFNkCg";
     config.ehp_reg['fishing_method'] = "Best fish, then 3-tick snow and leather fly fishing"
     config.ehp_reg['fishing_method_video'] = "https://www.youtube.com/watch?v=lPcuhfQlOGs";
@@ -187,7 +187,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['smithing_method_video'] = "https://www.youtube.com/watch?v=zYLfUIkqFw4"
     config.ehp_reg['mining_method'] = "Best rock until iron, 3-tick cake iron at Mining guild while scattering ashes"
     config.ehp_reg['mining_method_video'] = "https://www.youtube.com/watch?v=0aV7A1E7eOE"
-    config.ehp_reg['runecraft_method'] = "Solo body talismans"
+    config.ehp_reg['runecraft_method'] = "Mix of solo and alt body talismans"
     config.ehp_reg['runecraft_method_video'] = "https://www.youtube.com/watch?v=zEL1JO-uYKU"
     
     config.ehp_iron['attack_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
@@ -204,7 +204,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['magic_method'] = "0-time teleport/superheat/telegrab/high alch during other skills"
     config.ehp_iron['cooking_method'] = "Shrimp, sardines and herring, then trout/salmon 0-tick while fishing (erie fish)"
     config.ehp_iron['cooking_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
-    config.ehp_iron['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, 2.66-tick willow trees, also train alongside runecrafting"
+    config.ehp_iron['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, forestry 2.66-tick willow trees, also train alongside runecrafting"
     config.ehp_iron['woodcutting_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
     config.ehp_iron['fishing_method'] = "Shrimp, sardines and herring, then trout/salmon 3-ticked with snow/cooked fish (erie fish)"
     config.ehp_iron['fishing_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
@@ -215,8 +215,8 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['smithing_method'] = "Knight's sword, superheat iron with snow after double hop telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_iron['smithing_method_video'] = "https://www.youtube.com/watch?v=7JuJjTjx_bE"
     config.ehp_iron['mining_method'] = "0 time during crafting, smithing, runecraft"
-    config.ehp_iron['runecraft_method'] = "Ess mine to earth runes with chronicle tele, training woodcutting alongside"
-    config.ehp_iron['runecraft_method_video'] = "https://www.youtube.com/watch?v=uJsL3jN_gD8"
+    config.ehp_iron['runecraft_method'] = "Addy 2t Chronicle Canoe Body, training woodcutting alongside"
+    config.ehp_iron['runecraft_method_video'] = "https://www.youtube.com/watch?v=lW9fAPVLxA0"
     
     config.ehp_uim['attack_method'] = "1-40 questing xp and cows, 40-99 hill giants, 99+ ogresses and hill giants (all with prayer flicking)"
     config.ehp_uim['attack_method_video'] = "https://youtu.be/IxYY0Viem-w"
@@ -232,7 +232,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['magic_method'] = "0-time teleport/superheat/telegrab/high alch during other skills"
     config.ehp_uim['cooking_method'] = "Shrimp, sardines and herring, then trout/salmon 0-tick while fishing (erie fish)"
     config.ehp_uim['cooking_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
-    config.ehp_uim['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, 2.66-tick willow trees, also train alongside runecrafting"
+    config.ehp_uim['woodcutting_method'] = "4-tick normal trees, 3-tick oak trees, forestry 2.66-tick willow trees, also train alongside runecrafting"
     config.ehp_uim['woodcutting_method_video'] = "https://www.youtube.com/watch?v=VbeN6_X2qKI"
     config.ehp_uim['fishing_method'] = "Shrimp, sardines and herring, then trout/salmon 3-ticked with snow/cooked fish (erie fish)"
     config.ehp_uim['fishing_method_video'] = "https://www.youtube.com/watch?v=8m0hV8KtTYs"
@@ -243,9 +243,8 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['smithing_method'] = "Knight's sword, superheat iron with snow after double hop telegrabbing wildy nats, 0-time silver smelting"
     config.ehp_uim['smithing_method_video'] = "https://www.youtube.com/watch?v=7JuJjTjx_bE"
     config.ehp_uim['mining_method'] = "0 time during crafting, smithing, runecraft"
-    config.ehp_uim['runecraft_method'] = "Ess mine to earth runes with chronicle tele, training woodcutting alongside"
-    config.ehp_uim['runecraft_method_video'] = "https://www.youtube.com/watch?v=uJsL3jN_gD8"
-  
+    config.ehp_uim['runecraft_method'] = "Addy 2t Chronicle Canoe Body, training woodcutting alongside"
+    config.ehp_uim['runecraft_method_video'] = "https://www.youtube.com/watch?v=lW9fAPVLxA0"
     # config.ehp_reg['attack_tiers'] = [0, 37224, 100000, 1000000, 1986068, 3000000, 5346332, 13034431]
     # config.ehp_reg['attack_xphrs'] = [5300, 25450, 29500, 37900, 44800, 46900, 50800, 53500]
   
@@ -282,10 +281,10 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['magic_xphrs'] = [15000, 60000, 100000, 165000, 180000]
   
     config.ehp_reg['cooking_tiers'] = [0, 22406, 605032]
-    config.ehp_reg['cooking_xphrs'] = [100000, 450000, 480000]
+    config.ehp_reg['cooking_xphrs'] = [100000, 450000, 500000]
   
     config.ehp_reg['woodcutting_tiers'] = [0, 5018, 14833, 41171, 101333, 302288]
-    config.ehp_reg['woodcutting_xphrs'] = [29500, 40000, 55500, 73500, 81500, 90000]
+    config.ehp_reg['woodcutting_xphrs'] = [29500, 40000, 55500, 73500, 81500, 105000]
   
     config.ehp_reg['fishing_tiers'] = [0, 4470, 13363, 101333, 273742, 73627, 1986068, 5902831, 8771558, 13034431]
     config.ehp_reg['fishing_xphrs'] = [14000, 28000, 40000, 55500, 61500, 68000, 74250, 79750, 82500, 90000]
@@ -294,7 +293,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['firemaking_xphrs'] = [45000, 132660, 198990, 298485]
   
     config.ehp_reg['crafting_tiers'] = [0, 4470, 9730, 20224, 50339]
-    config.ehp_reg['crafting_xphrs'] = [37000, 137200, 185220, 233240, 290000]
+    config.ehp_reg['crafting_xphrs'] = [37000, 137200, 185220, 233240, 295000]
   
     # config.ehp_reg['smithing_tiers'] = [0, 37224, 605032, 4385776, 170000000]
     # config.ehp_reg['smithing_xphrs'] = [40000, 129000, 200000, 250000, 30000000]
@@ -311,12 +310,12 @@ F2POSRSRanks::Application.configure do
     config.ehp_reg['mining_xphrs'] = [4000, 46250, 49000, 52500, 55000, 57000]
   
     config.ehp_reg['runecraft_tiers'] = [0]
-    config.ehp_reg['runecraft_xphrs'] = [55000]
+    config.ehp_reg['runecraft_xphrs'] = [65000]
   
   
   
     config.ehp_iron['attack_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 13034431]
-    config.ehp_iron['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49000]
+    config.ehp_iron['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49600]
   
     config.ehp_iron['strength_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 11805606, 13034431] 
     config.ehp_iron['strength_xphrs'] = [5000, 24900, 28400, 33000, 36500, 37500, 38900, 40450, 41900, 42900, 44200, 45900, 49900, 49800]
@@ -346,7 +345,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_iron['cooking_xphrs'] = [2052000]
 
     config.ehp_iron['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
-    config.ehp_iron['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 95000]
+    config.ehp_iron['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 104000]
   
     # config.ehp_iron['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_iron['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
@@ -367,18 +366,18 @@ F2POSRSRanks::Application.configure do
     # config.ehp_iron['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
     config.ehp_iron['smithing_tiers'] = [0]
-    config.ehp_iron['smithing_xphrs'] = [22700]
+    config.ehp_iron['smithing_xphrs'] = [24000]
   
     config.ehp_iron['mining_tiers'] = [0]
     config.ehp_iron['mining_xphrs'] = [0]
   
     config.ehp_iron['runecraft_tiers'] = [0]
-    config.ehp_iron['runecraft_xphrs'] = [4650]
+    config.ehp_iron['runecraft_xphrs'] = [5400]
   
   
   
     config.ehp_uim['attack_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 13034431]
-    config.ehp_uim['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49000]
+    config.ehp_uim['attack_xphrs'] = [5000, 41100, 46400, 47600, 48400, 48800, 49000, 49200, 49400, 49500, 49650, 49850, 49600]
   
     config.ehp_uim['strength_tiers'] = [0, 37224, 101333, 273742, 737627, 1210421, 1629200, 2192818, 3258594, 3972294, 5346332, 7944614, 11805606, 13034431] 
     config.ehp_uim['strength_xphrs'] = [5000, 24900, 28400, 33000, 36500, 37500, 38900, 40450, 41900, 42900, 44200, 45900, 49900, 49800]
@@ -408,7 +407,7 @@ F2POSRSRanks::Application.configure do
     config.ehp_uim['cooking_xphrs'] = [2052000]
 
     config.ehp_uim['woodcutting_tiers'] = [0, 2411, 13363, 41171, 302288, 1986068, 5346332, 13034431]
-    config.ehp_uim['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 95000]
+    config.ehp_uim['woodcutting_xphrs'] = [8365, 17894, 35450, 50500, 63150, 76000, 88650, 104000]
   
     # config.ehp_uim['fishing_tiers'] = [0, 4470, 13363, 273742, 737627, 2500000, 6000000, 13034431, 149000000]
     # config.ehp_uim['fishing_xphrs'] = [14000, 28000, 35000, 45000, 55000, 65000, 70000, 75000, 78500]
@@ -429,13 +428,13 @@ F2POSRSRanks::Application.configure do
     # config.ehp_uim['smithing_xphrs'] = [8950, 2984000, 8950, 45800000]
   
     config.ehp_uim['smithing_tiers'] = [0]
-    config.ehp_uim['smithing_xphrs'] = [22700]
+    config.ehp_uim['smithing_xphrs'] = [24000]
   
     config.ehp_uim['mining_tiers'] = [0]
     config.ehp_uim['mining_xphrs'] = [0]
   
     config.ehp_uim['runecraft_tiers'] = [0]
-    config.ehp_uim['runecraft_xphrs'] = [4650]
+    config.ehp_uim['runecraft_xphrs'] = [5400]
     
     # Bonus XP (End): 
     # 0.2500 Smithing:Mining from 0 to 200000000 Mining xp 
@@ -451,7 +450,7 @@ F2POSRSRanks::Application.configure do
                            [0.972972973, "magic", "woodcutting", 14833, 41171],
                            [0.7346938776, "magic", "woodcutting", 41171, 101333],
                            [0.6625766871, "magic", "woodcutting", 101333, 302288],
-                           [0.6, "magic", "woodcutting", 302288, 200000000],
+                           [0.54, "magic", "woodcutting", 302288, 200000000],   
                            [0.4245283019, "smithing", "magic", 50339, 166636],
                            [0.5636363636, "prayer", "mining", 41171, 302288],
                            [0.5438596491, "prayer", "mining", 302288, 200000000],
@@ -519,7 +518,7 @@ F2POSRSRanks::Application.configure do
 
                             # Runecrafting
                             # Woodcutting caps at 50m woodcutting
-                            [0.3403, "woodcutting", "runecraft", 0, 146924946]
+                            [0.3194, "woodcutting", "runecraft", 0, 146924946]
                            ]
 
     config.bonus_xp_uim = [
@@ -581,7 +580,7 @@ F2POSRSRanks::Application.configure do
 
                             # Runecrafting
                             # Woodcutting caps at 50m woodcutting
-                            [0.3403, "woodcutting", "runecraft", 0, 146924946]
+                            [0.3194, "woodcutting", "runecraft", 0, 146924946]
                            ]
 end
 
