@@ -336,6 +336,11 @@ function combatDPS() {
                 enemyDef = 14;
                 enemyHP = 24;
                 break;
+            case "Minotaur (Level 12)":
+                enemyDef = 10;
+                enemyHP = 10;
+                enemyArm = -21;
+                break;
             default:
                 break;
         }
@@ -640,6 +645,11 @@ function combatDPS() {
                 enemyDef = 14;
                 enemyHP = 24;
                 break;
+            case "Minotaur (Level 12)":
+                enemyDef = 10;
+                enemyHP = 10;
+                enemyArm = -21;
+                break;
             default:
                 break;
         }
@@ -883,6 +893,11 @@ function combatDPS() {
                 enemyDef = 22;
                 enemyHP = 24;
                 enemyArm = 3;
+                break;
+            case "Minotaur (Level 12)":
+                enemyDef = 1;
+                enemyHP = 10;
+                enemyArm = -21;
                 break;
             default:
                 break;
