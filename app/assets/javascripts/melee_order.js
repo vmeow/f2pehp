@@ -54,11 +54,11 @@ function melee_order() {
         var custom_combat_level = Number(getAttributeValue("combat_level"));
 
         //just incase they set start level higher than end level
-        start_attack_level = Math.min(start_attack_level1, end_attack_level1);
-        start_strength_level = Math.min(start_strength_level1, end_strength_level1);
+        var start_attack_level = Math.min(start_attack_level1, end_attack_level1);
+        var start_strength_level = Math.min(start_strength_level1, end_strength_level1);
 
-        end_attack_level = Math.max(start_attack_level1, end_attack_level1);
-        end_strength_level = Math.max(start_strength_level1, end_strength_level1);
+        var end_attack_level = Math.max(start_attack_level1, end_attack_level1);
+        var end_strength_level = Math.max(start_strength_level1, end_strength_level1);
 
         var xp_multiplier = 1.0;
         if (custom_combat_level >= 20 && custom_combat_level <= 39) {
@@ -95,11 +95,25 @@ function melee_order() {
         var attack_boost_factor = 0;
         var attack_boost_addend = 0;
         var boost_collection_rate = Infinity;
+        var boost_sips = 4;
         switch (skill_boost) {
             case "Strength potion":
                 strength_boost_factor = 0.1;
                 strength_boost_addend = 3;
+                boost_collection_rate = Infinity;
+                boost_sips = 4;
+                break;
+            case "Strength potion (IM)":
+                strength_boost_factor = 0.1;
+                strength_boost_addend = 3;
                 boost_collection_rate = 350;
+                boost_sips = 4;
+                break;
+            case "Strength potion (UIM)":
+                strength_boost_factor = 0.1;
+                strength_boost_addend = 3;
+                boost_collection_rate = 100;
+                boost_sips = 4;
                 break;
             case "Castlewars brew":
                 strength_boost_factor = 0.15;
@@ -107,12 +121,14 @@ function melee_order() {
                 attack_boost_factor = 0.15;
                 attack_boost_addend = 5;
                 boost_collection_rate = Infinity;
+                boost_sips = 4;
                 break;
             case "Beer":
                 strength_boost_factor = 0.02;
                 strength_boost_addend = 1;
                 attack_boost_factor = -0.06;
                 attack_boost_addend = -1;
+                boost_sips = 1;
                 boost_collection_rate = Infinity;
                 break;
             default:
@@ -364,12 +380,10 @@ function melee_order() {
         }
 
         function calc_time_to_next_level(attack_level, strength_level, focus) {
-            var effective_attack_level = attack_level;
-            var effective_strength_level = strength_level;
+            // check focus
             var attack_level_addend = 0;
             var strength_level_addend = 0;
             var xp_needed = 0;
-            // check focus
             switch (focus) {
                 case 1:
                     xp_needed = xp_diff_table[Number(attack_level)];
@@ -381,58 +395,27 @@ function melee_order() {
                     break;
             }
 
-            // accuracy
-            var accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
-            // max hit
-            var max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
-            // check for best time to use skill boosts
-            var strength_boost_length = Math.abs(Math.floor(strength_level * (1 + strength_boost_factor) + strength_boost_addend) - strength_level);
-            var attack_boost_length = Math.floor(attack_level * (1 + attack_boost_factor) + attack_boost_addend) - attack_level;
-            var max_boost_length = Math.max(strength_boost_length, attack_boost_length);
-            var best_wait = 0;
+            var accuracy = 0;
+            var max_hit = 0;
+            var effective_attack_level = 0;
+            var effective_strength_level = 0;
+            var ticks_to_kill = 0;
 
-            // calc xp rate, for initialization. Also just incase theres no boost used i think this is required
-            if (!pvp_setting) {
-                var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
-                var xp_per_hour = 6000 / ticks_to_kill * target_health * 4;
-            } else {
-                attack_roll = (effective_attack_level + 8) * (attack_bonus + 64);
-                defence_roll = (target_defence_level) * (target_defence_bonus + 64);
-                if (attack_roll > defence_roll) {
-                    accuracy = 1 - (defence_roll + 2) / (2 * (attack_roll + 1));
-                } else {
-                    accuracy = attack_roll / (2 * (defence_roll + 1));
-                }
-                var xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * xp_multiplier;
-            }
-            var best_xp_per_hour = xp_per_hour;
-            for (x = 1; x <= max_boost_length; x++) {
-                // define effective levels
-                // only recalc accuracy if attack boost is used
-                // only recalc max hit if strength boost is used (future proofing xd)
-                // i need these if statements since strength and attack boost length's wont always be the same
-                // doesnt handle debuffs (for now) 2023-6-16
-                if (x < attack_boost_length) {
-                    effective_attack_level = calc_effective_level(attack_level, attack_prayer, attack_boost_factor, attack_boost_addend);
-                    accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
-                } else {
-                    effective_attack_level = calc_effective_level(Math.max(attack_level - x, attack_level), attack_prayer, attack_boost_factor, attack_boost_addend);
-                    accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
-                }
-                if (x < strength_boost_length) {
-                    effective_strength_level = calc_effective_level(strength_level, strength_prayer, strength_boost_factor, strength_boost_addend);
-                    max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
-                } else {
-                    effective_strength_level = calc_effective_level(Math.max(strength_level - x, strength_level), strength_prayer, strength_boost_factor, strength_boost_addend);
-                    max_hit = calc_max_hit(effective_strength_level, strength_bonus) * dmgMult;
-                }
+            var xp_per_hour = 0;
+            var best_xp_per_hour = 0;
+            var prev_xp_per_hour = 0;
+            var best_drink_level = strength_level;
+            var temp_strength_level = Math.floor(strength_level * (1 + strength_boost_factor) + strength_boost_addend);
+            var temp_attack_level = Math.floor(attack_level * (1 + attack_boost_factor) + attack_boost_addend);
 
-                if (!pvp_setting) {
-                    // recalc ticks to kill
-                    var ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
-                    // recalc xp per hour
-                    var xp_per_hour = 6000 / ticks_to_kill * target_health * 4 * (1 - 60 / (4 * x) / (boost_collection_rate));
-                } else {
+            var boost_minutes = 1;
+            do {
+                effective_attack_level = calc_effective_level(Math.max(temp_attack_level, attack_level), attack_prayer, 0, 0, attack_level_addend);
+                effective_strength_level = calc_effective_level(Math.max(temp_strength_level, strength_level), strength_prayer, 0, 0, strength_level_addend);
+                max_hit = calc_max_hit(effective_strength_level, strength_bonus);
+                accuracy = calc_accuracy(effective_attack_level, attack_bonus, target_defence_level, target_defence_bonus);
+                
+                if (pvp_setting) {
                     attack_roll = (effective_attack_level + 8) * (attack_bonus + 64);
                     defence_roll = (target_defence_level) * (target_defence_bonus + 64);
                     if (attack_roll > defence_roll) {
@@ -440,16 +423,29 @@ function melee_order() {
                     } else {
                         accuracy = attack_roll / (2 * (defence_roll + 1));
                     }
-                    var xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * (1 - 60 / (4 * x) / boost_collection_rate) * xp_multiplier;
+                    xp_per_hour = 6000 / attack_speed * accuracy * max_hit * 2 * (max_hit / (max_hit + 1)) * (1 - 60 / (boost_sips * boost_minutes) / boost_collection_rate) * xp_multiplier;
+                } else {
+                    ticks_to_kill = calc_ticks_to_kill(target_health, max_hit, accuracy, attack_speed);
+                    xp_per_hour = 6000 / ticks_to_kill * target_health * 4 * (1 - 60 / (boost_sips * boost_minutes) / (boost_collection_rate));
                 }
+
+                if (prev_xp_per_hour != 0) {
+                    xp_per_hour = (prev_xp_per_hour + xp_per_hour)/2 // average all the previous loops
+                }
+                prev_xp_per_hour = xp_per_hour;
 
                 if (xp_per_hour > best_xp_per_hour) {
                     best_xp_per_hour = xp_per_hour;
-                    best_wait = x;
+                    best_drink_level = temp_strength_level - 1; // only str for now
                 }
-            }
+
+                // console.log(style + attack_level + ": " + strength_level + ": " + xp_per_hour + ": " + temp_strength_level + ": " + max_hit);
+                boost_minutes += 1;
+                temp_strength_level -= 1;
+                temp_attack_level -= 1;
+            } while ((strength_level < temp_strength_level || attack_level < temp_attack_level) && boost_minutes < 30);
             var time_to_next_level = xp_needed / best_xp_per_hour;
-            return [time_to_next_level, best_xp_per_hour, strength_level + max_boost_length - best_wait];
+            return [time_to_next_level, best_xp_per_hour, best_drink_level];
         }
 
         function format_overview(order) {
@@ -459,6 +455,7 @@ function melee_order() {
             var first_strength_level = start_strength_level;
             var formatted_overview = [];
             var total_hours = 0;
+            var total_boosts = 0;
 
             for (var index = 0; index < order.length; index++) {
                 var node = order[index].split(',');
@@ -471,6 +468,9 @@ function melee_order() {
 
                 var progression = '';
                 var hours = 0;
+                var boosts = 0;
+                var strength_data;
+                var attack_data;
 
                 if (
                     current_attack_level !== prev_attack_level &&
@@ -478,55 +478,71 @@ function melee_order() {
                 ) {
                     first_attack_level = prev_attack_level;
                     progression = first_strength_level + ' - ' + current_strength_level + ' Strength';
-                    hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+                    strength_data = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+                    hours = strength_data[0];
+                    boosts = strength_data[1]; 
                 } else if (
                     current_strength_level !== prev_strength_level &&
                     prev_attack_level !== prev_prev_attack_level
                 ) {
                     first_strength_level = prev_strength_level;
                     progression = first_attack_level + ' - ' + current_attack_level + ' Attack';
-                    hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
+                    attack_data = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
+                    hours = attack_data[0];
+                    boosts = attack_data[1]; 
                 } else if (
                     prev_attack_level === end_attack_level &&
                     current_strength_level === end_strength_level
                 ) {
                     progression = first_strength_level + ' - ' + current_strength_level + ' Strength';
-                    hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+                    strength_data = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+                    hours = strength_data[0];
+                    boosts = strength_data[1]; 
                 } else if (
                     prev_strength_level === end_strength_level &&
                     current_attack_level === end_attack_level
                 ) {
                     progression = first_attack_level + ' - ' + current_attack_level + ' Attack';
-                    hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
+                    attack_data = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
+                    hours = attack_data[0];
+                    boosts = attack_data[1]; 
                 }
                 total_hours += hours;
-                total_hours = Math.round(total_hours * 1000) / 1000;
+                total_boosts += boosts;
 
                 if (progression) {
                     formatted_overview.push(progression);
-                    formatted_overview.push(total_hours + ' Hours');
+                    formatted_overview.push(Math.round(hours * 1000) / 1000 + ' Hours');
                 }
                 // for 98-99
                 if (index === order.length - 1 && first_strength_level === end_strength_level - 1 && current_attack_level == prev_attack_level) {
                     progression = first_strength_level + ' - ' + current_strength_level + ' Strength';
-                    hours = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+                    strength_data = calc_strength_hours(first_strength_level, current_strength_level, prev_attack_level);
+                    hours = strength_data[0];
+                    boosts = strength_data[1]; 
                     total_hours += hours;
-                    total_hours = Math.round(total_hours * 1000) / 1000;
+                    total_boosts += boosts;
                     formatted_overview.push(progression);
-                    formatted_overview.push(total_hours + ' Hours');
+                    formatted_overview.push(Math.round(hours * 1000) / 1000 + ' Hours');
                 } else if (index === order.length - 1 && first_attack_level == end_attack_level - 1 && current_strength_level == prev_strength_level) {
                     progression = first_attack_level + ' - ' + current_attack_level + ' Attack';
-                    hours = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
+                    attack_data = calc_attack_hours(first_attack_level, current_attack_level, prev_strength_level);
+                    hours = attack_data[0];
+                    boosts = attack_data[1];
                     total_hours += hours;
-                    total_hours = Math.round(total_hours * 1000) / 1000;
+                    total_boosts += boosts;
                     formatted_overview.push(progression);
-                    formatted_overview.push(total_hours + ' Hours');
+                    formatted_overview.push(Math.round(hours * 1000) / 1000 + ' Hours');
                 }
 
                 prev_attack_level = current_attack_level;
                 prev_strength_level = current_strength_level;
             }
 
+            formatted_overview.push(Math.round(total_boosts * 1000) / 1000 + ' Total Boosts');
+            formatted_overview.push('');
+            formatted_overview.push(Math.round(total_hours * 1000) / 1000 + ' Total Hours');
+            formatted_overview.push('');
             return formatted_overview;
         }
 
@@ -567,21 +583,51 @@ function melee_order() {
         // calc the hours between 2 attack levels
         function calc_attack_hours(start_attack_level, end_attack_level, strength_level) {
             var total_hours = 0;
+            var hours_to_level = 0;
+            var best_drink_level = 0;
+            var boosts_to_level = 0;
+            var total_boosts = 0;
+            var boosted_strength = Math.floor(strength_level * (1 + strength_boost_factor) + strength_boost_addend);
+            var level_data;
             for (; start_attack_level < end_attack_level; start_attack_level++) {
-                var hours_to_level = calc_time_to_next_level(start_attack_level, strength_level, 1)[0];
+                level_data = calc_time_to_next_level(start_attack_level, strength_level, 1);
+                hours_to_level = level_data[0];
+                best_drink_level = level_data[2];
+                if (best_drink_level > strength_level) {
+                    console.log(best_drink_level + ", " + strength_level);
+                    boosts_to_level = hours_to_level * 60 / ((boosted_strength - best_drink_level) * boost_sips);
+                }
+
+                total_boosts = total_boosts + boosts_to_level; 
                 total_hours = total_hours + hours_to_level;
             }
-            return total_hours;
+            return [total_hours, total_boosts];
         }
         // calc the hours between 2 strength levels
         function calc_strength_hours(start_strength_level, end_strength_level, attack_level) {
             var total_hours = 0;
+            var hours_to_level = 0;
+            var best_drink_level = 0;
+            var boosts_to_level = 0;
+            var total_boosts = 0;
+            var boosted_strength = Math.floor(end_strength_level * (1 + strength_boost_factor) + strength_boost_addend);
+            var level_data;
             for (; start_strength_level < end_strength_level; start_strength_level++) {
-                var hours_to_level = calc_time_to_next_level(attack_level, start_strength_level, 2)[0];
+                level_data = calc_time_to_next_level(attack_level, start_strength_level, 2);
+                hours_to_level = level_data[0];
+                best_drink_level = level_data[2];
+                if (best_drink_level > start_strength_level) {
+                    console.log(best_drink_level + ", " + start_strength_level);
+                    boosts_to_level = hours_to_level * 60 / ((boosted_strength - best_drink_level) * boost_sips);
+                }
+                
+                //console.log(boosts_to_level + ", " + best_drink_level + ", " + boosted_strength + ", " + boost_sips);
+                total_boosts = total_boosts + boosts_to_level; 
                 total_hours = total_hours + hours_to_level;
             }
-            return total_hours;
+            return [total_hours, total_boosts];
         }
+
 
         function createGraph(start_attack_level, end_attack_level, start_strength_level, end_strength_level) {
             var graph = {};
