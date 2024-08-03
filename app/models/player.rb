@@ -390,6 +390,7 @@ class Player < ActiveRecord::Base
                 {name: "Vera Ralston", amount: 5, date: "2024-05-16", flair_after: "flairs/Crafting_icon.png"},
                 {name: "otherbutler", amount: 5, date: "2024-07-24", flair_after: "UIM.png"},
                 {name: "CommonerPaul", amount: 5, date: "2024-07-26", other_css: ["color: #FFFFFF"]},
+                {name: "F2P Emir", amount: 5, date: "2024-08-03", flair_after: "skills/mining.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
