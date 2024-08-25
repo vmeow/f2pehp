@@ -115,6 +115,7 @@ class Player < ActiveRecord::Base
                 {name: "Asura Zoma", amount: 15, date: "2020-12-17", flair_after: "flairs/asura_zoma.png"},
                   {name: "Charzard 687", amount: 15, date: "2023-07-02", flair_after: "flairs/charzard_687.png"},
                 {name: "Zaadkameraad", amount: 15, date: "2023-11-23", flair_after: "flairs/Black_santa_hat.png", other_css: ["color: rgb(232, 232, 229)"]},
+                {name: "Sir BoJo", amount: 15, date: "2024-08-21", flair_after: "items/Rune_mace.gif"},
                 {name: "Ghost Bloke", amount: 13, date: "2018-12-13", flair_after: "flairs/ghost_bloke.png"}, # subtract $2 out of original $10 for paying for rights to flair image ;_;
                     {name: "Aus Flash", amount: 13, date: "2021-02-03", flair_after: "flairs/australia-flag.png"}, # request of Ghost Bloke
                 {name: "jyozf", amount: 12.30, date: "2020-07-15", flair_after: "items/Maple_shortbow.png"},
@@ -130,7 +131,6 @@ class Player < ActiveRecord::Base
                 {name: "Pink skirt", amount: 10, date: "2018-05-18", flair_after: "flairs/pink_skirt.png"},
                 {name: "Tagoodness", amount: 10, date: "2018-11-15", flair_after: "items/Diamond.gif"},
                 {name: "NoQuestsHCIM", amount: 10, date: "2018-12-02", flair_after: "flairs/noquest.png"},
-                {name: "Sir BoJo", amount: 10, date: "2018-12-03", flair_after: "items/Rune_mace.gif"},
                 {name: "Sad Jesus", amount: 10, date: "2019-01-19", flair_after: "flairs/sad_jesus.png"},
                 {name: "Cas F2P HC", amount: 10, date: "2019-01-30", flair_after: "items/Big_bones.gif"},
                 {name: "UIM Dakota", amount: 10, date: "2019-02-26", flair_after: "flairs/Cadava_berries.png"},
@@ -391,7 +391,6 @@ class Player < ActiveRecord::Base
                 {name: "otherbutler", amount: 5, date: "2024-07-24", flair_after: "UIM.png"},
                 {name: "CommonerPaul", amount: 5, date: "2024-07-26", other_css: ["color: #FFFFFF"]},
                 {name: "F2P Emir", amount: 5, date: "2024-08-03", flair_after: "skills/mining.png"},
-                {name: "Sir BoJo", amount: 5, date: "2024-08-21"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
