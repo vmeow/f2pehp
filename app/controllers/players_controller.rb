@@ -163,6 +163,9 @@ class PlayersController < ApplicationController
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4").where("overall_lvl <= 816")
     end
+    if @restrictions["combat only"]
+      @players = @players.where(cooking_lvl: 1).where(woodcutting_lvl: 1).where(fishing_lvl: 1).where(firemaking_lvl: 1).where(crafting_lvl: 1).where(smithing_lvl: 1).where(mining_lvl: 1).where(runecraft_lvl: 1).where("combat_lvl > 10")
+    end
 
     clan_filter_clause = @clan_filters.keys
     clan_filter_clause += [nil] if @clan_filters["None"]
@@ -285,6 +288,9 @@ class PlayersController < ApplicationController
     end
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4").where("overall_lvl <= 816")
+    end
+    if @restrictions["combat only"]
+      @players = @players.where(cooking_lvl: 1).where(woodcutting_lvl: 1).where(fishing_lvl: 1).where(firemaking_lvl: 1).where(crafting_lvl: 1).where(smithing_lvl: 1).where(mining_lvl: 1).where(runecraft_lvl: 1).where("combat_lvl > 10")
     end
 
     @players = @players.where("overall_ehp > 1 and potential_p2p <= 0").paginate(:page => params[:page], :per_page => @show_limit.to_i)
@@ -417,6 +423,9 @@ class PlayersController < ApplicationController
     end
     if @restrictions["3 combat"]
       @players = @players.where("combat_lvl < 4").where("overall_lvl <= 816")
+    end
+    if @restrictions["combat only"]
+      @players = @players.where(cooking_lvl: 1).where(woodcutting_lvl: 1).where(fishing_lvl: 1).where(firemaking_lvl: 1).where(crafting_lvl: 1).where(smithing_lvl: 1).where(mining_lvl: 1).where(runecraft_lvl: 1).where("combat_lvl > 10")
     end
     if @skill == "combat"
       @players = @players.where("combat_lvl IS NOT NULL")

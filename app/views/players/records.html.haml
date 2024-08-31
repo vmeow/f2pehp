@@ -118,7 +118,7 @@
         = "Restrictions"
         %br
         = content_tag(:div, nil, class: "container", style: "color: #d9c27e; text-align: left; width: 126px; margin-bottom: 0px;") do
-          - ["3 combat", "1 defence", "10 hitpoints"].each do |type|
+          - ["3 combat", "1 defence", "10 hitpoints", "combat only"].each do |type|
             &nbsp
             = radio_button_tag "restrictions", type, @restrictions.include?(type), :id => "restrictions_#{type}"
             = type
