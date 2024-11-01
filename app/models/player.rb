@@ -393,6 +393,7 @@ class Player < ActiveRecord::Base
                 {name: "CommonerPaul", amount: 5, date: "2024-07-26", other_css: ["color: #FFFFFF"]},
                 {name: "F2P Emir", amount: 5, date: "2024-08-03", flair_after: "skills/mining.png"},
                 {name: "Oiled Eagle", amount: 5, date: "2024-10-01"},
+                {name: "Prior Sala", amount: 5, date: "2024-10-20", flair_after: "flairs/Haunted_wine_bottle.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
