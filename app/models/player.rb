@@ -396,6 +396,7 @@ class Player < ActiveRecord::Base
                 {name: "Prior Sala", amount: 5, date: "2024-10-20", flair_after: "flairs/Haunted_wine_bottle.png"},
                 {name: "SQWEEZY", amount: 5, date: "2024-11-10", flair_after: "flairs/sqweezy_heart.png"},
                 {name: "Sqwshy", amount: 5, date: "2024-11-10", flair_after: "flairs/chef_hat.png"},
+                {name: "orgysex", amount: 5, date: "2024-12-07", flair_after: "flairs/shrimps.png"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
