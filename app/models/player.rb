@@ -399,6 +399,7 @@ class Player < ActiveRecord::Base
                 {name: "SQWEEZY", amount: 5, date: "2024-11-10", flair_after: "flairs/sqweezy_heart.png"},
                 {name: "Sqwshy", amount: 5, date: "2024-11-10", flair_after: "flairs/chef_hat.png"},
                 {name: "orgysex", amount: 5, date: "2024-12-07", flair_after: "flairs/shrimps.png"},
+                {name: "HC UIM Ghost", amount: 5, date: "2025-01-27"},
                 {name: "96puppyhunt", amount: 3, date: "2021-07-29", flair_after: "flairs/puppyhunt.png"},
                 {name: "Tohno1612", amount: ??, flair_after: "flairs/addy_helm.png"},
                 {name: "H C Gilrix", amount: 2.5, date: "2018-03-04", flair_after: "flairs/HCIM.png"},
