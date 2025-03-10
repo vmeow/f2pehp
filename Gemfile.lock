@@ -72,7 +72,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.1.10)
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.10.0)
@@ -80,7 +80,7 @@ GEM
     execjs (2.8.1)
     ffi (1.15.3)
     formatador (0.3.0)
-    globalid (0.5.1)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     guard (2.18.0)
       formatador (>= 0.2.4)
@@ -110,7 +110,7 @@ GEM
       haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
-    i18n (1.8.10)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
@@ -132,7 +132,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.0.3)
     mini_portile2 (2.5.3)
-    minitest (5.14.4)
+    minitest (5.17.0)
     nenv (0.3.0)
     nio4r (2.5.7)
     nokogiri (1.11.7)
@@ -235,7 +235,7 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -248,7 +248,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.1.8)
-    zeitwerk (2.4.2)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
