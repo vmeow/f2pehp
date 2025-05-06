@@ -247,21 +247,21 @@ function monster_ratio() {
                 break;
             case "Flawed Golem":
                 craftper1 = 3.221153846; // 50 * 2/52 + 67.5 * 1/52
-                runecraftper1 = 3.980769231; // 7.5 * 2 * 12/52 + 3 * 9/52 Always assume body runes with noted ess?
+                runecraftper1 = 7.355769231; // 7.5 * (2 * 12/52 + 3 * 9/52) Always assume body runes with noted ess?
                 natsper1 = 0;
                 lawsper1 = 0;
                 hpper1 = 25;
                 break;
             case "Mind Golem":
                 craftper1 = 8.076923077; // 50 * 4/52 + 67.5 * 2/52 + 85 * 1/52
-                runecraftper1 = 10.814102564; // 7.5 * 4 * 6/52 + 1 * 1/52  + 2/15 * 55
+                runecraftper1 = 10.939102564; // 7.5 * (4 * 6/52 + 1 * 1/52)  + (2/15 * 55)
                 natsper1 = 0;
                 lawsper1 = 0;
                 hpper1 = 40;
                 break;
             case "Body Golem":
                 craftper1 = 8.076923077; // 50 * 4/52 + 67.5 * 2/52 + 85 * 1/52
-                runecraftper1 = 14.346153846; // 7.5 * 5 * 6/52 + 1 * 1/52  + 2/15 * 75
+                runecraftper1 = 14.471153846; // 7.5 * (5 * 6/52 + 1 * 1/52)  + (2/15 * 75)
                 natsper1 = 0;
                 lawsper1 = 0;
                 hpper1 = 60;
@@ -297,8 +297,8 @@ function monster_ratio() {
                 hpper1 = 25;
                 break;
             case "Minotaur":
-                craftper1 = 0.53671875; // 50 * 1/200 + 67.5 * 1/400 + 67.5 * 1/800 + 107.5 * 1/3200
-                runecraftper1 = 16.707920792; // 7.5 * 3 * 3/101 * 25. 25 inv spaces, also doesnt include 0 time ess since using up 0 time ess still costs sceptre pieces
+                craftper1 = 0.276531559; // 50 * 1/404 + 67.5 * 1/808 + 85 * 1/1616 + 107.5 * 1/6464
+                runecraftper1 = 1.856435644; // 7.5 * 5 * 5/101. all noted ess considered 0 time since bonefrags from skull half drops outnumber number of essence drops diveded 25 (25ess per runecrafting run)
                 natsper1 = 0;
                 lawsper1 = 0;
                 hpper1 = 10;
@@ -353,21 +353,21 @@ function monster_ratio() {
                 break;
             case "Flawed Golem":
                 craftper2 = 3.221153846; // 50 * 2/52 + 67.5 * 1/52
-                runecraftper2 = 3.980769231; // 7.5 * 2 * 12/52 + 3 * 9/52 Always assume body runes with noted ess?
+                runecraftper2 = 7.355769231; // 7.5 * (2 * 12/52 + 3 * 9/52) Always assume body runes with noted ess?
                 natsper2 = 0;
                 lawsper2 = 0;
                 hpper2 = 25;
                 break;
             case "Mind Golem":
                 craftper2 = 8.076923077; // 50 * 4/52 + 67.5 * 2/52 + 85 * 1/52
-                runecraftper2 = 10.814102564; // 7.5 * 4 * 6/52 + 1 * 1/52  + 2/15 * 55
+                runecraftper2 = 10.939102564; // 7.5 * (4 * 6/52 + 1 * 1/52)  + (2/15 * 55)
                 natsper2 = 0;
                 lawsper2 = 0;
                 hpper2 = 40;
                 break;
             case "Body Golem":
                 craftper2 = 8.076923077; // 50 * 4/52 + 67.5 * 2/52 + 85 * 1/52
-                runecraftper2 = 14.346153846; // 7.5 * 5 * 6/52 + 1 * 1/52  + 2/15 * 75
+                runecraftper2 = 14.471153846; // 7.5 * 5 * 6/52 + 1 * 1/52  + 2/15 * 75
                 natsper2 = 0;
                 lawsper2 = 0;
                 hpper2 = 60;
@@ -403,8 +403,8 @@ function monster_ratio() {
                 hpper2 = 25;
                 break;
             case "Minotaur":
-                craftper2 = 0.53671875; // 50 * 1/200 + 67.5 * 1/400 + 67.5 * 1/800 + 107.5 * 1/3200
-                runecraftper2 = 16.707920792; // 7.5 * 3 * 3/101 * 25. 25 inv spaces, also doesnt include 0 time ess since using up 0 time ess still costs sceptre pieces
+                craftper2 = 0.276531559; // 50 * 1/404 + 67.5 * 1/808 + 85 * 1/1616 + 107.5 * 1/6464
+                runecraftper2 = 1.856435644; // 7.5 * 5 * 5/101. all noted ess considered 0 time since bonefrags from skull half drops outnumber number of essence drops diveded 25 (25ess per runecrafting run)
                 natsper2 = 0;
                 lawsper2 = 0;
                 hpper2 = 10;
